@@ -60,6 +60,8 @@ export const CurrencySelect = ({
 }: CurrencySelectProps) => {
   const { account } = useActiveWeb3React()
 
+  console.log(selectedCurrency)
+
   const selectedCurrencyBalance = useCurrencyBalance(
     account ?? undefined,
     !hideBalance && selectedCurrency ? selectedCurrency : undefined,
