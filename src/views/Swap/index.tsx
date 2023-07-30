@@ -118,6 +118,7 @@ export default function Swap() {
 
   // dismiss warning if all imported tokens are in active lists
   const defaultTokens = useAllTokens()
+
   const importTokensNotInDefault =
     urlLoadedTokens &&
     urlLoadedTokens.filter((token: Token) => {

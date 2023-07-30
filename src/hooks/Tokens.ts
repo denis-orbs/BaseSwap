@@ -3,7 +3,6 @@ import { arrayify } from '@ethersproject/bytes'
 import { parseBytes32String } from '@ethersproject/strings'
 import { Currency, currencyEquals, ETHER, Token } from '@magikswap/sdk'
 import { createSelector } from '@reduxjs/toolkit'
-import { GELATO_NATIVE } from 'config/constants'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
@@ -20,7 +19,6 @@ import { isAddress } from '../utils'
 import { useBytes32TokenContract, useTokenContract } from './useContract'
 
 const mapWithoutUrls = (tokenMap: TokenAddressMap, chainId: number) => {
-  console.log(tokenMap)
   return Object.keys(tokenMap[chainId]).reduce<{ [address: string]: Token }>((newMap, address) => {
     newMap[address] = tokenMap[chainId][address].token
     return newMap

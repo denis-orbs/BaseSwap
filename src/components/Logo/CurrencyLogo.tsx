@@ -25,7 +25,8 @@ export default function CurrencyLogo({
   const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
 
   const srcs: string[] = useMemo(() => {
-    if (currency === ETHER) return []
+    if (currency === ETHER)
+      return ['https://pancakeswap.finance/images/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8.png']
 
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
@@ -37,7 +38,7 @@ export default function CurrencyLogo({
   }, [currency, uriLocations])
 
   if (currency === ETHER) {
-    return <BinanceIcon width={size} style={style} />
+    // return <BinanceIcon width={size} style={style} />
   }
 
   return <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
