@@ -1,7 +1,10 @@
+import { ChainId } from '@magikswap/sdk'
+
 export default {
   masterChef: {
     97: '0xB4A466911556e39210a6bB2FaECBB59E4eB7E43d',
     250: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652',
+    [ChainId.BASE_GOERLI]: '',
   },
   masterChefV1: {
     97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
@@ -19,6 +22,7 @@ export default {
   multiCall: {
     250: '0xB25a3cF895E70D90F8c98FB001846EB120d020f1',
     97: '0x8F3273Fb89B075b1645095ABaC6ed17B2d4Bc576',
+    [ChainId.BASE_GOERLI]: '0x0fE9E7B39dbdfe32c9F37FAcCec6b33d290CbF50',
   },
   pancakeProfile: {
     250: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a',

@@ -9,6 +9,15 @@ const CAKE_MAINNET = new Token(
   'https://pancakeswap.finance/',
 )
 
+const CAKE_BASE_GOERLI = new Token(
+  ChainId.BASE_GOERLI,
+  '0xFb68BBfaEF679C1E653b5cE271a0A383c0df6B45',
+  18,
+  'BSWAP',
+  'BaseSwap Token',
+  'baseswap.fi',
+)
+
 const CAKE_TESTNET = new Token(
   ChainId.BSC_TESTNET,
   '0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe',
@@ -44,6 +53,7 @@ export const USDC = {
 export const CAKE = {
   [ChainId.MAINNET]: CAKE_MAINNET,
   [ChainId.BSC_TESTNET]: CAKE_TESTNET,
+  [ChainId.BASE_GOERLI]: CAKE_BASE_GOERLI,
 }
 
 const BUSD_MAINNET = new Token(
@@ -64,7 +74,7 @@ const BUSD_TESTNET = new Token(
   'https://www.paxos.com/busd/',
 )
 
-export const BUSD: Record<ChainId, Token> = {
+export const BUSD: Record<number, Token> = {
   [ChainId.MAINNET]: BUSD_MAINNET,
   [ChainId.BSC_TESTNET]: BUSD_TESTNET,
   [ChainId.BSC]: BUSD_MAINNET,
@@ -2380,6 +2390,11 @@ export const bscTokens = {
     'Meta Apes Peel',
     'https://metaapesgame.com/',
   ),
+}
+
+export const baseGoerliTokens = {
+  wbnb: WBNB[ChainId.BASE_GOERLI],
+  cake: WBNB[ChainId.BASE_GOERLI],
 }
 
 export const bscTestnetTokens = {

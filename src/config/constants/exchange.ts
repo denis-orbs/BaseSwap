@@ -1,11 +1,12 @@
 import { ChainId, JSBI, Percent, Token } from '@magikswap/sdk'
 import { BigNumber } from '@ethersproject/bignumber'
-import { bscTokens, bscTestnetTokens } from './tokens'
+import { bscTokens, bscTestnetTokens, baseGoerliTokens } from './tokens'
 import { ChainTokenList } from './types'
 
 export const ROUTER_ADDRESS = {
   [ChainId.MAINNET]: '0x16327e3fbdaca3bcf7e38f5af2599d2ddc33ae52',
   [ChainId.BSC_TESTNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
+  [ChainId.BASE_GOERLI]: '0x6F1a2F63Ea06B475EDBf2E6393406058C12A7910',
 }
 
 // used to construct intermediary pairs for trading
@@ -20,6 +21,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     bscTokens.usdc,
   ],
   [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
+  [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb],
 }
 
 /**

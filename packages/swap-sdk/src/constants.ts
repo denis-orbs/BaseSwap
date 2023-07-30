@@ -9,6 +9,9 @@ export enum ChainId {
   MAINNET = 250,
   BSC = 56,
   BSC_TESTNET = 97,
+
+  BASE = 8453,
+  BASE_GOERLI = 84531,
 }
 
 export enum TradeType {
@@ -27,6 +30,7 @@ export const FACTORY_ADDRESS = '0xEF45d134b73241eDa7703fa787148D9C9F4950b0'
 export const FACTORY_ADDRESS_MAP = {
   [ChainId.MAINNET]: FACTORY_ADDRESS,
   [ChainId.BSC_TESTNET]: '0x6725f303b657a9451d8ba641348b6761a6cc7a17',
+  [ChainId.BASE_GOERLI]: '0xFDa619b6d20975be80A10332cD39b9a4b0FAa8BB',
 }
 
 export const INIT_CODE_HASH = '0xe242e798f6cee26a9cb0bbf24653bf066e5356ffeac160907fe2cc108e238617'
