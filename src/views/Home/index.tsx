@@ -62,12 +62,12 @@ const Home: React.FC = () => {
         index={2}
         hasCurvedDivider={false}
       >
-        {account && (
+        {/* {account && (
           <UserBannerWrapper>
             <UserBanner />
           </UserBannerWrapper>
-        )}
-        <MultipleBanner />
+        )} */}
+        {/* <MultipleBanner /> */}
         <Hero />
       </StyledHeroSection>
       <PageSection

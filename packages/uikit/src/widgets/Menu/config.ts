@@ -42,12 +42,12 @@ export const links: MenuItemsType[] = [
         label: "Liquidity",
         href: "/liquidity",
       },
-      {
-        label: "Charts",
-        href: "/charts",
-        iconName: "Chart",
-        isMobileOnly: true,
-      },
+      // {
+      //   label: "Charts",
+      //   href: "/charts",
+      //   iconName: "Chart",
+      //   isMobileOnly: true,
+      // },
     ],
   },
   {
@@ -70,66 +70,66 @@ export const links: MenuItemsType[] = [
       },
     ],
   },
-  {
-    label: "Win",
-    href: "/",
-    icon: TrophyIcon,
-    fillIcon: TrophyFillIcon,
-    items: [
-      {
-        label: "Win",
-        href: "/",
-      },
-      {
-        label: "Predictions",
-        href: "/",
-        status: status.LIVE,
-      },
-      {
-        label: "Lottery",
-        href: "/",
-      },
-    ],
-  },
-  {
-    label: "",
-    href: "/",
-    icon: MoreIcon,
-    items: [
-      {
-        label: "Info & Analytics",
-        href: "/",
-      },
-      {
-        label: "IFO Token Sales",
-        href: "/",
-        status: status.SOON,
-      },
-      {
-        type: DropdownMenuItemType.DIVIDER,
-      },
-      {
-        label: "NFT Collectibles",
-        href: "/",
-      },
-      {
-        label: "Team Leaderboard",
-        href: "/",
-      },
-      {
-        type: DropdownMenuItemType.DIVIDER,
-      },
-      {
-        label: "Blog",
-        href: "/",
-      },
-      {
-        label: "Docs & Guides",
-        href: "/",
-        type: DropdownMenuItemType.EXTERNAL_LINK,
-      },
-    ],
-  },
+  // {
+  //   label: "Win",
+  //   href: "/",
+  //   icon: TrophyIcon,
+  //   fillIcon: TrophyFillIcon,
+  //   items: [
+  //     {
+  //       label: "Win",
+  //       href: "/",
+  //     },
+  //     {
+  //       label: "Predictions",
+  //       href: "/",
+  //       status: status.LIVE,
+  //     },
+  //     {
+  //       label: "Lottery",
+  //       href: "/",
+  //     },
+  //   ],
+  // },
+  // {
+  //   label: "",
+  //   href: "/",
+  //   icon: MoreIcon,
+  //   items: [
+  //     {
+  //       label: "Info & Analytics",
+  //       href: "/",
+  //     },
+  //     {
+  //       label: "IFO Token Sales",
+  //       href: "/",
+  //       status: status.SOON,
+  //     },
+  //     {
+  //       type: DropdownMenuItemType.DIVIDER,
+  //     },
+  //     {
+  //       label: "NFT Collectibles",
+  //       href: "/",
+  //     },
+  //     {
+  //       label: "Team Leaderboard",
+  //       href: "/",
+  //     },
+  //     {
+  //       type: DropdownMenuItemType.DIVIDER,
+  //     },
+  //     {
+  //       label: "Blog",
+  //       href: "/",
+  //     },
+  //     {
+  //       label: "Docs & Guides",
+  //       href: "/",
+  //       type: DropdownMenuItemType.EXTERNAL_LINK,
+  //     },
+  //   ],
+  // },
 ];
 
 export const userMenulinks: DropdownMenuItems[] = [
@@ -145,25 +145,25 @@ export const userMenulinks: DropdownMenuItems[] = [
   {
     type: DropdownMenuItemType.DIVIDER,
   },
-  {
-    type: DropdownMenuItemType.BUTTON,
-    disabled: true,
-    label: "Dashboard",
-  },
-  {
-    type: DropdownMenuItemType.BUTTON,
-    disabled: true,
-    label: "Portfolio",
-  },
-  {
-    label: "Profile",
-    href: "/profile",
-  },
-  {
-    type: DropdownMenuItemType.EXTERNAL_LINK,
-    href: "https://pancakeswap.finance",
-    label: "Link",
-  },
+  // {
+  //   type: DropdownMenuItemType.BUTTON,
+  //   disabled: true,
+  //   label: "Dashboard",
+  // },
+  // {
+  //   type: DropdownMenuItemType.BUTTON,
+  //   disabled: true,
+  //   label: "Portfolio",
+  // },
+  // {
+  //   label: "Profile",
+  //   href: "/profile",
+  // },
+  // {
+  //   type: DropdownMenuItemType.EXTERNAL_LINK,
+  //   href: "https://pancakeswap.finance",
+  //   label: "Link",
+  // },
   {
     type: DropdownMenuItemType.DIVIDER,
   },

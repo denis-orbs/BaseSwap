@@ -370,7 +370,8 @@ export default function Swap() {
     }
   }, [hasAmount, refreshBlockNumber])
 
-  const isChartSupported = useMemo(() => CHART_SUPPORT_CHAIN_IDS.includes(chainId), [chainId])
+  // const isChartSupported = useMemo(() => CHART_SUPPORT_CHAIN_IDS.includes(chainId), [chainId])
+  const isChartSupported = false
 
   return (
     <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
