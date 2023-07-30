@@ -25,7 +25,7 @@ const StyledThemeProvider: React.FC<{ children: React.ReactNode }> = (props) => 
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-family: 'Kanit', sans-serif;
+    font-family: 'Comfortaa', sans-serif;
   }
   html, body, #__next {
     height: 100%;

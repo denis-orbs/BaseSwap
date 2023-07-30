@@ -21,7 +21,7 @@ function pointsToRem(size: number) {
 // theme definition
 
 export const FontFamily = {
-  KANIT: "'Kanit', sans-serif",
+  Comfortaa: "'Comfortaa', sans-serif",
 }
 
 const FontWeight = {
@@ -131,7 +131,7 @@ const breakpoints = createBreakpoints({
 })
 
 const typography = createTypography(darkPalette, {
-  fontFamily: FontFamily.KANIT,
+  fontFamily: FontFamily.Comfortaa,
   h1: {
     lineHeight: pxToRem(46),
     letterSpacing: '-3%',
@@ -308,7 +308,7 @@ export const darkTheme: Theme = {
     MuiButton: {
       root: {
         borderRadius: 16,
-        fontFamily: FontFamily.KANIT,
+        fontFamily: FontFamily.Comfortaa,
         fontWeight: FontWeight.MEDIUM,
         letterSpacing: '0.04em',
         textTransform: 'none',
@@ -774,7 +774,7 @@ export const lightTheme: Theme = {
     MuiButton: {
       root: {
         borderRadius: 16,
-        fontFamily: FontFamily.KANIT,
+        fontFamily: FontFamily.Comfortaa,
         fontWeight: FontWeight.MEDIUM,
         letterSpacing: '0.04em',
         textTransform: 'none',

@@ -22,7 +22,7 @@ export const StargateWidget = ({ theme }: { theme: PancakeTheme }) => {
           border-bottom: 1px solid ${theme.colors.cardBorder} !important;
         }
         .StgHeader .MuiTypography-subtitle1 {
-          font-family: ${FontFamily.KANIT};
+          font-family: ${FontFamily.Comfortaa};
         }
         .MuiScopedCssBaseline-root .StgMaxButton {
           border-color: ${theme.colors.primary}!important;
