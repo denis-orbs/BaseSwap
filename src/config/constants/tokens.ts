@@ -2394,7 +2394,7 @@ export const bscTokens = {
 
 export const baseGoerliTokens = {
   wbnb: WBNB[ChainId.BASE_GOERLI],
-  cake: WBNB[ChainId.BASE_GOERLI],
+  cake: CAKE[ChainId.BASE_GOERLI],
 }
 
 export const bscTestnetTokens = {
