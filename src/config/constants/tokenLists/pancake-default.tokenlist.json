@@ -16,7 +16,7 @@
       "address": "0xFb68BBfaEF679C1E653b5cE271a0A383c0df6B45",
       "chainId": 84531,
       "decimals": 18,
-      "logoURI": ""
+      "logoURI": "/images/tokens/baseswap_logo.png"
     },
     {
       "name": "Wrapped Ether",
