@@ -21,7 +21,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     bscTokens.usdc,
   ],
   [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
-  [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, bscTestnetTokens.cake],
+  [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
 }
 
 /**
@@ -45,14 +45,14 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.MAINNET]: [bscTokens.busd, bscTokens.cake, bscTokens.btcb],
   [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
-  [ChainId.BASE_GOERLI]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake],
+  [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.MAINNET]: [bscTokens.wbnb, bscTokens.dai, bscTokens.busd, bscTokens.usdt],
   [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
-  [ChainId.BASE_GOERLI]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake],
+  [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -61,7 +61,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     [bscTokens.busd, bscTokens.usdt],
     [bscTokens.dai, bscTokens.usdt],
   ],
-  [ChainId.BASE_GOERLI]: [[bscTestnetTokens.wbnb, bscTestnetTokens.cake]],
+  [ChainId.BASE_GOERLI]: [[baseGoerliTokens.wbnb, baseGoerliTokens.cake]],
 }
 
 export const BIG_INT_ZERO = JSBI.BigInt(0)
@@ -90,9 +90,9 @@ export const BASE_FEE = new Percent(JSBI.BigInt(25), BIPS_BASE)
 export const INPUT_FRACTION_AFTER_FEE = ONE_HUNDRED_PERCENT.subtract(BASE_FEE)
 
 // BNB
-export const DEFAULT_INPUT_CURRENCY = 'BNB'
+export const DEFAULT_INPUT_CURRENCY = 'ETH'
 // CAKE
-export const DEFAULT_OUTPUT_CURRENCY = '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82'
+export const DEFAULT_OUTPUT_CURRENCY = baseGoerliTokens.cake.address
 
 // Handler string is passed to Gelato to use PCS router
 export const GELATO_HANDLER = 'pancakeswap'

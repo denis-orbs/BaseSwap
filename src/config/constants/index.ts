@@ -1,11 +1,13 @@
 // used to construct the list of all pairs we consider by default in the frontend
 import { ChainId, Token } from '@magikswap/sdk'
-import { bscTokens, bscTestnetTokens } from './tokens'
+import { bscTokens, bscTestnetTokens, baseGoerliTokens } from './tokens'
 import { ChainTokenList } from './types'
 
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.MAINNET]: [bscTokens.wbnb, bscTokens.dai, bscTokens.busd, bscTokens.usdt],
   [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
+  [ChainId.BASE]: [],
+  [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -14,6 +16,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     [bscTokens.busd, bscTokens.usdt],
     [bscTokens.dai, bscTokens.usdt],
   ],
+  [ChainId.BASE_GOERLI]: [[baseGoerliTokens.wbnb, baseGoerliTokens.cake]],
 }
 
 export const NetworkContextName = 'NETWORK'
