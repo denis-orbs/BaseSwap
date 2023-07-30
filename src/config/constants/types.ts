@@ -3,7 +3,7 @@ import { Token, ChainId } from '@magikswap/sdk'
 
 // a list of tokens by chain
 export type ChainTokenList = {
-  readonly [chainId in ChainId]: Token[]
+  readonly [chainId in ChainId]?: Token[]
 }
 
 export type TranslatableText =
@@ -15,9 +15,9 @@ export type TranslatableText =
       }
     }
 export interface Address {
-  250: string
+  250?: string
   97?: string
-  56: string
+  56?: string
   [chainId: number]: string
 }
 

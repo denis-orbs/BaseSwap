@@ -67,6 +67,7 @@ const BUSD_TESTNET = new Token(
 export const BUSD: Record<ChainId, Token> = {
   [ChainId.MAINNET]: BUSD_MAINNET,
   [ChainId.BSC_TESTNET]: BUSD_TESTNET,
+  [ChainId.BSC]: BUSD_MAINNET,
 }
 
 export const bscTokens = {
@@ -81,7 +82,14 @@ export const bscTokens = {
     'https://www.binance.com/',
   ),
   cake: CAKE_MAINNET,
-  gmi: new Token(ChainId.MAINNET, '0x93D8d25E3C9A847a5Da79F79ecaC89461FEcA846', 18, 'GMI', 'Gamifi', 'https://gamifi.gg/'),
+  gmi: new Token(
+    ChainId.MAINNET,
+    '0x93D8d25E3C9A847a5Da79F79ecaC89461FEcA846',
+    18,
+    'GMI',
+    'Gamifi',
+    'https://gamifi.gg/',
+  ),
   tlos: new Token(
     ChainId.MAINNET,
     '0xb6C53431608E626AC81a9776ac3e999c5556717c',
@@ -98,7 +106,14 @@ export const bscTokens = {
     'Beta Finance',
     'https://betafinance.org',
   ),
-  nft: new Token(ChainId.MAINNET, '0x1fC9004eC7E5722891f5f38baE7678efCB11d34D', 6, 'NFT', 'APENFT', 'https://apenft.org'),
+  nft: new Token(
+    ChainId.MAINNET,
+    '0x1fC9004eC7E5722891f5f38baE7678efCB11d34D',
+    6,
+    'NFT',
+    'APENFT',
+    'https://apenft.org',
+  ),
   stephero: new Token(
     ChainId.MAINNET,
     '0xE8176d414560cFE1Bf82Fd73B986823B89E4F545',
@@ -1188,7 +1203,14 @@ export const bscTokens = {
     'Oddz Token',
     'https://oddz.fi/',
   ),
-  hoo: new Token(ChainId.MAINNET, '0xE1d1F66215998786110Ba0102ef558b22224C016', 8, 'HOO', 'Hoo Token', 'https://hoo.com/'),
+  hoo: new Token(
+    ChainId.MAINNET,
+    '0xE1d1F66215998786110Ba0102ef558b22224C016',
+    8,
+    'HOO',
+    'Hoo Token',
+    'https://hoo.com/',
+  ),
   apys: new Token(
     ChainId.MAINNET,
     '0x37dfACfaeDA801437Ff648A1559d73f4C40aAcb7',
@@ -1805,7 +1827,14 @@ export const bscTokens = {
     'FC Lazio Fan Token',
     'https://launchpad.binance.com/en/subscription/LAZIO_BNB',
   ),
-  arv: new Token(ChainId.MAINNET, '0x6679eB24F59dFe111864AEc72B443d1Da666B360', 8, 'ARV', 'ARIVA', 'https://ariva.digital'),
+  arv: new Token(
+    ChainId.MAINNET,
+    '0x6679eB24F59dFe111864AEc72B443d1Da666B360',
+    8,
+    'ARV',
+    'ARIVA',
+    'https://ariva.digital',
+  ),
   moni: new Token(
     ChainId.MAINNET,
     '0x9573c88aE3e37508f87649f87c4dd5373C9F31e0',
@@ -2175,7 +2204,14 @@ export const bscTokens = {
     'Green Metaverse Token',
     'https://www.stepn.com/',
   ),
-  bsw: new Token(ChainId.MAINNET, '0x965F527D9159dCe6288a2219DB51fc6Eef120dD1', 18, 'BSW', 'Biswap', 'https://biswap.org/'),
+  bsw: new Token(
+    ChainId.MAINNET,
+    '0x965F527D9159dCe6288a2219DB51fc6Eef120dD1',
+    18,
+    'BSW',
+    'Biswap',
+    'https://biswap.org/',
+  ),
   tem: new Token(
     ChainId.MAINNET,
     '0x19e6BfC1A6e4B042Fb20531244D47E252445df01',
@@ -2192,7 +2228,14 @@ export const bscTokens = {
     'PearDAO',
     'https://peardao.io/',
   ),
-  yel: new Token(ChainId.MAINNET, '0xD3b71117E6C1558c1553305b44988cd944e97300', 18, 'YEL', 'YEL', 'https://yel.finance/'),
+  yel: new Token(
+    ChainId.MAINNET,
+    '0xD3b71117E6C1558c1553305b44988cd944e97300',
+    18,
+    'YEL',
+    'YEL',
+    'https://yel.finance/',
+  ),
   tinc: new Token(
     ChainId.MAINNET,
     '0x05aD6E30A855BE07AfA57e08a4f30d00810a402e',
@@ -2249,7 +2292,14 @@ export const bscTokens = {
     'Project Galaxy',
     'https://galaxy.eco/',
   ),
-  xcn: new Token(ChainId.MAINNET, '0x7324c7C0d95CEBC73eEa7E85CbAac0dBdf88a05b', 18, 'XCN', 'Chain', 'https://chain.com/'),
+  xcn: new Token(
+    ChainId.MAINNET,
+    '0x7324c7C0d95CEBC73eEa7E85CbAac0dBdf88a05b',
+    18,
+    'XCN',
+    'Chain',
+    'https://chain.com/',
+  ),
   metis: new Token(
     ChainId.MAINNET,
     '0xe552Fb52a4F19e44ef5A967632DBc320B0820639',
