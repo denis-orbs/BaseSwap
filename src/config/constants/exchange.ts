@@ -90,7 +90,7 @@ export const BASE_FEE = new Percent(JSBI.BigInt(25), BIPS_BASE)
 export const INPUT_FRACTION_AFTER_FEE = ONE_HUNDRED_PERCENT.subtract(BASE_FEE)
 
 // BNB
-export const DEFAULT_INPUT_CURRENCY = 'ETH'
+export const DEFAULT_INPUT_CURRENCY = 'BNB'
 // CAKE
 export const DEFAULT_OUTPUT_CURRENCY = baseGoerliTokens.cake.address
 
