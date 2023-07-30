@@ -84,7 +84,7 @@ export const combinedTokenMapFromInActiveUrlsSelector = createSelector(
 )
 
 export const combinedTokenMapFromOfficialsUrlsSelector = createSelector([selectorByUrls], (lists) => {
-  return combineTokenMapsWithDefault(lists, OFFICIAL_LISTS)
+  return combineTokenMapsWithDefault(lists, DEFAULT_LIST_OF_LISTS)
 })
 
 export const combinedTokenMapFromUnsupportedUrlsSelector = createSelector([selectorByUrls], (lists) => {
@@ -167,6 +167,7 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
   return {
     [ChainId.MAINNET]: { ...map1[ChainId.MAINNET], ...map2[ChainId.MAINNET] },
     [ChainId.BSC_TESTNET]: { ...map1[ChainId.BSC_TESTNET], ...map2[ChainId.BSC_TESTNET] },
+    [ChainId.BASE_GOERLI]: { ...map1[ChainId.BASE_GOERLI], ...map2[ChainId.BASE_GOERLI] },
   }
 }
 
