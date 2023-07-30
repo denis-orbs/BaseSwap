@@ -45,22 +45,22 @@ const config: (
           label: t('Swap'),
           href: '/swap',
         },
-        {
-          label: t('Limit'),
-          href: '/limit-orders',
-          supportChainIds: [ChainId.MAINNET],
-        },
+        // {
+        //   label: t('Limit'),
+        //   href: '/limit-orders',
+        //   supportChainIds: [ChainId.MAINNET],
+        // },
         {
           label: t('Liquidity'),
           href: '/liquidity',
         },
-        {
-          label: t('Perpetual'),
-          href: `https://perp.pancakeswap.finance/${perpLangMap(languageCode)}/futures/BTCUSDT?theme=${perpTheme(
-            isDark,
-          )}`,
-          type: DropdownMenuItemType.EXTERNAL_LINK,
-        },
+        // {
+        //   label: t('Perpetual'),
+        //   href: `https://perp.pancakeswap.finance/${perpLangMap(languageCode)}/futures/BTCUSDT?theme=${perpTheme(
+        //     isDark,
+        //   )}`,
+        //   type: DropdownMenuItemType.EXTERNAL_LINK,
+        // },
         // {
         //   label: t('Transfer'),
         //   href: '/transfer',
@@ -84,94 +84,94 @@ const config: (
         },
       ],
     },
-    {
-      label: t('Win'),
-      href: '/prediction',
-      icon: TrophyIcon,
-      fillIcon: TrophyFillIcon,
-      supportChainIds: [ChainId.MAINNET],
-      items: [
-        {
-          label: t('Trading Competition'),
-          href: '/competition',
-          hideSubNav: true,
-        },
-        {
-          label: t('Prediction (BETA)'),
-          href: '/prediction',
-        },
-        {
-          label: t('Lottery'),
-          href: '/lottery',
-        },
-        {
-          label: t('Pottery (BETA)'),
-          href: '/pottery',
-        },
-      ],
-    },
-    {
-      label: t('NFT'),
-      href: `${nftsBaseUrl}`,
-      icon: NftIcon,
-      fillIcon: NftFillIcon,
-      supportChainIds: [ChainId.MAINNET],
-      items: [
-        {
-          label: t('Overview'),
-          href: `${nftsBaseUrl}`,
-        },
-        {
-          label: t('Collections'),
-          href: `${nftsBaseUrl}/collections`,
-        },
-        {
-          label: t('Activity'),
-          href: `${nftsBaseUrl}/activity`,
-        },
-      ],
-    },
-    {
-      label: '',
-      href: '/info',
-      icon: MoreIcon,
-      hideSubNav: true,
-      supportChainIds: [ChainId.MAINNET],
-      items: [
-        {
-          label: t('Info'),
-          href: '/info',
-        },
-        {
-          label: t('IFO'),
-          href: '/ifo',
-        },
-        {
-          label: t('Voting'),
-          href: '/voting',
-        },
-        {
-          type: DropdownMenuItemType.DIVIDER,
-        },
-        {
-          label: t('Leaderboard'),
-          href: '/teams',
-        },
-        {
-          type: DropdownMenuItemType.DIVIDER,
-        },
-        {
-          label: t('Blog'),
-          href: 'https://medium.com/pancakeswap',
-          type: DropdownMenuItemType.EXTERNAL_LINK,
-        },
-        {
-          label: t('Docs'),
-          href: 'https://docs.pancakeswap.finance',
-          type: DropdownMenuItemType.EXTERNAL_LINK,
-        },
-      ],
-    },
+    // {
+    //   label: t('Win'),
+    //   href: '/prediction',
+    //   icon: TrophyIcon,
+    //   fillIcon: TrophyFillIcon,
+    //   supportChainIds: [ChainId.MAINNET],
+    //   items: [
+    //     {
+    //       label: t('Trading Competition'),
+    //       href: '/competition',
+    //       hideSubNav: true,
+    //     },
+    //     {
+    //       label: t('Prediction (BETA)'),
+    //       href: '/prediction',
+    //     },
+    //     {
+    //       label: t('Lottery'),
+    //       href: '/lottery',
+    //     },
+    //     {
+    //       label: t('Pottery (BETA)'),
+    //       href: '/pottery',
+    //     },
+    //   ],
+    // },
+    // {
+    //   label: t('NFT'),
+    //   href: `${nftsBaseUrl}`,
+    //   icon: NftIcon,
+    //   fillIcon: NftFillIcon,
+    //   supportChainIds: [ChainId.MAINNET],
+    //   items: [
+    //     {
+    //       label: t('Overview'),
+    //       href: `${nftsBaseUrl}`,
+    //     },
+    //     {
+    //       label: t('Collections'),
+    //       href: `${nftsBaseUrl}/collections`,
+    //     },
+    //     {
+    //       label: t('Activity'),
+    //       href: `${nftsBaseUrl}/activity`,
+    //     },
+    //   ],
+    // },
+    // {
+    //   label: '',
+    //   href: '/info',
+    //   icon: MoreIcon,
+    //   hideSubNav: true,
+    //   supportChainIds: [ChainId.MAINNET],
+    //   items: [
+    //     {
+    //       label: t('Info'),
+    //       href: '/info',
+    //     },
+    //     // {
+    //     //   label: t('IFO'),
+    //     //   href: '/ifo',
+    //     // },
+    //     // {
+    //     //   label: t('Voting'),
+    //     //   href: '/voting',
+    //     // },
+    //     // {
+    //     //   type: DropdownMenuItemType.DIVIDER,
+    //     // },
+    //     // {
+    //     //   label: t('Leaderboard'),
+    //     //   href: '/teams',
+    //     // },
+    //     // {
+    //     //   type: DropdownMenuItemType.DIVIDER,
+    //     // },
+    //     // {
+    //     //   label: t('Blog'),
+    //     //   href: 'https://medium.com/pancakeswap',
+    //     //   type: DropdownMenuItemType.EXTERNAL_LINK,
+    //     // },
+    //     // {
+    //     //   label: t('Docs'),
+    //     //   href: 'https://docs.pancakeswap.finance',
+    //     //   type: DropdownMenuItemType.EXTERNAL_LINK,
+    //     // },
+    //   ],
+    // },
   ].filter((item) => filterItemBySupportChainId(item, chainId))
 
 export default config

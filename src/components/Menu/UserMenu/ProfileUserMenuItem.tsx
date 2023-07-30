@@ -38,21 +38,22 @@ const ProfileUserMenuItem: React.FC<ProfileUserMenuItemProps> = ({ isLoading, ha
     )
   }
 
-  if (!hasProfile) {
-    return (
-      <UserMenuItem as="button" disabled={disabled} onClick={handleNoProfileClick}>
-        <Flex alignItems="center" justifyContent="space-between" width="100%">
-          {t('Make a Profile')}
-          <Dot />
-        </Flex>
-      </UserMenuItem>
-    )
-  }
+  // if (!hasProfile) {
+  //   return (
+  //     <UserMenuItem as="button" disabled={disabled} onClick={handleNoProfileClick}>
+  //       <Flex alignItems="center" justifyContent="space-between" width="100%">
+  //         {t('Make a Profile')}
+  //         <Dot />
+  //       </Flex>
+  //     </UserMenuItem>
+  //   )
+  // }
 
   return (
-    <UserMenuItem as="button" disabled={disabled} onClick={handleClick}>
-      {t('Your Profile')}
-    </UserMenuItem>
+    // <UserMenuItem as="button" disabled={disabled} onClick={handleClick}>
+    //   {t('Your Profile')}
+    // </UserMenuItem>
+    <></>
   )
 }
 

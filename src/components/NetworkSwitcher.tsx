@@ -1,11 +1,11 @@
 import { Box, Text, UserMenu, UserMenuDivider, UserMenuItem } from '@pancakeswap/uikit'
-import { bsc, bscTest } from '@pancakeswap/wagmi'
+import { baseGoerli, bsc, bscTest } from '@pancakeswap/wagmi'
 import { useTranslation } from '@pancakeswap/localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Image from 'next/image'
 import { setupNetwork } from 'utils/wallet'
 
-const chains = [bsc, bscTest]
+const chains = [baseGoerli]
 
 export const NetworkSelect = () => {
   const { t } = useTranslation()

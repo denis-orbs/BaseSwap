@@ -11,7 +11,7 @@ import { Web3Provider } from '@ethersproject/providers'
 
 const POLLING_INTERVAL = 12000
 
-const SUPPORTED_CHAIN_ID = [ChainId.MAINNET, ChainId.BSC_TESTNET]
+const SUPPORTED_CHAIN_ID = [ChainId.BASE_GOERLI]
 
 export const injected = new InjectedConnector({ supportedChainIds: SUPPORTED_CHAIN_ID })
 
@@ -19,6 +19,7 @@ const walletconnect = new WalletConnectConnector({
   rpc: {
     [ChainId.MAINNET]: 'https://rpc.fantom.network',
     [ChainId.BSC_TESTNET]: 'https://data-seed-prebsc-2-s3.binance.org:8545',
+    [ChainId.BASE_GOERLI]: 'https://goerli.base.org',
   },
   qrcode: true,
   pollingInterval: POLLING_INTERVAL,
@@ -37,8 +38,8 @@ export const connectorsByName = {
   [ConnectorNames.WalletLink]: async () => {
     const { WalletLinkConnector } = await import('@web3-react/walletlink-connector')
     return new WalletLinkConnector({
-      url: 'https://pancakeswap.finance',
-      appName: 'PancakeSwap',
+      url: 'https://baseswap.fi',
+      appName: 'BaseSwap',
       appLogoUrl: 'https://pancakeswap.com/logo.png',
       supportedChainIds: SUPPORTED_CHAIN_ID,
     })

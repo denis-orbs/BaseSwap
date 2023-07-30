@@ -124,6 +124,29 @@ export const bscTest: Chain = {
   testnet: true,
 }
 
+export const baseGoerli: Chain = {
+  id: 84531,
+  name: 'Base Testnet',
+  network: 'base-testnet',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'ETH',
+    symbol: 'ETH',
+  },
+  rpcUrls: {
+    default: 'https://goerli.base.org',
+    public: 'https://goerli.base.org',
+  },
+  blockExplorers: {
+    default: { name: 'Base Goerli Explorer', url: 'https://base-goerli.blockscout.com/' },
+  },
+  multicall: {
+    address: '0x8F3273Fb89B075b1645095ABaC6ed17B2d4Bc576',
+    blockCreated: 7776717,
+  },
+  // testnet: true,
+}
+
 export const CHAINS_TESTNET = [
   bscTest,
   rinkeby,

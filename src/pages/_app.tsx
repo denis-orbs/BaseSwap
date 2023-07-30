@@ -141,7 +141,6 @@ const App = ({ Component, pageProps, ...appProps }: AppPropsWithLayout) => {
           <Component {...pageProps} />
         </Layout>
       </ShowMenu>
-      <EasterEgg iterations={2} />
       <ToastListener />
       <FixedSubgraphHealthIndicator />
     </ProductionErrorBoundary>
