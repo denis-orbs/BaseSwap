@@ -31,21 +31,21 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   const { t } = useTranslation()
   const { toastSuccess } = useToast()
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
+  const dispatch = useAppDispatch()
+
   const { pid, lpAddresses } = farm
   const { allowance, earnings } = farm.userData || {}
   const lpAddress = getAddress(lpAddresses)
   const isApproved = account && allowance && allowance.isGreaterThan(0)
 
-  const dispatch = useAppDispatch()
-
   const lpContract = useERC20(lpAddress)
-
   const { onApprove } = useApproveFarm(lpContract)
 
   const handleApprove = useCallback(async () => {
     const receipt = await fetchWithCatchTxError(() => {
       return onApprove()
     })
+
     if (receipt?.status) {
       toastSuccess(t('Contract Enabled'), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
       dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))

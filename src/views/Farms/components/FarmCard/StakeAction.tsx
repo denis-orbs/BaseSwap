@@ -100,6 +100,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       cakePrice={cakePrice}
     />,
   )
+
   const [onPresentWithdraw] = useModal(
     <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={lpSymbol} />,
   )
