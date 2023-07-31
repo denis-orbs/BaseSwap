@@ -250,12 +250,14 @@ const Pools: React.FC = () => {
 
   const cardLayout = (
     <CardLayout>
-      {chosenPools.map((pool) =>
-        pool.vaultKey ? (
-          <CakeVaultCard key={pool.vaultKey} pool={pool} showStakedOnly={stakedOnly} />
-        ) : (
+      {chosenPools.map(
+        (pool) => (
+          // pool.vaultKey ? (
+          //   <CakeVaultCard key={pool.vaultKey} pool={pool} showStakedOnly={stakedOnly} />
+          // ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),
+        // ),
       )}
     </CardLayout>
   )

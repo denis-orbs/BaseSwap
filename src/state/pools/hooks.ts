@@ -9,15 +9,15 @@ import { livePools } from 'config/constants/pools'
 import {
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
-  fetchCakeVaultPublicData,
-  fetchCakeVaultUserData,
-  fetchCakeVaultFees,
+  // fetchCakeVaultPublicData,
+  // fetchCakeVaultUserData,
+  // fetchCakeVaultFees,
   fetchPoolsStakingLimitsAsync,
-  fetchUserIfoCreditDataAsync,
-  fetchIfoPublicDataAsync,
-  fetchCakeFlexibleSideVaultPublicData,
-  fetchCakeFlexibleSideVaultUserData,
-  fetchCakeFlexibleSideVaultFees,
+  // fetchUserIfoCreditDataAsync,
+  // fetchIfoPublicDataAsync,
+  // fetchCakeFlexibleSideVaultPublicData,
+  // fetchCakeFlexibleSideVaultUserData,
+  // fetchCakeFlexibleSideVaultFees,
 } from '.'
 import { DeserializedPool, VaultKey } from '../types'
 import { fetchFarmsPublicDataAsync } from '../farms'
@@ -25,8 +25,8 @@ import {
   makePoolWithUserDataLoadingSelector,
   makeVaultPoolByKey,
   poolsWithVaultSelector,
-  ifoCreditSelector,
-  ifoCeilingSelector,
+  // ifoCreditSelector,
+  // ifoCeilingSelector,
   makeVaultPoolWithKeySelector,
 } from './selectors'
 
@@ -84,23 +84,23 @@ export const usePoolsPageFetch = () => {
 
   useFastRefreshEffect(() => {
     batch(() => {
-      dispatch(fetchCakeVaultPublicData())
-      dispatch(fetchCakeFlexibleSideVaultPublicData())
-      dispatch(fetchIfoPublicDataAsync())
+      // dispatch(fetchCakeVaultPublicData())
+      // dispatch(fetchCakeFlexibleSideVaultPublicData())
+      // dispatch(fetchIfoPublicDataAsync())
       if (account) {
         dispatch(fetchPoolsUserDataAsync(account))
-        dispatch(fetchCakeVaultUserData({ account }))
-        dispatch(fetchCakeFlexibleSideVaultUserData({ account }))
+        // dispatch(fetchCakeVaultUserData({ account }))
+        // dispatch(fetchCakeFlexibleSideVaultUserData({ account }))
       }
     })
   }, [account, dispatch])
 
-  useEffect(() => {
-    batch(() => {
-      dispatch(fetchCakeVaultFees())
-      dispatch(fetchCakeFlexibleSideVaultFees())
-    })
-  }, [dispatch])
+  // useEffect(() => {
+  //   batch(() => {
+  //     dispatch(fetchCakeVaultFees())
+  //     dispatch(fetchCakeFlexibleSideVaultFees())
+  //   })
+  // }, [dispatch])
 }
 
 export const useFetchIfo = () => {
@@ -109,19 +109,19 @@ export const useFetchIfo = () => {
 
   useFastRefreshEffect(() => {
     batch(() => {
-      dispatch(fetchCakeVaultPublicData())
-      dispatch(fetchIfoPublicDataAsync())
+      // dispatch(fetchCakeVaultPublicData())
+      // dispatch(fetchIfoPublicDataAsync())
       if (account) {
         dispatch(fetchPoolsUserDataAsync(account))
-        dispatch(fetchCakeVaultUserData({ account }))
-        dispatch(fetchUserIfoCreditDataAsync(account))
+        // dispatch(fetchCakeVaultUserData({ account }))
+        // dispatch(fetchUserIfoCreditDataAsync(account))
       }
     })
   }, [dispatch, account])
 
-  useEffect(() => {
-    dispatch(fetchCakeVaultFees())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(fetchCakeVaultFees())
+  // }, [dispatch])
 }
 
 export const useCakeVault = () => {

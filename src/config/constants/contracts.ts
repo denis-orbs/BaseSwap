@@ -13,6 +13,7 @@ export default {
   sousChef: {
     97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
     250: '0x6ab8463a4185b80905e05a9ff80a2d6b714b9e95',
+    [ChainId.BASE_GOERLI]: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652',
   },
   lotteryV2: {
     97: '0x5790c3534F30437641541a0FA04C992799602998',

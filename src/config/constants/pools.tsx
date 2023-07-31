@@ -60,18 +60,18 @@ export const vaultPoolConfig = {
 } as const
 
 export const livePools: SerializedPoolConfig[] = [
-  {
-    sousId: 0,
-    stakingToken: serializedTokens.cake,
-    earningToken: serializedTokens.cake,
-    contractAddress: {
-      97: '',
-      56: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652', // This is their CHEFV2....
-    },
-    poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '10',
-    isFinished: false,
-  },
+  // {
+  //   sousId: 0,
+  //   stakingToken: serializedTokens.cake,
+  //   earningToken: serializedTokens.cake,
+  //   contractAddress: {
+  //     97: '',
+  //     56: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652', // This is their CHEFV2....
+  //   },
+  //   poolCategory: PoolCategory.CORE,
+  //   tokenPerBlock: '10',
+  //   isFinished: false,
+  // },
   {
     sousId: 1,
     stakingToken: serializedTokens.cake,
