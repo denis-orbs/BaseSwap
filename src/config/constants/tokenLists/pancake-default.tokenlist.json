@@ -13,7 +13,7 @@
     {
       "name": "BaseSwap Token",
       "symbol": "BSWAP",
-      "address": "0xFb68BBfaEF679C1E653b5cE271a0A383c0df6B45",
+      "address": "0xa26655BaB784C9BD9DAadAAFF2a05a93484bF9C7",
       "chainId": 84531,
       "decimals": 18,
       "logoURI": "/images/tokens/baseswap_logo.png"

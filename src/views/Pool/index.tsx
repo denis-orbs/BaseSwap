@@ -46,10 +46,12 @@ export default function Pool() {
   )
 
   const v2Pairs = usePairs(liquidityTokensWithBalances.map(({ tokens }) => tokens))
+
   const v2IsLoading =
     fetchingV2PairBalances ||
     v2Pairs?.length < liquidityTokensWithBalances.length ||
     (v2Pairs?.length && v2Pairs.every(([pairState]) => pairState === PairState.LOADING))
+
   const allV2PairsWithLiquidity = v2Pairs
     ?.filter(([pairState, pair]) => pairState === PairState.EXISTS && Boolean(pair))
     .map(([, pair]) => pair)
@@ -62,6 +64,7 @@ export default function Pool() {
         </Text>
       )
     }
+
     if (v2IsLoading) {
       return (
         <Text color="textSubtle" textAlign="center">
@@ -69,6 +72,7 @@ export default function Pool() {
         </Text>
       )
     }
+
     if (allV2PairsWithLiquidity?.length > 0) {
       return allV2PairsWithLiquidity.map((v2Pair, index) => (
         <FullPositionCard
@@ -78,6 +82,7 @@ export default function Pool() {
         />
       ))
     }
+
     return (
       <Text color="textSubtle" textAlign="center">
         {t('No liquidity found.')}
@@ -91,7 +96,7 @@ export default function Pool() {
       <Page>
         <AppBody>
           <AppHeader title={t('Your Liquidity')} subtitle={t('')} />
-          <Body >
+          <Body>
             {renderBody()}
             {account && !v2IsLoading && (
               <Flex flexDirection="column" alignItems="center" mt="24px">

@@ -458,10 +458,7 @@ export function useTrackedTokenPairs(): [Token, Token][] {
   const pinnedPairs = useMemo(() => (chainId ? PINNED_PAIRS[chainId] ?? [] : []), [chainId])
 
   const farmPairs: [Token, Token][] = useMemo(
-    () =>
-      farms
-        .filter((farm) => farm.pid !== 0)
-        .map((farm) => [deserializeToken(farm.token), deserializeToken(farm.quoteToken)]),
+    () => farms.map((farm) => [deserializeToken(farm.token), deserializeToken(farm.quoteToken)]),
     [],
   )
 

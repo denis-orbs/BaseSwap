@@ -1,12 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import PageHeader from 'components/PageHeader/PageHeader'
 import { currencyEquals, ETHER, JSBI, TokenAmount, WNATIVE, MINIMUM_LIQUIDITY } from '@magikswap/sdk'
 import {
   Button,
-  Heading,
-  Flex,
   Text,
   AddIcon,
   CardBody,
@@ -572,30 +569,28 @@ export default function AddLiquidity() {
                     : t('Add Liquidity')
                 }
                 subtitle={t('')}
-                helper={t(
-                  '',
-                )}
+                helper={t('')}
                 backTo={canZap ? () => setSteps(Steps.Choose) : '/liquidity'}
               />
-              {/* CardBody is the card */}
-              <CardBody >
-                <AutoColumn  gap="10px">
+              <CardBody>
+                <AutoColumn gap="20px">
                   {noLiquidity && (
                     <ColumnCenter>
                       <Message variant="warning">
                         <div>
                           <Text fontSize="14px" mb="4px">
-                            {t('You are the first liquidity provider. The ratio of tokens you add will set the price of this pool. Once you are happy with the rate click supply to review.')}
+                            {t(
+                              'You are the first liquidity provider. The ratio of tokens you add will set the price of this pool. Once you are happy with the rate click supply to review.',
+                            )}
                           </Text>
                         </div>
                       </Message>
                     </ColumnCenter>
                   )}
                   <CurrencyInputPanel
-                  backgroundColor="rgba(0, 0, 0, 0.1)"
-                  borderTopRightRadius="0px"
-                  borderTopLeftRadius="0px"
-
+                    backgroundColor="rgba(0, 0, 0, 0.1)"
+                    borderTopRightRadius="0px"
+                    borderTopLeftRadius="0px"
                     disableCurrencySelect={canZap}
                     showBUSD
                     onInputBlur={zapIn.onInputBlurOnce}
@@ -632,7 +627,6 @@ export default function AddLiquidity() {
                     backgroundColor="rgba(0, 0, 0, 0.1)"
                     borderTopRightRadius="8px"
                     borderTopLeftRadius="8px"
-  
                     onInputBlur={zapIn.onInputBlurOnce}
                     disabled={canZap && !zapTokenCheckedB}
                     error={zapIn.priceSeverity > 3 && zapIn.swapTokenField === Field.CURRENCY_B}
