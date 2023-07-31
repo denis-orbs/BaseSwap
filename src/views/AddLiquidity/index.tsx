@@ -571,9 +571,9 @@ export default function AddLiquidity() {
                     ? `${getLPSymbol(currencies[Field.CURRENCY_A].symbol, currencies[Field.CURRENCY_B].symbol)}`
                     : t('Add Liquidity')
                 }
-                subtitle={t('Receive LP tokens and earn swap fees')}
+                subtitle={t('')}
                 helper={t(
-                  'Liquidity providers earn trading fees on all swaps made for that token pair, proportional to their share of the liquidity pool.',
+                  '',
                 )}
                 backTo={canZap ? () => setSteps(Steps.Choose) : '/liquidity'}
               />

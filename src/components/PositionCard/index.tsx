@@ -179,13 +179,14 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
           </CardBody>
         </Card>
       ) : (
-        <LightCard>
-          <Text fontSize="14px" style={{ textAlign: 'center' }}>
+        <div>
+          {/* <Text fontSize="14px" style={{ textAlign: 'center' }}>
+           
             {t(
               "By adding liquidity you'll earn 0.17% of all trades on this pair proportional to your share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.",
             )}
-          </Text>
-        </LightCard>
+          </Text> */}
+        </div>
       )}
     </>
   )
