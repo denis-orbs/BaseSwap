@@ -70,8 +70,8 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
         width={['100%', '100%', '100%', isSide ? '100%' : 'auto']}
         justifyContent={['center', 'center', 'center', 'flex-end']}
       >
-        <ButtonMenuItem style={{ color: '#000' }}>Telegram</ButtonMenuItem>
-        <ButtonMenuItem style={{ color: '#000' }}>Docs</ButtonMenuItem>
+        <ButtonMenuItem variant="primarytwo" style={{ color: '#000', marginRight: '1rem' }}>Telegram</ButtonMenuItem>
+        <ButtonMenuItem variant="primarytwo" style={{ color: '#000' }}>Docs</ButtonMenuItem>
         {/* <BubbleWrapper>
           <Button id="clickExchangeHelp" as="a" external href={helpUrl} variant="subtle">
             {t('Need help ?')}

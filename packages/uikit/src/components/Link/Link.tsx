@@ -6,8 +6,9 @@ import { LinkProps } from "./types";
 
 const StyledLink = styled(Text)<LinkProps>`
   display: flex;
+  color: ${({ theme }) => theme.colors.background};
   align-items: center;
-  color: #fff;
+
   width: fit-content;
   &:hover {
     text-decoration: underline;

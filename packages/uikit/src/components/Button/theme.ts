@@ -31,6 +31,22 @@ export const styleVariants = {
 
     }
   },
+  // used for connect wallet 
+  [variants.PRIMARYTWO]: {
+    backgroundColor: "#fff",
+    color: "background",
+    fontWeight: "900", 
+    fontSize: "1.1rem", 
+    borderRadius: "8px", 
+    border: "4px solid", 
+    borderColor: "background", 
+    ":hover": {
+      backgroundColor: "#000", 
+      borderColor: "background", 
+      color: "text", 
+
+    }
+  },
   [variants.SECONDARY]: {
     backgroundColor: "transparent",
     border: "2px solid",
