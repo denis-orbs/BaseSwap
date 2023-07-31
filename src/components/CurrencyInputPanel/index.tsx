@@ -62,7 +62,7 @@ const InputPanel = styled.div`
 `
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
   border-radius: 8px;
-  border: 4px solid #fff; 
+  border: 3px solid #fff; 
   background: ${({ theme }) => theme.colors.background};
   backdrop-filter: blur(4px);
 
@@ -102,6 +102,11 @@ interface CurrencyInputPanelProps {
   disabled?: boolean
   error?: boolean
   showBUSD?: boolean
+  backgroundColor?: string
+  borderRadius?: string
+  borderTopLeftRadius?: string
+  borderTopRightRadius?: string
+
 }
 export default function CurrencyInputPanel({
   value,
@@ -115,6 +120,7 @@ export default function CurrencyInputPanel({
   disableCurrencySelect = false,
   hideBalance = false,
   zapStyle,
+  borderRadius, 
   beforeButton,
   pair = null, // used for double token logo
   otherCurrency,
@@ -123,6 +129,11 @@ export default function CurrencyInputPanel({
   disabled,
   error,
   showBUSD,
+  backgroundColor,
+  borderTopLeftRadius, 
+  borderTopRightRadius, 
+
+
 }: CurrencyInputPanelProps) {
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
@@ -149,7 +160,11 @@ export default function CurrencyInputPanel({
   )
 
   return (
-    <Box position="relative" id={id}>
+    <Box position="relative" id={id} backgroundColor={backgroundColor} borderRadius={borderRadius} 
+    borderTopLeftRadius={borderTopLeftRadius}
+    borderTopRightRadius={borderTopRightRadius}
+
+    >
       <Flex alignItems="center" marginTop="1px" marginBottom="8px" justifyContent="space-between">
         <Flex>
           {beforeButton}
@@ -250,7 +265,7 @@ export default function CurrencyInputPanel({
             )}
           </InputRow>
         </Container>
-        {disabled && <Overlay />}
+        {/* {disabled && <Overlay />} */}
       </InputPanel>
     </Box>
   )

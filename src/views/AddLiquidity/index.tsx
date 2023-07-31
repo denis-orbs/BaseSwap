@@ -577,8 +577,9 @@ export default function AddLiquidity() {
                 )}
                 backTo={canZap ? () => setSteps(Steps.Choose) : '/liquidity'}
               />
+              {/* CardBody is the card */}
               <CardBody >
-                <AutoColumn gap="20px">
+                <AutoColumn  gap="10px">
                   {noLiquidity && (
                     <ColumnCenter>
                       <Message variant="warning">
@@ -593,6 +594,10 @@ export default function AddLiquidity() {
                     </ColumnCenter>
                   )}
                   <CurrencyInputPanel
+                  backgroundColor="#0154FD"
+                  borderTopRightRadius="8px"
+                  borderTopLeftRadius="8px"
+
                     disableCurrencySelect={canZap}
                     showBUSD
                     onInputBlur={zapIn.onInputBlurOnce}
@@ -626,6 +631,10 @@ export default function AddLiquidity() {
                   </ColumnCenter>
                   <CurrencyInputPanel
                     showBUSD
+                    backgroundColor="#0154FD"
+                    borderTopRightRadius="8px"
+                    borderTopLeftRadius="8px"
+  
                     onInputBlur={zapIn.onInputBlurOnce}
                     disabled={canZap && !zapTokenCheckedB}
                     error={zapIn.priceSeverity > 3 && zapIn.swapTokenField === Field.CURRENCY_B}

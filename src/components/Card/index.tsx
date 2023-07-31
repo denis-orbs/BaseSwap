@@ -10,14 +10,14 @@ const Card = styled(Box)<{
   width: ${({ width }) => width ?? '100%'};
   padding: ${({ padding }) => padding ?? '1.25rem'};
   border: ${({ border }) => border};
-  border-radius: ${({ borderRadius }) => borderRadius ?? '16px'};
+  border-radius: ${({ borderRadius }) => borderRadius ?? '8px'};
   background-color: transparent;
 `
 export default Card
 
 export const LightCard = styled(Card)`
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
-  background-color: transparent;
+  background-color: #333;
 `
 
 export const LightGreyCard = styled(Card)`

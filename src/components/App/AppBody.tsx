@@ -4,8 +4,9 @@ import { Card } from '@pancakeswap/uikit'
 //bodywrapper sits behind the card
 export const BodyWrapper = styled(Card)`
   border-radius: 8px;
-  background-color: #000;
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
   padding: 0rem;
+ 
 
   max-width: 550px;
   width: 100%;

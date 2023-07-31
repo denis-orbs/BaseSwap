@@ -34,9 +34,9 @@ export function ChoosePair({
         )}
         backTo="/liquidity"
       />
-      <CardBody style={{ borderLeft: '4px solid #fff', borderRight: '4px solid #fff'}}>
+      <CardBody>
         <Box>
-          <Text textTransform="uppercase" color="background" fontWeight="900" small pb="12px">
+          <Text textTransform="uppercase" color="text" fontWeight="900" fontSize="1rem" pb="12px">
             {t('Choose your fighter')}
           </Text>
           <FlexGap gap="4px">
