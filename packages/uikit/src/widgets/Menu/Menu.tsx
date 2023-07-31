@@ -131,16 +131,21 @@ const Menu: React.FC<NavProps> = ({
         <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
           {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
           <StyledNav>
+         
             <Flex flexDirection="row" alignItems="center" justifyContent="center">
+            
             <img src="/images/baselogolarge.png" 
                   width={isMobile ? 40 : 50}
                   height={isMobile ? 40 : 50}
                   alt="logo"
                  />
+ <a href="/">
               <Text fontSize="1.5rem" style={{ marginLeft: '1rem'}}>BaseSwap</Text>  
+              </a>
               {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
               {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />}
             </Flex>
+         
             <Flex alignItems="center" height="100%">
               {!isMobile && !isMd && (
                 <Box mr="12px">
