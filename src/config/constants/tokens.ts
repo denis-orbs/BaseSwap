@@ -2418,3 +2418,7 @@ export const bscTestnetTokens = {
     'https://www.bakeryswap.org/',
   ),
 }
+
+export const TOKENS_MAP = {
+  [ChainId.BASE_GOERLI]: baseGoerliTokens,
+}
