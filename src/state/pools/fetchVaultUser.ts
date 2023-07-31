@@ -6,7 +6,7 @@ import { multicallv2 } from 'utils/multicall'
 import { getCakeFlexibleSideVaultV2Contract } from '../../utils/contractHelpers'
 
 const cakeVaultAddress = getCakeVaultAddress()
-const flexibleSideVaultContract = getCakeFlexibleSideVaultV2Contract()
+// const flexibleSideVaultContract = getCakeFlexibleSideVaultV2Contract()
 
 export const fetchVaultUser = async (account: string): Promise<SerializedLockedVaultUser> => {
   try {
@@ -49,23 +49,23 @@ export const fetchVaultUser = async (account: string): Promise<SerializedLockedV
   }
 }
 
-export const fetchFlexibleSideVaultUser = async (account: string): Promise<SerializedVaultUser> => {
-  try {
-    const userContractResponse = await flexibleSideVaultContract.userInfo(account)
-    return {
-      isLoading: false,
-      userShares: new BigNumber(userContractResponse.shares.toString()).toJSON(),
-      lastDepositedTime: userContractResponse.lastDepositedTime.toString(),
-      lastUserActionTime: userContractResponse.lastUserActionTime.toString(),
-      cakeAtLastUserAction: new BigNumber(userContractResponse.cakeAtLastUserAction.toString()).toJSON(),
-    }
-  } catch (error) {
-    return {
-      isLoading: true,
-      userShares: null,
-      lastDepositedTime: null,
-      lastUserActionTime: null,
-      cakeAtLastUserAction: null,
-    }
-  }
-}
+// export const fetchFlexibleSideVaultUser = async (account: string): Promise<SerializedVaultUser> => {
+//   try {
+//     const userContractResponse = await flexibleSideVaultContract.userInfo(account)
+//     return {
+//       isLoading: false,
+//       userShares: new BigNumber(userContractResponse.shares.toString()).toJSON(),
+//       lastDepositedTime: userContractResponse.lastDepositedTime.toString(),
+//       lastUserActionTime: userContractResponse.lastUserActionTime.toString(),
+//       cakeAtLastUserAction: new BigNumber(userContractResponse.cakeAtLastUserAction.toString()).toJSON(),
+//     }
+//   } catch (error) {
+//     return {
+//       isLoading: true,
+//       userShares: null,
+//       lastDepositedTime: null,
+//       lastUserActionTime: null,
+//       cakeAtLastUserAction: null,
+//     }
+//   }
+// }

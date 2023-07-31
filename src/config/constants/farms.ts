@@ -13,16 +13,16 @@ const farms: SerializedFarmConfig[] = [
   /**
    * These 3 farms (PID 0, 2, 3) should always be at the top of the file.
    */
-  {
-    pid: 0,
-    lpSymbol: 'BSWAP',
-    lpAddresses: {
-      56: '',
-      [ChainId.BASE_GOERLI]: serializedTokens.cake,
-    },
-    token: serializedTokens.syrup,
-    quoteToken: serializedTokens.wbnb,
-  },
+  // {
+  //   pid: 0,
+  //   lpSymbol: 'BSWAP',
+  //   lpAddresses: {
+  //     56: '',
+  //     [ChainId.BASE_GOERLI]: serializedTokens.cake,
+  //   },
+  //   token: serializedTokens.syrup,
+  //   quoteToken: serializedTokens.wbnb,
+  // },
   {
     pid: 1,
     lpSymbol: 'WETH-BSWAP LP',

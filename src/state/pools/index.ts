@@ -38,7 +38,7 @@ import { fetchPublicVaultData, fetchVaultFees, fetchPublicFlexibleSideVaultData 
 import { getTokenPricesFromFarm } from './helpers'
 import { resetUserState } from '../global/actions'
 import { fetchUserIfoCredit, fetchPublicIfoData } from './fetchUserIfo'
-import { fetchVaultUser, fetchFlexibleSideVaultUser } from './fetchVaultUser'
+import { fetchVaultUser } from './fetchVaultUser'
 
 export const initialPoolVaultState = Object.freeze({
   totalShares: null,
@@ -341,13 +341,13 @@ export const fetchUserIfoCreditDataAsync = (account: string) => async (dispatch)
     console.error('[Ifo Credit Action] Error fetching user Ifo credit data', error)
   }
 }
-export const fetchCakeFlexibleSideVaultUserData = createAsyncThunk<SerializedVaultUser, { account: string }>(
-  'cakeFlexibleSideVault/fetchUser',
-  async ({ account }) => {
-    const userData = await fetchFlexibleSideVaultUser(account)
-    return userData
-  },
-)
+// export const fetchCakeFlexibleSideVaultUserData = createAsyncThunk<SerializedVaultUser, { account: string }>(
+//   'cakeFlexibleSideVault/fetchUser',
+//   async ({ account }) => {
+//     const userData = await fetchFlexibleSideVaultUser(account)
+//     return userData
+//   },
+// )
 
 export const PoolsSlice = createSlice({
   name: 'Pools',
@@ -441,13 +441,13 @@ export const PoolsSlice = createSlice({
       const { ceiling } = action.payload
       state.ifo = { ...state.ifo, ceiling }
     })
-    builder.addCase(
-      fetchCakeFlexibleSideVaultUserData.fulfilled,
-      (state, action: PayloadAction<SerializedVaultUser>) => {
-        const userData = action.payload
-        state.cakeFlexibleSideVault = { ...state.cakeFlexibleSideVault, userData }
-      },
-    )
+    // builder.addCase(
+    //   fetchCakeFlexibleSideVaultUserData.fulfilled,
+    //   (state, action: PayloadAction<SerializedVaultUser>) => {
+    //     const userData = action.payload
+    //     state.cakeFlexibleSideVault = { ...state.cakeFlexibleSideVault, userData }
+    //   },
+    // )
     builder.addMatcher(
       isAnyOf(
         updateUserAllowance.fulfilled,
