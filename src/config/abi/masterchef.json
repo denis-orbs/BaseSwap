@@ -2,28 +2,18 @@
   {
     "inputs": [
       {
-        "internalType": "contract CakeToken",
-        "name": "_cake",
-        "type": "address"
-      },
-      {
-        "internalType": "contract SyrupBar",
-        "name": "_syrup",
-        "type": "address"
-      },
-      {
         "internalType": "address",
-        "name": "_devaddr",
+        "name": "_treasury",
+        "type": "address"
+      },
+      {
+        "internalType": "contract BswapToken",
+        "name": "_bswap",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "_rewardPerSecond",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_startTime",
+        "name": "_rewardPerSec",
         "type": "uint256"
       }
     ],
@@ -162,12 +152,25 @@
   },
   {
     "inputs": [],
-    "name": "cake",
+    "name": "bswap",
     "outputs": [
       {
-        "internalType": "contract CakeToken",
+        "internalType": "contract BswapToken",
         "name": "",
         "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "bswapPerSec",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -194,51 +197,12 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "_devaddr",
-        "type": "address"
-      }
-    ],
-    "name": "dev",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "devaddr",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "uint256",
         "name": "_pid",
         "type": "uint256"
       }
     ],
     "name": "emergencyWithdraw",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "enterStaking",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -268,16 +232,16 @@
     "type": "function"
   },
   {
-    "inputs": [
+    "inputs": [],
+    "name": "lastTeamRewardBlockTime",
+    "outputs": [
       {
         "internalType": "uint256",
-        "name": "_amount",
+        "name": "",
         "type": "uint256"
       }
     ],
-    "name": "leaveStaking",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -285,32 +249,6 @@
     "name": "massUpdatePools",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_pid",
-        "type": "uint256"
-      }
-    ],
-    "name": "migrate",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "migrator",
-    "outputs": [
-      {
-        "internalType": "contract IMigratorChef",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -339,7 +277,7 @@
         "type": "address"
       }
     ],
-    "name": "pendingCake",
+    "name": "pendingReward",
     "outputs": [
       {
         "internalType": "uint256",
@@ -377,7 +315,12 @@
       },
       {
         "internalType": "uint256",
-        "name": "accCakePerShare",
+        "name": "accPerShare",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "totalDeposit",
         "type": "uint256"
       }
     ],
@@ -406,12 +349,12 @@
   },
   {
     "inputs": [],
-    "name": "rewardPerSecond",
+    "name": "rewardsStarted",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "bool",
         "name": "",
-        "type": "uint256"
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
@@ -443,12 +386,25 @@
   {
     "inputs": [
       {
-        "internalType": "contract IMigratorChef",
-        "name": "_migrator",
+        "internalType": "uint256",
+        "name": "_startTime",
+        "type": "uint256"
+      }
+    ],
+    "name": "setStartTime",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_treasury",
         "type": "address"
       }
     ],
-    "name": "setMigrator",
+    "name": "setTreasury",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -468,12 +424,38 @@
   },
   {
     "inputs": [],
-    "name": "syrup",
+    "name": "teamRewardPerSec",
     "outputs": [
       {
-        "internalType": "contract SyrupBar",
+        "internalType": "uint256",
         "name": "",
-        "type": "address"
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "teamTimeInbetweenRewards",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "teamTotalReward",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -482,6 +464,19 @@
   {
     "inputs": [],
     "name": "totalAllocPoint",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalAllowedTeamReward",
     "outputs": [
       {
         "internalType": "uint256",
@@ -506,6 +501,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "treasury",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -527,6 +535,19 @@
       }
     ],
     "name": "updatePool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_rewardPerSec",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateRewardPerSecond",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

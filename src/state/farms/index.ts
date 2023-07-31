@@ -52,8 +52,6 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
 >(
   'farms/fetchFarmsPublicDataAsync',
   async (pids) => {
-    console.log(pids)
-
     const masterChefAddress = getMasterChefAddress()
     const calls = [
       {
@@ -62,7 +60,7 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
       },
       {
         address: masterChefAddress,
-        name: 'rewardPerSecond',
+        name: 'bswapPerSec',
         params: [],
       },
     ]
