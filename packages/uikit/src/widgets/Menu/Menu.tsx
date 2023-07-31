@@ -14,6 +14,7 @@ import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_M
 import { NavProps } from "./types";
 import LangSelector from "../../components/LangSelector/LangSelector";
 import { MenuContext } from "./context";
+import { Text } from "../../components/Text";
 
 const Wrapper = styled.div`
   position: relative;
@@ -25,7 +26,7 @@ const StyledNav = styled.nav`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: ${MENU_HEIGHT}px;
+  height: 60px; 
   background-color: ${({ theme }) => theme.nav.background};
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
   transform: translate3d(0, 0, 0);
@@ -39,7 +40,7 @@ const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
   top: ${({ showMenu, height }) => (showMenu ? 0 : `-${height}px`)};
   left: 0;
   transition: top 0.2s;
-  height: ${({ height }) => `${height}px`};
+  height: 60px; 
   width: 100%;
   z-index: 20;
 `;
@@ -130,12 +131,13 @@ const Menu: React.FC<NavProps> = ({
         <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
           {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
           <StyledNav>
-            <Flex>
+            <Flex flexDirection="row" alignItems="center" justifyContent="center">
             <img src="/images/baselogolarge.png" 
                   width={isMobile ? 40 : 50}
                   height={isMobile ? 40 : 50}
                   alt="logo"
                  />
+              <Text fontSize="1.5rem" style={{ marginLeft: '1rem'}}>BaseSwap</Text>  
               {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
               {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />}
             </Flex>

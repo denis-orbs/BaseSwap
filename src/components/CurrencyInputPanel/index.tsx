@@ -15,6 +15,7 @@ import { Input as NumericalInput } from './NumericalInput'
 import { CopyButton } from '../CopyButton'
 import AddToWalletButton from '../AddToWallet/AddToWalletButton'
 
+// bottom half of the input panel 
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
   flex-flow: row nowrap;
@@ -24,6 +25,7 @@ const InputRow = styled.div<{ selected: boolean }>`
 `
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })<{ zapStyle?: ZapStyle }>`
   padding: 0 0.5rem;
+; 
 
   ${({ zapStyle, theme }) =>
     zapStyle &&
@@ -35,25 +37,32 @@ const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm'
       height: auto;
     `};
 `
+
+// top part of input panel 
 const LabelRow = styled.div`
   display: flex;
+
   flex-flow: row nowrap;
   align-items: center;
   color: ${({ theme }) => theme.colors.text};
-  font-size: 0.75rem;
-  line-height: 1rem;
+  font-size: 1.25rem;
+  line-height: 1.4rem;
   padding: 0.75rem 1rem 0 1rem;
 `
+
+//sits behind the whole thing 
 const InputPanel = styled.div`
   display: flex;
   flex-flow: column nowrap;
   position: relative;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  background-color: transparent;
   z-index: 1;
 `
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
-  border-radius: 16px;
-  background-color: ${({ theme }) => theme.colors.input};
+  border-radius: 8px;
+  padding-bottom: 12px; 
+  padding-top: 12px; 
+  background-color: ${({ theme }) => theme.colors.background};
   box-shadow: ${({ theme, error }) => theme.shadows[error ? 'warning' : 'inset']};
   ${({ zapStyle }) =>
     !!zapStyle &&

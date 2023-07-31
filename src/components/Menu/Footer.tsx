@@ -48,19 +48,19 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
     <Wrapper $isSide={isSide}>
       <Flex flexDirection={isSide ? 'column' : ['column', 'column', 'row']} alignItems="center">
         <ButtonMenu variant="subtle" scale="sm" activeIndex={0}>
-          <ButtonMenuItem>V2</ButtonMenuItem>
+          {/* <ButtonMenuItem>V2</ButtonMenuItem>
           <ButtonMenuItem as="a" href="https://v1exchange.pancakeswap.finance/#/">
             {t('V1 (old)')}
-          </ButtonMenuItem>
+          </ButtonMenuItem> */}
         </ButtonMenu>
         <LinkExternal
-          id="ercBridge"
-          href="https://docs.binance.org/smart-chain/guides/cross-chain.html"
+          id="bridgetoBase"
+          href="https://docs.base.org/tools/bridges/"
           ml={[0, 0, '40px']}
           mt={['20px', '20px', isSide ? '20px' : 0]}
           mb={['8px', '8px', 0]}
         >
-          {t('Convert ERC-20 to BEP-20')}
+          {t('Bridge to Base!')}
         </LinkExternal>
       </Flex>
       {isSide && <Flex flexGrow={1} />}
@@ -70,7 +70,9 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
         width={['100%', '100%', '100%', isSide ? '100%' : 'auto']}
         justifyContent={['center', 'center', 'center', 'flex-end']}
       >
-        <BubbleWrapper>
+        <ButtonMenuItem style={{ color: '#000' }}>Telegram</ButtonMenuItem>
+        <ButtonMenuItem style={{ color: '#000' }}>Docs</ButtonMenuItem>
+        {/* <BubbleWrapper>
           <Button id="clickExchangeHelp" as="a" external href={helpUrl} variant="subtle">
             {t('Need help ?')}
           </Button>
@@ -78,7 +80,7 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
             <path d="M0 16V0C0 0 3 1 6 1C9 1 16 -2 16 3.5C16 10.5 7.5 16 0 16Z" />
           </Svg>
         </BubbleWrapper>
-        <Image src="/images/help.png" alt="Get some help" width={160} height={108} />
+        <Image src="/images/help.png" alt="Get some help" width={160} height={108} /> */}
       </Flex>
     </Wrapper>
   )

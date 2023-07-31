@@ -36,7 +36,7 @@ const CurrencyInputContainer = styled(Flex)`
 `
 
 const ColoredIconButton = styled(IconButton)`
-  color: ${({ theme }) => theme.colors.textSubtle};
+  color: ${({ theme }) => theme.colors.text};
 `
 
 const CurrencyInputHeader: React.FC<Props> = ({

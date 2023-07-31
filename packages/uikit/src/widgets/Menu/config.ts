@@ -55,6 +55,12 @@ export const links: MenuItemsType[] = [
     href: "/earn",
     icon: EarnIcon,
     fillIcon: EarnFillIcon,
+  },
+  {
+    label: "Earn",
+    href: "/earn",
+    icon: EarnIcon,
+    fillIcon: EarnFillIcon,
     items: [
       {
         label: "Earn",
@@ -174,7 +180,7 @@ export const userMenulinks: DropdownMenuItems[] = [
   },
 ];
 
-export const MENU_HEIGHT = 56;
+export const MENU_HEIGHT = 60;
 export const MENU_ENTRY_HEIGHT = 48;
 export const MOBILE_MENU_HEIGHT = 44;
 export const SIDEBAR_WIDTH_FULL = 240;
