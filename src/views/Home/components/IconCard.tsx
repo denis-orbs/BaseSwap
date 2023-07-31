@@ -7,6 +7,7 @@ const StyledCard = styled(Card)<{ background: string; rotation?: string }>`
   padding: 1px 1px 4px 1px;
   box-sizing: border-box;
 
+
   ${({ theme }) => theme.mediaQueries.md} {
     ${({ rotation }) => (rotation ? `transform: rotate(${rotation});` : '')}
   }
