@@ -3,9 +3,12 @@ import { Card } from '@pancakeswap/uikit'
 
 export const BodyWrapper = styled(Card)`
   border-radius: 24px;
-  max-width: 436px;
+  padding: 0px; 
+  max-width: 500px;
   width: 100%;
-  z-index: 1;
+
+
+
 `
 
 /**

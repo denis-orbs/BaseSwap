@@ -131,7 +131,12 @@ const Menu: React.FC<NavProps> = ({
           {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
           <StyledNav>
             <Flex>
-              <Logo isDark={isDark} href={homeLink?.href ?? "/"} />
+            <img src="/images/baselogolarge.png" 
+                  width={isMobile ? 40 : 50}
+                  height={isMobile ? 40 : 50}
+                  alt="logo"
+                 />
+              {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
               {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />}
             </Flex>
             <Flex alignItems="center" height="100%">
@@ -140,7 +145,7 @@ const Menu: React.FC<NavProps> = ({
                   <CakePrice showSkeleton={false} cakePriceUsd={cakePriceUsd} />
                 </Box>
               )}
-              <Box mt="4px">
+              {/* <Box mt="4px">
                 <LangSelector
                   currentLang={currentLang}
                   langs={langs}
@@ -149,7 +154,7 @@ const Menu: React.FC<NavProps> = ({
                   color="textSubtle"
                   hideLanguage
                 />
-              </Box>
+              </Box> */}
               {rightSide}
             </Flex>
           </StyledNav>
