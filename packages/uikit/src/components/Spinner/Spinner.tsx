@@ -37,6 +37,19 @@ const RotatingPancakeIcon = styled(PancakeIcon)`
   transform: translate3d(0, 0, 0);
 `;
 
+const RotatingImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: ${rotate} 2s linear infinite;
+  transform: translate3d(0, 0, 0);
+`;
+
+const FloatingImage = styled.img`
+  animation: ${float} 6s ease-in-out infinite;
+  transform: translate3d(0, 0, 0);
+`;
+
 const FloatingPanIcon = styled(PanIcon)`
   animation: ${float} 6s ease-in-out infinite;
   transform: translate3d(0, 0, 0);
@@ -45,7 +58,10 @@ const FloatingPanIcon = styled(PanIcon)`
 const Spinner: React.FC<SpinnerProps> = ({ size = 128 }) => {
   return (
     <Container>
-      <RotatingPancakeIcon width={`${size * 0.5}px`} />
+      {/* <RotatingPancakeIcon width={`${size * 0.5}px`} /> */}
+      <RotatingImage src="/images/ayush.png" alt="Ayush" width="50px" />
+      {/* <FloatingImage src="/images/pepetokens.png" alt="Ayush" width={`${size}px`} /> */}
+
       <FloatingPanIcon width={`${size}px`} />
     </Container>
   );
