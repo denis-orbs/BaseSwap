@@ -74,10 +74,13 @@ export const styleVariants = {
     backgroundColor: "success",
     color: "white",
   },
+  // used for currency select button 
   [variants.TEXT]: {
     backgroundColor: "transparent",
     color: "primary",
     boxShadow: "none",
+    border: "0px solid",
+    borderColor: "#fff",  
   },
   [variants.LIGHT]: {
     backgroundColor: "white",

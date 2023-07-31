@@ -32,7 +32,7 @@ import { useLPApr } from 'state/swap/hooks'
 import { ROUTER_ADDRESS } from 'config/constants/exchange'
 import { CAKE } from 'config/constants/tokens'
 import PageTitle from 'components/PageTitle/PageTitle'
-import { LightCard } from '../../components/Card'
+import { LightCard, BasedSex } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { AppHeader, AppBody } from '../../components/App'
@@ -584,19 +584,17 @@ export default function AddLiquidity() {
                     <ColumnCenter>
                       <Message variant="warning">
                         <div>
-                          <Text bold mb="8px">
-                            {t('You are the first liquidity provider.')}
+                          <Text fontSize="14px" mb="4px">
+                            {t('You are the first liquidity provider. The ratio of tokens you add will set the price of this pool. Once you are happy with the rate click supply to review.')}
                           </Text>
-                          <Text mb="8px">{t('The ratio of tokens you add will set the price of this pool.')}</Text>
-                          <Text>{t('Once you are happy with the rate click supply to review.')}</Text>
                         </div>
                       </Message>
                     </ColumnCenter>
                   )}
                   <CurrencyInputPanel
-                  backgroundColor="#0154FD"
-                  borderTopRightRadius="8px"
-                  borderTopLeftRadius="8px"
+                  backgroundColor="rgba(0, 0, 0, 0.1)"
+                  borderTopRightRadius="0px"
+                  borderTopLeftRadius="0px"
 
                     disableCurrencySelect={canZap}
                     showBUSD
@@ -631,7 +629,7 @@ export default function AddLiquidity() {
                   </ColumnCenter>
                   <CurrencyInputPanel
                     showBUSD
-                    backgroundColor="#0154FD"
+                    backgroundColor="rgba(0, 0, 0, 0.1)"
                     borderTopRightRadius="8px"
                     borderTopLeftRadius="8px"
   
@@ -750,20 +748,20 @@ export default function AddLiquidity() {
 
                   {currencies[Field.CURRENCY_A] && currencies[Field.CURRENCY_B] && pairState !== PairState.INVALID && (
                     <>
-                      <LightCard padding="0px" borderRadius="20px">
-                        <RowBetween padding="1rem">
-                          <Text fontSize="14px">
+                      <LightCard padding="12px" borderRadius="8px">
+                        <RowBetween padding="0.25rem">
+                          <Text fontSize="16px">
                             {noLiquidity ? t('Initial prices and pool share') : t('Prices and pool share')}
                           </Text>
                         </RowBetween>{' '}
-                        <LightCard padding="1rem" borderRadius="20px">
+                        <BasedSex borderRadius="8px">
                           <PoolPriceBar
                             currencies={currencies}
                             poolTokenPercentage={preferZapInstead ? zapIn.poolTokenPercentage : poolTokenPercentage}
                             noLiquidity={noLiquidity}
                             price={price}
                           />
-                        </LightCard>
+                        </BasedSex>
                       </LightCard>
                     </>
                   )}

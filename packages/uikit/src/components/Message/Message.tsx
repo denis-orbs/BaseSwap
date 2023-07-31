@@ -16,9 +16,9 @@ const Icons = {
 };
 
 const MessageContainer = styled.div<MessageProps>`
-  background-color: gray;
-  padding: 16px;
-  border-radius: 16px;
+  background-color: #000; 
+  padding: 4px;
+  border-radius: 8px;
   border: solid 1px;
 
   ${space}
@@ -33,7 +33,7 @@ const Flex = styled.div`
 
 const colors = {
   // these color names should be place in the theme once the palette is finalized
-  warning: "#D67E0A",
+  warning: "#0154FD",
   success: "#129E7D",
   danger: "failure",
 };
@@ -41,7 +41,7 @@ const colors = {
 export const MessageText: React.FC<TextProps> = ({ children, ...props }) => {
   const ctx = useContext(MessageContext);
   return (
-    <Text fontSize="14px" color={colors[ctx?.variant]} {...props}>
+    <Text fontSize="12px" color={colors[ctx?.variant]} {...props}>
       {children}
     </Text>
   );

@@ -16,8 +16,14 @@ const Card = styled(Box)<{
 export default Card
 
 export const LightCard = styled(Card)`
-  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
-  background-color: #333;
+  border: 3px solid ${({ theme }) => theme.colors.cardBorder};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+  padding: 12px; 
+`
+export const BasedSex = styled(Card)`
+  border: 2px solid ${({ theme }) => theme.colors.text};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+  padding: 0rem; 
 `
 
 export const LightGreyCard = styled(Card)`
