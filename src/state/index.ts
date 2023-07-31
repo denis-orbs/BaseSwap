@@ -16,20 +16,15 @@ import storage from 'redux-persist/lib/storage'
 import IndexedDBStorage from 'utils/IndexedDBStorage'
 import burn from './burn/reducer'
 import farmsReducer from './farms'
-// import farmsReducerV1 from './farmsV1'
 import { updateVersion } from './global/actions'
 import infoReducer from './info'
 import lists from './lists/reducer'
-import lotteryReducer from './lottery'
 import mint from './mint/reducer'
 import multicall from './multicall/reducer'
-import nftMarketReducer from './nftMarket/reducer'
 import poolsReducer from './pools'
 import swap from './swap/reducer'
 import transactions from './transactions/reducer'
 import user from './user/reducer'
-import limitOrders from './limitOrders/reducer'
-import potteryReducer from './pottery'
 
 const PERSISTED_KEYS: string[] = ['user', 'transactions']
 
@@ -72,14 +67,8 @@ const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
     farms: farmsReducer,
-    // farmsV1: farmsReducerV1,
     pools: poolsReducer,
-    // lottery: lotteryReducer,
     info: infoReducer,
-    // nftMarket: nftMarketReducer,
-    // pottery: potteryReducer,
-
-    // limitOrders,
 
     // Exchange
     user,
