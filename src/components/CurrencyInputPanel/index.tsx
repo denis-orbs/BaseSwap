@@ -43,7 +43,6 @@ const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm'
 // top part of input panel 
 const LabelRow = styled.div`
   display: flex;
-
   flex-flow: row nowrap;
   align-items: center;
   color: ${({ theme }) => theme.colors.text};
@@ -58,16 +57,15 @@ const InputPanel = styled.div`
   border-radius: 8px; 
   flex-flow: column nowrap;
   position: relative;
+  margin-bottom: 12px; 
   padding: 2px; 
   background: ${({ theme }) => theme.colors.gradients.gold};
   z-index: 1;
 `
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
   border-radius: 8px;
-  padding-bottom: 6px; 
-  padding-top: 6px; 
   background-color: ${({ theme }) => theme.colors.background};
-  box-shadow: 0 0 12px #fff; 
+
   ${({ zapStyle }) =>
     !!zapStyle &&
     css`
@@ -167,7 +165,7 @@ export default function CurrencyInputPanel({
           >
             <Flex alignItems="center"  justifyContent="space-between">
               {pair ? (
-                <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={16} margin />
+                <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={36} margin />
               ) : currency ? (
                 <CurrencyLogo currency={currency} size="36px" style={{ marginRight: '8px' }} />
               ) : null}
@@ -192,7 +190,7 @@ export default function CurrencyInputPanel({
             <Flex style={{ gap: '4px' }} ml="4px" alignItems="center">
               <CopyButton
                 width="16px"
-                buttonColor="textSubtle"
+                buttonColor="background"
                 text={tokenAddress}
                 tooltipMessage={t('Token address copied')}
                 tooltipTop={-20}
@@ -216,7 +214,7 @@ export default function CurrencyInputPanel({
           <Text
             onClick={!disabled && onMax}
             color="textSubtle"
-            fontSize="14px"
+            fontSize="16px"
             style={{ display: 'inline', cursor: 'pointer' }}
           >
             {!hideBalance && !!currency

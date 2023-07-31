@@ -52,7 +52,7 @@ export function useAudioModeManager(): [boolean, () => void] {
     if (audioPlay) {
       dispatch(muteAudio())
     } else {
-      dispatch(unmuteAudio())
+      dispatch(muteAudio())
     }
   }, [audioPlay, dispatch])
 

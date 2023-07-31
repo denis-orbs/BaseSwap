@@ -13,7 +13,7 @@ export const ModalHeader = styled.div<{ background?: string }>`
   background: transparent;
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
   display: flex;
-  padding: 12px 24px;
+  padding: 12px 12px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     background: ${({ background }) => background || "transparent"};
@@ -38,7 +38,7 @@ export const ModalBody = styled(Flex)`
 export const ModalCloseButton: React.FC<{ onDismiss: ModalProps["onDismiss"] }> = ({ onDismiss }) => {
   return (
     <IconButton variant="text" onClick={onDismiss} aria-label="Close the dialog">
-      <CloseIcon color="primary" />
+      <CloseIcon color="background" />
     </IconButton>
   );
 };
@@ -69,7 +69,7 @@ export const ModalContainer = styled(MotionBox)<{ minWidth: string }>`
     width: auto;
     position: auto;
     bottom: auto;
-    border-radius: 32px;
+    border-radius: 8px;
     max-width: 100%;
     max-height: 100vh;
   }

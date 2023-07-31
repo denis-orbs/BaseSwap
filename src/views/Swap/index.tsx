@@ -74,11 +74,13 @@ const Label = styled(Text)`
 
 const SwitchIconButton = styled(IconButton)`
   box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
+  background-color: ${({ theme }) => theme.colors.primary};
+
   .icon-up-down {
     display: none;
   }
   &:hover {
-    background-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 0 4px #fff, 0 0 12px #ffd700; 
     .icon-down {
       display: none;
       fill: white;
@@ -441,10 +443,10 @@ export default function Swap() {
                     />
 
                     <AutoColumn justify="space-between">
-                      <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
+                      <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 0rem' }}>
                         <SwitchIconButton
                           variant="light"
-                          scale="sm"
+                          size="36px"
                           onClick={() => {
                             setApprovalSubmitted(false) // reset 2 step UI for approvals
                             onSwitchTokens()
@@ -479,9 +481,9 @@ export default function Swap() {
 
                     {isExpertMode && recipient !== null && !showWrap ? (
                       <>
-                        <AutoRow justify="space-between" style={{ padding: '0 1rem' }}>
+                        <AutoRow justify="space-between"  style={{ padding: '0rem' }}>
                           <ArrowWrapper clickable={false}>
-                            <ArrowDownIcon width="16px" />
+                            <ArrowDownIcon width="24px" />
                           </ArrowWrapper>
                           <Button variant="text" id="remove-recipient-button" onClick={() => onChangeRecipient(null)}>
                             {t('- Remove send')}
@@ -509,12 +511,12 @@ export default function Swap() {
                             </>
                           )}
                         </RowBetween>
-                        <RowBetween align="center">
+                        {/* <RowBetween align="center">
                           <Label>{t('Slippage Tolerance')}</Label>
                           <Text bold color="primary">
                             {allowedSlippage / 100}%
                           </Text>
-                        </RowBetween>
+                        </RowBetween> */}
                       </AutoColumn>
                     )}
                   </AutoColumn>

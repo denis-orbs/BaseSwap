@@ -68,7 +68,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
   return (
     <Modal
       title={t('Settings')}
-      headerBackground="gradients.cardHeader"
+      headerBackground="background"
       onDismiss={onDismiss}
       style={{ maxWidth: '420px' }}
     >
@@ -110,7 +110,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
         {mode === SettingsMode.SWAP_LIQUIDITY && (
           <>
             <Flex pt="3px" flexDirection="column">
-              <Text bold textTransform="uppercase" fontSize="18px" color="secondary" mb="24px">
+              <Text letterSpacing="1px" bold textTransform="uppercase" fontSize="18px" color="secondary" mb="24px">
                 {t('Swaps & Liquidity')}
               </Text>
               <Flex justifyContent="space-between" alignItems="center" mb="24px">
@@ -148,7 +148,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
                 }}
               />
             </Flex>
-            <Flex justifyContent="space-between" alignItems="center" mb="24px">
+            {/* <Flex justifyContent="space-between" alignItems="center" mb="24px">
               <Flex alignItems="center">
                 <Text>{t('Expert Mode')}</Text>
                 <QuestionHelper
@@ -163,8 +163,8 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
                 checked={expertMode}
                 onChange={handleExpertModeToggle}
               />
-            </Flex>
-            <Flex justifyContent="space-between" alignItems="center" mb="24px">
+            </Flex> */}
+            {/* <Flex justifyContent="space-between" alignItems="center" mb="24px">
               <Flex alignItems="center">
                 <Text>{t('Disable Multihops')}</Text>
                 <QuestionHelper text={t('Restricts swaps to direct pairs only.')} placement="top-start" ml="4px" />
@@ -177,8 +177,8 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
                   setSingleHopOnly(!singleHopOnly)
                 }}
               />
-            </Flex>
-            <Flex justifyContent="space-between" alignItems="center" mb="24px">
+            </Flex> */}
+            {/* <Flex justifyContent="space-between" alignItems="center" mb="24px">
               <Flex alignItems="center">
                 <Text>{t('Flippy sounds')}</Text>
                 <QuestionHelper
@@ -188,7 +188,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
                 />
               </Flex>
               <PancakeToggle checked={audioPlay} onChange={toggleSetAudioMode} scale="md" />
-            </Flex>
+            </Flex> */}
           </>
         )}
       </ScrollableContainer>

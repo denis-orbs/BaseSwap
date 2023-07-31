@@ -19,16 +19,16 @@ export default Card
 export const LightCard = styled(Card)`
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   background-color: transparent; 
-  backdrop-filter: blur(4px); 
+
 `
 
 export const LightGreyCard = styled(Card)`
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   background-color: transparent; 
-  backdrop-filter: blur(4px); 
+
 `
 
 export const GreyCard = styled(Card)`
   background-color: transparent; 
-  backdrop-filter: blur(4px); 
+
 `
