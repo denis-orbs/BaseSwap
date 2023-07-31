@@ -66,11 +66,11 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
   },
   {
     condition: (arg, { getState }) => {
-      const { farmsV1 } = getState()
-      if (farmsV1.loadingKeys[stringify({ type: fetchFarmsPublicDataAsync.typePrefix, arg })]) {
-        console.debug('farms action is fetching, skipping here')
-        return false
-      }
+      // const { farmsV1 } = getState()
+      // if (farmsV1.loadingKeys[stringify({ type: fetchFarmsPublicDataAsync.typePrefix, arg })]) {
+      //   console.debug('farms action is fetching, skipping here')
+      //   return false
+      // }
       return true
     },
   },
@@ -113,11 +113,11 @@ export const fetchFarmUserDataAsync = createAsyncThunk<
   },
   {
     condition: (arg, { getState }) => {
-      const { farmsV1 } = getState()
-      if (farmsV1.loadingKeys[stringify({ type: fetchFarmUserDataAsync.typePrefix, arg })]) {
-        console.debug('farms user action is fetching, skipping here')
-        return false
-      }
+      // const { farmsV1 } = getState()
+      // if (farmsV1.loadingKeys[stringify({ type: fetchFarmUserDataAsync.typePrefix, arg })]) {
+      //   console.debug('farms user action is fetching, skipping here')
+      //   return false
+      // }
       return true
     },
   },

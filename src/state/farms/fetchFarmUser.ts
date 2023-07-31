@@ -23,6 +23,7 @@ export const fetchFarmUserAllowances = async (account: string, farmsToFetch: Ser
 export const fetchFarmUserTokenBalances = async (account: string, farmsToFetch: SerializedFarmConfig[]) => {
   const calls = farmsToFetch.map((farm) => {
     const lpContractAddress = getAddress(farm.lpAddresses)
+
     return {
       address: lpContractAddress,
       name: 'balanceOf',
@@ -31,6 +32,8 @@ export const fetchFarmUserTokenBalances = async (account: string, farmsToFetch: 
   })
 
   const rawTokenBalances = await multicall(erc20ABI, calls)
+  console.log(rawTokenBalances)
+
   const parsedTokenBalances = rawTokenBalances.map((tokenBalance) => {
     return new BigNumber(tokenBalance).toJSON()
   })
