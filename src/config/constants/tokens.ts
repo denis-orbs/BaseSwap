@@ -9,6 +9,8 @@ const CAKE_MAINNET = new Token(
   'https://pancakeswap.finance/',
 )
 
+
+
 const CAKE_BASE_GOERLI = new Token(
   ChainId.BASE_GOERLI,
   '0xFb68BBfaEF679C1E653b5cE271a0A383c0df6B45',
@@ -17,6 +19,8 @@ const CAKE_BASE_GOERLI = new Token(
   'BaseSwap Token',
   'baseswap.fi',
 )
+
+
 
 const CAKE_TESTNET = new Token(
   ChainId.BSC_TESTNET,
