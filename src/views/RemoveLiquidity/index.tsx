@@ -69,12 +69,11 @@ const BorderCard = styled.div`
 
 export default function RemoveLiquidity() {
   const router = useRouter()
-  const [zapMode] = useZapModeManager()
-  const [temporarilyZapMode, setTemporarilyZapMode] = useState(true)
   const [currencyIdA, currencyIdB] = router.query.currency || []
   const [currencyA, currencyB] = [useCurrency(currencyIdA) ?? undefined, useCurrency(currencyIdB) ?? undefined]
   const { account, chainId, library } = useActiveWeb3React()
   const { toastError } = useToast()
+
   const [tokenA, tokenB] = useMemo(
     () => [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)],
     [currencyA, currencyB, chainId],
@@ -82,8 +81,6 @@ export default function RemoveLiquidity() {
 
   const { t } = useTranslation()
   const gasPrice = useGasPrice()
-
-  const zapModeStatus = useMemo(() => !!zapMode && temporarilyZapMode, [zapMode, temporarilyZapMode])
 
   // burn state
   const { independentField, typedValue } = useBurnState()
@@ -94,9 +91,7 @@ export default function RemoveLiquidity() {
     currencyB ?? undefined,
     removalCheckedA,
     removalCheckedB,
-    zapModeStatus,
   )
-  const isZap = (!removalCheckedA || !removalCheckedB) && zapModeStatus
 
   const poolData = useLPApr(pair)
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
@@ -145,10 +140,7 @@ export default function RemoveLiquidity() {
 
   // allowance handling
   const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(null)
-  const [approval, approveCallback] = useApproveCallback(
-    parsedAmounts[Field.LIQUIDITY],
-    isZap ? getZapAddress() : ROUTER_ADDRESS[chainId],
-  )
+  const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], ROUTER_ADDRESS[chainId])
 
   async function onAttemptToApprove() {
     if (!pairContract || !pair || !library || !deadline) throw new Error('missing dependencies')
@@ -168,7 +160,7 @@ export default function RemoveLiquidity() {
       { name: 'verifyingContract', type: 'address' },
     ]
     const domain = {
-      name: 'bswap LPs',
+      name: 'BSWAP LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,
@@ -518,6 +510,8 @@ export default function RemoveLiquidity() {
     [setInnerLiquidityPercentage],
   )
 
+  const isZap = false
+
   const [onPresentRemoveLiquidity] = useModal(
     <ConfirmLiquidityModal
       title={t('You will receive')}
@@ -525,7 +519,7 @@ export default function RemoveLiquidity() {
       attemptingTxn={attemptingTxn}
       hash={txHash || ''}
       allowedSlippage={allowedSlippage}
-      onRemove={isZap ? onZapOut : onRemove}
+      onRemove={onRemove}
       isZap={isZap}
       pendingText={pendingText}
       approval={approval}
@@ -536,7 +530,7 @@ export default function RemoveLiquidity() {
       parsedAmounts={parsedAmounts}
       currencyA={currencyA}
       currencyB={currencyB}
-      toggleZapMode={setTemporarilyZapMode}
+      toggleZapMode={() => null}
     />,
     true,
     true,
@@ -613,16 +607,6 @@ export default function RemoveLiquidity() {
                   <LightGreyCard>
                     <Flex justifyContent="space-between" mb="8px" as="label" alignItems="center">
                       <Flex alignItems="center">
-                        {zapModeStatus && (
-                          <Flex mr="9px">
-                            <Checkbox
-                              disabled={isZapOutA}
-                              scale="sm"
-                              checked={removalCheckedA}
-                              onChange={(e) => setRemovalCheckedA(e.target.checked)}
-                            />
-                          </Flex>
-                        )}
                         <CurrencyLogo currency={currencyA} />
                         <Text small color="textSubtle" id="remove-liquidity-tokena-symbol" ml="4px">
                           {currencyA?.symbol}
@@ -639,16 +623,6 @@ export default function RemoveLiquidity() {
                     </Flex>
                     <Flex justifyContent="space-between" as="label" alignItems="center">
                       <Flex alignItems="center">
-                        {zapModeStatus && (
-                          <Flex mr="9px">
-                            <Checkbox
-                              disabled={isZapOutB}
-                              scale="sm"
-                              checked={removalCheckedB}
-                              onChange={(e) => setRemovalCheckedB(e.target.checked)}
-                            />
-                          </Flex>
-                        )}
                         <CurrencyLogo currency={currencyB} />
                         <Text small color="textSubtle" id="remove-liquidity-tokenb-symbol" ml="4px">
                           {currencyB?.symbol}
@@ -671,15 +645,15 @@ export default function RemoveLiquidity() {
                               currencyB === ETHER ? WNATIVE[chainId].address : currencyIdB
                             }`}
                           >
-                            {t('Receive WBNB')}
+                            {t('Receive WETH')}
                           </StyledInternalLink>
                         ) : oneCurrencyIsWBNB ? (
                           <StyledInternalLink
                             href={`/remove/${
-                              currencyA && currencyEquals(currencyA, WNATIVE[chainId]) ? 'BNB' : currencyIdA
-                            }/${currencyB && currencyEquals(currencyB, WNATIVE[chainId]) ? 'BNB' : currencyIdB}`}
+                              currencyA && currencyEquals(currencyA, WNATIVE[chainId]) ? 'ETH' : currencyIdA
+                            }/${currencyB && currencyEquals(currencyB, WNATIVE[chainId]) ? 'ETH' : currencyIdB}`}
                           >
-                            {t('Receive BNB')}
+                            {t('Receive ETH')}
                           </StyledInternalLink>
                         ) : null}
                       </RowBetween>
@@ -708,17 +682,6 @@ export default function RemoveLiquidity() {
                   <ArrowDownIcon width="24px" my="16px" />
                 </ColumnCenter>
                 <CurrencyInputPanel
-                  beforeButton={
-                    zapModeStatus && (
-                      <ZapCheckbox
-                        disabled={!removalCheckedB && removalCheckedA}
-                        checked={removalCheckedA}
-                        onChange={(e) => {
-                          setRemovalCheckedA(e.target.checked)
-                        }}
-                      />
-                    )
-                  }
                   zapStyle="zap"
                   hideBalance
                   disabled={isZap && !removalCheckedA}
@@ -735,17 +698,6 @@ export default function RemoveLiquidity() {
                   <AddIcon width="24px" my="16px" />
                 </ColumnCenter>
                 <CurrencyInputPanel
-                  beforeButton={
-                    zapModeStatus && (
-                      <ZapCheckbox
-                        disabled={!removalCheckedA && removalCheckedB}
-                        checked={removalCheckedB}
-                        onChange={(e) => {
-                          setRemovalCheckedB(e.target.checked)
-                        }}
-                      />
-                    )
-                  }
                   zapStyle="zap"
                   hideBalance
                   disabled={isZap && !removalCheckedB}
