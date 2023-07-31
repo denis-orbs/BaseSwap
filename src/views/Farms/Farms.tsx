@@ -116,6 +116,8 @@ const FinishedTextLink = styled(Link)`
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const Farms: React.FC = ({ children }) => {
+  const [sortOption, setSortOption] = useState('hot')
+
   const { pathname, query: urlQuery } = useRouter()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded, poolLength, regularCakePerBlock } = useFarms()
@@ -127,7 +129,7 @@ const Farms: React.FC = ({ children }) => {
 
   const [viewMode, setViewMode] = useUserFarmsViewMode()
   const { account, chainId } = useWeb3React()
-  const [sortOption, setSortOption] = useState('hot')
+
   const { observerRef, isIntersecting } = useIntersectionObserver()
   const chosenFarmsLength = useRef(0)
 
@@ -167,7 +169,9 @@ const Farms: React.FC = ({ children }) => {
         if (!farm.lpTotalInQuoteToken || !farm.quoteTokenPriceBusd) {
           return farm
         }
+
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
+
         const { cakeRewardsApr, lpRewardsApr } = isActive
           ? getFarmApr(
               new BigNumber(farm.poolWeight),

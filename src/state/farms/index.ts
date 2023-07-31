@@ -52,6 +52,8 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
 >(
   'farms/fetchFarmsPublicDataAsync',
   async (pids) => {
+    console.log(pids)
+
     const masterChefAddress = getMasterChefAddress()
     const calls = [
       {
@@ -60,16 +62,17 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
       },
       {
         address: masterChefAddress,
-        name: 'cakePerBlock',
-        params: [true],
+        name: 'rewardPerSecond',
+        params: [],
       },
     ]
-    const [[poolLength], [cakePerBlockRaw]] = await multicall(masterchefABI, calls)
-    const regularCakePerBlock = getBalanceAmount(ethersToBigNumber(cakePerBlockRaw))
+    const [[poolLength], [rewardPerSecondRaw]] = await multicall(masterchefABI, calls)
+    const regularCakePerBlock = getBalanceAmount(ethersToBigNumber(rewardPerSecondRaw))
     const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
     const farmsCanFetch = farmsToFetch.filter((f) => poolLength.gt(f.pid))
 
     const farms = await fetchFarms(farmsCanFetch)
+    console.log(farms)
     const farmsWithPrices = getFarmsPrices(farms)
 
     return [farmsWithPrices, poolLength.toNumber(), regularCakePerBlock.toNumber()]

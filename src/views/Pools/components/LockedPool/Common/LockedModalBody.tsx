@@ -5,8 +5,7 @@ import _noop from 'lodash/noop'
 import { useTranslation } from '@pancakeswap/localization'
 import { MAX_LOCK_DURATION } from 'config/constants/pools'
 import { getBalanceAmount } from 'utils/formatBalance'
-import { useIfoCeiling } from 'state/pools/hooks'
-
+import { BIG_ZERO } from 'utils/bigNumber'
 import { LockedModalBodyPropsType, ModalValidator } from '../types'
 
 import Overview from './Overview'
@@ -29,7 +28,7 @@ const LockedModalBody: React.FC<LockedModalBodyPropsType> = ({
   customOverview,
 }) => {
   const { t } = useTranslation()
-  const ceiling = useIfoCeiling()
+  const ceiling = BIG_ZERO
   const { usdValueStaked, duration, setDuration, pendingTx, handleConfirmClick } = useLockedPool({
     stakingToken,
     onDismiss,

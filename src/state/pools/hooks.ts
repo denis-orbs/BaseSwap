@@ -37,7 +37,7 @@ const activeFarms = farmsConfig
   .filter(
     ({ token, pid, quoteToken }) =>
       pid !== 0 &&
-      ((token.symbol === 'BUSD' && quoteToken.symbol === 'WBNB') ||
+      ((token.symbol === 'USDC' && quoteToken.symbol === 'WETH') ||
         lPoolAddresses.find((poolAddress) => poolAddress === token.address)),
   )
   .map((farm) => farm.pid)
@@ -132,12 +132,4 @@ export const useVaultPoolByKey = (key: VaultKey) => {
   const vaultPoolByKey = useMemo(() => makeVaultPoolByKey(key), [key])
 
   return useSelector(vaultPoolByKey)
-}
-
-export const useIfoCredit = () => {
-  return useSelector(ifoCreditSelector)
-}
-
-export const useIfoCeiling = () => {
-  return useSelector(ifoCeilingSelector)
 }

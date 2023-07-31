@@ -14,7 +14,6 @@ import BurningCountDown from './Common/BurningCountDown'
 import LockedActions from './Common/LockedActions'
 import YieldBoostRow from './Common/YieldBoostRow'
 import LockDurationRow from './Common/LockDurationRow'
-import IfoCakeRow from './Common/IfoCakeRow'
 import useUserDataInVaultPresenter from './hooks/useUserDataInVaultPresenter'
 import { LockedStakingApyPropsType } from './types'
 
@@ -148,7 +147,6 @@ const LockedStakingApy: React.FC<LockedStakingApyProps> = ({
           </Text>
         </Flex>
       )}
-      {showICake && <IfoCakeRow />}
     </LightGreyCard>
   )
 }

@@ -5,7 +5,6 @@ import { Modal, Box, MessageText, Message, Checkbox, Flex, Text } from '@pancake
 import _noop from 'lodash/noop'
 import { useTranslation } from '@pancakeswap/localization'
 import BigNumber from 'bignumber.js'
-import { useIfoCeiling } from 'state/pools/hooks'
 import useTheme from 'hooks/useTheme'
 import { useBUSDCakeAmount } from 'hooks/useBUSDPrice'
 import { getBalanceNumber, getDecimalAmount, getBalanceAmount } from 'utils/formatBalance'
@@ -55,7 +54,7 @@ const AddAmountModal: React.FC<AddAmountModalProps> = ({
   stakingTokenBalance,
 }) => {
   const { theme } = useTheme()
-  const ceiling = useIfoCeiling()
+  const ceiling = BIG_ZERO
   const [lockedAmount, setLockedAmount] = useState('')
   const [checkedState, setCheckedState] = useState(false)
   const { t } = useTranslation()
