@@ -23,7 +23,7 @@ const Home: React.FC = () => {
         innerProps={{ style: { margin: '0', width: '100%' } }}
         background={
           theme.isDark
-            ? 'linear-gradient(to bottom,  #020079 0%, #ccc 100%)'
+            ? 'linear-gradient(to bottom, #020079, #0154FD, #fff )'
             : 'linear-gradient(139.73deg, #E6FDFF 0%, #F3EFFF 100%)'
         }
         index={2}
