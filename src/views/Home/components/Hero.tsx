@@ -9,6 +9,7 @@ import styled, { keyframes } from 'styled-components'
 import bunnyImage from '../../../../public/images/home/lunar-bunny/bunny@2x.png'
 import CompositeImage, { CompositeImageProps } from './CompositeImage'
 import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
+import baseswap from '../../../../public/images/baselogolarge.png'
 
 const flyingAnim = () => keyframes`
   from {
@@ -102,17 +103,17 @@ const Hero = () => {
       <Flex
         position="relative"
         flexDirection={['column-reverse', null, null, 'row']}
-        alignItems={['flex-end', null, null, 'center']}
+        alignItems={['flex-end', null, null, 'flex-start']}
         justifyContent="center"
-        mt={[account ? '280px' : '50px', null, 0]}
+        mt={[account ? '280px' : '25px', null, 0]}
         id="homepage-hero"
       >
         <Flex flex="1" flexDirection="column">
-          <Heading scale="xxl" color="secondary" mb="24px">
-            {t('This one is for you, Brian ')}
+          <Heading scale="xxl" color="contrast" mb="24px">
+            {t('BaseSwap')}
           </Heading>
           <Heading scale="md" mb="24px">
-            {t('Trade, earn, and win crypto on the most popular decentralized platform in the galaxy.')}
+            {t('Taller better faster stronger.')}
           </Heading>
           <Flex>
             {!account && <ConnectWalletButton mr="8px" />}
@@ -129,11 +130,11 @@ const Hero = () => {
           position="relative"
         >
           <BunnyWrapper>
-            <Image src={bunnyImage} priority placeholder="blur" alt={t('Lunar bunny')} />
+            <Image src={baseswap} priority placeholder="blur" alt={t('BaseSwap Logo')} />
           </BunnyWrapper>
-          <StarsWrapper>
+          {/* <StarsWrapper>
             <CompositeImage {...starsImage} />
-          </StarsWrapper>
+          </StarsWrapper> */}
         </Flex>
       </Flex>
     </>
