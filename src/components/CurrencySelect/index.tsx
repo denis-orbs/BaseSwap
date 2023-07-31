@@ -11,25 +11,26 @@ import { RowBetween, AutoRow } from '../Layout/Row'
 
 const DropDownHeader = styled.div`
   width: 100%;
-  height: 40px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 16px;
-  box-shadow: ${({ theme }) => theme.shadows.inset};
-  border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
-  border-radius: 16px;
-  background: ${({ theme }) => theme.colors.input};
-  transition: border-radius 0.15s;
+  padding: 4px; 
+  border-radius: 8px;
+  color: ${({ theme }) => theme.colors.background};
+  &:hover {
+    color: ${({ theme }) => theme.colors.text};
+  }
 `
 
 const DropDownContainer = styled(Button)`
   cursor: pointer;
   width: 100%;
+  
   position: relative;
-  background: ${({ theme }) => theme.colors.input};
-  border-radius: 16px;
-  height: 40px;
+  border-radius: 12px;
+  height: 60px;
+  padding: 4px; 
   min-width: 136px;
   user-select: none;
   z-index: 20;
@@ -88,8 +89,8 @@ export const CurrencySelect = ({
               <>{t('Select')}</>
             ) : (
               <Flex alignItems="center" justifyContent="space-between">
-                <CurrencyLogo currency={selectedCurrency} size="24px" style={{ marginRight: '8px' }} />
-                <Text id="pair" bold>
+                <CurrencyLogo currency={selectedCurrency} size="36px" style={{ marginRight: '8px' }} />
+                <Text fontSize="1.4rem" id="pair" color="backgroundAlt" fontWeight="900">
                   {selectedCurrency && selectedCurrency.symbol && selectedCurrency.symbol.length > 20
                     ? `${selectedCurrency.symbol.slice(0, 4)}...${selectedCurrency.symbol.slice(
                         selectedCurrency.symbol.length - 5,

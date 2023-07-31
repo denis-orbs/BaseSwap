@@ -18,8 +18,18 @@ export const scaleVariants = {
 
 export const styleVariants = {
   [variants.PRIMARY]: {
-    backgroundColor: "primary",
-    color: "white",
+    backgroundColor: "#fff",
+    color: "background",
+    fontWeight: "900", 
+    borderRadius: "8px", 
+    border: "8px solid", 
+    borderColor: "background", 
+    ":hover": {
+      backgroundColor: "background", 
+      borderColor: "text", 
+      color: "text", 
+
+    }
   },
   [variants.SECONDARY]: {
     backgroundColor: "transparent",

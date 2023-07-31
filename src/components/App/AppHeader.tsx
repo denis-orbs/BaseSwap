@@ -20,7 +20,13 @@ const AppHeaderContainer = styled(Flex)`
   justify-content: space-between;
   padding: 24px;
   width: 100%;
-  border-bottom: 4px solid ${({ theme }) => theme.colors.cardBorder};
+  border-top-radius: 8px; 
+  border-top: 4px solid; 
+  border-right: 4px solid; 
+
+  border-left: 4px solid; 
+  border-color: #fff; 
+  background-color: ${({ theme }) => theme.colors.cardBorder};
 `
 
 const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig = false }) => {

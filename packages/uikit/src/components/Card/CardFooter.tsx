@@ -4,12 +4,15 @@ import { space, SpaceProps } from "styled-system";
 export type CardFooterProps = SpaceProps;
 
 const CardFooter = styled.div<CardFooterProps>`
-  border-top: 1px solid ${({ theme }) => theme.colors.cardBorder};
-  ${space}
-  border-radius: 0px;
-  background: transparent;
+  border-right: 4px solid #fff; 
+  border-left: 4px solid #fff; 
+  border-bottom: 4px solid #fff; 
 
-  padding: 8px;
+  ${space}
+  bottom-border-radius: 8px;
+  background: ${({ theme }) => theme.colors.backgroundAlt};
+
+  padding: 1rem;
 `;
 
 CardFooter.defaultProps = {
