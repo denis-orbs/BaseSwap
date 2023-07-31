@@ -73,64 +73,15 @@ export const livePools: SerializedPoolConfig[] = [
   //   isFinished: false,
   // },
   {
-    sousId: 1,
+    sousId: 100,
     stakingToken: serializedTokens.cake,
     earningToken: serializedTokens.bbt,
     contractAddress: {
-      [ChainId.BASE_GOERLI]: '0x21259AAf3fC70e40834b73A3eC36D0d0f68A861F',
+      [ChainId.BASE_GOERLI]: '0x1e736b5F43eD3D92DE55fA4F276355544Fe21984',
     },
     poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '0.000001',
-    version: 3,
+    tokenPerBlock: '0.0000001',
   },
-  // {
-  //   sousId: 289,
-  //   stakingToken: serializedTokens.cake,
-  //   earningToken: serializedTokens.shell,
-  //   contractAddress: {
-  //     56: '0x595B7AF4F1828AB4953792482b01B2AFC4A46b72',
-  //     97: '',
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   tokenPerBlock: '89.699',
-  //   version: 3,
-  // },
-  // {
-  //   sousId: 288,
-  //   stakingToken: serializedTokens.cake,
-  //   earningToken: serializedTokens.high,
-  //   contractAddress: {
-  //     56: '0x28cc814bE3B994187B7f8Bfed10516A84A671119',
-  //     97: '',
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   tokenPerBlock: '0.1332',
-  //   version: 3,
-  // },
-  // {
-  //   sousId: 287,
-  //   stakingToken: serializedTokens.cake,
-  //   earningToken: serializedTokens.ole,
-  //   contractAddress: {
-  //     56: '0xda6F750be1331963E5772BEe757062f6bddcEA4C',
-  //     97: '',
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   tokenPerBlock: '2.2569',
-  //   version: 3,
-  // },
-  // {
-  //   sousId: 286,
-  //   stakingToken: serializedTokens.cake,
-  //   earningToken: serializedTokens.trivia,
-  //   contractAddress: {
-  //     56: '0x86471019Bf3f403083390AC47643062e15B0256e',
-  //     97: '',
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   tokenPerBlock: '4.976',
-  //   version: 3,
-  // },
 ]
 
 // known finished pools

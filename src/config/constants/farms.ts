@@ -22,16 +22,16 @@ const farms: SerializedFarmConfig[] = [
   //   token: serializedTokens.syrup,
   //   quoteToken: serializedTokens.wbnb,
   // },
-  {
-    pid: 1,
-    lpSymbol: 'WETH-BSWAP LP',
-    lpAddresses: {
-      56: CAKE_BNB_LP_MAINNET,
-      [ChainId.BASE_GOERLI]: '0x913A6b6b1921F14be233762a71b9361418D850FF',
-    },
-    token: serializedTokens.cake,
-    quoteToken: serializedTokens.wbnb,
-  },
+  // {
+  //   pid: 0,
+  //   lpSymbol: 'WETH-BSWAP LP',
+  //   lpAddresses: {
+  //     56: CAKE_BNB_LP_MAINNET,
+  //     [ChainId.BASE_GOERLI]: '',
+  //   },
+  //   token: serializedTokens.cake,
+  //   quoteToken: serializedTokens.wbnb,
+  // },
   // {
   //   pid: 3,
   //   v1pid: 252,

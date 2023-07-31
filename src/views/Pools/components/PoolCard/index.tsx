@@ -13,22 +13,22 @@ import PoolCardHeader, { PoolCardHeaderTitle } from './PoolCardHeader'
 import CardActions from './CardActions'
 
 const PoolCard: React.FC<{ pool: DeserializedPool; account: string }> = ({ pool, account }) => {
-  const { sousId, stakingToken, earningToken, isFinished, userData } = pool
+  const { stakingToken, earningToken, isFinished, userData } = pool
   const { t } = useTranslation()
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const accountHasStakedBalance = stakedBalance.gt(0)
 
-  const isCakePool = earningToken.symbol === 'CAKE' && stakingToken.symbol === 'CAKE'
+  const isCakePool = earningToken.symbol === 'BSWAP' && stakingToken.symbol === 'BSWAP'
 
   return (
     <StyledCard
-      isFinished={isFinished && sousId !== 0}
+      isFinished={isFinished}
       ribbon={isFinished && <CardRibbon variantColor="textDisabled" text={t('Finished')} />}
     >
-      <PoolCardHeader isStaking={accountHasStakedBalance} isFinished={isFinished && sousId !== 0}>
+      <PoolCardHeader isStaking={accountHasStakedBalance} isFinished={isFinished}>
         <PoolCardHeaderTitle
           title={isCakePool ? t('Manual') : t('Earn %asset%', { asset: earningToken.symbol })}
-          subTitle={isCakePool ? t('Earn CAKE, stake CAKE') : t('Stake %symbol%', { symbol: stakingToken.symbol })}
+          subTitle={isCakePool ? t('Earn BSWAP, stake BSWAP') : t('Stake %symbol%', { symbol: stakingToken.symbol })}
         />
         <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} width={64} height={64} />
       </PoolCardHeader>

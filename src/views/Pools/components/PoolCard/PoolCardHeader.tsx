@@ -29,6 +29,7 @@ export const PoolCardHeaderTitle: React.FC<{ isFinished?: boolean; title: ReactN
   title,
   subTitle,
 }) => {
+  console.log(subTitle)
   return (
     <Flex flexDirection="column">
       <Heading color={isFinished ? 'textDisabled' : 'body'} scale="lg">

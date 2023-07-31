@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import { BigNumber as EthersBigNumber } from '@ethersproject/bignumber'
-import poolsConfig from 'config/constants/pools'
-import sousChefABI from 'config/abi/sousChef.json'
+import poolsConfig, { livePools } from 'config/constants/pools'
+import smartChefABI from 'config/abi/StakingPool.json'
 import erc20ABI from 'config/abi/erc20.json'
 import multicall, { multicallv2 } from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
@@ -10,23 +10,23 @@ import chunk from 'lodash/chunk'
 import sousChefV2 from '../../config/abi/sousChefV2.json'
 import sousChefV3 from '../../config/abi/sousChefV3.json'
 
-const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
+// const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
 
-const startEndBlockCalls = poolsWithEnd.flatMap((poolConfig) => {
+const startEndBlockCalls = livePools.flatMap((poolConfig) => {
   return [
     {
       address: getAddress(poolConfig.contractAddress),
-      name: 'startBlock',
+      name: 'startTime',
     },
     {
       address: getAddress(poolConfig.contractAddress),
-      name: 'bonusEndBlock',
+      name: 'bonusEndTime',
     },
   ]
 })
 
 export const fetchPoolsBlockLimits = async () => {
-  const startEndBlockRaw = await multicall(sousChefABI, startEndBlockCalls)
+  const startEndBlockRaw = await multicall(smartChefABI, startEndBlockCalls)
 
   const startEndBlockResult = startEndBlockRaw.reduce((resultArray, item, index) => {
     const chunkIndex = Math.floor(index / 2)
@@ -41,12 +41,12 @@ export const fetchPoolsBlockLimits = async () => {
     return resultArray
   }, [])
 
-  return poolsWithEnd.map((cakePoolConfig, index) => {
-    const [[startBlock], [endBlock]] = startEndBlockResult[index]
+  return livePools.map((cakePoolConfig, index) => {
+    const [[startTime], [bonusEndTime]] = startEndBlockResult[index]
     return {
-      sousId: cakePoolConfig.sousId,
-      startBlock: startBlock.toNumber(),
-      endBlock: endBlock.toNumber(),
+      // sousId: cakePoolConfig.sousId,
+      startTime: startTime.toNumber(),
+      bonusEndTime: bonusEndTime.toString(),
     }
   })
 }
@@ -71,9 +71,8 @@ export const fetchPoolsTotalStaking = async () => {
 export const fetchPoolsStakingLimits = async (
   poolsWithStakingLimit: number[],
 ): Promise<{ [key: string]: { stakingLimit: BigNumber; numberBlocksForUserLimit: number } }> => {
-  const validPools = poolsConfig
-    .filter((p) => p.stakingToken.symbol !== 'BNB' && !p.isFinished)
-    .filter((p) => !poolsWithStakingLimit.includes(p.sousId))
+  const validPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB' && !p.isFinished)
+  // .filter((p) => !poolsWithStakingLimit.includes(p.sousId))
 
   // Get the staking limit for each valid pool
   const poolStakingCalls = validPools
@@ -100,7 +99,8 @@ export const fetchPoolsStakingLimits = async (
   }, {})
 }
 
-const poolsWithV3 = poolsConfig.filter((pool) => pool?.version === 3)
+// const poolsWithV3 = poolsConfig.filter((pool) => pool?.version === 3)
+const poolsWithV3 = []
 
 export const fetchPoolsProfileRequirement = async (): Promise<{
   [key: string]: {

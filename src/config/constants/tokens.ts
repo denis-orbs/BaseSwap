@@ -4,7 +4,7 @@ import { ChainId, Token, WBNB } from '@magikswap/sdk'
 
 const CAKE_BASE_GOERLI = new Token(
   ChainId.BASE_GOERLI,
-  '0xFb68BBfaEF679C1E653b5cE271a0A383c0df6B45',
+  '0xa26655BaB784C9BD9DAadAAFF2a05a93484bF9C7',
   18,
   'BSWAP',
   'BaseSwap Token',

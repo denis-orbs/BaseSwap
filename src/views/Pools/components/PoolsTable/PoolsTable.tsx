@@ -49,15 +49,16 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, account, urlSearch }) =>
   return (
     <StyledTableBorder>
       <StyledTable id="pools-table" role="table" ref={tableWrapperEl}>
-        {pools.map((pool) =>
-          pool.vaultKey ? (
-            <VaultPoolRow
-              initialActivity={urlSearch.toLowerCase() === pool.earningToken.symbol?.toLowerCase()}
-              key={pool.vaultKey}
-              vaultKey={pool.vaultKey}
-              account={account}
-            />
-          ) : (
+        {pools.map(
+          (pool) => (
+            // pool.vaultKey ? (
+            //   <VaultPoolRow
+            //     initialActivity={urlSearch.toLowerCase() === pool.earningToken.symbol?.toLowerCase()}
+            //     key={pool.vaultKey}
+            //     vaultKey={pool.vaultKey}
+            //     account={account}
+            //   />
+            // ) : (
             <PoolRow
               initialActivity={urlSearch.toLowerCase() === pool.earningToken.symbol?.toLowerCase()}
               key={pool.sousId}
@@ -65,6 +66,7 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, account, urlSearch }) =>
               account={account}
             />
           ),
+          // ),
         )}
         <ScrollButtonContainer>
           <Button variant="text" onClick={scrollToTop}>
