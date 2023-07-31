@@ -8,7 +8,6 @@ import {
   SerializedCakeVault,
   SerializedLockedVaultUser,
   PublicIfoData,
-  SerializedVaultUser,
   SerializedLockedCakeVault,
 } from 'state/types'
 import { getPoolApr } from 'utils/apr'
@@ -147,7 +146,7 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
           .filter((pool) => {
             const poolBlockLimit = blockLimits.find((blockLimit) => blockLimit.sousId === pool.sousId)
             if (poolBlockLimit) {
-              return poolBlockLimit.endBlock > currentBlock
+              return poolBlockLimit.bonusEndTime > currentBlock
             }
             return false
           }).length > 0
@@ -169,7 +168,8 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
     const liveData = poolsConfig.map((pool) => {
       const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
       const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
-      const isPoolEndBlockExceeded = currentBlock > 0 && blockLimit ? currentBlock > Number(blockLimit.endBlock) : false
+      const isPoolEndBlockExceeded =
+        currentBlock > 0 && blockLimit ? currentBlock > Number(blockLimit.bonusEndTime) : false
       const isPoolFinished = pool.isFinished || isPoolEndBlockExceeded
 
       const stakingTokenAddress = pool.stakingToken.address ? pool.stakingToken.address.toLowerCase() : null
@@ -217,14 +217,13 @@ export const fetchPoolsStakingLimitsAsync = () => async (dispatch, getState) => 
       if (poolsWithStakingLimit.includes(pool.sousId)) {
         return { sousId: pool.sousId }
       }
-      const { stakingLimit, numberBlocksForUserLimit } = stakingLimits[pool.sousId] || {
+      const { stakingLimit } = stakingLimits[pool.sousId] || {
         stakingLimit: BIG_ZERO,
         numberBlocksForUserLimit: 0,
       }
       return {
         sousId: pool.sousId,
         stakingLimit: stakingLimit.toJSON(),
-        numberBlocksForUserLimit,
       }
     })
 

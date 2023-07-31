@@ -44,7 +44,7 @@ export const fetchPoolsBlockLimits = async () => {
   return livePools.map((cakePoolConfig, index) => {
     const [[startTime], [bonusEndTime]] = startEndBlockResult[index]
     return {
-      // sousId: cakePoolConfig.sousId,
+      sousId: cakePoolConfig.sousId,
       startTime: startTime.toNumber(),
       bonusEndTime: bonusEndTime.toString(),
     }
@@ -70,7 +70,7 @@ export const fetchPoolsTotalStaking = async () => {
 
 export const fetchPoolsStakingLimits = async (
   poolsWithStakingLimit: number[],
-): Promise<{ [key: string]: { stakingLimit: BigNumber; numberBlocksForUserLimit: number } }> => {
+): Promise<{ [key: string]: { stakingLimit: BigNumber } }> => {
   const validPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB' && !p.isFinished)
   // .filter((p) => !poolsWithStakingLimit.includes(p.sousId))
 
@@ -78,23 +78,22 @@ export const fetchPoolsStakingLimits = async (
   const poolStakingCalls = validPools
     .map((validPool) => {
       const contractAddress = getAddress(validPool.contractAddress)
-      return ['hasUserLimit', 'poolLimitPerUser', 'numberBlocksForUserLimit'].map((method) => ({
+      return ['hasUserLimit', 'poolLimitPerUser'].map((method) => ({
         address: contractAddress,
         name: method,
       }))
     })
     .flat()
 
-  const poolStakingResultRaw = await multicallv2(sousChefV2, poolStakingCalls, { requireSuccess: false })
+  const poolStakingResultRaw = await multicallv2(smartChefABI, poolStakingCalls, { requireSuccess: false })
   const chunkSize = poolStakingCalls.length / validPools.length
   const poolStakingChunkedResultRaw = chunk(poolStakingResultRaw.flat(), chunkSize)
   return poolStakingChunkedResultRaw.reduce((accum, stakingLimitRaw, index) => {
     const hasUserLimit = stakingLimitRaw[0]
     const stakingLimit = hasUserLimit && stakingLimitRaw[1] ? new BigNumber(stakingLimitRaw[1].toString()) : BIG_ZERO
-    const numberBlocksForUserLimit = stakingLimitRaw[2] ? (stakingLimitRaw[2] as EthersBigNumber).toNumber() : 0
     return {
       ...accum,
-      [validPools[index].sousId]: { stakingLimit, numberBlocksForUserLimit },
+      [validPools[index].sousId]: { stakingLimit },
     }
   }, {})
 }
