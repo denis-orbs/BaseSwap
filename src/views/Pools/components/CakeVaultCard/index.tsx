@@ -132,8 +132,8 @@ const CakeVaultCard: React.FC<CakeVaultProps> = ({
     <StyledCard isActive {...props}>
       <PoolCardHeader isStaking={accountHasSharesStaked}>
         <PoolCardHeaderTitle
-          title={vaultPoolConfig[pool.vaultKey].name}
-          subTitle={vaultPoolConfig[pool.vaultKey].description}
+          title="Stake BSWAP"
+          subTitle="Earn BSWAP!"
         />
         <TokenPairImage {...vaultPoolConfig[pool.vaultKey].tokenImage} width={64} height={64} />
       </PoolCardHeader>
