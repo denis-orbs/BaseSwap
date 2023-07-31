@@ -58,7 +58,7 @@ const InputPanel = styled.div`
   flex-flow: column nowrap;
   position: relative;
   margin-bottom: 12px; 
-  padding: 2px; 
+  padding: 4px; 
   background: ${({ theme }) => theme.colors.gradients.gold};
   z-index: 1;
 `

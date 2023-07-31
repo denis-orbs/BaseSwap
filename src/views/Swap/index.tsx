@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ChainId, CurrencyAmount, Token, Trade } from '@magikswap/sdk'
 import { computeTradePriceBreakdown, warningSeverity } from 'utils/exchange'
 import {
-  Button,
+  Button, Heading, 
   Text,
   ArrowDownIcon,
   Box,
@@ -40,7 +40,7 @@ import TradePrice from './components/TradePrice'
 import ProgressSteps from './components/ProgressSteps'
 import { AppBody } from '../../components/App'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
-
+import PageHeader from 'components/PageHeader'
 import { useCurrency, useAllTokens } from '../../hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
 import { useSwapCallback } from '../../hooks/useSwapCallback'
@@ -381,7 +381,19 @@ export default function Swap() {
   const isChartSupported = false
 
   return (
+    <>
+    <PageHeader>
+    <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
+      <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
+        <Heading as="h1" scale="xxl" color="text" mb="4px">
+          {t('Swap')}
+        </Heading>
+      </Flex>
+    </Flex>
+  </PageHeader>
     <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
+
+
       <Flex width="100%" justifyContent="center" position="relative">
         {!isMobile && isChartSupported && (
           <PriceChartContainer
@@ -442,8 +454,8 @@ export default function Swap() {
                       id="swap-currency-input"
                     />
 
-                    <AutoColumn justify="space-between">
-                      <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 0rem' }}>
+                    <AutoColumn gap="sm" justify="space-between">
+                      <AutoRow gap="sm" justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 0rem' }}>
                         <SwitchIconButton
                           variant="light"
                           size="36px"
@@ -637,5 +649,6 @@ export default function Swap() {
         </Flex>
       </Flex>
     </Page>
+    </>
   )
 }

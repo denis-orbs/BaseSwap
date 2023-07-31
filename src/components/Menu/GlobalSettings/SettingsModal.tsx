@@ -120,7 +120,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
             </Flex>
             <Flex justifyContent="space-between" alignItems="center" mb="24px">
               <Flex alignItems="center">
-                <Text>{t('Zap (Beta)')}</Text>
+                <Text>{t('Zap')}</Text>
                 <QuestionHelper
                   text={
                     <Box>

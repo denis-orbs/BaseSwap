@@ -4,12 +4,12 @@ import Container from '../Layout/Container'
 import { PageHeaderProps } from './types'
 
 const Outer = styled(Box)<{ background?: string }>`
-  background: ${({ theme, background }) => background || theme.colors.gradients.bubblegum};
+  background: transparent; 
 `
 
 const Inner = styled(Container)`
-  padding-top: 32px;
-  padding-bottom: 32px;
+  padding-top: 12px;
+  padding-bottom: 0px;
 `
 
 const PageHeader: React.FC<PageHeaderProps> = ({ background, children, ...props }) => (

@@ -49,7 +49,7 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
                 <NotificationDot show={expertMode}>
                   <GlobalSettings mode={SettingsMode.SWAP_LIQUIDITY} />
                 </NotificationDot>
-                <Transactions />
+                {/* <Transactions /> */}
               </Flex>
             )}
           </Flex>

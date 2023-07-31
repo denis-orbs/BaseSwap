@@ -60,6 +60,8 @@ import Page from '../Page'
 import ConfirmLiquidityModal from '../Swap/components/ConfirmRemoveLiquidityModal'
 import { logError } from '../../utils/sentry'
 import { formatAmount } from '../../utils/formatInfoNumbers'
+import PageTitle from 'components/PageTitle/PageTitle'
+
 
 const BorderCard = styled.div`
   border: solid 1px ${({ theme }) => theme.colors.cardBorder};
@@ -547,8 +549,12 @@ export default function RemoveLiquidity() {
   const isZapOutB = isZap && !removalCheckedA && removalCheckedB
 
   return (
+    <>
+   
     <Page>
+     
       <AppBody>
+     
         <AppHeader
           backTo="/liquidity"
           title={t('Remove %assetA%-%assetB% liquidity', {
@@ -860,5 +866,6 @@ export default function RemoveLiquidity() {
         </AutoColumn>
       ) : null}
     </Page>
+    </>
   )
 }

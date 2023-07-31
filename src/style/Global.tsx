@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Comfortaa', sans-serif;
   }
   body {
-    background-color: ${({ theme }) => theme.colors.background};
+    background: ${({ theme }) => theme.colors.gradients.bubblegum};
 
     img {
       height: auto;
