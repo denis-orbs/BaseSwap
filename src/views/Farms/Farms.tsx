@@ -25,6 +25,7 @@ import ToggleView from 'components/ToggleView/ToggleView'
 import Table from './components/FarmTable/FarmTable'
 import FarmTabButtons from './components/FarmTabButtons'
 import { FarmWithStakedValue } from './components/types'
+import PageTitle from 'components/PageTitle/PageTitle'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -276,22 +277,7 @@ const Farms: React.FC = ({ children }) => {
 
   return (
     <FarmsContext.Provider value={{ chosenFarmsMemoized }}>
-      <PageHeader>
-        <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-          {t('Farms')}
-        </Heading>
-        <Heading scale="lg" color="text">
-          {t('Stake LP tokens to earn.')}
-        </Heading>
-        <NextLinkFromReactRouter to="/farms/auction" prefetch={false}>
-          <Button p="0" variant="text">
-            <Text color="primary" bold fontSize="16px" mr="4px">
-              {t('Community Auctions')}
-            </Text>
-            <ArrowForwardIcon color="primary" />
-          </Button>
-        </NextLinkFromReactRouter>
-      </PageHeader>
+      <PageTitle title="Farms" />
       <Page>
         <ControlContainer>
           <ViewControls>
@@ -380,7 +366,7 @@ const Farms: React.FC = ({ children }) => {
           </Flex>
         )}
         <div ref={observerRef} />
-        <StyledImage src="/images/decorations/3dpan.png" alt="Pancake illustration" width={120} height={103} />
+        <StyledImage src="/images/ayush.png" alt="Pancake illustration" width={200} height={150} />
       </Page>
     </FarmsContext.Provider>
   )
