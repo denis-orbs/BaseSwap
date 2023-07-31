@@ -30,13 +30,13 @@ interface Props {
 const CurrencyInputContainer = styled(Flex)`
   flex-direction: column;
   align-items: center;
-  padding: 24px;
+  padding: 6px 24px;
   width: 100%;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  border-bottom: 4px solid ${({ theme }) => theme.colors.cardBorder};
 `
 
 const ColoredIconButton = styled(IconButton)`
-  color: ${({ theme }) => theme.colors.textSubtle};
+  color: ${({ theme }) => theme.colors.text};
 `
 
 const CurrencyInputHeader: React.FC<Props> = ({

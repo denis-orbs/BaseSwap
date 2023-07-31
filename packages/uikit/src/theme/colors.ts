@@ -38,6 +38,9 @@ export const lightColors: Colors = {
   textSubtle: "#7A6EAA",
   disabled: "#E9EAEB",
   gradients: {
+    basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD 100%)",
+    basedsexdark: "linear-gradient(#020079 0%, #0154FD 100%)",
+
     bubblegum: "linear-gradient(139.73deg, #E5FDFF 0%, #F3EFFF 100%)",
     inverseBubblegum: "linear-gradient(139.73deg, #F3EFFF 0%, #E5FDFF 100%)",
     cardHeader: "linear-gradient(111.68deg, #F2ECF2 0%, #E8F2F6 100%)",
@@ -52,10 +55,10 @@ export const darkColors: Colors = {
   ...baseColors,
   ...additionalColors,
   secondary: "#ccc",
-  background: "#08060B",
+  background: "#0154FE",
   backgroundDisabled: "#3c3742",
-  backgroundAlt: "#0154FE",
-  backgroundAlt2: "rgba(39, 38, 44, 0.7)",
+  backgroundAlt: "#08060B",
+  backgroundAlt2: "#020079",
   cardBorder: "#0154FE",
   contrast: "#FFFFFF",
   dropdown: "#1E1D20",
@@ -65,13 +68,15 @@ export const darkColors: Colors = {
   inputSecondary: "#262130",
   primaryDark: "#0098A1",
   tertiary: "#353547",
-  text: "#F4EEFF",
+  text: "#fff",
   textDisabled: "#666171",
-  textSubtle: "#B8ADD2",
+  textSubtle: "#fff",
   disabled: "#524B63",
   gradients: {
-   
-    bubblegum: "linear-gradient(to bottom,  #020079 0%, #fff 100%)",
+    basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD, #ccc 100%)",
+    basedsexdark: "linear-gradient(to bottom, #0154FD, #fff )",
+
+    bubblegum: "linear-gradient(to bottom,  #020079 0%, #0154FD, #ccc 100%)",
     inverseBubblegum: "linear-gradient(139.73deg, #3D2A54 0%, #313D5C 100%)",
     cardHeader: "linear-gradient(166.77deg, #3B4155 0%, #3A3045 100%)",
     blue: "linear-gradient(180deg, #00707F 0%, #19778C 100%)",

@@ -15,46 +15,57 @@ import { Input as NumericalInput } from './NumericalInput'
 import { CopyButton } from '../CopyButton'
 import AddToWalletButton from '../AddToWallet/AddToWalletButton'
 
+// bottom half of the input panel
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
   flex-flow: row nowrap;
+
   align-items: center;
   justify-content: flex-end;
   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
 `
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })<{ zapStyle?: ZapStyle }>`
-  padding: 0 0.5rem;
+  padding: 0.25 0.5rem;
+  border-radius: 4px;
 
   ${({ zapStyle, theme }) =>
     zapStyle &&
     css`
       padding: 8px;
       background: ${theme.colors.background};
-      border: 1px solid ${theme.colors.cardBorder};
+      border: 4px solid ${theme.colors.cardBorder};
       border-radius: ${zapStyle === 'zap' ? '0px' : '8px'} 8px 0px 0px;
       height: auto;
     `};
 `
+
+// top part of input panel
 const LabelRow = styled.div`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   color: ${({ theme }) => theme.colors.text};
-  font-size: 0.75rem;
-  line-height: 1rem;
+  font-size: 1rem;
+  line-height: 1.2rem;
   padding: 0.75rem 1rem 0 1rem;
 `
+
+//sits behind the whole thing
 const InputPanel = styled.div`
   display: flex;
+  border-radius: 8px;
   flex-flow: column nowrap;
   position: relative;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  margin-bottom: 12px;
+  padding: 4px;
+  background: ${({ theme }) => theme.colors.gradients.basedsexdark};
   z-index: 1;
 `
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
-  border-radius: 16px;
-  background-color: ${({ theme }) => theme.colors.input};
-  box-shadow: ${({ theme, error }) => theme.shadows[error ? 'warning' : 'inset']};
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.gradients.basedsex};
+  backdrop-filter: blur(4px);
+
   ${({ zapStyle }) =>
     !!zapStyle &&
     css`
@@ -139,7 +150,7 @@ export default function CurrencyInputPanel({
 
   return (
     <Box position="relative" id={id}>
-      <Flex alignItems="center" justifyContent="space-between">
+      <Flex alignItems="center" marginTop="12px" marginBottom="12px" justifyContent="space-between">
         <Flex>
           {beforeButton}
           <CurrencySelectButton
@@ -154,22 +165,22 @@ export default function CurrencyInputPanel({
           >
             <Flex alignItems="center" justifyContent="space-between">
               {pair ? (
-                <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={16} margin />
+                <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={36} margin />
               ) : currency ? (
-                <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} />
+                <CurrencyLogo currency={currency} size="36px" style={{ marginRight: '8px' }} />
               ) : null}
               {pair ? (
-                <Text id="pair" bold>
+                <Text id="pair" fontWeight="900">
                   {pair?.token0.symbol}:{pair?.token1.symbol}
                 </Text>
               ) : (
-                <Text id="pair" bold>
+                <Text id="pair" fontWeight="900">
                   {(currency && currency.symbol && currency.symbol.length > 20
                     ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
                         currency.symbol.length - 5,
                         currency.symbol.length,
                       )}`
-                    : currency?.symbol) || t('Select a currency')}
+                    : currency?.symbol) || t('Select Token')}
                 </Text>
               )}
               {!disableCurrencySelect && <ChevronDownIcon />}
@@ -179,7 +190,7 @@ export default function CurrencyInputPanel({
             <Flex style={{ gap: '4px' }} ml="4px" alignItems="center">
               <CopyButton
                 width="16px"
-                buttonColor="textSubtle"
+                buttonColor="background"
                 text={tokenAddress}
                 tooltipMessage={t('Token address copied')}
                 tooltipTop={-20}
@@ -203,7 +214,7 @@ export default function CurrencyInputPanel({
           <Text
             onClick={!disabled && onMax}
             color="textSubtle"
-            fontSize="14px"
+            fontSize="16px"
             style={{ display: 'inline', cursor: 'pointer' }}
           >
             {!hideBalance && !!currency

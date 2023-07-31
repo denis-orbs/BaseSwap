@@ -36,8 +36,8 @@ export function ChoosePair({
       />
       <CardBody>
         <Box>
-          <Text textTransform="uppercase" color="secondary" bold small pb="24px">
-            {t('Choose a valid pair')}
+          <Text textTransform="uppercase" color="background" fontWeight="900" small pb="12px">
+            {t('Choose your fighter')}
           </Text>
           <FlexGap gap="4px">
             <CurrencySelect

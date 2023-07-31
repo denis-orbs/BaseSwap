@@ -28,7 +28,7 @@ export const vaultPoolConfig = {
     },
   },
   [VaultKey.CakeVault]: {
-    name: <Trans>Stake CAKE</Trans>,
+    name: <Trans>Stake BSWAP</Trans>,
     description: <Trans>Stake, Earn – And more!</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 500000,
@@ -38,8 +38,8 @@ export const vaultPoolConfig = {
     },
   },
   [VaultKey.CakeFlexibleSideVault]: {
-    name: <Trans>Flexible CAKE</Trans>,
-    description: <Trans>Flexible staking on the side.</Trans>,
+    name: <Trans>Stake BSWAP</Trans>,
+    description: <Trans>Flexible staking.</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 500000,
     tokenImage: {

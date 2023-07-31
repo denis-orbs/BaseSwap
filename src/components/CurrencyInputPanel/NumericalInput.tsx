@@ -8,11 +8,12 @@ const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: s
   width: 0;
   position: relative;
   font-weight: 500;
+  letter-spacing: 3px;
   outline: none;
   border: none;
   flex: 1 1 auto;
   background-color: transparent;
-  font-size: 16px;
+  font-size: 36px;
   text-align: ${({ align }) => align ?? 'right'};
   white-space: nowrap;
   overflow: hidden;

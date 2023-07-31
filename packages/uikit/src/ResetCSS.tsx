@@ -80,15 +80,22 @@ const ResetCSS = createGlobalStyle`
 
   /* Scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 12px;
+    background-color: #000; 
+    border-radius: 0px; 
+    box-shadow: none; 
+
+
   }
   ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.textSubtle}; 
-    border-radius: 8px;
+    background: ${({ theme }) => theme.colors.gradients.basedsex}; 
+    border-radius: 0px;
+
   }
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px ${({ theme }) => theme.colors.input}; 
-    border-radius: 10px;
+    border-radius: 0px; 
+    box-shadow: none; 
+    background-color: #000; 
   }
 
   /* Slider */ 
