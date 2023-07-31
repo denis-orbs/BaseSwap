@@ -28,6 +28,7 @@ import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { getCakeVaultEarnings } from './helpers'
+import PageTitle from 'components/PageTitle/PageTitle'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -263,23 +264,9 @@ const Pools: React.FC = () => {
 
   return (
   <>
-    <PageHeader>
-      <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
-        <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-          <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-            {t('Syrup Pools')}
-          </Heading>
-          <Heading scale="md" color="text">
-            {t('Just stake some tokens to earn.')}
-          </Heading>
-          <Heading scale="md" color="text">
-            {t('High APR, low risk.')}
-          </Heading>
-        </Flex>
-      </Flex>
-    </PageHeader>
+  <PageTitle title="Staking Pools" />
     <Page>
-      <PoolControls>
+      {/* <PoolControls>
         <PoolTabButtons
           stakedOnly={stakedOnly}
           setStakedOnly={setStakedOnly}
@@ -327,7 +314,7 @@ const Pools: React.FC = () => {
             <SearchInput initialValue={searchQuery} onChange={handleChangeSearchQuery} placeholder="Search Pools" />
           </LabelWrapper>
         </FilterContainer>
-      </PoolControls>
+      </PoolControls> */}
       {showFinishedPools && (
         <FinishedTextContainer>
           <Text fontSize={['16px', null, '20px']} color="failure" pr="4px">
