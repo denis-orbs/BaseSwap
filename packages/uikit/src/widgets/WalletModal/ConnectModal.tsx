@@ -65,9 +65,9 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayC
 
   return (
     <ModalContainer minWidth="320px">
-      <ModalHeader background={getThemeValue(theme, "colors.gradients.bubblegum")}>
+      <ModalHeader background={getThemeValue(theme, "colors.backgroundAlt")}>
         <ModalTitle>
-          <Heading>{t("Connect Wallet")}</Heading>
+          <Text  >{t("Connect Wallet")}</Text>
         </ModalTitle>
         <ModalCloseButton onDismiss={onDismiss} />
       </ModalHeader>
@@ -82,7 +82,7 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayC
             {!showMore && <MoreWalletCard t={t} onClick={() => setShowMore(true)} />}
           </Grid>
         </WalletWrapper>
-        <Box p="24px">
+        {/* <Box p="24px">
           <Text textAlign="center" color="textSubtle" as="p" mb="16px">
             {t("Haven’t got a crypto wallet yet?")}
           </Text>
@@ -95,7 +95,7 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayC
           >
             {t("Learn How to Connect")}
           </Button>
-        </Box>
+        </Box> */}
       </ModalBody>
     </ModalContainer>
   );

@@ -14,7 +14,7 @@ import { AppHeader, AppBody } from '../../components/App'
 import Page from '../Page'
 
 const Body = styled(CardBody)`
-  background-color: ${({ theme }) => theme.colors.dropdownDeep};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
 `
 
 export default function Pool() {
@@ -90,8 +90,8 @@ export default function Pool() {
       <PageTitle title="Liquidity" />
       <Page>
         <AppBody>
-          <AppHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
-          <Body style={{ borderLeft: '4px solid #fff', borderRight: '4px solid #fff' }}>
+          <AppHeader title={t('Your Liquidity')} subtitle={t('')} />
+          <Body >
             {renderBody()}
             {account && !v2IsLoading && (
               <Flex flexDirection="column" alignItems="center" mt="24px">

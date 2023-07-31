@@ -32,6 +32,8 @@ export type Shadows = {
 export type Gradients = {
   bubblegum: string;
   basedsex: string;
+  basedsexgray: string; 
+  basedsexgrayflip: string; 
   basedsexdark: string;
   inverseBubblegum: string;
   cardHeader: string;

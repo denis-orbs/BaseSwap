@@ -22,7 +22,7 @@ export const styleVariants = {
     color: "background",
     fontWeight: "900", 
     borderRadius: "8px", 
-    border: "8px solid", 
+    border: "6px solid", 
     borderColor: "background", 
     ":hover": {
       backgroundColor: "background", 

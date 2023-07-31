@@ -20,12 +20,12 @@ const connectors: Config[] = [
     priority: 1,
     href: "https://metamask.app.link/dapp/pancakeswap.finance/",
   },
-  {
-    title: "Binance Wallet",
-    icon: BinanceChain,
-    connectorId: ConnectorNames.BSC,
-    priority: 2,
-  },
+  // {
+  //   title: "Binance Wallet",
+  //   icon: BinanceChain,
+  //   connectorId: ConnectorNames.BSC,
+  //   priority: 2,
+  // },
   {
     title: "Coinbase Wallet",
     icon: CoinbaseWallet,

@@ -60,7 +60,7 @@ const Stats = () => {
 
       <Flex flexDirection={['column', null, null, 'row']}>
         <IconCard 
-        style={{ backgroundColor: 'rgba(0, 0, 0, 1)' }}
+        style={{ backgroundColor: '#333' }}
         {...UsersCardData} mr={[null, null, null, '16px']} mb={['16px', null, null, '0']}>
           <StatCardContent
             headingText={'Safe and secure'}
@@ -68,7 +68,7 @@ const Stats = () => {
             highlightColor={theme.colors.failure}
           />
         </IconCard>
-        <IconCard  style={{ backgroundColor: '#000'}}
+        <IconCard  style={{ backgroundColor: '#333'}}
         {...TradesCardData} mr={[null, null, null, '16px']} mb={['16px', null, null, '0']}>
           <StatCardContent
             // headingText={t('%trades% trades', { trades })}
@@ -78,7 +78,7 @@ const Stats = () => {
           />
         </IconCard>
         <IconCard 
-         style={{ backgroundColor: '#000'}}
+         style={{ backgroundColor: '#333'}}
           {...StakedCardData}>
           <StatCardContent
             headingText={'Stake and farm'}

@@ -18,14 +18,11 @@ interface Props {
 const AppHeaderContainer = styled(Flex)`
   align-items: center;
   justify-content: space-between;
-  padding: 24px;
+  padding: 8px; 
   width: 100%;
   border-top-radius: 8px; 
-  border-top: 4px solid; 
-  border-right: 4px solid; 
-
-  border-left: 4px solid; 
   border-color: #fff; 
+  border-bottom: 3px solid; 
   background-color: ${({ theme }) => theme.colors.cardBorder};
 `
 

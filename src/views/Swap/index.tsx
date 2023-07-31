@@ -462,7 +462,8 @@ export default function Swap() {
                         >
                           <SwitchIconButton
                             variant="light"
-                            size="36px"
+                            size="40px"
+                            style={{ border: '3px solid white'}}
                             onClick={() => {
                               setApprovalSubmitted(false) // reset 2 step UI for approvals
                               onSwitchTokens()

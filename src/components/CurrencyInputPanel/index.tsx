@@ -19,7 +19,6 @@ import AddToWalletButton from '../AddToWallet/AddToWalletButton'
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
   flex-flow: row nowrap;
-
   align-items: center;
   justify-content: flex-end;
   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
@@ -56,14 +55,15 @@ const InputPanel = styled.div`
   border-radius: 8px;
   flex-flow: column nowrap;
   position: relative;
-  margin-bottom: 12px;
-  padding: 4px;
-  background: ${({ theme }) => theme.colors.gradients.basedsexdark};
+  margin-bottom: 0px;
+  box-shadow: -1px -1px 12px #000; 
+  padding: 0px;
   z-index: 1;
 `
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.gradients.basedsex};
+  border: 4px solid #fff; 
+  background: ${({ theme }) => theme.colors.background};
   backdrop-filter: blur(4px);
 
   ${({ zapStyle }) =>
@@ -150,7 +150,7 @@ export default function CurrencyInputPanel({
 
   return (
     <Box position="relative" id={id}>
-      <Flex alignItems="center" marginTop="12px" marginBottom="12px" justifyContent="space-between">
+      <Flex alignItems="center" marginTop="1px" marginBottom="8px" justifyContent="space-between">
         <Flex>
           {beforeButton}
           <CurrencySelectButton
