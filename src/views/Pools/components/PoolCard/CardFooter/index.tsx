@@ -16,6 +16,9 @@ interface FooterProps {
 
 const ExpandableButtonWrapper = styled(Flex)`
   align-items: center;
+  border-radius: 8px; 
+  background-color: transparent; 
+
   justify-content: space-between;
   button {
     padding: 0;

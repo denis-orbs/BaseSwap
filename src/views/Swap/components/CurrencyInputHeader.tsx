@@ -30,9 +30,9 @@ interface Props {
 const CurrencyInputContainer = styled(Flex)`
   flex-direction: column;
   align-items: center;
-  padding: 6px 12px;
+  padding: 6px 24px;
   width: 100%;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  border-bottom: 4px solid ${({ theme }) => theme.colors.cardBorder};
 `
 
 const ColoredIconButton = styled(IconButton)`
