@@ -126,7 +126,7 @@ const Farms: React.FC = ({ children }) => {
   const query = normalizedUrlSearch && !_query ? normalizedUrlSearch : _query
 
   const [viewMode, setViewMode] = useUserFarmsViewMode()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const { observerRef, isIntersecting } = useIntersectionObserver()
   const chosenFarmsLength = useRef(0)
@@ -173,7 +173,7 @@ const Farms: React.FC = ({ children }) => {
               new BigNumber(farm.poolWeight),
               cakePrice,
               totalLiquidity,
-              farm.lpAddresses[ChainId.MAINNET],
+              farm.lpAddresses[chainId],
               regularCakePerBlock,
             )
           : { cakeRewardsApr: 0, lpRewardsApr: 0 }

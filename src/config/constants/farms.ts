@@ -17,8 +17,7 @@ const farms: SerializedFarmConfig[] = [
   //   pid: 0,
   //   lpSymbol: 'BSWAP',
   //   lpAddresses: {
-  //     56: '',
-  //     [ChainId.BASE_GOERLI]: serializedTokens.cake,
+  //     [ChainId.BASE_GOERLI]: serializedTokens.cake, // User calls enterStaking on chef to get minted syrup tokens
   //   },
   //   token: serializedTokens.syrup,
   //   quoteToken: serializedTokens.wbnb,

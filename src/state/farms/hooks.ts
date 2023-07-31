@@ -6,6 +6,8 @@ import useSWRImmutable from 'swr/immutable'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { ChainId } from '@magikswap/sdk'
 import { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from '.'
 import { DeserializedFarm, DeserializedFarmsState, DeserializedFarmUserData, State } from '../types'
 import {
@@ -49,19 +51,20 @@ export const usePollFarmsWithUserData = () => {
  * Fetches the "core" farm data used globally
  * 2 = CAKE-BNB LP
  * 3 = BUSD-BNB LP
+ * 1 = BSWAP-WETH
  */
 const coreFarmPIDs = {
   56: [2, 3],
   97: [1, 2],
+  [ChainId.BASE_GOERLI]: [1],
 }
 
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
-  // TODO: multi
-  // const { chainId } = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
 
   useFastRefreshEffect(() => {
-    dispatch(fetchFarmsPublicDataAsync(coreFarmPIDs[56]))
+    dispatch(fetchFarmsPublicDataAsync(coreFarmPIDs[chainId]))
   }, [dispatch])
 }
 
