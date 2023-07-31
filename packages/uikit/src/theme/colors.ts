@@ -39,6 +39,7 @@ export const lightColors: Colors = {
   disabled: "#E9EAEB",
   gradients: {
     basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD 100%)",
+    basedsexdark: "linear-gradient(#020079 0%, #0154FD 100%)",
 
     bubblegum: "linear-gradient(139.73deg, #E5FDFF 0%, #F3EFFF 100%)",
     inverseBubblegum: "linear-gradient(139.73deg, #F3EFFF 0%, #E5FDFF 100%)",
@@ -73,6 +74,7 @@ export const darkColors: Colors = {
   disabled: "#524B63",
   gradients: {
     basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD, #ccc 100%)",
+    basedsexdark: "linear-gradient(to bottom, #0154FD, #fff )",
 
     bubblegum: "linear-gradient(to bottom,  #020079 0%, #0154FD, #ccc 100%)",
     inverseBubblegum: "linear-gradient(139.73deg, #3D2A54 0%, #313D5C 100%)",

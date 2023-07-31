@@ -59,12 +59,13 @@ const InputPanel = styled.div`
   position: relative;
   margin-bottom: 12px; 
   padding: 4px; 
-  background: ${({ theme }) => theme.colors.gradients.gold};
+  background: ${({ theme }) => theme.colors.gradients.basedsexdark};
   z-index: 1;
 `
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.gradients.basedsex};
+  backdrop-filter: blur(4px);  
 
   ${({ zapStyle }) =>
     !!zapStyle &&
