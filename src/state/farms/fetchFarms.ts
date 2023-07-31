@@ -12,6 +12,9 @@ const fetchFarms = async (farmsToFetch: SerializedFarmConfig[]): Promise<Seriali
     fetchMasterChefData(farmsToFetch),
   ])
 
+  console.log(farmResult)
+  console.log(masterChefResult)
+
   return farmsToFetch.map((farm, index) => {
     const [
       tokenBalanceLP,
