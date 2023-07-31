@@ -1,12 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import PageHeader from 'components/PageHeader/PageHeader'
 import { currencyEquals, ETHER, JSBI, TokenAmount, WNATIVE, MINIMUM_LIQUIDITY } from '@magikswap/sdk'
 import {
   Button,
-  Heading,
-  Flex,
   Text,
   AddIcon,
   CardBody,
@@ -572,12 +569,10 @@ export default function AddLiquidity() {
                     : t('Add Liquidity')
                 }
                 subtitle={t('')}
-                helper={t(
-                  '',
-                )}
+                helper={t('')}
                 backTo={canZap ? () => setSteps(Steps.Choose) : '/liquidity'}
               />
-              <CardBody >
+              <CardBody>
                 <AutoColumn gap="20px">
                   {noLiquidity && (
                     <ColumnCenter>
