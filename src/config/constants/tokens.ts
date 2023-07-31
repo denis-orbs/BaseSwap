@@ -1,13 +1,6 @@
 import { ChainId, Token, WBNB } from '@magikswap/sdk'
 
-const CAKE_MAINNET = new Token(
-  ChainId.MAINNET,
-  '0x5cc61a78f164885776aa610fb0fe1257df78e59b',
-  18,
-  'CAKE',
-  'PancakeSwap Token',
-  'https://pancakeswap.finance/',
-)
+// BASE TESTNET TOKENS
 
 const CAKE_BASE_GOERLI = new Token(
   ChainId.BASE_GOERLI,
@@ -16,6 +9,26 @@ const CAKE_BASE_GOERLI = new Token(
   'BSWAP',
   'BaseSwap Token',
   'baseswap.fi',
+)
+
+const BIGBOOBS_BASE_GOERLI = new Token(
+  ChainId.BASE_GOERLI,
+  '0x2ee99Be3c520B7Bd64f51641c3e7Ef28950E03B7',
+  18,
+  'BBT',
+  'Big Booby Things',
+  'baseswap.fi',
+)
+
+// END - BASE TESTNET TOKENS
+
+const CAKE_MAINNET = new Token(
+  ChainId.MAINNET,
+  '0x5cc61a78f164885776aa610fb0fe1257df78e59b',
+  18,
+  'CAKE',
+  'PancakeSwap Token',
+  'https://pancakeswap.finance/',
 )
 
 const CAKE_TESTNET = new Token(
@@ -2395,6 +2408,15 @@ export const bscTokens = {
 export const baseGoerliTokens = {
   wbnb: WBNB[ChainId.BASE_GOERLI],
   cake: CAKE[ChainId.BASE_GOERLI],
+  bbt: BIGBOOBS_BASE_GOERLI,
+  syrup: new Token(
+    ChainId.BASE_GOERLI,
+    '0x8DFAf055e21B16302DBf00815e5b4d9b6042a4Df',
+    18,
+    'MOIST',
+    'Moist Bar',
+    'https://baseswap.fi/',
+  ),
 }
 
 export const bscTestnetTokens = {
@@ -2419,6 +2441,6 @@ export const bscTestnetTokens = {
   ),
 }
 
-export const TOKENS_MAP = {
+export const TOKENS_CHAIN_MAP = {
   [ChainId.BASE_GOERLI]: baseGoerliTokens,
 }

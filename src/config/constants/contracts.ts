@@ -1,10 +1,10 @@
-import { ChainId } from '@magikswap/sdk'
+import { ChainId } from '../../../packages/swap-sdk/src/constants'
 
 export default {
   masterChef: {
     97: '0xB4A466911556e39210a6bB2FaECBB59E4eB7E43d',
     250: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652',
-    [ChainId.BASE_GOERLI]: '',
+    [ChainId.BASE_GOERLI]: '0xbF79915e80DE0A361A4F35175BA9bF2e91B10424',
   },
   masterChefV1: {
     97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',

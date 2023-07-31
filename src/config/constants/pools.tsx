@@ -2,10 +2,13 @@ import { BigNumber } from '@ethersproject/bignumber'
 import Trans from 'components/Trans'
 import { VaultKey } from 'state/types'
 import { serializeTokens } from 'utils/serializeTokens'
-import { bscTokens } from './tokens'
+import { DEFAULT_CHAIN_ID } from 'utils/providers'
+import { TOKENS_CHAIN_MAP, bscTokens } from './tokens'
 import { SerializedPoolConfig, PoolCategory } from './types'
+import { ChainId } from '../../../packages/swap-sdk/src/constants'
 
-const serializedTokens = serializeTokens(bscTokens)
+// const serializedTokens = serializeTokens(bscTokens)
+const serializedTokens = serializeTokens(TOKENS_CHAIN_MAP[DEFAULT_CHAIN_ID])
 
 export const MAX_LOCK_DURATION = 31536000
 export const UNLOCK_FREE_DURATION = 604800
@@ -62,25 +65,24 @@ export const livePools: SerializedPoolConfig[] = [
     stakingToken: serializedTokens.cake,
     earningToken: serializedTokens.cake,
     contractAddress: {
-      97: '0xB4A466911556e39210a6bB2FaECBB59E4eB7E43d',
-      56: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652',
+      97: '',
+      56: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652', // This is their CHEFV2....
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '10',
     isFinished: false,
   },
-  // {
-  //   sousId: 290,
-  //   stakingToken: serializedTokens.cake,
-  //   earningToken: serializedTokens.peel,
-  //   contractAddress: {
-  //     56: '0x288d1aD79c113552B618765B4986f7DE679367Da',
-  //     97: '',
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   tokenPerBlock: '4.34',
-  //   version: 3,
-  // },
+  {
+    sousId: 1,
+    stakingToken: serializedTokens.cake,
+    earningToken: serializedTokens.bbt,
+    contractAddress: {
+      [ChainId.BASE_GOERLI]: '0x21259AAf3fC70e40834b73A3eC36D0d0f68A861F',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '0.000001',
+    version: 3,
+  },
   // {
   //   sousId: 289,
   //   stakingToken: serializedTokens.cake,

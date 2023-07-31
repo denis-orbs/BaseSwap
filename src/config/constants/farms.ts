@@ -1,9 +1,11 @@
 import { serializeTokens } from 'utils/serializeTokens'
+import { DEFAULT_CHAIN_ID } from 'utils/providers'
 import { ChainId } from '../../../packages/swap-sdk/src/constants'
-import { bscTokens } from './tokens'
+import { TOKENS_CHAIN_MAP, bscTokens } from './tokens'
 import { SerializedFarmConfig } from './types'
 
-const serializedTokens = serializeTokens(bscTokens)
+// const serializedTokens = serializeTokens(bscTokens)
+const serializedTokens = serializeTokens(TOKENS_CHAIN_MAP[DEFAULT_CHAIN_ID])
 
 export const CAKE_BNB_LP_MAINNET = '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0'
 
@@ -13,21 +15,18 @@ const farms: SerializedFarmConfig[] = [
    */
   {
     pid: 0,
-    v1pid: 0,
-    lpSymbol: 'CAKE',
+    lpSymbol: 'BSWAP',
     lpAddresses: {
-      97: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+      56: '',
+      [ChainId.BASE_GOERLI]: serializedTokens.cake,
     },
     token: serializedTokens.syrup,
     quoteToken: serializedTokens.wbnb,
   },
   {
-    pid: 2,
-    v1pid: 251,
+    pid: 1,
     lpSymbol: 'WETH-BSWAP LP',
     lpAddresses: {
-      97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       56: CAKE_BNB_LP_MAINNET,
       [ChainId.BASE_GOERLI]: '0x913A6b6b1921F14be233762a71b9361418D850FF',
     },
