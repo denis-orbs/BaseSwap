@@ -91,7 +91,7 @@ export default function Pool() {
       <Page>
         <AppBody>
           <AppHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
-          <Body>
+          <Body style={{ borderLeft: '4px solid #fff', borderRight: '4px solid #fff' }}>
             {renderBody()}
             {account && !v2IsLoading && (
               <Flex flexDirection="column" alignItems="center" mt="24px">

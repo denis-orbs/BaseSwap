@@ -577,7 +577,7 @@ export default function AddLiquidity() {
                 )}
                 backTo={canZap ? () => setSteps(Steps.Choose) : '/liquidity'}
               />
-              <CardBody>
+              <CardBody >
                 <AutoColumn gap="20px">
                   {noLiquidity && (
                     <ColumnCenter>
@@ -657,7 +657,7 @@ export default function AddLiquidity() {
                     <Message variant={zapIn.priceSeverity > 3 ? 'danger' : 'warning'}>
                       {zapIn.priceSeverity > 3 ? (
                         <MessageText>
-                          {t('Price Impact Too Hight.')}{' '}
+                          {t('Price Impact Too High.')}{' '}
                           <strong>
                             {t('Reduce amount of %token% to maximum limit', {
                               token: currencies[zapIn.swapTokenField]?.symbol,
