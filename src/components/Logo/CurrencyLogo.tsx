@@ -30,7 +30,7 @@ export default function CurrencyLogo({
 
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
-        return [...uriLocations, getTokenLogoURL(currency.address)]
+        return [...uriLocations, `/images/tokens/${currency.address.toLowerCase()}.png`]
       }
       return [getTokenLogoURL(currency.address)]
     }
