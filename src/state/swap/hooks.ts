@@ -42,9 +42,9 @@ export function useSwapState(): AppState['swap'] {
 }
 
 const BAD_RECIPIENT_ADDRESSES: string[] = [
-  '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f', // v2 factory
+  '0xFDa619b6d20975be80A10332cD39b9a4b0FAa8BB', // v2 factory
   '0xf164fC0Ec4E93095b804a4795bBe1e041497b92a', // v2 router 01
-  '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D', // v2 router 02
+  '0x327Df1E6de05895d2ab08513aaDD9313Fe505d86', // v2 router 02
 ]
 
 /**
@@ -204,6 +204,7 @@ function validatedRecipient(recipient: any): string | null {
 export function queryParametersToSwapState(parsedQs: ParsedUrlQuery): SwapState {
   let inputCurrency = parseCurrencyFromURLParameter(parsedQs.inputCurrency) || DEFAULT_INPUT_CURRENCY
   let outputCurrency = parseCurrencyFromURLParameter(parsedQs.outputCurrency) || DEFAULT_OUTPUT_CURRENCY
+
   if (inputCurrency === outputCurrency) {
     if (typeof parsedQs.outputCurrency === 'string') {
       inputCurrency = ''
@@ -219,7 +220,7 @@ export function queryParametersToSwapState(parsedQs: ParsedUrlQuery): SwapState 
       currencyId: inputCurrency,
     },
     [Field.OUTPUT]: {
-      currencyId: outputCurrency,
+      currencyId: typeof outputCurrency === 'string' ? outputCurrency : outputCurrency.address,
     },
     typedValue: parseTokenAmountURLParameter(parsedQs.exactAmount),
     independentField: parseIndependentFieldURLParameter(parsedQs.exactField),
