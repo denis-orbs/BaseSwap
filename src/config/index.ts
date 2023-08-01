@@ -1,6 +1,6 @@
 import { ChainId } from '@magikswap/sdk'
 import { baseGoerli } from '@pancakeswap/wagmi'
-import BigNumber from 'bignumber.js/bignumber'
+import BigNumber from 'bignumber.js'
 import { BIG_TEN } from 'utils/bigNumber'
 import { DEFAULT_CHAIN_ID } from 'utils/providers'
 

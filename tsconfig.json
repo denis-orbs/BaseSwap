@@ -6,6 +6,7 @@
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,
     "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true,
     "target": "es5",
     "paths": {
       "@magikswap/sdk": ["../packages/swap-sdk/src/index.ts"],
