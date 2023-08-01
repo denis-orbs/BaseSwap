@@ -245,6 +245,8 @@ export const fetchPoolsUserDataAsync = createAsyncThunk<
       fetchUserPendingRewards(account),
     ])
 
+    console.log(allowances)
+
     const userData = poolsConfig.map((pool) => ({
       sousId: pool.sousId,
       allowance: allowances[pool.sousId],

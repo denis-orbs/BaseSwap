@@ -25,8 +25,6 @@ import Menu from '../components/Menu'
 import Providers from '../Providers'
 import GlobalStyle from '../style/Global'
 
-const EasterEgg = dynamic(() => import('components/EasterEgg'), { ssr: false })
-
 // This config is required for number formatting
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -65,16 +63,10 @@ function MyApp(props: AppProps) {
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, viewport-fit=cover"
         />
-        <meta
-          name="description"
-          content="Taller better faster stronger. BaseSwap."
-        />
+        <meta name="description" content="Taller better faster stronger. BaseSwap." />
         <meta name="theme-color" content="#1FC7D4" />
         <meta name="twitter:image" content="https://pancakeswap.finance/images/hero.png" />
-        <meta
-          name="twitter:description"
-          content="Taller better faster stronger. BaseSwap."
-        />
+        <meta name="twitter:description" content="Taller better faster stronger. BaseSwap." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Taller better faster stronger. BaseSwap." />
         <title>BaseSwap</title>

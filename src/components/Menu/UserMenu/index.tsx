@@ -14,7 +14,6 @@ import {
 import Trans from 'components/Trans'
 import useAuth from 'hooks/useAuth'
 import { useRouter } from 'next/router'
-import { useProfile } from 'state/profile/hooks'
 import { usePendingTransactions } from 'state/transactions/hooks'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useTranslation } from '@pancakeswap/localization'
@@ -28,12 +27,12 @@ const UserMenu = () => {
   const { account, error } = useWeb3React()
   const { logout } = useAuth()
   const { hasPendingTransactions, pendingNumber } = usePendingTransactions()
-  const { isInitialized, isLoading, profile } = useProfile()
+
   const [onPresentWalletModal] = useModal(<WalletModal initialView={WalletView.WALLET_INFO} />)
   const [onPresentTransactionModal] = useModal(<WalletModal initialView={WalletView.TRANSACTIONS} />)
   const [onPresentWrongNetworkModal] = useModal(<WalletModal initialView={WalletView.WRONG_NETWORK} />)
-  const hasProfile = isInitialized && !!profile
-  const avatarSrc = profile?.nft?.image?.thumbnail
+
+  const avatarSrc = null
   const [userMenuText, setUserMenuText] = useState<string>('')
   const [userMenuVariable, setUserMenuVariable] = useState<UserMenuVariant>('default')
   const isWrongNetwork: boolean = error && error instanceof UnsupportedChainIdError
@@ -65,7 +64,6 @@ const UserMenu = () => {
           {hasPendingTransactions && <RefreshIcon spin />}
         </UserMenuItem>
         <UserMenuDivider />
-        <ProfileUserMenuItem isLoading={isLoading} hasProfile={hasProfile} disabled={isWrongNetwork} />
         <UserMenuDivider />
         <UserMenuItem as="button" onClick={logout}>
           <Flex alignItems="center" justifyContent="space-between" width="100%">
