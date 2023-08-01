@@ -78,7 +78,7 @@ export const styleVariants = {
     boxShadow: "none",
     border: "2px solid", 
     borderColor: "text", 
-    color: "primary",
+    color: "text",
   },
   [variants.SUBTLE]: {
     backgroundColor: "textSubtle",
