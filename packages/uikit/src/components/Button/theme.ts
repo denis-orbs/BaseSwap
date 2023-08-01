@@ -76,6 +76,8 @@ export const styleVariants = {
   [variants.TERTIARY]: {
     backgroundColor: "tertiary",
     boxShadow: "none",
+    border: "2px solid", 
+    borderColor: "text", 
     color: "primary",
   },
   [variants.SUBTLE]: {
