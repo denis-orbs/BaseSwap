@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 import poolsConfig from 'config/constants/pools'
 import sousChefV2 from 'config/abi/sousChefV2.json'
 import multicall from '../multicall'
-import { bscRpcProvider } from '../providers'
+import { defaultRpcProvider } from '../providers'
 import { getAddress } from '../addressHelpers'
 
 /**
@@ -13,7 +13,7 @@ export const getActivePools = async (block?: number) => {
   const eligiblePools = poolsConfig
     .filter((pool) => pool.sousId !== 0)
     .filter((pool) => pool.isFinished === false || pool.isFinished === undefined)
-  const blockNumber = block || (await bscRpcProvider.getBlockNumber())
+  const blockNumber = block || (await defaultRpcProvider.getBlockNumber())
   const startBlockCalls = eligiblePools.map(({ contractAddress }) => ({
     address: getAddress(contractAddress, 56),
     name: 'startBlock',

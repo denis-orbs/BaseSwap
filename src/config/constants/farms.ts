@@ -20,7 +20,7 @@ const farms: SerializedFarmConfig[] = [
   // },
   {
     pid: 1,
-    lpSymbol: 'ETH-BSWAP LP',
+    lpSymbol: 'BSWAP-ETH LP',
     lpAddresses: {
       [ChainId.BASE_GOERLI]: '0x26484B48418581993e538607e305b363c98125CA',
       [ChainId.BASE]: '0xE80B4F755417FB4baF4dbd23C029db3F62786523',
@@ -36,6 +36,15 @@ const farms: SerializedFarmConfig[] = [
       [ChainId.BASE]: '0xE80B4F755417FB4baF4dbd23C029db3F62786523',
     },
     token: serializedTokens.ogre,
+    quoteToken: serializedTokens.wbnb,
+  },
+  {
+    pid: 3,
+    lpSymbol: 'axlUSDC-ETH LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x9a0b05f3cf748a114a4f8351802b3bffe07100d4',
+    },
+    token: serializedTokens.axlUsdc,
     quoteToken: serializedTokens.wbnb,
   },
   // {

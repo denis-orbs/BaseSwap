@@ -3,7 +3,7 @@ import sousChefABI from 'config/abi/sousChef.json'
 import erc20ABI from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
-import { bscRpcProvider } from 'utils/providers'
+import { defaultRpcProvider } from 'utils/providers'
 import BigNumber from 'bignumber.js'
 import uniq from 'lodash/uniq'
 import fromPairs from 'lodash/fromPairs'
@@ -35,7 +35,7 @@ export const fetchUserBalances = async (account) => {
   }))
   const [tokenBalancesRaw, bnbBalance] = await Promise.all([
     multicall(erc20ABI, calls),
-    bscRpcProvider.getBalance(account),
+    defaultRpcProvider.getBalance(account),
   ])
 
   console.log(tokenBalancesRaw)

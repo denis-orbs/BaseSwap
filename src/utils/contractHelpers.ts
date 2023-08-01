@@ -1,7 +1,7 @@
 import type { Signer } from '@ethersproject/abstract-signer'
 import type { Provider } from '@ethersproject/providers'
 import { Contract } from '@ethersproject/contracts'
-import { bscRpcProvider } from 'utils/providers'
+import { defaultRpcProvider } from 'utils/providers'
 import poolsConfig from 'config/constants/pools'
 import { PoolCategory } from 'config/constants/types'
 import { CAKE } from 'config/constants/tokens'
@@ -135,7 +135,7 @@ import type {
 import { ChainId } from '@magikswap/sdk'
 
 export const getContract = (abi: any, address: string, signer?: Signer | Provider) => {
-  const signerOrProvider = signer ?? bscRpcProvider
+  const signerOrProvider = signer ?? defaultRpcProvider
   return new Contract(address, abi, signerOrProvider)
 }
 
@@ -247,7 +247,7 @@ export const getChainlinkOracleContract = (address: string, signer?: Signer | Pr
   return getContract(chainlinkOracleAbi, address, signer) as ChainlinkOracle
 }
 export const getMulticallContract = () => {
-  return getContract(MultiCallAbi, getMulticallAddress(), bscRpcProvider) as Multicall
+  return getContract(MultiCallAbi, getMulticallAddress(), defaultRpcProvider) as Multicall
 }
 export const getBunnySpecialCakeVaultContract = (signer?: Signer | Provider) => {
   return getContract(bunnySpecialCakeVaultAbi, getBunnySpecialCakeVaultAddress(), signer) as BunnySpecialCakeVault

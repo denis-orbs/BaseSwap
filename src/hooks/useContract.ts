@@ -57,7 +57,7 @@ import zapAbi from 'config/abi/zap.json'
 
 // Imports below migrated from Exchange useContract.ts
 import { Contract } from '@ethersproject/contracts'
-import { bscRpcProvider } from 'utils/providers'
+import { defaultRpcProvider } from 'utils/providers'
 import { ChainId, WNATIVE } from '@magikswap/sdk'
 import IPancakePairABI from '../config/abi/IPancakePair.json'
 import { ERC20_BYTES32_ABI } from '../config/abi/erc20'
@@ -335,7 +335,11 @@ function useContract<T extends Contract = Contract>(
   const { library, account, chainId } = useActiveWeb3React()
   const signer = useMemo(
     () =>
-      withSignerIfPossible ? getProviderOrSigner(library, account) : chainId === ChainId.MAINNET ? bscRpcProvider : library,
+      withSignerIfPossible
+        ? getProviderOrSigner(library, account)
+        : chainId === ChainId.MAINNET
+        ? defaultRpcProvider
+        : library,
     [withSignerIfPossible, library, account, chainId],
   )
 

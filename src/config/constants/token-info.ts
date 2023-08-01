@@ -1,7 +1,11 @@
 import { ChainId } from '@magikswap/sdk'
 
+export const DEFAULT_STABLE_SYMBOL = 'axlUSDC'
+export const WRAPPED_NATIVE_SYMBOL = 'WETH'
+
 export interface ITokenInfo {
   coinGeckoId?: string
+  dexscreenerPair?: string
   name?: string
   symbol?: string
   logoURI?: string
@@ -9,7 +13,7 @@ export interface ITokenInfo {
   addresses: { [chainId: number]: string }
 }
 
-export type StableTokenLookupKey = 'FRAX' | 'USDCe' | 'USDT' | 'DAI' | 'USD+' | 'DAI+'
+export type StableTokenLookupKey = 'FRAX' | 'USDCe' | 'USDT' | 'DAI' | 'USD+' | 'DAI+' | 'axlUSDC'
 // Add to this list as needed
 export type TokenLookupKey =
   | StableTokenLookupKey
@@ -27,12 +31,19 @@ export type TokenLookupKey =
   | 'JRT'
   | 'DEUS'
   | 'RDNT'
+  | 'OGRE'
 
 export type TokenInfoMapping = {
   [key in TokenLookupKey]?: ITokenInfo
 }
 
 export const STABLE_TOKEN_INF0: TokenInfoMapping = {
+  axlUSDC: {
+    coinGeckoId: 'axlusdc',
+    addresses: {
+      [ChainId.BASE]: '0xEB466342C4d449BC9f53A865D5Cb90586f405215',
+    },
+  },
   USDCe: {
     coinGeckoId: 'usd-coin',
     addresses: {
@@ -81,8 +92,10 @@ export const TOKEN_INF0: TokenInfoMapping = {
   ...STABLE_TOKEN_INF0,
 
   ProtocolToken: {
-    coinGeckoId: 'arbitrum-exchange',
+    // coinGeckoId: 'arbitrum-exchange',
+    dexscreenerPair: '0xE80B4F755417FB4baF4dbd23C029db3F62786523',
     addresses: {
+      [ChainId.BASE]: '0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9',
       [ChainId.ARBITRUM]: '0xD5954c3084a1cCd70B4dA011E67760B8e78aeE84',
     },
   },
@@ -163,12 +176,25 @@ export const TOKEN_INF0: TokenInfoMapping = {
   },
 }
 
-export const getTokenInfos = (chainId: ChainId): { tokenAddress: string; geckoId: string }[] => {
+export const getCoingeckoTokenInfos = (chainId: ChainId): { tokenAddress: string; geckoId: string }[] => {
   const infos = Object.entries(TOKEN_INF0)
     .filter((info) => info[1].coinGeckoId && info[1].addresses[chainId])
     .map((info) => {
       return {
         geckoId: info[1].coinGeckoId,
+        tokenAddress: info[1].addresses[chainId],
+      }
+    })
+
+  return infos
+}
+
+export const getDexscreenerTokenInfos = (chainId: ChainId): { tokenAddress: string; dexscreenerPair: string }[] => {
+  const infos = Object.entries(TOKEN_INF0)
+    .filter((info) => info[1].dexscreenerPair && info[1].addresses[chainId])
+    .map((info) => {
+      return {
+        dexscreenerPair: info[1].dexscreenerPair,
         tokenAddress: info[1].addresses[chainId],
       }
     })

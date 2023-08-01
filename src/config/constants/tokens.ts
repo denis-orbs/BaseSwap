@@ -1,4 +1,5 @@
 import { ChainId, Token, WBNB } from '@magikswap/sdk'
+import { DEFAULT_CHAIN_ID } from 'utils/providers'
 
 const CAKE_MAINNET = new Token(
   ChainId.MAINNET,
@@ -2421,7 +2422,6 @@ const CAKE_BASE = new Token(
   'baseswap.fi',
 )
 
-
 const AXLUSDC_BASE = new Token(
   ChainId.BASE,
   '0xEB466342C4d449BC9f53A865D5Cb90586f405215',
@@ -2474,6 +2474,7 @@ export const baseTokens = {
   cake: CAKE[ChainId.BASE],
   axlUsdc: AXLUSDC_BASE,
   ogre: ORGE_BASE,
+  busd: AXLUSDC_BASE,
   // bbt: BIGBOOBS_BASE,
 }
 
@@ -2503,3 +2504,5 @@ export const TOKENS_CHAIN_MAP = {
   [ChainId.BASE_GOERLI]: baseGoerliTokens,
   [ChainId.BASE]: baseTokens,
 }
+
+export const currentTokenMap = TOKENS_CHAIN_MAP[DEFAULT_CHAIN_ID]

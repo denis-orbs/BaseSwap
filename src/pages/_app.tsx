@@ -1,6 +1,5 @@
 import { ResetCSS } from '@pancakeswap/uikit'
 import Script from 'next/script'
-import dynamic from 'next/dynamic'
 import BigNumber from 'bignumber.js'
 import GlobalCheckClaimStatus from 'components/GlobalCheckClaimStatus'
 import { FixedSubgraphHealthIndicator } from 'components/SubgraphHealthIndicator/FixedSubgraphHealthIndicator'

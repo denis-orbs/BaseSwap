@@ -1,3 +1,4 @@
+import { DEFAULT_STABLE_SYMBOL, WRAPPED_NATIVE_SYMBOL } from 'config/constants/token-info'
 import { SerializedFarm } from 'state/types'
 
 /**
@@ -8,14 +9,14 @@ import { SerializedFarm } from 'state/types'
  */
 export const filterFarmsByQuoteToken = (
   farms: SerializedFarm[],
-  preferredQuoteTokens: string[] = ['BUSD', 'WBNB'],
+  preferredQuoteTokens: string[] = [DEFAULT_STABLE_SYMBOL, WRAPPED_NATIVE_SYMBOL],
 ): SerializedFarm => {
   const preferredFarm = farms.find((farm) => {
     return preferredQuoteTokens.some((quoteToken) => {
       return farm.quoteToken.symbol === quoteToken
     })
   })
-  return preferredFarm || farms[0]
+  return preferredFarm || farms[1]
 }
 
 export default filterFarmsByQuoteToken

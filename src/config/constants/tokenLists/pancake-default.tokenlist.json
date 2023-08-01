@@ -31,7 +31,7 @@
       "symbol": "axlUSDC",
       "address": "0xEB466342C4d449BC9f53A865D5Cb90586f405215",
       "chainId": 8453,
-      "decimals": 18,
+      "decimals": 6,
       "logoURI": ""
     },
     {
@@ -79,7 +79,7 @@
       "symbol": "axlUSDC",
       "address": "0xEd2D3fA2102980EeBdF2B12E58c1a96c9889315F",
       "chainId": 84531,
-      "decimals": 18,
+      "decimals": 6,
       "logoURI": ""
     }
   ]

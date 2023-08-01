@@ -6,7 +6,7 @@ import { BigNumber as EthersBigNumber } from '@ethersproject/bignumber'
 import { Zero } from '@ethersproject/constants'
 import useSWR from 'swr'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { bscRpcProvider } from 'utils/providers'
+import { defaultRpcProvider } from 'utils/providers'
 import { useTokenContract } from './useContract'
 import { useSWRContract } from './useSWRContract'
 
@@ -37,7 +37,7 @@ const useTokenBalance = (tokenAddress: string) => {
 export const useGetBnbBalance = () => {
   const { account } = useWeb3React()
   const { status, data, mutate } = useSWR([account, 'bnbBalance'], async () => {
-    return bscRpcProvider.getBalance(account)
+    return defaultRpcProvider.getBalance(account)
   })
 
   return { balance: data || Zero, fetchStatus: status, refresh: mutate }

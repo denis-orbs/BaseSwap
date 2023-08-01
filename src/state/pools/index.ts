@@ -17,8 +17,9 @@ import { getCakeVaultAddress, getCakeFlexibleSideVaultAddress } from 'utils/addr
 import { multicallv2 } from 'utils/multicall'
 import { bscTokens } from 'config/constants/tokens'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { bscRpcProvider } from 'utils/providers'
+import { defaultRpcProvider } from 'utils/providers'
 import priceHelperLpsConfig from 'config/constants/priceHelperLps'
+import { DEFAULT_STABLE_SYMBOL, WRAPPED_NATIVE_SYMBOL } from 'config/constants/token-info'
 import fetchFarms from '../farms/fetchFarms'
 import getFarmsPrices from '../farms/getFarmsPrices'
 import {
@@ -82,29 +83,6 @@ const initialState: PoolsState = {
 
 const cakeVaultAddress = getCakeVaultAddress()
 
-export const fetchCakePoolPublicDataAsync = () => async (dispatch, getState) => {
-  const farmsData = getState().farms.data
-  const prices = getTokenPricesFromFarm(farmsData)
-
-  const cakePool = poolsConfig.filter((p) => p.sousId === 0)[0]
-
-  const stakingTokenAddress = cakePool.stakingToken.address ? cakePool.stakingToken.address.toLowerCase() : null
-  const stakingTokenPrice = stakingTokenAddress ? prices[stakingTokenAddress] : 0
-
-  const earningTokenAddress = cakePool.earningToken.address ? cakePool.earningToken.address.toLowerCase() : null
-  const earningTokenPrice = earningTokenAddress ? prices[earningTokenAddress] : 0
-
-  dispatch(
-    setPoolPublicData({
-      sousId: 0,
-      data: {
-        stakingTokenPrice,
-        earningTokenPrice,
-      },
-    }),
-  )
-}
-
 export const fetchCakePoolUserDataAsync = (account: string) => async (dispatch) => {
   const allowanceCall = {
     address: bscTokens.cake.address,
@@ -136,7 +114,7 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
       fetchPoolsBlockLimits(),
       fetchPoolsTotalStaking(),
       fetchPoolsProfileRequirement(),
-      currentBlockNumber ? Promise.resolve(currentBlockNumber) : bscRpcProvider.getBlockNumber(),
+      currentBlockNumber ? Promise.resolve(currentBlockNumber) : defaultRpcProvider.getBlockNumber(),
     ])
 
     const activePriceHelperLpsConfig = priceHelperLpsConfig.filter((priceHelperLpConfig) => {
@@ -152,13 +130,18 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
           }).length > 0
       )
     })
+
     const poolsWithDifferentFarmToken =
       activePriceHelperLpsConfig.length > 0 ? await fetchFarms(priceHelperLpsConfig) : []
     const farmsData = getState().farms.data
+
     const bnbBusdFarm =
       activePriceHelperLpsConfig.length > 0
-        ? farmsData.find((farm) => farm.token.symbol === 'BUSD' && farm.quoteToken.symbol === 'WBNB')
+        ? farmsData.find(
+            (farm) => farm.token.symbol === DEFAULT_STABLE_SYMBOL && farm.quoteToken.symbol === WRAPPED_NATIVE_SYMBOL,
+          )
         : null
+
     const farmsWithPricesOfDifferentTokenPools = bnbBusdFarm
       ? getFarmsPrices([bnbBusdFarm, ...poolsWithDifferentFarmToken])
       : []
@@ -342,13 +325,6 @@ export const fetchUserIfoCreditDataAsync = (account: string) => async (dispatch)
     console.error('[Ifo Credit Action] Error fetching user Ifo credit data', error)
   }
 }
-// export const fetchCakeFlexibleSideVaultUserData = createAsyncThunk<SerializedVaultUser, { account: string }>(
-//   'cakeFlexibleSideVault/fetchUser',
-//   async ({ account }) => {
-//     const userData = await fetchFlexibleSideVaultUser(account)
-//     return userData
-//   },
-// )
 
 export const PoolsSlice = createSlice({
   name: 'Pools',
