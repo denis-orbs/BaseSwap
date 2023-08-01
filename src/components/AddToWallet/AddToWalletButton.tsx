@@ -73,7 +73,7 @@ const AddToWalletButton: React.FC<AddToWalletButtonProps & ButtonProps> = ({
 
   if (!canRegisterToken()) return null
   return (
-    <Button {...props} onClick={() => registerToken(tokenAddress, tokenSymbol, tokenDecimals, tokenLogo)}>
+    <Button {...props} color="#fff" onClick={() => registerToken(tokenAddress, tokenSymbol, tokenDecimals, tokenLogo)}>
       {textOptions !== AddToWalletTextOptions.NO_TEXT &&
         (textOptions === AddToWalletTextOptions.TEXT
           ? t('Add to %wallet%', { wallet: getWalletName() })
