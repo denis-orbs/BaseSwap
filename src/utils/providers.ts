@@ -25,7 +25,7 @@ export function getChainRpcProvider(chainId: ChainId) {
   return providers[chainId]
 }
 
-export const DEFAULT_CHAIN_ID = ChainId.BASE_GOERLI
+export const DEFAULT_CHAIN_ID = ChainId.BASE
 
 export const bscRpcProvider = getChainRpcProvider(DEFAULT_CHAIN_ID)
 

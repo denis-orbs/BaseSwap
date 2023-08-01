@@ -34,13 +34,13 @@ export const FACTORY_ADDRESS_MAP: { [chainId: number]: string } = {
   [ChainId.BASE]: '',
 }
 
-export const INIT_CODE_HASH = '0xe242e798f6cee26a9cb0bbf24653bf066e5356ffeac160907fe2cc108e238617'
+export const INIT_CODE_HASH = '0xb618a2730fae167f5f8ac7bd659dd8436d571872655bcb6fd11f2158c8a64a3b'
 
 export const INIT_CODE_HASH_MAP: { [chainId: number]: string } = {
   [ChainId.MAINNET]: INIT_CODE_HASH,
   [ChainId.BSC_TESTNET]: '0xd0d4c4cd0848c93cb4fd1f498d7013ee6bfb25783ea21593d5834f5d250ece66',
   [ChainId.BASE_GOERLI]: '0xb618a2730fae167f5f8ac7bd659dd8436d571872655bcb6fd11f2158c8a64a3b',
-  [ChainId.BASE]: '',
+  [ChainId.BASE]: '0xb618a2730fae167f5f8ac7bd659dd8436d571872655bcb6fd11f2158c8a64a3b',
 }
 
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000)

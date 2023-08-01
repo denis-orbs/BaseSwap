@@ -61,39 +61,27 @@ export const vaultPoolConfig = {
 
 export const livePools: SerializedPoolConfig[] = [
   // {
-  //   sousId: 0,
+  //   sousId: 100,
   //   stakingToken: serializedTokens.cake,
-  //   earningToken: serializedTokens.cake,
+  //   earningToken: serializedTokens.axlUsdc,
   //   contractAddress: {
-  //     97: '',
-  //     56: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652', // This is their CHEFV2....
+  //     [ChainId.BASE_GOERLI]: '0xbc3db10EeB75575674046653F080CE72037764F5',
+  //     [ChainId.BASE]: '',
   //   },
   //   poolCategory: PoolCategory.CORE,
-  //   tokenPerBlock: '10',
-  //   isFinished: false,
+  //   tokenPerBlock: '0.001',
   // },
-  {
-    sousId: 100,
-    stakingToken: serializedTokens.cake,
-    earningToken: serializedTokens.axlUsdc,
-    contractAddress: {
-      [ChainId.BASE_GOERLI]: '0xbc3db10EeB75575674046653F080CE72037764F5',
-      [ChainId.BASE]: '',
-    },
-    poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '0.001',
-  },
-  {
-    sousId: 101,
-    stakingToken: serializedTokens.cake,
-    earningToken: serializedTokens.ogre,
-    contractAddress: {
-      [ChainId.BASE_GOERLI]: '0x60373F437f75eda97c58234b9AE57E32A91e54a8',
-      [ChainId.BASE]: '',
-    },
-    poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '0.001',
-  },
+  // {
+  //   sousId: 101,
+  //   stakingToken: serializedTokens.cake,
+  //   earningToken: serializedTokens.ogre,
+  //   contractAddress: {
+  //     [ChainId.BASE_GOERLI]: '0x60373F437f75eda97c58234b9AE57E32A91e54a8',
+  //     [ChainId.BASE]: '',
+  //   },
+  //   poolCategory: PoolCategory.CORE,
+  //   tokenPerBlock: '0.001',
+  // },
 ]
 
 // known finished pools
