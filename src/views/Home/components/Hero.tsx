@@ -104,59 +104,62 @@ const Hero = () => {
       <Flex
         position="relative"
         flexDirection={['column', null, null, 'row']}
-        alignItems={['flex-end', null, null, 'center']}
+        alignItems={['center', null, null, 'center']}
         justifyContent="center"
         mt={[account ? '5px' : '5px', null, '0rem']}
         id="homepage-hero"
         
       >
-        <Flex 
-        marginTop={[ '-3rem', null, null, '0rem' ]} 
-        flex="1" flexDirection="column" 
-        paddingX={['0px', null, null, '3rem']} 
-        marginX={[ '-1rem', null, null, '2rem' ]} 
-        >
-          <Text fontWeight="900" color="contrast" mb="12px" fontSize={[ '48px', null, null, '100px']}>
-            {t('BaseSwap')}
-          </Text>
-          <Heading scale="md" mb="24px">
-            {t('Harder. Better. Faster. Stronger.')}
-          </Heading>
-          <Flex 
-          flexDirection={[ 'column', null, null, 'row' ]}
-          marginLeft={['0rem', null, null, '1rem']} 
-          marginTop={['0.5rem', null, null, '2rem' ]} 
-          alignItems="flex-end" 
-          justifyContent={['center', null, null, 'flex-start' ]}>
-            {!account && 
-            <ConnectWalletButton  
-              variant="primary" height="100%"
-                width={[ '75vw', null, null, '25vw' ]}
-                mr={[ null, null, null, '8px' ]} />}
-            <NextLinkFromReactRouter to="/swap">
-              <Button 
-               mt={[ '1rem', null, null, null ]}
-               width={[ '75vw', null, null, '25vw' ]}
-              variant={!account ? 'secondary' : 'primarytwo'}>
-                {t('Trade Now')}
-                </Button>
-            </NextLinkFromReactRouter>
-          </Flex>
-        </Flex>
-        <Flex
-          height={['192px', null, null, '100%']}
-          width={['192px', null, null, '100%']}
-          flex={[null, null, null, '1']}
-          mb={['24px', null, null, '0']}
-          position="relative"
-        >
-          <BunnyWrapper>
-            <Image src={banner} priority  alt={t('BaseSwap Logo')} />
-          </BunnyWrapper>
-          {/* <StarsWrapper>
-            <CompositeImage {...starsImage} />
-          </StarsWrapper> */}
-        </Flex>
+            <Flex 
+            marginTop={[ '-1rem', null, null, '0rem' ]} 
+            flex="1" flexDirection="column" 
+            paddingX={['0px', null, null, '3rem']} 
+            marginX={[ '-1rem', null, null, '2rem' ]} 
+            >
+              <Text fontWeight="900" color="contrast" mb="12px" fontSize={[ '48px', null, null, '100px']}>
+                {t('BaseSwap')}
+              </Text>
+              <Heading scale="md" mb="24px">
+                {t('Harder. Better. Faster. Stronger.')}
+              </Heading>
+              <Flex 
+              flexDirection={[ 'column', null, null, 'row' ]}
+              marginLeft={['0rem', null, null, '1rem']} 
+              marginTop={['0.5rem', null, null, '2rem' ]} 
+              alignItems={['center', null, null, 'flex-end']}
+              justifyContent={['center', null, null, 'flex-start' ]}>
+                {!account && 
+                <ConnectWalletButton  
+                  variant="primary" height="100%"
+                    width={[ '75vw', null, null, '25vw' ]}
+                    mr={[ null, null, null, '8px' ]} />}
+                <NextLinkFromReactRouter to="/swap">
+                  <Button 
+                  mt={[ '1rem', null, null, null ]}
+                  width={[ '75vw', null, null, '25vw' ]}
+                  variant={!account ? 'secondary' : 'primarytwo'}>
+                    {t('Trade Now')}
+                    </Button>
+                </NextLinkFromReactRouter>
+              </Flex>
+            </Flex>
+
+
+            <Flex
+              height={['275px', '275px', '300px', '350px']}
+              width={['275px', null, null, '350px']}
+              flex={[null, null, null, '1']}
+              mb={['0px', null, null, '0']}
+              mt={['24px', null, null, '0']}
+              position="relative"
+            >
+              <BunnyWrapper>
+                <Image src={banner} priority  alt={t('BaseSwap Logo')} />
+              </BunnyWrapper>
+              {/* <StarsWrapper>
+                <CompositeImage {...starsImage} />
+              </StarsWrapper> */}
+            </Flex>
       </Flex>
     </>
   )
