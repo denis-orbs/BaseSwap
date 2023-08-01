@@ -11,29 +11,35 @@ import { RowBetween, AutoRow } from '../Layout/Row'
 
 const DropDownHeader = styled.div`
   width: 100%;
-  height: 50px;
+  height: 60px;
   display: flex;
+  color: #fff; 
   align-items: center;
   justify-content: space-between;
   padding: 4px; 
+  background-color: transparent; 
   border-radius: 8px;
-  color: ${({ theme }) => theme.colors.background};
+  min-width: 168px; 
+
   &:hover {
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.background};
   }
 `
 
 const DropDownContainer = styled(Button)`
   cursor: pointer;
   width: 100%;
-  
+  color: ${({ theme }) => theme.colors.text};
   position: relative;
-  border-radius: 12px;
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
+
+  border-radius: 8px;
   height: 60px;
   padding: 4px; 
   min-width: 136px;
   user-select: none;
   z-index: 20;
+  
 
   ${({ theme }) => theme.mediaQueries.sm} {
     min-width: 168px;
@@ -90,7 +96,7 @@ export const CurrencySelect = ({
             ) : (
               <Flex alignItems="center" justifyContent="space-between">
                 <CurrencyLogo currency={selectedCurrency} size="36px" style={{ marginRight: '8px' }} />
-                <Text fontSize="1.4rem" id="pair" color="backgroundAlt" fontWeight="900">
+                <Text fontSize="1.4rem" id="pair" color="text" fontWeight="900">
                   {selectedCurrency && selectedCurrency.symbol && selectedCurrency.symbol.length > 20
                     ? `${selectedCurrency.symbol.slice(0, 4)}...${selectedCurrency.symbol.slice(
                         selectedCurrency.symbol.length - 5,
