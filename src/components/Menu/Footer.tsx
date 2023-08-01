@@ -59,8 +59,8 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
           id="bridgetoBase"
           href="https://dapp.chainge.finance/"
           ml={[0, 0, '40px']}
-          mt={['20px', '20px', isSide ? '20px' : 0]}
-          mb={['8px', '8px', 0]}
+          mt={['10px', '10px', isSide ? '10px' : 0]}
+          mb={['4px', '4px', 0]} style={{ fontSize: '18px', fontWeight: '900' }}
         >
           {t('Bridge to Base!')}
         </LinkExternal>
@@ -69,6 +69,7 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
       <Flex
         flexGrow={isSide ? 0 : 1}
         alignItems="center"
+        mb="2px" 
         width={['100%', '100%', '100%', isSide ? '100%' : 'auto']}
         justifyContent={['center', 'center', 'center', 'flex-end']}
       >
