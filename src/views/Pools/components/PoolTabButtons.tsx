@@ -84,9 +84,15 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
 
   return (
     <ViewControls>
-      {viewModeToggle}
-      {stakedOnlySwitch}
-      {liveOrFinishedSwitch}
+      <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+        CHOOSE YOUR &nbsp;
+        <span style={{ textDecoration: 'line-through' }}>FIGHTER</span>
+        &nbsp;VIEW MODE:
+      </Text>
+      <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
+      {/* {viewModeToggle} */}
+      {/* {stakedOnlySwitch} */}
+      {/* {liveOrFinishedSwitch} */}
     </ViewControls>
   )
 }

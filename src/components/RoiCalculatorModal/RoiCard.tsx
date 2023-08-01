@@ -8,17 +8,17 @@ const MILLION = 1000000
 const TRILLION = 1000000000000
 
 const RoiCardWrapper = styled(Box)`
-  background: linear-gradient(180deg, #53dee9, #7645d9);
-  padding: 1px;
+  background: linear-gradient(180deg, #fff, #0154fe);
+  padding: 8px;
   width: 100%;
   border-radius: ${({ theme }) => theme.radii.default};
 `
 
 const RoiCardInner = styled(Box)`
   height: 120px;
-  padding: 24px;
-  border-radius: ${({ theme }) => theme.radii.default};
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  padding: 8px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
 `
 
 const RoiInputContainer = styled(Box)`

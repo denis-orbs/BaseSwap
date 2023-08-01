@@ -6,6 +6,7 @@ import { tags, scales, HeadingProps } from './types'
 
 const Outer = styled(Box)<{ background?: string }>`
   background: transparent;
+  margin-top: 1rem;
 `
 
 const Inner = styled(Container)`
@@ -15,7 +16,7 @@ const Inner = styled(Container)`
 
 const DoItUp = styled(Text).attrs({ bold: true })<HeadingProps>`
   font-size: 2rem;
-  color: #fff; 
+  color: #fff;
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: 2px;

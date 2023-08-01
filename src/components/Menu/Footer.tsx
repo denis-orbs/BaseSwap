@@ -10,6 +10,7 @@ const Wrapper = memo(styled.div<{ $isSide: boolean }>`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+
   align-items: center;
   padding-top: 16px;
   padding-right: ${({ $isSide }) => ($isSide ? '32px' : '0px')};
@@ -55,7 +56,7 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
         </ButtonMenu>
         <LinkExternal
           id="bridgetoBase"
-          href="https://app.squidrouter.com/"
+          href="https://dapp.chainge.finance/"
           ml={[0, 0, '40px']}
           mt={['20px', '20px', isSide ? '20px' : 0]}
           mb={['8px', '8px', 0]}
@@ -70,8 +71,22 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
         width={['100%', '100%', '100%', isSide ? '100%' : 'auto']}
         justifyContent={['center', 'center', 'center', 'flex-end']}
       >
-        <ButtonMenuItem variant="primarytwo" style={{ color: '#000', marginRight: '1rem' }}>Telegram</ButtonMenuItem>
-        <ButtonMenuItem variant="primarytwo" style={{ color: '#000' }}>Docs</ButtonMenuItem>
+        <ButtonMenuItem
+          as="a"
+          href="https://google.com"
+          variant="primarytwo"
+          style={{ color: '#000', marginRight: '1rem' }}
+        >
+          Telegram
+        </ButtonMenuItem>
+        <ButtonMenuItem
+          as="a"
+          href="https://base-swap-1.gitbook.io/baseswap/"
+          variant="primarytwo"
+          style={{ color: '#000' }}
+        >
+          Docs
+        </ButtonMenuItem>
         {/* <BubbleWrapper>
           <Button id="clickExchangeHelp" as="a" external href={helpUrl} variant="subtle">
             {t('Need help ?')}

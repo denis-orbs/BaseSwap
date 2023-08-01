@@ -4,7 +4,7 @@ import { BigNumber as EthersBigNumber } from '@ethersproject/bignumber'
 import { formatUnits } from '@ethersproject/units'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Flex, Text, Link } from '@pancakeswap/uikit'
+import { Heading, Flex, Image, Text, Link } from '@pancakeswap/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from '@pancakeswap/localization'
@@ -23,6 +23,7 @@ import { useInitialBlock } from 'state/block/hooks'
 import { BSC_BLOCK_TIME } from 'config'
 import PageTitle from 'components/PageTitle/PageTitle'
 import Page from 'views/Page'
+import PoolTabButtons from './components/PoolTabButtons'
 import PoolCard from './components/PoolCard'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { getCakeVaultEarnings } from './helpers'
@@ -33,18 +34,18 @@ const CardLayout = styled(FlexLayout)`
 
 const PoolControls = styled.div`
   display: flex;
-  width: 100%;
+  width: 80%;
   align-items: center;
   position: relative;
 
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
   margin-bottom: 32px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 16px 32px;
+    padding: 16px 16px;
     margin-bottom: 0;
   }
 `
@@ -264,16 +265,18 @@ const Pools: React.FC = () => {
   return (
     <>
       <PageTitle title="Earn" />
+
       <Page>
-        {/* <PoolControls>
-        <PoolTabButtons
-          stakedOnly={stakedOnly}
-          setStakedOnly={setStakedOnly}
-          hasStakeInFinishedPools={hasStakeInFinishedPools}
-          viewMode={viewMode}
-          setViewMode={setViewMode}
-        />
-        <FilterContainer>
+        <Heading>Stake BSWAP to earn more BSWAP!</Heading>
+        <PoolControls>
+          <PoolTabButtons
+            stakedOnly={stakedOnly}
+            setStakedOnly={setStakedOnly}
+            hasStakeInFinishedPools={hasStakeInFinishedPools}
+            viewMode={viewMode}
+            setViewMode={setViewMode}
+          />
+          {/* <FilterContainer>
           <LabelWrapper>
             <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
               {t('Sort by')}
@@ -312,8 +315,8 @@ const Pools: React.FC = () => {
             </Text>
             <SearchInput initialValue={searchQuery} onChange={handleChangeSearchQuery} placeholder="Search Pools" />
           </LabelWrapper>
-        </FilterContainer>
-      </PoolControls> */}
+        </FilterContainer> */}
+        </PoolControls>
         {showFinishedPools && (
           <FinishedTextContainer>
             <Text fontSize={['16px', null, '20px']} color="failure" pr="4px">

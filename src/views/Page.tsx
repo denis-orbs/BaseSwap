@@ -1,18 +1,44 @@
-import styled from 'styled-components'
 import { Box, Flex } from '@pancakeswap/uikit'
 import Footer from 'components/Menu/Footer'
 import { PageMeta } from 'components/Layout/Page'
 import { EXCHANGE_DOCS_URLS } from 'config/constants'
+import styled, { keyframes } from 'styled-components'
+import Image from 'next/image'
+import banner from '../../public/images/banner.png'
 
+const flyingAnim = () => keyframes`
+  from {
+    transform: translate(0,  0px);
+  }
+  50% {
+    transform: translate(-5px, -5px);
+  }
+  to {
+    transform: translate(0, 0px);
+  }
+`
+
+const BunnyWrapper = styled.div`
+  width: 100%;
+  animation: ${flyingAnim} 3.5s ease-in-out infinite;
+  will-change: transform;
+  > span {
+    overflow: visible !important;
+  }
+`
 const StyledPage = styled.div<{ $removePadding: boolean; $noMinHeight }>`
   display: flex;
   flex-direction: column;
- 
   align-items: center;
+  background-image: url('/images/banner.png');
+
+  background-position: 100% 20%;
+  background-repeat: no-repeat;
+
   width: 100%;
   padding: ${({ $removePadding }) => ($removePadding ? '0' : '16px')};
   padding-bottom: 0;
-  min-height: ${({ $noMinHeight }) => ($noMinHeight ? 'initial' : 'calc(100vh - 64px)')};
+  min-height: ${({ $noMinHeight }) => ($noMinHeight ? '110vh' : '110vh')};
 
   ${({ theme }) => theme.mediaQueries.xs} {
     background-size: auto;
@@ -26,13 +52,10 @@ const StyledPage = styled.div<{ $removePadding: boolean; $noMinHeight }>`
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: ${({ $removePadding }) => ($removePadding ? '0' : '32px')};
     padding-bottom: 0;
-    min-height: ${({ $noMinHeight }) => ($noMinHeight ? 'initial' : 'calc(100vh - 100px)')};
+    min-height: ${({ $noMinHeight }) => ($noMinHeight ? '100vh' : '100vh')};
   }
-// `
-// background-image: url('/images/decorations/tokenarray.png');
-// background-size: 25vh; 
-// background-position: 0% 0%; 
-// background-repeat: no-repeat; 
+`
+
 const Page: React.FC<
   React.HTMLAttributes<HTMLDivElement> & {
     removePadding?: boolean
@@ -54,7 +77,11 @@ const Page: React.FC<
       <StyledPage $removePadding={removePadding} $noMinHeight={noMinHeight} {...props}>
         {children}
         <Flex flexGrow={1} />
-        <Box display={['block', null, null, hideFooterOnDesktop ? 'none' : 'block']} width="100%">
+        <Box
+          style={{ backdropFilter: 'blur(2px)' }}
+          display={['block', null, null, hideFooterOnDesktop ? 'none' : 'block']}
+          width="100%"
+        >
           <Footer helpUrl={helpUrl} />
         </Box>
       </StyledPage>
