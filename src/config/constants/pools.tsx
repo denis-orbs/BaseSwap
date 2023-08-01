@@ -78,6 +78,7 @@ export const livePools: SerializedPoolConfig[] = [
     earningToken: serializedTokens.bbt,
     contractAddress: {
       [ChainId.BASE_GOERLI]: '0x1e736b5F43eD3D92DE55fA4F276355544Fe21984',
+      [ChainId.BASE]: '',
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.0000001',

@@ -109,6 +109,14 @@ export const WBNB = {
     'Wrapped Ether',
     ''
   ),
+  [ChainId.BASE]: new Token(
+    ChainId.BASE,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether',
+    ''
+  ),
 }
 
 export const WNATIVE = {
@@ -117,4 +125,5 @@ export const WNATIVE = {
   [ChainId.MAINNET]: WBNB[ChainId.MAINNET],
   [ChainId.BSC_TESTNET]: WBNB[ChainId.BSC_TESTNET],
   [ChainId.BASE_GOERLI]: WBNB[ChainId.BASE_GOERLI],
+  [ChainId.BASE]: WBNB[ChainId.BASE],
 }

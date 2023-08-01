@@ -28,6 +28,7 @@ const farms: SerializedFarmConfig[] = [
     lpAddresses: {
       56: CAKE_BNB_LP_MAINNET,
       [ChainId.BASE_GOERLI]: '0xf8220668eed36560EC5948b4226B92e89468a7bB',
+      [ChainId.BASE]: '',
     },
     token: serializedTokens.cake,
     quoteToken: serializedTokens.wbnb,

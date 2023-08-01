@@ -4,20 +4,15 @@ import { ExternalProvider } from '@ethersproject/providers'
 import { ChainId } from '@magikswap/sdk'
 import { BAD_SRCS } from 'components/Logo/Logo'
 import { BASE_BSC_SCAN_URLS } from 'config'
-import { BASE_GOERLI_RPC_URLS, BSC_RPC_URLS, BSC_TESTNET_RPC_URLS } from '../config/constants/rpc'
+import { BASE_GOERLI_RPC_URLS } from '../config/constants/rpc'
 
 const NETWORK_CONFIG = {
-  [ChainId.MAINNET]: {
-    name: 'BNB Smart Chain Mainnet',
-    scanURL: BASE_BSC_SCAN_URLS[ChainId.MAINNET],
-    rpcUrls: BSC_RPC_URLS,
-  },
-  [ChainId.BSC_TESTNET]: {
-    name: 'BNB Smart Chain Testnet',
-    scanURL: BASE_BSC_SCAN_URLS[ChainId.BSC_TESTNET],
-    rpcUrls: BSC_TESTNET_RPC_URLS,
-  },
   [ChainId.BASE_GOERLI]: {
+    name: 'Base Goerli Testnet',
+    scanURL: BASE_BSC_SCAN_URLS[ChainId.BASE_GOERLI],
+    rpcUrls: BASE_GOERLI_RPC_URLS,
+  },
+  [ChainId.BASE]: {
     name: 'Base Goerli Testnet',
     scanURL: BASE_BSC_SCAN_URLS[ChainId.BASE_GOERLI],
     rpcUrls: BASE_GOERLI_RPC_URLS,

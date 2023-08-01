@@ -147,6 +147,29 @@ export const baseGoerli: Chain = {
   // testnet: true,
 }
 
+export const baseChain: Chain = {
+  id: 8453,
+  name: 'Base',
+  network: 'base',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'ETH',
+    symbol: 'ETH',
+  },
+  rpcUrls: {
+    default: 'https://developer-access-mainnet.base.org',
+    public: 'https://developer-access-mainnet.base.org',
+  },
+  blockExplorers: {
+    default: { name: 'Base Block Explorer', url: 'https://base.blockscout.com/' },
+  },
+  multicall: {
+    address: '',
+    blockCreated: 2029787,
+  },
+  // testnet: true,
+}
+
 export const CHAINS_TESTNET = [
   bscTest,
   rinkeby,

@@ -6,9 +6,10 @@ import { getAddress } from '@ethersproject/address'
 import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
-import { Token, Currency, ETHER, ChainId } from '@magikswap/sdk'
+import { Token, Currency, ETHER } from '@magikswap/sdk'
 import { TokenAddressMap } from 'state/types'
 import { BASE_BSC_SCAN_URLS } from '../config'
+import { DEFAULT_CHAIN_ID } from './providers'
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export const isAddress = memoize((value: any): string | false => {
@@ -24,7 +25,7 @@ export function getBscScanLink(
   type: 'transaction' | 'token' | 'address' | 'block' | 'countdown',
   chainIdOverride?: number,
 ): string {
-  const chainId = chainIdOverride || ChainId.MAINNET
+  const chainId = chainIdOverride || DEFAULT_CHAIN_ID
   switch (type) {
     case 'transaction': {
       return `${BASE_BSC_SCAN_URLS[chainId]}/tx/${data}`
@@ -45,7 +46,7 @@ export function getBscScanLink(
 }
 
 export function getBscScanLinkForNft(collectionAddress: string, tokenId: string): string {
-  return `${BASE_BSC_SCAN_URLS[ChainId.MAINNET]}/token/${collectionAddress}?a=${tokenId}`
+  return `${BASE_BSC_SCAN_URLS[DEFAULT_CHAIN_ID]}/token/${collectionAddress}?a=${tokenId}`
 }
 
 // add 10%

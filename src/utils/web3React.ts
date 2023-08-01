@@ -11,7 +11,7 @@ import { Web3Provider } from '@ethersproject/providers'
 
 const POLLING_INTERVAL = 12000
 
-const SUPPORTED_CHAIN_ID = [ChainId.BASE_GOERLI]
+const SUPPORTED_CHAIN_ID = [ChainId.BASE_GOERLI, ChainId.BASE]
 
 export const injected = new InjectedConnector({ supportedChainIds: SUPPORTED_CHAIN_ID })
 
@@ -25,22 +25,22 @@ const walletconnect = new WalletConnectConnector({
   pollingInterval: POLLING_INTERVAL,
 })
 
-const bscConnector = new BscConnector({ supportedChainIds: SUPPORTED_CHAIN_ID })
+// const bscConnector = new BscConnector({ supportedChainIds: SUPPORTED_CHAIN_ID })
 
 export const connectorsByName = {
   [ConnectorNames.Injected]: injected,
   [ConnectorNames.WalletConnect]: walletconnect,
-  [ConnectorNames.BSC]: bscConnector,
-  [ConnectorNames.Blocto]: async () => {
-    const { BloctoConnector } = await import('@blocto/blocto-connector')
-    return new BloctoConnector({ chainId: ChainId.MAINNET, rpc: 'https://rpc.fantom.network' })
-  },
+  //  [ConnectorNames.BSC]: bscConnector,
+  // [ConnectorNames.Blocto]: async () => {
+  //   const { BloctoConnector } = await import('@blocto/blocto-connector')
+  //   return new BloctoConnector({ chainId: ChainId.MAINNET, rpc: 'https://rpc.fantom.network' })
+  // },
   [ConnectorNames.WalletLink]: async () => {
     const { WalletLinkConnector } = await import('@web3-react/walletlink-connector')
     return new WalletLinkConnector({
       url: 'https://baseswap.fi',
       appName: 'BaseSwap',
-      appLogoUrl: 'https://pancakeswap.com/logo.png',
+      appLogoUrl: '',
       supportedChainIds: SUPPORTED_CHAIN_ID,
     })
   },

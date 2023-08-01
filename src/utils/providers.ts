@@ -1,18 +1,14 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers'
 import { ChainId } from '@magikswap/sdk'
-
-export const BSC_PROD_NODE = process.env.NEXT_PUBLIC_NODE_PRODUCTION || 'https://bsc.nodereal.io'
+import { baseChain, baseGoerli } from '../../packages/wagmi/src/chains'
 
 const providers: { [chainId in ChainId]?: StaticJsonRpcProvider | null } = {
   [ChainId.BASE_GOERLI]: null,
-  // [ChainId.BASE_TESTNET]: null,
 }
 
 const RPC = {
-  // [ChainId.ARBITRUM_ONE]: "https://arb1.arbitrum.io/rpc",
-  // [ChainId.BASE]: 'https://developer-access-mainnet.base.org',
-  [ChainId.BASE_GOERLI]: 'https://goerli.base.org',
-  // [ChainId.FORK_BASE]: 'http://localhost:8545',
+  [ChainId.BASE]: baseChain.rpcUrls.default,
+  [ChainId.BASE_GOERLI]: baseGoerli.rpcUrls.default,
 }
 
 export function getChainRpcURL(chainId: ChainId) {

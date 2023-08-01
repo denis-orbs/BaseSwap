@@ -1,11 +1,11 @@
 import { Box, Text, UserMenu, UserMenuDivider, UserMenuItem } from '@pancakeswap/uikit'
-import { baseGoerli, bsc, bscTest } from '@pancakeswap/wagmi'
+import { baseChain, baseGoerli } from '@pancakeswap/wagmi'
 import { useTranslation } from '@pancakeswap/localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Image from 'next/image'
 import { setupNetwork } from 'utils/wallet'
 
-const chains = [baseGoerli]
+const chains = [baseGoerli, baseChain]
 
 export const NetworkSelect = () => {
   const { t } = useTranslation()
@@ -17,7 +17,7 @@ export const NetworkSelect = () => {
       <UserMenuDivider />
       {chains.map((chain) => (
         <UserMenuItem key={chain.id} style={{ justifyContent: 'flex-start' }} onClick={() => setupNetwork(chain.id)}>
-          <Image width={24} height={24} src={`https://cdn.pancakeswap.com/chains/${chain.id}.png`} unoptimized />
+          <Image width={24} height={24} src="images/baselogo.jpeg" unoptimized />
           <Text pl="12px">{chain.name}</Text>
         </UserMenuItem>
       ))}
@@ -28,14 +28,9 @@ export const NetworkSelect = () => {
 export const NetworkSwitcher = () => {
   const { chainId } = useActiveWeb3React()
 
-  if (chainId === bscTest.id) {
+  if (chainId === baseGoerli.id) {
     return (
-      <UserMenu
-        mr="8px"
-        avatarSrc={`https://cdn.pancakeswap.com/chains/${chainId}.png`}
-        account={bscTest.name}
-        ellipsis={false}
-      >
+      <UserMenu mr="8px" avatarSrc="images/baselogo.jpeg" account={baseGoerli.name} ellipsis={false}>
         {() => <NetworkSelect />}
       </UserMenu>
     )
