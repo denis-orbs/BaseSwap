@@ -2438,14 +2438,14 @@ const ORGE_BASE = new Token(
   'baseswap.fi',
 )
 
-const BIGBOOBS_BASE = new Token(
-  ChainId.BASE,
-  '0x8DFAf055e21B16302DBf00815e5b4d9b6042a4Df',
-  18,
-  'BBT',
-  'Big Booby Things',
-  'baseswap.fi',
-)
+// const BIGBOOBS_BASE = new Token(
+//   ChainId.BASE,
+//   '0x8DFAf055e21B16302DBf00815e5b4d9b6042a4Df',
+//   18,
+//   'BBT',
+//   'Big Booby Things',
+//   'baseswap.fi',
+// )
 
 export const USDC = {
   [ChainId.MAINNET]: USDC_BSC,
@@ -2472,7 +2472,7 @@ export const baseTokens = {
   cake: CAKE[ChainId.BASE],
   axlUsdc: AXLUSDC_BASE,
   ogre: ORGE_BASE,
-  bbt: BIGBOOBS_BASE,
+  // bbt: BIGBOOBS_BASE,
 }
 
 export const bscTestnetTokens = {
