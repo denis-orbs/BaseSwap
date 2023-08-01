@@ -1,11 +1,10 @@
 import { serializeTokens } from 'utils/serializeTokens'
 import { DEFAULT_CHAIN_ID } from 'utils/providers'
 import { ChainId } from '../../../packages/swap-sdk/src/constants'
-import { TOKENS_CHAIN_MAP, bscTokens } from './tokens'
+import { TOKENS_CHAIN_MAP } from './tokens'
 import { SerializedFarmConfig } from './types'
 
-// const serializedTokens = serializeTokens(bscTokens)
-const serializedTokens = serializeTokens(TOKENS_CHAIN_MAP[DEFAULT_CHAIN_ID])
+export const serializedTokens = serializeTokens(TOKENS_CHAIN_MAP[DEFAULT_CHAIN_ID])
 
 export const CAKE_BNB_LP_MAINNET = '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0'
 
