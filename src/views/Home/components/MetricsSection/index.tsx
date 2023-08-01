@@ -38,7 +38,7 @@ const Stats = () => {
     <Flex justifyContent="center" alignItems="center" flexDirection="column">
       <Image src={logo} alt="logo" height="150px" width="150px" />
       <Heading textAlign="center" scale="xl">
-        Damn, they don&rsquo;t make&rsquo;em like this anymore.
+        Because you really only live once.
       </Heading>
 
       <Text textAlign="center" color="textSubtle">
