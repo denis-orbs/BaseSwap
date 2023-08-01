@@ -55,7 +55,6 @@ const combineTokenMaps = (lists: AppState['lists']['byUrl'], urls: string[]) => 
       .reduce((allTokens, currentUrl) => {
         const current = lists[currentUrl]?.current
 
-        console.log(allTokens)
         if (!current) return allTokens
         try {
           const newTokens = Object.assign(listToTokenMap(current))

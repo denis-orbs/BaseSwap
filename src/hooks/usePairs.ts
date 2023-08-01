@@ -33,9 +33,6 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
       tokens.map(([tokenA, tokenB]) => {
         try {
           const address = tokenA && tokenB && !tokenA.equals(tokenB) ? Pair.getAddress(tokenA, tokenB) : undefined
-          console.log(tokenA)
-          console.log(tokenB)
-          console.log(address)
           return address
         } catch (error: any) {
           // Debug Invariant failed related to this line

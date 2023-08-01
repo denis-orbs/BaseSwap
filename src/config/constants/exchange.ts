@@ -1,7 +1,7 @@
 import { ChainId, JSBI, Percent, Token } from '@magikswap/sdk'
 import { BigNumber } from '@ethersproject/bignumber'
 import { DEFAULT_CHAIN_ID } from 'utils/providers'
-import { bscTokens, bscTestnetTokens, baseGoerliTokens, TOKENS_CHAIN_MAP } from './tokens'
+import { bscTokens, bscTestnetTokens, baseGoerliTokens, TOKENS_CHAIN_MAP, baseTokens } from './tokens'
 import { ChainTokenList } from './types'
 
 export const ROUTER_ADDRESS = {
@@ -24,6 +24,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ],
   [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
   [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
+  [ChainId.BASE]: [baseTokens.wbnb, baseTokens.cake, baseTokens.axlUsdc, baseTokens.ogre, baseTokens.bbt],
 }
 
 /**
@@ -48,7 +49,7 @@ export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.MAINNET]: [bscTokens.busd, bscTokens.cake, bscTokens.btcb],
   [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
   [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
-  [ChainId.BASE]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
+  [ChainId.BASE]: [baseTokens.wbnb, baseTokens.cake],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
@@ -56,7 +57,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.MAINNET]: [bscTokens.wbnb, bscTokens.dai, bscTokens.busd, bscTokens.usdt],
   [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
   [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
-  [ChainId.BASE]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
+  [ChainId.BASE]: [baseTokens.wbnb, baseTokens.cake],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -66,6 +67,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     [bscTokens.dai, bscTokens.usdt],
   ],
   [ChainId.BASE_GOERLI]: [[baseGoerliTokens.wbnb, baseGoerliTokens.cake]],
+  [ChainId.BASE]: [[baseTokens.wbnb, baseTokens.cake]],
 }
 
 export const BIG_INT_ZERO = JSBI.BigInt(0)
