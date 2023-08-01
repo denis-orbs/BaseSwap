@@ -55,7 +55,7 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
         </ButtonMenu>
         <LinkExternal
           id="bridgetoBase"
-          href="https://app.squidrouter.com/"
+          href="https://dapp.chainge.finance/"
           ml={[0, 0, '40px']}
           mt={['20px', '20px', isSide ? '20px' : 0]}
           mb={['8px', '8px', 0]}
