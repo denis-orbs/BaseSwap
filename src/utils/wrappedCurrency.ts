@@ -1,8 +1,6 @@
 import { ChainId, Currency, CurrencyAmount, ETHER, Token, TokenAmount, WNATIVE } from '@magikswap/sdk'
 
 export function wrappedCurrency(currency: Currency | undefined, chainId: ChainId | undefined): Token | undefined {
-  console.log(currency)
-  console.log(ETHER)
   return chainId && currency === ETHER ? WNATIVE[chainId] : currency instanceof Token ? currency : undefined
 }
 
