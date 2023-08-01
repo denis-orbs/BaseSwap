@@ -30,10 +30,11 @@ const StyledPage = styled.div<{ $removePadding: boolean; $noMinHeight }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('/images/banner.png');
+  background-image: url('/images/banner3.png');
 
   background-position: 100% 20%;
   background-repeat: no-repeat;
+  
 
   width: 100%;
   padding: ${({ $removePadding }) => ($removePadding ? '0' : '16px')};
