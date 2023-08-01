@@ -8,10 +8,11 @@ import useWeb3Provider from 'hooks/useActiveWeb3React'
 import { hexlify } from '@ethersproject/bytes'
 import { toUtf8Bytes } from '@ethersproject/strings'
 import { Web3Provider } from '@ethersproject/providers'
+import { baseChain } from '../../packages/wagmi/src/chains'
 
 const POLLING_INTERVAL = 12000
 
-const SUPPORTED_CHAIN_ID = [ChainId.BASE_GOERLI, ChainId.BASE]
+const SUPPORTED_CHAIN_ID = [ChainId.BASE]
 
 export const injected = new InjectedConnector({ supportedChainIds: SUPPORTED_CHAIN_ID })
 
@@ -20,6 +21,7 @@ const walletconnect = new WalletConnectConnector({
     [ChainId.MAINNET]: 'https://rpc.fantom.network',
     [ChainId.BSC_TESTNET]: 'https://data-seed-prebsc-2-s3.binance.org:8545',
     [ChainId.BASE_GOERLI]: 'https://goerli.base.org',
+    [ChainId.BASE]: baseChain.rpcUrls.default,
   },
   qrcode: true,
   pollingInterval: POLLING_INTERVAL,

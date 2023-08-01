@@ -5,7 +5,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Image from 'next/image'
 import { setupNetwork } from 'utils/wallet'
 
-const chains = [baseGoerli, baseChain]
+const chains = [baseChain]
 
 export const NetworkSelect = () => {
   const { t } = useTranslation()

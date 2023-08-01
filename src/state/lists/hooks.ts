@@ -41,6 +41,7 @@ const activeListUrlsSelector = createSelector(selectorActiveUrls, (urls) =>
 const combineTokenMapsWithDefault = (lists: AppState['lists']['byUrl'], urls: string[]) => {
   const defaultTokenMap = listToTokenMap(DEFAULT_TOKEN_LIST)
   if (!urls) return defaultTokenMap
+  const what = combineTokenMaps(lists, urls)
   return combineMaps(combineTokenMaps(lists, urls), defaultTokenMap)
 }
 
@@ -53,6 +54,8 @@ const combineTokenMaps = (lists: AppState['lists']['byUrl'], urls: string[]) => 
       .sort(sortByListPriority)
       .reduce((allTokens, currentUrl) => {
         const current = lists[currentUrl]?.current
+
+        console.log(allTokens)
         if (!current) return allTokens
         try {
           const newTokens = Object.assign(listToTokenMap(current))
@@ -168,6 +171,7 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
     [ChainId.MAINNET]: { ...map1[ChainId.MAINNET], ...map2[ChainId.MAINNET] },
     [ChainId.BSC_TESTNET]: { ...map1[ChainId.BSC_TESTNET], ...map2[ChainId.BSC_TESTNET] },
     [ChainId.BASE_GOERLI]: { ...map1[ChainId.BASE_GOERLI], ...map2[ChainId.BASE_GOERLI] },
+    [ChainId.BASE]: { ...map1[ChainId.BASE], ...map2[ChainId.BASE] },
   }
 }
 

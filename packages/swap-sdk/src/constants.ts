@@ -31,7 +31,7 @@ export const FACTORY_ADDRESS_MAP: { [chainId: number]: string } = {
   [ChainId.MAINNET]: FACTORY_ADDRESS,
   [ChainId.BSC_TESTNET]: '0x6725f303b657a9451d8ba641348b6761a6cc7a17',
   [ChainId.BASE_GOERLI]: '0x7C6C367ee607737d4297829cD2EA39eee4C98119',
-  [ChainId.BASE]: '',
+  [ChainId.BASE]: '0xFDa619b6d20975be80A10332cD39b9a4b0FAa8BB',
 }
 
 export const INIT_CODE_HASH = '0xb618a2730fae167f5f8ac7bd659dd8436d571872655bcb6fd11f2158c8a64a3b'

@@ -3,7 +3,7 @@ import { Web3Provider } from '@ethersproject/providers'
 // eslint-disable-next-line import/no-unresolved
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
 import { ChainId } from '@magikswap/sdk'
-import { bscRpcProvider } from 'utils/providers'
+import { DEFAULT_CHAIN_ID, bscRpcProvider } from 'utils/providers'
 
 /**
  * Provides a web3 provider with or without user's signer
@@ -12,7 +12,7 @@ import { bscRpcProvider } from 'utils/providers'
 const useActiveWeb3React = (): Web3ReactContextInterface<Web3Provider> => {
   const { library, chainId, ...web3React } = useWeb3React()
 
-  return { library: library ?? bscRpcProvider, chainId: chainId ?? ChainId.MAINNET, ...web3React }
+  return { library: library ?? bscRpcProvider, chainId: chainId ?? DEFAULT_CHAIN_ID, ...web3React }
 }
 
 export default useActiveWeb3React
