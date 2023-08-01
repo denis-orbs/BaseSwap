@@ -24,7 +24,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ],
   [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
   [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
-  [ChainId.BASE]: [baseTokens.wbnb, baseTokens.cake, baseTokens.axlUsdc, baseTokens.ogre, baseTokens.bbt],
+  [ChainId.BASE]: [baseTokens.wbnb, baseTokens.cake, baseTokens.axlUsdc, baseTokens.ogre],
 }
 
 /**

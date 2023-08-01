@@ -20,11 +20,11 @@ const farms: SerializedFarmConfig[] = [
   //   quoteToken: serializedTokens.wbnb,
   // },
   // {
-  //   pid: 0,
+  //   pid: 1,
   //   lpSymbol: 'ETH-BSWAP LP',
   //   lpAddresses: {
   //     [ChainId.BASE_GOERLI]: '0x26484B48418581993e538607e305b363c98125CA',
-  //     [ChainId.BASE]: '',
+  //     [ChainId.BASE]: '0xE80B4F755417FB4baF4dbd23C029db3F62786523',
   //   },
   //   token: serializedTokens.cake,
   //   quoteToken: serializedTokens.wbnb,
