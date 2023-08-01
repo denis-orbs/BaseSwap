@@ -2421,7 +2421,7 @@ const CAKE_BASE = new Token(
   'baseswap.fi',
 )
 const AXLUSDC_BASE = new Token(
-  ChainId.BASE_GOERLI,
+  ChainId.BASE,
   '0xEB466342C4d449BC9f53A865D5Cb90586f405215',
   18,
   'axlUSDC',
@@ -2430,7 +2430,7 @@ const AXLUSDC_BASE = new Token(
 )
 
 const ORGE_BASE = new Token(
-  ChainId.BASE_GOERLI,
+  ChainId.BASE,
   '0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492',
   18,
   'ORGE',
@@ -2439,7 +2439,7 @@ const ORGE_BASE = new Token(
 )
 
 const BIGBOOBS_BASE = new Token(
-  ChainId.BASE_GOERLI,
+  ChainId.BASE,
   '0x8DFAf055e21B16302DBf00815e5b4d9b6042a4Df',
   18,
   'BBT',
