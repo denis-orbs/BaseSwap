@@ -63,12 +63,12 @@ function MyApp(props: AppProps) {
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, viewport-fit=cover"
         />
-        <meta name="description" content="Taller better faster stronger. BaseSwap." />
-        <meta name="theme-color" content="#1FC7D4" />
-        <meta name="twitter:image" content="https://pancakeswap.finance/images/hero.png" />
-        <meta name="twitter:description" content="Taller better faster stronger. BaseSwap." />
+        <meta name="description" content="Harder better faster stronger. BaseSwap." />
+        <meta name="theme-color" content="#0154FE" />
+        <meta name="twitter:image" content="https://baseswap.fi/images/BaseSwap.jpg" />
+        <meta name="twitter:description" content="Harder better faster stronger. BaseSwap." />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Taller better faster stronger. BaseSwap." />
+        <meta name="twitter:title" content="Harder better faster stronger. BaseSwap." />
         <title>BaseSwap</title>
         {(Component as NextPageWithLayout).mp && (
           // eslint-disable-next-line @next/next/no-sync-scripts
