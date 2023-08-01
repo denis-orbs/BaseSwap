@@ -97,15 +97,15 @@ const Hero = () => {
 
   return (
     <>
-      <BgWrapper>
+{/* <BgWrapper>
         <InnerWrapper>{theme.isDark ? <SlideSvgDark width="100%" /> : <SlideSvgLight width="100%" />}</InnerWrapper>
-      </BgWrapper>
+      </BgWrapper> */}
       <Flex
         position="relative"
         flexDirection={['column-reverse', null, null, 'row']}
         alignItems={['flex-end', null, null, 'flex-start']}
         justifyContent="center"
-        mt={[account ? '280px' : '25px', null, 0]}
+        mt={[account ? '200px' : '25px', null, 0]}
         id="homepage-hero"
       >
         <Flex flex="1" flexDirection="column">
@@ -113,7 +113,7 @@ const Hero = () => {
             {t('BaseSwap')}
           </Heading>
           <Heading scale="md" mb="24px">
-            {t('Taller better faster stronger.')}
+            {t('Harder. Better. Faster. Stronger.')}
           </Heading>
           <Flex>
             {!account && <ConnectWalletButton mr="8px" />}

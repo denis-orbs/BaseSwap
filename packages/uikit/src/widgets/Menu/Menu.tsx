@@ -1,6 +1,7 @@
 import throttle from "lodash/throttle";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { Button } from "../../components/Button";
 import BottomNav from "../../components/BottomNav";
 import { Box } from "../../components/Box";
 import Flex from "../../components/Box/Flex";
@@ -15,6 +16,7 @@ import { NavProps } from "./types";
 import LangSelector from "../../components/LangSelector/LangSelector";
 import { MenuContext } from "./context";
 import { Text } from "../../components/Text";
+import { Link } from "../../components/Link";
 
 const Wrapper = styled.div`
   position: relative;
@@ -130,23 +132,43 @@ const Menu: React.FC<NavProps> = ({
         <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
           {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
           <StyledNav>
-            <Flex flexDirection="row" alignItems="center" justifyContent="center">
-              <img src="/images/baselogolarge.png" width={isMobile ? 40 : 50} height={isMobile ? 40 : 50} alt="logo" />
+              <img src="/images/baselogolarge.png" width={isMobile ? 40 : 60} height={isMobile ? 40 : 40} alt="logo" />
+              <Flex>
               <a href="/">
-                <Text fontSize="1.5rem" style={{ marginLeft: "1rem" }}>
+                <Text fontSize="2rem" style={{ marginLeft: "1rem", alignItems: 'center', justifyContent: 'center' }}>
                   BaseSwap
                 </Text>
               </a>
-              {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
-              {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />}
-            </Flex>
+              </Flex>
+              {!isMobile &&
+              <Flex  flexDirection="row" justifyContent="flex-start" alignItems="flex-end" marginLeft={isMobile? '2rem' : '250px' } width="80%" >
+                <Link href="/swap" >
+                {/* <Button as="a" scale="sm">Swap</Button> */}
+                <Text marginRight="2rem">Swap</Text>
+                </Link>
+                <Link href="/liquidity" >
+                  <Text marginRight="2rem">Liquidity</Text>
+                </Link>
+                <Link href="/farms" >
+                <Text marginRight="2rem">Farm </Text>
+                </Link>
+                <Link href="/pools" >
+                <Text marginRight="2rem">Earn </Text>
 
-            <Flex alignItems="center" height="100%">
-              {!isMobile && !isMd && (
+                  </Link>
+              </Flex>
+               } 
+              {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
+              {/* {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />} */}
+
+
+            <Flex alignItems="center" justifyContent="flex-end" height="100%" width="300px">
+           
+              {/* {!isMobile && !isMd && (
                 <Box mr="12px">
                   <CakePrice showSkeleton={false} cakePriceUsd={cakePriceUsd} />
                 </Box>
-              )}
+              )} */}
               {/* <Box mt="4px">
                 <LangSelector
                   currentLang={currentLang}
@@ -162,8 +184,8 @@ const Menu: React.FC<NavProps> = ({
           </StyledNav>
         </FixedContainer>
         {subLinks && (
-          <Flex justifyContent="space-around">
-            <SubMenuItems items={subLinksWithoutMobile} mt={`${totalTopMenuHeight + 1}px`} activeItem={activeSubItem} />
+          <Flex justifyContent="space-around" mt={`${totalTopMenuHeight + 1}px`}>
+            {/* <SubMenuItems items={subLinksWithoutMobile} mt={`${totalTopMenuHeight + 1}px`} activeItem={activeSubItem} />
 
             {subLinksMobileOnly?.length > 0 && (
               <SubMenuItems
@@ -172,7 +194,7 @@ const Menu: React.FC<NavProps> = ({
                 activeItem={activeSubItem}
                 isMobileOnly
               />
-            )}
+            )} */}
           </Flex>
         )}
         <BodyWrapper mt={!subLinks ? `${totalTopMenuHeight + 1}px` : "0"}>

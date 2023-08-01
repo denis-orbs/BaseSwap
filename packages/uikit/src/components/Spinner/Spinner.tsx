@@ -59,10 +59,10 @@ const Spinner: React.FC<SpinnerProps> = ({ size = 128 }) => {
   return (
     <Container>
       {/* <RotatingPancakeIcon width={`${size * 0.5}px`} /> */}
-      <RotatingImage src="/images/ayush.png" alt="Ayush" width="50px" />
-      {/* <FloatingImage src="/images/pepetokens.png" alt="Ayush" width={`${size}px`} /> */}
+      {/* <RotatingImage src="/images/ayush.png" alt="Ayush" width="50px" /> */}
+      <FloatingImage src="/images/pepetokens.png" alt="Ayush" width={`${size}px`} />
 
-      <FloatingPanIcon width={`${size}px`} />
+      {/* <FloatingPanIcon width={`${size}px`} /> */}
     </Container>
   );
 };

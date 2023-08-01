@@ -38,13 +38,11 @@ const Stats = () => {
     <Flex justifyContent="center" alignItems="center" flexDirection="column">
       <Image src={logo} alt="logo" height="150px" width="150px"/>
       <Heading textAlign="center" scale="xl">
-        {t('Because you really only ')}
+        Damn, they don't make 'em like this anymore. 
       </Heading>
-      <Heading textAlign="center" scale="xl" mb="32px">
-        {t('live once.')}
-      </Heading>
+     
       <Text textAlign="center" color="textSubtle">
-        {t('Decentralized finance is about leveraging the individual and collective capacity of all of us, without interference.')}
+       {t('Decentralized finance is about leveraging the individual and collective capacity of all of us, without interference.')}
       </Text>
       <Flex flexWrap="wrap">
         <Text display="inline" textAlign="center" color="textSubtle" mb="20px">

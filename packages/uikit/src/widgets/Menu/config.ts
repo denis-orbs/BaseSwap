@@ -51,6 +51,28 @@ export const links: MenuItemsType[] = [
     ],
   },
   {
+    label: "Trade",
+    href: "/swap",
+    icon: SwapIcon,
+    fillIcon: SwapFillIcon,
+    items: [
+      {
+        label: "Exchange",
+        href: "/swap",
+      },
+      {
+        label: "Liquidity",
+        href: "/liquidity",
+      },
+      // {
+      //   label: "Charts",
+      //   href: "/charts",
+      //   iconName: "Chart",
+      //   isMobileOnly: true,
+      // },
+    ],
+  },
+  {
     label: "Earn",
     href: "/earn",
     icon: EarnIcon,
