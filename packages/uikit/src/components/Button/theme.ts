@@ -61,6 +61,7 @@ export const styleVariants = {
       color: "text", 
 
     }
+    // USED FOR ENABLE FARM 
   },
   [variants.SECONDARY]: {
     backgroundColor: "background",

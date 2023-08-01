@@ -59,6 +59,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
           )}
         </div>
         <Button
+        variant="primary" 
           disabled={earnings.eq(0) || pendingTx || !userDataReady}
           onClick={async () => {
             const receipt = await fetchWithCatchTxError(() => {
@@ -76,7 +77,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
           }}
           ml="4px"
         >
-          {pendingTx ? t('Harvesting') : t('Harvest')}
+          {pendingTx ? t('HARVESTING...') : t('HARVEST')}
         </Button>
       </ActionContent>
     </ActionContainer>

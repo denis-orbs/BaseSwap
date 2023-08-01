@@ -139,8 +139,8 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             {t('Start Farming')}
           </Text>
         </ActionTitles>
-        <ActionContent>
-          <ConnectWalletButton width="100%" />
+        <ActionContent >
+          <ConnectWalletButton width="100%" style={{ fontSize: '1rem'}} />
         </ActionContent>
       </ActionContainer>
     )
@@ -233,7 +233,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
       </ActionTitles>
       <ActionContent>
         <Button width="100%" disabled={pendingTx} onClick={handleApprove} variant="secondary">
-          {t('Enable')}
+          {t('ENABLE')}
         </Button>
       </ActionContent>
     </ActionContainer>
