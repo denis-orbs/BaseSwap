@@ -52,8 +52,8 @@ export const WarningMenuIcon: React.FC = () => (
 );
 
 export const DangerMenuIcon: React.FC = () => (
-  <MenuIconWrapper borderColor="failure">
-    <WarningIcon color="failure" width="24px" />
+  <MenuIconWrapper borderColor="text">
+    <WarningIcon color="text" width="24px" />
   </MenuIconWrapper>
 );
 

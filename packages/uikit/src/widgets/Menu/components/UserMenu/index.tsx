@@ -9,9 +9,9 @@ import { UserMenuItem } from "./styles";
 
 export const StyledUserMenu = styled(Flex)`
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.tertiary};
-  border-radius: 16px;
-  box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
+  background-color: ${({ theme }) => theme.colors.background};
+  border-radius: 12px;
+  box-shadow: inset 0px -4px 0px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   display: inline-flex;
   height: 32px;
@@ -37,13 +37,13 @@ export const LabelText = styled.div`
 `;
 
 const Menu = styled.div<{ isOpen: boolean }>`
-  background-color: ${({ theme }) => theme.card.background};
-  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
-  border-radius: 16px;
+  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  border: 3px solid ${({ theme }) => theme.colors.cardBorder};
+  border-radius: 8px;
   padding-bottom: 4px;
   padding-top: 4px;
   pointer-events: auto;
-  width: 280px;
+  width: 320px;
   visibility: visible;
   z-index: 1001;
 
