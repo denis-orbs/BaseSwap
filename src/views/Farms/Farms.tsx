@@ -284,6 +284,7 @@ const Farms: React.FC = ({ children }) => {
               <span style={{ textDecoration: 'line-through' }}>
               FIGHTER
               </span>
+              
               &nbsp;VIEW MODE:</Text>
             <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
             {/* <ToggleWrapper>

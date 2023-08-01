@@ -6,6 +6,7 @@ import { tags, scales, HeadingProps } from './types'
 
 const Outer = styled(Box)<{ background?: string }>`
   background: transparent;
+  margin-top: 1rem; 
 `
 
 const Inner = styled(Container)`

@@ -36,18 +36,18 @@ const CardLayout = styled(FlexLayout)`
 
 const PoolControls = styled.div`
   display: flex;
-  width: 100%;
+  width: 80%;
   align-items: center;
   position: relative;
 
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
   margin-bottom: 32px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 16px 32px;
+    padding: 16px 16px;
     margin-bottom: 0;
   }
 `
@@ -260,6 +260,7 @@ const Pools: React.FC = () => {
         // ),
       )}
     </CardLayout>
+
   )
 
   const tableLayout = <PoolsTable urlSearch={normalizedUrlSearch} pools={chosenPools} account={account} />
@@ -267,8 +268,10 @@ const Pools: React.FC = () => {
   return (
     <>
       <PageTitle title="Earn" />
+     
       <Page>
-        {/* <PoolControls>
+      <Heading>Stake BSWAP to earn more BSWAP!</Heading>
+         <PoolControls>
         <PoolTabButtons
           stakedOnly={stakedOnly}
           setStakedOnly={setStakedOnly}
@@ -276,7 +279,7 @@ const Pools: React.FC = () => {
           viewMode={viewMode}
           setViewMode={setViewMode}
         />
-        <FilterContainer>
+        {/* <FilterContainer>
           <LabelWrapper>
             <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
               {t('Sort by')}
@@ -315,8 +318,8 @@ const Pools: React.FC = () => {
             </Text>
             <SearchInput initialValue={searchQuery} onChange={handleChangeSearchQuery} placeholder="Search Pools" />
           </LabelWrapper>
-        </FilterContainer>
-      </PoolControls> */}
+        </FilterContainer> */}
+      </PoolControls> 
         {showFinishedPools && (
           <FinishedTextContainer>
             <Text fontSize={['16px', null, '20px']} color="failure" pr="4px">

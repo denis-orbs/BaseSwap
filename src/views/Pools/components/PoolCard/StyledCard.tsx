@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Card } from '@pancakeswap/uikit'
 
 export const StyledCard = styled(Card)<{ isFinished?: boolean }>`
-  min-width: 325px;
+  min-width: 425px;
   border: 4px solid ${({ theme }) => theme.colors.text};
   max-width: 100%;
   margin: 0 0 24px 0;

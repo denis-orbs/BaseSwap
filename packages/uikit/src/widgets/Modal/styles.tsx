@@ -10,13 +10,12 @@ export const mobileFooterHeight = 73;
 
 export const ModalHeader = styled.div<{ background?: string }>`
   align-items: center;
-  background: transparent;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  background: ${({ theme }) => theme.colors.gradients.basedsex};
+  border-bottom: 4px solid ${({ theme }) => theme.colors.cardBorder};
   display: flex;
   padding: 4px; 
 
-  ${({ theme }) => theme.mediaQueries.md} {
-    background: ${({ background }) => background || "transparent"};
+  
   }
 `;
 
@@ -55,8 +54,8 @@ export const ModalBackButton: React.FC<{ onBack: ModalProps["onBack"] }> = ({ on
 export const ModalContainer = styled(MotionBox)<{ minWidth: string }>`
   overflow: hidden;
   background: ${({ theme }) => theme.modal.background};
-  box-shadow: 0px 20px 36px -8px rgba(14, 14, 44, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.05);
-  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  box-shadow: 0px 20px 36px -8px rgba(14, 14, 44, 0.5), 0px 1px 1px rgba(0, 0, 0, 0.05);
+  border: 6px solid ${({ theme }) => theme.colors.cardBorder};
   border-radius: 32px 32px 0px 0px;
   width: 100%;
   max-height: calc(var(--vh, 1vh) * 100);

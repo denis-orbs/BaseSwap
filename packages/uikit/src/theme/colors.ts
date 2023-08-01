@@ -75,7 +75,7 @@ export const darkColors: Colors = {
   textSubtle: "#fff",
   disabled: "#333",
   gradients: {
-    basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD, #ccc 100%)",
+    basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD, 90%, #ccc 100%)",
     basedsexdark: "linear-gradient(to bottom, #0154FD, #fff )",
     basedsexgray: "linear-gradient(to bottom, #111, #333)", 
     basedsexgrayflip: "linear-gradient(to top, #111, #333)", 
