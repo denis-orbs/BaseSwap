@@ -78,6 +78,9 @@ export default function RemoveLiquidity() {
     [currencyA, currencyB, chainId],
   )
 
+  console.log(currencyIdA)
+  console.log(tokenA)
+
   const { t } = useTranslation()
   const gasPrice = useGasPrice()
 
@@ -159,7 +162,7 @@ export default function RemoveLiquidity() {
       { name: 'verifyingContract', type: 'address' },
     ]
     const domain = {
-      name: 'Pancake LPs',
+      name: 'BaseSwap LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,

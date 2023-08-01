@@ -1,12 +1,13 @@
 import { ChainId, JSBI, Percent, Token } from '@magikswap/sdk'
 import { BigNumber } from '@ethersproject/bignumber'
-import { bscTokens, bscTestnetTokens, baseGoerliTokens } from './tokens'
+import { DEFAULT_CHAIN_ID } from 'utils/providers'
+import { bscTokens, bscTestnetTokens, baseGoerliTokens, TOKENS_CHAIN_MAP } from './tokens'
 import { ChainTokenList } from './types'
 
 export const ROUTER_ADDRESS = {
   [ChainId.MAINNET]: '0x16327e3fbdaca3bcf7e38f5af2599d2ddc33ae52',
   [ChainId.BSC_TESTNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
-  [ChainId.BASE_GOERLI]: '0x2c797784Ff1c3Da0F9FF80CcbF64dc147e4BBf55',
+  [ChainId.BASE_GOERLI]: '0x865654Ebe6030686bDe44708597bbb3F289ea7f1',
 }
 
 // used to construct intermediary pairs for trading
@@ -92,9 +93,9 @@ export const BASE_FEE = new Percent(JSBI.BigInt(25), BIPS_BASE)
 export const INPUT_FRACTION_AFTER_FEE = ONE_HUNDRED_PERCENT.subtract(BASE_FEE)
 
 // BNB
-export const DEFAULT_INPUT_CURRENCY = 'BNB'
+export const DEFAULT_INPUT_CURRENCY = 'ETH'
 // CAKE
-export const DEFAULT_OUTPUT_CURRENCY = baseGoerliTokens.cake.address
+export const DEFAULT_OUTPUT_CURRENCY = TOKENS_CHAIN_MAP[DEFAULT_CHAIN_ID].cake
 
 // Handler string is passed to Gelato to use PCS router
 export const GELATO_HANDLER = 'pancakeswap'

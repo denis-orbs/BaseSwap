@@ -10,29 +10,17 @@ const serializedTokens = serializeTokens(TOKENS_CHAIN_MAP[DEFAULT_CHAIN_ID])
 export const CAKE_BNB_LP_MAINNET = '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0'
 
 const farms: SerializedFarmConfig[] = [
-  /**
-   * These 3 farms (PID 0, 2, 3) should always be at the top of the file.
-   */
   // {
   //   pid: 0,
-  //   lpSymbol: 'BSWAP',
+  //   lpSymbol: 'ETH-BSWAP LP',
   //   lpAddresses: {
-  //     [ChainId.BASE_GOERLI]: serializedTokens.cake, // User calls enterStaking on chef to get minted syrup tokens
+  //     56: CAKE_BNB_LP_MAINNET,
+  //     [ChainId.BASE_GOERLI]: '0xf8220668eed36560EC5948b4226B92e89468a7bB',
+  //     [ChainId.BASE]: '',
   //   },
-  //   token: serializedTokens.syrup,
+  //   token: serializedTokens.cake,
   //   quoteToken: serializedTokens.wbnb,
   // },
-  {
-    pid: 0,
-    lpSymbol: 'ETH-BSWAP LP',
-    lpAddresses: {
-      56: CAKE_BNB_LP_MAINNET,
-      [ChainId.BASE_GOERLI]: '0xf8220668eed36560EC5948b4226B92e89468a7bB',
-      [ChainId.BASE]: '',
-    },
-    token: serializedTokens.cake,
-    quoteToken: serializedTokens.wbnb,
-  },
   // {
   //   pid: 3,
   //   v1pid: 252,

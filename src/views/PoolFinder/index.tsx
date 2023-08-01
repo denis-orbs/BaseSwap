@@ -40,8 +40,6 @@ export default function PoolFinder() {
   const [currency0, setCurrency0] = useState<Currency | null>(ETHER)
   const [currency1, setCurrency1] = useState<Currency | null>(null)
 
-  console.log(ETHER)
-
   const [pairState, pair] = usePair(currency0 ?? undefined, currency1 ?? undefined)
   const addPair = usePairAdder()
 
@@ -50,9 +48,6 @@ export default function PoolFinder() {
       addPair(pair)
     }
   }, [pair, addPair])
-
-  console.log(pair)
-  console.log(pairState)
 
   const validPairNoLiquidity: boolean =
     pairState === PairState.NOT_EXISTS ||

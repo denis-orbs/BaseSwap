@@ -2376,10 +2376,28 @@ export const bscTokens = {
 
 const CAKE_BASE_GOERLI = new Token(
   ChainId.BASE_GOERLI,
-  '0xa26655BaB784C9BD9DAadAAFF2a05a93484bF9C7',
+  '0xe32301c82dc9ADC350eaC08eED03cE1c6FEDeB92',
   18,
   'BSWAP',
   'BaseSwap Token',
+  'baseswap.fi',
+)
+
+const AXLUSDC_BASE_GOERLI = new Token(
+  ChainId.BASE_GOERLI,
+  '0xEd2D3fA2102980EeBdF2B12E58c1a96c9889315F',
+  18,
+  'axlUSDC',
+  'AXL USDC',
+  'baseswap.fi',
+)
+
+const ORGE_BASE_GOERLI = new Token(
+  ChainId.BASE_GOERLI,
+  '0xFe6028c5142fE9854A846DF7451e8600a15CA710',
+  18,
+  'ORGE',
+  'ORGE',
   'baseswap.fi',
 )
 
@@ -2412,6 +2430,8 @@ export const baseGoerliTokens = {
   wbnb: WBNB[ChainId.BASE_GOERLI],
   cake: CAKE[ChainId.BASE_GOERLI],
   bbt: BIGBOOBS_BASE_GOERLI,
+  axlUsdc: AXLUSDC_BASE_GOERLI,
+  ogre: ORGE_BASE_GOERLI,
 }
 
 export const baseTokens = {
