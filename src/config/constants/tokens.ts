@@ -2425,7 +2425,7 @@ const CAKE_BASE = new Token(
 const AXLUSDC_BASE = new Token(
   ChainId.BASE,
   '0xEB466342C4d449BC9f53A865D5Cb90586f405215',
-  18,
+  6,
   'axlUSDC',
   'Axelar USDC',
   'baseswap.fi',
