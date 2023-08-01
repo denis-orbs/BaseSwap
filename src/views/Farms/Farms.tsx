@@ -282,9 +282,9 @@ const Farms: React.FC = ({ children }) => {
           <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
               CHOOSE YOUR &nbsp; 
               <span style={{ textDecoration: 'line-through' }}>
-               FIGHTER
+              FIGHTER
               </span>
-              &nbsp; VIEW MODE:</Text>
+              &nbsp;VIEW MODE:</Text>
             <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
             {/* <ToggleWrapper>
               <Toggle

@@ -67,7 +67,7 @@ export const styleVariants = {
     backgroundColor: "background",
     border: "2px solid",
     borderColor: "text",
-    boxShadow: "none",
+
     color: "text",
     ":disabled": {
       backgroundColor: "transparent",

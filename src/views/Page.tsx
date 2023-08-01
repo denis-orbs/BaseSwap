@@ -7,6 +7,10 @@ import { EXCHANGE_DOCS_URLS } from 'config/constants'
 const StyledPage = styled.div<{ $removePadding: boolean; $noMinHeight }>`
   display: flex;
   flex-direction: column;
+  background-image: url('/images/decorations/tokenarray.png');
+  background-size: 25vh; 
+  background-position: 0% 0%; 
+  background-repeat: no-repeat; 
   align-items: center;
   width: 100%;
   padding: ${({ $removePadding }) => ($removePadding ? '0' : '16px')};

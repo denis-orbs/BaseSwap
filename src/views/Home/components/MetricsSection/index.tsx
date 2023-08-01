@@ -42,11 +42,11 @@ const Stats = () => {
       </Heading>
      
       <Text textAlign="center" color="textSubtle">
-       {t('Decentralized finance is about leveraging the individual and collective capacity of all of us, without interference.')}
+       {t('Decentralized finance leverages the individual and collective capacity of all of us, without interference.')}
       </Text>
       <Flex flexWrap="wrap">
         <Text display="inline" textAlign="center" color="textSubtle" mb="20px">
-          Coinbase's new BASE is the perfect place and time to do just that. 
+          Join us on BASE chain now. 
           {/* <>{tvl ? <>{tvlString}</> : <Skeleton display="inline-block" height={16} width={70} mt="2px" />}</>
           {inFunds} */}
         </Text>

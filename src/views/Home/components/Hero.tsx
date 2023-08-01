@@ -1,4 +1,4 @@
-import { Button, Flex, Heading } from '@pancakeswap/uikit'
+import { Button, Flex, Heading, Text } from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { NextLinkFromReactRouter } from 'components/NextLink'
@@ -9,6 +9,7 @@ import styled, { keyframes } from 'styled-components'
 import bunnyImage from '../../../../public/images/home/lunar-bunny/bunny@2x.png'
 import CompositeImage, { CompositeImageProps } from './CompositeImage'
 import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
+
 import baseswap from '../../../../public/images/baselogolarge.png'
 
 const flyingAnim = () => keyframes`
@@ -102,23 +103,43 @@ const Hero = () => {
       </BgWrapper> */}
       <Flex
         position="relative"
-        flexDirection={['column-reverse', null, null, 'row']}
-        alignItems={['flex-end', null, null, 'flex-start']}
+        flexDirection={['column', null, null, 'row']}
+        alignItems={['flex-end', null, null, 'center']}
         justifyContent="center"
-        mt={[account ? '200px' : '25px', null, 0]}
+        mt={[account ? '5px' : '5px', null, '0rem']}
         id="homepage-hero"
+        
       >
-        <Flex flex="1" flexDirection="column">
-          <Heading scale="xxl" color="contrast" mb="24px">
+        <Flex 
+        marginTop={[ '-3rem', null, null, '0rem' ]} 
+        flex="1" flexDirection="column" 
+        paddingX={['0px', null, null, '3rem']} 
+        marginX={[ '-1rem', null, null, '2rem' ]} 
+        >
+          <Text fontWeight="900" color="contrast" mb="12px" fontSize={[ '48px', null, null, '100px']}>
             {t('BaseSwap')}
-          </Heading>
+          </Text>
           <Heading scale="md" mb="24px">
             {t('Harder. Better. Faster. Stronger.')}
           </Heading>
-          <Flex>
-            {!account && <ConnectWalletButton mr="8px" />}
+          <Flex 
+          flexDirection={[ 'column', null, null, 'row' ]}
+          marginLeft={['0rem', null, null, '1rem']} 
+          marginTop={['0.5rem', null, null, '2rem' ]} 
+          alignItems="flex-end" 
+          justifyContent={['center', null, null, 'flex-start' ]}>
+            {!account && 
+            <ConnectWalletButton  
+              variant="primary" height="100%"
+                width={[ '75vw', null, null, '25vw' ]}
+                mr={[ null, null, null, '8px' ]} />}
             <NextLinkFromReactRouter to="/swap">
-              <Button variant={!account ? 'secondary' : 'primarytwo'}>{t('Trade Now')}</Button>
+              <Button 
+               mt={[ '1rem', null, null, null ]}
+               width={[ '75vw', null, null, '25vw' ]}
+              variant={!account ? 'secondary' : 'primarytwo'}>
+                {t('Trade Now')}
+                </Button>
             </NextLinkFromReactRouter>
           </Flex>
         </Flex>
