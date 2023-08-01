@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { ButtonMenu, ButtonMenuItem, LinkExternal, Flex, Svg, Image, Button } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { EXCHANGE_DOCS_URLS } from 'config/constants'
+import { TwitterIcon, TelegramIcon, DiscordIcon } from '@pancakeswap/uikit'
 
 const Wrapper = memo(styled.div<{ $isSide: boolean }>`
   width: 100%;
@@ -71,27 +72,35 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
         width={['100%', '100%', '100%', isSide ? '100%' : 'auto']}
         justifyContent={['center', 'center', 'center', 'flex-end']}
       >
+          <ButtonMenuItem
+          as="a"
+          href="https://twitter.com/BaseSwap_Fi"
+          variant="secondary"
+          style={{ color: '#0154FD', borderWidth: '4px', borderColor:'#0154FD', marginRight: '1rem' }}
+        >
+         <TwitterIcon color="#0154FD" /> Twitter
+        </ButtonMenuItem>
         <ButtonMenuItem
           as="a"
           href="https://discord.gg/2zUzjyGxw2"
           variant="secondary"
-          style={{ color: '#000', marginRight: '1rem' }}
+          style={{ color: '#0154FD', borderWidth: '4px', borderColor:'#0154FD', marginRight: '1rem' }}
         >
-          Discord
+         <DiscordIcon color="#0154FD" /> Discord
         </ButtonMenuItem>
         <ButtonMenuItem
           as="a"
           href="https://t.me/BaseswapFi"
           variant="secondary"
-          style={{ color: '#000', marginRight: '1rem' }}
+          style={{ color: '#0154FD', borderWidth: '4px', borderColor:'#0154FD', marginRight: '1rem' }}
         >
-          Telegram
+         <TelegramIcon color="#0154FD" />  Telegram
         </ButtonMenuItem>
         <ButtonMenuItem
           as="a"
           href="https://base-swap-1.gitbook.io/baseswap/"
           variant="secondary"
-          style={{ color: '#000' }}
+          style={{ color: '#0154FD', borderWidth: '4px', borderColor:'#0154FD', }}
         >
           Docs
         </ButtonMenuItem>
