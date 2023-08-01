@@ -19,7 +19,8 @@ export interface ITableProps {
 }
 
 const Container = styled.div`
-  width: 100%;
+
+  width: 90%;
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
   margin: 16px 0px;

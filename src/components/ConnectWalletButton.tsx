@@ -21,8 +21,8 @@ const ConnectWalletButton = ({ children, ...props }: ButtonProps) => {
   }
 
   return (
-    <Button variant="primarytwo" onClick={handleClick} {...props}>
-      {children || <Trans>Connect Wallet</Trans>}
+    <Button variant="primarythree" scale="xs" padding="4px" height="65%" onClick={handleClick} {...props}>
+      {children || <Trans >Connect Wallet</Trans>}
     </Button>
   )
 }

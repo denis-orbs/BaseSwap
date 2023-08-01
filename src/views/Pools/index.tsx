@@ -12,7 +12,7 @@ import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { usePoolsPageFetch, usePoolsWithVault } from 'state/pools/hooks'
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/Layout/Flex'
-import Page from 'components/Layout/Page'
+
 import PageHeader from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
@@ -29,7 +29,7 @@ import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { getCakeVaultEarnings } from './helpers'
-
+import Page from 'views/Page'
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
 `
@@ -266,7 +266,7 @@ const Pools: React.FC = () => {
 
   return (
     <>
-      <PageTitle title="Staking Pools" />
+      <PageTitle title="Earn" />
       <Page>
         {/* <PoolControls>
         <PoolTabButtons
@@ -333,7 +333,7 @@ const Pools: React.FC = () => {
           </Flex>
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
-        <div ref={observerRef} />
+        {/* <div ref={observerRef} />
         <Image
           mx="auto"
           mt="12px"
@@ -341,7 +341,7 @@ const Pools: React.FC = () => {
           alt="Pancake illustration"
           width={192}
           height={184.5}
-        />
+        /> */}
       </Page>
     </>
   )

@@ -6,7 +6,7 @@ import { ChainId } from '@magikswap/sdk'
 import { NextLinkFromReactRouter } from 'components/NextLink'
 import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
-import Page from 'components/Layout/Page'
+
 import { useFarms, usePollFarmsWithUserData, usePriceCakeBusd } from 'state/farms/hooks'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { DeserializedFarm } from 'state/types'
@@ -26,10 +26,10 @@ import Table from './components/FarmTable/FarmTable'
 import FarmTabButtons from './components/FarmTabButtons'
 import { FarmWithStakedValue } from './components/types'
 import PageTitle from 'components/PageTitle/PageTitle'
-
+import Page from 'views/Page'
 const ControlContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 80%;
   align-items: center;
   position: relative;
 
@@ -280,7 +280,7 @@ const Farms: React.FC = ({ children }) => {
         <ControlContainer>
           <ViewControls>
             <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
-            <ToggleWrapper>
+            {/* <ToggleWrapper>
               <Toggle
                 id="staked-only-farms"
                 checked={stakedOnly}
@@ -288,8 +288,8 @@ const Farms: React.FC = ({ children }) => {
                 scale="sm"
               />
               <Text> {t('Staked only')}</Text>
-            </ToggleWrapper>
-            <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
+            </ToggleWrapper> */}
+            {/* <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} /> */}
           </ViewControls>
           <FilterContainer>
             <LabelWrapper>
@@ -336,20 +336,20 @@ const Farms: React.FC = ({ children }) => {
               {t("Don't see the farm you are staking?")}
             </Text>
             <Flex>
-              <FinishedTextLink href="/migration" fontSize={['16px', null, '20px']} color="failure">
+              {/* <FinishedTextLink href="/migration" fontSize={['16px', null, '20px']} color="failure">
                 {t('Go to migration page')}
-              </FinishedTextLink>
-              <Text fontSize={['16px', null, '20px']} color="failure" padding="0px 4px">
+              </FinishedTextLink> */}
+              {/* <Text fontSize={['16px', null, '20px']} color="failure" padding="0px 4px">
                 or
-              </Text>
-              <FinishedTextLink
+              </Text> */}
+              {/* <FinishedTextLink
                 external
                 color="failure"
                 fontSize={['16px', null, '20px']}
                 href="https://v1-farms.pancakeswap.finance/farms/history"
               >
-                {t('check out v1 farms')}.
-              </FinishedTextLink>
+                {t('Check out finished farms')}.
+              </FinishedTextLink> */}
             </Flex>
           </FinishedTextContainer>
         )}
