@@ -19,16 +19,26 @@ const farms: SerializedFarmConfig[] = [
   //   token: serializedTokens.bbt,
   //   quoteToken: serializedTokens.wbnb,
   // },
-  // {
-  //   pid: 1,
-  //   lpSymbol: 'ETH-BSWAP LP',
-  //   lpAddresses: {
-  //     [ChainId.BASE_GOERLI]: '0x26484B48418581993e538607e305b363c98125CA',
-  //     [ChainId.BASE]: '0xE80B4F755417FB4baF4dbd23C029db3F62786523',
-  //   },
-  //   token: serializedTokens.cake,
-  //   quoteToken: serializedTokens.wbnb,
-  // },
+  {
+    pid: 1,
+    lpSymbol: 'ETH-BSWAP LP',
+    lpAddresses: {
+      [ChainId.BASE_GOERLI]: '0x26484B48418581993e538607e305b363c98125CA',
+      [ChainId.BASE]: '0xE80B4F755417FB4baF4dbd23C029db3F62786523',
+    },
+    token: serializedTokens.cake,
+    quoteToken: serializedTokens.wbnb,
+  },
+  {
+    pid: 2,
+    lpSymbol: 'OGRE-ETH LP',
+    lpAddresses: {
+      [ChainId.BASE_GOERLI]: '0x26484B48418581993e538607e305b363c98125CA',
+      [ChainId.BASE]: '0xE80B4F755417FB4baF4dbd23C029db3F62786523',
+    },
+    token: serializedTokens.ogre,
+    quoteToken: serializedTokens.wbnb,
+  },
   // {
   //   pid: 1,
   //   lpSymbol: 'ETH-axlUSDC LP',
