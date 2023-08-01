@@ -9,7 +9,7 @@ import styled, { keyframes } from 'styled-components'
 import bunnyImage from '../../../../public/images/home/lunar-bunny/bunny@2x.png'
 import CompositeImage, { CompositeImageProps } from './CompositeImage'
 import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
-
+import banner from '../../../../public/images/banner.png'
 import baseswap from '../../../../public/images/baselogolarge.png'
 
 const flyingAnim = () => keyframes`
@@ -151,7 +151,7 @@ const Hero = () => {
           position="relative"
         >
           <BunnyWrapper>
-            <Image src={baseswap} priority placeholder="blur" alt={t('BaseSwap Logo')} />
+            <Image src={banner} priority  alt={t('BaseSwap Logo')} />
           </BunnyWrapper>
           {/* <StarsWrapper>
             <CompositeImage {...starsImage} />
