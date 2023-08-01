@@ -16,15 +16,12 @@ import {
   Box,
   Flex,
   useModal,
-  Checkbox,
   TooltipText,
   useTooltip,
 } from '@pancakeswap/uikit'
 import { BigNumber } from '@ethersproject/bignumber'
 import { callWithEstimateGas } from 'utils/calls'
 import { getLPSymbol } from 'utils/getLpSymbol'
-import { getZapAddress } from 'utils/addressHelpers'
-import { ZapCheckbox } from 'components/CurrencyInputPanel/ZapCheckbox'
 import { useTranslation } from '@pancakeswap/localization'
 import { useLPApr } from 'state/swap/hooks'
 import { ROUTER_ADDRESS } from 'config/constants/exchange'
@@ -55,7 +52,7 @@ import Dots from '../../components/Loader/Dots'
 import { useBurnActionHandlers, useDerivedBurnInfo, useBurnState } from '../../state/burn/hooks'
 
 import { Field } from '../../state/burn/actions'
-import { useGasPrice, useUserSlippageTolerance, useZapModeManager } from '../../state/user/hooks'
+import { useGasPrice, useUserSlippageTolerance } from '../../state/user/hooks'
 import Page from '../Page'
 import ConfirmLiquidityModal from '../Swap/components/ConfirmRemoveLiquidityModal'
 import { logError } from '../../utils/sentry'
@@ -70,7 +67,9 @@ const BorderCard = styled.div`
 export default function RemoveLiquidity() {
   const router = useRouter()
   const [currencyIdA, currencyIdB] = router.query.currency || []
+
   const [currencyA, currencyB] = [useCurrency(currencyIdA) ?? undefined, useCurrency(currencyIdB) ?? undefined]
+
   const { account, chainId, library } = useActiveWeb3React()
   const { toastError } = useToast()
 
@@ -86,7 +85,7 @@ export default function RemoveLiquidity() {
   const { independentField, typedValue } = useBurnState()
   const [removalCheckedA, setRemovalCheckedA] = useState(true)
   const [removalCheckedB, setRemovalCheckedB] = useState(true)
-  const { pair, parsedAmounts, error, tokenToReceive, estimateZapOutAmount } = useDerivedBurnInfo(
+  const { pair, parsedAmounts, error } = useDerivedBurnInfo(
     currencyA ?? undefined,
     currencyB ?? undefined,
     removalCheckedA,
@@ -221,88 +220,17 @@ export default function RemoveLiquidity() {
   const onCurrencyAInput = useCallback((value: string): void => onUserInput(Field.CURRENCY_A, value), [onUserInput])
   const onCurrencyBInput = useCallback((value: string): void => onUserInput(Field.CURRENCY_B, value), [onUserInput])
 
-  const zapContract = useZapContract(true)
-
   // tx sending
   const addTransaction = useTransactionAdder()
 
-  async function onZapOut() {
-    if (!chainId || !library || !account || !estimateZapOutAmount) throw new Error('missing dependencies')
-    if (!zapContract) throw new Error('missing zap contract')
-    if (!tokenToReceive) throw new Error('missing tokenToReceive')
-
-    if (!currencyA || !currencyB) {
-      toastError(t('Error'), t('Missing tokens'))
-      throw new Error('missing tokens')
-    }
-    const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
-    if (!liquidityAmount) {
-      toastError(t('Error'), t('Missing liquidity amount'))
-      throw new Error('missing liquidity amount')
-    }
-
-    if (!tokenA || !tokenB) {
-      toastError(t('Error'), t('Could not wrap'))
-      throw new Error('could not wrap')
-    }
-
-    const totalTokenAmountOut =
-      removalCheckedA && !removalCheckedB ? parsedAmounts[Field.CURRENCY_A] : parsedAmounts[Field.CURRENCY_B]
-
-    let methodName
-    let args
-    if (oneCurrencyIsBNB && tokenToReceive.toLowerCase() === WNATIVE[chainId].address.toLowerCase()) {
-      methodName = 'zapOutBNB'
-      args = [
-        pair.liquidityToken.address,
-        parsedAmounts[Field.LIQUIDITY].raw.toString(),
-        calculateSlippageAmount(estimateZapOutAmount, allowedSlippage)[0].toString(),
-        calculateSlippageAmount(totalTokenAmountOut, allowedSlippage)[0].toString(),
-      ]
-    } else {
-      methodName = 'zapOutToken'
-      args = [
-        pair.liquidityToken.address,
-        tokenToReceive,
-        parsedAmounts[Field.LIQUIDITY].raw.toString(),
-        calculateSlippageAmount(estimateZapOutAmount, allowedSlippage)[0].toString(),
-        calculateSlippageAmount(totalTokenAmountOut, allowedSlippage)[0].toString(),
-      ]
-    }
-    setLiquidityState({ attemptingTxn: true, liquidityErrorMessage: undefined, txHash: undefined })
-    callWithEstimateGas(zapContract, methodName, args, {
-      gasPrice,
-    })
-      .then((response) => {
-        setLiquidityState({ attemptingTxn: false, liquidityErrorMessage: undefined, txHash: response.hash })
-        addTransaction(response, {
-          summary: `Remove ${parsedAmounts[Field.LIQUIDITY].toSignificant(3)} ${getLPSymbol(
-            pair.token0.symbol,
-            pair.token1.symbol,
-          )}`,
-          type: 'remove-liquidity',
-        })
-      })
-      .catch((err) => {
-        if (err && err.code !== 4001) {
-          console.error(`Remove Liquidity failed`, err, args)
-        }
-        setLiquidityState({
-          attemptingTxn: false,
-          liquidityErrorMessage: err && err?.code !== 4001 ? `Remove Liquidity failed: ${err.message}` : undefined,
-          txHash: undefined,
-        })
-      })
-  }
-
   async function onRemove() {
     if (!chainId || !library || !account || !deadline) throw new Error('missing dependencies')
+
     const { [Field.CURRENCY_A]: currencyAmountA, [Field.CURRENCY_B]: currencyAmountB } = parsedAmounts
     if (!currencyAmountA || !currencyAmountB) {
       toastError(t('Error'), t('Missing currency amounts'))
       throw new Error('missing currency amounts')
     }
-    const routerContract = getRouterContract(chainId, library, account)
 
     const amountsMin = {
       [Field.CURRENCY_A]: calculateSlippageAmount(currencyAmountA, allowedSlippage)[0],
@@ -397,6 +325,8 @@ export default function RemoveLiquidity() {
       throw new Error('Attempting to confirm without approval or a signature')
     }
 
+    const routerContract = getRouterContract(chainId, library, account)
+
     const safeGasEstimates: (BigNumber | undefined)[] = await Promise.all(
       methodNames.map((methodName) =>
         routerContract.estimateGas[methodName](...args)
@@ -471,6 +401,10 @@ export default function RemoveLiquidity() {
         (currencyB && currencyEquals(WNATIVE[chainId], currencyB))),
   )
 
+  // console.log(currencyA)
+  // console.log(currencyB)
+  // console.log(oneCurrencyIsBNB)
+
   const handleSelectCurrencyA = useCallback(
     (currency: Currency) => {
       if (currencyIdB && currencyId(currency) === currencyIdB) {
@@ -481,6 +415,7 @@ export default function RemoveLiquidity() {
     },
     [currencyIdA, currencyIdB, router],
   )
+
   const handleSelectCurrencyB = useCallback(
     (currency: Currency) => {
       if (currencyIdA && currencyId(currency) === currencyIdA) {

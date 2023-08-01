@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { ChainId, CurrencyAmount, Token, Trade } from '@magikswap/sdk'
+import { CurrencyAmount, Token, Trade } from '@magikswap/sdk'
 import { computeTradePriceBreakdown, warningSeverity } from 'utils/exchange'
 import {
   Button,
@@ -93,8 +93,6 @@ const SwitchIconButton = styled(IconButton)`
     }
   }
 `
-
-const CHART_SUPPORT_CHAIN_IDS = [ChainId.MAINNET]
 
 export default function Swap() {
   const router = useRouter()
@@ -463,7 +461,7 @@ export default function Swap() {
                           <SwitchIconButton
                             variant="light"
                             size="40px"
-                            style={{ border: '3px solid white'}}
+                            style={{ border: '3px solid white' }}
                             onClick={() => {
                               setApprovalSubmitted(false) // reset 2 step UI for approvals
                               onSwitchTokens()

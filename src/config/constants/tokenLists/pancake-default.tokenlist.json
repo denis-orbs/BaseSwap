@@ -33,6 +33,30 @@
       "chainId": 84531,
       "decimals": 18,
       "logoURI": ""
+    },
+    {
+      "name": "Ogre",
+      "symbol": "OGRE",
+      "address": "0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "axlUSDC",
+      "symbol": "axlUSDC",
+      "address": "0xEB466342C4d449BC9f53A865D5Cb90586f405215",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "Wrapped Ether",
+      "symbol": "WETH",
+      "address": "0x4200000000000000000000000000000000000006",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": "https://pancakeswap.finance/images/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8.png"
     }
   ]
 }
