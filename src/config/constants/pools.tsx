@@ -3,7 +3,7 @@ import Trans from 'components/Trans'
 import { VaultKey } from 'state/types'
 import { serializeTokens } from 'utils/serializeTokens'
 import { DEFAULT_CHAIN_ID } from 'utils/providers'
-import { TOKENS_CHAIN_MAP, bscTokens } from './tokens'
+import { TOKENS_CHAIN_MAP } from './tokens'
 import { SerializedPoolConfig, PoolCategory } from './types'
 import { ChainId } from '../../../packages/swap-sdk/src/constants'
 
@@ -23,7 +23,7 @@ export const vaultPoolConfig = {
     autoCompoundFrequency: 5000,
     gasLimit: 380000,
     tokenImage: {
-      primarySrc: `/images/tokens/${bscTokens.cake.address}.svg`,
+      primarySrc: `/images/tokens/${serializedTokens.cake.address}.svg`,
       secondarySrc: '/images/tokens/autorenew.svg',
     },
   },
@@ -33,7 +33,7 @@ export const vaultPoolConfig = {
     autoCompoundFrequency: 5000,
     gasLimit: 500000,
     tokenImage: {
-      primarySrc: `/images/tokens/${bscTokens.cake.address}.svg`,
+      primarySrc: `/images/tokens/${serializedTokens.cake.address}.svg`,
       secondarySrc: '/images/tokens/autorenew.svg',
     },
   },
@@ -43,7 +43,7 @@ export const vaultPoolConfig = {
     autoCompoundFrequency: 5000,
     gasLimit: 500000,
     tokenImage: {
-      primarySrc: `/images/tokens/${bscTokens.cake.address}.svg`,
+      primarySrc: `/images/tokens/${serializedTokens.cake.address}.svg`,
       secondarySrc: '/images/tokens/autorenew.svg',
     },
   },
@@ -53,7 +53,7 @@ export const vaultPoolConfig = {
     autoCompoundFrequency: 1,
     gasLimit: 500000,
     tokenImage: {
-      primarySrc: `/images/tokens/${bscTokens.cake.address}.svg`,
+      primarySrc: `/images/tokens/${serializedTokens.cake.address}.svg`,
       secondarySrc: `/images/tokens/ifo-pool-icon.svg`,
     },
   },

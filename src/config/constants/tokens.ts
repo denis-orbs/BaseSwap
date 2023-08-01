@@ -2412,7 +2412,31 @@ const BIGBOOBS_BASE_GOERLI = new Token(
 
 // END - BASE TESTNET TOKENS
 
-// const CAKE_BASE = new Token(ChainId.BASE, '', 18, 'BSWAP', 'BaseSwap Token', 'baseswap.fi')
+const CAKE_BASE = new Token(
+  ChainId.BASE,
+  '0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9',
+  18,
+  'BSWAP',
+  'BaseSwap Token',
+  'baseswap.fi',
+)
+const AXLUSDC_BASE = new Token(
+  ChainId.BASE_GOERLI,
+  '0xEB466342C4d449BC9f53A865D5Cb90586f405215',
+  18,
+  'axlUSDC',
+  'Axelar USDC',
+  'baseswap.fi',
+)
+
+const ORGE_BASE = new Token(
+  ChainId.BASE_GOERLI,
+  '0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492',
+  18,
+  'ORGE',
+  'ORGE',
+  'baseswap.fi',
+)
 
 export const USDC = {
   [ChainId.MAINNET]: USDC_BSC,
@@ -2423,7 +2447,7 @@ export const CAKE = {
   [ChainId.MAINNET]: CAKE_MAINNET,
   [ChainId.BSC_TESTNET]: CAKE_TESTNET,
   [ChainId.BASE_GOERLI]: CAKE_BASE_GOERLI,
-  // [ChainId.BASE]: CAKE_BASE,
+  [ChainId.BASE]: CAKE_BASE,
 }
 
 export const baseGoerliTokens = {
@@ -2437,6 +2461,8 @@ export const baseGoerliTokens = {
 export const baseTokens = {
   wbnb: WBNB[ChainId.BASE],
   cake: CAKE[ChainId.BASE],
+  axlUsdc: AXLUSDC_BASE,
+  ogre: ORGE_BASE,
 }
 
 export const bscTestnetTokens = {

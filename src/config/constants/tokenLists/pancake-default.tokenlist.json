@@ -1,6 +1,6 @@
 {
   "name": "BaseSwap Default List",
-  "timestamp": "2022-01-26T11:45:09Z",
+  "timestamp": "2023-08-01T11:45:09Z",
   "version": {
     "major": 4,
     "minor": 0,
@@ -10,6 +10,38 @@
   "logoURI": "https://pancakeswap.finance/logo.png",
   "keywords": ["baseswap", "default"],
   "tokens": [
+    {
+      "name": "BaseSwap Token",
+      "symbol": "BSWAP",
+      "address": "",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": "/images/tokens/baseswap_logo.png"
+    },
+    {
+      "name": "Ogre",
+      "symbol": "OGRE",
+      "address": "0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "axlUSDC",
+      "symbol": "axlUSDC",
+      "address": "0xEB466342C4d449BC9f53A865D5Cb90586f405215",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "Wrapped Ether",
+      "symbol": "WETH",
+      "address": "0x4200000000000000000000000000000000000006",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": "https://pancakeswap.finance/images/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8.png"
+    },
     {
       "name": "BaseSwap Token",
       "symbol": "BSWAP",
@@ -49,30 +81,6 @@
       "chainId": 84531,
       "decimals": 18,
       "logoURI": ""
-    },
-    {
-      "name": "Ogre",
-      "symbol": "OGRE",
-      "address": "0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492",
-      "chainId": 8453,
-      "decimals": 18,
-      "logoURI": ""
-    },
-    {
-      "name": "axlUSDC",
-      "symbol": "axlUSDC",
-      "address": "0xEB466342C4d449BC9f53A865D5Cb90586f405215",
-      "chainId": 8453,
-      "decimals": 18,
-      "logoURI": ""
-    },
-    {
-      "name": "Wrapped Ether",
-      "symbol": "WETH",
-      "address": "0x4200000000000000000000000000000000000006",
-      "chainId": 8453,
-      "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8.png"
     }
   ]
 }

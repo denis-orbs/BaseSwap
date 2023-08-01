@@ -164,8 +164,8 @@ export const baseChain: Chain = {
     default: { name: 'Base Block Explorer', url: 'https://base.blockscout.com/' },
   },
   multicall: {
-    address: '',
-    blockCreated: 2029787,
+    address: '0x82995F682dc38b17B99079Cf63DF8d263C6D5eE0',
+    blockCreated: 2063427,
   },
   // testnet: true,
 }
