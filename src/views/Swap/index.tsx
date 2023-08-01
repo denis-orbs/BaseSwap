@@ -471,11 +471,11 @@ export default function Swap() {
                           >
                             <ArrowDownIcon
                               className="icon-down"
-                              color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'primary' : 'text'}
+                              color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'text' : 'text'}
                             />
                             <ArrowUpDownIcon
                               className="icon-up-down"
-                              color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'primary' : 'text'}
+                              color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'text' : 'text'}
                             />
                           </SwitchIconButton>
                           {recipient === null && !showWrap && isExpertMode ? (

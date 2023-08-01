@@ -84,7 +84,7 @@ export const styleVariants = {
   },
   [variants.LIGHT]: {
     backgroundColor: "white",
-    color: "textSubtle",
+    color: "background",
     boxShadow: "none",
   },
 };
