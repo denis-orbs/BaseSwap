@@ -100,13 +100,16 @@ export default function Swap() {
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpointsContext()
   const [isChartExpanded, setIsChartExpanded] = useState(false)
-  const [userChartPreference, setUserChartPreference] = useExchangeChartManager(isMobile)
-  const [isChartDisplayed, setIsChartDisplayed] = useState(userChartPreference)
+  // const [userChartPreference, setUserChartPreference] = useExchangeChartManager(isMobile)
+  // const [isChartDisplayed, setIsChartDisplayed] = useState(userChartPreference)
   const { refreshBlockNumber, isLoading } = useRefreshBlockNumberID()
 
-  useEffect(() => {
-    setUserChartPreference(isChartDisplayed)
-  }, [isChartDisplayed, setUserChartPreference])
+  const isChartDisplayed = false
+  const setIsChartDisplayed = null
+
+  // useEffect(() => {
+  //   setUserChartPreference(isChartDisplayed)
+  // }, [isChartDisplayed, setUserChartPreference])
 
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [

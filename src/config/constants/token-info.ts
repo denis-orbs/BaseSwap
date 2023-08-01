@@ -163,8 +163,6 @@ export const TOKEN_INF0: TokenInfoMapping = {
   },
 }
 
-export const NO_ARBITRUM_TOKEN_ADDRESS = [TOKEN_INF0.DEUS.addresses[ChainId.ARBITRUM]]
-
 export const getTokenInfos = (chainId: ChainId): { tokenAddress: string; geckoId: string }[] => {
   const infos = Object.entries(TOKEN_INF0)
     .filter((info) => info[1].coinGeckoId && info[1].addresses[chainId])
