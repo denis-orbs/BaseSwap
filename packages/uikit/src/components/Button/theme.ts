@@ -83,7 +83,7 @@ export const styleVariants = {
     color: "backgroundAlt",
   },
   [variants.DANGER]: {
-    backgroundColor: "failure",
+    backgroundColor: "#000",
     color: "white",
   },
   [variants.SUCCESS]: {
