@@ -73,8 +73,16 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
       >
         <ButtonMenuItem
           as="a"
-          href="https://google.com"
-          variant="primarytwo"
+          href="https://discord.gg/2zUzjyGxw2"
+          variant="secondary"
+          style={{ color: '#000', marginRight: '1rem' }}
+        >
+          Discord
+        </ButtonMenuItem>
+        <ButtonMenuItem
+          as="a"
+          href="https://t.me/BaseswapFi"
+          variant="secondary"
           style={{ color: '#000', marginRight: '1rem' }}
         >
           Telegram
@@ -82,7 +90,7 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
         <ButtonMenuItem
           as="a"
           href="https://base-swap-1.gitbook.io/baseswap/"
-          variant="primarytwo"
+          variant="secondary"
           style={{ color: '#000' }}
         >
           Docs
