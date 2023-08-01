@@ -706,7 +706,7 @@ export default function RemoveLiquidity() {
                     onClick={isZap ? approveCallback : onAttemptToApprove}
                     disabled={approval !== ApprovalState.NOT_APPROVED || (!isZap && signatureData !== null)}
                     width="100%"
-                    mr="0.5rem"
+                    marginRight="0.5rem"
                   >
                     {approval === ApprovalState.PENDING ? (
                       <Dots>{t('Enabling')}</Dots>
