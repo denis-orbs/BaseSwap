@@ -1,6 +1,6 @@
+import { ParsedUrlQuery } from 'querystring'
 import { ChainId, Currency, CurrencyAmount, Pair, Trade } from '@magikswap/sdk'
 import { useWeb3React } from '@web3-react/core'
-import { ParsedUrlQuery } from 'querystring'
 import { useEffect, useMemo, useState } from 'react'
 import { SLOW_INTERVAL } from 'config/constants'
 import { DEFAULT_INPUT_CURRENCY, DEFAULT_OUTPUT_CURRENCY } from 'config/constants/exchange'

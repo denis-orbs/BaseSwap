@@ -1,13 +1,13 @@
-import { Heading, Flex, Text, Skeleton, ChartIcon, CommunityIcon, SwapIcon } from '@pancakeswap/uikit'
+import { Heading, Flex, Text, ChartIcon, CommunityIcon, SwapIcon } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import useTheme from 'hooks/useTheme'
 import { formatLocalisedCompactNumber } from 'utils/formatBalance'
 import useSWRImmutable from 'swr/immutable'
+import Image from 'next/image'
 import IconCard, { IconCardData } from '../IconCard'
 import StatCardContent from './StatCardContent'
-import GradientLogo from '../GradientLogoSvg'
-import Image from 'next/image'
-import logo from '../../../../../public/images/baselogolarge.png' 
+import logo from '../../../../../public/images/baselogolarge.png'
+
 const Stats = () => {
   const { t } = useTranslation()
   const { theme } = useTheme()
@@ -36,17 +36,19 @@ const Stats = () => {
 
   return (
     <Flex justifyContent="center" alignItems="center" flexDirection="column">
-      <Image src={logo} alt="logo" height="150px" width="150px"/>
+      <Image src={logo} alt="logo" height="150px" width="150px" />
       <Heading textAlign="center" scale="xl">
-        Damn, they don't make 'em like this anymore. 
+        Damn, they don&rsquo;t make&rsquo;em like this anymore.
       </Heading>
-     
+
       <Text textAlign="center" color="textSubtle">
-       {t('Decentralized finance leverages the individual and collective capacity of all of us, without interference.')}
+        {t(
+          'Decentralized finance leverages the individual and collective capacity of all of us, without interference.',
+        )}
       </Text>
       <Flex flexWrap="wrap">
         <Text display="inline" textAlign="center" color="textSubtle" mb="20px">
-          Join us on BASE chain now. 
+          Join us on BASE chain now.
           {/* <>{tvl ? <>{tvlString}</> : <Skeleton display="inline-block" height={16} width={70} mt="2px" />}</>
           {inFunds} */}
         </Text>
@@ -57,29 +59,34 @@ const Stats = () => {
       </Text> */}
 
       <Flex flexDirection={['column', null, null, 'row']}>
-        <IconCard 
-        style={{ backgroundColor: '#333' }}
-        {...UsersCardData} mr={[null, null, null, '16px']} mb={['16px', null, null, '0']}>
+        <IconCard
+          style={{ backgroundColor: '#333' }}
+          {...UsersCardData}
+          mr={[null, null, null, '16px']}
+          mb={['16px', null, null, '0']}
+        >
           <StatCardContent
-            headingText={'Safe and secure'}
+            headingText="Safe and secure"
             bodyText={t('Trusted and secure platform')}
             highlightColor={theme.colors.failure}
           />
         </IconCard>
-        <IconCard  style={{ backgroundColor: '#333'}}
-        {...TradesCardData} mr={[null, null, null, '16px']} mb={['16px', null, null, '0']}>
+        <IconCard
+          style={{ backgroundColor: '#333' }}
+          {...TradesCardData}
+          mr={[null, null, null, '16px']}
+          mb={['16px', null, null, '0']}
+        >
           <StatCardContent
             // headingText={t('%trades% trades', { trades })}
-            headingText={'Rapid swaps'}
+            headingText="Rapid swaps"
             bodyText={t('On the BASE blockchain')}
             highlightColor={theme.colors.primary}
           />
         </IconCard>
-        <IconCard 
-         style={{ backgroundColor: '#333'}}
-          {...StakedCardData}>
+        <IconCard style={{ backgroundColor: '#333' }} {...StakedCardData}>
           <StatCardContent
-            headingText={'Stake and farm'}
+            headingText="Stake and farm"
             bodyText={t('Grow your portfolio on BASE')}
             highlightColor={theme.colors.failure}
           />

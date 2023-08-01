@@ -1,9 +1,7 @@
 import { useEffect, useCallback, useState, useMemo, useRef, createContext } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, Toggle, Text, Button, ArrowForwardIcon, Flex, Link } from '@pancakeswap/uikit'
-import { ChainId } from '@magikswap/sdk'
-import { NextLinkFromReactRouter } from 'components/NextLink'
+import { Image, Text, Flex, Link } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
 
@@ -17,16 +15,15 @@ import { latinise } from 'utils/latinise'
 import { useUserFarmStakedOnly, useUserFarmsViewMode } from 'state/user/hooks'
 import { ViewMode } from 'state/user/actions'
 import { useRouter } from 'next/router'
-import PageHeader from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import Loading from 'components/Loading'
 import ToggleView from 'components/ToggleView/ToggleView'
-import Table from './components/FarmTable/FarmTable'
-import FarmTabButtons from './components/FarmTabButtons'
-import { FarmWithStakedValue } from './components/types'
 import PageTitle from 'components/PageTitle/PageTitle'
 import Page from 'views/Page'
+import Table from './components/FarmTable/FarmTable'
+import { FarmWithStakedValue } from './components/types'
+
 const ControlContainer = styled.div`
   display: flex;
   width: 80%;
@@ -279,12 +276,11 @@ const Farms: React.FC = ({ children }) => {
       <Page>
         <ControlContainer>
           <ViewControls>
-          <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-              CHOOSE YOUR &nbsp; 
-              <span style={{ textDecoration: 'line-through' }}>
-              FIGHTER
-              </span>
-              &nbsp;VIEW MODE:</Text>
+            <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+              CHOOSE YOUR &nbsp;
+              <span style={{ textDecoration: 'line-through' }}>FIGHTER</span>
+              &nbsp;VIEW MODE:
+            </Text>
             <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
             {/* <ToggleWrapper>
               <Toggle
