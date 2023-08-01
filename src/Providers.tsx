@@ -12,7 +12,7 @@ import { ThemeProvider as NextThemeProvider, useTheme as useNextTheme } from 'ne
 
 const StyledThemeProvider: React.FC<{ children: React.ReactNode }> = (props) => {
   const { resolvedTheme } = useNextTheme()
-  return <ThemeProvider theme={resolvedTheme === 'dark' ? dark : light} {...props} />
+  return <ThemeProvider theme={resolvedTheme === 'dark' ? dark : dark} {...props} />
 }
 
 const Providers: React.FC<{ store: Store }> = ({ children, store }) => {
