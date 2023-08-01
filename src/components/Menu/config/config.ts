@@ -20,20 +20,48 @@ const config: (
 ) => ConfigMenuItemsType[] = (t, isDark, languageCode, chainId) =>
   [
     {
-      label: t('Trade'),
-      icon: SwapIcon,
-      fillIcon: SwapFillIcon,
+      label: t('Swap'),
       href: '/swap',
       showItemsOnMobile: false,
-      items: [
-        {
-          label: t('Swap'),
-          href: '/swap',
-        },
-        {
-          label: t('Liquidity'),
-          href: '/liquidity',
-        },
+      fillIcon: SwapFillIcon, 
+      items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
+    }, 
+    {
+      label: t('Liquidity'),
+      href: '/liquidity',
+      showItemsOnMobile: false,
+      fillIcon: SwapFillIcon, 
+      items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
+    }, 
+    {
+      label: t('Farm'),
+      href: '/farms',
+      showItemsOnMobile: false,
+      fillIcon: SwapFillIcon, 
+      items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
+    }, 
+    {
+      label: t('Earn'),
+      href: '/pools',
+      showItemsOnMobile: false,
+      fillIcon: SwapFillIcon, 
+      items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
+    }, 
+    // {
+    //   label: t('Swap'),
+    //   icon: SwapIcon,
+    //   fillIcon: SwapFillIcon,
+    //   href: '/swap',
+    //   showItemsOnMobile: false,
+    //   items: [
+    //     {
+    //       label: t('Swap'),
+    //       href: '/swap',
+    //     },
+    //     {
+    //       label: t('Liquidity'),
+    //       href: '/liquidity',
+    //     },
         // {
         //   label: t('Perpetual'),
         //   href: `https://perp.pancakeswap.finance/${perpLangMap(languageCode)}/futures/BTCUSDT?theme=${perpTheme(
@@ -45,25 +73,25 @@ const config: (
         //   label: t('Transfer'),
         //   href: '/transfer',
         // },
-      ].filter((item) => filterItemBySupportChainId(item, chainId)),
-    },
-    {
-      label: t('Earn'),
-      href: '/farms',
-      icon: EarnIcon,
-      fillIcon: EarnFillIcon,
-      supportChainIds: [DEFAULT_CHAIN_ID],
-      items: [
-        {
-          label: t('Farms'),
-          href: '/farms',
-        },
-        {
-          label: t('Pools'),
-          href: '/pools',
-        },
-      ],
-    },
+  //     ].filter((item) => filterItemBySupportChainId(item, chainId)),
+  //   },
+  //   {
+  //     label: t('Earn'),
+  //     href: '/farms',
+  //     icon: EarnIcon,
+  //     fillIcon: EarnFillIcon,
+  //     supportChainIds: [DEFAULT_CHAIN_ID],
+  //     items: [
+  //       {
+  //         label: t('Farms'),
+  //         href: '/farms',
+  //       },
+  //       {
+  //         label: t('Pools'),
+  //         href: '/pools',
+  //       },
+  //     ],
+  //   },
   ].filter((item) => filterItemBySupportChainId(item, chainId))
 
 export default config
