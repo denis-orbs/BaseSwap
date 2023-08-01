@@ -27,7 +27,7 @@ const RenewDuration = ({ setCheckedState, checkedState }) => {
         <Message variant="warning" mb="16px">
           <MessageText maxWidth="320px">
             {t(
-              'Adding more CAKE will renew your lock, setting it to remaining duration. Due to shorter lock period, benefits decrease. To keep similar benefits, extend your lock.',
+              'Adding more BSWAP will renew your lock, setting it to remaining duration. Due to shorter lock period, benefits decrease. To keep similar benefits, extend your lock.',
             )}
           </MessageText>
         </Message>
@@ -116,7 +116,7 @@ const AddAmountModal: React.FC<AddAmountModalProps> = ({
     <RoiCalculatorModalProvider lockedAmount={lockedAmount}>
       <Modal
         style={{ maxWidth: '420px' }}
-        title={t('Add CAKE')}
+        title={t('Add BSWAP')}
         onDismiss={onDismiss}
         headerBackground={theme.colors.gradients.cardHeader}
       >

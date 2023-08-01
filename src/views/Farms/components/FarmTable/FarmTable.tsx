@@ -22,9 +22,9 @@ const Container = styled.div`
 
   width: 90%;
   background: ${({ theme }) => theme.card.background};
-  border-radius: 16px;
-  margin: 16px 0px;
-  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  border-radius: 8px;
+  margin: 8px 0px;
+  border: 3px solid ${({ theme }) => theme.colors.cardBorder};
 `
 
 const TableWrapper = styled.div`
@@ -176,7 +176,7 @@ const FarmTable: React.FC<ITableProps> = ({ farms, cakePrice, userDataReady }) =
         <ScrollButtonContainer>
           <Button variant="text" onClick={scrollToTop}>
             {t('To Top')}
-            <ChevronUpIcon color="primary" />
+            <ChevronUpIcon color="text" />
           </Button>
         </ScrollButtonContainer>
       </TableContainer>

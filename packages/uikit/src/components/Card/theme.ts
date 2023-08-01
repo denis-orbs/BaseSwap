@@ -18,7 +18,7 @@ export const light: CardTheme = {
 };
 
 export const dark: CardTheme = {
-  background: darkColors.backgroundAlt,
+  background: darkColors.input,
   boxShadow: shadows.level1,
   boxShadowActive: shadows.active,
   boxShadowSuccess: shadows.success,

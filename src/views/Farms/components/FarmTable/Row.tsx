@@ -41,7 +41,7 @@ const cells = {
 }
 
 const CellInner = styled.div`
-  padding: 24px 0px;
+  padding: 18px 0px;
   display: flex;
   width: 100%;
   align-items: center;
@@ -54,7 +54,7 @@ const CellInner = styled.div`
 
 const StyledTr = styled.tr`
   cursor: pointer;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.disabled};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.background};
 `
 
 const EarnedMobileCell = styled.td`
@@ -112,9 +112,9 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
               case 'type':
                 return (
                   <td key={key}>
-                    <CellInner style={{ width: '100px' }}>
+                    {/* <CellInner style={{ width: '100px' }}>
                       {props[key] === 'community' ? <FarmAuctionTag scale="sm" /> : <CoreTag scale="sm" />}
-                    </CellInner>
+                    </CellInner> */}
                   </td>
                 )
               case 'details':

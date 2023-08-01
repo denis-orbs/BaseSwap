@@ -92,7 +92,7 @@ export const styleVariants = {
   // used for currency select button 
   [variants.TEXT]: {
     backgroundColor: "transparent",
-    color: "primary",
+    color: "text",
     boxShadow: "none",
     border: "0px solid",
     borderColor: "#fff",  
