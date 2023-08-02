@@ -154,8 +154,10 @@ const Menu: React.FC<NavProps> = ({
                 </Link>
                 <Link href="/pools" >
                 <Text marginRight="2rem">Earn </Text>
-
                   </Link>
+                  <Link href="https://dapp.chainge.finance/?fromChain=ARB&toChain=BASE&fromToken=ETH&toToken=ETH"  target="_blank" >
+                <Text marginRight="2rem">Bridge</Text>
+                </Link>
               </Flex>
                } 
               {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
