@@ -170,14 +170,14 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             />
             <IconButtonWrapper>
               <IconButton variant="secondary" onClick={onPresentWithdraw} mr="6px">
-                <MinusIcon color="primary" width="14px" />
+                <MinusIcon color="text" width="14px" />
               </IconButton>
               <IconButton
                 variant="secondary"
                 onClick={onPresentDeposit}
                 disabled={['history', 'archived'].some((item) => router.pathname.includes(item))}
               >
-                <AddIcon color="primary" width="14px" />
+                <AddIcon color="text" width="14px" />
               </IconButton>
             </IconButtonWrapper>
           </ActionContent>
