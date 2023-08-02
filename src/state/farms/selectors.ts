@@ -125,7 +125,6 @@ export const farmSelector = createSelector(
   (state: State) => state.farms,
   (farms) => {
     const deserializedFarmsData = farms.data.map(deserializeFarm)
-    console.log(deserializedFarmsData)
 
     const { loadArchivedFarmsData, userDataLoaded, poolLength, regularCakePerBlock } = farms
     return {

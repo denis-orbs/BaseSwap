@@ -4,6 +4,22 @@ const cacheTimeSeconds = 30
 const storageKey = 'TOKEN_PRICES'
 const screenerStorageKey = 'DS_TOKEN_PRICES'
 
+const wethCacheKey = 'WETH_PRICE'
+
+export async function getWethPrice() {
+  try {
+    const response = await fetch(
+      `https://api.coingecko.com/api/v3/simple/token_price/ethereum?contract_addresses=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&vs_currencies=usd`,
+    )
+    const price = await response.json()
+
+    return price['0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2']?.usd
+  } catch (error) {
+    console.log(error)
+    return 0
+  }
+}
+
 // export async function getDexscreenerPrices(pairAddresses: string[], platform: 'base' = 'base') {
 //   try {
 //     const cached = localStorage.getItem(screenerStorageKey)

@@ -23,6 +23,7 @@ import ErrorBoundary from '../components/ErrorBoundary'
 import Menu from '../components/Menu'
 import Providers from '../Providers'
 import GlobalStyle from '../style/Global'
+// import { getWethPoolTokenValues } from 'state/farms/getFarmsPrices'
 
 // This config is required for number formatting
 BigNumber.config({
@@ -124,6 +125,8 @@ const App = ({ Component, pageProps, ...appProps }: AppPropsWithLayout) => {
   // Use the layout defined at the page level, if available
   const Layout = Component.Layout || Fragment
   const ShowMenu = Component.mp ? Fragment : Menu
+
+  // getWethPoolTokenValues('0xE80B4F755417FB4baF4dbd23C029db3F62786523')
 
   return (
     <ProductionErrorBoundary>

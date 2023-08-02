@@ -5,14 +5,57 @@ import { SerializedFarm } from 'state/types'
 import { currentTokenMap } from 'config/constants/tokens'
 import { DEFAULT_STABLE_SYMBOL, WRAPPED_NATIVE_SYMBOL } from 'config/constants/token-info'
 import { Contract } from '@ethersproject/contracts'
-import { defaultRpcProvider } from 'utils/providers'
+import { DEFAULT_CHAIN_ID, defaultRpcProvider } from 'utils/providers'
+import { getWethPrice } from 'utils/tokenPricing'
+import multicall, { Call } from 'utils/multicall'
+import { WBNB } from '@magikswap/sdk'
+import { formatUnits } from '@ethersproject/units'
 
-export async function getPoolTokenValues(pairAddress: string) {
-  const pair = new Contract(
-    pairAddress,
-    ['function getReserves() public view returns (uint res0, uint resB)'],
-    defaultRpcProvider,
+export async function getWethPoolTokenValues(pairAddress: string) {
+  const calls: Call[] = [
+    {
+      address: pairAddress,
+      name: 'getReserves',
+    },
+    {
+      address: pairAddress,
+      name: 'token0',
+    },
+    {
+      address: pairAddress,
+      name: 'token1',
+    },
+  ]
+
+  const multi = multicall(
+    [
+      'function getReserves() public view returns (uint res0, uint resB)',
+      'function token0() public view returns (address)',
+      'function token1() public view returns (address)',
+    ],
+    calls,
   )
+
+  const [pairInfo, wethPrice] = await Promise.all([multi, getWethPrice()])
+
+  const res0 = pairInfo[0].res0
+  const res1 = pairInfo[0].res0
+  const token0 = pairInfo[1][0]
+  const token1 = pairInfo[2][0]
+
+  console.log(token1)
+
+  // Calculate how many ETH you get for other token
+  // ETH / other reserves
+
+  const wethAddress = WBNB[DEFAULT_CHAIN_ID].address
+  // const numerator = token0 === wethAddress ? res1 : res0
+  // const denominator = token1 === wethAddress ? res0 : res1
+  // const spotAmountOut = numerator.div(denominator)
+  // console.log(formatUnits(spotAmountOut))
+
+  // console.log(pairInfo)
+  // console.log(wethPrice)
 }
 
 const getFarmFromTokenSymbol = (
