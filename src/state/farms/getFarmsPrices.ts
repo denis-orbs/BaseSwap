@@ -4,14 +4,12 @@ import { filterFarmsByQuoteToken } from 'utils/farmsPriceHelpers'
 import { SerializedFarm } from 'state/types'
 import { currentTokenMap } from 'config/constants/tokens'
 import { DEFAULT_STABLE_SYMBOL, WRAPPED_NATIVE_SYMBOL } from 'config/constants/token-info'
-import { Contract } from '@ethersproject/contracts'
-import { DEFAULT_CHAIN_ID, defaultRpcProvider } from 'utils/providers'
+import { DEFAULT_CHAIN_ID } from 'utils/providers'
 import { getWethPrice } from 'utils/tokenPricing'
 import multicall, { Call } from 'utils/multicall'
 import { WBNB } from '@magikswap/sdk'
-import { formatUnits } from '@ethersproject/units'
 
-export async function getWethPoolTokenValues(pairAddress: string) {
+export async function getWethPoolTokenValues(pairAddress: string): Promise<number> {
   const calls: Call[] = [
     {
       address: pairAddress,
@@ -29,7 +27,7 @@ export async function getWethPoolTokenValues(pairAddress: string) {
 
   const multi = multicall(
     [
-      'function getReserves() public view returns (uint res0, uint resB)',
+      'function getReserves() public view returns (uint res0, uint res1)',
       'function token0() public view returns (address)',
       'function token1() public view returns (address)',
     ],
@@ -39,23 +37,40 @@ export async function getWethPoolTokenValues(pairAddress: string) {
   const [pairInfo, wethPrice] = await Promise.all([multi, getWethPrice()])
 
   const res0 = pairInfo[0].res0
-  const res1 = pairInfo[0].res0
+  const res1 = pairInfo[0].res1
   const token0 = pairInfo[1][0]
   const token1 = pairInfo[2][0]
 
-  console.log(token1)
-
-  // Calculate how many ETH you get for other token
-  // ETH / other reserves
-
   const wethAddress = WBNB[DEFAULT_CHAIN_ID].address
-  // const numerator = token0 === wethAddress ? res1 : res0
-  // const denominator = token1 === wethAddress ? res0 : res1
-  // const spotAmountOut = numerator.div(denominator)
-  // console.log(formatUnits(spotAmountOut))
+  let wethTokenRef: string
+  let wethReserves: string
+  let reservesIn: string
 
-  // console.log(pairInfo)
-  // console.log(wethPrice)
+  if (token0 === wethAddress) {
+    wethTokenRef = token0
+    wethReserves = res0.toString()
+    reservesIn = res1.toString()
+  }
+  if (token1 === wethAddress) {
+    wethTokenRef = token1
+    wethReserves = res1.toString()
+    reservesIn = res0.toString()
+  }
+  if (!wethTokenRef) throw new Error('None WETH pool')
+
+  const amtOut = quote('1', reservesIn, wethReserves)
+  console.log(amtOut.toNumber())
+  const outInWethUSD = amtOut.toNumber() * wethPrice
+  console.log(`outInWethUSD: ${outInWethUSD}`)
+
+  return outInWethUSD
+}
+
+function quote(amountIn: string, resIn: string, resOut: string) {
+  const inBn = new BigNumber(amountIn)
+  const num = inBn.times(new BigNumber(resOut))
+  const denom = new BigNumber(resIn).plus(inBn)
+  return num.div(denom)
 }
 
 const getFarmFromTokenSymbol = (
