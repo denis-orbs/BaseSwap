@@ -33,7 +33,7 @@ const farms: SerializedFarmConfig[] = [
     lpSymbol: 'OGRE-ETH LP',
     lpAddresses: {
       [ChainId.BASE_GOERLI]: '0x26484B48418581993e538607e305b363c98125CA',
-      [ChainId.BASE]: '0xE80B4F755417FB4baF4dbd23C029db3F62786523',
+      [ChainId.BASE]: '0x81a03d61c913bdcc60519423c8841c18ffb752a8',
     },
     token: serializedTokens.ogre,
     quoteToken: serializedTokens.wbnb,
