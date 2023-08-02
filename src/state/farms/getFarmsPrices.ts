@@ -2,7 +2,6 @@ import BigNumber from 'bignumber.js'
 import { BIG_ONE, BIG_ZERO } from 'utils/bigNumber'
 import { filterFarmsByQuoteToken } from 'utils/farmsPriceHelpers'
 import { SerializedFarm } from 'state/types'
-import { currentTokenMap } from 'config/constants/tokens'
 import { DEFAULT_STABLE_SYMBOL, WRAPPED_NATIVE_SYMBOL } from 'config/constants/token-info'
 import { DEFAULT_CHAIN_ID } from 'utils/providers'
 import { getWethPrice } from 'utils/tokenPricing'
@@ -78,8 +77,16 @@ const getFarmFromTokenSymbol = (
   tokenSymbol: string,
   preferredQuoteTokens?: string[],
 ): SerializedFarm => {
-  const farmsWithTokenSymbol = farms.filter((farm) => farm.token.symbol === tokenSymbol)
+  const farmsWithTokenSymbol = farms.filter((farm) => {
+    // console.log(farm.token.symbol)
+    // console.log(tokenSymbol)
+
+    return farm.token.symbol === tokenSymbol
+  })
+
   const filteredFarm = filterFarmsByQuoteToken(farmsWithTokenSymbol, preferredQuoteTokens)
+  console.log(filteredFarm)
+
   return filteredFarm
 }
 
@@ -90,11 +97,11 @@ const getFarmBaseTokenPrice = (
 ): BigNumber => {
   const hasTokenPriceVsQuote = Boolean(farm.tokenPriceVsQuote)
 
-  if (farm.quoteToken.symbol === currentTokenMap.busd.symbol) {
+  if (farm.quoteToken.symbol === DEFAULT_STABLE_SYMBOL) {
     return hasTokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
-  if (farm.quoteToken.symbol === currentTokenMap.wbnb.symbol) {
+  if (farm.quoteToken.symbol === WRAPPED_NATIVE_SYMBOL) {
     return hasTokenPriceVsQuote ? bnbPriceBusd.times(farm.tokenPriceVsQuote) : BIG_ZERO
   }
 
@@ -108,14 +115,14 @@ const getFarmBaseTokenPrice = (
   // If the farm's quote token isn't BUSD or WBNB, we then use the quote token, of the original farm's quote token
   // i.e. for farm PNT - pBTC we use the pBTC farm's quote token - BNB, (pBTC - BNB)
   // from the BNB - pBTC price, we can calculate the PNT - BUSD price
-  if (quoteTokenFarm.quoteToken.symbol === currentTokenMap.wbnb.symbol) {
+  if (quoteTokenFarm.quoteToken.symbol === WRAPPED_NATIVE_SYMBOL) {
     const quoteTokenInBusd = bnbPriceBusd.times(quoteTokenFarm.tokenPriceVsQuote)
     return hasTokenPriceVsQuote && quoteTokenInBusd
       ? new BigNumber(farm.tokenPriceVsQuote).times(quoteTokenInBusd)
       : BIG_ZERO
   }
 
-  if (quoteTokenFarm.quoteToken.symbol === currentTokenMap.busd.symbol) {
+  if (quoteTokenFarm.quoteToken.symbol === DEFAULT_STABLE_SYMBOL) {
     const quoteTokenInBusd = quoteTokenFarm.tokenPriceVsQuote
     return hasTokenPriceVsQuote && quoteTokenInBusd
       ? new BigNumber(farm.tokenPriceVsQuote).times(quoteTokenInBusd)
@@ -158,11 +165,21 @@ const getFarmsPrices = (farms: SerializedFarm[]) => {
   const bnbBusdFarm = farms.find(
     (farm) => farm.token.symbol === DEFAULT_STABLE_SYMBOL && farm.quoteToken.symbol === WRAPPED_NATIVE_SYMBOL,
   )
+
   const bnbPriceBusd = bnbBusdFarm.tokenPriceVsQuote ? BIG_ONE.div(bnbBusdFarm.tokenPriceVsQuote) : BIG_ZERO
+
+  // console.log(bnbBusdFarm)
+  // console.log(bnbPriceBusd.toNumber())
+
   const farmsWithPrices = farms.map((farm) => {
-    const quoteTokenFarm = getFarmFromTokenSymbol(farms, farm.quoteToken.symbol)
-    const tokenPriceBusd = getFarmBaseTokenPrice(farm, quoteTokenFarm, bnbPriceBusd)
-    const quoteTokenPriceBusd = getFarmQuoteTokenPrice(farm, quoteTokenFarm, bnbPriceBusd)
+    // const quoteTokenFarm = getFarmFromTokenSymbol(farms, farm.quoteToken.symbol)
+    // console.log(farm)
+    const tokenPriceBusd = getFarmBaseTokenPrice(farm, bnbBusdFarm, bnbPriceBusd)
+    const quoteTokenPriceBusd = getFarmQuoteTokenPrice(farm, bnbBusdFarm, bnbPriceBusd)
+
+    // console.log('pool id: ' + farm.pid)
+    // console.log('tokenPriceBusd: ' + tokenPriceBusd.toNumber())
+    // console.log('quoteTokenPriceBusd: ' + quoteTokenPriceBusd.toNumber())
 
     return {
       ...farm,

@@ -168,6 +168,9 @@ const Farms: React.FC = ({ children }) => {
 
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
 
+        console.log(farm.pid)
+        console.log(totalLiquidity.toNumber())
+
         const { cakeRewardsApr, lpRewardsApr } = isActive
           ? getFarmApr(
               new BigNumber(farm.poolWeight),

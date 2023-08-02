@@ -16,6 +16,7 @@ export const filterFarmsByQuoteToken = (
       return farm.quoteToken.symbol === quoteToken
     })
   })
+
   return preferredFarm || farms[1]
 }
 
