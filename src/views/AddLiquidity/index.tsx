@@ -75,7 +75,7 @@ export default function AddLiquidity() {
 
   const [zapMode] = useZapModeManager()
   const [temporarilyZapMode, setTemporarilyZapMode] = useState(true)
-  const [currencyIdA, currencyIdB] = router.query.currency || ['BNB', CAKE[chainId]?.address]
+  const [currencyIdA, currencyIdB] = router.query.currency || ['ETH', CAKE[chainId]?.address]
   const [steps, setSteps] = useState(Steps.Choose)
 
   const dispatch = useAppDispatch()
@@ -405,7 +405,7 @@ export default function AddLiquidity() {
     } else if (currencies[zapIn.swapTokenField] === ETHER) {
       method = 'zapInBNB'
       args = [pair.liquidityToken.address, minAmountOut]
-      summary = `Zap in ${parsedAmounts[zapIn.swapTokenField]?.toSignificant(3)} BNB for ${getLPSymbol(
+      summary = `Zap in ${parsedAmounts[zapIn.swapTokenField]?.toSignificant(3)} ETH for ${getLPSymbol(
         pair.token0.symbol,
         pair.token1.symbol,
       )}`
