@@ -1,12 +1,11 @@
 import { ChainId, JSBI, Percent, Token } from '@magikswap/sdk'
 import { BigNumber } from '@ethersproject/bignumber'
 import { DEFAULT_CHAIN_ID } from 'utils/providers'
-import { bscTokens, bscTestnetTokens, baseGoerliTokens, TOKENS_CHAIN_MAP, baseTokens } from './tokens'
+import { bscTokens, baseGoerliTokens, TOKENS_CHAIN_MAP, baseTokens } from './tokens'
 import { ChainTokenList } from './types'
 
 export const ROUTER_ADDRESS = {
   [ChainId.MAINNET]: '0x16327e3fbdaca3bcf7e38f5af2599d2ddc33ae52',
-  [ChainId.BSC_TESTNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
   [ChainId.BASE_GOERLI]: '0x865654Ebe6030686bDe44708597bbb3F289ea7f1',
   [ChainId.BASE]: '0x327Df1E6de05895d2ab08513aaDD9313Fe505d86',
 }
@@ -22,7 +21,6 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     bscTokens.eth,
     bscTokens.usdc,
   ],
-  [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
   [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
   [ChainId.BASE]: [baseTokens.wbnb, baseTokens.cake, baseTokens.axlUsdc],
 }
@@ -47,7 +45,6 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.MAINNET]: [bscTokens.busd, bscTokens.cake, bscTokens.btcb],
-  [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
   [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
   [ChainId.BASE]: [baseTokens.wbnb, baseTokens.cake, baseTokens.axlUsdc],
 }
@@ -55,7 +52,6 @@ export const SUGGESTED_BASES: ChainTokenList = {
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.MAINNET]: [bscTokens.wbnb, bscTokens.dai, bscTokens.busd, bscTokens.usdt],
-  [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
   [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
   [ChainId.BASE]: [baseTokens.wbnb, baseTokens.cake, baseTokens.axlUsdc],
 }
