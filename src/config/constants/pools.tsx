@@ -60,28 +60,28 @@ export const vaultPoolConfig = {
 } as const
 
 export const livePools: SerializedPoolConfig[] = [
-  // {
-  //   sousId: 100,
-  //   stakingToken: serializedTokens.cake,
-  //   earningToken: serializedTokens.axlUsdc,
-  //   contractAddress: {
-  //     [ChainId.BASE_GOERLI]: '0xbc3db10EeB75575674046653F080CE72037764F5',
-  //     [ChainId.BASE]: '',
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   tokenPerBlock: '0.001',
-  // },
-  // {
-  //   sousId: 101,
-  //   stakingToken: serializedTokens.cake,
-  //   earningToken: serializedTokens.ogre,
-  //   contractAddress: {
-  //     [ChainId.BASE_GOERLI]: '0x60373F437f75eda97c58234b9AE57E32A91e54a8',
-  //     [ChainId.BASE]: '',
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   tokenPerBlock: '0.001',
-  // },
+  {
+    sousId: 100,
+    stakingToken: serializedTokens.cake,
+    earningToken: serializedTokens.axlUsdc,
+    contractAddress: {
+      [ChainId.BASE_GOERLI]: '0xbc3db10EeB75575674046653F080CE72037764F5',
+      [ChainId.BASE]: '0x5800bC4Fb67836442709D111971E1F26c75b5F61',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '0.01273148148148148',
+  },
+  {
+    sousId: 101,
+    stakingToken: serializedTokens.cake,
+    earningToken: serializedTokens.wbnb,
+    contractAddress: {
+      [ChainId.BASE_GOERLI]: '0x60373F437f75eda97c58234b9AE57E32A91e54a8',
+      [ChainId.BASE]: '0xa98CFc9c51012346FeCAD04e02D03a79c51d7175',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '0.000000625625625625',
+  },
 ]
 
 // known finished pools
