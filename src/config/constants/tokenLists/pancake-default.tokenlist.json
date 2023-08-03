@@ -36,7 +36,7 @@
     },
     {
       "name": "Coinbase Wrapped Staked ETH",
-      "symbol": "CBETH",
+      "symbol": "cbETH",
       "address": "0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22",
       "chainId": 8453,
       "decimals": 18,
