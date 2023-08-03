@@ -3,7 +3,7 @@ import { DEFAULT_CHAIN_ID } from 'utils/providers'
 
 const CAKE_MAINNET = new Token(
   ChainId.MAINNET,
-  '0x5cc61a78f164885776aa610fb0fe1257df78e59b',
+  '0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9',
   18,
   'CAKE',
   'PancakeSwap Token',

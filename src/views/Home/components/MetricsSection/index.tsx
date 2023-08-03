@@ -36,7 +36,10 @@ const Stats = () => {
 
   return (
     <Flex justifyContent="center" alignItems="center" flexDirection="column">
-      <Image src={logo} alt="logo" height="150px" width="150px" />
+      <div style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF', 
+      borderRadius: '100px' }}>
+      <Image src={logo} alt="logo" height="150px" width="150px"  />
+      </div>
       <Heading textAlign="center" scale="xl">
         Because you really only live once.
       </Heading>
