@@ -28,33 +28,33 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.cake,
     quoteToken: serializedTokens.wbnb,
   },
-  // {
-  //   pid: 4,
-  //   lpSymbol: 'ETH-USDC LP',
-  //   lpAddresses: {
-  //     [ChainId.BASE]: '0x29a706a49baE714bCfcC96ac1A43e116cB57794c',
-  //   },
-  //   token: serializedTokens.wbnb,
-  //   quoteToken: serializedTokens.usdbc,
-  // },
-  // {
-  //   pid: 5,
-  //   lpSymbol: 'DAI-USDC LP',
-  //   lpAddresses: {
-  //     [ChainId.BASE]: '0x6D3c5a4a7aC4B1428368310E4EC3bB1350d01455',
-  //   },
-  //   token: serializedTokens.dai,
-  //   quoteToken: serializedTokens.usdbc,
-  // },
-  // {
-  //   pid: 6,
-  //   lpSymbol: 'CBETH-ETH LP',
-  //   lpAddresses: {
-  //     [ChainId.BASE]: '0x07CFA5Df24fB17486AF0CBf6C910F24253a674D3',
-  //   },
-  //   token: serializedTokens.cbeth,
-  //   quoteToken: serializedTokens.wbnb,
-  // },
+  {
+    pid: 4,
+    lpSymbol: 'ETH-USDC LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x29a706a49baE714bCfcC96ac1A43e116cB57794c',
+    },
+    token: serializedTokens.wbnb,
+    quoteToken: serializedTokens.usdbc,
+  },
+  {
+    pid: 5,
+    lpSymbol: 'DAI-USDC LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x6D3c5a4a7aC4B1428368310E4EC3bB1350d01455',
+    },
+    token: serializedTokens.dai,
+    quoteToken: serializedTokens.usdbc,
+  },
+  {
+    pid: 6,
+    lpSymbol: 'CBETH-ETH LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x07CFA5Df24fB17486AF0CBf6C910F24253a674D3',
+    },
+    token: serializedTokens.cbeth,
+    quoteToken: serializedTokens.wbnb,
+  },
   {
     pid: 2,
     lpSymbol: 'OGRE-ETH LP',
