@@ -49,14 +49,18 @@ export interface TagInfo extends TagDetails {
  */
 export const EMPTY_LIST: TokenAddressMap = {
   [ChainId.MAINNET]: {},
+  [ChainId.BASE]: {},
+
   [ChainId.BSC_TESTNET]: {},
 }
 
+
+// jumpman
 export enum GAS_PRICE {
-  default = '0.2',
-  fast = '1.6',
-  instant = '1.7',
-  testnet = '10',
+  default = '1.5',
+  fast = '3',
+  instant = '5',
+  testnet = '5',
 }
 
 export const GAS_PRICE_GWEI = {
