@@ -6,7 +6,7 @@ import useSWRImmutable from 'swr/immutable'
 import Image from 'next/image'
 import IconCard, { IconCardData } from '../IconCard'
 import StatCardContent from './StatCardContent'
-import logo from '../../../../../public/images/baselogolarge.png'
+import logo from '../../../../../public/images/newlogo.png'
 
 const Stats = () => {
   const { t } = useTranslation()

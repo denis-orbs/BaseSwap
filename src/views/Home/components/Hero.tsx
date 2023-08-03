@@ -10,7 +10,7 @@ import bunnyImage from '../../../../public/images/home/lunar-bunny/bunny@2x.png'
 import CompositeImage, { CompositeImageProps } from './CompositeImage'
 import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
 import banner from '../../../../public/images/newbanner.png'
-import baseswap from '../../../../public/images/baselogolarge.png'
+import baseswap from '../../../../public/images/newlogo.png'
 
 const flyingAnim = () => keyframes`
   from {

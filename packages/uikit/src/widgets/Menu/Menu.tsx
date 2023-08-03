@@ -132,7 +132,7 @@ const Menu: React.FC<NavProps> = ({
         <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
           {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
           <StyledNav>
-              <img src="/images/baselogolarge.png" width={isMobile ? 40 : 60} height={isMobile ? 40 : 40} alt="logo" />
+              <img src="/images/newlogo.png" width={isMobile ? 40 : 60} height={isMobile ? 40 : 40} alt="logo" />
               <Flex>
               <a href="/">
                 <Text fontSize="2rem" style={{ marginLeft: "1rem", alignItems: 'center', justifyContent: 'center' }}>
