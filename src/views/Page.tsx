@@ -4,7 +4,7 @@ import { PageMeta } from 'components/Layout/Page'
 import { EXCHANGE_DOCS_URLS } from 'config/constants'
 import styled, { keyframes } from 'styled-components'
 import Image from 'next/image'
-import banner from '../../public/images/banner.png'
+import banner from '../../public/images/newbanner.png'
 
 const flyingAnim = () => keyframes`
   from {
@@ -30,7 +30,7 @@ const StyledPage = styled.div<{ $removePadding: boolean; $noMinHeight }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('/images/banner3.png');
+  background-image: url('/images/diffusebanner.png');
 
   background-position: 100% 20%;
   background-repeat: no-repeat;
