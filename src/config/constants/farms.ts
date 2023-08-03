@@ -32,7 +32,7 @@ const farms: SerializedFarmConfig[] = [
     pid: 4,
     lpSymbol: 'ETH-USDC LP',
     lpAddresses: {
-      [ChainId.BASE]: '0x29a706a49baE714bCfcC96ac1A43e116cB57794c',
+      [ChainId.BASE]: '0x41d160033C222E6f3722EC97379867324567d883',
     },
     token: serializedTokens.wbnb,
     quoteToken: serializedTokens.usdbc,
