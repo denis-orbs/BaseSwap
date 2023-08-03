@@ -30,13 +30,15 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
   return (
     <AutoColumn gap="lg">
       <Message variant="warning">
-        <Text>
-          {t(
-            'Anyone can create a BEP20 token on BSC with any name, including creating fake versions of existing tokens and tokens that claim to represent projects that do not have a token.',
-          )}
+        <Text fontSize="12px" fontWeight="900" >
+            Look. Just be careful alright? We're all here havin 
+            the time of our lives on Brian's BASE chain. 
+            But you know what's less fun? Gettin rekt by some shitcoin. 
+            So watch out for scammers, honeypots, and general bullshit. 
+            DYOR. You know the drill. 
+
           <br />
-          <br />
-          {t('If you purchase an arbitrary token, you may be unable to sell it back.')}
+
         </Text>
       </Message>
 
@@ -84,8 +86,8 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
             checked={confirmed}
             onChange={() => setConfirmed(!confirmed)}
           />
-          <Text ml="8px" style={{ userSelect: 'none' }}>
-            {t('I understand')}
+          <Text fontSize="12px" fontWeight="900" ml="4px" style={{ userSelect: 'none' }}>
+            {t('Thanks, Dad. I understand')}
           </Text>
         </Flex>
         <Button
