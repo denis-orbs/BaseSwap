@@ -63,7 +63,7 @@ export const livePools: SerializedPoolConfig[] = [
   {
     sousId: 100,
     stakingToken: serializedTokens.cake,
-    earningToken: serializedTokens.usdc,
+    earningToken: serializedTokens.usdbc,
     contractAddress: {
       [ChainId.BASE]: '0x64FCFA940f286Af1261107F993189379e8d3ae1c',
     },
