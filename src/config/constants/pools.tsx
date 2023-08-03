@@ -69,7 +69,7 @@ export const livePools: SerializedPoolConfig[] = [
       [ChainId.BASE]: '0x5800bC4Fb67836442709D111971E1F26c75b5F61',
     },
     poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '0.01273148148148148',
+    tokenPerBlock: '0.0012',
   },
   {
     sousId: 101,
@@ -80,7 +80,7 @@ export const livePools: SerializedPoolConfig[] = [
       [ChainId.BASE]: '0xa98CFc9c51012346FeCAD04e02D03a79c51d7175',
     },
     poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '0.000000625625625625',
+    tokenPerBlock: '0.000000625',
   },
 ]
 
