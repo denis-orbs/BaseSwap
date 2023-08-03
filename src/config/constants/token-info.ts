@@ -13,7 +13,7 @@ export interface ITokenInfo {
   addresses: { [chainId: number]: string }
 }
 
-export type StableTokenLookupKey = 'FRAX' | 'USDCe' | 'USDT' | 'DAI' | 'USD+' | 'DAI+' | 'axlUSDC'
+export type StableTokenLookupKey = 'FRAX' | 'USDCe' | 'USDT' | 'DAI' | 'USD+' | 'DAI+' | 'axlUSDC' | 'USDbC'
 // Add to this list as needed
 export type TokenLookupKey =
   | StableTokenLookupKey
@@ -32,6 +32,11 @@ export type TokenLookupKey =
   | 'DEUS'
   | 'RDNT'
   | 'OGRE'
+  | 'DAI'
+  | 'USDbC'
+  | 'CBETH'
+
+
 
 export type TokenInfoMapping = {
   [key in TokenLookupKey]?: ITokenInfo
@@ -42,6 +47,18 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
     coinGeckoId: 'axlusdc',
     addresses: {
       [ChainId.BASE]: '0xEB466342C4d449BC9f53A865D5Cb90586f405215',
+    },
+  },
+  USDbC: {
+    coinGeckoId: 'usd-coin',
+    addresses: {
+      [ChainId.BASE]: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
+    },
+  },
+  DAI: {
+    coinGeckoId: 'dai',
+    addresses: {
+      [ChainId.BASE]: '0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb',
     },
   },
   USDCe: {
@@ -68,12 +85,7 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
       [ChainId.ARBITRUM]: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9',
     },
   },
-  DAI: {
-    coinGeckoId: 'dai',
-    addresses: {
-      [ChainId.ARBITRUM]: '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1',
-    },
-  },
+
   'USD+': {
     coinGeckoId: 'usd',
     addresses: {

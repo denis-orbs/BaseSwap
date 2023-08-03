@@ -48,6 +48,33 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
   },
   // {
+  //   pid: 4,
+  //   lpSymbol: 'USDBC-ETH LP',
+  //   lpAddresses: {
+  //     [ChainId.BASE]: '',
+  //   },
+  //   token: serializedTokens.usdbc,
+  //   quoteToken: serializedTokens.wbnb,
+  // },
+  // {
+  //   pid: 5,
+  //   lpSymbol: 'DAI-USDBC LP',
+  //   lpAddresses: {
+  //     [ChainId.BASE]: '',
+  //   },
+  //   token: serializedTokens.dai,
+  //   quoteToken: serializedTokens.usdbc,
+  // },
+  // {
+  //   pid: 6,
+  //   lpSymbol: 'CBETH-ETH LP',
+  //   lpAddresses: {
+  //     [ChainId.BASE]: '',
+  //   },
+  //   token: serializedTokens.cbeth,
+  //   quoteToken: serializedTokens.wbnb,
+  // },
+  // {
   //   pid: 1,
   //   lpSymbol: 'ETH-axlUSDC LP',
   //   lpAddresses: {
