@@ -111,18 +111,18 @@ const PoolStatsInfo: React.FC<ExpandedFooterProps> = ({
         </Flex>
       )}
       {vaultKey && <PerformanceFee userData={userData} performanceFeeAsDecimal={performanceFeeAsDecimal} />}
-      <Flex mb="2px" justifyContent={alignLinksToRight ? 'flex-end' : 'flex-start'}>
+      {/* <Flex mb="2px" justifyContent={alignLinksToRight ? 'flex-end' : 'flex-start'}>
         <LinkExternal href={`/info/token/${earningToken.address}`} bold={false} small>
           {t('See Token Info')}
         </LinkExternal>
-      </Flex>
-      {!vaultKey && (
+      </Flex> */}
+      {/* {!vaultKey && (
         <Flex mb="2px" justifyContent={alignLinksToRight ? 'flex-end' : 'flex-start'}>
           <LinkExternal href={earningToken.projectLink} bold={false} small>
             {t('View Project Site')}
           </LinkExternal>
         </Flex>
-      )}
+      )} */}
       {vaultKey && (
         <Flex mb="2px" justifyContent={alignLinksToRight ? 'flex-end' : 'flex-start'}>
           <LinkExternal href="https://base-swap-1.gitbook.io/baseswap/" bold={false} small>
@@ -147,13 +147,13 @@ const PoolStatsInfo: React.FC<ExpandedFooterProps> = ({
             variant="text"
             p="0"
             height="auto"
-            style={{ fontSize: '14px', fontWeight: '400', lineHeight: 'normal' }}
-            marginTextBetweenLogo="4px"
+            style={{ fontSize: '14px', color: '#0154FD', textTransform: 'uppercase', fontWeight: '400', lineHeight: 'normal' }}
+            marginTextBetweenLogo="8px"
             textOptions={AddToWalletTextOptions.TEXT}
             tokenAddress={tokenAddress}
             tokenSymbol={earningToken.symbol}
             tokenDecimals={earningToken.decimals}
-            tokenLogo={`https://tokens.pancakeswap.finance/images/${tokenAddress}.png`}
+            tokenLogo={`https://baseswap.fi/images/tokens/${tokenAddress}.png`}
           />
         </Flex>
       )}

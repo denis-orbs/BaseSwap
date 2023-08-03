@@ -6,6 +6,7 @@ export const StyledCard = styled(Card)<{ isFinished?: boolean }>`
   border: 4px solid ${({ theme }) => theme.colors.text};
   max-width: 100%;
   margin: 0 0 24px 0;
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
   width: 100%;
   display: flex;
   flex-direction: column;

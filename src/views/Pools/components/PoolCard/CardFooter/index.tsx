@@ -26,8 +26,8 @@ const ExpandableButtonWrapper = styled(Flex)`
 `
 const ExpandedWrapper = styled(Flex)`
   svg {
-    height: 14px;
-    width: 14px;
+    height: 10px;
+    width: 10px;
   }
 `
 
@@ -46,17 +46,17 @@ const Footer: React.FC<FooterProps> = ({ pool, account, defaultExpanded, childre
   })
 
   return (
-    <CardFooter>
+    <CardFooter style={{ paddingTop: '4px', paddingBottom: '4px',  }}>
       <ExpandableButtonWrapper>
         <Flex alignItems="center">
-          {vaultKey ? <CompoundingPoolTag /> : <ManualPoolTag />}
-          {tooltipVisible && tooltip}
+          {/* {vaultKey ? <CompoundingPoolTag /> : <ManualPoolTag />}
+          {tooltipVisible && tooltip} 
           <Flex ref={targetRef}>
             <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
-          </Flex>
+          </Flex> */}
         </Flex>
         <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
-          {isExpanded ? t('Hide') : t('Details')}
+          {isExpanded ? t('Hide') : t('DETAILS')}
         </ExpandableLabel>
       </ExpandableButtonWrapper>
       {isExpanded && (
