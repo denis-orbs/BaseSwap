@@ -65,7 +65,7 @@ export const livePools: SerializedPoolConfig[] = [
     stakingToken: serializedTokens.cake,
     earningToken: serializedTokens.usdc,
     contractAddress: {
-      [ChainId.BASE]: '0x8fc2Ac70a1661b1E146a92b4BaBB1d2F4A08420A',
+      [ChainId.BASE]: '0x64FCFA940f286Af1261107F993189379e8d3ae1c',
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.0012',
@@ -75,7 +75,7 @@ export const livePools: SerializedPoolConfig[] = [
     stakingToken: serializedTokens.cake,
     earningToken: serializedTokens.wbnb,
     contractAddress: {
-      [ChainId.BASE]: '0x53EE60153599DcFdC0DCe6E508fd8c626AbC93Dd',
+      [ChainId.BASE]: '0x86DBd5bAAE91AC576E8e5197EB2497603d0056EA',
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.000000625',
