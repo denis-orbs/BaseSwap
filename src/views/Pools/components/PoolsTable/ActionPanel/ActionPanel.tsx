@@ -166,11 +166,11 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, expanded }) =>
         <Flex flexDirection="column" mb="8px">
           <PoolStatsInfo pool={pool} account={account} showTotalStaked={isMobile} alignLinksToRight={isMobile} />
         </Flex>
-        {vaultKey ? <CompoundingPoolTag /> : <ManualPoolTag />}
-        {tagTooltipVisible && tagTooltip}
+       <Text fontSize="12px" color="background">DEPOSIT FEE: 1%</Text>
+        {/* {tagTooltipVisible && tagTooltip}
         <span ref={tagTargetRef}>
           <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
-        </span>
+        </span> */}
       </InfoSection>
       <ActionContainer>
         {isMobile && vaultKey === VaultKey.CakeVault && vaultPosition === VaultPosition.None && (
