@@ -12,10 +12,10 @@ BigNumber.config({
 export const BSC_BLOCK_TIME = 1
 
 export const BASE_BSC_SCAN_URLS = {
-  [ChainId.MAINNET]: 'https://basescan.com',
+  [ChainId.MAINNET]: 'https://basescan.org',
   [ChainId.BSC_TESTNET]: 'https://testnet.bscscan.com',
   [ChainId.BASE_GOERLI]: baseGoerli.blockExplorers.default.url,
-  [ChainId.BASE]: 'https://basescan.com',
+  [ChainId.BASE]: 'https://basescan.org',
 
 }
 
