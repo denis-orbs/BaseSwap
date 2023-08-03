@@ -30,7 +30,7 @@ const StyledPage = styled.div<{ $removePadding: boolean; $noMinHeight }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('/images/diffusebanner.png');
+  background-image: url('/images/mj.png');
 
   background-position: 100% 20%;
   background-repeat: no-repeat;
