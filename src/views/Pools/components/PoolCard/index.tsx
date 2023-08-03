@@ -33,6 +33,14 @@ const PoolCard: React.FC<{ pool: DeserializedPool; account: string }> = ({ pool,
         <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} width={64} height={64} />
       </PoolCardHeader>
       <CardBody >
+      <Flex flexDirection="row" justifyContent="space-between">
+            <Text color="textSubtle" textTransform="uppercase" fontWeight="600" fontSize="14px">
+              Deposit Fee:
+            </Text>
+              <Text color="textSubtle" textTransform="uppercase" fontWeight="600" fontSize="14px">
+                1%
+              </Text>
+          </Flex>
         <AprRow pool={pool} stakedBalance={stakedBalance} />
         <Flex  padding="12px" mt="24px" borderRadius="8px"
         flexDirection="column" backgroundColor="#0154FD" style={{ boxShadow: '0 0 8px #000'}} >
