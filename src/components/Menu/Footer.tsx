@@ -13,7 +13,7 @@ const Wrapper = memo(styled.div<{ $isSide: boolean }>`
   flex-wrap: wrap;
 
   align-items: center;
-  padding-top: 16px;
+  padding-top: 8px;
   padding-right: ${({ $isSide }) => ($isSide ? '32px' : '0px')};
   ${({ theme }) => theme.mediaQueries.md} {
     justify-content: space-between;
@@ -69,7 +69,7 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
       <Flex
         flexGrow={isSide ? 0 : 1}
         alignItems="center"
-        mb="2px" 
+        mb="8px" mr="8px" 
         width={['100%', '100%', '100%', isSide ? '100%' : 'auto']}
         justifyContent={['center', 'center', 'center', 'flex-end']}
       >

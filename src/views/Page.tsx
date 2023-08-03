@@ -81,7 +81,7 @@ const Page: React.FC<
         <Box
           style={{ backdropFilter: 'blur(2px)' }}
           display={['block', null, null, hideFooterOnDesktop ? 'none' : 'block']}
-          width="100%"
+          width="99vw" backgroundColor="#333"
         >
           <Footer helpUrl={helpUrl} />
         </Box>
