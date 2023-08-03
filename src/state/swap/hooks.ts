@@ -400,7 +400,7 @@ export const useFetchPairPrices = ({
 
 export const useLPApr = (pair?: Pair) => {
   const { data: poolData } = useSWRImmutable(
-    pair && pair.chainId === ChainId.MAINNET ? ['LP7dApr', pair.liquidityToken.address] : null,
+    pair && pair.chainId === ChainId.BASE ? ['LP7dApr', pair.liquidityToken.address] : null,
     async () => {
       const timestampsArray = getDeltaTimestamps()
       const blocks = await getBlocksFromTimestamps(timestampsArray, 'desc', 1000)

@@ -3,7 +3,7 @@ import { DEFAULT_CHAIN_ID } from 'utils/providers'
 
 const CAKE_MAINNET = new Token(
   ChainId.MAINNET,
-  '0x5cc61a78f164885776aa610fb0fe1257df78e59b',
+  '0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9',
   18,
   'CAKE',
   'PancakeSwap Token',
@@ -2440,6 +2440,32 @@ const AXLUSDC_BASE = new Token(
   'baseswap.fi',
 )
 
+const USDBC_BASE = new Token(
+  ChainId.BASE,
+  '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
+  6,
+  'USDbC',
+  'USD Base Coin',
+  'baseswap.fi',
+)
+
+const CBETH_BASE = new Token(
+  ChainId.BASE,
+  '0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22',
+  18,
+  'cbETH',
+  'Coinbase Wrapped Staked ETH',
+  'baseswap.fi',
+)
+const DAI_BASE = new Token(
+  ChainId.BASE,
+  '0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb',
+  18,
+  'DAI',
+  'DAI Stablecoin',
+  'baseswap.fi',
+)
+
 const ORGE_BASE = new Token(
   ChainId.BASE,
   '0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492',
@@ -2448,7 +2474,7 @@ const ORGE_BASE = new Token(
   'ORGE',
   'baseswap.fi',
 )
-
+// 
 // const BIGBOOBS_BASE = new Token(
 //   ChainId.BASE,
 //   '0x8DFAf055e21B16302DBf00815e5b4d9b6042a4Df',
@@ -2482,6 +2508,9 @@ export const baseTokens = {
   wbnb: WBNB[ChainId.BASE],
   cake: CAKE[ChainId.BASE],
   axlUsdc: AXLUSDC_BASE,
+  dai: DAI_BASE,
+  cbeth: CBETH_BASE,
+  usdbc: USDBC_BASE,
   ogre: ORGE_BASE,
   busd: AXLUSDC_BASE,
   usdc: USDC_BASE,

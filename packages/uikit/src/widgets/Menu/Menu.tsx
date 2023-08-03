@@ -132,7 +132,7 @@ const Menu: React.FC<NavProps> = ({
         <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
           {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
           <StyledNav>
-              <img src="/images/baselogolarge.png" width={isMobile ? 40 : 60} height={isMobile ? 40 : 40} alt="logo" />
+              <img src="/images/newlogo.png" width={isMobile ? 40 : 60} height={isMobile ? 40 : 40} alt="logo" />
               <Flex>
               <a href="/">
                 <Text fontSize="2rem" style={{ marginLeft: "1rem", alignItems: 'center', justifyContent: 'center' }}>
@@ -155,7 +155,7 @@ const Menu: React.FC<NavProps> = ({
                 <Link href="/pools" >
                 <Text marginRight="2rem">Earn </Text>
                   </Link>
-                  <Link href="https://dapp.chainge.finance/?fromChain=ARB&toChain=BASE&fromToken=ETH&toToken=ETH"  target="_blank" >
+                  <Link href="https://app.squidrouter.com/"  target="_blank" >
                 <Text marginRight="2rem">Bridge</Text>
                 </Link>
               </Flex>

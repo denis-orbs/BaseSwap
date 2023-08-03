@@ -5,17 +5,18 @@ import { ChainId } from '@magikswap/sdk'
 import { BAD_SRCS } from 'components/Logo/Logo'
 import { BASE_BSC_SCAN_URLS } from 'config'
 import { BASE_GOERLI_RPC_URLS } from '../config/constants/rpc'
+import { BASE_RPC_URLS } from '../config/constants/rpc'
 
 const NETWORK_CONFIG = {
-  [ChainId.BASE_GOERLI]: {
-    name: 'Base Goerli Testnet',
-    scanURL: BASE_BSC_SCAN_URLS[ChainId.BASE_GOERLI],
-    rpcUrls: BASE_GOERLI_RPC_URLS,
-  },
+  // [ChainId.BASE_GOERLI]: {
+  //   name: 'Base Goerli Testnet',
+  //   scanURL: BASE_BSC_SCAN_URLS[ChainId.BASE_GOERLI],
+  //   rpcUrls: BASE_GOERLI_RPC_URLS,
+  // },
   [ChainId.BASE]: {
-    name: 'Base Goerli Testnet',
-    scanURL: BASE_BSC_SCAN_URLS[ChainId.BASE_GOERLI],
-    rpcUrls: BASE_GOERLI_RPC_URLS,
+    name: 'Base Network',
+    scanURL: BASE_BSC_SCAN_URLS[ChainId.BASE],
+    rpcUrls: BASE_RPC_URLS,
   },
 }
 
@@ -46,8 +47,8 @@ export const setupNetwork = async (chainId?: number, externalProvider?: External
                 chainId: `0x${chainId.toString(16)}`,
                 chainName: NETWORK_CONFIG[chainId].name,
                 nativeCurrency: {
-                  name: 'BNB',
-                  symbol: 'bnb',
+                  name: 'ETH',
+                  symbol: 'ETH',
                   decimals: 18,
                 },
                 rpcUrls: NETWORK_CONFIG[chainId].rpcUrls,
@@ -64,7 +65,7 @@ export const setupNetwork = async (chainId?: number, externalProvider?: External
       return false
     }
   } else {
-    console.error("Can't setup the BSC network on metamask because window.ethereum is undefined")
+    console.error("Can't setup the BASE Network on MetaMask because window.ethereum is undefined")
     return false
   }
 }

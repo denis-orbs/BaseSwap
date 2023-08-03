@@ -337,7 +337,7 @@ function useContract<T extends Contract = Contract>(
     () =>
       withSignerIfPossible
         ? getProviderOrSigner(library, account)
-        : chainId === ChainId.MAINNET
+        : chainId === ChainId.BASE
         ? defaultRpcProvider
         : library,
     [withSignerIfPossible, library, account, chainId],

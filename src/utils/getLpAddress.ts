@@ -1,7 +1,7 @@
 import { Token, Pair, ChainId } from '@magikswap/sdk'
 import { isAddress } from 'utils'
 
-const getLpAddress = (token1: string | Token, token2: string | Token, chainId: number = ChainId.MAINNET) => {
+const getLpAddress = (token1: string | Token, token2: string | Token, chainId: number = ChainId.BASE) => {
   let token1AsTokenInstance = token1
   let token2AsTokenInstance = token2
   if (!token1 || !token2) {

@@ -171,7 +171,7 @@ export const getPointCenterIfoContract = (signer?: Signer | Provider) => {
   return getContract(pointCenterIfo, getPointCenterIfoAddress(), signer) as PointCenterIfo
 }
 export const getCakeContract = (signer?: Signer | Provider, chainId?: number) => {
-  return getContract(cakeAbi, chainId ? CAKE[chainId].address : CAKE[ChainId.MAINNET].address, signer) as Cake
+  return getContract(cakeAbi, chainId ? CAKE[chainId].address : CAKE[ChainId.BASE].address, signer) as Cake
 }
 export const getProfileContract = (signer?: Signer | Provider) => {
   return getContract(profileABI, getPancakeProfileAddress(), signer) as PancakeProfile
