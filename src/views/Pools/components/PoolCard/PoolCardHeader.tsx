@@ -6,7 +6,7 @@ const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }
   background: ${({ isFinished, background, theme }) =>
     isFinished ? theme.colors.backgroundDisabled : theme.colors.gradients.basedsexgray};
   border-radius: 0px;
-  border-bottom: 2px solid #fff; 
+  border-bottom: 2px solid #fff;
   padding: 8px;
 `
 
@@ -30,7 +30,6 @@ export const PoolCardHeaderTitle: React.FC<{ isFinished?: boolean; title: ReactN
   title,
   subTitle,
 }) => {
-  console.log(subTitle)
   return (
     <Flex flexDirection="column">
       <Text color={isFinished ? 'textDisabled' : 'text'} fontSize="1.2rem">

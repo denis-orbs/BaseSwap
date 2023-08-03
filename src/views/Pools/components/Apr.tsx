@@ -46,6 +46,8 @@ const Apr: React.FC<AprProps> = ({
   const { t } = useTranslation()
   const currentBlock = useCurrentBlock()
 
+  // console.log(pool)
+
   const { shouldShowBlockCountdown, hasPoolStarted } = getPoolBlockInfo(pool, currentBlock)
 
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO

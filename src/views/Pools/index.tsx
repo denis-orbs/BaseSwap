@@ -50,30 +50,6 @@ const PoolControls = styled.div`
   }
 `
 
-const FilterContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 8px 0px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: auto;
-    padding: 0;
-  }
-`
-
-const LabelWrapper = styled.div`
-  > ${Text} {
-    font-size: 12px;
-  }
-`
-
-const ControlStretch = styled(Flex)`
-  > div {
-    flex: 1;
-  }
-`
-
 const FinishedTextContainer = styled(Flex)`
   padding-bottom: 32px;
   flex-direction: column;
@@ -276,46 +252,6 @@ const Pools: React.FC = () => {
             viewMode={viewMode}
             setViewMode={setViewMode}
           />
-          {/* <FilterContainer>
-          <LabelWrapper>
-            <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-              {t('Sort by')}
-            </Text>
-            <ControlStretch>
-              <Select
-                options={[
-                  {
-                    label: t('Hot'),
-                    value: 'hot',
-                  },
-                  {
-                    label: t('APR'),
-                    value: 'apr',
-                  },
-                  {
-                    label: t('Earned'),
-                    value: 'earned',
-                  },
-                  {
-                    label: t('Total staked'),
-                    value: 'totalStaked',
-                  },
-                  {
-                    label: t('Latest'),
-                    value: 'latest',
-                  },
-                ]}
-                onOptionChange={handleSortOptionChange}
-              />
-            </ControlStretch>
-          </LabelWrapper>
-          <LabelWrapper style={{ marginLeft: 16 }}>
-            <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-              {t('Search')}
-            </Text>
-            <SearchInput initialValue={searchQuery} onChange={handleChangeSearchQuery} placeholder="Search Pools" />
-          </LabelWrapper>
-        </FilterContainer> */}
         </PoolControls>
         {showFinishedPools && (
           <FinishedTextContainer>
@@ -333,15 +269,6 @@ const Pools: React.FC = () => {
           </Flex>
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
-        {/* <div ref={observerRef} />
-        <Image
-          mx="auto"
-          mt="12px"
-          src="/images/decorations/3d-syrup-bunnies.png"
-          alt="Pancake illustration"
-          width={192}
-          height={184.5}
-        /> */}
       </Page>
     </>
   )

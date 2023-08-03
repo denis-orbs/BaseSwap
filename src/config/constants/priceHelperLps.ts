@@ -1,4 +1,5 @@
-import { bscTokens } from './tokens'
+import { ChainId } from '@magikswap/sdk'
+import { currentTokenMap } from './tokens'
 import { SerializedFarmConfig } from './types'
 
 const priceHelperLps: SerializedFarmConfig[] = [
@@ -11,23 +12,23 @@ const priceHelperLps: SerializedFarmConfig[] = [
    */
   {
     pid: null,
-    lpSymbol: 'ANKR-BNB LP',
+    lpSymbol: 'axlUSDC-ETH LP',
     lpAddresses: {
-      97: '',
-      56: '0x3147F98B8f9C53Acdf8F16332eaD12B592a1a4ae',
+      [ChainId.BASE]: '0x9a0b05f3cf748a114a4f8351802b3bffe07100d4',
     },
-    token: bscTokens.ankr,
-    quoteToken: bscTokens.wbnb,
+    token: currentTokenMap.axlUsdc,
+    quoteToken: currentTokenMap.wbnb,
   },
+
   {
     pid: null,
-    lpSymbol: 'ANTEX-BUSD LP',
+    lpSymbol: 'BSWAP-ETH LP',
     lpAddresses: {
-      97: '',
-      56: '0x4DcB7b3b0E8914DC0e6D366521604cD23E7991E1',
+      [ChainId.BASE_GOERLI]: '0x26484B48418581993e538607e305b363c98125CA',
+      [ChainId.BASE]: '0xE80B4F755417FB4baF4dbd23C029db3F62786523',
     },
-    token: bscTokens.antex,
-    quoteToken: bscTokens.busd,
+    token: currentTokenMap.cake,
+    quoteToken: currentTokenMap.wbnb,
   },
 ]
 

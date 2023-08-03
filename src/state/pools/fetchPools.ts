@@ -1,5 +1,4 @@
 import BigNumber from 'bignumber.js'
-import { BigNumber as EthersBigNumber } from '@ethersproject/bignumber'
 import poolsConfig, { livePools } from 'config/constants/pools'
 import smartChefABI from 'config/abi/StakingPool.json'
 import erc20ABI from 'config/abi/erc20.json'
@@ -7,7 +6,6 @@ import multicall, { multicallv2 } from 'utils/multicall'
 import { getAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import chunk from 'lodash/chunk'
-import sousChefV2 from '../../config/abi/sousChefV2.json'
 import sousChefV3 from '../../config/abi/sousChefV3.json'
 
 // const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
@@ -71,7 +69,7 @@ export const fetchPoolsTotalStaking = async () => {
 export const fetchPoolsStakingLimits = async (
   poolsWithStakingLimit: number[],
 ): Promise<{ [key: string]: { stakingLimit: BigNumber } }> => {
-  const validPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB' && !p.isFinished)
+  const validPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'ETH' && !p.isFinished)
   // .filter((p) => !poolsWithStakingLimit.includes(p.sousId))
 
   // Get the staking limit for each valid pool

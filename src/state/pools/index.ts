@@ -18,8 +18,7 @@ import { multicallv2 } from 'utils/multicall'
 import { bscTokens } from 'config/constants/tokens'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { defaultRpcProvider } from 'utils/providers'
-import priceHelperLpsConfig from 'config/constants/priceHelperLps'
-import { DEFAULT_STABLE_SYMBOL, WRAPPED_NATIVE_SYMBOL } from 'config/constants/token-info'
+import farmsConfig from 'config/constants/farms'
 import fetchFarms from '../farms/fetchFarms'
 import getFarmsPrices from '../farms/getFarmsPrices'
 import {
@@ -110,49 +109,25 @@ export const fetchCakePoolUserDataAsync = (account: string) => async (dispatch) 
 
 export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (dispatch, getState) => {
   try {
-    const [blockLimits, totalStakings, profileRequirements, currentBlock] = await Promise.all([
+    const [blockLimits, totalStakings, currentBlock] = await Promise.all([
       fetchPoolsBlockLimits(),
       fetchPoolsTotalStaking(),
-      fetchPoolsProfileRequirement(),
       currentBlockNumber ? Promise.resolve(currentBlockNumber) : defaultRpcProvider.getBlockNumber(),
     ])
 
-    const activePriceHelperLpsConfig = priceHelperLpsConfig.filter((priceHelperLpConfig) => {
-      return (
-        poolsConfig
-          .filter((pool) => pool.earningToken.address.toLowerCase() === priceHelperLpConfig.token.address.toLowerCase())
-          .filter((pool) => {
-            const poolBlockLimit = blockLimits.find((blockLimit) => blockLimit.sousId === pool.sousId)
-            if (poolBlockLimit) {
-              return poolBlockLimit.bonusEndTime > currentBlock
-            }
-            return false
-          }).length > 0
-      )
-    })
+    const farmsData = await fetchFarms(farmsConfig)
+    const farmsWithPrices = getFarmsPrices(farmsData)
 
-    const poolsWithDifferentFarmToken =
-      activePriceHelperLpsConfig.length > 0 ? await fetchFarms(priceHelperLpsConfig) : []
-    const farmsData = getState().farms.data
-
-    const bnbBusdFarm =
-      activePriceHelperLpsConfig.length > 0
-        ? farmsData.find(
-            (farm) => farm.token.symbol === DEFAULT_STABLE_SYMBOL && farm.quoteToken.symbol === WRAPPED_NATIVE_SYMBOL,
-          )
-        : null
-
-    const farmsWithPricesOfDifferentTokenPools = bnbBusdFarm
-      ? getFarmsPrices([bnbBusdFarm, ...poolsWithDifferentFarmToken])
-      : []
-
-    const prices = getTokenPricesFromFarm([...farmsData, ...farmsWithPricesOfDifferentTokenPools])
+    const prices = getTokenPricesFromFarm([...farmsWithPrices])
 
     const liveData = poolsConfig.map((pool) => {
       const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
+
       const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
+
       const isPoolEndBlockExceeded =
         currentBlock > 0 && blockLimit ? currentBlock > Number(blockLimit.bonusEndTime) : false
+
       const isPoolFinished = pool.isFinished || isPoolEndBlockExceeded
 
       const stakingTokenAddress = pool.stakingToken.address ? pool.stakingToken.address.toLowerCase() : null
@@ -160,6 +135,7 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
 
       const earningTokenAddress = pool.earningToken.address ? pool.earningToken.address.toLowerCase() : null
       const earningTokenPrice = earningTokenAddress ? prices[earningTokenAddress] : 0
+
       const apr = !isPoolFinished
         ? getPoolApr(
             stakingTokenPrice,
@@ -169,12 +145,14 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
           )
         : 0
 
-      const profileRequirement = profileRequirements[pool.sousId] ? profileRequirements[pool.sousId] : undefined
+      //   const rate = parseFloat(pool.tokenPerBlock)
+      //   console.log(pool.tokenPerBlock)
+      // console.log(earningTokenPrice)
 
       return {
         ...blockLimit,
         ...totalStaking,
-        profileRequirement,
+        profileRequirement: undefined,
         stakingTokenPrice,
         earningTokenPrice,
         apr,
@@ -227,8 +205,6 @@ export const fetchPoolsUserDataAsync = createAsyncThunk<
       fetchUserStakeBalances(account),
       fetchUserPendingRewards(account),
     ])
-
-    console.log(allowances)
 
     const userData = poolsConfig.map((pool) => ({
       sousId: pool.sousId,

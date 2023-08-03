@@ -38,8 +38,6 @@ export const fetchUserBalances = async (account) => {
     defaultRpcProvider.getBalance(account),
   ])
 
-  console.log(tokenBalancesRaw)
-
   const tokenBalances = fromPairs(tokens.map((token, index) => [token, tokenBalancesRaw[index]]))
 
   const poolTokenBalances = fromPairs(
