@@ -2422,6 +2422,15 @@ const CAKE_BASE = new Token(
   'baseswap.fi',
 )
 
+const USDC_BASE = new Token(
+  ChainId.BASE,
+  '0xEd2D3fA2102980EeBdF2B12E58c1a96c9889315F',
+  6,
+  'USDbC',
+  'USDbC',
+  'https://basescan.org/token/0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca?a=0x7ea1643383221677e066b74913ee5ece7aa3b4fa',
+)
+
 const AXLUSDC_BASE = new Token(
   ChainId.BASE,
   '0xEB466342C4d449BC9f53A865D5Cb90586f405215',
@@ -2475,6 +2484,7 @@ export const baseTokens = {
   axlUsdc: AXLUSDC_BASE,
   ogre: ORGE_BASE,
   busd: AXLUSDC_BASE,
+  usdc: USDC_BASE,
   // bbt: BIGBOOBS_BASE,
 }
 
