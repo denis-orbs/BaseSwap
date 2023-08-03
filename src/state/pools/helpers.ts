@@ -162,6 +162,7 @@ export const getTokenPricesFromFarm = (farms: SerializedFarm[]) => {
     if (!prices[quoteTokenAddress]) {
       prices[quoteTokenAddress] = new BigNumber(farm.quoteTokenPriceBusd).toNumber()
     }
+
     if (!prices[tokenAddress]) {
       prices[tokenAddress] = new BigNumber(farm.tokenPriceBusd).toNumber()
     }

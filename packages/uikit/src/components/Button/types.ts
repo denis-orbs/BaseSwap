@@ -12,6 +12,7 @@ export const variants = {
   PRIMARY: "primary",
   PRIMARYTWO: "primarytwo", 
   PRIMARYTHREE: "primarythree", 
+  QUAD: "quad", 
   SECONDARY: "secondary",
   TERTIARY: "tertiary",
   TEXT: "text",

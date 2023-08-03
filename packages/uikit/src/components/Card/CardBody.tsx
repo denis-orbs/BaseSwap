@@ -5,6 +5,7 @@ export type CardBodyProps = SpaceProps;
 
 const CardBody = styled.div<CardBodyProps>`
   ${space}
+  
 `;
 
 CardBody.defaultProps = {

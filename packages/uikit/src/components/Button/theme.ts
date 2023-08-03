@@ -1,4 +1,6 @@
 import { scales, variants } from "./types";
+import { darkColors } from "../../theme";
+
 
 export const scaleVariants = {
   [scales.MD]: {
@@ -69,6 +71,9 @@ export const styleVariants = {
     borderColor: "text",
 
     color: "text",
+    ":hover": {
+      transform: "translateY(1px)",
+    },
     ":disabled": {
       backgroundColor: "transparent",
     },
@@ -79,6 +84,22 @@ export const styleVariants = {
     border: "2px solid", 
     borderColor: "text", 
     color: "text",
+   
+  },
+  [variants.QUAD]: {
+    background: `${darkColors.gradients.basedsexgray}`,
+
+    boxShadow: "0px 0px 4px #000",
+    border: "2px solid", 
+    borderColor: "white", 
+    color: "primary",
+    fontWeight: "900", 
+    ":hover": {
+      background: "black", 
+      color: "white", 
+      transform: "translateY(1px)",
+
+    }
   },
   [variants.SUBTLE]: {
     backgroundColor: "textSubtle",

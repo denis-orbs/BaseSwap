@@ -27,14 +27,23 @@ const PoolCard: React.FC<{ pool: DeserializedPool; account: string }> = ({ pool,
     >
       <PoolCardHeader isStaking={accountHasStakedBalance} isFinished={isFinished}>
         <PoolCardHeaderTitle
-          title={isCakePool ? t('Manual') : t('Earn %asset%', { asset: earningToken.symbol })}
-          subTitle={isCakePool ? t('Earn BSWAP, stake BSWAP') : t('Stake %symbol%', { symbol: stakingToken.symbol })}
+          title={isCakePool ? t('Manual') : t('EARN %asset%', { asset: earningToken.symbol })}
+          subTitle={isCakePool ? t('Earn BSWAP, stake BSWAP') : t('STAKE %symbol%', { symbol: stakingToken.symbol })}
         />
         <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} width={64} height={64} />
       </PoolCardHeader>
-      <CardBody>
+      <CardBody >
+      <Flex flexDirection="row" justifyContent="space-between">
+            <Text color="textSubtle" textTransform="uppercase" fontWeight="600" fontSize="14px">
+              Deposit Fee:
+            </Text>
+              <Text color="textSubtle" textTransform="uppercase" fontWeight="600" fontSize="14px">
+                1%
+              </Text>
+          </Flex>
         <AprRow pool={pool} stakedBalance={stakedBalance} />
-        <Flex mt="24px" flexDirection="column">
+        <Flex  padding="12px" mt="24px" borderRadius="8px"
+        flexDirection="column" backgroundColor="#0154FD" style={{ boxShadow: '0 0 8px #000'}} >
           {account ? (
             <CardActions pool={pool} stakedBalance={stakedBalance} />
           ) : (
