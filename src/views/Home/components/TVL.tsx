@@ -49,7 +49,7 @@ const TVL = () => {
     fontSize="4rem" fontWeight="900"
     color="#0154FD"
     >
-     {formattedValue}
+     ${formattedValue}
     </Text>
   
     </Flex>
