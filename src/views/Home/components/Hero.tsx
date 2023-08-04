@@ -119,7 +119,7 @@ const Hero = () => {
           <Text fontWeight="900" color="contrast" mb="12px" fontSize={['48px', null, null, '100px']}>
             {t('BaseSwap')}
           </Text>
-          <Heading scale="md" mb="24px">
+          <Heading scale="md" mb="18px">
             {t('Harder. Better. Faster. Stronger.')}
           </Heading>
           <Flex

@@ -9,7 +9,7 @@ const StyledHeroSection = styled(PageSection)`
   padding-top: 16px;
 
   ${({ theme }) => theme.mediaQueries.md} {
-    padding-top: 48px;
+    padding-top: 16px;
   }
 `
 
@@ -23,7 +23,7 @@ const Home: React.FC = () => {
         innerProps={{ style: { margin: '0', width: '100%' } }}
         background={
           theme.isDark
-            ? 'linear-gradient(to bottom, #020079, #0154FD, #fff )'
+            ? 'linear-gradient(to bottom, #020079, #0154FD, #ccc )'
             : 'linear-gradient(139.73deg, #E6FDFF 0%, #F3EFFF 100%)'
         }
         index={2}
@@ -35,7 +35,7 @@ const Home: React.FC = () => {
         innerProps={{ style: { margin: '0', width: '100%' } }}
         background={
           theme.isDark
-            ? 'linear-gradient(to top, #020079, #0154FD, #fff )'
+            ? 'linear-gradient(to top, #020079, #0154FD, #ccc )'
             : 'linear-gradient(180deg, #FFFFFF 22%, #D7CAEC 100%)'
         }
         index={2}

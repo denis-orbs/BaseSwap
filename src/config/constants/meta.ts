@@ -5,7 +5,7 @@ import { PageMeta } from './types'
 export const DEFAULT_META: PageMeta = {
   title: 'BaseSwap',
   description:
-    'Taller, better, faster, stronger. On Base Chain. Top decentralized exchange, on Base Chain. Swap your favorite tokens, provide liquidity to earn BSWAP, and stake BSWAP to earn more!',
+    'Harder, better, faster, stronger. On Base Chain. Top decentralized exchange, on Base Chain. Swap your favorite tokens, provide liquidity to earn BSWAP, and stake BSWAP to earn more!',
   image: '',
 }
 
