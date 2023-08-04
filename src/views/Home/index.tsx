@@ -4,6 +4,7 @@ import useTheme from 'hooks/useTheme'
 import { PageMeta } from 'components/Layout/Page'
 import Hero from './components/Hero'
 import MetricsSection from './components/MetricsSection'
+import TVL from './components/TVL'
 
 const StyledHeroSection = styled(PageSection)`
   padding-top: 16px;
@@ -30,6 +31,7 @@ const Home: React.FC = () => {
         hasCurvedDivider={false}
       >
         <Hero />
+        <TVL />
       </StyledHeroSection>
       <PageSection
         innerProps={{ style: { margin: '0', width: '100%' } }}

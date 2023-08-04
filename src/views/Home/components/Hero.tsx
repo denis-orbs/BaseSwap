@@ -11,6 +11,7 @@ import CompositeImage, { CompositeImageProps } from './CompositeImage'
 import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
 import banner from '../../../../public/images/newbanner.png'
 import baseswap from '../../../../public/images/newlogo.png'
+import TVL from 'components/TVL'
 
 const flyingAnim = () => keyframes`
   from {
@@ -146,6 +147,7 @@ const Hero = () => {
                 {t('Trade Now')}
               </Button>
             </NextLinkFromReactRouter>
+            
           </Flex>
         </Flex>
 

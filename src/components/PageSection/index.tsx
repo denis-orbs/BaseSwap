@@ -34,8 +34,8 @@ const BackgroundColor = styled(Flex)<BackgroundColorProps>`
 
 const ChildrenWrapper = styled(Container)`
   min-height: auto;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-top: 32px;
