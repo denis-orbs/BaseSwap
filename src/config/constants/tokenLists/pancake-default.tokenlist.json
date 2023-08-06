@@ -43,6 +43,14 @@
       "logoURI": ""
     },
     {
+      "name": "Magic Internet Money",
+      "symbol": "MIM",
+      "address": "0x4A3A6Dd60A34bB2Aba60D73B4C88315E9CeB6A3D",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "Ogre",
       "symbol": "OGRE",
       "address": "0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492",

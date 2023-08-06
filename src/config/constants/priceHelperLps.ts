@@ -56,6 +56,15 @@ const priceHelperLps: SerializedFarmConfig[] = [
     token: baseTokens.cbeth,
     quoteToken: baseTokens.wbnb,
   },
+  {
+    pid: 8,
+    lpSymbol: 'MIM-USDC LP',
+    lpAddresses: {
+      8453: '0xa2b120cab75aefdfafda6a14713349a3096eed79',
+    },
+    token: baseTokens.mim,
+    quoteToken: baseTokens.usdbc,
+  },
 ]
 
 export default priceHelperLps

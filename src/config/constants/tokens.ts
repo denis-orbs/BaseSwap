@@ -2457,6 +2457,14 @@ const CBETH_BASE = new Token(
   'Coinbase Wrapped Staked ETH',
   'baseswap.fi',
 )
+const MIM_BASE = new Token(
+  ChainId.BASE,
+  '0x4A3A6Dd60A34bB2Aba60D73B4C88315E9CeB6A3D',
+  18,
+  'MIM',
+  'Magic Internet Money',
+  'baseswap.fi',
+)
 const DAI_BASE = new Token(
   ChainId.BASE,
   '0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb',
@@ -2514,6 +2522,7 @@ export const baseTokens = {
   ogre: ORGE_BASE,
   busd: AXLUSDC_BASE,
   usdc: USDC_BASE,
+  mim: MIM_BASE, 
   // bbt: BIGBOOBS_BASE,
 }
 

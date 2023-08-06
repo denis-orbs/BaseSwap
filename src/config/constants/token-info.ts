@@ -35,6 +35,7 @@ export type TokenLookupKey =
   | 'DAI'
   | 'USDbC'
   | 'CBETH'
+  | 'MIM'
 
 
 
