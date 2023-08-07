@@ -57,8 +57,8 @@ export const EMPTY_LIST: TokenAddressMap = {
 
 // jumpman
 export enum GAS_PRICE {
-  default = '1.5',
-  fast = '3',
+  default = '1.3',
+  fast = '2.5',
   instant = '5',
   testnet = '5',
 }

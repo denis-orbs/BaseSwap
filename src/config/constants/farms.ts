@@ -87,15 +87,14 @@ const farms: SerializedFarmConfig[] = [
   
 
   // {
-  //   pid: 1,
-  //   lpSymbol: 'ETH-axlUSDC LP',
+  //   pid: 4,
+  //   lpSymbol: 'CBETH-USDBC LP',
   //   lpAddresses: {
-  //     [ChainId.BASE_GOERLI]: '0x61Bb3E29A49aCbd0160E6500c8261f3Ac8f0e431',
-  //     [ChainId.BASE]: '',
+  //     [ChainId.BASE]: '0x29a706a49baE714bCfcC96ac1A43e116cB57794c',
   //   },
-  //   token: serializedTokens.axlUsdc,
-  //   quoteToken: serializedTokens.wbnb,
-  // },
+  //   token: serializedTokens.cbeth,
+  //   quoteToken: serializedTokens.usdbc,
+  // }, 
 ]
 
 export default farms
