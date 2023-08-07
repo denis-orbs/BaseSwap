@@ -9,5 +9,28 @@
   "tags": {},
   "logoURI": "ipfs://QmNa8mQkrNKp1WEEeGjFezDmDeodkWRevGFN8JCV7b4Xir",
   "keywords": ["pancake", "unsupported"],
-  "tokens": []
+  "tokens": [
+    {
+      "name": "TOSHE", 
+      "symbol": "TOSHE", 
+      "address": "0xf28A03CEA238A709ebEb1115E977506B16805A2A", 
+      "chainId": 8453,
+      "decimals": 18
+    }, 
+    {
+      "name": "Fake BSWAP", 
+      "symbol": "FAKEBSWAP", 
+      "address": "0xfE524D49CAcAE91008fBa1c54f3A7C3eE3b1A4CF", 
+      "chainId": 8453,
+      "decimals": 18
+    }, 
+    {
+      "name": "BASE", 
+      "symbol": "BASE", 
+      "address": "0x1aA3e02A5CaB1Dc83C3696688618B776FCF6260c", 
+      "chainId": 8453,
+      "decimals": 18
+    }
+
+  ]
 }
