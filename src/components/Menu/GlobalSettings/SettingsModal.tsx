@@ -113,13 +113,13 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
               </Flex>
               <TransactionSettings />
             </Flex>
-            <Flex justifyContent="space-between" alignItems="center" mb="24px">
-              <Flex alignItems="center">
+            <Flex justifyContent="space-between" alignItems="center" mb="12px">
+              <Flex  alignItems="center">
                 <Text>{t('Zap')}</Text>
                 <QuestionHelper
                   text={
-                    <Box>
-                      <Text>
+                    <Box >
+                      <Text color="#333">
                         {t(
                           'Zap enables simple liquidity provision. Add liquidity with one token and one click, without manual swapping or token balancing.',
                         )}

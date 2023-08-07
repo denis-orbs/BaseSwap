@@ -10,7 +10,7 @@ import { formatNumber } from 'utils/formatBalance'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
-
+import { useMatchBreakpoints } from '@pancakeswap/uikit'
 import { Input as NumericalInput } from './NumericalInput'
 import { CopyButton } from '../CopyButton'
 import AddToWalletButton from '../AddToWallet/AddToWalletButton'
@@ -147,6 +147,7 @@ export default function CurrencyInputPanel({
 
   const token = pair ? pair.liquidityToken : currency instanceof Token ? currency : null
   const tokenAddress = token ? isAddress(token.address) : null
+  const { isMobile } = useMatchBreakpoints();
 
   const amountInDollar = useBUSDCurrencyAmount(
     showBUSD ? currency : undefined,
@@ -233,7 +234,8 @@ export default function CurrencyInputPanel({
           <Text
             onClick={!disabled && onMax}
             color="textSubtle"
-            fontSize="16px"
+            fontSize={isMobile ? '14px' : '16px'}
+
             style={{ display: 'inline', cursor: 'pointer' }}
           >
             {!hideBalance && !!currency
