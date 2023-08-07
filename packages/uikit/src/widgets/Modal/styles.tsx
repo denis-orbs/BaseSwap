@@ -10,8 +10,9 @@ export const mobileFooterHeight = 73;
 
 export const ModalHeader = styled.div<{ background?: string }>`
   align-items: center;
-  background: ${({ theme }) => theme.colors.gradients.basedsex};
-  border-bottom: 4px solid ${({ theme }) => theme.colors.cardBorder};
+
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
+  border-bottom: 3px solid ${({ theme }) => theme.colors.cardBorder};
   display: flex;
   padding: 4px; 
 
@@ -21,6 +22,7 @@ export const ModalHeader = styled.div<{ background?: string }>`
 
 export const ModalTitle = styled(Flex)`
   align-items: center;
+
   justify-content: flex-end;
   flex: 1;
 `;
@@ -38,7 +40,7 @@ export const ModalBody = styled(Flex)`
 export const ModalCloseButton: React.FC<{ onDismiss: ModalProps["onDismiss"] }> = ({ onDismiss }) => {
   return (
     <IconButton variant="text" onClick={onDismiss} aria-label="Close the dialog">
-      <CloseIcon color="background" />
+      <CloseIcon color="text" />
     </IconButton>
   );
 };

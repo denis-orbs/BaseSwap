@@ -33,6 +33,20 @@ export const styleVariants = {
 
     }
   },
+  [variants.CALCULATOR]: {
+    backgroundColor: "#fff",
+    color: "background",
+    fontWeight: "900", 
+    borderRadius: "8px", 
+    border: "2px solid", 
+    borderColor: "background", 
+    ":hover": {
+      backgroundColor: "background", 
+      borderColor: "text", 
+      color: "text", 
+
+    }
+  },
   // used for connect wallet 
   [variants.PRIMARYTHREE]: {
     backgroundColor: "#fff",

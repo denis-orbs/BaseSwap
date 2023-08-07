@@ -14,7 +14,7 @@ const Modal: React.FC<ModalProps> = ({
   onBack,
   children,
   hideCloseButton = false,
-  bodyPadding = "24px",
+  bodyPadding = "12px",
   headerBackground = "transparent",
   minWidth = "320px",
   ...props
@@ -42,7 +42,7 @@ const Modal: React.FC<ModalProps> = ({
       <ModalHeader background={getThemeValue(theme, `colors.${headerBackground}`, headerBackground)}>
         <ModalTitle>
           {onBack && <ModalBackButton onBack={onBack} />}
-          <Heading>{title}</Heading>
+          <Heading style={{fontSize: '14px' }} >{title}</Heading>
         </ModalTitle>
         {!hideCloseButton && <ModalCloseButton onDismiss={onDismiss} />}
       </ModalHeader>

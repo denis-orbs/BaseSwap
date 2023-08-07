@@ -75,12 +75,12 @@ const RoiCalculatorFooter: React.FC<RoiCalculatorFooterProps> = ({
   const lpRewardsAPR = (Number(displayApr) - apr).toFixed(2)
 
   return (
-    <Footer p="16px" flexDirection="column">
+    <Footer p="8px" flexDirection="column">
       <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded((prev) => !prev)}>
-        {isExpanded ? t('Hide') : t('Details')}
+        {isExpanded ? t('HIDE') : t('DETAILS')}
       </ExpandableLabel>
       {isExpanded && (
-        <Box px="8px">
+        <Box px="4px">
           <Grid gridTemplateColumns="2.5fr 1fr" gridRowGap="8px" gridTemplateRows={`repeat(${gridRowCount}, auto)`}>
             {isFarm && (
               <>
@@ -104,7 +104,7 @@ const RoiCalculatorFooter: React.FC<RoiCalculatorFooterProps> = ({
             <Text small textAlign="right">
               {(apy ?? apr).toFixed(2)}%
             </Text>
-            {isFarm && (
+            {/* {isFarm && (
               <>
                 <Text color="textSubtle" small>
                   *{t('LP Rewards APR')}
@@ -113,7 +113,7 @@ const RoiCalculatorFooter: React.FC<RoiCalculatorFooterProps> = ({
                   {lpRewardsAPR}%
                 </Text>
               </>
-            )}
+            )} */}
             {!Number.isFinite(apy) && (
               <Text color="textSubtle" small>
                 {t('APY (%compoundTimes%x daily compound)', {
@@ -152,13 +152,13 @@ const RoiCalculatorFooter: React.FC<RoiCalculatorFooterProps> = ({
                 {t('Calculated based on current rates.')}
               </Text>
             </li>
-            {isFarm && (
+            {/* {isFarm && (
               <li>
-                {/* <Text fontSize="12px" textAlign="center" color="textSubtle" display="inline">
+                <Text fontSize="12px" textAlign="center" color="textSubtle" display="inline">
                   {t('LP rewards: 0.17% trading fees, distributed proportionally among LP token holders.')}
-                </Text> */}
+                </Text>
               </li>
-            )}
+            )} */}
             <li>
               <Text fontSize="12px" textAlign="center" color="textSubtle" display="inline" lineHeight={1.1}>
                 {t(

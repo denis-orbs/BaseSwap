@@ -50,6 +50,7 @@ export interface RoiCalculatorModalProps {
 }
 
 const StyledModal = styled(Modal)`
+
   & > :nth-child(2) {
     padding: 0;
   }
@@ -70,6 +71,7 @@ const ScrollableContainer = styled.div`
 
 const FullWidthButtonMenu = styled(ButtonMenu)<{ disabled?: boolean }>`
   width: 100%;
+  background-color: transparent; 
 
   & > button {
     width: 100%;
@@ -183,6 +185,7 @@ const RoiCalculatorModal: React.FC<RoiCalculatorModalProps> = ({
             {t('%asset% staked', { asset: stakingTokenSymbol })}
           </Text>
           <BalanceInput
+          
             inputProps={{
               scale: 'sm',
             }}
@@ -195,11 +198,11 @@ const RoiCalculatorModal: React.FC<RoiCalculatorModalProps> = ({
             switchEditingUnits={toggleEditingCurrency}
             onFocus={onBalanceFocus}
           />
-          <Flex justifyContent="space-between" mt="8px">
+          <Flex  justifyContent="space-between" mt="8px">
             <Button
               scale="xs"
-              p="4px 16px"
-              width="68px"
+              p="12px"
+              width="60px"
               variant="tertiary"
               onClick={() => setPrincipalFromUSDValue('100')}
             >
@@ -207,8 +210,8 @@ const RoiCalculatorModal: React.FC<RoiCalculatorModalProps> = ({
             </Button>
             <Button
               scale="xs"
-              p="4px 16px"
-              width="68px"
+              p="12px"
+              width="60px"
               variant="tertiary"
               onClick={() => setPrincipalFromUSDValue('1000')}
             >
@@ -222,7 +225,7 @@ const RoiCalculatorModal: React.FC<RoiCalculatorModalProps> = ({
                 !account
               }
               scale="xs"
-              p="4px 16px"
+              p="14px"
               width="128px"
               variant="tertiary"
               onClick={() =>

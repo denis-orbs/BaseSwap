@@ -18,9 +18,9 @@ const getBorderColor = ({ theme, variant }: StyledButtonMenuProps) => {
 
 const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
   background-color: ${getBackgroundColor};
-  border-radius: 16px;
+  border-radius: 12px;
   display: ${({ fullWidth }) => (fullWidth ? "flex" : "inline-flex")};
-  border: 1px solid ${getBorderColor};
+  border: 0px solid ${getBorderColor};
   width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
 
   & > button,
@@ -45,7 +45,7 @@ const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
 
         & > button:disabled {
           background-color: transparent;
-          color: ${variant === variants.PRIMARY ? theme.colors.primary : theme.colors.textSubtle};
+          color: ${variant === variants.PRIMARY ? theme.colors.primary : theme.colors.text};
         }
     `;
     }
@@ -57,7 +57,7 @@ const StyledButtonMenu = styled.div<StyledButtonMenuProps>`
 const ButtonMenu: React.FC<ButtonMenuProps> = ({
   activeIndex = 0,
   scale = scales.MD,
-  variant = variants.PRIMARY,
+  variant = variants.CALCULATOR,
   onItemClick,
   disabled,
   children,
