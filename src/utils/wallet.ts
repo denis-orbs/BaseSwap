@@ -4,7 +4,6 @@ import { ExternalProvider } from '@ethersproject/providers'
 import { ChainId } from '@magikswap/sdk'
 import { BAD_SRCS } from 'components/Logo/Logo'
 import { BASE_BSC_SCAN_URLS } from 'config'
-import { BASE_GOERLI_RPC_URLS } from '../config/constants/rpc'
 import { BASE_RPC_URLS } from '../config/constants/rpc'
 
 const NETWORK_CONFIG = {
