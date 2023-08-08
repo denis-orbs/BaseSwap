@@ -2465,6 +2465,17 @@ const MIM_BASE = new Token(
   'Magic Internet Money',
   'baseswap.fi',
 )
+
+const EDE_BASE = new Token(
+  ChainId.BASE,
+  '0x0A074378461FB7ed3300eA638c6Cc38246db4434',
+  18,
+  'EDE',
+  'El Dorado Exchange',
+  'https://app.ede.finance/#/',
+)
+
+
 const DAI_BASE = new Token(
   ChainId.BASE,
   '0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb',
@@ -2523,6 +2534,7 @@ export const baseTokens = {
   busd: AXLUSDC_BASE,
   usdc: USDC_BASE,
   mim: MIM_BASE, 
+  ede: EDE_BASE, 
   // bbt: BIGBOOBS_BASE,
 }
 
