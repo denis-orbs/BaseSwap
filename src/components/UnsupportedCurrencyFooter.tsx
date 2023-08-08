@@ -1,5 +1,5 @@
 import { Currency, Token } from '@magikswap/sdk'
-import { Button, Text, Modal, useModal, InjectedModalProps, Link } from '@pancakeswap/uikit'
+import { Button, Flex, Text, Modal, useModal, InjectedModalProps, Link } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import styled from 'styled-components'
 import { AutoRow } from 'components/Layout/Row'
@@ -17,11 +17,11 @@ interface Props extends InjectedModalProps {
 const DetailsFooter = styled.div`
   padding: 8px 0;
   width: 100%;
-  max-width: 400px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  max-width: 420px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   color: ${({ theme }) => theme.colors.text};
-  background-color: ${({ theme }) => theme.colors.invertedContrast};
+  background-color: ${({ theme }) => theme.colors.background};
   text-align: center;
 `
 
@@ -38,8 +38,8 @@ const UnsupportedModal: React.FC<Props> = ({ currencies, onDismiss }) => {
   const unsupportedTokens: { [address: string]: Token } = useUnsupportedTokens()
 
   return (
-    <Modal title={t('Unsupported Assets')} maxWidth="420px" onDismiss={onDismiss}>
-      <AutoColumn gap="lg">
+    <Modal title={t('Unsupported Assets')} width="50%" maxWidth="420px" onDismiss={onDismiss}>
+      <AutoColumn justify="center"  gap="lg">
         {tokens.map((token) => {
           return (
             token &&
@@ -59,13 +59,19 @@ const UnsupportedModal: React.FC<Props> = ({ currencies, onDismiss }) => {
             )
           )
         })}
-        <AutoColumn gap="lg">
-          <Text>
-            {t(
-              'Some assets are not available through this interface because they may not work well with our smart contract or we are unable to allow trading for legal reasons.',
-            )}
+        <AutoColumn justify="center" gap="lg">
+          <Flex width="90vw">
+          <Text textAlign="center" letterSpacing="0px" fontSize="14px">
+            Lets do this first: BaseSwap isn't responsible for what you do on BaseSwap.fi. That's the law of the land. 
+            Investors take their own risk, and they're responsible for their own outcomes. Period. Full stop. <br />  <br /> 
+            Now, with that said, we're trying our very best to keep you from getting scammed. We don't blacklist every token, we can't keep up with em all. Plus 
+            this is DeFi: the land of decentralization, and you take your own risks in this space. <br /> <br /> 
+            So its kinda Home Alone when the Mom told Kevin: "if Uncle Frank said it's bad...then it must be really bad". 
+            <br /> <br /> Thank us later.  
           </Text>
+          </Flex>
         </AutoColumn>
+        
       </AutoColumn>
     </Modal>
   )
@@ -78,7 +84,7 @@ export default function UnsupportedCurrencyFooter({ currencies }: { currencies: 
   return (
     <DetailsFooter>
       <Button variant="text" onClick={onPresentModal}>
-        {t('Read more about unsupported assets')}
+        {t('If you need more info, go on and click here')}
       </Button>
     </DetailsFooter>
   )

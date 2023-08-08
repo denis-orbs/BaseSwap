@@ -67,6 +67,7 @@ import PriceChartContainer from './components/Chart/PriceChartContainer'
 import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
 import ImportTokenWarningModal from '../../components/ImportTokenWarningModal'
+import { SchemaMetaFieldDef } from 'graphql'
 
 const Label = styled(Text)`
   font-size: 12px;
@@ -540,8 +541,8 @@ export default function Swap() {
                     </AutoColumn>
                     <Box mt="0.25rem">
                       {swapIsUnsupported ? (
-                        <Button width="100%" disabled>
-                          {t('Unsupported Asset')}
+                        <Button style={{ backgroundColor: '#333', borderWidth: '2px'}} width="100%" disabled>
+                          <Text color="#fff"> NOPE. That's a scam. You're welcome. </Text>
                         </Button>
                       ) : !account ? (
                         <ConnectWalletButton width="100%" />

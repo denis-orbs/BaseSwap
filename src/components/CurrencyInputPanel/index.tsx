@@ -65,9 +65,7 @@ const InputPanel = styled.div`
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
   border-radius: 8px;
   border: 3px solid #fff; 
-  background: ${({ theme }) => theme.colors.background};
-  backdrop-filter: blur(4px);
-
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
   ${({ zapStyle }) =>
     !!zapStyle &&
     css`
