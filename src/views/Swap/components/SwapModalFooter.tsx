@@ -19,7 +19,7 @@ import { StyledBalanceMaxMini, SwapCallbackError } from './styleds'
 
 const SwapModalFooterContainer = styled(AutoColumn)`
   margin-top: 24px;
-  padding: 16px;
+  padding: 24px;
   border-radius: 8px; 
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   background-color: ${({ theme }) => theme.colors.background};
