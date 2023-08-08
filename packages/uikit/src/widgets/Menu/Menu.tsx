@@ -155,9 +155,6 @@ const Menu: React.FC<NavProps> = ({
                 <Link href="/pools" >
                   <Text marginRight="2rem">Earn </Text>
                 </Link>
-                <Link href="/cross-chain" target="_blank" >
-                  <Text marginRight="2rem">Cross Chain Swap</Text>
-                </Link>
                 <Link href="/bridge" >
                   <Text marginRight="2rem">Bridge </Text>
                 </Link>

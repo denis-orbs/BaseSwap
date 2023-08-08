@@ -106,12 +106,6 @@ export const links: MenuItemsType[] = [
     icon: BridgeIcon,
     fillIcon: BridgeIcon,
   },
-  {
-    label: "Cross Chain Swap",
-    href: "/cross-chain",
-    icon: RocketIcon,
-    fillIcon: RocketIcon,
-  },
   // {
   //   label: "Win",
   //   href: "/",
