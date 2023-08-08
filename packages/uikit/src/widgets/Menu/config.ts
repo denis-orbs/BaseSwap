@@ -6,9 +6,11 @@ import {
   SwapFillIcon,
   EarnFillIcon,
   EarnIcon,
+  BridgeIcon,
   TrophyIcon,
   TrophyFillIcon,
   MoreIcon,
+  RocketIcon,
 } from "../../components/Svg";
 import { LinkStatus } from "./types";
 
@@ -97,6 +99,12 @@ export const links: MenuItemsType[] = [
         href: "/pools",
       },
     ],
+  },
+  {
+    label: "Bridge",
+    href: "/bridge",
+    icon: BridgeIcon,
+    fillIcon: BridgeIcon,
   },
   // {
   //   label: "Win",

@@ -118,6 +118,10 @@ const ResetCSS = createGlobalStyle`
     border-color: transparent;
     color: transparent;
   }  
+
+  .tw-rounded-box.tw-relative.tw-flex.tw-h-full.tw-w-full.tw-flex-col.tw-gap-4.tw-overflow-hidden.tw-bg-neutral.tw-font-inter.tw-text-base-content {
+    background: linear-gradient(to top,#111,#333) !important;
+  }
 `;
 
 export default ResetCSS;
