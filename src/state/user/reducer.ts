@@ -102,8 +102,8 @@ export const initialState: UserState = {
   tokens: {},
   pairs: {},
   timestamp: currentTimestamp(),
-  audioPlay: true,
-  isExchangeChartDisplayed: true,
+  audioPlay: false,
+  isExchangeChartDisplayed: false,
   isSubgraphHealthIndicatorDisplayed: false,
   userChartViewMode: ChartViewMode.BASIC,
   userFarmStakedOnly: FarmStakedOnly.ON_FINISHED,
@@ -194,7 +194,7 @@ export default createReducer(initialState, (builder) =>
       state.audioPlay = false
     })
     .addCase(unmuteAudio, (state) => {
-      state.audioPlay = true
+      state.audioPlay = false
     })
     .addCase(updateUserFarmStakedOnly, (state, { payload: { userFarmStakedOnly } }) => {
       state.userFarmStakedOnly = userFarmStakedOnly
