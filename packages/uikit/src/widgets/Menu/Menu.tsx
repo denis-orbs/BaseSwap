@@ -132,40 +132,43 @@ const Menu: React.FC<NavProps> = ({
         <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
           {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
           <StyledNav>
-              <img src="/images/newlogo.png" width={isMobile ? 40 : 60} height={isMobile ? 40 : 40} alt="logo" />
-              <Flex>
+            <img src="/images/newlogo.png" width={isMobile ? 40 : 60} height={isMobile ? 40 : 40} alt="logo" />
+            <Flex>
               <a href="/">
                 <Text fontSize="2rem" style={{ marginLeft: "1rem", alignItems: 'center', justifyContent: 'center' }}>
                   BaseSwap
                 </Text>
               </a>
-              </Flex>
-              {!isMobile &&
-              <Flex  flexDirection="row" justifyContent="flex-start" alignItems="flex-end" marginLeft={isMobile? '2rem' : '250px' } width="80%" >
+            </Flex>
+            {!isMobile &&
+              <Flex flexDirection="row" justifyContent="flex-start" alignItems="flex-end" marginLeft={isMobile ? '2rem' : '250px'} width="80%" >
                 <Link href="/swap" >
-                {/* <Button as="a" scale="sm">Swap</Button> */}
-                <Text marginRight="2rem">Swap</Text>
+                  {/* <Button as="a" scale="sm">Swap</Button> */}
+                  <Text marginRight="2rem">Swap</Text>
                 </Link>
                 <Link href="/liquidity" >
                   <Text marginRight="2rem">Liquidity</Text>
                 </Link>
                 <Link href="/farms" >
-                <Text marginRight="2rem">Farm </Text>
+                  <Text marginRight="2rem">Farm </Text>
                 </Link>
                 <Link href="/pools" >
-                <Text marginRight="2rem">Earn </Text>
-                  </Link>
-                  <Link href="https://app.squidrouter.com/"  target="_blank" >
-                <Text marginRight="2rem">Bridge</Text>
+                  <Text marginRight="2rem">Earn </Text>
+                </Link>
+                <Link href="/cross-chain" target="_blank" >
+                  <Text marginRight="2rem">Cross Chain Swap</Text>
+                </Link>
+                <Link href="/bridge" >
+                  <Text marginRight="2rem">Bridge </Text>
                 </Link>
               </Flex>
-               } 
-              {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
-              {/* {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />} */}
+            }
+            {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
+            {/* {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />} */}
 
 
             <Flex alignItems="center" justifyContent="flex-end" height="100%" width="300px">
-           
+
               {/* {!isMobile && !isMd && (
                 <Box mr="12px">
                   <CakePrice showSkeleton={false} cakePriceUsd={cakePriceUsd} />
