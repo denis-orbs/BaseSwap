@@ -56,6 +56,15 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.usdbc,
   },
   {
+    pid: 9,
+    lpSymbol: 'EDE-WETH LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x2135780D04C96E14bC205d2c8B8eD4e716d09A2b',
+    },
+    token: serializedTokens.ede,
+    quoteToken: serializedTokens.wbnb,
+  },
+  {
     pid: 6,
     lpSymbol: 'CBETH-ETH LP',
     lpAddresses: {

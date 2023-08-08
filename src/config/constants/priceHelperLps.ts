@@ -65,6 +65,15 @@ const priceHelperLps: SerializedFarmConfig[] = [
     token: baseTokens.mim,
     quoteToken: baseTokens.usdbc,
   },
+  {
+    pid: 9,
+    lpSymbol: 'EDE-WETH LP',
+    lpAddresses: {
+     8453: '0x2135780D04C96E14bC205d2c8B8eD4e716d09A2b',
+    },
+    token: baseTokens.ede,
+    quoteToken: baseTokens.wbnb,
+  },
 ]
 
 export default priceHelperLps
