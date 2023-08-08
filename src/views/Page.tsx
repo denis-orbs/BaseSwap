@@ -57,6 +57,10 @@ const StyledPage = styled.div<{ $removePadding: boolean; $noMinHeight }>`
   }
 `
 
+// background-image: url(${readybannerone.src});
+// background-size: contain; 
+// background-position: top center; 
+// background-repeat: no-repeat;
 const Page: React.FC<
   React.HTMLAttributes<HTMLDivElement> & {
     removePadding?: boolean
