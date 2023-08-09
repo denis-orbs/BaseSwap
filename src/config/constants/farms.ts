@@ -38,6 +38,16 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.usdbc,
   },
   {
+    pid: 12,
+    lpSymbol: 'BASIN-WETH LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x6EDa0a4e05fF50594E53dBf179793CADD03689e5',
+    },
+    token: serializedTokens.basin,
+    quoteToken: serializedTokens.wbnb,
+  },
+
+  {
     pid: 8,
     lpSymbol: 'MIM-USDC LP',
     lpAddresses: {

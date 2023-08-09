@@ -92,6 +92,15 @@ const priceHelperLps: SerializedFarmConfig[] = [
     token: baseTokens.daip,
     quoteToken: baseTokens.usdp,
   },
+  {
+    pid: 12,
+    lpSymbol: 'BASIN-WETH LP',
+    lpAddresses: {
+      8453: '0x6EDa0a4e05fF50594E53dBf179793CADD03689e5',
+    },
+    token: baseTokens.basin,
+    quoteToken: baseTokens.wbnb,
+  },
 ]
 
 export default priceHelperLps
