@@ -59,6 +59,22 @@
       "logoURI": ""
     },
     {
+      "name": "USD+",
+      "symbol": "USD+",
+      "address": "0xB79DD08EA68A908A97220C76d19A6aA9cBDE4376",
+      "chainId": 8453,
+      "decimals": 6,
+      "logoURI": ""
+    },
+    {
+      "name": "DAI+",
+      "symbol": "DAI+",
+      "address": "0x65a2508C429a6078a7BC2f7dF81aB575BD9D9275",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "Ogre",
       "symbol": "OGRE",
       "address": "0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492",

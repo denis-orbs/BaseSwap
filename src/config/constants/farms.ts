@@ -47,6 +47,24 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.usdbc,
   },
   {
+    pid: 10,
+    lpSymbol: 'USD+-USDC LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x696b4d181Eb58cD4B54a59d2Ce834184Cf7Ac31A',
+    },
+    token: serializedTokens.usdp,
+    quoteToken: serializedTokens.usdbc,
+  },
+  {
+    pid: 11,
+    lpSymbol: 'DAI+-USDC LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x7Fb35b3967798cE8322cC50eF52553BC5Ee4c306',
+    },
+    token: serializedTokens.daip,
+    quoteToken: serializedTokens.usdp,
+  },
+  {
     pid: 5,
     lpSymbol: 'DAI-USDC LP',
     lpAddresses: {

@@ -74,6 +74,24 @@ const priceHelperLps: SerializedFarmConfig[] = [
     token: baseTokens.ede,
     quoteToken: baseTokens.wbnb,
   },
+  {
+    pid: 10,
+    lpSymbol: 'USD+-USDC LP',
+    lpAddresses: {
+      8453: '0x696b4d181Eb58cD4B54a59d2Ce834184Cf7Ac31A',
+    },
+    token: baseTokens.usdp,
+    quoteToken: baseTokens.usdbc,
+  },
+  {
+    pid: 11,
+    lpSymbol: 'DAI+-USD+ LP',
+    lpAddresses: {
+      8453: '0x7Fb35b3967798cE8322cC50eF52553BC5Ee4c306',
+    },
+    token: baseTokens.daip,
+    quoteToken: baseTokens.usdp,
+  },
 ]
 
 export default priceHelperLps

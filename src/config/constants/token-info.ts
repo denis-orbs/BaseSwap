@@ -13,7 +13,7 @@ export interface ITokenInfo {
   addresses: { [chainId: number]: string }
 }
 
-export type StableTokenLookupKey = 'FRAX' | 'USDCe' | 'USDT' | 'DAI' | 'USD+' | 'DAI+' | 'axlUSDC' | 'USDbC'
+export type StableTokenLookupKey = 'FRAX' | 'USDCe' | 'USDP' |'DAIP' |'USDT' | 'DAI' | 'USD+' | 'DAI+' | 'axlUSDC' | 'USDbC'
 // Add to this list as needed
 export type TokenLookupKey =
   | StableTokenLookupKey
@@ -36,6 +36,8 @@ export type TokenLookupKey =
   | 'USDbC'
   | 'CBETH'
   | 'MIM'
+  | 'USDP'
+  | 'DAIP'
 
 
 

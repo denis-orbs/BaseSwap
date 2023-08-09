@@ -2475,6 +2475,24 @@ const EDE_BASE = new Token(
   'https://app.ede.finance/#/',
 )
 
+const USDP_BASE = new Token(
+  ChainId.BASE,
+  '0xB79DD08EA68A908A97220C76d19A6aA9cBDE4376',
+  6,
+  'USD+',
+  'USD+',
+  'https://app.overnight.fi/swap',
+)
+
+const DAIP_BASE = new Token(
+  ChainId.BASE,
+  '0x65a2508C429a6078a7BC2f7dF81aB575BD9D9275',
+  18,
+  'DAI+',
+  'DAI+',
+  'https://app.overnight.fi/swap',
+)
+
 
 const DAI_BASE = new Token(
   ChainId.BASE,
@@ -2535,6 +2553,8 @@ export const baseTokens = {
   usdc: USDC_BASE,
   mim: MIM_BASE, 
   ede: EDE_BASE, 
+  usdp: USDP_BASE, 
+  daip: DAIP_BASE, 
   // bbt: BIGBOOBS_BASE,
 }
 
