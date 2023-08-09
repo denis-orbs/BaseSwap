@@ -693,12 +693,12 @@ export default function Swap() {
   )
 }
 
-
-const StyledCard = styled(Card)`
-width: 450px;
-min-height: 690px;
+const StyledContainer = styled.div`
+margin: auto;
+min-width: 300px;
 ${({ theme }) => theme.mediaQueries.md} {
-  max-width: '100%';
+  min-width: 450px;
+  max-width: 100%;
 }
 `
 
@@ -751,7 +751,7 @@ const CrossChainSwap = () => {
   const widgetUrl = `https://widget.squidrouter.com/iframe?config=${encodeURIComponent(JSON.stringify(widgetConfig))}`;
 
   return (
-    <StyledCard>
+    <StyledContainer>
       {/* 
               // @ts-ignore  */}
       <iframe
@@ -761,7 +761,11 @@ const CrossChainSwap = () => {
         height="690px" // Adjust the height as needed
         frameBorder="0"
         scrolling="no"
+        style={{
+          border: '3px solid #fff',
+          borderRadius: '12px'
+        }}
       />
-    </StyledCard>
+    </StyledContainer>
   )
 }
