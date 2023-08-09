@@ -75,6 +75,14 @@
       "logoURI": ""
     },
     {
+      "name": "Basin Protocol",
+      "symbol": "BASIN",
+      "address": "0x4788de271F50EA6f5D5D2a5072B8D3C61d650326",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "Ogre",
       "symbol": "OGRE",
       "address": "0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492",

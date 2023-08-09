@@ -2493,6 +2493,15 @@ const DAIP_BASE = new Token(
   'https://app.overnight.fi/swap',
 )
 
+const BASIN_BASE = new Token(
+  ChainId.BASE,
+  '0x4788de271F50EA6f5D5D2a5072B8D3C61d650326',
+  18,
+  'BASIN',
+  'Basin Protocol',
+  'https://www.basinfinance.com/',
+)
+
 
 const DAI_BASE = new Token(
   ChainId.BASE,
@@ -2555,6 +2564,7 @@ export const baseTokens = {
   ede: EDE_BASE, 
   usdp: USDP_BASE, 
   daip: DAIP_BASE, 
+  basin: BASIN_BASE
   // bbt: BIGBOOBS_BASE,
 }
 
