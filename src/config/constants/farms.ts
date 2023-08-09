@@ -57,7 +57,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 11,
-    lpSymbol: 'DAI+-USDC LP',
+    lpSymbol: 'DAI+-USD+ LP',
     lpAddresses: {
       [ChainId.BASE]: '0x7Fb35b3967798cE8322cC50eF52553BC5Ee4c306',
     },
