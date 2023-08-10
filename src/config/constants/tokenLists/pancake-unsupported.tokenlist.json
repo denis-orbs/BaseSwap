@@ -1,5 +1,5 @@
 {
-  "name": "Pancake Unsupported List",
+  "name": "BaseSwap Unsupported List",
   "timestamp": "2021-01-05T20:47:02.923Z",
   "version": {
     "major": 1,
@@ -28,6 +28,13 @@
       "name": "BASE", 
       "symbol": "BASE", 
       "address": "0x1aA3e02A5CaB1Dc83C3696688618B776FCF6260c", 
+      "chainId": 8453,
+      "decimals": 18
+    },
+    {
+      "name": "MAG", 
+      "symbol": "MAG", 
+      "address": "0x7C89281c9D54Dd62A3Bb28CbAfa5f699e8dcA5db", 
       "chainId": 8453,
       "decimals": 18
     }
