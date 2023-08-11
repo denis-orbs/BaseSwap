@@ -13,21 +13,22 @@ import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
 import { Input as NumericalInput } from './NumericalInput'
 import { CopyButton } from '../CopyButton'
 import AddToWalletButton from '../AddToWallet/AddToWalletButton'
-
+import TypeIt from 'typeit-react'
 // bottom half of the input panel
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-end;
+  padding-bottom: 4px; 
   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
+
+  padding-right: 4px; 
 `
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })<{ zapStyle?: ZapStyle }>`
   padding: 0.25 0.5rem;
   border-radius: 8px;
   border: 0px solid #fff !important;  
-
-
 
   ${({ zapStyle, theme }) =>
     zapStyle &&
@@ -44,7 +45,7 @@ const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm'
 const LabelRow = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  align-items: center;
+  align-items: center; 
   color: ${({ theme }) => theme.colors.text};
   font-size: 1rem;
   line-height: 1.2rem;
@@ -63,9 +64,10 @@ const InputPanel = styled.div`
   z-index: 1;
 `
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
-  border-radius: 8px;
-  border: 3px solid #fff; 
+  border-radius: 2px;
+  border: 3px solid ${({ theme }) => theme.colors.text};
   background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+
   ${({ zapStyle }) =>
     !!zapStyle &&
     css`
@@ -166,7 +168,7 @@ export default function CurrencyInputPanel({
     borderTopRightRadius={borderTopRightRadius}
 
     >
-      <Flex alignItems="center" marginTop="1px" marginBottom="8px" justifyContent="space-between">
+      <Flex alignItems="center" marginTop="6px" marginBottom="20px" justifyContent="space-between">
         <Flex>
           {beforeButton}
           <CurrencySelectButton
@@ -184,14 +186,14 @@ export default function CurrencyInputPanel({
               {pair ? (
                 <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={36} margin />
               ) : currency ? (
-                <CurrencyLogo currency={currency} size="36px" style={{ marginRight: '8px' }} />
+                <CurrencyLogo currency={currency} size="60px" style={{ marginRight: '8px' }} />
               ) : null}
               {pair ? (
-                <Text id="pair" fontWeight="900">
+                <Text id="pair" color="text" fontWeight="600">
                   {pair?.token0.symbol}:{pair?.token1.symbol}
                 </Text>
               ) : (
-                <Text id="pair" fontWeight="900">
+                <Text id="pair" color="text" fontSize="1.4rem" fontWeight="600">
                   {(currency && currency.symbol && currency.symbol.length > 20
                     ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
                         currency.symbol.length - 5,
@@ -200,14 +202,14 @@ export default function CurrencyInputPanel({
                     : currency?.symbol) || t('Select Token')}
                 </Text>
               )}
-              {!disableCurrencySelect && <ChevronDownIcon />}
+              {!disableCurrencySelect && <ChevronDownIcon color="text" />}
             </Flex>
           </CurrencySelectButton>
           {token && tokenAddress ? (
             <Flex style={{ gap: '4px' }} ml="4px" alignItems="center">
               <CopyButton
                 width="16px"
-                buttonColor="background"
+                buttonColor="text"
                 text={tokenAddress}
                 tooltipMessage={t('Token address copied')}
                 tooltipTop={-20}
@@ -228,21 +230,37 @@ export default function CurrencyInputPanel({
           ) : null}
         </Flex>
         {account && (
+        //    <TypeIt 
+        //    options={{
+        //      cursorChar:" ", 
+        //      cursorSpeed:1000000, speed: 75, 
+        //    }}
+        //    speed={10}
+        //    getBeforeInit={(instance) => {
+        //  instance
+ 
+        //      .type("SWAP", {speed: 5000})
+        //      ;
+        //  return instance;
+        //   }}> 
+         
           <Text
             onClick={!disabled && onMax}
-            color="textSubtle"
-            fontSize={isMobile ? '14px' : '16px'}
-
+            color="text"
+            fontSize={isMobile ? '14px' : '14px'}
+            fontWeight="500"
+            letterSpacing="0px"
             style={{ display: 'inline', cursor: 'pointer' }}
           >
             {!hideBalance && !!currency
-              ? t('Balance: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? t('Loading') })
+              ? t('BALANCE: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? t('Loading') })
               : ' -'}
           </Text>
+          // </TypeIt>
         )}
       </Flex>
       <InputPanel>
-        <Container as="label" zapStyle={zapStyle} error={error}>
+        <Container className="animate__animated animate__slideInRight animate__slow" as="label" zapStyle={zapStyle} error={error}>
           <LabelRow>
             <NumericalInput
               error={error}
@@ -262,7 +280,7 @@ export default function CurrencyInputPanel({
               </Text>
             )}
             {account && currency && !disabled && showMaxButton && label !== 'To' && (
-              <Button onClick={onMax} scale="xs" variant="secondary">
+              <Button onClick={onMax}  variant="max" marginRight="4px">
                 {t('Max').toLocaleUpperCase(locale)}
               </Button>
             )}

@@ -60,7 +60,7 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
           href="https://app.squidrouter.com/"
           ml={[0, 0, '40px']}
           mt={['10px', '10px', isSide ? '10px' : 0]}
-          mb={['4px', '4px', 0]} style={{ fontSize: '18px', fontWeight: '900' }}
+          mb={['4px', '4px', 0]} style={{ fontSize: '18px', fontWeight: '400' }}
         >
           {t('Bridge to Base!')}
         </LinkExternal>

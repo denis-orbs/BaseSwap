@@ -96,7 +96,7 @@ export const CurrencySelect = ({
             ) : (
               <Flex alignItems="center" justifyContent="space-between">
                 <CurrencyLogo currency={selectedCurrency} size="36px" style={{ marginRight: '8px' }} />
-                <Text fontSize="1.4rem" id="pair" color="text" fontWeight="900">
+                <Text fontSize="1.4rem" id="pair" color="text" fontWeight="400">
                   {selectedCurrency && selectedCurrency.symbol && selectedCurrency.symbol.length > 20
                     ? `${selectedCurrency.symbol.slice(0, 4)}...${selectedCurrency.symbol.slice(
                         selectedCurrency.symbol.length - 5,

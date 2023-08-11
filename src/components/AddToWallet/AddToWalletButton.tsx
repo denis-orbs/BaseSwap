@@ -55,7 +55,7 @@ const getWalletName = () => {
     return 'TokenPocket Wallet'
   }
   if (window?.ethereum?.isMetaMask) {
-    return 'Metamask'
+    return 'MetaMask'
   }
   return null
 }

@@ -4,7 +4,8 @@ import { PageMeta } from 'components/Layout/Page'
 import { EXCHANGE_DOCS_URLS } from 'config/constants'
 import styled, { keyframes } from 'styled-components'
 import Image from 'next/image'
-import banner from '../../public/images/newbanner.png'
+
+import readybannerone from '../../public/images/baselogolarge.png'
 
 const flyingAnim = () => keyframes`
   from {
@@ -26,23 +27,18 @@ const BunnyWrapper = styled.div`
     overflow: visible !important;
   }
 `
+const readyplayerone = "/images/readybannerone.png";
 const StyledPage = styled.div<{ $removePadding: boolean; $noMinHeight }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('/images/mj.png');
-
-  background-position: 100% 20%;
-  background-repeat: no-repeat;
-  
-
-  width: 100%;
+  background-color: #111; 
+ 
   padding: ${({ $removePadding }) => ($removePadding ? '0' : '16px')};
   padding-bottom: 0;
   min-height: ${({ $noMinHeight }) => ($noMinHeight ? '110vh' : '110vh')};
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    background-size: auto;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -55,12 +51,17 @@ const StyledPage = styled.div<{ $removePadding: boolean; $noMinHeight }>`
     padding-bottom: 0;
     min-height: ${({ $noMinHeight }) => ($noMinHeight ? '100vh' : '100vh')};
   }
-`
+`;
 
 // background-image: url(${readybannerone.src});
-// background-size: contain; 
-// background-position: top center; 
-// background-repeat: no-repeat;
+// background-position: 0% 90%; 
+// background-size: 10vh; 
+// background-repeat: repeat-x; 
+// background-image: url(${readybannerone.src});
+//   background-size: 100vw 25vh; 
+//   background-position: 50% 50%; 
+//   background-repeat: no-repeat;
+ // background: linear-gradient(to bottom right, #0154FE, #fff); 
 const Page: React.FC<
   React.HTMLAttributes<HTMLDivElement> & {
     removePadding?: boolean
@@ -85,7 +86,7 @@ const Page: React.FC<
         <Box
           style={{ backdropFilter: 'blur(2px)' }}
           display={['block', null, null, hideFooterOnDesktop ? 'none' : 'block']}
-          width="99vw" backgroundColor="#333"
+          width="99vw" backgroundColor="#111"
         >
           <Footer helpUrl={helpUrl} />
         </Box>
