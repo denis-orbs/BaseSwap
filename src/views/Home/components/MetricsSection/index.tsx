@@ -7,6 +7,8 @@ import Image from 'next/image'
 import IconCard, { IconCardData } from '../IconCard'
 import StatCardContent from './StatCardContent'
 import logo from '../../../../../public/images/newlogo.png'
+import Marquee from "react-fast-marquee"; 
+
 
 const Stats = () => {
   const { t } = useTranslation()
@@ -35,7 +37,7 @@ const Stats = () => {
   }
 
   return (
-    <Flex justifyContent="flex-start" alignItems="center" flexDirection="column">
+    <Flex justifyContent="flex-start" alignItems="center" flexDirection="column" mt="-2rem">
       <div style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF', 
       borderRadius: '100px', marginBottom: '8px'  }}>
       <Image src={logo} alt="logo" height="200px" width="200px"  />
@@ -60,8 +62,14 @@ const Stats = () => {
       {/* <Text textAlign="center" color="textSubtle" bold mb="32px">
         {t('Will you join them?')}
       </Text> */}
-
-      <Flex flexDirection={['column', null, null, 'row']}>
+  
+      {/* <Flex flexDirection={['column', null, null, 'row']}> */}
+      <Marquee 
+        pauseOnHover={true} pauseOnClick={true}
+        speed={30}
+        gradient={true}
+        gradientColor={[ 128, 170, 254]}
+        gradientWidth={50} >
         <IconCard
           style={{ backgroundColor: '#333' }}
           {...UsersCardData}
@@ -94,7 +102,8 @@ const Stats = () => {
             highlightColor={theme.colors.failure}
           />
         </IconCard>
-      </Flex>
+        </Marquee>
+      {/* </Flex> */}
     </Flex>
   )
 }

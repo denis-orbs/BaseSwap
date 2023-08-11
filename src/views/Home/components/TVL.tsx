@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Flex, Text } from '@pancakeswap/uikit';
+import CountUp from 'react-countup'
+import 'animate.css'
 
 const TVL = () => {
+  const [numericValue, setNumericValue] = useState(0);
   const [formattedValue, setFormattedValue] = useState('');
   useEffect(() => {
     const fetchData = async () => {
@@ -9,16 +12,11 @@ const TVL = () => {
        
         const response = await fetch('https://api.llama.fi/tvl/BaseSwap');
         const data = await response.json();
-        // Round the data to the nearest hundred thousand
         const roundedData = Math.round(data / 100000) * 100000;
-        
-        // Convert to millions for display
-        const displayValue = roundedData / 1000000;
-        // round down the data to remove decimals
-      
-        console.log(roundedData)
+        const displayValue = Number((roundedData / 1000000).toFixed(2)); 
+        setNumericValue(displayValue);  
 
-        const formatted = `${displayValue.toFixed(2)} million`; // append 'M' for million
+        const formatted = `${displayValue.toFixed(2)} million`; 
         setFormattedValue(formatted);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -33,23 +31,27 @@ const TVL = () => {
     position="relative"
     paddingX={['8px', null, null, '3rem']}
     marginX={['4px', null, null, '2rem']}
-    marginTop={['2rem', null, null, '4rem']}
+    marginTop={['2rem', null, null, '5rem']}
     flexDirection="column"
     alignItems="flex-start"
     justifyContent="flex-start"
     id="homepage-hero"
+    className="animate__animated animate__rotateInUpRight"
+
   >
     <Text
-    fontSize={['1.8rem', null, null, '2.5rem']} fontWeight="900"
+    fontSize={['1.8rem', null, null, '2.5rem']} fontWeight="300"
     color="#fff"
     >
      Total Value Locked:&nbsp;  
     </Text>
     <Text
-    fontSize="4rem" fontWeight="900"
+    fontSize="4rem" fontWeight="500"
     color="#0154FD"
     >
-     ${formattedValue}
+      $<CountUp end={numericValue} duration={4} decimals={2} /> million
+      
+     {/* ${formattedValue} */}
     </Text>
   
     </Flex>

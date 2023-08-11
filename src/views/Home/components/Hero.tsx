@@ -9,9 +9,35 @@ import styled, { keyframes } from 'styled-components'
 import bunnyImage from '../../../../public/images/home/lunar-bunny/bunny@2x.png'
 import CompositeImage, { CompositeImageProps } from './CompositeImage'
 import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
-import banner from '../../../../public/images/newbanner.png'
+import banner from '../../../../public/images/newbanner3.png'
 import baseswap from '../../../../public/images/newlogo.png'
 import TVL from 'components/TVL'
+import TypeIt from 'typeit-react'
+import 'animate.css'
+
+const WelcomeTypeIt = styled(TypeIt)`
+  font-weight: 400;
+  color: #fff;
+  text-align: left; 
+  letter-spacing: 2px; 
+  margin-bottom: 12px;
+  text-transform: uppercase; 
+  font-size: 14px; 
+  @media (min-width: 768px) {
+    font-size: 20px; 
+  }
+`;
+
+const TitleTypeIt = styled(TypeIt)`
+  font-weight: 400;
+  color: contrast;
+  text-align: left;
+  margin-bottom: 12px;
+  font-size: 36px; 
+  @media (min-width: 768px) {
+    font-size: 80px; 
+  }
+`;
 
 const flyingAnim = () => keyframes`
   from {
@@ -114,16 +140,56 @@ const Hero = () => {
           marginTop={['-1rem', null, null, '0rem']}
           flex="1"
           flexDirection="column"
-          paddingX={['0px', null, null, '3rem']}
+          paddingX={['0px', null, null, '2rem']}
           marginX={['-1rem', null, null, '2rem']}
         >
-          <Text fontWeight="900" color="contrast" mb="12px" fontSize={['48px', null, null, '100px']}>
-            {t('BaseSwap')}
-          </Text>
-          <Heading scale="md" mb="18px">
+        <WelcomeTypeIt 
+          options={{
+            cursorSpeed:1000000, speed: 75, 
+          }}
+          speed={10}
+          getBeforeInit={(instance) => {
+        instance
+            .type("Welcome to", {speed: 10000})
+            .type("...")
+            ;
+        return instance;
+         }}> </WelcomeTypeIt>
+          <TitleTypeIt 
+          className="animate__animated animate__fadeInLeft"
+          options={{
+            cursorSpeed:1000000, speed: 75, 
+          }}
+          speed={10}
+          getBeforeInit={(instance) => {
+        instance
+            .pause(1000)
+            .type("BASE.", {speed: 10000})
+            .pause(1000)
+            .move(1, { delay: 200 })
+            .delete(1)
+            .pause(100)
+            .move(-4)
+            .pause(100)
+            .move(5)
+            .type(" Chain.")
+            .pause(1000)
+            .delete(7)
+            .pause(500)
+            .delete(4)
+            .type("Base")
+            .pause(500)
+            .type("Swap")
+
+            .type(".")
+            ;
+        return instance;
+    }}> </TitleTypeIt>
+          <Heading      className="animate__animated animate__fadeInLeft animate__delay-5s" scale="md" mb="18px">
             {t('Harder. Better. Faster. Stronger.')}
           </Heading>
           <Flex
+            className="animate__animated animate__rollIn"
             flexDirection={['column', null, null, 'row']}
             marginLeft={['0rem', null, null, '1rem']}
             marginTop={['0.5rem', null, null, '2rem']}
@@ -142,9 +208,9 @@ const Hero = () => {
               <Button
                 mt={['1rem', null, null, null]}
                 width={['75vw', null, null, '25vw']}
-                variant={!account ? 'secondary' : 'primarytwo'}
+                variant={!account ? 'secondary' : 'primary'}
               >
-                {t('Trade Now')}
+                {t('SWAP NOW')}
               </Button>
             </NextLinkFromReactRouter>
             
@@ -152,16 +218,21 @@ const Hero = () => {
         </Flex>
 
         <Flex
+         className="animate__animated animate__fadeInRight"
           height={['275px', '275px', '300px', '350px']}
           width={['275px', null, null, '350px']}
           flex={[null, null, null, '1']}
+
           mb={['0px', null, null, '0']}
           mt={['24px', null, null, '0']}
           position="relative"
         >
           <BunnyWrapper>
-            <Image src={banner} priority alt={t('BaseSwap Logo')} />
-          </BunnyWrapper>
+          
+
+            <Image  src={banner} priority alt={t('BaseSwap Logo')} />
+
+            </BunnyWrapper>
           {/* <StarsWrapper>
                 <CompositeImage {...starsImage} />
               </StarsWrapper> */}
