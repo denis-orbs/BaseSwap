@@ -20,26 +20,44 @@ export const scaleVariants = {
 
 export const styleVariants = {
   [variants.PRIMARY]: {
-    backgroundColor: "#fff",
-    color: "background",
-    fontWeight: "900", 
-    borderRadius: "8px", 
+    background: `${darkColors.background}`,
+    color: "text",
+    fontWeight: "500", 
+    textTransform: "uppercase", 
+    borderRadius: "2px", 
     border: "4px solid", 
     borderColor: "background", 
     ":hover": {
-      backgroundColor: "background", 
-      borderColor: "text", 
-      color: "text", 
-
-    }
+      borderColor:"background", 
+      backgroundColor:"#111",
+      color: "background", 
+      transform: "translateY(1px)",
+    },
+  },
+  [variants.MENUCONNECT]: {
+    background: `${darkColors.background}`,
+    color: "text",
+    fontSize: '1rem', 
+    fontWeight: "500", 
+    textTransform: "uppercase", 
+    borderRadius: "2px", 
+    border: "4px solid", 
+    borderColor: "background", 
+    ":hover": {
+      borderColor:"background", 
+      backgroundColor:"#111",
+      color: "background", 
+      transform: "translateY(1px)",
+    },
   },
   [variants.CALCULATOR]: {
     backgroundColor: "#fff",
     color: "background",
-    fontWeight: "900", 
-    borderRadius: "8px", 
+    fontWeight: "500", 
+    borderRadius: "2px", 
+    boxShadow: "inset 0 0 2px #000", 
     border: "2px solid", 
-    borderColor: "background", 
+    borderColor: "text", 
     ":hover": {
       backgroundColor: "background", 
       borderColor: "text", 
@@ -51,9 +69,10 @@ export const styleVariants = {
   [variants.PRIMARYTHREE]: {
     backgroundColor: "#fff",
     color: "background",
-    fontWeight: "900", 
-    fontSize: "14px", 
-    borderRadius: "8px", 
+    fontWeight: "500", 
+    textTransform: "uppercase", 
+    fontSize: "24px", 
+    borderRadius: "2px", 
     border: "4px solid", 
     borderColor: "background", 
     ":hover": {
@@ -66,9 +85,9 @@ export const styleVariants = {
   [variants.PRIMARYTWO]: {
     backgroundColor: "#fff",
     color: "background",
-    fontWeight: "900", 
+    fontWeight: "500", 
     fontSize: "1.1rem", 
-    borderRadius: "8px", 
+    borderRadius: "2px", 
     border: "4px solid", 
     borderColor: "background", 
     ":hover": {
@@ -80,11 +99,14 @@ export const styleVariants = {
     // USED FOR ENABLE FARM 
   },
   [variants.SECONDARY]: {
-    backgroundColor: "background",
-    border: "2px solid",
-    borderColor: "text",
+    backgroundColor: "text",
+    border: "4px solid",
+    borderColor: "background",
+    borderRadius: "2px", 
+    textTransform: "uppercase" , 
+    padding: "8px", 
 
-    color: "text",
+    color: "background",
     ":hover": {
       transform: "translateY(1px)",
     },
@@ -92,12 +114,45 @@ export const styleVariants = {
       backgroundColor: "transparent",
     },
   },
+  [variants.MAX]: {
+  //   background: `${darkColors.background}`,
+  //   color: "backgroundAlt",
+  //   fontWeight: "500", 
+  //   borderRadius: "2px", 
+  //   border: "4px solid", 
+  //   borderColor: "background", 
+  //   ":hover": {
+  //     backgroundColor: "background", 
+  //     borderColor: "text", 
+  //     color: "text", 
+
+  //   }
+  // },
+    backgroundColor: "background",
+    padding: "4px", 
+    borderRadius: "2px", 
+    height: "70%", 
+    border: "2px solid",
+    borderColor: "background",
+
+    color: "backgroundAlt",
+    ":hover": {
+      borderColor:"background", 
+      backgroundColor:"#111",
+      color: "background", 
+      transform: "translateY(1px)",
+    },
+    ":disabled": {
+      backgroundColor: "transparent",
+    },
+  },
   [variants.TERTIARY]: {
-    backgroundColor: "tertiary",
-    boxShadow: "none",
+    backgroundColor: "text",
+    boxShadow: "inset 0 0 2px #000", 
     border: "2px solid", 
     borderColor: "text", 
-    color: "text",
+    color: "background",
+    borderRadius: "2px", 
    
   },
   [variants.QUAD]: {
@@ -130,7 +185,8 @@ export const styleVariants = {
   // used for currency select button 
   [variants.TEXT]: {
     backgroundColor: "transparent",
-    color: "text",
+    color: "background",
+
     boxShadow: "none",
     border: "0px solid",
     borderColor: "#fff",  
@@ -138,6 +194,7 @@ export const styleVariants = {
   [variants.LIGHT]: {
     backgroundColor: "white",
     color: "background",
+    borderRadius: "2px", 
     boxShadow: "none",
   },
 };

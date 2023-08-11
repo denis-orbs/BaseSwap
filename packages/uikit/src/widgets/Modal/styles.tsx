@@ -12,7 +12,7 @@ export const ModalHeader = styled.div<{ background?: string }>`
   align-items: center;
 
   background: ${({ theme }) => theme.colors.gradients.basedsexgray};
-  border-bottom: 3px solid ${({ theme }) => theme.colors.cardBorder};
+  border-bottom: 3px solid ${({ theme }) => theme.colors.text};
   display: flex;
   padding: 4px; 
 
@@ -56,8 +56,8 @@ export const ModalBackButton: React.FC<{ onBack: ModalProps["onBack"] }> = ({ on
 export const ModalContainer = styled(MotionBox)<{ minWidth: string }>`
   overflow: hidden;
   background: ${({ theme }) => theme.modal.background};
-  box-shadow: 0px 20px 36px -8px rgba(14, 14, 44, 0.5), 0px 1px 1px rgba(0, 0, 0, 0.05);
-  border: 6px solid ${({ theme }) => theme.colors.cardBorder};
+  box-shadow: 20px 20px 36px 28px rgba(14, 14, 44, 1), 0px 1px 1px rgba(0, 0, 0, 0.05);
+  border: 2px solid ${({ theme }) => theme.colors.text};
   border-radius: 32px 32px 0px 0px;
   width: 100%;
   max-height: calc(var(--vh, 1vh) * 100);
@@ -71,7 +71,7 @@ export const ModalContainer = styled(MotionBox)<{ minWidth: string }>`
     width: auto;
     position: auto;
     bottom: auto;
-    border-radius: 8px;
+    border-radius: 2px;
     max-width: 100%;
     max-height: 100vh;
   }
