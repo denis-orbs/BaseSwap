@@ -23,7 +23,7 @@ const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
   color: #fff;
   text-align: left; 
-  letter-spacing: 2px; 
+  letter-spacing: 0px; 
   margin-bottom: 12px;
   font-size: 18px; 
   @media (min-width: 768px) {

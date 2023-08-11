@@ -36,14 +36,14 @@ const Input = styled.input<InputProps>`
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 2px;
   box-shadow: inset 0 0 1px #000 0 0 4px #000; 
-  color: ${({ theme }) => theme.colors.backgroundAlt};
+  color: ${({ theme }) => theme.colors.text};
   display: block;
   font-size: 16px;
   height: ${getHeight};
   outline: 0;
   padding: 0 16px;
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+  border: 1px solid ${({ theme }) => theme.colors.text};
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.textSubtle};

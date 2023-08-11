@@ -66,7 +66,7 @@ const InputPanel = styled.div`
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
   border-radius: 2px;
   border: 3px solid ${({ theme }) => theme.colors.text};
-  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
 
   ${({ zapStyle }) =>
     !!zapStyle &&
@@ -260,7 +260,7 @@ export default function CurrencyInputPanel({
         )}
       </Flex>
       <InputPanel>
-        <Container className="animate__animated animate__slideInRight animate__slow" as="label" zapStyle={zapStyle} error={error}>
+        <Container  as="label" zapStyle={zapStyle} error={error}>
           <LabelRow>
             <NumericalInput
               error={error}

@@ -226,7 +226,7 @@ function CurrencySearch({
     <>
       <AutoColumn gap="16px">
         <Row>
-          <Input
+          <Input 
             id="token-search-input"
             placeholder={t('Search name or paste address')}
             scale="lg"
