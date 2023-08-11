@@ -29,10 +29,12 @@ interface Props {
 
 const CurrencyInputContainer = styled(Flex)`
   flex-direction: column;
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
+
   align-items: center;
   padding: 6px 24px;
   width: 100%;
-  border-bottom: 4px solid ${({ theme }) => theme.colors.cardBorder};
+  border-bottom: 4px solid ${({ theme }) => theme.colors.text};
 `
 
 const ColoredIconButton = styled(IconButton)`
@@ -67,7 +69,7 @@ const CurrencyInputHeader: React.FC<Props> = ({
         </Flex>
         <Flex>
           <NotificationDot show={expertMode}>
-            <GlobalSettings color="textSubtle" mr="0" mode={SettingsMode.SWAP_LIQUIDITY} />
+            <GlobalSettings color="text" mr="0" mode={SettingsMode.SWAP_LIQUIDITY} />
           </NotificationDot>
           {/* <IconButton onClick={onPresentTransactionsModal} variant="text" scale="sm">
             <HistoryIcon color="textSubtle" width="24px" />

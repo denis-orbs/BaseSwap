@@ -18,10 +18,10 @@ import FormattedPriceImpact from './FormattedPriceImpact'
 import { StyledBalanceMaxMini, SwapCallbackError } from './styleds'
 
 const SwapModalFooterContainer = styled(AutoColumn)`
-  margin-top: 24px;
-  padding: 24px;
-  border-radius: 8px; 
-  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 4px; 
+  border: 1px solid ${({ theme }) => theme.colors.text};
   background-color: ${({ theme }) => theme.colors.background};
 `
 
@@ -139,7 +139,7 @@ export default function SwapModalFooter({
           id="confirm-swap-or-send"
           width="100%"
         >
-          {severity > 2 ? t('Swap Anyway') : t('Confirm Swap')}
+          {severity > 2 ? t('Swap Anyway') : t('CONFIRM SWAP')}
         </Button>
 
         {swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
