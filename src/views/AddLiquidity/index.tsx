@@ -60,7 +60,21 @@ import { ZapCheckbox } from '../../components/CurrencyInputPanel/ZapCheckbox'
 import { formatAmount } from '../../utils/formatInfoNumbers'
 import { useCurrencySelectRoute } from './useCurrencySelectRoute'
 import { useAppDispatch } from '../../state'
+import TypeIt from 'typeit-react'
+import 'animate.css'
+import styled from 'styled-components'
 
+const WelcomeTypeIt = styled(TypeIt)`
+  font-weight: 400;
+  color: #fff;
+  text-align: left; 
+  margin-bottom: 12px;
+  text-transform: uppercase; 
+  font-size: 40px; 
+  @media (min-width: 768px) {
+    font-size: 68px; 
+  }
+`;
 enum Steps {
   Choose,
   Add,
@@ -549,8 +563,22 @@ export default function AddLiquidity() {
 
   return (
     <>
-      <PageTitle title="Add Liquidity" />
+      {/* <PageTitle title="Add Liquidity" /> */}
       <Page>
+      <WelcomeTypeIt 
+          options={{
+            cursorChar:" ", 
+            cursorSpeed:1000000, speed: 75, 
+          }}
+          speed={10}
+          getBeforeInit={(instance) => {
+        instance
+
+            .type("ADD LIQUIDITY", {speed: 5000})
+            ;
+        return instance;
+         }}> 
+         </WelcomeTypeIt>
         <AppBody>
           {!showAddLiquidity && (
             <ChoosePair

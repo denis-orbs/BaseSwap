@@ -108,6 +108,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   const renderStakingButtons = () => {
     return stakedBalance.eq(0) ? (
       <Button
+      variant="primary"
         onClick={onPresentDeposit}
         disabled={['history', 'archived'].some((item) => router.pathname.includes(item))}
       >

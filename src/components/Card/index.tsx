@@ -29,6 +29,9 @@ export const BasedSex = styled(Card)`
 export const LightGreyCard = styled(Card)`
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   background-color: transparent;
+  border-radius: 2px; 
+  padding: 8px 10px; 
+ 
 `
 
 export const GreyCard = styled(Card)`

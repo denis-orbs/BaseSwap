@@ -71,6 +71,20 @@ import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
 import ImportTokenWarningModal from '../../components/ImportTokenWarningModal'
 import { SchemaMetaFieldDef } from 'graphql'
+import TypeIt from 'typeit-react'
+import 'animate.css'
+
+const WelcomeTypeIt = styled(TypeIt)`
+  font-weight: 400;
+  color: #fff;
+  text-align: left; 
+  margin-bottom: 12px;
+  text-transform: uppercase; 
+  font-size: 40px; 
+  @media (min-width: 768px) {
+    font-size: 68px; 
+  }
+`;
 
 const Label = styled(Text)`
   font-size: 12px;
@@ -86,7 +100,7 @@ const SwitchIconButton = styled(IconButton)`
     display: none;
   }
   &:hover {
-    box-shadow: 0 0 4px #fff, 0 0 12px #ffd700;
+    box-shadow: 0 0 4px #fff, 0 0 12px #0154FD;
     .icon-down {
       display: none;
       fill: white;
@@ -413,16 +427,35 @@ export default function Swap() {
 
   return (
     <>
+       <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded} 
+      > 
       <PageHeader>
-        <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
+      <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="text" mb="4px">
+      <WelcomeTypeIt 
+          options={{
+            cursorChar:" ", 
+            cursorSpeed:1000000, speed: 75, 
+          }}
+          speed={10}
+          getBeforeInit={(instance) => {
+        instance
+
+            .type("SWAP", {speed: 5000})
+            ;
+        return instance;
+         }}> 
+         </WelcomeTypeIt>
+         </Flex>
+        </Flex>
+        {/* <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
+          <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
+            <Heading as="h1" scale="xxl" color="backgroundAlt" mb="4px">
               {t('Swap')}
             </Heading>
           </Flex>
-        </Flex>
+        </Flex> */}
       </PageHeader>
-      <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
         <TabsComponent />
         {view === SwapType.CROSS_CHAIN_SWAP &&
           <Flex width="100%" justifyContent="center" position="relative" marginBottom="100px">
@@ -462,17 +495,17 @@ export default function Swap() {
               />
             )}
             <Flex flexDirection="column">
-              <StyledSwapContainer $isChartExpanded={isChartExpanded}>
+            <StyledSwapContainer className="animate__animated animate__fadeInLeft" $isChartExpanded={isChartExpanded}>
                 <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
                   <AppBody>
-                    <CurrencyInputHeader
-                      title={t('SWAP')}
-                      subtitle={t('')}
-                      setIsChartDisplayed={setIsChartDisplayed}
-                      isChartDisplayed={isChartDisplayed}
-                      hasAmount={hasAmount}
-                      onRefreshPrice={onRefreshPrice}
-                    />
+                  <CurrencyInputHeader
+                    title={t('')}
+                    subtitle={t('')}
+                    setIsChartDisplayed={setIsChartDisplayed}
+                    isChartDisplayed={isChartDisplayed}
+                    hasAmount={hasAmount}
+                    onRefreshPrice={onRefreshPrice}
+                  />
                     <Wrapper id="swap-page" style={{ minHeight: '412px' }}>
                       <AutoColumn gap="sm">
                         <CurrencyInputPanel
@@ -498,7 +531,7 @@ export default function Swap() {
                             <SwitchIconButton
                               variant="light"
                               size="40px"
-                              style={{ border: '3px solid white' }}
+                              style={{ border: '2px solid white' }}
                               onClick={() => {
                                 setApprovalSubmitted(false) // reset 2 step UI for approvals
                                 onSwitchTokens()

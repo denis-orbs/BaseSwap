@@ -30,7 +30,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
   return (
     <AutoColumn gap="lg">
       <Message variant="warning">
-        <Text fontSize="12px" fontWeight="900" >
+        <Text fontSize="12px" fontWeight="300" >
             Look. Just be careful alright? We're all here havin 
             the time of our lives on Brian's BASE chain. 
             But you know what's less fun? Gettin rekt by some shitcoin. 
@@ -86,7 +86,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
             checked={confirmed}
             onChange={() => setConfirmed(!confirmed)}
           />
-          <Text fontSize="12px" fontWeight="900" ml="4px" style={{ userSelect: 'none' }}>
+          <Text fontSize="12px" fontWeight="300" ml="4px" style={{ userSelect: 'none' }}>
             {t('Thanks, Dad. I understand')}
           </Text>
         </Flex>

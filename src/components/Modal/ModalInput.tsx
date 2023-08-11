@@ -19,9 +19,11 @@ interface ModalInputProps {
 const StyledTokenInput = styled.div<InputProps>`
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.input};
-  border-radius: 16px;
-  box-shadow: ${({ theme, isWarning }) => (isWarning ? theme.colors.warning : theme.shadows.inset)};
+  background-color: ${({ theme }) => theme.colors.background};
+  border-radius: 2px;
+  border: 2px solid; 
+  border-color: ${({ theme }) => theme.colors.text};
+  box-shadow: inset 0 0 4px #000; 
   color: ${({ theme }) => theme.colors.text};
   padding: 8px 16px 8px 0;
   width: 100%;
@@ -97,7 +99,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
         </Flex>
       </StyledTokenInput>
       {isBalanceZero && (
-        <StyledErrorMessage fontSize="14px" color="failure">
+        <StyledErrorMessage fontSize="14px" color="background">
           {t('No tokens to stake')}:{' '}
           <Link fontSize="14px" bold={false} href={addLiquidityUrl} external color="failure">
             {t('Get %symbol%', { symbol })}

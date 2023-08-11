@@ -5,6 +5,10 @@ import { PageMeta } from 'components/Layout/Page'
 import Hero from './components/Hero'
 import MetricsSection from './components/MetricsSection'
 import TVL from './components/TVL'
+import readyplayerone from '../../../public/images/readybanner1.png'
+
+import { useRef } from 'react'
+
 
 const StyledHeroSection = styled(PageSection)`
   padding-top: 16px;
@@ -16,29 +20,44 @@ const StyledHeroSection = styled(PageSection)`
 
 const Home: React.FC = () => {
   const { theme } = useTheme()
-
+ 
   return (
     <>
       <PageMeta />
+
       <StyledHeroSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
         background={
           theme.isDark
-            ? 'linear-gradient(to bottom, #020079, #0154FD, #ccc )'
-            : 'linear-gradient(139.73deg, #E6FDFF 0%, #F3EFFF 100%)'
+            ? 'linear-gradient(to bottom right, #000, #222 )'
+            : 'linear-gradient(139.73deg, #0154FD 0%, #fff 100%)'
         }
         index={2}
         hasCurvedDivider={false}
       >
-        <Hero />
-        <TVL />
+        {/* <AnimationOnScroll initiallyVisible={true} delay={10} 
+          offset={50} 
+          animateIn="animate__lightSpeedInLeft" animateOut="animate__bounceOutRight" animateOnce={true}>
+           */}
+            <Hero />
+        
+        {/* </AnimationOnScroll> */}
+        
+        {/* <AnimationOnScroll initiallyVisible={false} delay={1000} 
+            offset={50} 
+            animateIn="animate__lightSpeedInLeft" animateOut="animate__bounceOutRight" animateOnce={true}>
+           */}
+          <TVL />
+        
+        {/* </AnimationOnScroll> */}
+
       </StyledHeroSection>
       <PageSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
         background={
           theme.isDark
-            ? 'linear-gradient(to top, #020079, #0154FD, #ccc )'
-            : 'linear-gradient(180deg, #FFFFFF 22%, #D7CAEC 100%)'
+            ? 'linear-gradient(to top right, #000, #222 )'
+            : 'linear-gradient(180deg, #0154FD 0%, #fff 100%)'
         }
         index={2}
         hasCurvedDivider={false}

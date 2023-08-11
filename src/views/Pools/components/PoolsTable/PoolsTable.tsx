@@ -15,15 +15,16 @@ const StyledTable = styled.div`
   border-radius: ${({ theme }) => theme.radii.card};
   scroll-margin-top: 64px;
   min-width: 90vw;
-  background-color: ${({ theme }) => theme.card.background};
+  max-width: 90vw; 
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
   > div:not(:last-child) {
-    border-bottom: 2px solid ${({ theme }) => theme.colors.backgroundAlt};
+    border-bottom: 2px solid ${({ theme }) => theme.colors.background};
   }
 `
 
 const StyledTableBorder = styled.div`
   border-radius: ${({ theme }) => theme.radii.card};
-  background-color: ${({ theme }) => theme.colors.cardBorder};
+  background-color: ${({ theme }) => theme.colors.background};
   padding: 1px 1px 3px 1px;
   background-size: 400% 400%;
 `

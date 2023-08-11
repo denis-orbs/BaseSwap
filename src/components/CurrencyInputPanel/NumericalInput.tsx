@@ -4,11 +4,11 @@ import { useTranslation } from '@pancakeswap/localization'
 import { escapeRegExp } from '../../utils'
 
 const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: string }>`
-  color: ${({ error, theme }) => (error ? theme.colors.failure : theme.colors.text)};
+  color: ${({ error, theme }) => (error ? theme.colors.backgroundAlt : theme.colors.text)};
   width: 0;
   position: relative;
   font-weight: 500;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   outline: none;
   border: none;
   flex: 1 1 auto;
@@ -35,7 +35,7 @@ const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: s
   }
 
   ::placeholder {
-    color: ${({ theme }) => theme.colors.textSubtle};
+    color: ${({ theme }) => theme.colors.text};
   }
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 36px; 

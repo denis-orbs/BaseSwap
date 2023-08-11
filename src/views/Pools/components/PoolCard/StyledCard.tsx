@@ -3,7 +3,7 @@ import { Card } from '@pancakeswap/uikit'
 
 export const StyledCard = styled(Card)<{ isFinished?: boolean }>`
   min-width: 425px;
-  border: 4px solid ${({ theme }) => theme.colors.text};
+  border: 2px solid ${({ theme }) => theme.colors.text};
   max-width: 100%;
   margin: 0 0 24px 0;
   background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};

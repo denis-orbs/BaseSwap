@@ -33,10 +33,10 @@ const ToggleView: React.FunctionComponent<ToggleViewProps> = ({ idPrefix, viewMo
   return (
     <Container>
       <IconButton variant="text"  id={`${idPrefix}CardView`} onClick={handleToggleCard}>
-        <CardViewIcon width="24px" color={viewMode === ViewMode.CARD ? 'text' : 'backgroundAlt'} />
+        <CardViewIcon width="24px" color={viewMode === ViewMode.CARD ? 'background' : 'text'} />
       </IconButton>
       <IconButton variant="text"  id={`${idPrefix}TableView`} onClick={handleToggleTable}>
-        <ListViewIcon width="24px"  color={viewMode === ViewMode.TABLE ? 'text' : 'backgroundAlt'} />
+        <ListViewIcon width="24px"  color={viewMode === ViewMode.TABLE ? 'background' : 'text'} />
       </IconButton>
     </Container>
   )

@@ -17,6 +17,19 @@ import LangSelector from "../../components/LangSelector/LangSelector";
 import { MenuContext } from "./context";
 import { Text } from "../../components/Text";
 import { Link } from "../../components/Link";
+import TypeIt from 'typeit-react'
+
+const WelcomeTypeIt = styled(TypeIt)`
+  font-weight: 400;
+  color: #fff;
+  text-align: left; 
+  letter-spacing: 0px; 
+  margin-bottom: 12px;
+  font-size: 18px; 
+  @media (min-width: 768px) {
+    font-size: 32px; 
+  }
+`;
 
 const Wrapper = styled.div`
   position: relative;
@@ -28,9 +41,9 @@ const StyledNav = styled.nav`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 60px;
-  background-color: #333; 
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  height: 65px;
+  background: ${({ theme }) => theme.colors.gradients.pagebg};
+  border-bottom: 4px solid ${({ theme }) => theme.colors.cardBorder};
   transform: translate3d(0, 0, 0);
   padding-left: 16px;
   padding-right: 16px;
@@ -41,7 +54,7 @@ const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
   top: ${({ showMenu, height }) => (showMenu ? 0 : `-${height}px`)};
   left: 0;
   transition: top 0.2s;
-  height: 60px;
+  height: 65px;
   width: 100%;
   z-index: 20;
 `;
@@ -132,12 +145,31 @@ const Menu: React.FC<NavProps> = ({
         <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
           {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
           <StyledNav>
-            <img src="/images/newlogo.png" width={isMobile ? 40 : 60} height={isMobile ? 40 : 40} alt="logo" />
-            <Flex>
-              <a href="/">
-                <Text fontSize="2rem" style={{ marginLeft: "1rem", alignItems: 'center', justifyContent: 'center' }}>
+              <img src="/images/newlogo.png" width={isMobile ? 40 : 50} height={isMobile ? 40 : 40} alt="logo" />
+              <Flex>
+              <a href="/" style={{ marginLeft: '1rem' }}>
+              <WelcomeTypeIt 
+          options={{
+            cursorChar:" ", 
+            cursorSpeed:1000000, speed: 75, 
+          }}
+          speed={10}
+          getBeforeInit={(instance) => {
+              instance
+            .pause(200)
+            .type("Base", {speed: 5000})
+            .pause(100)
+            .type("Swap", {speed: 5000})
+
+            ;
+        return instance;
+         }}> 
+         </WelcomeTypeIt>
+                
+                
+                {/* <Text fontSize="2rem" style={{ marginLeft: "1rem", alignItems: 'center', justifyContent: 'center' }}>
                   BaseSwap
-                </Text>
+                </Text> */}
               </a>
             </Flex>
             {!isMobile &&
@@ -147,6 +179,22 @@ const Menu: React.FC<NavProps> = ({
                   <Text marginRight="2rem">Swap</Text>
                 </Link>
                 <Link href="/liquidity" >
+                {/* <WelcomeTypeIt 
+          options={{
+            cursorChar:" ", 
+            cursorSpeed:1000000, speed: 75, 
+          }}
+          speed={10}
+          getBeforeInit={(instance) => {
+              instance
+            .pause(200)
+            .type("Liquidity", {speed: 5000})
+          
+
+            ;
+        return instance;
+         }}> 
+         </WelcomeTypeIt> */}
                   <Text marginRight="2rem">Liquidity</Text>
                 </Link>
                 <Link href="/farms" >

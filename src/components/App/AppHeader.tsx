@@ -18,12 +18,12 @@ interface Props {
 const AppHeaderContainer = styled(Flex)`
   align-items: center;
   justify-content: space-between;
-  padding: 8px; 
+  padding: 2px; 
   width: 100%;
   border-top-radius: 8px; 
   border-color: #fff; 
   border-bottom: 3px solid; 
-  background-color: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
 `
 
 const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig = false }) => {
@@ -31,7 +31,7 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
 
   return (
     <AppHeaderContainer>
-      <Flex alignItems="center" width="100%" style={{ gap: '16px' }}>
+      <Flex alignItems="center" width="100%" style={{ gap: '8px' }}>
         {backTo &&
           (typeof backTo === 'string' ? (
             <Link passHref href={backTo}>
@@ -45,7 +45,7 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
             </IconButton>
           ))}
         <Flex flexDirection="column" width="100%">
-          <Flex mb="8px" alignItems="center" justifyContent="space-between">
+          <Flex mb="0px" alignItems="center" justifyContent="space-between">
             <Heading as="h2">{title}</Heading>
             {!noConfig && (
               <Flex alignItems="center">

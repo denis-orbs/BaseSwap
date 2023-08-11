@@ -57,11 +57,11 @@ import Page from '../Page'
 import ConfirmLiquidityModal from '../Swap/components/ConfirmRemoveLiquidityModal'
 import { logError } from '../../utils/sentry'
 import { formatAmount } from '../../utils/formatInfoNumbers'
-
+import 'animate.css'
 const BorderCard = styled.div`
-  border: solid 1px ${({ theme }) => theme.colors.cardBorder};
-  border-radius: 16px;
-  padding: 16px;
+  border: solid 2px ${({ theme }) => theme.colors.cardBorder};
+  border-radius: 2px;
+  padding: 8px 8px;
 `
 
 export default function RemoveLiquidity() {
@@ -481,7 +481,7 @@ export default function RemoveLiquidity() {
   return (
     <>
       <Page>
-        <AppBody>
+        <AppBody >
           <AppHeader
             backTo="/liquidity"
             title={t('Remove %assetA%-%assetB% liquidity', {
@@ -496,16 +496,16 @@ export default function RemoveLiquidity() {
           />
 
           <CardBody>
-            <AutoColumn gap="20px">
+            <AutoColumn gap="2px">
               <RowBetween>
-                <Text>{t('Amount')}</Text>
+                <Text fontWeight="600" >{t('AMOUNT')}</Text>
                 <Button variant="text" scale="sm" onClick={() => setShowDetailed(!showDetailed)}>
                   {showDetailed ? t('Simple') : t('Detailed')}
                 </Button>
               </RowBetween>
               {!showDetailed && (
                 <BorderCard>
-                  <Text fontSize="40px" bold mb="16px" style={{ lineHeight: 1 }}>
+                  <Text fontSize="40px" bold mb="4px" style={{ lineHeight: 1 }}>
                     {formattedAmounts[Field.LIQUIDITY_PERCENT]}%
                   </Text>
                   <Slider
@@ -514,9 +514,9 @@ export default function RemoveLiquidity() {
                     max={100}
                     value={innerLiquidityPercentage}
                     onValueChanged={handleChangePercent}
-                    mb="16px"
+                    mb="0px"
                   />
-                  <Flex flexWrap="wrap" justifyContent="space-evenly">
+                  <Flex className="animate__animated animate__lightSpeedInRight animate__delay-1s" flexWrap="wrap" justifyContent="space-evenly">
                     <Button variant="tertiary" scale="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}>
                       25%
                     </Button>
@@ -536,14 +536,14 @@ export default function RemoveLiquidity() {
             {!showDetailed && (
               <>
                 <ColumnCenter>
-                  <ArrowDownIcon color="textSubtle" width="24px" my="16px" />
+                  <ArrowDownIcon color="textSubtle" width="24px" my="8px" />
                 </ColumnCenter>
-                <AutoColumn gap="10px">
-                  <Text bold color="secondary" fontSize="12px" textTransform="uppercase">
+                <AutoColumn gap="2px">
+                  <Text bold color="text" fontSize="16px" textTransform="uppercase">
                     {t('Receive')}
                   </Text>
                   <LightGreyCard>
-                    <Flex justifyContent="space-between" mb="8px" as="label" alignItems="center">
+                    <Flex justifyContent="space-between" mb="6px" as="label" alignItems="center">
                       <Flex alignItems="center">
                         <CurrencyLogo currency={currencyA} />
                         <Text small color="textSubtle" id="remove-liquidity-tokena-symbol" ml="4px">

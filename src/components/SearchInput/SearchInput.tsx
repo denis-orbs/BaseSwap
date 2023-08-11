@@ -5,7 +5,8 @@ import debounce from 'lodash/debounce'
 import { useTranslation } from '@pancakeswap/localization'
 
 const StyledInput = styled(Input)`
-  border-radius: 16px;
+  border-radius: 2px; 
+  border: 1px solid #fff; 
   margin-left: auto;
 `
 

@@ -16,9 +16,10 @@ const MultiplierWrapper = styled.div`
   text-align: right;
   margin-right: 14px;
 
+
   ${({ theme }) => theme.mediaQueries.lg} {
     text-align: left;
-    margin-right: 0;
+    margin-right: 14px;
   }
 `
 
@@ -32,15 +33,15 @@ const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) =>
   const { t } = useTranslation()
   const tooltipContent = (
     <>
-      <Text>
+      <Text color="backgroundAlt">
         {t(
-          'The Multiplier represents the proportion of BSWAP rewards each farm receives, as a proportion of the BSWAP produced each block.',
+          'The Multiplier represents the proportion of BSWAP rewards each farm receives.',
         )}
       </Text>
-      <Text my="24px">
-        {t('For example, if a 1x farm received 1 BSWAP per block, a 40x farm would receive 40 BSWAP per block.')}
+      <Text my="24px" color="backgroundAlt">
+        {t('For example, if a 1x farm received 1 BSWAP per block, a 10x farm would receive 10 BSWAP per block.')}
       </Text>
-      <Text>{t('This amount is already included in all APR calculations for the farm.')}</Text>
+      <Text color="backgroundAlt">{t('This amount is already included in all APR calculations for the farm.')}</Text>
     </>
   )
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, {

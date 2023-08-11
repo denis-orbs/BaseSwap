@@ -140,7 +140,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           </Text>
         </ActionTitles>
         <ActionContent >
-          <ConnectWalletButton width="100%" style={{ fontSize: '1rem'}} />
+          <ConnectWalletButton variant="menuconnect" width="100%" style={{ fontSize: '1rem'}} />
         </ActionContent>
       </ActionContainer>
     )
@@ -199,7 +199,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           <Button
             width="100%"
             onClick={onPresentDeposit}
-            variant="secondary"
+            variant="primary"
             disabled={['history', 'archived'].some((item) => router.pathname.includes(item))}
           >
             {t('Stake LP')}

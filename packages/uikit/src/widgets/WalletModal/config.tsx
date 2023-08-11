@@ -14,7 +14,7 @@ import { Config, ConnectorNames } from "./types";
 
 const connectors: Config[] = [
   {
-    title: "Metamask",
+    title: "MetaMask",
     icon: Metamask,
     connectorId: ConnectorNames.Injected,
     priority: 1,

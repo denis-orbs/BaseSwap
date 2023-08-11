@@ -58,7 +58,7 @@ const PoolRow: React.FC<{ sousId: number; account: string; initialActivity?: boo
       <EarningsCell pool={pool} account={account} />
       {isLargerScreen && <TotalStakedCell pool={pool} />}
       <AprCell pool={pool} />
-      {isDesktop && <EndsInCell pool={pool} />}
+      {/* {isDesktop && <EndsInCell pool={pool} />} */}
     </ExpandRow>
   )
 }

@@ -42,19 +42,13 @@ const getBorderColor = ({ isActive, isSuccess, isWarning, borderBackground, them
 };
 
 export const StyledCard = styled.div<StyledCardProps>`
-  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
-  border: 3px solid #fff; 
-  border-radius: ${({ theme }) => theme.radii.card};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
+  border: 2px solid ${({ theme }) => theme.colors.text};
+  border-radius: 1px; 
   color: ${({ theme, isDisabled }) => theme.colors[isDisabled ? "textDisabled" : "text"]};
   overflow: hidden;
   position: relative;
-
-  ${({ isActive }) =>
-    isActive &&
-    css`
-      animation: ${PromotedGradient} 3s ease infinite;
-      background-size: 400% 400%;
-    `}
+ }
 
   padding: 1px 1px 3px 1px;
 
