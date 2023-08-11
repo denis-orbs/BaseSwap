@@ -30,7 +30,7 @@ const WelcomeTypeIt = styled(TypeIt)`
 
 const TitleTypeIt = styled(TypeIt)`
   font-weight: 400;
-  color: contrast;
+  color: text;
   text-align: left;
   margin-bottom: 12px;
   font-size: 36px; 
