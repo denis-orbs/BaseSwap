@@ -6,9 +6,9 @@ import Hero from './components/Hero'
 import MetricsSection from './components/MetricsSection'
 import TVL from './components/TVL'
 import readyplayerone from '../../../public/images/readybanner1.png'
-import useScrollSnap from "react-use-scroll-snap";
+
 import { useRef } from 'react'
-import { AnimationOnScroll } from 'react-animation-on-scroll'; 
+
 
 const StyledHeroSection = styled(PageSection)`
   padding-top: 16px;

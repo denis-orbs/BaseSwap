@@ -12,9 +12,23 @@ import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks
 import Dots from '../../components/Loader/Dots'
 import { AppHeader, AppBody } from '../../components/App'
 import Page from '../Page'
+import TypeIt from 'typeit-react'
+import 'animate.css'
+
+const WelcomeTypeIt = styled(TypeIt)`
+  font-weight: 400;
+  color: #fff;
+  text-align: left; 
+  margin-bottom: 12px;
+  text-transform: uppercase; 
+  font-size: 40px; 
+  @media (min-width: 768px) {
+    font-size: 68px; 
+  }
+`;
 
 const Body = styled(CardBody)`
-  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
+  background: ${({ theme }) => theme.colors.backgroundAlt};
 `
 
 export default function Pool() {
@@ -92,8 +106,22 @@ export default function Pool() {
 
   return (
     <>
-      <PageTitle title="Liquidity" />
+      {/* <PageTitle title="Liquidity" /> */}
       <Page>
+      <WelcomeTypeIt 
+          options={{
+            cursorChar:" ", 
+            cursorSpeed:1000000, speed: 75, 
+          }}
+          speed={10}
+          getBeforeInit={(instance) => {
+        instance
+
+            .type("LIQUIDITY", {speed: 5000})
+            ;
+        return instance;
+         }}> 
+         </WelcomeTypeIt>
         <AppBody>
           <AppHeader title={t('Your Liquidity')} subtitle={t('')} />
           <Body>
@@ -113,7 +141,7 @@ export default function Pool() {
           </Body>
           <CardFooter style={{ textAlign: 'center' }}>
             <Link href="/add" passHref>
-              <Button id="join-pool-button" width="100%" startIcon={<AddIcon color="white" />}>
+              <Button  className="animate__animated animate__rollIn" id="join-pool-button" width="100%" startIcon={<AddIcon color="white" />}>
                 {t('Add Liquidity')}
               </Button>
             </Link>
