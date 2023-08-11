@@ -169,11 +169,11 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
               quoteTokenAmountTotal={quoteTokenAmountTotal}
             />
             <IconButtonWrapper>
-              <IconButton variant="secondary" onClick={onPresentWithdraw} mr="6px">
+              <IconButton variant="primary" onClick={onPresentWithdraw} mr="6px">
                 <MinusIcon color="text" width="14px" />
               </IconButton>
               <IconButton
-                variant="secondary"
+                variant="primary"
                 onClick={onPresentDeposit}
                 disabled={['history', 'archived'].some((item) => router.pathname.includes(item))}
               >
