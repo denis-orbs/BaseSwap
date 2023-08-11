@@ -27,6 +27,35 @@ import PoolTabButtons from './components/PoolTabButtons'
 import PoolCard from './components/PoolCard'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { getCakeVaultEarnings } from './helpers'
+import TypeIt from 'typeit-react'
+import 'animate.css'
+
+
+const WelcomeTypeIt = styled(TypeIt)`
+  font-weight: 400;
+  color: #fff;
+  text-align: left; 
+  margin-bottom: 12px;
+  text-transform: uppercase; 
+  font-size: 40px; 
+  @media (min-width: 768px) {
+    font-size: 68px; 
+  }
+`;
+
+
+const Sub = styled(TypeIt)`
+  font-weight: 400;
+  color: #fff;
+  text-align: left; 
+  letter-spacing: 2px; 
+  margin-bottom: 12px;
+  text-transform: uppercase; 
+  font-size: 14px; 
+  @media (min-width: 768px) {
+    font-size: 20px; 
+  }
+`;
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -240,10 +269,39 @@ const Pools: React.FC = () => {
 
   return (
     <>
-      <PageTitle title="Earn" />
+      {/* <PageTitle title="Earn" /> */}
 
       <Page>
-        <Heading>Stake BSWAP to earn more BSWAP!</Heading>
+      <WelcomeTypeIt 
+          options={{
+            cursorChar:" ", 
+            cursorSpeed:1000000, speed: 75, 
+          }}
+          speed={10}
+          getBeforeInit={(instance) => {
+        instance
+
+            .type("EARN", {speed: 200})
+            ;
+        return instance;
+         }}> 
+         </WelcomeTypeIt>
+         {/* <Sub 
+          options={{
+            cursorChar:" ", 
+            cursorSpeed:1000000, 
+          }}
+          speed={100}
+          getBeforeInit={(instance) => {
+        instance
+
+            .type("Stake BSWAP to earn bluechip tokens", {speed: 1000})
+            ;
+        return instance;
+         }}> 
+         </Sub> */}
+        <Heading className="animate__animated animate__fadeInLeft animate__delay-1s">
+          Stake BSWAP to earn bluechips!</Heading>
         <PoolControls>
           <PoolTabButtons
             stakedOnly={stakedOnly}

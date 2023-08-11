@@ -43,7 +43,7 @@ const PoolCard: React.FC<{ pool: DeserializedPool; account: string }> = ({ pool,
           </Flex>
         <AprRow pool={pool} stakedBalance={stakedBalance} />
         <Flex  padding="12px" mt="24px" borderRadius="8px"
-        flexDirection="column" backgroundColor="#0154FD" style={{ boxShadow: '0 0 8px #000'}} >
+        flexDirection="column" backgroundColor="backgroundAlt" style={{ boxShadow: '0 0 8px #000'}} >
           {account ? (
             <CardActions pool={pool} stakedBalance={stakedBalance} />
           ) : (
