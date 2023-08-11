@@ -23,6 +23,21 @@ import PageTitle from 'components/PageTitle/PageTitle'
 import Page from 'views/Page'
 import Table from './components/FarmTable/FarmTable'
 import { FarmWithStakedValue } from './components/types'
+import TypeIt from 'typeit-react'
+import 'animate.css'
+
+
+const WelcomeTypeIt = styled(TypeIt)`
+  font-weight: 400;
+  color: #fff;
+  text-align: left; 
+  margin-bottom: 12px;
+  text-transform: uppercase; 
+  font-size: 40px; 
+  @media (min-width: 768px) {
+    font-size: 68px; 
+  }
+`;
 
 const ControlContainer = styled.div`
   display: flex;
@@ -272,8 +287,22 @@ const Farms: React.FC = ({ children }) => {
 
   return (
     <FarmsContext.Provider value={{ chosenFarmsMemoized }}>
-      <PageTitle title="Farms" />
+      {/* <PageTitle title="Farms" /> */}
       <Page>
+      <WelcomeTypeIt 
+          options={{
+            cursorChar:" ", 
+            cursorSpeed:1000000, speed: 75, 
+          }}
+          speed={10}
+          getBeforeInit={(instance) => {
+        instance
+
+            .type("FARMS", {speed: 5000})
+            ;
+        return instance;
+         }}> 
+         </WelcomeTypeIt>
         <ControlContainer>
           <ViewControls>
             <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
@@ -358,7 +387,7 @@ const Farms: React.FC = ({ children }) => {
         {viewMode === ViewMode.TABLE ? (
           <Table farms={chosenFarmsMemoized} cakePrice={cakePrice} userDataReady={userDataReady} />
         ) : (
-          <FlexLayout>{children}</FlexLayout>
+          <FlexLayout className="animate__animated animate__fadeInUp">{children}</FlexLayout>
         )}
         {account && !userDataLoaded && stakedOnly && (
           <Flex justifyContent="center">

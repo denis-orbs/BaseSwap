@@ -7,7 +7,7 @@ import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useRouter } from 'next/router'
 import { getDisplayApr } from '../getDisplayApr'
-
+import 'animate.css'
 import Row, { RowProps } from './Row'
 import { DesktopColumnSchema, FarmWithStakedValue } from '../types'
 
@@ -21,8 +21,8 @@ export interface ITableProps {
 const Container = styled.div`
 
   width: 90%;
-  background: ${({ theme }) => theme.card.background};
-  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.gradients.basedsex1};
+  border-radius: 2px;
   margin: 8px 0px;
   border: 3px solid ${({ theme }) => theme.colors.cardBorder};
 `
@@ -162,13 +162,13 @@ const FarmTable: React.FC<ITableProps> = ({ farms, cakePrice, userDataReady }) =
   })
 
   return (
-    <Container id="farms-table">
+    <Container id="farms-table" className="animate__animated animate__fadeInUp" >
       <TableContainer id="table-container">
         <TableWrapper ref={tableWrapperEl}>
           <StyledTable>
             <TableBody>
               {sortedRows.map((row) => {
-                return <Row {...row} userDataReady={userDataReady} key={`table-row-${row.farm.pid}`} />
+                return <Row    {...row} userDataReady={userDataReady} key={`table-row-${row.farm.pid}`} />
               })}
             </TableBody>
           </StyledTable>

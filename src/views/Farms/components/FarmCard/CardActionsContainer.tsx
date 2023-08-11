@@ -81,7 +81,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
           {t('Staked')}
         </Text>
       </Flex>
-      {!account ? <ConnectWalletButton mt="8px" width="100%" /> : renderApprovalOrStakeButton()}
+      {!account ? <ConnectWalletButton variant="menuconnect" mt="8px" width="100%" /> : renderApprovalOrStakeButton()}
     </Action>
   )
 }

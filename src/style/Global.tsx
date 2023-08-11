@@ -8,10 +8,10 @@ declare module 'styled-components' {
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-family: 'Comfortaa', sans-serif;
+    font-family: 'Outfit', sans-serif;
   }
   body {
-    background: ${({ theme }) => theme.colors.gradients.bubblegum};
+    background: ${({ theme }) => theme.colors.gradients.pagebg};
 
     img {
       height: auto;

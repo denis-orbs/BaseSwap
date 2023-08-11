@@ -7,6 +7,7 @@ import { useTranslation } from '@pancakeswap/localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { AppHeader } from '../../components/App'
 import { useCurrencySelectRoute } from './useCurrencySelectRoute'
+import 'animate.css'
 
 export function ChoosePair({
   currencyA,
@@ -27,7 +28,7 @@ export function ChoosePair({
   return (
     <>
       <AppHeader
-        title={t('Add Liquidity')}
+        title={t('BACK')}
         subtitle={t('')}
         helper={t(
           '',
@@ -36,7 +37,7 @@ export function ChoosePair({
       />
       <CardBody>
         <Box>
-          <Text textTransform="uppercase" color="text" fontWeight="900" fontSize="1rem" pb="12px">
+          <Text textTransform="uppercase" color="text" fontWeight="300" fontSize="1rem" pb="12px">
             {t('Choose your fighter')}
           </Text>
           <FlexGap gap="4px">
@@ -61,6 +62,7 @@ export function ChoosePair({
           <ConnectWalletButton width="100%" />
         ) : (
           <Button
+            className="animate__animated animate__rollIn"
             data-test="choose-pair-next"
             width="100%"
             variant={!isValid ? 'danger' : 'primary'}
