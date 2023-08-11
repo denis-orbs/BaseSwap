@@ -17,7 +17,7 @@ import 'animate.css'
 
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.text};
   text-align: left; 
   letter-spacing: 2px; 
   margin-bottom: 12px;
@@ -30,7 +30,7 @@ const WelcomeTypeIt = styled(TypeIt)`
 
 const TitleTypeIt = styled(TypeIt)`
   font-weight: 400;
-  color: text;
+  color: ${({ theme }) => theme.colors.text};
   text-align: left;
   margin-bottom: 12px;
   font-size: 36px; 
