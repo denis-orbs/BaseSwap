@@ -157,8 +157,8 @@ export const baseChain: Chain = {
     symbol: 'ETH',
   },
   rpcUrls: {
-    default: 'https://nd-825-267-742.p2pify.com/85a5ac83eb87a0a12c19f588a2b80a16',
-    public: 'https://nd-825-267-742.p2pify.com/85a5ac83eb87a0a12c19f588a2b80a16',
+    default: 'https://developer-access-mainnet.base.org',
+    public: 'https://developer-access-mainnet.base.org',
   },
   blockExplorers: {
     default: { name: 'Base Block Explorer', url: 'https://base.blockscout.com/' },
