@@ -93,9 +93,16 @@
       "address": "0xb1fEECC30438097105201F0917b71aC2aA7d5208", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "PUNK", 
+      "symbol": "PUNK", 
+      "address": "0xF28DD53048be9982DbD19EAcDA23e73A2aa1734A", 
+      "chainId": 8453,
+      "decimals": 18
     }
     
-
+    
     
     
   ]
