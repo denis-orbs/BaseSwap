@@ -72,7 +72,17 @@
       "address": "0x51539314ED1AB30c7D810759CeD7607ed4880f1D", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "BB", 
+      "symbol": "BB", 
+      "address": "0x6d201368a8578aF4eEC5fA4d762803A8e7CD24a1", 
+      "chainId": 8453,
+      "decimals": 18
     }
+    
+
+
     
   ]
 }
