@@ -86,6 +86,13 @@
       "address": "0x9452F968450a8e190747Aeec8aA38e5558FA6334", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "BTD", 
+      "symbol": "BTD", 
+      "address": "0xb1fEECC30438097105201F0917b71aC2aA7d5208", 
+      "chainId": 8453,
+      "decimals": 18
     }
     
 
