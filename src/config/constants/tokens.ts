@@ -2465,6 +2465,14 @@ const MIM_BASE = new Token(
   'Magic Internet Money',
   'baseswap.fi',
 )
+const YFI_BASE = new Token(
+  ChainId.BASE,
+  '0x8901cB2e82CC95c01e42206F8d1F417FE53e7Af0',
+  18,
+  'YFI',
+  'Yield Farming Index',
+  'baseswap.fi',
+)
 
 const EDE_BASE = new Token(
   ChainId.BASE,
@@ -2564,7 +2572,8 @@ export const baseTokens = {
   ede: EDE_BASE, 
   usdp: USDP_BASE, 
   daip: DAIP_BASE, 
-  basin: BASIN_BASE
+  basin: BASIN_BASE, 
+  yfi: YFI_BASE, 
   // bbt: BIGBOOBS_BASE,
 }
 

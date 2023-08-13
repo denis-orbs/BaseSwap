@@ -51,6 +51,14 @@
       "logoURI": ""
     },
     {
+      "name": "Yield Farming Index",
+      "symbol": "YFI",
+      "address": "0x8901cB2e82CC95c01e42206F8d1F417FE53e7Af0",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "El Dorado Exchange",
       "symbol": "EDE",
       "address": "0x0A074378461FB7ed3300eA638c6Cc38246db4434",
