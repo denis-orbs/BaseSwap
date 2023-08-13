@@ -145,10 +145,11 @@ const Menu: React.FC<NavProps> = ({
         <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
           {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
           <StyledNav>
+          <a href="/" style={{ marginLeft: '1rem' }}>
+          <Flex>
               <img src="/images/newlogo.png" width={isMobile ? 40 : 50} height={isMobile ? 40 : 40} alt="logo" />
-              <Flex>
-              <a href="/" style={{ marginLeft: '1rem' }}>
-              <WelcomeTypeIt 
+             
+              {/* <WelcomeTypeIt 
           options={{
             cursorChar:" ", 
             cursorSpeed:1000000, speed: 75, 
@@ -164,14 +165,13 @@ const Menu: React.FC<NavProps> = ({
             ;
         return instance;
          }}> 
-         </WelcomeTypeIt>
-                
-                
-                {/* <Text fontSize="2rem" style={{ marginLeft: "1rem", alignItems: 'center', justifyContent: 'center' }}>
+         </WelcomeTypeIt> */}
+                <Text fontSize="2rem" style={{ marginLeft: "1rem", alignItems: 'center', justifyContent: 'center' }}>
                   BaseSwap
-                </Text> */}
-              </a>
+                </Text>
+            
             </Flex>
+            </a>
             {!isMobile &&
               <Flex flexDirection="row" justifyContent="flex-start" alignItems="flex-end" marginLeft={isMobile ? '2rem' : '250px'} width="80%" >
                 <Link href="/swap" >
