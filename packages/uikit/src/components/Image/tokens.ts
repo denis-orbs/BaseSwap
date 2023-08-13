@@ -803,15 +803,15 @@ const tokens = {
     decimals: 18,
     projectLink: "https://bch.info/",
   },
-  yfi: {
-    symbol: "YFI",
-    address: {
-      56: "0x88f1A5ae2A3BF98AEAF342D26B30a79438c9142e",
-      97: "0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5",
-    },
-    decimals: 18,
-    projectLink: "https://yearn.finance/",
-  },
+  // yfx: {
+  //   symbol: "YFI",
+  //   address: {
+  //     56: "0x88f1A5ae2A3BF98AEAF342D26B30a79438c9142e",
+  //     97: "0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5",
+  //   },
+  //   decimals: 18,
+  //   projectLink: "https://yearn.finance/",
+  // },
   uni: {
     symbol: "UNI",
     address: {

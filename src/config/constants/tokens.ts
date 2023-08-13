@@ -1018,11 +1018,11 @@ export const bscTokens = {
     'Binance-Peg Bitcoin Cash Token',
     'https://bch.info/',
   ),
-  yfi: new Token(
+  yfixxx: new Token(
     ChainId.MAINNET,
     '0x88f1A5ae2A3BF98AEAF342D26B30a79438c9142e',
     18,
-    'YFI',
+    'YFIXXX',
     'Binance-Peg yearn.finance Token',
     'https://yearn.finance/',
   ),
@@ -2465,11 +2465,11 @@ const MIM_BASE = new Token(
   'Magic Internet Money',
   'baseswap.fi',
 )
-const YFI_BASE = new Token(
+const YFX_BASE = new Token(
   ChainId.BASE,
   '0x8901cB2e82CC95c01e42206F8d1F417FE53e7Af0',
   18,
-  'YFI',
+  'YFX',
   'Yield Farming Index',
   'baseswap.fi',
 )
@@ -2573,7 +2573,7 @@ export const baseTokens = {
   usdp: USDP_BASE, 
   daip: DAIP_BASE, 
   basin: BASIN_BASE, 
-  yfi: YFI_BASE, 
+  yfx: YFX_BASE, 
   // bbt: BIGBOOBS_BASE,
 }
 

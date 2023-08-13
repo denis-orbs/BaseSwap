@@ -46,6 +46,15 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.basin,
     quoteToken: serializedTokens.wbnb,
   },
+  // {
+  //   pid: 13,
+  //   lpSymbol: 'YFX-USDC LP',
+  //   lpAddresses: {
+  //     [ChainId.BASE]: '0x1cd6ca847016a3bd0cc1fe2df5027e78ea428170',
+  //   },
+  //   token: serializedTokens.yfx,
+  //   quoteToken: serializedTokens.usdbc,
+  // },
 
   {
     pid: 8,

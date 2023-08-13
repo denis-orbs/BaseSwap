@@ -52,7 +52,7 @@
     },
     {
       "name": "Yield Farming Index",
-      "symbol": "YFI",
+      "symbol": "YFX",
       "address": "0x8901cB2e82CC95c01e42206F8d1F417FE53e7Af0",
       "chainId": 8453,
       "decimals": 18,
