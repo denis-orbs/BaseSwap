@@ -101,15 +101,15 @@ const priceHelperLps: SerializedFarmConfig[] = [
     token: baseTokens.basin,
     quoteToken: baseTokens.wbnb,
   },
-  // {
-  //   pid: 13,
-  //   lpSymbol: 'YFX-USDC LP',
-  //   lpAddresses: {
-  //     8453: '0x1cd6ca847016a3bd0cc1fe2df5027e78ea428170',
-  //   },
-  //   token: baseTokens.yfx,
-  //   quoteToken: baseTokens.usdbc,
-  // },
+  {
+    pid: 13,
+    lpSymbol: 'YFX-USDC LP',
+    lpAddresses: {
+      8453: '0x1cd6ca847016a3bd0cc1fe2df5027e78ea428170',
+    },
+    token: baseTokens.yfx,
+    quoteToken: baseTokens.usdbc,
+  },
 ]
 
 export default priceHelperLps
