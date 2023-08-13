@@ -65,6 +65,13 @@
       "address": "0xE8dAf9d00b7bbCE291c054A34A57CdEEC87dfCA4", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "BASED", 
+      "symbol": "BASED", 
+      "address": "0x51539314ED1AB30c7D810759CeD7607ed4880f1D", 
+      "chainId": 8453,
+      "decimals": 18
     }
     
   ]
