@@ -58,6 +58,13 @@
       "address": "0x627b6d42321e8A2e60225f98f3d6ba4DbED3bADf", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "SHARD", 
+      "symbol": "SHARD", 
+      "address": "0xE8dAf9d00b7bbCE291c054A34A57CdEEC87dfCA4", 
+      "chainId": 8453,
+      "decimals": 18
     }
     
   ]
