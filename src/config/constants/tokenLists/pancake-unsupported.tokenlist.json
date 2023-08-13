@@ -51,6 +51,13 @@
       "address": "0xED7a453F35A1B49f3514Bc7C6558f7510D4f93Eb", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "BASO", 
+      "symbol": "BASO", 
+      "address": "0x627b6d42321e8A2e60225f98f3d6ba4DbED3bADf", 
+      "chainId": 8453,
+      "decimals": 18
     }
     
   ]
