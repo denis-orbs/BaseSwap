@@ -37,7 +37,14 @@
       "address": "0x7C89281c9D54Dd62A3Bb28CbAfa5f699e8dcA5db", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "COINBASE", 
+      "symbol": "COINBASE", 
+      "address": "0x5f8E8D5fC1d2376393a75bb2A69FBf5b086861C5", 
+      "chainId": 8453,
+      "decimals": 18
     }
-
+    
   ]
 }
