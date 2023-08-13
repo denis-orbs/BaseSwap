@@ -79,10 +79,17 @@
       "address": "0x6d201368a8578aF4eEC5fA4d762803A8e7CD24a1", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "DOGE", 
+      "symbol": "DOGE", 
+      "address": "0x9452F968450a8e190747Aeec8aA38e5558FA6334", 
+      "chainId": 8453,
+      "decimals": 18
     }
     
 
-
+    
     
   ]
 }
