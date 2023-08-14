@@ -516,7 +516,7 @@ export default function RemoveLiquidity() {
                     onValueChanged={handleChangePercent}
                     mb="0px"
                   />
-                  <Flex className="animate__animated animate__lightSpeedInRight animate__delay-1s" flexWrap="wrap" justifyContent="space-evenly">
+                  <Flex className="animate__animated animate__lightSpeedInRight" flexWrap="wrap" justifyContent="space-evenly">
                     <Button variant="tertiary" scale="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}>
                       25%
                     </Button>
