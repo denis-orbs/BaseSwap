@@ -49,7 +49,7 @@ const TVL = () => {
     fontSize="4rem" fontWeight="500"
     color="#0154FD"
     >
-      $<CountUp end={numericValue} duration={4} decimals={2} /> million
+      $<CountUp end={numericValue} duration={3} decimals={2} /> million
       
      {/* ${formattedValue} */}
     </Text>
