@@ -38,6 +38,15 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.usdbc,
   },
   {
+    pid: 3,
+    lpSymbol: 'axlUSDC-ETH LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x9a0b05f3cf748a114a4f8351802b3bffe07100d4',
+    },
+    token: serializedTokens.axlUsdc,
+    quoteToken: serializedTokens.wbnb,
+  },
+  {
     pid: 7,
     lpSymbol: 'ETH-USDC LP',
     lpAddresses: {
@@ -46,25 +55,6 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.wbnb,
     quoteToken: serializedTokens.usdbc,
   },
-  {
-    pid: 12,
-    lpSymbol: 'BASIN-WETH LP',
-    lpAddresses: {
-      [ChainId.BASE]: '0x6EDa0a4e05fF50594E53dBf179793CADD03689e5',
-    },
-    token: serializedTokens.basin,
-    quoteToken: serializedTokens.wbnb,
-  },
-  {
-    pid: 13,
-    lpSymbol: 'YFX-USDC LP',
-    lpAddresses: {
-      [ChainId.BASE]: '0x1cd6ca847016a3bd0cc1fe2df5027e78ea428170',
-    },
-    token: serializedTokens.yfx,
-    quoteToken: serializedTokens.usdbc,
-  },
-
   {
     pid: 8,
     lpSymbol: 'MIM-USDC LP',
@@ -102,15 +92,6 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.usdbc,
   },
   {
-    pid: 9,
-    lpSymbol: 'EDE-WETH LP',
-    lpAddresses: {
-      [ChainId.BASE]: '0x2135780D04C96E14bC205d2c8B8eD4e716d09A2b',
-    },
-    token: serializedTokens.ede,
-    quoteToken: serializedTokens.wbnb,
-  },
-  {
     pid: 6,
     lpSymbol: 'CBETH-ETH LP',
     lpAddresses: {
@@ -119,6 +100,36 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.cbeth,
     quoteToken: serializedTokens.wbnb,
   },
+  {
+    pid: 12,
+    lpSymbol: 'BASIN-WETH LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x6EDa0a4e05fF50594E53dBf179793CADD03689e5',
+    },
+    token: serializedTokens.basin,
+    quoteToken: serializedTokens.wbnb,
+  },
+  {
+    pid: 13,
+    lpSymbol: 'YFX-USDC LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x1cd6ca847016a3bd0cc1fe2df5027e78ea428170',
+    },
+    token: serializedTokens.yfx,
+    quoteToken: serializedTokens.usdbc,
+  },
+
+  
+  {
+    pid: 9,
+    lpSymbol: 'EDE-WETH LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x2135780D04C96E14bC205d2c8B8eD4e716d09A2b',
+    },
+    token: serializedTokens.ede,
+    quoteToken: serializedTokens.wbnb,
+  },
+ 
   {
     pid: 2,
     lpSymbol: 'OGRE-ETH LP',
@@ -129,15 +140,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.ogre,
     quoteToken: serializedTokens.wbnb,
   },
-  {
-    pid: 3,
-    lpSymbol: 'axlUSDC-ETH LP',
-    lpAddresses: {
-      [ChainId.BASE]: '0x9a0b05f3cf748a114a4f8351802b3bffe07100d4',
-    },
-    token: serializedTokens.axlUsdc,
-    quoteToken: serializedTokens.wbnb,
-  },
+ 
 
   
 
