@@ -110,6 +110,15 @@ const priceHelperLps: SerializedFarmConfig[] = [
     token: baseTokens.yfx,
     quoteToken: baseTokens.usdbc,
   },
+  {
+    pid: 14,
+    lpSymbol: 'axlWBTC-USDC LP',
+    lpAddresses: {
+      8453: '0x317d373E590795e2c09D73FaD7498FC98c0A692B',
+    },
+    token: baseTokens.axlwbtc,
+    quoteToken: baseTokens.usdbc,
+  },
 ]
 
 export default priceHelperLps

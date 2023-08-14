@@ -2457,6 +2457,15 @@ const CBETH_BASE = new Token(
   'Coinbase Wrapped Staked ETH',
   'baseswap.fi',
 )
+const AXLWBTC_BASE = new Token(
+  ChainId.BASE,
+  '0x1a35EE4640b0A3B87705B0A4B45D227Ba60Ca2ad',
+  8,
+  'axlWBTC',
+  'Axelar Wrapped Bitcoin',
+  'baseswap.fi',
+)
+
 const MIM_BASE = new Token(
   ChainId.BASE,
   '0x4A3A6Dd60A34bB2Aba60D73B4C88315E9CeB6A3D',
@@ -2569,6 +2578,7 @@ export const baseTokens = {
   busd: AXLUSDC_BASE,
   usdc: USDC_BASE,
   mim: MIM_BASE, 
+  axlwbtc: AXLWBTC_BASE, 
   ede: EDE_BASE, 
   usdp: USDP_BASE, 
   daip: DAIP_BASE, 

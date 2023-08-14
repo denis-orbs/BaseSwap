@@ -38,6 +38,7 @@ export type TokenLookupKey =
   | 'MIM'
   | 'USDP'
   | 'DAIP'
+  | 'axlWBTC'
 
 
 

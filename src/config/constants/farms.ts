@@ -29,6 +29,15 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
   },
   {
+    pid: 14,
+    lpSymbol: 'axlWBTC-USDC LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x317d373E590795e2c09D73FaD7498FC98c0A692B',
+    },
+    token: serializedTokens.axlwbtc,
+    quoteToken: serializedTokens.usdbc,
+  },
+  {
     pid: 7,
     lpSymbol: 'ETH-USDC LP',
     lpAddresses: {

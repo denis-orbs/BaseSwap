@@ -59,6 +59,14 @@
       "logoURI": ""
     },
     {
+      "name": "Axelar Wrapped Bitcoin",
+      "symbol": "axlWBTC",
+      "address": "0x1a35EE4640b0A3B87705B0A4B45D227Ba60Ca2ad",
+      "chainId": 8453,
+      "decimals": 8,
+      "logoURI": ""
+    },
+    {
       "name": "El Dorado Exchange",
       "symbol": "EDE",
       "address": "0x0A074378461FB7ed3300eA638c6Cc38246db4434",
