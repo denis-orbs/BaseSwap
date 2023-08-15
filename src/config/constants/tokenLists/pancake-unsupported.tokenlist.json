@@ -163,6 +163,13 @@
       "address": "0x1291d3A6E69a70eBA18bA1787C6A1257Cd3D972F", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "Scam BaseX", 
+      "symbol": "SCAM BASEX", 
+      "address": "0xe6A82da9D86A2567d863Efd97148432CB00B9538", 
+      "chainId": 8453,
+      "decimals": 18
     }
 
     
