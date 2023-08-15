@@ -149,9 +149,15 @@
       "address": "0x86f801d9f73c5804ef5498d6754fd3df1a8f8482", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "DACKIE ", 
+      "symbol": "DACKIE", 
+      "address": "0x92822fBc8a911EBEC14DDEe83371c0d78A8C4173", 
+      "chainId": 8453,
+      "decimals": 18
     }
 
-    
     
     
     
