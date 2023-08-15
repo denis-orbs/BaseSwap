@@ -2527,6 +2527,15 @@ const MAGNATE_BASE = new Token(
   '',
 )
 
+const UNIDEX_BASE = new Token(
+  ChainId.BASE,
+  '0x6B4712AE9797C199edd44F897cA09BC57628a1CF',
+  18,
+  'UNIDX',
+  'Unidex Exchange',
+  '',
+)
+
 
 const DAI_BASE = new Token(
   ChainId.BASE,
@@ -2593,6 +2602,8 @@ export const baseTokens = {
   basin: BASIN_BASE, 
   yfx: YFX_BASE, 
   magnate: MAGNATE_BASE, 
+  unidx: UNIDEX_BASE, 
+
 
   // bbt: BIGBOOBS_BASE,
 }

@@ -75,6 +75,14 @@
       "logoURI": ""
     },
     {
+      "name": "Unidex Exchange",
+      "symbol": "UNIDX",
+      "address": "0x6B4712AE9797C199edd44F897cA09BC57628a1CF",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "El Dorado Exchange",
       "symbol": "EDE",
       "address": "0x0A074378461FB7ed3300eA638c6Cc38246db4434",

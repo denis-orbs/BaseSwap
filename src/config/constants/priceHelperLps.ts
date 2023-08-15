@@ -119,6 +119,15 @@ const priceHelperLps: SerializedFarmConfig[] = [
     token: baseTokens.axlwbtc,
     quoteToken: baseTokens.usdbc,
   },
+  {
+    pid: 15,
+    lpSymbol: 'UNIDX-ETH LP',
+    lpAddresses: {
+      8453: '0x30dcc8444F8361D5CE119fC25e16AF0B583e88Fd',
+    },
+    token: baseTokens.unidx,
+    quoteToken: baseTokens.wbnb,
+  },
 ]
 
 export default priceHelperLps
