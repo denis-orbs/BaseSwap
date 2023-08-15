@@ -100,7 +100,57 @@
       "address": "0xF28DD53048be9982DbD19EAcDA23e73A2aa1734A", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "BTD1", 
+      "symbol": "BTD1", 
+      "address": "0x3541dF3Bf048E0761FAbee131b9E2f8153277d7E", 
+      "chainId": 8453,
+      "decimals": 18
+    }, 
+    {
+      "name": "BTD2", 
+      "symbol": "BTD2", 
+      "address": "0x14ef095d4088abff5106a2cdea90a4cb07680ec8", 
+      "chainId": 8453,
+      "decimals": 18
+    }, 
+    {
+      "name": "BTD3", 
+      "symbol": "BTD3", 
+      "address": "0x94528733c6fe6015a08d41e04274ca4a1f05f0df", 
+      "chainId": 8453,
+      "decimals": 18
+    }, 
+    {
+      "name": "BTD4", 
+      "symbol": "BTD4", 
+      "address": "0x009741c8f605d5adf9cc5cf247e41633e796a688", 
+      "chainId": 8453,
+      "decimals": 18
+    }, 
+    {
+      "name": "BTD5", 
+      "symbol": "BTD5", 
+      "address": "0xbbeb310218aebbcb07996e8190c8348bafd2535a", 
+      "chainId": 8453,
+      "decimals": 18
+    },
+    {
+      "name": "FAKE BITCOIN", 
+      "symbol": "FAKEBITCOIN", 
+      "address": "0x08938964266bbE2c29BDb08acABa582A07d31c36", 
+      "chainId": 8453,
+      "decimals": 18
+    }, 
+    {
+      "name": "FAKE ETHEREUM", 
+      "symbol": "FAKEETHEREUM", 
+      "address": "0x86f801d9f73c5804ef5498d6754fd3df1a8f8482", 
+      "chainId": 8453,
+      "decimals": 18
     }
+
     
     
     
