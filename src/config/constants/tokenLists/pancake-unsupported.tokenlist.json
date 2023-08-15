@@ -156,6 +156,13 @@
       "address": "0x92822fBc8a911EBEC14DDEe83371c0d78A8C4173", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "X ", 
+      "symbol": "X", 
+      "address": "0x1291d3A6E69a70eBA18bA1787C6A1257Cd3D972F", 
+      "chainId": 8453,
+      "decimals": 18
     }
 
     
