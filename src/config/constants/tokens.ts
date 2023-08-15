@@ -2518,6 +2518,14 @@ const BASIN_BASE = new Token(
   'Basin Protocol',
   'https://www.basinfinance.com/',
 )
+const MAGNATE_BASE = new Token(
+  ChainId.BASE,
+  '0x2DC1cDa9186a4993bD36dE60D08787c0C382BEAD',
+  18,
+  'MAG',
+  'Magnate Finance',
+  '',
+)
 
 
 const DAI_BASE = new Token(
@@ -2584,6 +2592,8 @@ export const baseTokens = {
   daip: DAIP_BASE, 
   basin: BASIN_BASE, 
   yfx: YFX_BASE, 
+  magnate: MAGNATE_BASE, 
+
   // bbt: BIGBOOBS_BASE,
 }
 
