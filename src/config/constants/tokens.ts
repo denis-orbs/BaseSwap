@@ -2536,6 +2536,15 @@ const UNIDEX_BASE = new Token(
   '',
 )
 
+const BLAZE_BASE = new Token(
+  ChainId.BASE,
+  '0x37DEfBC399e5737D53Dfb5533d9954572F5B19bf',
+  18,
+  'BLAZE',
+  'BlazeBot',
+  '',
+)
+
 
 const DAI_BASE = new Token(
   ChainId.BASE,
@@ -2603,6 +2612,8 @@ export const baseTokens = {
   yfx: YFX_BASE, 
   magnate: MAGNATE_BASE, 
   unidx: UNIDEX_BASE, 
+  blaze: BLAZE_BASE, 
+
 
 
   // bbt: BIGBOOBS_BASE,
