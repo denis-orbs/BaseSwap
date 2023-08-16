@@ -342,10 +342,10 @@ const Farms: React.FC = ({ children }) => {
                     label: t('APR'),
                     value: 'apr',
                   },
-                  {
-                    label: t('Multiplier'),
-                    value: 'multiplier',
-                  },
+                  // {
+                  //   label: t('Multiplier'),
+                  //   value: 'multiplier',
+                  // },
                   {
                     label: t('Earned'),
                     value: 'earned',
