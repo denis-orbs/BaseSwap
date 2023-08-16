@@ -178,12 +178,12 @@ const Farms: React.FC = ({ children }) => {
     (farmsToDisplay: DeserializedFarm[]): FarmWithStakedValue[] => {
       let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
         if (!farm.lpTotalInQuoteToken || !farm.quoteTokenPriceBusd) {
-          return farm
+          return farm;
         }
-
-        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
-
-        const { cakeRewardsApr, lpRewardsApr } = isActive
+  
+        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd);
+  
+        let { cakeRewardsApr, lpRewardsApr } = isActive
           ? getFarmApr(
               new BigNumber(farm.poolWeight),
               cakePrice,
@@ -191,21 +191,28 @@ const Farms: React.FC = ({ children }) => {
               farm.lpAddresses[chainId],
               regularCakePerBlock,
             )
-          : { cakeRewardsApr: 0, lpRewardsApr: 0 }
-
-        return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
-      })
-
+          : { cakeRewardsApr: 0, lpRewardsApr: 0 };
+  
+        // Check if the farm's pid is 6 and adjust the APR as needed
+        if (farm.pid === 6) {
+          // Adjust the APR as per your logic here
+          // For example, multiplying by a factor of 1.5
+          cakeRewardsApr *= 0.12;
+        }
+  // 1710/14033 
+        return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity };
+      });
+  
       if (query) {
-        const lowercaseQuery = latinise(query.toLowerCase())
+        const lowercaseQuery = latinise(query.toLowerCase());
         farmsToDisplayWithAPR = farmsToDisplayWithAPR.filter((farm: FarmWithStakedValue) => {
-          return latinise(farm.lpSymbol.toLowerCase()).includes(lowercaseQuery)
-        })
+          return latinise(farm.lpSymbol.toLowerCase()).includes(lowercaseQuery);
+        });
       }
-      return farmsToDisplayWithAPR
+      return farmsToDisplayWithAPR;
     },
     [cakePrice, query, isActive, regularCakePerBlock],
-  )
+  );
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
