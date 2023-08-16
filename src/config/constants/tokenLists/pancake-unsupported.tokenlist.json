@@ -184,6 +184,16 @@
       "address": "0xe7C6414cE4ce61D4533860F14AF52dD3A72efd2c", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "Fake PEPE", 
+      "symbol": "PEPE", 
+      "address": "0x55ED0a35356d63A6689989858D3BbeC3aE6625e3", 
+      "chainId": 8453,
+      "decimals": 18
     }
+
+
+    
   ]
 }
