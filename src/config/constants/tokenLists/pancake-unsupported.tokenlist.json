@@ -177,10 +177,13 @@
       "address": "0xB9d5891CdAEAc2149d91fF0f0E72001Fc0952B16", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "Fake DOGE", 
+      "symbol": "DOGE", 
+      "address": "0xe7C6414cE4ce61D4533860F14AF52dD3A72efd2c", 
+      "chainId": 8453,
+      "decimals": 18
     }
-
-    
-    
-    
   ]
 }
