@@ -495,7 +495,7 @@ export default function Swap() {
               />
             )}
             <Flex flexDirection="column">
-            <StyledSwapContainer className="animate__animated animate__fadeInLeft" $isChartExpanded={isChartExpanded}>
+            <StyledSwapContainer className="animate__animated animate__fadeInLeft animate__fast" $isChartExpanded={isChartExpanded}>
                 <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
                   <AppBody>
                   <CurrencyInputHeader
