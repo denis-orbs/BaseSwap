@@ -171,13 +171,7 @@
       "chainId": 8453,
       "decimals": 18
     }, 
-    {
-      "name": "Base Airdrop", 
-      "symbol": "BAT", 
-      "address": "0xB9d5891CdAEAc2149d91fF0f0E72001Fc0952B16", 
-      "chainId": 8453,
-      "decimals": 18
-    }, 
+   
     {
       "name": "Fake DOGE", 
       "symbol": "DOGE", 
