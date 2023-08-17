@@ -1,3 +1,5 @@
+import { ChainId } from '@magikswap/sdk'
+import { getCoingeckoTokenInfos, getDexscreenerTokenInfos } from 'config/constants/token-info'
 import { millisecondsToSeconds } from 'date-fns'
 
 const cacheTimeSeconds = 30
@@ -20,31 +22,25 @@ export async function getWethPrice() {
   }
 }
 
-// export async function getDexscreenerPrices(pairAddresses: string[], platform: 'base' = 'base') {
-//   try {
-//     const cached = localStorage.getItem(screenerStorageKey)
-//     if (cached) {
-//       const data = JSON.parse(cached)
+export async function getCombinedTokenPrices(chainId: ChainId) {
+  try {
+    const tokenAddresses = getCoingeckoTokenInfos(chainId).map((ti) => ti.tokenAddress)
+    const screenPairAddresses = getDexscreenerTokenInfos(chainId).map((ti) => ti.dexscreenerPair)
 
-//       const timeElapsed = millisecondsToSeconds(Date.now()) - millisecondsToSeconds(data.lastTime)
-//       if (timeElapsed < cacheTimeSeconds) {
-//         // console.log('Returning prices from cache')
-//         // console.log('timeElapsed: ' + timeElapsed)
-//         return {
-//           prices: data.prices,
-//           getPrice: (token: string) => data.prices[token.toLowerCase()] || 0,
-//         }
-//       }
-//     }
+    const [geckoPrices, screenerPrices] = await Promise.all([
+      fetchMultipleCoinGeckoPricesByAddress(tokenAddresses),
+      getDexscreenerPrices(screenPairAddresses),
+    ])
 
-//     const response = await fetch(`https://api.dexscreener.io/latest/dex/pairs/${platform}/${pairAddresses[0]}`)
-//     const prices = await response.json()
-
-//     console.log(prices)
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
+    return {
+      ...geckoPrices.prices,
+      ...screenerPrices,
+    }
+  } catch (error) {
+    console.log('getCombinedTokenPrices: Error get prices')
+    return {}
+  }
+}
 
 export const fetchMultipleCoinGeckoPricesByAddress = async (
   tokenAddresses: string[],
@@ -115,5 +111,38 @@ export const fetchMultipleCoinGeckoPricesByAddress = async (
       prices: {},
       getPrice: (token: string) => 0,
     }
+  }
+}
+
+export async function getDexscreenerPrices(pairAddresses: string[], platform: 'base' = 'base') {
+  try {
+    const cached = localStorage.getItem(screenerStorageKey)
+    if (cached) {
+      const data = JSON.parse(cached)
+
+      const timeElapsed = millisecondsToSeconds(Date.now()) - millisecondsToSeconds(data.lastTime)
+      if (timeElapsed < cacheTimeSeconds) {
+        // console.log('Returning prices from cache')
+        // console.log('timeElapsed: ' + timeElapsed)
+        return {
+          prices: data.prices,
+          getPrice: (token: string) => data.prices[token.toLowerCase()] || 0,
+        }
+      }
+    }
+
+    const response = await fetch(`https://api.dexscreener.io/latest/dex/pairs/${platform}/${pairAddresses.join(',')}`)
+    const priceInfo = await response.json()
+
+    const prices: any = {}
+    priceInfo.pairs.forEach((pair) => {
+      prices[pair.baseToken.address.toLowerCase()] = parseFloat(pair.priceUsd)
+    })
+
+    return prices
+  } catch (error) {
+    console.log(error)
+
+    return {}
   }
 }

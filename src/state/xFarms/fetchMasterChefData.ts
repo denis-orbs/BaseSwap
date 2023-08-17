@@ -1,5 +1,5 @@
 import { getNftPoolConfigs } from 'config/constants/farms'
-import { getChefRamsey } from 'utils/contractHelpers'
+import { getChefRamsey, getMasterchefContract } from 'utils/contractHelpers'
 import multicall, { Call, multicallv2 } from 'utils/multicall'
 import ramseyAbi from '../../config/abi/ChefRamsey.json'
 import { getAddress } from 'utils/addressHelpers'
@@ -8,16 +8,21 @@ import { SerializedFarmConfig } from 'config/constants/types'
 import erc20 from 'config/abi/erc20.json'
 import chunk from 'lodash/chunk'
 import { NftPoolFarmData } from './types'
+import BigNumber from 'bignumber.js'
 import getFarmsPrices from 'state/farms/getFarmsPrices'
 import { fetchMultipleCoinGeckoPricesByAddress } from 'utils/tokenPricing'
 import { getCoingeckoTokenInfos } from 'config/constants/token-info'
-import { ethersToBigNumber } from 'utils/bigNumber'
+import { BIG_TWO, ethersToBigNumber } from 'utils/bigNumber'
 import { getCombinedNftPoolInfos } from './utils'
+import { getFullDecimalMultiplier } from 'utils/getFullDecimalMultiplier'
+
+const dummyPoolId = 16
 
 export const fetchFarmsLpTokenData = async (farms: SerializedFarmConfig[], chainId): Promise<any[]> => {
   const fetchFarmCalls = (farm: SerializedFarm) => {
     const { lpAddresses, token, quoteToken } = farm
     const lpAddress = getAddress(lpAddresses)
+
     return [
       // Balance of token in the LP contract
       {
@@ -90,7 +95,6 @@ const getCurrentChefData = async () => {
       address: ramsey.address,
       name: 'emissionRates',
     },
-
     // {
     //   address: ramsey.address,
     //   name: 'getMainChefPoolInfo', // TODO: Need to convert this to call the original chef to get dummy pool info
@@ -102,9 +106,10 @@ const getCurrentChefData = async () => {
     calls,
   )
 
-  // , [dummyPoolInfo]
-  // const dummyPoolAllocPointsARX = dummyPoolInfo[1].toNumber()
-  // const dummyPoolAllocPointsWETH = dummyPoolInfo[2].toNumber()
+  const ogChef = getMasterchefContract()
+  const dummyPoolInfo = await ogChef.poolInfo(dummyPoolId)
+  console.log(dummyPoolInfo)
+  const dummyPoolAllocPointsARX = dummyPoolInfo[1].toNumber()
 
   const chefData = {
     poolLength: poolsLength.toNumber(),
@@ -114,8 +119,8 @@ const getCurrentChefData = async () => {
       mainRate: ethersToBigNumber(emissionRates.mainRate).div(1e18).toNumber(),
       wethRate: ethersToBigNumber(emissionRates.wethRate).div(1e18).toNumber(),
     },
-    // dummyPoolAllocPointsARX: dummyPoolInfo[1].toNumber(),
-    // dummyPoolAllocPointsWETH: dummyPoolInfo[2].toNumber(),
+    dummyPoolAllocPointsARX,
+    dummyPoolAllocPointsWETH: 0,
   }
 
   return chefData
@@ -145,11 +150,144 @@ const fetchFarms = async (chainId: number): Promise<NftPoolFarmData> => {
     fetchMultipleCoinGeckoPricesByAddress(tokenInfo.map((t) => t.tokenAddress)),
   ])
 
-  const poolLength = 0
-  const farmsData = []
-  const arxPerSec = 0
-  const WETHPerSec = 0
-  const TVL = 0
+  const { getPrice } = tokenPrices // TODO: Need the combined screener/gecko prices
+
+  const {
+    poolLength,
+    emissionRates,
+    chefTotalAllocPointsARX,
+    chefTotalAllocPointsWETH,
+    dummyPoolAllocPointsARX,
+    dummyPoolAllocPointsWETH,
+  } = chefInfo
+
+  const arxPerSec = emissionRates.mainRate
+  const WETHPerSec = emissionRates.wethRate
+  let TVL = 0
+
+  const farmsData = nftPoolInfos.map((pool, idx) => {
+    const configMatch = farmConfigs.find(
+      (p) => p.nftPoolAddress[chainId].toLowerCase() === pool.poolAddress.toLowerCase(),
+    )
+
+    const nftPoolAddress = configMatch.nftPoolAddress[chainId]
+    // const nitroPoolAddress = configMatch.nitroPoolAddressMap ? configMatch.nitroPoolAddressMap[chainId] : null
+    const stratAddress = configMatch.lpAddresses[chainId]
+    const farm: any = configMatch
+
+    const [
+      mainTokenBalanceInLP,
+      quoteTokenBalanceInLP,
+      lpTokenBalancePool,
+      lpTotalSupply,
+      [tokenDecimals],
+      [quoteTokenDecimals],
+    ] = farmResult[idx]
+
+    const lpTokensPool = ethersToBigNumber(lpTokenBalancePool.balance).div(1e18)
+
+    const lpAmountInPool = pool.lpSupply
+    const lpTotalSupplyBN = new BigNumber(lpTotalSupply).div(1e18)
+    // Ratio in % of LP tokens that are staked in the pool, vs the total number in circulation
+    const lpTokenRatio = lpTokensPool.div(lpTotalSupplyBN)
+
+    // Raw amount of each token in the LP, including those not staked
+    const mainAmountInLpTotal = new BigNumber(mainTokenBalanceInLP).div(getFullDecimalMultiplier(tokenDecimals))
+    const quoteTokenAmountInLpTotal = new BigNumber(quoteTokenBalanceInLP).div(
+      getFullDecimalMultiplier(quoteTokenDecimals),
+    )
+
+    // Amount of quoteToken in the LP that are staked in the pool
+    const mainTokenAmountInPool = mainAmountInLpTotal.times(lpTokenRatio)
+    const quoteTokenAmountInPool = quoteTokenAmountInLpTotal.times(lpTokenRatio)
+
+    const lpTotalInQuoteToken = farm.quantum
+      ? lpAmountInPool.div(getFullDecimalMultiplier(18))
+      : quoteTokenAmountInPool.times(BIG_TWO)
+
+    const poolsAllocPointsARX = new BigNumber(pool.allocPointsARX.toNumber())
+    const poolsAllocPointsWETH = new BigNumber(pool.allocPointsWETH.toNumber())
+
+    const dummyPoolArxAllocBN = new BigNumber(dummyPoolAllocPointsARX)
+    const dummyPoolTotalWETHAllocBN = new BigNumber(dummyPoolAllocPointsWETH)
+
+    const poolsPercentOfAllocARX = poolsAllocPointsARX.toNumber() / chefTotalAllocPointsARX
+    const poolsPercentOfAllocWETH = poolsAllocPointsWETH.toNumber() / chefTotalAllocPointsWETH
+
+    const poolsPercentOfAllocationArxBN = new BigNumber(poolsPercentOfAllocARX)
+    const poolsPercentOfAllocationWethBN = new BigNumber(poolsPercentOfAllocWETH)
+
+    const poolsAdjustedArxAllocPoint = poolsPercentOfAllocationArxBN.times(dummyPoolArxAllocBN)
+    const poolsAdjustedArxPoolWeight = poolsAdjustedArxAllocPoint.div(dummyPoolArxAllocBN)
+
+    const poolAdjustedsWETHAllocPoint = poolsPercentOfAllocationWethBN.times(dummyPoolTotalWETHAllocBN)
+    const poolsAdjustedWETHPoolWeight = poolAdjustedsWETHAllocPoint.div(dummyPoolTotalWETHAllocBN)
+
+    farm.lpTotalInQuoteToken = lpTotalInQuoteToken.toString()
+
+    const mainTokenPrice = getPrice(farm.token.address)
+    const quoteTokenPrice = getPrice(farm.quoteToken.address)
+
+    if (farm.classic) {
+      if (mainTokenPrice && quoteTokenPrice) {
+        const poolMainValue = mainTokenAmountInPool.times(mainTokenPrice).toNumber()
+        const poolQuoteValue = quoteTokenAmountInPool.times(quoteTokenPrice).toNumber()
+        const tvl = poolMainValue + poolQuoteValue
+        TVL += tvl
+        farm.TVL = tvl
+      } else {
+        console.log('Classic farm is missing prices')
+        farm.TVL = 0
+      }
+    } else if (farm.quantum) {
+      // if (farmStrat) {
+      //   const totalLiquidity = lpTotalInQuoteToken.times(farmStrat.sharePrice)
+      //   const tvl = totalLiquidity.toNumber()
+      //   farm.TVL = tvl
+      //   TVL += tvl
+      // } else {
+      //   farm.TVL = 0
+      // }
+    } else {
+      farm.TVL = 0
+    }
+
+    const result = {
+      nftPoolAddress,
+      // nitroPoolAddress,
+      ...farm,
+      ...pool,
+      token: farm.token,
+      quoteToken: farm.quoteToken,
+      tokenAmountTotal: mainAmountInLpTotal.toJSON(),
+      quoteTokenAmountTotal: quoteTokenAmountInLpTotal.toJSON(),
+      quoteTokenAmountInPool,
+      lpTotalSupply: lpTotalSupplyBN.toJSON(),
+      lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
+      tokenPriceVsQuote: quoteTokenAmountInLpTotal.div(mainAmountInLpTotal).toJSON(),
+      arxPoolWeight: poolsAdjustedArxPoolWeight.toJSON(),
+      WETHPoolWeight: poolsAdjustedWETHPoolWeight.toJSON(),
+      multiplier: `${poolsAdjustedArxAllocPoint.plus(poolAdjustedsWETHAllocPoint).div(100).toString()}X`,
+      arxMultiplier: `${poolsAdjustedArxAllocPoint.div(100).toString()}X`,
+      WETHMultiplier: `${poolAdjustedsWETHAllocPoint.div(100).toString()}X`,
+      quantumStrategy: farm.quantumStrategy || null,
+      quantumStrategies: farm.quantumStrategies || null,
+      lpAmountInPool,
+      liquidity: farm.TVL,
+      // sharePrice: farmStrat?.sharePrice,
+    }
+
+    Object.entries(result).forEach((res) => {
+      const prop = res[0]
+      if (result[prop]?._isBigNumber) result[prop] = result[prop].toString()
+    })
+
+    // for (const prop in result) {
+    //   if (result[prop]?._isBigNumber) result[prop] = result[prop].toString()
+    // }
+
+    return result
+  })
 
   return {
     poolLength,

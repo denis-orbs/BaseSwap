@@ -82,6 +82,9 @@ interface FarmConfigBaseProps {
   isCommunity?: boolean
   auctionHostingStartSeconds?: number
   auctionHostingEndDate?: string
+  quantum?: boolean
+  narrow?: boolean
+  classic?: boolean
   dual?: {
     rewardPerBlock: number
     earnLabel: string
