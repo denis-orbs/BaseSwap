@@ -167,3 +167,7 @@ export default farms
 export const getNftPoolConfigs = (chainId: number) => {
   return farms.filter((f) => f.nftPoolAddress && f.nftPoolAddress[chainId])
 }
+
+export const getNftPoolAddresses = (chainId: number) => {
+  return getNftPoolConfigs(chainId).map((f) => f.nftPoolAddress[chainId])
+}
