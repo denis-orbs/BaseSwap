@@ -220,7 +220,7 @@ const Menu: React.FC<NavProps> = ({
 
             <Flex alignItems="center" justifyContent="flex-end" height="100%" width="300px">
 
-              {/* {!isMobile && !isMd && (
+              {/* test {!isMobile && !isMd && (
                 <Box mr="12px">
                   <CakePrice showSkeleton={false} cakePriceUsd={cakePriceUsd} />
                 </Box>
