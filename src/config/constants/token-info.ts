@@ -13,11 +13,22 @@ export interface ITokenInfo {
   addresses: { [chainId: number]: string }
 }
 
-export type StableTokenLookupKey = 'FRAX' | 'USDCe' | 'USDP' |'DAIP' |'USDT' | 'DAI' | 'USD+' | 'DAI+' | 'axlUSDC' | 'USDbC'
+export type StableTokenLookupKey =
+  | 'FRAX'
+  | 'USDCe'
+  | 'USDP'
+  | 'DAIP'
+  | 'USDT'
+  | 'DAI'
+  | 'USD+'
+  | 'DAI+'
+  | 'axlUSDC'
+  | 'USDbC'
 // Add to this list as needed
 export type TokenLookupKey =
   | StableTokenLookupKey
   | 'ProtocolToken'
+  | 'BSWAP'
   | 'xProtocolToken'
   | 'WETH'
   | 'WBTC'
@@ -39,8 +50,6 @@ export type TokenLookupKey =
   | 'USDP'
   | 'DAIP'
   | 'axlWBTC'
-
-
 
 export type TokenInfoMapping = {
   [key in TokenLookupKey]?: ITokenInfo
@@ -109,15 +118,20 @@ export const TOKEN_INF0: TokenInfoMapping = {
 
   ProtocolToken: {
     // coinGeckoId: 'arbitrum-exchange',
-    dexscreenerPair: '0xE80B4F755417FB4baF4dbd23C029db3F62786523',
+    // dexscreenerPair: '0xE80B4F755417FB4baF4dbd23C029db3F62786523', // TODO: Update after live on screener
     addresses: {
-      [ChainId.BASE]: '0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9',
+      [ChainId.BASE]: '0xd5046B976188EB40f6DE40fB527F89c05b323385', // BSX
       [ChainId.ARBITRUM]: '0xD5954c3084a1cCd70B4dA011E67760B8e78aeE84',
     },
   },
   xProtocolToken: {
     addresses: {
       [ChainId.ARBITRUM]: '0xa954A31137fBe5c2D384A0067DE042bAA58b3403',
+    },
+  },
+  BSWAP: {
+    addresses: {
+      [ChainId.BASE]: '0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9',
     },
   },
   WETH: {
@@ -227,19 +241,15 @@ export function getTokenInfo(key: TokenLookupKey, chainId: number): TokenInfoMap
   }
 }
 
-export const getTokenAddress = (keyOrSymbol: TokenLookupKey, chainId: ChainId = ChainId.ARBITRUM) => {
+export const getTokenAddress = (keyOrSymbol: TokenLookupKey, chainId: ChainId) => {
   const ref = TOKEN_LIST[keyOrSymbol]
   if (!ref) {
-    const msg = `No address mapping for keyOrSymbol: ${keyOrSymbol}`
-    console.log(msg)
-    throw new Error(msg)
+    throw new Error(`No address mapping for keyOrSymbol: ${keyOrSymbol}`)
   }
 
   const address = TOKEN_LIST[keyOrSymbol][chainId]
   if (!address) {
-    const msg = `No chain id address mapping: ${chainId}`
-    console.log(msg)
-    throw new Error(msg)
+    throw new Error(`No chain id address mapping: ${chainId}`)
   }
 
   return address
