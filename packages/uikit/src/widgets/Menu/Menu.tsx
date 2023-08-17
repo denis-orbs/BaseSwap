@@ -213,6 +213,9 @@ const Menu: React.FC<NavProps> = ({
                 <Link href="https://marketplace.baseswap.fi" >
                   <Text marginRight="2rem">NFT</Text>
                 </Link>
+                <Link href="https://presale.baseswap.fi" >
+                  <Text marginRight="2rem">BSX PRESALE!</Text>
+                </Link>
               </Flex>
             }
             {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
