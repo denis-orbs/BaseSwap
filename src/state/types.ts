@@ -15,6 +15,7 @@ import {
 import { Token, ChainId } from '@magikswap/sdk'
 import { TokenInfo, TokenList, Tags } from '@uniswap/token-lists'
 import { parseUnits } from '@ethersproject/units'
+import { NftPoolsState } from './xFarms/types'
 
 /**
  * Token instances created from token info.
@@ -53,7 +54,6 @@ export const EMPTY_LIST: TokenAddressMap = {
 
   [ChainId.BSC_TESTNET]: {},
 }
-
 
 // jumpman
 export enum GAS_PRICE {
@@ -744,4 +744,5 @@ export interface State {
   predictions: PredictionsState
   lottery: LotteryState
   pottery: PotteryState
+  nftPools: NftPoolsState
 }

@@ -77,6 +77,7 @@ interface FarmConfigBaseProps {
   v1pid?: number
   lpSymbol: string
   lpAddresses: Address
+  nftPoolAddress?: Address
   multiplier?: string
   isCommunity?: boolean
   auctionHostingStartSeconds?: number

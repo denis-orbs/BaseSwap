@@ -7,6 +7,10 @@ export const getAddress = (address: Address, chainId?: number): string => {
   return address[chainId] ? address[chainId] : address[DEFAULT_CHAIN_ID]
 }
 
+export const getChefRamseyAddress = () => {
+  return getAddress(addresses.chefRamsey)
+}
+
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
 }

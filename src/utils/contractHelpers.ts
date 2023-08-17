@@ -39,6 +39,7 @@ import {
   getZapAddress,
   getCakeFlexibleSideVaultAddress,
   getPredictionsV1Address,
+  getChefRamseyAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -87,6 +88,8 @@ import zapAbi from 'config/abi/zap.json'
 import iCakeAbi from 'config/abi/iCake.json'
 import ifoV3Abi from 'config/abi/ifoV3.json'
 import cakePredictionsAbi from 'config/abi/cakePredictions.json'
+import chefRamseyAbi from 'config/abi/ChefRamsey.json'
+import nftPoolAbi from 'config/abi/NFTPool.json'
 
 // Types
 import type {
@@ -295,4 +298,12 @@ export const getZapContract = (signer?: Signer | Provider) => {
 
 export const getIfoCreditAddressContract = (signer?: Signer | Provider) => {
   return getContract(iCakeAbi, getICakeAddress(), signer) as ICake
+}
+
+export const getChefRamsey = (signer?: Signer | Provider) => {
+  return getContract(chefRamseyAbi, getChefRamseyAddress(), signer)
+}
+
+export const getNftPoolContract = (address: string, signer?: Signer | Provider) => {
+  return getContract(nftPoolAbi, address, signer)
 }

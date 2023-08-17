@@ -28,7 +28,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.cake,
     quoteToken: serializedTokens.wbnb,
   },
- 
+
   {
     pid: 14,
     lpSymbol: 'axlWBTC-USDC LP',
@@ -47,7 +47,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.unidx,
     quoteToken: serializedTokens.wbnb,
   },
- 
+
   {
     pid: 3,
     lpSymbol: 'axlUSDC-ETH LP',
@@ -130,7 +130,6 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.usdbc,
   },
 
-  
   {
     pid: 9,
     lpSymbol: 'EDE-WETH LP',
@@ -140,7 +139,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.ede,
     quoteToken: serializedTokens.wbnb,
   },
- 
+
   {
     pid: 2,
     lpSymbol: 'OGRE-ETH LP',
@@ -151,9 +150,6 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.ogre,
     quoteToken: serializedTokens.wbnb,
   },
- 
-
-  
 
   // {
   //   pid: 4,
@@ -163,7 +159,11 @@ const farms: SerializedFarmConfig[] = [
   //   },
   //   token: serializedTokens.cbeth,
   //   quoteToken: serializedTokens.usdbc,
-  // }, 
+  // },
 ]
 
 export default farms
+
+export const getNftPoolConfigs = (chainId: number) => {
+  return farms.filter((f) => f.nftPoolAddress && f.nftPoolAddress[chainId])
+}
