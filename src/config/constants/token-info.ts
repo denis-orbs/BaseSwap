@@ -1,4 +1,5 @@
 import { ChainId } from '@magikswap/sdk'
+import { currentTokenMap } from './tokens'
 
 export const DEFAULT_STABLE_SYMBOL = 'axlUSDC'
 export const WRAPPED_NATIVE_SYMBOL = 'WETH'
@@ -8,6 +9,7 @@ export interface ITokenInfo {
   dexscreenerPair?: string
   name?: string
   symbol?: string
+  decimals?: number
   logoURI?: string
   tokenListKey?: string // key in tokens.ts if needed to join to get a token instance
   addresses: { [chainId: number]: string }
@@ -58,12 +60,14 @@ export type TokenInfoMapping = {
 export const STABLE_TOKEN_INF0: TokenInfoMapping = {
   axlUSDC: {
     coinGeckoId: 'axlusdc',
+    decimals: 6,
     addresses: {
       [ChainId.BASE]: '0xEB466342C4d449BC9f53A865D5Cb90586f405215',
     },
   },
   USDbC: {
     coinGeckoId: 'usd-coin',
+    decimals: 6,
     addresses: {
       [ChainId.BASE]: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
     },
@@ -76,6 +80,7 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
   },
   USDCe: {
     coinGeckoId: 'usd-coin',
+    decimals: 6,
     addresses: {
       [ChainId.ARBITRUM]: '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8',
     },
@@ -257,6 +262,11 @@ export const getTokenAddress = (keyOrSymbol: TokenLookupKey, chainId: ChainId) =
 
 export const getTokenImage = (address: string) => {
   return `/images/tokens/${address}.png`
+}
+
+export function getTokenInstance(address: string) {
+  const instance = Object.entries(currentTokenMap).find((tk) => tk[1].address.toLowerCase() === address.toLowerCase())
+  return instance ? instance[1] : null
 }
 
 export const TOKEN_LIST: { [key in TokenLookupKey]?: { [chainId: number]: string } } = {

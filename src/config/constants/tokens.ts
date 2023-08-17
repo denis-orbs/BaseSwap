@@ -2536,15 +2536,7 @@ const UNIDEX_BASE = new Token(
   '',
 )
 
-const BLAZE_BASE = new Token(
-  ChainId.BASE,
-  '0x37DEfBC399e5737D53Dfb5533d9954572F5B19bf',
-  9,
-  'BLAZE',
-  'BlazeBot',
-  '',
-)
-
+const BLAZE_BASE = new Token(ChainId.BASE, '0x37DEfBC399e5737D53Dfb5533d9954572F5B19bf', 9, 'BLAZE', 'BlazeBot', '')
 
 const DAI_BASE = new Token(
   ChainId.BASE,
@@ -2563,7 +2555,7 @@ const ORGE_BASE = new Token(
   'ORGE',
   'baseswap.fi',
 )
-// 
+//
 // const BIGBOOBS_BASE = new Token(
 //   ChainId.BASE,
 //   '0x8DFAf055e21B16302DBf00815e5b4d9b6042a4Df',
@@ -2603,18 +2595,16 @@ export const baseTokens = {
   ogre: ORGE_BASE,
   busd: AXLUSDC_BASE,
   usdc: USDC_BASE,
-  mim: MIM_BASE, 
-  axlwbtc: AXLWBTC_BASE, 
-  ede: EDE_BASE, 
-  usdp: USDP_BASE, 
-  daip: DAIP_BASE, 
-  basin: BASIN_BASE, 
-  yfx: YFX_BASE, 
-  magnate: MAGNATE_BASE, 
-  unidx: UNIDEX_BASE, 
-  blaze: BLAZE_BASE, 
-
-
+  mim: MIM_BASE,
+  axlwbtc: AXLWBTC_BASE,
+  ede: EDE_BASE,
+  usdp: USDP_BASE,
+  daip: DAIP_BASE,
+  basin: BASIN_BASE,
+  yfx: YFX_BASE,
+  magnate: MAGNATE_BASE,
+  unidx: UNIDEX_BASE,
+  blaze: BLAZE_BASE,
 
   // bbt: BIGBOOBS_BASE,
 }
