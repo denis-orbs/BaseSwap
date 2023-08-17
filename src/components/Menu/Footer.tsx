@@ -57,7 +57,7 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
         </ButtonMenu>
         <LinkExternal
           id="bridgetoBase"
-          href="https://app.squidrouter.com/"
+          href="https://app.symbiosis.finance/swap?chainIn=Ethereum&chainOut=Base&tokenIn=ETH&tokenOut=ETH"
           ml={[0, 0, '40px']}
           mt={['10px', '10px', isSide ? '10px' : 0]}
           mb={['4px', '4px', 0]} style={{ fontSize: '18px', fontWeight: '400' }}
