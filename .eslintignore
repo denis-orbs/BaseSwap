@@ -1,2 +1,4 @@
 packages/swap-sdk/**/*.ts
 src/state/xFarms/**/*.ts
+src/views/xFarms/**/*.ts
+src/views/xFarms/**/*.tsx

@@ -64,6 +64,8 @@ import { ERC20_BYTES32_ABI } from '../config/abi/erc20'
 import ERC20_ABI from '../config/abi/erc20.json'
 import WETH_ABI from '../config/abi/weth.json'
 import multiCallAbi from '../config/abi/Multicall.json'
+import nftPoolAbi from 'config/abi/NFTPool.json'
+
 import { getContract, getProviderOrSigner } from '../utils'
 
 import { IPancakePair } from '../config/abi/types/IPancakePair'
@@ -72,6 +74,10 @@ import { VaultKey } from '../state/types'
 /**
  * Helper hooks to get specific contracts (by ABI)
  */
+
+export function useNftPool(address: string, withSignerIfPossible = true) {
+  return useContract(address, nftPoolAbi, withSignerIfPossible)
+}
 
 export const useIfoV1Contract = (address: string) => {
   const { library } = useActiveWeb3React()
