@@ -46,16 +46,6 @@ const useNftPools = () => {
     }
   }, [account, chainId])
 
-  // useEffect(() => {
-  //   fetchXFarmData()
-
-  //   // const interval = setInterval(fetchXFarmData, 15000)
-
-  //   // return () => {
-  //   //   if (interval) clearInterval(interval)
-  //   // }
-  // }, [dispatch, chainId])
-
   return {
     fetchUserPoolsData,
     fetchAllowances,

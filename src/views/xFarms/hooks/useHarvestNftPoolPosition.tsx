@@ -1,33 +1,39 @@
 import { useWeb3React } from '@web3-react/core'
+import useCatchTxError from 'hooks/useCatchTxError'
 import { useNftPool } from 'hooks/useContract'
 import { useCallback } from 'react'
-import { useAppDispatch } from 'state'
+import useNftPools from './useNftPools'
 
 export const useHarvestPosition = (nftPoolAddress: string) => {
   const { account } = useWeb3React()
-  const dispatch = useAppDispatch()
+  const { fetchWithCatchTxError } = useCatchTxError()
+  const { fetchUserXFarmData } = useNftPools()
   const nftPool = useNftPool(nftPoolAddress)
 
   const harvestPositionTo = useCallback(
     async (tokenId: number) => {
-      try {
+      const receipt = await fetchWithCatchTxError(() => {
         return nftPool.harvestPositionTo(tokenId, account)
-      } catch (err) {
-        console.log(err)
-      }
+      })
+
+      fetchUserXFarmData()
+
+      return receipt
     },
-    [nftPoolAddress, nftPool, account],
+    [nftPoolAddress, nftPool, account, fetchWithCatchTxError],
   )
 
   const harvestPosition = useCallback(
     async (tokenId: number) => {
-      try {
+      const receipt = await fetchWithCatchTxError(() => {
         return nftPool.harvestPosition(tokenId)
-      } catch (err) {
-        console.log(err)
-      }
+      })
+
+      fetchUserXFarmData()
+
+      return receipt
     },
-    [nftPoolAddress, nftPool],
+    [nftPoolAddress, nftPool, fetchWithCatchTxError],
   )
 
   return { harvestPositionTo, harvestPosition }
