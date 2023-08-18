@@ -38,9 +38,10 @@ const StakedLP: React.FunctionComponent<StackedLPProps> = ({
     <Flex flexDirection="column" alignItems="flex-start">
       <Heading color={stakedBalance.eq(0) ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
       {/* {stakedBalance.gt(0) && lpPrice.gt(0) && (quantumPrice && quantumPrice.gt(0)) && ( */}
+      {stakedBalance.gt(0) && lpPrice.gt(0) && (
       <>
         <Balance
-
+          fontSize="12px"
           color="textSubtle"
           decimals={2}
           value={
@@ -51,28 +52,27 @@ const StakedLP: React.FunctionComponent<StackedLPProps> = ({
           unit=" USD"
           prefix="~"
         />
-        {/* homeless- maybe comment out if don't have balance */}
-        {/* check balance numbers and see if they are right */}
-        {/* {!quantumPrice && (
-          <Flex style={{ gap: '4px' }}>
+         <Flex style={{ gap: '4px' }}>
             <Balance
-              fontSize="10px"
+              fontSize="12px"
               color="textSubtle"
               decimals={2}
-              value={stakedBalance.div(1e18).div(lpTotalSupply).times(tokenAmountTotal).toNumber()}
+              value={stakedBalance.div(lpTotalSupply).times(tokenAmountTotal).toNumber()}
               unit={` ${tokenSymbol}`}
             />
             <Balance
-              fontSize="10px"
+              fontSize="12px"
               color="textSubtle"
               decimals={2}
-              value={stakedBalance.div(1e18).div(lpTotalSupply).times(quoteTokenAmountTotal).toNumber()}
+              value={stakedBalance.div(lpTotalSupply).times(quoteTokenAmountTotal).toNumber()}
               unit={` ${quoteTokenSymbol}`}
             />
           </Flex>
-        )} */}
+      
+       
       </>
-      {/* )} */}
+            )}
+
     </Flex>
   )
 }

@@ -58,16 +58,16 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         inputTitle={t('DEPOSIT')}
       />
       <ModalActions>
-        <Button className="lightemptyglow" variant="secondary" onClick={onDismiss} disabled={pendingTx}>
-          {t('CANCEL')}
+      <Button variant="secondary" onClick={onDismiss} width="100%" disabled={pendingTx}>
+          {t('Cancel')}
         </Button>
         {pendingTx ? (
-          <Button variant="secondary" isLoading={pendingTx} endIcon={<AutoRenewIcon spin color="currentColor" />}>
-            {t('CONFIRMING')}
+          <Button width="100%" isLoading={pendingTx} endIcon={<AutoRenewIcon spin color="currentColor" />}>
+            {t('Confirming')}
           </Button>
         ) : (
           <Button
-            variant="secondary"
+            width="100%"
             disabled={!lpTokensToStake.isFinite() || lpTokensToStake.eq(0) || lpTokensToStake.gt(fullBalanceNumber)}
             onClick={async () => {
               setPendingTx(true)
@@ -76,7 +76,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
               setPendingTx(false)
             }}
           >
-            {t('CONFIRM')}
+            {t('Confirm')}
           </Button>
         )}
       </ModalActions>

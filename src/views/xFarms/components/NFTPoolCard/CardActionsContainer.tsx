@@ -51,14 +51,14 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
 
   return (
     <Action>
-      <Flex>
+      {/* <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
           BSX
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t('Earned')}
         </Text>
-      </Flex>
+      </Flex> */}
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
           {farm.lpSymbol}
@@ -74,7 +74,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
         <>
           {renderApprovalOrStakeButton()}
 
-          <Flex marginTop="15px">
+          <Flex marginTop="0px">
             {position ? <PendingRewards position={position} harvestPosition={harvestFunction} /> : <Skeleton />}
           </Flex>
 

@@ -129,23 +129,22 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   const renderStakingButtons = () => {
     return !position || stakedBalanceBN.eq(0) ? (
       <Button
-        variant="secondary"
+      variant="primary"
         onClick={onPresentDeposit}
         disabled={['history', 'archived'].some((item) => router.pathname.includes(item))}
       >
-        {t('STAKE LP')}
+        {t('Stake LP')}
       </Button>
     ) : (
       <>
         <IconButtonWrapper>
           <IconButton
             variant="primary"
-            className={position?.hasNitroDeposit ? 'glow2small' : 'connectglow'}
             onClick={onPresentWithdraw}
             marginRight="6px"
             disabled={position?.hasNitroDeposit}
           >
-            <MinusIcon color="#fff" width="14px" />
+            <MinusIcon color="text" width="14px" />
           </IconButton>
 
           <IconButton
