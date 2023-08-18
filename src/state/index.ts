@@ -25,6 +25,8 @@ import poolsReducer from './pools'
 import swap from './swap/reducer'
 import transactions from './transactions/reducer'
 import user from './user/reducer'
+import nftPoolsReducer from './xFarms'
+import xTokenReducer from './xToken'
 
 const PERSISTED_KEYS: string[] = ['user', 'transactions']
 
@@ -69,7 +71,8 @@ const persistedReducer = persistReducer(
     farms: farmsReducer,
     pools: poolsReducer,
     info: infoReducer,
-
+    nftPools: nftPoolsReducer,
+    xToken: xTokenReducer,
     // Exchange
     user,
     transactions,

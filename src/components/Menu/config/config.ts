@@ -1,4 +1,4 @@
-import { MenuItemsType, SwapIcon, SwapFillIcon, EarnFillIcon, EarnIcon } from '@pancakeswap/uikit'
+import { MenuItemsType, SwapIcon, SwapFillIcon, EarnFillIcon, EarnIcon, FarmIcon, CurrencyIcon, TradeFilledIcon, AddIcon, EllipsisIcon } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
 import { DropdownMenuItems } from '@pancakeswap/uikit/src/components/DropdownMenu/types'
 import { DEFAULT_CHAIN_ID } from 'utils/providers'
@@ -24,29 +24,64 @@ const config: (
       href: '/swap',
       showItemsOnMobile: false,
       fillIcon: SwapFillIcon, 
+      icon: SwapFillIcon,
       items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
     }, 
     {
       label: t('Liquidity'),
       href: '/liquidity',
       showItemsOnMobile: false,
-      fillIcon: SwapFillIcon, 
+      icon: AddIcon,
+      fillIcon: AddIcon, 
       items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
     }, 
+
     {
       label: t('Farm'),
-      href: '/farms',
-      showItemsOnMobile: false,
-      fillIcon: SwapFillIcon, 
-      items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
-    }, 
+      href: '',
+      icon: EarnIcon,
+      fillIcon: EarnIcon,
+      supportChainIds: [DEFAULT_CHAIN_ID],
+      items: [
+        {
+          label: t('Live Farms!'),
+          href: '/farm',
+        },
+        {
+          label: t('Finished Farms'),
+          href: '/finishedfarms',
+        },
+      ],
+    },
     {
       label: t('Earn'),
       href: '/pools',
       showItemsOnMobile: false,
-      fillIcon: SwapFillIcon, 
+      icon: CurrencyIcon,
+      fillIcon: CurrencyIcon, 
       items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
     }, 
+    {
+      label: t('More'),
+      href: '',
+      icon: EllipsisIcon,
+      fillIcon: EllipsisIcon,
+      supportChainIds: [DEFAULT_CHAIN_ID],
+      items: [
+        {
+          label: t('BSX Presale!'),
+          href: 'https://presale.baseswap.fi',
+        },
+        {
+          label: t('Bridge'),
+          href: '/bridge',
+        },
+        {
+          label: t('NFT'),
+          href: 'https://marketplace.baseswap.fi',
+        },
+      ],
+    },
     // {
     //   label: t('Swap'),
     //   icon: SwapIcon,
@@ -75,23 +110,7 @@ const config: (
         // },
   //     ].filter((item) => filterItemBySupportChainId(item, chainId)),
   //   },
-  //   {
-  //     label: t('Earn'),
-  //     href: '/farms',
-  //     icon: EarnIcon,
-  //     fillIcon: EarnFillIcon,
-  //     supportChainIds: [DEFAULT_CHAIN_ID],
-  //     items: [
-  //       {
-  //         label: t('Farms'),
-  //         href: '/farms',
-  //       },
-  //       {
-  //         label: t('Pools'),
-  //         href: '/pools',
-  //       },
-  //     ],
-  //   },
+
   ].filter((item) => filterItemBySupportChainId(item, chainId))
 
 export default config

@@ -17,6 +17,9 @@ export default {
   zap: {
     [ChainId.BASE]: '0xc102505248c36f933934d4B2d7579D962a342eBC',
   },
+  chefRamsey: {
+    [ChainId.BASE]: '0x6Fc0f134a1F20976377b259687b1C15a5d422B47',
+  },
   lotteryV2: {
     97: '0x5790c3534F30437641541a0FA04C992799602998',
     250: '0x5aF6D33DE2ccEC94efb1bDF8f92Bd58085432d2c',

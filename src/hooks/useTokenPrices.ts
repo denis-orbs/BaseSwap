@@ -1,25 +1,15 @@
 import { useWeb3React } from '@web3-react/core'
-import { getCoingeckoTokenInfos } from 'config/constants/token-info'
 import { useCallback, useEffect, useState } from 'react'
-import { fetchMultipleCoinGeckoPricesByAddress } from 'utils/tokenPricing'
+import { getCombinedTokenPrices } from 'utils/tokenPricing'
 
 const useTokenPrices = () => {
   const [prices, setPrices] = useState<{ [tokenAddress: string]: number }>({})
   const { chainId } = useWeb3React()
 
-  // TODO: Can aggregate prices for more than gecko into one prices object
-
   useEffect(() => {
     const getPrices = async () => {
-      const tokenAddresses = getCoingeckoTokenInfos(chainId).map((ti) => ti.tokenAddress)
-      const otherPrices = {}
-
-      const { prices: localPrices } = await fetchMultipleCoinGeckoPricesByAddress(tokenAddresses)
-
-      setPrices({
-        ...localPrices,
-        ...otherPrices,
-      })
+      const { prices: allPrices } = await getCombinedTokenPrices(chainId)
+      setPrices(allPrices)
     }
 
     getPrices()

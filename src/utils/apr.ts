@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { BLOCKS_PER_YEAR } from 'config'
+import { BLOCKS_PER_YEAR, SECONDS_PER_YEAR } from 'config'
 import lpAprs from 'config/constants/lpAprs.json'
 
 /**
@@ -48,6 +48,38 @@ export const getFarmApr = (
   }
   const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
   return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
+}
+
+export const getXFarmApr = (
+  arxPoolWeight: BigNumber,
+  WETHPoolWeight: BigNumber,
+  cakePriceUsd: BigNumber,
+  WETHPriceUsd: BigNumber,
+  poolLiquidityUsd: BigNumber,
+  arxPerSec: number,
+  WETHPerSec: number,
+): { cakeRewardsApr: number } => {
+  const yearlyCakeRewardAllocation = arxPoolWeight
+    ? arxPoolWeight.times(SECONDS_PER_YEAR * arxPerSec)
+    : new BigNumber(NaN)
+
+  const yearlyWETHRewardAllocation = WETHPoolWeight
+    ? WETHPoolWeight.times(SECONDS_PER_YEAR * WETHPerSec)
+    : new BigNumber(NaN)
+
+  const cakeRewardsApr = yearlyCakeRewardAllocation
+    .times(cakePriceUsd)
+    .plus(yearlyWETHRewardAllocation.times(WETHPriceUsd))
+    .div(poolLiquidityUsd)
+    .times(100)
+
+  let cakeRewardsAprAsNumber = null
+
+  if (!cakeRewardsApr.isNaN() && cakeRewardsApr.isFinite()) {
+    cakeRewardsAprAsNumber = cakeRewardsApr.toNumber()
+  }
+
+  return { cakeRewardsApr: cakeRewardsAprAsNumber }
 }
 
 export default null

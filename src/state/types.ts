@@ -15,6 +15,8 @@ import {
 import { Token, ChainId } from '@magikswap/sdk'
 import { TokenInfo, TokenList, Tags } from '@uniswap/token-lists'
 import { parseUnits } from '@ethersproject/units'
+import { NftPoolsState } from './xFarms/types'
+import { XTokenState } from './xToken/types'
 
 /**
  * Token instances created from token info.
@@ -53,7 +55,6 @@ export const EMPTY_LIST: TokenAddressMap = {
 
   [ChainId.BSC_TESTNET]: {},
 }
-
 
 // jumpman
 export enum GAS_PRICE {
@@ -115,7 +116,12 @@ export interface DeserializedFarm extends DeserializedFarmConfig {
   lpTotalSupply?: BigNumber
   tokenPriceVsQuote?: BigNumber
   poolWeight?: BigNumber
+  arxPoolWeight?: BigNumber
+  WETHPoolWeight?: BigNumber
   userData?: DeserializedFarmUserData
+  sharePrice?: number
+  TVL?: number
+  lpPrice?: string
 }
 
 export enum VaultKey {
@@ -744,4 +750,6 @@ export interface State {
   predictions: PredictionsState
   lottery: LotteryState
   pottery: PotteryState
+  nftPools: NftPoolsState
+  xToken: XTokenState
 }

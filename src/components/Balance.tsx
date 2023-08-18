@@ -14,6 +14,7 @@ interface BalanceProps extends TextProps {
   isDisabled?: boolean
   prefix?: string
   onClick?: (event: React.MouseEvent<HTMLElement>) => void
+  fonstSize?: number
 }
 
 const Balance: React.FC<BalanceProps> = ({
@@ -52,7 +53,6 @@ const Balance: React.FC<BalanceProps> = ({
 
 export const BalanceWithLoading: React.FC<Omit<BalanceProps, 'value'> & { value: string | number }> = ({
   value,
-  fontSize,
   ...props
 }) => {
   const isValueUndefinedOrNull = useMemo(() => isUndefinedOrNull(value), [value])
@@ -66,7 +66,7 @@ export const BalanceWithLoading: React.FC<Omit<BalanceProps, 'value'> & { value:
   if (isValueUndefinedOrNull) {
     return <Skeleton />
   }
-  return <Balance {...props} value={finalValue} fontSize={fontSize} />
+  return <Balance {...props} value={finalValue} />
 }
 
 export default Balance

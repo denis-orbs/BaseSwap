@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js'
 import { BigNumber as EthersBigNumber } from '@ethersproject/bignumber'
+import { formatEther } from '@ethersproject/units'
 
 export const BIG_ZERO = new BigNumber(0)
 export const BIG_ONE = new BigNumber(1)
@@ -11,3 +12,7 @@ export const ethersToSerializedBigNumber = (ethersBn: EthersBigNumber): Serializ
   ethersToBigNumber(ethersBn).toJSON()
 
 export const ethersToBigNumber = (ethersBn: EthersBigNumber): BigNumber => new BigNumber(ethersBn.toString())
+
+export const formatEthersToFloat = (ethersBn: EthersBigNumber) => {
+  return parseFloat(formatEther(ethersBn))
+}

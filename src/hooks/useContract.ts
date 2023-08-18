@@ -40,6 +40,7 @@ import {
   getCakeFlexibleSideVaultV2Contract,
   getCakePredictionsContract,
   getPredictionsV1Contract,
+  getXToken,
 } from 'utils/contractHelpers'
 import { getMulticallAddress, getPredictionsV1Address, getZapAddress } from 'utils/addressHelpers'
 import {
@@ -64,6 +65,8 @@ import { ERC20_BYTES32_ABI } from '../config/abi/erc20'
 import ERC20_ABI from '../config/abi/erc20.json'
 import WETH_ABI from '../config/abi/weth.json'
 import multiCallAbi from '../config/abi/Multicall.json'
+import nftPoolAbi from 'config/abi/NFTPool.json'
+
 import { getContract, getProviderOrSigner } from '../utils'
 
 import { IPancakePair } from '../config/abi/types/IPancakePair'
@@ -72,6 +75,19 @@ import { VaultKey } from '../state/types'
 /**
  * Helper hooks to get specific contracts (by ABI)
  */
+
+export function useNftPool(address: string, withSignerIfPossible = true) {
+  return useContract(address, nftPoolAbi, withSignerIfPossible)
+}
+
+export const useXToken = (withSignerIfPossible = true) => {
+  const { library, account, chainId } = useActiveWeb3React()
+  const signer = useMemo(
+    () => (withSignerIfPossible ? getProviderOrSigner(library, account) : null),
+    [withSignerIfPossible, library, account],
+  )
+  return useMemo(() => getXToken(chainId, signer), [chainId, signer])
+}
 
 export const useIfoV1Contract = (address: string) => {
   const { library } = useActiveWeb3React()

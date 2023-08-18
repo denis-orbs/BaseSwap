@@ -1,5 +1,5 @@
 import FarmsMpPageLayout from 'views/Farms/MpPageLayout'
-import FarmsPage from '../../farms'
+import FarmsPage from '../../finishedfarms'
 
 const MpFarmsPage = () => {
   return <FarmsPage />

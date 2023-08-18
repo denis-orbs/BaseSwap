@@ -11,6 +11,7 @@ import { SubMenuItems } from "../../components/SubMenuItems";
 import { useMatchBreakpoints } from "../../hooks";
 import CakePrice from "../../components/CakePrice/CakePrice";
 import Logo from "./components/Logo";
+import UserMenu from "./components/UserMenu";
 import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_MOBILE } from "./config";
 import { NavProps } from "./types";
 import LangSelector from "../../components/LangSelector/LangSelector";
@@ -28,6 +29,29 @@ const WelcomeTypeIt = styled(TypeIt)`
   font-size: 18px; 
   @media (min-width: 768px) {
     font-size: 32px; 
+  }
+`;
+
+const DropdownMenu = styled.div`
+  display: none;
+  position: absolute;
+  background-color: #000;
+  border-radius: 4px; 
+  min-width: 200px;
+  box-shadow: 2px 0px 4px #fff, 0px 2px 4px #0154FE, 0px 2px 16px #0154FE ; 
+  padding: 24px 12px; 
+  z-index: 1;
+  flex-direction: column; 
+  justify-content: space-between
+`;
+
+const DropdownContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  
+
+  &:hover ${DropdownMenu} {
+    display: block;
   }
 `;
 
@@ -148,24 +172,7 @@ const Menu: React.FC<NavProps> = ({
           <a href="/" style={{ marginLeft: '1rem' }}>
           <Flex>
               <img src="/images/newlogo.png" width={isMobile ? 40 : 50} height={isMobile ? 40 : 40} alt="logo" />
-             
-              {/* <WelcomeTypeIt 
-          options={{
-            cursorChar:" ", 
-            cursorSpeed:1000000, speed: 75, 
-          }}
-          speed={10}
-          getBeforeInit={(instance) => {
-              instance
-            .pause(200)
-            .type("Base", {speed: 5000})
-            .pause(100)
-            .type("Swap", {speed: 5000})
-
-            ;
-        return instance;
-         }}> 
-         </WelcomeTypeIt> */}
+   
                 <Text fontSize="2rem" style={{ marginLeft: "1rem", alignItems: 'center', justifyContent: 'center' }}>
                   BaseSwap
                 </Text>
@@ -175,43 +182,48 @@ const Menu: React.FC<NavProps> = ({
             {!isMobile &&
               <Flex flexDirection="row" justifyContent="flex-start" alignItems="flex-end" marginLeft={isMobile ? '2rem' : '250px'} width="80%" >
                 <Link href="/swap" >
-                  {/* <Button as="a" scale="sm">Swap</Button> */}
                   <Text marginRight="2rem">Swap</Text>
                 </Link>
                 <Link href="/liquidity" >
-                {/* <WelcomeTypeIt 
-          options={{
-            cursorChar:" ", 
-            cursorSpeed:1000000, speed: 75, 
-          }}
-          speed={10}
-          getBeforeInit={(instance) => {
-              instance
-            .pause(200)
-            .type("Liquidity", {speed: 5000})
-          
-
-            ;
-        return instance;
-         }}> 
-         </WelcomeTypeIt> */}
                   <Text marginRight="2rem">Liquidity</Text>
                 </Link>
-                <Link href="/farms" >
-                  <Text marginRight="2rem">Farm </Text>
-                </Link>
+                
+                <DropdownContainer>
+                    <Text marginRight="2rem">FARMS</Text>
+                        <DropdownMenu>
+                           
+                          
+                            <Link href="/farm" marginBottom="1.2rem" >
+                                <Text>Live Farms!</Text>
+                            </Link>
+                            <Link href="/finishedfarms">
+                                <Text color="#ccc">Finished Farms</Text>
+                            </Link>  
+
+                        </DropdownMenu>
+                </DropdownContainer>
+                
+                
+                
                 <Link href="/pools" >
                   <Text marginRight="2rem">Earn </Text>
                 </Link>
-                <Link href="/bridge" >
-                  <Text marginRight="2rem">Bridge </Text>
-                </Link>
-                <Link href="https://marketplace.baseswap.fi" >
-                  <Text marginRight="2rem">NFT</Text>
-                </Link>
-                <Link href="https://presale.baseswap.fi" >
-                  <Text marginRight="2rem">BSX PRESALE!</Text>
-                </Link>
+
+                <DropdownContainer>
+                    <Text marginRight="2rem">MORE...</Text>
+                        <DropdownMenu>
+                            <Link href="https://presale.baseswap.fi" marginBottom="1.2rem" >
+                                <Text marginRight="2rem">BSX PRESALE!</Text>
+                            </Link>
+                            <Link href="/bridge" marginBottom="1.2rem" >
+                              <Text marginRight="2rem">Bridge </Text>
+                            </Link>
+                            <Link href="https://marketplace.baseswap.fi" >
+                              <Text marginRight="2rem">NFT</Text>
+                            </Link>
+                           
+                        </DropdownMenu>
+                </DropdownContainer>
               </Flex>
             }
             {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}

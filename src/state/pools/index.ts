@@ -116,7 +116,7 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
     ])
 
     const farmsData = await fetchFarms(farmsConfig)
-    const farmsWithPrices = getFarmsPrices(farmsData)
+    const farmsWithPrices = await getFarmsPrices(farmsData)
 
     const prices = getTokenPricesFromFarm([...farmsWithPrices])
 

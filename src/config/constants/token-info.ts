@@ -1,4 +1,5 @@
 import { ChainId } from '@magikswap/sdk'
+import { currentTokenMap } from './tokens'
 
 export const DEFAULT_STABLE_SYMBOL = 'axlUSDC'
 export const WRAPPED_NATIVE_SYMBOL = 'WETH'
@@ -8,16 +9,28 @@ export interface ITokenInfo {
   dexscreenerPair?: string
   name?: string
   symbol?: string
+  decimals?: number
   logoURI?: string
   tokenListKey?: string // key in tokens.ts if needed to join to get a token instance
   addresses: { [chainId: number]: string }
 }
 
-export type StableTokenLookupKey = 'FRAX' | 'USDCe' | 'USDP' |'DAIP' |'USDT' | 'DAI' | 'USD+' | 'DAI+' | 'axlUSDC' | 'USDbC'
+export type StableTokenLookupKey =
+  | 'FRAX'
+  | 'USDCe'
+  | 'USDP'
+  | 'DAIP'
+  | 'USDT'
+  | 'DAI'
+  | 'USD+'
+  | 'DAI+'
+  | 'axlUSDC'
+  | 'USDbC'
 // Add to this list as needed
 export type TokenLookupKey =
   | StableTokenLookupKey
   | 'ProtocolToken'
+  | 'BSWAP'
   | 'xProtocolToken'
   | 'WETH'
   | 'WBTC'
@@ -39,8 +52,7 @@ export type TokenLookupKey =
   | 'USDP'
   | 'DAIP'
   | 'axlWBTC'
-
-
+  | 'BBT'
 
 export type TokenInfoMapping = {
   [key in TokenLookupKey]?: ITokenInfo
@@ -49,12 +61,14 @@ export type TokenInfoMapping = {
 export const STABLE_TOKEN_INF0: TokenInfoMapping = {
   axlUSDC: {
     coinGeckoId: 'axlusdc',
+    decimals: 6,
     addresses: {
       [ChainId.BASE]: '0xEB466342C4d449BC9f53A865D5Cb90586f405215',
     },
   },
   USDbC: {
     coinGeckoId: 'usd-coin',
+    decimals: 6,
     addresses: {
       [ChainId.BASE]: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
     },
@@ -67,6 +81,7 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
   },
   USDCe: {
     coinGeckoId: 'usd-coin',
+    decimals: 6,
     addresses: {
       [ChainId.ARBITRUM]: '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8',
     },
@@ -106,23 +121,35 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
 
 export const TOKEN_INF0: TokenInfoMapping = {
   ...STABLE_TOKEN_INF0,
-
+  BBT: {
+    addresses: {
+      [ChainId.BASE]: '0x8DFAf055e21B16302DBf00815e5b4d9b6042a4Df',
+    },
+  },
   ProtocolToken: {
     // coinGeckoId: 'arbitrum-exchange',
-    dexscreenerPair: '0xE80B4F755417FB4baF4dbd23C029db3F62786523',
+    // dexscreenerPair: '0xE80B4F755417FB4baF4dbd23C029db3F62786523', // TODO: Update after live on screener
     addresses: {
-      [ChainId.BASE]: '0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9',
+      [ChainId.BASE]: '0xd5046B976188EB40f6DE40fB527F89c05b323385', // BSX
       [ChainId.ARBITRUM]: '0xD5954c3084a1cCd70B4dA011E67760B8e78aeE84',
     },
   },
   xProtocolToken: {
     addresses: {
+      [ChainId.BASE]: '0xE4750593d1fC8E74b31549212899A72162f315Fa', // xBSX
       [ChainId.ARBITRUM]: '0xa954A31137fBe5c2D384A0067DE042bAA58b3403',
+    },
+  },
+  BSWAP: {
+    dexscreenerPair: '0xE80B4F755417FB4baF4dbd23C029db3F62786523',
+    addresses: {
+      [ChainId.BASE]: '0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9',
     },
   },
   WETH: {
     coinGeckoId: 'ethereum',
     addresses: {
+      [ChainId.BASE]: '0x4200000000000000000000000000000000000006',
       [ChainId.ARBITRUM]: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
     },
   },
@@ -227,19 +254,17 @@ export function getTokenInfo(key: TokenLookupKey, chainId: number): TokenInfoMap
   }
 }
 
-export const getTokenAddress = (keyOrSymbol: TokenLookupKey, chainId: ChainId = ChainId.ARBITRUM) => {
-  const ref = TOKEN_LIST[keyOrSymbol]
+export const getTokenAddress = (keyOrSymbol: TokenLookupKey, chainId: ChainId) => {
+  if (!chainId) return ''
+
+  const ref = TOKEN_INF0[keyOrSymbol]
   if (!ref) {
-    const msg = `No address mapping for keyOrSymbol: ${keyOrSymbol}`
-    console.log(msg)
-    throw new Error(msg)
+    throw new Error(`No address mapping for keyOrSymbol: ${keyOrSymbol}`)
   }
 
-  const address = TOKEN_LIST[keyOrSymbol][chainId]
+  const address = ref.addresses[chainId]
   if (!address) {
-    const msg = `No chain id address mapping: ${chainId}`
-    console.log(msg)
-    throw new Error(msg)
+    throw new Error(`No chain id address mapping: ${chainId}`)
   }
 
   return address
@@ -249,14 +274,7 @@ export const getTokenImage = (address: string) => {
   return `/images/tokens/${address}.png`
 }
 
-export const TOKEN_LIST: { [key in TokenLookupKey]?: { [chainId: number]: string } } = {
-  ProtocolToken: {
-    [ChainId.ARBITRUM]: '0xD5954c3084a1cCd70B4dA011E67760B8e78aeE84',
-  },
-  xProtocolToken: {
-    [ChainId.ARBITRUM]: '0xa954A31137fBe5c2D384A0067DE042bAA58b3403',
-  },
-  WETH: {
-    [ChainId.ARBITRUM]: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
-  },
+export function getTokenInstance(address: string) {
+  const instance = Object.entries(currentTokenMap).find((tk) => tk[1].address.toLowerCase() === address.toLowerCase())
+  return instance ? instance[1] : null
 }

@@ -1,3 +1,5 @@
+import { ChainId } from '@magikswap/sdk'
+import { getCoingeckoTokenInfos, getDexscreenerTokenInfos, getTokenAddress } from 'config/constants/token-info'
 import { millisecondsToSeconds } from 'date-fns'
 
 const cacheTimeSeconds = 30
@@ -15,36 +17,43 @@ export async function getWethPrice() {
 
     return price['0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2']?.usd
   } catch (error) {
-    console.log(error)
+    console.log('Fetching WETH price failed')
     return 0
   }
 }
 
-// export async function getDexscreenerPrices(pairAddresses: string[], platform: 'base' = 'base') {
-//   try {
-//     const cached = localStorage.getItem(screenerStorageKey)
-//     if (cached) {
-//       const data = JSON.parse(cached)
+export async function getCombinedTokenPrices(chainId: ChainId) {
+  try {
+    const tokenAddresses = getCoingeckoTokenInfos(chainId).map((ti) => ti.tokenAddress)
+    const screenPairAddresses = getDexscreenerTokenInfos(chainId).map((ti) => ti.dexscreenerPair)
 
-//       const timeElapsed = millisecondsToSeconds(Date.now()) - millisecondsToSeconds(data.lastTime)
-//       if (timeElapsed < cacheTimeSeconds) {
-//         // console.log('Returning prices from cache')
-//         // console.log('timeElapsed: ' + timeElapsed)
-//         return {
-//           prices: data.prices,
-//           getPrice: (token: string) => data.prices[token.toLowerCase()] || 0,
-//         }
-//       }
-//     }
+    const [geckoPrices, screenerPrices, wethPrice] = await Promise.all([
+      fetchMultipleCoinGeckoPricesByAddress(tokenAddresses),
+      getDexscreenerPrices(screenPairAddresses),
+      getWethPrice(),
+    ])
 
-//     const response = await fetch(`https://api.dexscreener.io/latest/dex/pairs/${platform}/${pairAddresses[0]}`)
-//     const prices = await response.json()
+    const prices = {
+      ...geckoPrices.prices,
+      ...screenerPrices,
+    }
 
-//     console.log(prices)
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
+    // Fill in for WETH address
+    const wethAddress = getTokenAddress('WETH', chainId)
+    prices[wethAddress.toLowerCase()] = wethPrice
+
+    return {
+      prices,
+      getPrice: (token: string) => prices[token.toLowerCase()] || 0,
+    }
+  } catch (error) {
+    console.log('getCombinedTokenPrices: Error get prices')
+    return {
+      prices: {},
+      getPrice: (token: string) => 0,
+    }
+  }
+}
 
 export const fetchMultipleCoinGeckoPricesByAddress = async (
   tokenAddresses: string[],
@@ -115,5 +124,40 @@ export const fetchMultipleCoinGeckoPricesByAddress = async (
       prices: {},
       getPrice: (token: string) => 0,
     }
+  }
+}
+
+export async function getDexscreenerPrices(pairAddresses: string[], platform: 'base' = 'base') {
+  try {
+    if (!pairAddresses.length) return {}
+
+    const cached = localStorage.getItem(screenerStorageKey)
+    if (cached) {
+      const data = JSON.parse(cached)
+
+      const timeElapsed = millisecondsToSeconds(Date.now()) - millisecondsToSeconds(data.lastTime)
+      if (timeElapsed < cacheTimeSeconds) {
+        // console.log('Returning prices from cache')
+        // console.log('timeElapsed: ' + timeElapsed)
+        return {
+          prices: data.prices,
+          getPrice: (token: string) => data.prices[token.toLowerCase()] || 0,
+        }
+      }
+    }
+
+    const response = await fetch(`https://api.dexscreener.io/latest/dex/pairs/${platform}/${pairAddresses.join(',')}`)
+    const priceInfo = await response.json()
+
+    const prices: any = {}
+    priceInfo.pairs.forEach((pair) => {
+      prices[pair.baseToken.address.toLowerCase()] = parseFloat(pair.priceUsd)
+    })
+
+    return prices
+  } catch (error) {
+    console.log('getDexscreenerPrices failed')
+
+    return {}
   }
 }

@@ -11,12 +11,20 @@
   "keywords": ["baseswap", "default"],
   "tokens": [
     {
+      "name": "Big Booby Things",
+      "symbol": "BBT",
+      "address": "0x8DFAf055e21B16302DBf00815e5b4d9b6042a4Df",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "BaseSwap Token",
       "symbol": "BSWAP",
       "address": "0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9",
       "chainId": 8453,
       "decimals": 18,
-      "logoURI": "/images/tokens/baseswap_logo.png"
+      "logoURI": ""
     },
     {
       "name": "USD Base Coin",

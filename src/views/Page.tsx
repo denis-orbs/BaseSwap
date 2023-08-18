@@ -30,20 +30,22 @@ const BunnyWrapper = styled.div`
 const readyplayerone = "/images/readybannerone.png";
 const StyledPage = styled.div<{ $removePadding: boolean; $noMinHeight }>`
   display: flex;
+  max-width: 99vw;
   flex-direction: column;
   align-items: center;
   background-color: #111; 
  
   padding: ${({ $removePadding }) => ($removePadding ? '0' : '16px')};
-  padding-bottom: 0;
+  padding-bottom: 3rem;
   min-height: ${({ $noMinHeight }) => ($noMinHeight ? '110vh' : '110vh')};
 
   ${({ theme }) => theme.mediaQueries.xs} {
+   
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: ${({ $removePadding }) => ($removePadding ? '0' : '24px')};
-    padding-bottom: 0;
+    padding-bottom: 20px;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {

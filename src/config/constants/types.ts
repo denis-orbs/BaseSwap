@@ -77,10 +77,18 @@ interface FarmConfigBaseProps {
   v1pid?: number
   lpSymbol: string
   lpAddresses: Address
+  nftPoolAddress?: Address
   multiplier?: string
   isCommunity?: boolean
   auctionHostingStartSeconds?: number
   auctionHostingEndDate?: string
+  quantum?: boolean
+  narrow?: boolean
+  wide?: boolean
+  stable?: boolean
+  classic?: boolean
+  isNew?: boolean
+  isCore?: boolean
   dual?: {
     rewardPerBlock: number
     earnLabel: string
@@ -91,6 +99,7 @@ interface FarmConfigBaseProps {
 export interface SerializedFarmConfig extends FarmConfigBaseProps {
   token: SerializedToken
   quoteToken: SerializedToken
+  lpPrice?: string
 }
 
 export interface DeserializedFarmConfig extends FarmConfigBaseProps {

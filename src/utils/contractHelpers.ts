@@ -39,6 +39,7 @@ import {
   getZapAddress,
   getCakeFlexibleSideVaultAddress,
   getPredictionsV1Address,
+  getChefRamseyAddress,
 } from 'utils/addressHelpers'
 
 // ABI
@@ -87,6 +88,9 @@ import zapAbi from 'config/abi/zap.json'
 import iCakeAbi from 'config/abi/iCake.json'
 import ifoV3Abi from 'config/abi/ifoV3.json'
 import cakePredictionsAbi from 'config/abi/cakePredictions.json'
+import chefRamseyAbi from 'config/abi/ChefRamsey.json'
+import nftPoolAbi from 'config/abi/NFTPool.json'
+import xTokenAbi from 'config/abi/XToken.json'
 
 // Types
 import type {
@@ -133,6 +137,7 @@ import type {
   PredictionsV1,
 } from 'config/abi/types'
 import { ChainId } from '@magikswap/sdk'
+import { getTokenAddress } from 'config/constants/token-info'
 
 export const getContract = (abi: any, address: string, signer?: Signer | Provider) => {
   const signerOrProvider = signer ?? defaultRpcProvider
@@ -295,4 +300,16 @@ export const getZapContract = (signer?: Signer | Provider) => {
 
 export const getIfoCreditAddressContract = (signer?: Signer | Provider) => {
   return getContract(iCakeAbi, getICakeAddress(), signer) as ICake
+}
+
+export const getChefRamsey = (signer?: Signer | Provider) => {
+  return getContract(chefRamseyAbi, getChefRamseyAddress(), signer)
+}
+
+export const getNftPoolContract = (address: string, signer?: Signer | Provider) => {
+  return getContract(nftPoolAbi, address, signer)
+}
+
+export const getXToken = (chainId: number, signer?: Signer | Provider) => {
+  return getContract(xTokenAbi, getTokenAddress('xProtocolToken', chainId), signer)
 }
