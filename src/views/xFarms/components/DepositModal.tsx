@@ -21,6 +21,7 @@ interface DepositModalProps {
 
 const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
   const [val, setVal] = useState('')
+  const [startDate, setStartDate] = useState(new Date())
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
   const fullBalance = useMemo(() => {
@@ -38,6 +39,8 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
     },
     [setVal],
   )
+
+  console.log(fullBalance)
 
   const handleSelectMax = useCallback(() => {
     setVal(fullBalance)

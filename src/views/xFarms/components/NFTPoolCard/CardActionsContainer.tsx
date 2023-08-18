@@ -23,7 +23,6 @@ interface FarmCardActionsProps {
   lpLabel?: string
 }
 
-
 const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lpLabel }) => {
   const { account, chainId } = useWeb3React()
   const { t } = useTranslation()
@@ -44,12 +43,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
     return hasApproval ? (
       <StakeAction {...farm} lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} sharePrice={farm.sharePrice} />
     ) : (
-      <Button
-      width="100%"
-        marginTop="8px"
-        disabled={pendingTx}
-        onClick={doApproval}
-      >
+      <Button width="100%" marginTop="8px" disabled={pendingTx} onClick={doApproval}>
         {t('ENABLE Contract')}
       </Button>
     )
@@ -57,9 +51,9 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
 
   return (
     <Action>
-        <Flex>
+      <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          BSWAP
+          BSX
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t('Earned')}

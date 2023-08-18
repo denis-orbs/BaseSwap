@@ -131,7 +131,7 @@ const Farms: React.FC = ({ children }) => {
   const cakePrice = new BigNumber('0.9')
   // const cakePrice = new BigNumber(getTokenPrice(getTokenAddress('ProtocolToken', chainId)))
   // BSWAP is the "WETH" now
-  const WETHPrice = new BigNumber(getTokenPrice(getTokenAddress('BSWAP', chainId)))
+  const WETHPrice = useMemo(() => new BigNumber(getTokenPrice(getTokenAddress('BSWAP', chainId))), [chainId])
   const [_query, setQuery] = useState('')
   const normalizedUrlSearch = useMemo(() => (typeof urlQuery?.search === 'string' ? urlQuery.search : ''), [urlQuery])
   const query = normalizedUrlSearch && !_query ? normalizedUrlSearch : _query
