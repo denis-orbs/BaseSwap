@@ -60,7 +60,7 @@ export async function getCombinedTokenPrices(chainId: ChainId) {
 
     return {
       prices,
-      getPrice: (token: string) => prices[token.toLowerCase()] || 0,
+      getPrice: (token: string) => prices[token.toLowerCase()]?.usd || 0,
     }
   } catch (error) {
     console.log('getCombinedTokenPrices: Error get prices')
