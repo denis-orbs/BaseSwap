@@ -49,19 +49,13 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
       <ModalActions>
         <Button
           variant="secondary"
-          className="glow2small
-"
           onClick={onDismiss}
-          // width="100%"
           disabled={pendingTx}
         >
           {t('Cancel')}
         </Button>
         {pendingTx ? (
           <Button
-            // width="100%"
-            className="glow2small
-"
             variant="secondary"
             isLoading={pendingTx}
             endIcon={<AutoRenewIcon spin color="currentColor" />}
@@ -70,7 +64,6 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
           </Button>
         ) : (
           <Button
-            // width="100%"
             variant="secondary"
             className="glow2small"
             disabled={!valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}

@@ -40,7 +40,7 @@ const StakedLP: React.FunctionComponent<StackedLPProps> = ({
       {/* {stakedBalance.gt(0) && lpPrice.gt(0) && (quantumPrice && quantumPrice.gt(0)) && ( */}
       <>
         <Balance
-          //fontSize="10px"
+
           color="textSubtle"
           decimals={2}
           value={

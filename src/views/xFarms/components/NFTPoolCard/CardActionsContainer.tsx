@@ -51,11 +51,9 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
       />
     ) : (
       <Button
-        // variant="arbblue"
-        // height="30px"
+        variant="primary"
+        marginTop="8px"
         className="glow2small"
-        // mt="8px"
-        // width="100%"
         disabled={pendingTx}
         style={{ backgroundColor: 'transparent' }}
         onClick={doApproval}
@@ -67,30 +65,30 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
 
   return (
     <Action>
-      {/* <Flex mt="1rem">
-        <Text bold textTransform="uppercase" color="white" fontSize="12px" pr="4px">
+      <Flex marginTop="1rem">
+        <Text textTransform="uppercase" color="white" >
           {farm.lpSymbol}
         </Text>
-        <Text bold textTransform="uppercase" color="white" fontSize="12px">
+        <Text textTransform="uppercase" color="white" >
           {t('Staked')}
         </Text>
-      </Flex> */}
-      <Flex mt="1rem">
-        <Text bold textTransform="uppercase" color="white">
+      </Flex>
+      <Flex marginTop="1rem">
+        <Text  textTransform="uppercase" color="white">
           {farm.lpSymbol}
         </Text>
-        <Text bold textTransform="uppercase" color="white">
+        <Text  textTransform="uppercase" color="white">
           {t('Staked')}
         </Text>
       </Flex>
       {!account ? (
-        // <ConnectWalletButton mt="8px" width="100%" />
+        // <ConnectWalletButton marginTop="8px" width="100%" /> this is fine
         <ConnectWalletButton />
       ) : (
         <>
           {renderApprovalOrStakeButton()}
 
-          <Flex mt="15px">
+          <Flex marginTop="15px">
             {position ? <PendingRewards position={position} harvestPosition={harvestFunction} /> : <Skeleton />}
           </Flex>
 

@@ -200,12 +200,16 @@ const Menu: React.FC<NavProps> = ({
                 <Link href="/farms" >
                   <Text marginRight="2rem">Farm </Text>
                 </Link>
+                <Link href="/xfarms" >
+                  <Text marginRight="2rem">Bridge </Text>
+                </Link>
                 <Link href="/pools" >
                   <Text marginRight="2rem">Earn </Text>
                 </Link>
                 <Link href="/bridge" >
                   <Text marginRight="2rem">Bridge </Text>
                 </Link>
+
                 <Link href="https://marketplace.baseswap.fi" >
                   <Text marginRight="2rem">NFT</Text>
                 </Link>

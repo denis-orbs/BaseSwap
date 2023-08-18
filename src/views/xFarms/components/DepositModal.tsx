@@ -61,8 +61,6 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         </Button>
         {pendingTx ? (
           <Button
-            className="lightemptyglow"
-            // width="100%"
             variant="secondary"
             isLoading={pendingTx}
             endIcon={<AutoRenewIcon spin color="currentColor" />}
@@ -71,9 +69,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
           </Button>
         ) : (
           <Button
-            className="lightemptyglow"
             variant="secondary"
-            //  width="100%"
             disabled={!lpTokensToStake.isFinite() || lpTokensToStake.eq(0) || lpTokensToStake.gt(fullBalanceNumber)}
             onClick={async () => {
               setPendingTx(true)

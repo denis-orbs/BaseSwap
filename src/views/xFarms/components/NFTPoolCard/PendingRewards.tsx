@@ -86,15 +86,15 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
               <Text bold textTransform="uppercase" color="white">
                 {rw.token.symbol} {t('Earned')}
               </Text>
-              {/* <Text fontSize="14px" fontWeight="600" color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>
+              <Text fontSize="14px" fontWeight="600" color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>
                 {rw.rewardAmountDisplay}
               </Text>
               <Text fontSize="10px" fontWeight="600" color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>
                 {rw.valueLabel}
-              </Text> */}
+              </Text>
 
-              <Text color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>{rw.rewardAmountDisplay}</Text>
-              <Text color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>{rw.valueLabel}</Text>
+              {/* <Text color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>{rw.rewardAmountDisplay}</Text>
+              <Text color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>{rw.valueLabel}</Text> */}
             </Flex>
           </Flex>
         ))}
@@ -102,10 +102,8 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
 
       <Flex justifyContent="center" mt="10px">
         <Button
-          // height="30px"
-          // width="100%"
-          //  variant="arbblue"
-          className={!hasRewards || pendingTx ? 'glow2small' : 'connectglow'}
+            variant="primary"
+         
           disabled={!hasRewards || pendingTx}
           onClick={harvestPosition}
         >
