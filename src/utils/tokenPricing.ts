@@ -1,5 +1,5 @@
 import { ChainId } from '@magikswap/sdk'
-import { getCoingeckoTokenInfos, getDexscreenerTokenInfos } from 'config/constants/token-info'
+import { getCoingeckoTokenInfos, getDexscreenerTokenInfos, getTokenAddress } from 'config/constants/token-info'
 import { millisecondsToSeconds } from 'date-fns'
 
 const cacheTimeSeconds = 30
@@ -17,7 +17,7 @@ export async function getWethPrice() {
 
     return price['0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2']?.usd
   } catch (error) {
-    console.log(error)
+    console.log('Fetching WETH price failed')
     return 0
   }
 }
@@ -27,9 +27,10 @@ export async function getCombinedTokenPrices(chainId: ChainId) {
     const tokenAddresses = getCoingeckoTokenInfos(chainId).map((ti) => ti.tokenAddress)
     const screenPairAddresses = getDexscreenerTokenInfos(chainId).map((ti) => ti.dexscreenerPair)
 
-    const [geckoPrices, screenerPrices] = await Promise.all([
+    const [geckoPrices, screenerPrices, wethPrice] = await Promise.all([
       fetchMultipleCoinGeckoPricesByAddress(tokenAddresses),
       getDexscreenerPrices(screenPairAddresses),
+      getWethPrice(),
     ])
 
     const prices = {
@@ -37,13 +38,20 @@ export async function getCombinedTokenPrices(chainId: ChainId) {
       ...screenerPrices,
     }
 
+    // Fill in for WETH address
+    const wethAddress = getTokenAddress('WETH', chainId)
+    prices[wethAddress.toLowerCase()] = wethPrice
+
     return {
       prices,
       getPrice: (token: string) => prices[token.toLowerCase()] || 0,
     }
   } catch (error) {
     console.log('getCombinedTokenPrices: Error get prices')
-    return {}
+    return {
+      prices: {},
+      getPrice: (token: string) => 0,
+    }
   }
 }
 
@@ -148,7 +156,7 @@ export async function getDexscreenerPrices(pairAddresses: string[], platform: 'b
 
     return prices
   } catch (error) {
-    console.log(error)
+    console.log('getDexscreenerPrices failed')
 
     return {}
   }

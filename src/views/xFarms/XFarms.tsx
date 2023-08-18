@@ -28,18 +28,17 @@ import TypeIt from 'typeit-react'
 import 'animate.css'
 import ToggleView from 'components/ToggleView/ToggleView'
 
-
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
   color: #fff;
-  text-align: left; 
+  text-align: left;
   margin-bottom: 12px;
-  text-transform: uppercase; 
-  font-size: 40px; 
+  text-transform: uppercase;
+  font-size: 40px;
   @media (min-width: 768px) {
-    font-size: 68px; 
+    font-size: 68px;
   }
-`;
+`
 
 interface TextProps {
   isMobile: boolean
@@ -146,14 +145,19 @@ const Farms: React.FC = ({ children }) => {
   const { pathname, query: urlQuery } = useRouter()
   const { account, chainId } = useWeb3React()
 
-  const { arxPerSec, WETHPerSec, farms: farmsLP } = useNftPoolsFarms()
-
-  console.log(farmsLP)
+  //
+  const { WETHPerSec, farms: farmsLP } = useNftPoolsFarms()
+  // TODO: Starting at zero. This will be around what the emissions rate then
+  const arxPerSec = 0.15
 
   const { t } = useTranslation()
   const { getTokenPrice } = useTokenPrices()
-  const cakePrice = new BigNumber(getTokenPrice(getTokenAddress('ProtocolToken', chainId)))
-  const WETHPrice = new BigNumber(getTokenPrice(getTokenAddress('WETH', chainId)))
+
+  // TODO: Update after presale/liquidity when available
+  const cakePrice = new BigNumber('0.9')
+  // const cakePrice = new BigNumber(getTokenPrice(getTokenAddress('ProtocolToken', chainId)))
+  // BSWAP is the "WETH" now
+  const WETHPrice = new BigNumber(getTokenPrice(getTokenAddress('BSWAP', chainId)))
   const [_query, setQuery] = useState('')
   const normalizedUrlSearch = useMemo(() => (typeof urlQuery?.search === 'string' ? urlQuery.search : ''), [urlQuery])
   const query = normalizedUrlSearch && !_query ? normalizedUrlSearch : _query
@@ -210,24 +214,15 @@ const Farms: React.FC = ({ children }) => {
           return farm
         }
 
-        const totalLiquidity = new BigNumber(farm.TVL || 0)
+        const totalLiquidity = new BigNumber(farm.TVL || 1)
         const arxPoolWeight = new BigNumber(farm.arxPoolWeight || 0)
         const WETHPoolWeight = new BigNumber(farm.WETHPoolWeight || 0)
 
-        const { cakeRewardsApr, lpRewardsApr } = isActive
-          ? getXFarmApr(
-              arxPoolWeight,
-              WETHPoolWeight,
-              cakePrice,
-              WETHPrice,
-              totalLiquidity,
-              farm.lpAddresses[chainId],
-              arxPerSec,
-              WETHPerSec,
-            )
-          : { cakeRewardsApr: 0, lpRewardsApr: 0 }
+        const { cakeRewardsApr } = isActive
+          ? getXFarmApr(arxPoolWeight, WETHPoolWeight, cakePrice, WETHPrice, totalLiquidity, arxPerSec, WETHPerSec)
+          : { cakeRewardsApr: 0 }
 
-        return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
+        return { ...farm, apr: cakeRewardsApr, liquidity: totalLiquidity }
       })
 
       if (query) {
@@ -328,35 +323,33 @@ const Farms: React.FC = ({ children }) => {
 
   return (
     <FarmsContext.Provider value={{ chosenFarmsMemoized }}>
-    <Page>
-      <WelcomeTypeIt 
+      <Page>
+        <WelcomeTypeIt
           options={{
-            cursorChar:" ", 
-            cursorSpeed:1000000, speed: 75, 
+            cursorChar: ' ',
+            cursorSpeed: 1000000,
+            speed: 75,
           }}
           speed={10}
           getBeforeInit={(instance) => {
-        instance
-
-            .type("FARMS", {speed: 5000})
-            ;
-        return instance;
-         }}> 
-         </WelcomeTypeIt>
+            instance.type('FARMS', { speed: 5000 })
+            return instance
+          }}
+        ></WelcomeTypeIt>
         {!account ? (
           // <ConnectWalletButton width={['100%', null, null, '25%']} marginTop={['1rem', null, null, '3rem']} />
           <ConnectWalletButton />
         ) : (
           <>
-           <ControlContainer>
-          <ViewControls>
-            <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-              CHOOSE YOUR &nbsp;
-              <span style={{ textDecoration: 'line-through' }}>FIGHTER</span>
-              &nbsp;VIEW MODE:
-            </Text>
-            <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
-            {/* <ToggleWrapper>
+            <ControlContainer>
+              <ViewControls>
+                <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+                  CHOOSE YOUR &nbsp;
+                  <span style={{ textDecoration: 'line-through' }}>FIGHTER</span>
+                  &nbsp;VIEW MODE:
+                </Text>
+                <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
+                {/* <ToggleWrapper>
               <Toggle
                 id="staked-only-farms"
                 checked={stakedOnly}
@@ -365,49 +358,53 @@ const Farms: React.FC = ({ children }) => {
               />
               <Text> {t('Staked only')}</Text>
             </ToggleWrapper> */}
-            {/* <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} /> */}
-          </ViewControls>
-          <FilterContainer>
-            <LabelWrapper>
-              <Text textTransform="uppercase">{t('Sort by')}</Text>
-              <Select
-                options={[
-                  {
-                    label: t('Hot'),
-                    value: 'hot',
-                  },
-                  {
-                    label: t('APR'),
-                    value: 'apr',
-                  },
-                  // {
-                  //   label: t('Multiplier'),
-                  //   value: 'multiplier',
-                  // },
-                  // {
-                  //   label: t('Earned'),
-                  //   value: 'earned',
-                  // },
-                  {
-                    label: t('Liquidity'),
-                    value: 'liquidity',
-                  },
-                  {
-                    label: t('Latest'),
-                    value: 'latest',
-                  },
-                ]}
-                onOptionChange={handleSortOptionChange}
-              />
-            </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text textTransform="uppercase">{t('Search')}</Text>
-              <SearchInput initialValue={normalizedUrlSearch} onChange={handleChangeQuery} placeholder="Search Farms" />
-            </LabelWrapper>
-          </FilterContainer>
-        </ControlContainer>
+                {/* <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} /> */}
+              </ViewControls>
+              <FilterContainer>
+                <LabelWrapper>
+                  <Text textTransform="uppercase">{t('Sort by')}</Text>
+                  <Select
+                    options={[
+                      {
+                        label: t('Hot'),
+                        value: 'hot',
+                      },
+                      {
+                        label: t('APR'),
+                        value: 'apr',
+                      },
+                      // {
+                      //   label: t('Multiplier'),
+                      //   value: 'multiplier',
+                      // },
+                      // {
+                      //   label: t('Earned'),
+                      //   value: 'earned',
+                      // },
+                      {
+                        label: t('Liquidity'),
+                        value: 'liquidity',
+                      },
+                      {
+                        label: t('Latest'),
+                        value: 'latest',
+                      },
+                    ]}
+                    onOptionChange={handleSortOptionChange}
+                  />
+                </LabelWrapper>
+                <LabelWrapper style={{ marginLeft: 16 }}>
+                  <Text textTransform="uppercase">{t('Search')}</Text>
+                  <SearchInput
+                    initialValue={normalizedUrlSearch}
+                    onChange={handleChangeQuery}
+                    placeholder="Search Farms"
+                  />
+                </LabelWrapper>
+              </FilterContainer>
+            </ControlContainer>
 
-        <FlexLayout className="animate__animated animate__fadeInUp">{children}</FlexLayout>
+            <FlexLayout className="animate__animated animate__fadeInUp">{children}</FlexLayout>
             {account && !farmsLP.length && (
               <Flex justifyContent="center">
                 <Spinner />

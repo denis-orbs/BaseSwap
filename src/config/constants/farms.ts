@@ -20,6 +20,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.bbt,
     quoteToken: serializedTokens.wbnb,
+    classic: true,
   },
   {
     pid: 1,
@@ -30,6 +31,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.cake,
     quoteToken: serializedTokens.wbnb,
+    classic: true,
   },
 
   {
@@ -40,6 +42,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.axlwbtc,
     quoteToken: serializedTokens.usdbc,
+    classic: true,
   },
   {
     pid: 15,
@@ -49,6 +52,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.unidx,
     quoteToken: serializedTokens.wbnb,
+    classic: true,
   },
 
   {
@@ -59,6 +63,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.axlUsdc,
     quoteToken: serializedTokens.wbnb,
+    classic: true,
   },
   {
     pid: 7,
@@ -68,6 +73,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.wbnb,
     quoteToken: serializedTokens.usdbc,
+    classic: true,
   },
   {
     pid: 8,
@@ -77,6 +83,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.mim,
     quoteToken: serializedTokens.usdbc,
+    classic: true,
   },
   {
     pid: 10,
@@ -86,6 +93,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.usdp,
     quoteToken: serializedTokens.usdbc,
+    classic: true,
   },
   {
     pid: 11,
@@ -95,6 +103,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.daip,
     quoteToken: serializedTokens.usdp,
+    classic: true,
   },
   {
     pid: 5,
@@ -104,6 +113,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.dai,
     quoteToken: serializedTokens.usdbc,
+    classic: true,
   },
   {
     pid: 6,
@@ -113,6 +123,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.cbeth,
     quoteToken: serializedTokens.wbnb,
+    classic: true,
   },
   {
     pid: 12,
@@ -122,6 +133,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.basin,
     quoteToken: serializedTokens.wbnb,
+    classic: true,
   },
   {
     pid: 13,
@@ -141,6 +153,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.ede,
     quoteToken: serializedTokens.wbnb,
+    classic: true,
   },
 
   {
@@ -152,6 +165,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.ogre,
     quoteToken: serializedTokens.wbnb,
+    classic: true,
   },
 
   // {

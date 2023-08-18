@@ -56,10 +56,9 @@ export const getXFarmApr = (
   cakePriceUsd: BigNumber,
   WETHPriceUsd: BigNumber,
   poolLiquidityUsd: BigNumber,
-  farmAddress: string,
   arxPerSec: number,
   WETHPerSec: number,
-): { cakeRewardsApr: number; lpRewardsApr: number } => {
+): { cakeRewardsApr: number } => {
   const yearlyCakeRewardAllocation = arxPoolWeight
     ? arxPoolWeight.times(SECONDS_PER_YEAR * arxPerSec)
     : new BigNumber(NaN)
@@ -80,8 +79,7 @@ export const getXFarmApr = (
     cakeRewardsAprAsNumber = cakeRewardsApr.toNumber()
   }
 
-  const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
-  return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
+  return { cakeRewardsApr: cakeRewardsAprAsNumber }
 }
 
 export default null

@@ -1,8 +1,9 @@
-import { getNftPoolConfigs } from 'config/constants/farms'
-import { getChefRamsey, getMasterchefContract } from 'utils/contractHelpers'
+import { getNftPoolAddresses, getNftPoolConfigs } from 'config/constants/farms'
+import { getMasterchefContract } from 'utils/contractHelpers'
 import multicall, { Call, multicallv2 } from 'utils/multicall'
 import ramseyAbi from '../../config/abi/ChefRamsey.json'
-import { getAddress } from 'utils/addressHelpers'
+import nftPoolAbi from '../../config/abi/NFTPool.json'
+import { getAddress, getChefRamseyAddress } from 'utils/addressHelpers'
 import { SerializedFarm } from 'state/types'
 import { SerializedFarmConfig } from 'config/constants/types'
 import erc20 from 'config/abi/erc20.json'
@@ -12,11 +13,11 @@ import BigNumber from 'bignumber.js'
 import getFarmsPrices from 'state/farms/getFarmsPrices'
 import { getCombinedTokenPrices } from 'utils/tokenPricing'
 import { BIG_TWO, ethersToBigNumber } from 'utils/bigNumber'
-import { getCombinedNftPoolInfos } from './utils'
 import { getFullDecimalMultiplier } from 'utils/getFullDecimalMultiplier'
 import { defaultFarmsData } from '.'
 
 const dummyPoolId = 16
+const ramseyAddress = getChefRamseyAddress()
 
 export const fetchFarmsLpTokenData = async (farms: SerializedFarmConfig[], chainId): Promise<any[]> => {
   const fetchFarmCalls = (farm: SerializedFarm) => {
@@ -73,26 +74,24 @@ export const fetchFarmsLpTokenData = async (farms: SerializedFarmConfig[], chain
 }
 
 const getCurrentChefData = async () => {
-  const ramsey = getChefRamsey()
-
   const calls: Call[] = [
     {
-      address: ramsey.address,
+      address: ramseyAddress,
       name: 'poolsLength',
     },
 
     {
-      address: ramsey.address,
+      address: ramseyAddress,
       name: 'totalAllocPoints',
     },
 
     {
-      address: ramsey.address,
+      address: ramseyAddress,
       name: 'totalAllocPointsWETH',
     },
 
     {
-      address: ramsey.address,
+      address: ramseyAddress,
       name: 'emissionRates',
     },
   ]
@@ -104,21 +103,54 @@ const getCurrentChefData = async () => {
 
   const ogChef = getMasterchefContract()
   const dummyPoolInfo = await ogChef.poolInfo(dummyPoolId)
-  const dummyPoolAllocPointsARX = dummyPoolInfo.allocPoint.toNumber()
+  const dummyPoolAllocPointsWETH = dummyPoolInfo.allocPoint.toNumber()
 
   const chefData = {
     poolLength: poolsLength.toNumber(),
-    chefTotalAllocPointsARX: totalAllocPointsARX.toNumber(),
+    chefTotalAllocPoints: totalAllocPointsARX.toNumber(),
     chefTotalAllocPointsWETH: totalAllocPointsWETH.toNumber(),
     emissionRates: {
       mainRate: ethersToBigNumber(emissionRates.mainRate).div(1e18).toNumber(),
       wethRate: ethersToBigNumber(emissionRates.wethRate).div(1e18).toNumber(),
     },
-    dummyPoolAllocPointsARX,
-    dummyPoolAllocPointsWETH: 0,
+    dummyPoolAllocPointsWETH,
   }
 
   return chefData
+}
+
+const getCombinedNftPoolInfos = async (chainId: number) => {
+  const nftPoolAddresses = getNftPoolAddresses(chainId)
+
+  const nftPoolInfoCalls: Call[] = []
+  const chefPoolInfoCalls: Call[] = []
+
+  nftPoolAddresses.forEach((address) => {
+    nftPoolInfoCalls.push({
+      address,
+      name: 'getPoolInfo',
+      params: [],
+    })
+
+    chefPoolInfoCalls.push({
+      address: ramseyAddress,
+      name: 'getPoolInfo',
+      params: [address],
+    })
+  })
+
+  const [poolInfos, chefInfos] = await Promise.all([
+    multicall(nftPoolAbi, nftPoolInfoCalls),
+    multicall(ramseyAbi, chefPoolInfoCalls),
+  ])
+
+  return poolInfos.map((info, idx) => {
+    return {
+      ...info,
+      ...chefInfos[idx],
+      lpSupply: ethersToBigNumber(info.lpSupply),
+    }
+  })
 }
 
 export const fetchMasterChefData = async (chainId: number): Promise<NftPoolFarmData> => {
@@ -152,16 +184,10 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
     getCombinedTokenPrices(chainId),
   ])
 
-  const { getPrice } = tokenPrices // TODO: Need the combined screener/gecko prices
+  const { getPrice } = tokenPrices
 
-  const {
-    poolLength,
-    emissionRates,
-    chefTotalAllocPointsARX,
-    chefTotalAllocPointsWETH,
-    dummyPoolAllocPointsARX,
-    dummyPoolAllocPointsWETH,
-  } = chefInfo
+  const { poolLength, emissionRates, chefTotalAllocPoints, chefTotalAllocPointsWETH, dummyPoolAllocPointsWETH } =
+    chefInfo
 
   const arxPerSec = emissionRates.mainRate
   const WETHPerSec = emissionRates.wethRate
@@ -210,29 +236,22 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
       ? lpAmountInPool.div(getFullDecimalMultiplier(18))
       : quoteTokenAmountInPool.times(BIG_TWO)
 
-    //const poolsAllocPointsARX = new BigNumber(pool.allocPointsARX.toNumber())
-    const poolsAllocPointsARX = new BigNumber(0)
-    //const poolsAllocPointsWETH = new BigNumber(pool.allocPointsWETH.toNumber())
-    const poolsAllocPointsWETH = new BigNumber(0)
+    const poolsAllocPoints = new BigNumber(pool.allocPoints.toNumber())
+    const poolsAllocPointsWETH = new BigNumber(pool.allocPointsWETH.toNumber())
 
-    const dummyPoolArxAllocBN = new BigNumber(dummyPoolAllocPointsARX)
     const dummyPoolTotalWETHAllocBN = new BigNumber(dummyPoolAllocPointsWETH)
 
-    const poolsPercentOfAllocARX = poolsAllocPointsARX.toNumber() / chefTotalAllocPointsARX
     const poolsPercentOfAllocWETH = poolsAllocPointsWETH.toNumber() / chefTotalAllocPointsWETH
-
-    const poolsPercentOfAllocationArxBN = new BigNumber(poolsPercentOfAllocARX)
     const poolsPercentOfAllocationWethBN = new BigNumber(poolsPercentOfAllocWETH)
 
-    const poolsAdjustedArxAllocPoint = poolsPercentOfAllocationArxBN.times(dummyPoolArxAllocBN)
-    const poolsAdjustedArxPoolWeight = poolsAdjustedArxAllocPoint.div(dummyPoolArxAllocBN)
+    const arxPoolWeight = poolsAllocPoints.toNumber() / chefTotalAllocPoints
 
     const poolAdjustedsWETHAllocPoint = poolsPercentOfAllocationWethBN.times(dummyPoolTotalWETHAllocBN)
     const poolsAdjustedWETHPoolWeight = poolAdjustedsWETHAllocPoint.div(dummyPoolTotalWETHAllocBN)
 
     farm.lpTotalInQuoteToken = lpTotalInQuoteToken.toString()
 
-    const mainTokenPrice = getPrice(farm.token.address)
+    const mainTokenPrice = farm.token.symbol === 'BBT' ? 1 : getPrice(farm.token.address)
     const quoteTokenPrice = getPrice(farm.quoteToken.address)
 
     if (farm.classic) {
@@ -273,10 +292,10 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
       lpTotalSupply: lpTotalSupplyBN.toJSON(),
       lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
       tokenPriceVsQuote: quoteTokenAmountInLpTotal.div(mainAmountInLpTotal).toJSON(),
-      arxPoolWeight: poolsAdjustedArxPoolWeight.toJSON(),
+      arxPoolWeight,
       WETHPoolWeight: poolsAdjustedWETHPoolWeight.toJSON(),
-      multiplier: `${poolsAdjustedArxAllocPoint.plus(poolAdjustedsWETHAllocPoint).div(100).toString()}X`,
-      arxMultiplier: `${poolsAdjustedArxAllocPoint.div(100).toString()}X`,
+      multiplier: `${poolsAllocPoints.plus(poolAdjustedsWETHAllocPoint).div(100).toString()}X`,
+      arxMultiplier: `${poolsAllocPoints.div(100).toString()}X`,
       WETHMultiplier: `${poolAdjustedsWETHAllocPoint.div(100).toString()}X`,
       quantumStrategy: farm.quantumStrategy || null,
       quantumStrategies: farm.quantumStrategies || null,
@@ -290,10 +309,6 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
       const prop = res[0]
       if (result[prop]?._isBigNumber) result[prop] = result[prop].toString()
     })
-
-    // for (const prop in result) {
-    //   if (result[prop]?._isBigNumber) result[prop] = result[prop].toString()
-    // }
 
     return result
   })
