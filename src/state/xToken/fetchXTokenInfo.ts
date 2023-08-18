@@ -12,7 +12,7 @@ export const fetchUserXTokenInfo = async (account: string, chainId: number): Pro
   const [mainTokenBalance, xTokenBalance, balances] = await Promise.all([
     protocolToken.balanceOf(account),
     xToken.balanceOf(account),
-    xToken.getXArxBalance(account),
+    xToken.getxTokenBalance(account),
   ])
 
   return {
@@ -51,8 +51,8 @@ export const fetchUserXTokenRedeemsInfo = async (account: string, chainId: numbe
       const canFinalize = Date.now() >= v.endTime * 1000
 
       return {
-        arxAmount: formatEther(v.arxAmount),
-        xArxAmount: formatEther(v.xArxAmount),
+        arxAmount: formatEther(v.amount),
+        xArxAmount: formatEther(v.xAmount),
         endTime: new Date(v.endTime * 1000).toUTCString(),
         redeemIndex: idx,
         canFinalize,
