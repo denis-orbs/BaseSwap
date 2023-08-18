@@ -136,6 +136,7 @@ export const TOKEN_INF0: TokenInfoMapping = {
   },
   xProtocolToken: {
     addresses: {
+      [ChainId.BASE]: '0xE4750593d1fC8E74b31549212899A72162f315Fa', // xBSX
       [ChainId.ARBITRUM]: '0xa954A31137fBe5c2D384A0067DE042bAA58b3403',
     },
   },

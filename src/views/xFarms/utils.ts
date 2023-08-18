@@ -3,7 +3,7 @@ import { DeserializedFarm } from 'state/types'
 export const getSortedFarmsLP = (farmsLP: DeserializedFarm[]) => {
   if (!farmsLP) return []
   return [
-    farmsLP.find((farm) => farm.pid === 1), // ARX-USDCe - arbidex
+    farmsLP.find((farm) => farm.pid === 0), // ARX-USDCe - arbidex
     // farmsLP.find((farm) => farm.pid === 15), // ARX-ETH - arbidex
     // farmsLP.find((farm) => farm.pid === 44), // ARB-USDC native - NEW
     // farmsLP.find((farm) => farm.pid === 45), // ARB-USDCe - NEW
