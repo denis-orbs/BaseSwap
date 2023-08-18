@@ -22,6 +22,22 @@ export async function getWethPrice() {
   }
 }
 
+const priceDexScreener = async (address: any): Promise<any> => {
+  const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${address}`, {
+    method: 'GET',
+  });
+  const res = await response.json();
+  return res.pairs[0].priceUsd;
+}
+
+const priceDexScreenerLP = async (address: any): Promise<any> => {
+  const response = await fetch(`https://api.dexscreener.com/latest/dex/pairs/bsc/${address}`, {
+    method: 'GET',
+  });
+  return await response.json();
+}
+
+
 export async function getCombinedTokenPrices(chainId: ChainId) {
   try {
     const tokenAddresses = getCoingeckoTokenInfos(chainId).map((ti) => ti.tokenAddress)
@@ -74,13 +90,28 @@ export const fetchMultipleCoinGeckoPricesByAddress = async (
     }
   }
 
+  const priceDexScreener = async (token_id: any): Promise<any> => {
+    const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${token_id.address}`, {
+      method: 'GET',
+    });
+    const res = await response.json();
+    return res.pairs[0].priceUsd;
+  }
+
+  const priceDexScreenerLP = async (token_id: any): Promise<any> => {
+    const response = await fetch(`https://api.dexscreener.com/latest/dex/pairs/bsc/${token_id.address}`, {
+      method: 'GET',
+    });
+    return await response.json();
+  }
+
   //console.log('Token price cache expired. Making API call...')
 
   const addresses = tokenAddresses.map((t) => t.toLowerCase()).join(',')
 
   try {
     const response = await fetch(
-      `https://api.coingecko.com/api/v3/simple/token_price/${platform}?contract_addresses=${addresses}&vs_currencies=usd`,
+      `https://api.coingecko.com/api/v3/simple/token_price/base?contract_addresses=${addresses}&vs_currencies=usd`,
     )
     const prices = await response.json()
 
@@ -146,7 +177,7 @@ export async function getDexscreenerPrices(pairAddresses: string[], platform: 'b
       }
     }
 
-    const response = await fetch(`https://api.dexscreener.io/latest/dex/pairs/${platform}/${pairAddresses.join(',')}`)
+    const response = await fetch(`https://api.dexscreener.io/latest/dex/pairs/base/${pairAddresses.join(',')}`)
     const priceInfo = await response.json()
 
     const prices: any = {}

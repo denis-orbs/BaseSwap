@@ -157,8 +157,8 @@ export const baseChain: Chain = {
     symbol: 'ETH',
   },
   rpcUrls: {
-    default: 'https://mainnet.base.org',
-    public: 'https://mainnet.base.org',
+    default: 'https://developer-access-mainnet.base.org',
+    public: 'https://developer-access-mainnet.base.org',
   },
   blockExplorers: {
     default: { name: 'Base Block Explorer', url: 'https://base.blockscout.com/' },
