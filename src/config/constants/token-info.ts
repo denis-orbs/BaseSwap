@@ -123,7 +123,7 @@ export const TOKEN_INF0: TokenInfoMapping = {
   ...STABLE_TOKEN_INF0,
   BBT: {
     addresses: {
-      [ChainId.BASE]: '0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9',
+      [ChainId.BASE]: '0x8DFAf055e21B16302DBf00815e5b4d9b6042a4Df',
     },
   },
   ProtocolToken: {
