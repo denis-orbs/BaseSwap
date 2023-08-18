@@ -9,15 +9,18 @@ export const serializedTokens = serializeTokens(TOKENS_CHAIN_MAP[DEFAULT_CHAIN_I
 export const CAKE_BNB_LP_MAINNET = '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0'
 
 const farms: SerializedFarmConfig[] = [
-  // {
-  //   pid: 0,
-  //   lpSymbol: 'BBT-ETH LP',
-  //   lpAddresses: {
-  //     [ChainId.BASE]: '0xf4b96d5162adee867b6361e9f1848d701c4286c7',
-  //   },
-  //   token: serializedTokens.bbt,
-  //   quoteToken: serializedTokens.wbnb,
-  // },
+  {
+    pid: 0,
+    lpSymbol: 'BBT-ETH LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0xf4b96d5162adee867b6361e9f1848d701c4286c7',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0x6cC611e036D9cE3f66502d5cC544cdC209542Fc2',
+    },
+    token: serializedTokens.bbt,
+    quoteToken: serializedTokens.wbnb,
+  },
   {
     pid: 1,
     lpSymbol: 'BSWAP-ETH LP',

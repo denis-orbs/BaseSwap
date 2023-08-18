@@ -52,6 +52,7 @@ export type TokenLookupKey =
   | 'USDP'
   | 'DAIP'
   | 'axlWBTC'
+  | 'BBT'
 
 export type TokenInfoMapping = {
   [key in TokenLookupKey]?: ITokenInfo
@@ -120,7 +121,11 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
 
 export const TOKEN_INF0: TokenInfoMapping = {
   ...STABLE_TOKEN_INF0,
-
+  BBT: {
+    addresses: {
+      [ChainId.BASE]: '0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9',
+    },
+  },
   ProtocolToken: {
     // coinGeckoId: 'arbitrum-exchange',
     // dexscreenerPair: '0xE80B4F755417FB4baF4dbd23C029db3F62786523', // TODO: Update after live on screener

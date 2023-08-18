@@ -116,6 +116,8 @@ export const fetchMultipleCoinGeckoPricesByAddress = async (
 
 export async function getDexscreenerPrices(pairAddresses: string[], platform: 'base' = 'base') {
   try {
+    if (!pairAddresses.length) return {}
+
     const cached = localStorage.getItem(screenerStorageKey)
     if (cached) {
       const data = JSON.parse(cached)
