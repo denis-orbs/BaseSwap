@@ -53,6 +53,7 @@ export type TokenLookupKey =
   | 'DAIP'
   | 'axlWBTC'
   | 'BBT'
+  | 'EDE'
 
 export type TokenInfoMapping = {
   [key in TokenLookupKey]?: ITokenInfo
@@ -151,6 +152,13 @@ export const TOKEN_INF0: TokenInfoMapping = {
     addresses: {
       [ChainId.BASE]: '0x4200000000000000000000000000000000000006',
       [ChainId.ARBITRUM]: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
+    },
+  },
+  EDE: {
+    coinGeckoId: 'el-dorado',
+    addresses: {
+      [ChainId.BASE]: '0x0A074378461FB7ed3300eA638c6Cc38246db4434',
+      [ChainId.ARBITRUM]: '0x0A074378461FB7ed3300eA638c6Cc38246db4434',
     },
   },
 

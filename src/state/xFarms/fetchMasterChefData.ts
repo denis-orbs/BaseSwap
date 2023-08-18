@@ -191,7 +191,9 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
     getCombinedTokenPrices(chainId),
   ])
 
-  const { getPrice } = tokenPrices
+  console.log('tokenPrices',tokenPrices)
+
+  const { prices } = tokenPrices
 
   const { poolLength, emissionRates, chefTotalAllocPoints, chefTotalAllocPointsWETH, dummyPoolAllocPointsWETH } =
     chefInfo
@@ -258,17 +260,25 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
 
     farm.lpTotalInQuoteToken = lpTotalInQuoteToken.toString()
 
-    const mainTokenPrice = farm.token.symbol === 'BBT' ? 1 : getPrice(farm.token.address)
-    const quoteTokenPrice = getPrice(farm.quoteToken.address)
+    console.log('0x0a074378461fb7ed3300ea638c6cc38246db4434', prices)
+    console.log('0x0a074378461fb7ed3300ea638c6cc38246db4434', prices[0x0a074378461fb7ed3300ea638c6cc38246db4434])
+
+    const mainTokenPrice = farm.token.symbol === 'BBT' ? 1 : prices[`${farm.token.address}`]
+    const quoteTokenPrice = prices[`${farm.quoteToken.address}`]
 
     // console.log('mainAmountInLpTotal: ' + mainAmountInLpTotal.toNumber())
     // console.log('quoteTokenAmountInPool: ' + quoteTokenAmountInPool.toNumber())
     // console.log('lpTotalSupplyBN: ' + lpTotalSupplyBN.toNumber())
 
+    console.log('farm.classic',farm.classic)
+    console.log('mainTokenPrice',mainTokenPrice, farm.token.address)
+    console.log('quoteTokenPrice',quoteTokenPrice, farm.quoteToken.address)
+
     if (farm.classic) {
+      console.log(prices, 'mainTokenPrice', mainTokenPrice,farm.token.address, 'quoteTokenPrice', quoteTokenPrice, farm.quoteToken.address)
       if (mainTokenPrice && quoteTokenPrice) {
-        const poolMainValue = mainTokenAmountInPool.times(mainTokenPrice).toNumber()
-        const poolQuoteValue = quoteTokenAmountInPool.times(quoteTokenPrice).toNumber()
+        const poolMainValue = mainTokenAmountInPool.times(new BigNumber(mainTokenPrice)).toNumber()
+        const poolQuoteValue = quoteTokenAmountInPool.times(new BigNumber(quoteTokenPrice)).toNumber()
         const tvl = poolMainValue + poolQuoteValue
         TVL += tvl
         farm.TVL = tvl

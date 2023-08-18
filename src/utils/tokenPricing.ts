@@ -8,20 +8,6 @@ const screenerStorageKey = 'DS_TOKEN_PRICES'
 
 const wethCacheKey = 'WETH_PRICE'
 
-export async function getWethPrice() {
-  try {
-    const response = await fetch(
-      `https://api.coingecko.com/api/v3/simple/token_price/ethereum?contract_addresses=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&vs_currencies=usd`,
-    )
-    const price = await response.json()
-
-    return price['0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2']?.usd
-  } catch (error) {
-    console.log('Fetching WETH price failed')
-    return 0
-  }
-}
-
 const priceDexScreener = async (address: any): Promise<any> => {
   const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${address}`, {
     method: 'GET',
@@ -30,13 +16,19 @@ const priceDexScreener = async (address: any): Promise<any> => {
   return res.pairs[0].priceUsd;
 }
 
-const priceDexScreenerLP = async (address: any): Promise<any> => {
-  const response = await fetch(`https://api.dexscreener.com/latest/dex/pairs/bsc/${address}`, {
-    method: 'GET',
-  });
-  return await response.json();
+export async function getWethPrice() {
+  try {
+    // const response = await fetch(
+    //   `https://api.coingecko.com/api/v3/simple/token_price/ethereum?contract_addresses=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&vs_currencies=usd`,
+    // )
+    // const price = await response.json()
+    const price = await priceDexScreener("0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2")
+    return price
+  } catch (error) {
+    console.log('Fetching WETH price failed')
+    return 0
+  }
 }
-
 
 export async function getCombinedTokenPrices(chainId: ChainId) {
   try {
@@ -60,7 +52,7 @@ export async function getCombinedTokenPrices(chainId: ChainId) {
 
     return {
       prices,
-      getPrice: (token: string) => prices[token.toLowerCase()]?.usd || 0,
+      getPrice: (token: string) => prices[token.toLowerCase()] || 0,
     }
   } catch (error) {
     console.log('getCombinedTokenPrices: Error get prices')
@@ -90,30 +82,26 @@ export const fetchMultipleCoinGeckoPricesByAddress = async (
     }
   }
 
-  const priceDexScreener = async (token_id: any): Promise<any> => {
-    const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${token_id.address}`, {
-      method: 'GET',
-    });
-    const res = await response.json();
-    return res.pairs[0].priceUsd;
+  const fetchTokenPricesSequentially = async (addresses) => {
+    const tokenPrices = {};
+    const tokenAddresses = addresses.split(',');
+    console.log('tokenAddresses', tokenAddresses)
+    for (const address of tokenAddresses) {
+      const price = await priceDexScreener(address); // Assuming priceDexScreener() fetches the price for a single address
+      console.log('price', price)
+      tokenPrices[address] = price;
+    }
+  
+    return tokenPrices;
   }
-
-  const priceDexScreenerLP = async (token_id: any): Promise<any> => {
-    const response = await fetch(`https://api.dexscreener.com/latest/dex/pairs/bsc/${token_id.address}`, {
-      method: 'GET',
-    });
-    return await response.json();
-  }
-
   //console.log('Token price cache expired. Making API call...')
 
   const addresses = tokenAddresses.map((t) => t.toLowerCase()).join(',')
 
   try {
-    const response = await fetch(
-      `https://api.coingecko.com/api/v3/simple/token_price/base?contract_addresses=${addresses}&vs_currencies=usd`,
-    )
-    const prices = await response.json()
+    const response = await fetchTokenPricesSequentially(addresses)
+    
+    const prices = response
 
     // for (const address in prices) {
     //   prices[address.toLowerCase()] = prices[address].usd
@@ -136,6 +124,7 @@ export const fetchMultipleCoinGeckoPricesByAddress = async (
       },
     }
   } catch (error) {
+    console.log('error', error)
     console.log(`fetchMultipleCoinGeckoPrices: fetch coin gecko prices failed: ${new Date().toUTCString()}`)
 
     const cached2 = localStorage.getItem(storageKey)
