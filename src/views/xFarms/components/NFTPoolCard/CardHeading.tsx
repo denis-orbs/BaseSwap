@@ -18,7 +18,6 @@ export interface ExpandableSectionProps {
   stable?: boolean
   isCore?: boolean
   isCommunityFarm?: boolean
-
 }
 
 const Wrapper = styled(Flex)`
@@ -26,7 +25,6 @@ const Wrapper = styled(Flex)`
     margin-right: 4px;
   }
 `
-
 
 const MultiplierTag = styled(Tag)`
   margin-left: 4px;
@@ -41,10 +39,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   narrow,
   wide,
   isNew,
-  multiplier, 
+  multiplier,
   stable,
   isCore,
-  isCommunityFarm, 
+  isCommunityFarm,
 }) => {
   const { t } = useTranslation()
 
@@ -67,14 +65,14 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 
       <Flex flexDirection="column" alignItems="flex-end">
         <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
-        <Flex justifyContent="center">
-          {isCommunityFarm ? <FarmAuctionTag /> : <CoreTag />}
-          </Flex>
-  {multiplier ? (
+        <Flex justifyContent="center">{isCommunityFarm ? <FarmAuctionTag /> : <CoreTag />}</Flex>
+        {/* {multiplier ? (
             <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
           ) : (
             <Skeleton ml="4px" width={42} height={28} />
-          )}
+          )} */}
+
+        {/* <MultiplierTag variant="secondary">{multiplier}</MultiplierTag> */}
       </Flex>
     </Wrapper>
   )

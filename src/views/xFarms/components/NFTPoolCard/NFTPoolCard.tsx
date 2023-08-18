@@ -26,15 +26,15 @@ const StyledCard = styled(Card)`
 `
 
 const NFTPoolCardInnerContainer = styled(Flex)`
-flex-direction: column;
-justify-content: space-around;
-padding: 24px;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 24px;
 `
 
 const ExpandingWrapper = styled.div`
-padding: 24px;
-border-top: 2px solid ${({ theme }) => theme.colors.cardBorder};
-overflow: hidden;
+  padding: 24px;
+  border-top: 2px solid ${({ theme }) => theme.colors.cardBorder};
+  overflow: hidden;
 `
 
 interface NFTPoolCardProps {
@@ -85,12 +85,13 @@ const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnly }) 
           wide={farm.wide}
           stable={farm.stable}
           isCore={farm.isCore}
+          // multiplier={farm.multiplier}
         />
         {!removed && (
-            <Flex justifyContent="space-between" alignItems="center">
+          <Flex justifyContent="space-between" alignItems="center">
             <Text>{t('APR')}:</Text>
             <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-                {farm.apr ? (
+              {farm.apr ? (
                 <span>{`${Number(Number(farm.apr).toFixed(2)).toLocaleString()}%`}</span>
               ) : (
                 <Skeleton height={24} width={80} />

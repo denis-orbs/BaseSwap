@@ -146,7 +146,8 @@ const Farms: React.FC = ({ children }) => {
   const isInactive = pathname.includes('history')
   const isActive = !isInactive && !isArchived
 
-  const sortedFarmsLP = getSortedFarmsLP(farmsLP as unknown as DeserializedFarm[])
+  // const sortedFarmsLP = getSortedFarmsLP(farmsLP as unknown as DeserializedFarm[])
+  const sortedFarmsLP = farmsLP
 
   const [stakedOnlyState, setStakedOnlyState] = useState(localStorage?.getItem('stakedOnlyFarms') === 'true')
 
