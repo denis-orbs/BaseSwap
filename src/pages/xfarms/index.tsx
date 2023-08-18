@@ -24,7 +24,7 @@ const DividerText = styled(Text)`
 function CategoryWrapper({ title, children }) {
   return (
     <>
-      <DividerText>{title}</DividerText>
+      {/* <DividerText>{title}</DividerText> */}
       {children}
     </>
   )

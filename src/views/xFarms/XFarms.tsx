@@ -407,7 +407,7 @@ const Farms: React.FC = ({ children }) => {
           </FilterContainer>
         </ControlContainer>
 
-            <FlexLayout style={{ paddingLeft: '8px' }}>{children}</FlexLayout>
+        <FlexLayout className="animate__animated animate__fadeInUp">{children}</FlexLayout>
             {account && !farmsLP.length && (
               <Flex justifyContent="center">
                 <Spinner />
