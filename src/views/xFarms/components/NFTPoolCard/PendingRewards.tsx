@@ -86,10 +86,10 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
               <Text bold textTransform="uppercase" color="white">
                 {rw.token.symbol} {t('Earned')}
               </Text>
-              <Text fontSize="14px" fontWeight="600" color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>
+              <Text fontSize="14px"  color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>
                 {rw.rewardAmountDisplay}
               </Text>
-              <Text fontSize="10px" fontWeight="600" color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>
+              <Text fontSize="10px"  color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>
                 {rw.valueLabel}
               </Text>
 
@@ -100,11 +100,11 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
         ))}
       </Flex>
 
-      <Flex justifyContent="center" mt="10px">
-        <Button variant="primary" disabled={!hasRewards || pendingTx} onClick={harvestPosition}>
-          Claim
+
+        <Button disabled={!hasRewards || pendingTx} onClick={harvestPosition}>
+          HARVEST
         </Button>
-      </Flex>
+
     </Flex>
   )
 }
