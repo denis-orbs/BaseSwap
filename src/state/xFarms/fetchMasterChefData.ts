@@ -264,7 +264,10 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
     // console.log('mainAmountInLpTotal: ' + mainAmountInLpTotal.toNumber())
     // console.log('quoteTokenAmountInPool: ' + quoteTokenAmountInPool.toNumber())
     // console.log('lpTotalSupplyBN: ' + lpTotalSupplyBN.toNumber())
-
+console.log('mainTokenPrice',mainTokenPrice)
+console.log('quoteTokenPrice',quoteTokenPrice)
+console.log('farm',farm)
+    debugger;
     if (farm.classic) {
       if (mainTokenPrice && quoteTokenPrice) {
         const poolMainValue = mainTokenAmountInPool.times(mainTokenPrice).toNumber()

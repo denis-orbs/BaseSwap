@@ -60,18 +60,23 @@ export const getXFarmApr = (
   WETHPerSec: number,
 ): { cakeRewardsApr: number } => {
   const yearlyCakeRewardAllocation = arxPoolWeight
-    ? arxPoolWeight.times(SECONDS_PER_YEAR * arxPerSec)
+    ? arxPoolWeight.times(SECONDS_PER_YEAR * 0.00000001)
     : new BigNumber(NaN)
 
   const yearlyWETHRewardAllocation = WETHPoolWeight
     ? WETHPoolWeight.times(SECONDS_PER_YEAR * WETHPerSec)
     : new BigNumber(NaN)
 
-  const cakeRewardsApr = yearlyCakeRewardAllocation
-    .times(cakePriceUsd)
-    .plus(yearlyWETHRewardAllocation.times(WETHPriceUsd))
+  const cakeRewardsApr = 
+  // yearlyCakeRewardAllocation
+    // .times(cakePriceUsd)
+    // .plus
+    (yearlyWETHRewardAllocation.times(WETHPriceUsd))
     .div(poolLiquidityUsd)
     .times(100)
+
+
+    console.log('arxPerSec', arxPerSec.toString())
 
   let cakeRewardsAprAsNumber = null
 
