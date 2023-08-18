@@ -100,6 +100,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
               )}
             </Text>
           </Flex>
+          
         )}
         <Flex justifyContent="space-between">
           <Text>{t('Earn')}:</Text>

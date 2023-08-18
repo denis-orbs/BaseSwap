@@ -46,32 +46,6 @@ interface TextProps {
   marginBottom?: string
 }
 
-export const XARXTitle = styled.div<TextProps>`
-  color: #fff;
-  font-size: ${(props) => (props.isMobile ? '3.5rem' : '3rem')};
-  font-weight: 400;
-  text-align: center;
-  letter-spacing: 6px;
-  line-height: ${(props) => (props.isMobile ? '4rem' : '4rem')};
-  margin-bottom: ${(props) => (props.isMobile ? '4rem' : '1.5rem')};
-  margin-top: 1.5rem;
-  background: -webkit-linear-gradient(#fff, #8797a9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-`
-
-export const XARXSubTitle = styled.div<TextProps>`
-  color: #fff;
-  font-size: ${(props) => (props.isMobile ? '1.2rem' : '1.2rem')};
-  line-height: ${(props) => (props.isMobile ? '1.5rem' : '1.7rem')};
-  text-align: center;
-  letter-spacing: 2px;
-  font-weight: 500;
-  background: -webkit-linear-gradient(#fff, #8797a9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-`
-
 const ControlContainer = styled.div`
   display: flex;
   width: 80%;

@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   margin-top: 24px;
 `
 
+
 const StyledLinkExternal = styled(LinkExternal)`
   font-weight: 600;
   font-size: 14px;
