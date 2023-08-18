@@ -75,9 +75,6 @@ export const getXFarmApr = (
     .div(poolLiquidityUsd)
     .times(100)
 
-
-    console.log('arxPerSec', arxPerSec.toString())
-
   let cakeRewardsAprAsNumber = null
 
   if (!cakeRewardsApr.isNaN() && cakeRewardsApr.isFinite()) {
