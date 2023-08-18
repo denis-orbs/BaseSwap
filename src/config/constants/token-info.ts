@@ -142,6 +142,7 @@ export const TOKEN_INF0: TokenInfoMapping = {
   WETH: {
     coinGeckoId: 'ethereum',
     addresses: {
+      [ChainId.BASE]: '0x4200000000000000000000000000000000000006',
       [ChainId.ARBITRUM]: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
     },
   },
@@ -247,12 +248,14 @@ export function getTokenInfo(key: TokenLookupKey, chainId: number): TokenInfoMap
 }
 
 export const getTokenAddress = (keyOrSymbol: TokenLookupKey, chainId: ChainId) => {
-  const ref = TOKEN_LIST[keyOrSymbol]
+  if (!chainId) return ''
+
+  const ref = TOKEN_INF0[keyOrSymbol]
   if (!ref) {
     throw new Error(`No address mapping for keyOrSymbol: ${keyOrSymbol}`)
   }
 
-  const address = TOKEN_LIST[keyOrSymbol][chainId]
+  const address = ref.addresses[chainId]
   if (!address) {
     throw new Error(`No chain id address mapping: ${chainId}`)
   }
@@ -267,16 +270,4 @@ export const getTokenImage = (address: string) => {
 export function getTokenInstance(address: string) {
   const instance = Object.entries(currentTokenMap).find((tk) => tk[1].address.toLowerCase() === address.toLowerCase())
   return instance ? instance[1] : null
-}
-
-export const TOKEN_LIST: { [key in TokenLookupKey]?: { [chainId: number]: string } } = {
-  ProtocolToken: {
-    [ChainId.ARBITRUM]: '0xD5954c3084a1cCd70B4dA011E67760B8e78aeE84',
-  },
-  xProtocolToken: {
-    [ChainId.ARBITRUM]: '0xa954A31137fBe5c2D384A0067DE042bAA58b3403',
-  },
-  WETH: {
-    [ChainId.ARBITRUM]: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
-  },
 }
