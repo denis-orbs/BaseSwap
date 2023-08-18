@@ -15,6 +15,7 @@ import { getCombinedTokenPrices } from 'utils/tokenPricing'
 import { BIG_TWO, ethersToBigNumber } from 'utils/bigNumber'
 import { getFullDecimalMultiplier } from 'utils/getFullDecimalMultiplier'
 import { defaultFarmsData } from '.'
+import { formatUnits } from '@ethersproject/units'
 
 const dummyPoolId = 16
 const ramseyAddress = getChefRamseyAddress()

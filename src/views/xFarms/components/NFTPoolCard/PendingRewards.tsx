@@ -56,8 +56,6 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
     }
   })
 
-  console.log(mappedRewards)
-
   // const handleHarvest = useCallback(async () => {
   //   const receipt = await fetchWithCatchTxError(() => {
   //     return harvestPosition(tokenId)

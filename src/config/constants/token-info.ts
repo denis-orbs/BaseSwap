@@ -275,8 +275,6 @@ export const getTokenImage = (address: string) => {
 }
 
 export function getTokenInstance(address: string) {
-  // console.log(Object.entries(currentTokenMap))
   const instance = Object.entries(currentTokenMap).find((tk) => tk[1].address.toLowerCase() === address.toLowerCase())
-  console.log(instance)
   return instance ? instance[1] : null
 }

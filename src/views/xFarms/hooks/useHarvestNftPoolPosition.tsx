@@ -1,9 +1,11 @@
 import { useWeb3React } from '@web3-react/core'
 import { useNftPool } from 'hooks/useContract'
 import { useCallback } from 'react'
+import { useAppDispatch } from 'state'
 
 export const useHarvestPosition = (nftPoolAddress: string) => {
   const { account } = useWeb3React()
+  const dispatch = useAppDispatch()
   const nftPool = useNftPool(nftPoolAddress)
 
   const harvestPositionTo = useCallback(
