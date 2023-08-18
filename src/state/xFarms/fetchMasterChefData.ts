@@ -10,11 +10,11 @@ import chunk from 'lodash/chunk'
 import { NftPoolFarmData } from './types'
 import BigNumber from 'bignumber.js'
 import getFarmsPrices from 'state/farms/getFarmsPrices'
-import { fetchMultipleCoinGeckoPricesByAddress } from 'utils/tokenPricing'
-import { getCoingeckoTokenInfos } from 'config/constants/token-info'
+import { getCombinedTokenPrices } from 'utils/tokenPricing'
 import { BIG_TWO, ethersToBigNumber } from 'utils/bigNumber'
 import { getCombinedNftPoolInfos } from './utils'
 import { getFullDecimalMultiplier } from 'utils/getFullDecimalMultiplier'
+import { defaultFarmsData } from '.'
 
 const dummyPoolId = 16
 
@@ -108,8 +108,7 @@ const getCurrentChefData = async () => {
 
   const ogChef = getMasterchefContract()
   const dummyPoolInfo = await ogChef.poolInfo(dummyPoolId)
-  console.log(dummyPoolInfo)
-  const dummyPoolAllocPointsARX = dummyPoolInfo[1].toNumber()
+  const dummyPoolAllocPointsARX = dummyPoolInfo.allocPoint.toNumber()
 
   const chefData = {
     poolLength: poolsLength.toNumber(),
@@ -127,28 +126,37 @@ const getCurrentChefData = async () => {
 }
 
 export const fetchMasterChefData = async (chainId: number): Promise<NftPoolFarmData> => {
-  // console.time('[fetchMasterChefData]')
+  try {
+    // console.time('[fetchMasterChefData]')
 
-  const farms = await fetchFarms(chainId)
-  const farmsWithPrices = getFarmsPrices(farms.farms)
+    const farms = await fetchXFarmsData(chainId)
+    // Need native farm added in
+    const farmsWithPrices = await getFarmsPrices(farms.farms)
 
-  // console.timeEnd('[fetchMasterChefData]')
-  return {
-    ...farms,
-    farms: farmsWithPrices,
+    // console.timeEnd('[fetchMasterChefData]')
+    return {
+      ...farms,
+      farms: farmsWithPrices,
+    }
+  } catch (error) {
+    console.log(error)
+    return defaultFarmsData
   }
 }
 
-const fetchFarms = async (chainId: number): Promise<NftPoolFarmData> => {
+const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
   const farmConfigs = getNftPoolConfigs(chainId)
-  const tokenInfo = getCoingeckoTokenInfos(chainId)
+
+  // need to add native/stable farm into this without calling nft stuff on it
 
   const [chefInfo, farmResult, nftPoolInfos, tokenPrices] = await Promise.all([
     getCurrentChefData(),
     fetchFarmsLpTokenData(farmConfigs, chainId),
     getCombinedNftPoolInfos(chainId),
-    fetchMultipleCoinGeckoPricesByAddress(tokenInfo.map((t) => t.tokenAddress)),
+    getCombinedTokenPrices(chainId),
   ])
+
+  console.log(nftPoolInfos)
 
   const { getPrice } = tokenPrices // TODO: Need the combined screener/gecko prices
 
@@ -172,7 +180,7 @@ const fetchFarms = async (chainId: number): Promise<NftPoolFarmData> => {
 
     const nftPoolAddress = configMatch.nftPoolAddress[chainId]
     // const nitroPoolAddress = configMatch.nitroPoolAddressMap ? configMatch.nitroPoolAddressMap[chainId] : null
-    const stratAddress = configMatch.lpAddresses[chainId]
+    // const stratAddress = configMatch.lpAddresses[chainId]
     const farm: any = configMatch
 
     const [
@@ -197,6 +205,9 @@ const fetchFarms = async (chainId: number): Promise<NftPoolFarmData> => {
       getFullDecimalMultiplier(quoteTokenDecimals),
     )
 
+    // So now the allocPointARX is the BSX, and BSWAP is the WETH
+    // So the logic here does not really apply except for the WETH part
+
     // Amount of quoteToken in the LP that are staked in the pool
     const mainTokenAmountInPool = mainAmountInLpTotal.times(lpTokenRatio)
     const quoteTokenAmountInPool = quoteTokenAmountInLpTotal.times(lpTokenRatio)
@@ -205,8 +216,10 @@ const fetchFarms = async (chainId: number): Promise<NftPoolFarmData> => {
       ? lpAmountInPool.div(getFullDecimalMultiplier(18))
       : quoteTokenAmountInPool.times(BIG_TWO)
 
-    const poolsAllocPointsARX = new BigNumber(pool.allocPointsARX.toNumber())
-    const poolsAllocPointsWETH = new BigNumber(pool.allocPointsWETH.toNumber())
+    //const poolsAllocPointsARX = new BigNumber(pool.allocPointsARX.toNumber())
+    const poolsAllocPointsARX = new BigNumber(0)
+    //const poolsAllocPointsWETH = new BigNumber(pool.allocPointsWETH.toNumber())
+    const poolsAllocPointsWETH = new BigNumber(0)
 
     const dummyPoolArxAllocBN = new BigNumber(dummyPoolAllocPointsARX)
     const dummyPoolTotalWETHAllocBN = new BigNumber(dummyPoolAllocPointsWETH)
@@ -275,6 +288,7 @@ const fetchFarms = async (chainId: number): Promise<NftPoolFarmData> => {
       lpAmountInPool,
       liquidity: farm.TVL,
       // sharePrice: farmStrat?.sharePrice,
+      sharePrice: 0,
     }
 
     Object.entries(result).forEach((res) => {

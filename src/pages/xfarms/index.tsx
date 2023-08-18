@@ -1,11 +1,31 @@
 import { useWeb3React } from '@web3-react/core'
+import { useContext, useEffect } from 'react'
+import { useAppDispatch } from 'state'
+import { fetchNftPoolFarmDataAsync } from 'state/xFarms'
 import { FarmsPageLayout, FarmsContext } from 'views/xFarms'
-// import { usePriceCakeBusd } from 'state/farms/hooks'
 
 const XFarmPage = () => {
-  const { account } = useWeb3React()
-  // const { chosenFarmsMemoized } = useContext(FarmsContext)
-  // const cakePrice = usePriceCakeBusd()
+  const { chainId } = useWeb3React()
+  const dispatch = useAppDispatch()
+  const { chosenFarmsMemoized } = useContext(FarmsContext)
+
+  useEffect(() => {
+    if (chainId) {
+      dispatch(fetchNftPoolFarmDataAsync({ chainId }))
+    }
+
+    const interval = setInterval(() => {
+      if (chainId) {
+        dispatch(fetchNftPoolFarmDataAsync({ chainId }))
+      }
+    }, 30000)
+
+    return () => {
+      if (interval) clearInterval(interval)
+    }
+  }, [chainId, dispatch])
+
+  const stakedOnly = localStorage?.getItem('stakedOnlyFarms') === 'true'
 
   return (
     <>

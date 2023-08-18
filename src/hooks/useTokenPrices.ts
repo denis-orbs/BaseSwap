@@ -8,7 +8,8 @@ const useTokenPrices = () => {
 
   useEffect(() => {
     const getPrices = async () => {
-      setPrices(await getCombinedTokenPrices(chainId))
+      const { prices: allPrices } = await getCombinedTokenPrices(chainId)
+      setPrices(allPrices)
     }
 
     getPrices()

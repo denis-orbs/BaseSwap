@@ -3,7 +3,7 @@ import { IPositionInfo, NFTPoolAllowance, NftPoolFarmData, NftPoolsState } from 
 import { fetchNftPoolAllowances, fetchNftPositions } from './fetchUserFarmData'
 import { fetchMasterChefData } from './fetchMasterChefData'
 
-const defaultFarmsData: NftPoolFarmData = {
+export const defaultFarmsData: NftPoolFarmData = {
   poolLength: 0,
   userDataLoaded: false,
   farms: [],

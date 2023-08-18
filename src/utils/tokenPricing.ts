@@ -32,9 +32,14 @@ export async function getCombinedTokenPrices(chainId: ChainId) {
       getDexscreenerPrices(screenPairAddresses),
     ])
 
-    return {
+    const prices = {
       ...geckoPrices.prices,
       ...screenerPrices,
+    }
+
+    return {
+      prices,
+      getPrice: (token: string) => prices[token.toLowerCase()] || 0,
     }
   } catch (error) {
     console.log('getCombinedTokenPrices: Error get prices')
