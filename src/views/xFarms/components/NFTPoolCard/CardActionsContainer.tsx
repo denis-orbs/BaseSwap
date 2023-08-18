@@ -51,6 +51,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
 
   return (
     <Action>
+      
       {/* <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
           BSX
