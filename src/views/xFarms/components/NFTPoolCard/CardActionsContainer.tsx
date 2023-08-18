@@ -66,14 +66,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
           {t('Staked')}
         </Text>
       </Flex>
-      <Flex marginTop="1rem">
-        <Text textTransform="uppercase" color="white">
-          {farm.lpSymbol}
-        </Text>
-        <Text textTransform="uppercase" color="white">
-          {t('Staked')}
-        </Text>
-      </Flex>
+
       {!account ? (
         // <ConnectWalletButton marginTop="8px" width="100%" /> this is fine
         <ConnectWalletButton />
