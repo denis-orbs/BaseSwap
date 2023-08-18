@@ -44,13 +44,14 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   quoteTokenAmountTotal,
   nftPoolAddress,
   sharePrice,
+  lpPrice,
 }) => {
   const { chainId } = useWeb3React()
   const { t } = useTranslation()
   const cakePrice = usePriceCakeBusd()
   const router = useRouter()
 
-  const lpPrice = useLpTokenPrice(lpSymbol)
+  // const lpPrice = useLpTokenPrice(lpSymbol)
   const { toastSuccess } = useToast()
   const { fetchWithCatchTxError } = useCatchTxError()
 
@@ -114,7 +115,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       onConfirm={handleStake}
       tokenName={lpSymbol}
       multiplier={multiplier}
-      lpPrice={lpPrice}
+      lpPrice={new BigNumber(lpPrice)}
       lpLabel={lpLabel}
       apr={apr}
       addLiquidityUrl={addLiquidityUrl}
@@ -129,7 +130,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   const renderStakingButtons = () => {
     return !position || stakedBalanceBN.eq(0) ? (
       <Button
-      variant="primary"
+        variant="primary"
         onClick={onPresentDeposit}
         disabled={['history', 'archived'].some((item) => router.pathname.includes(item))}
       >
@@ -171,6 +172,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
           tokenAmountTotal={tokenAmountTotal}
           quoteTokenAmountTotal={quoteTokenAmountTotal}
           sharePrice={sharePrice}
+          lpPrice={lpPrice}
         />
         {renderStakingButtons()}
       </Flex>

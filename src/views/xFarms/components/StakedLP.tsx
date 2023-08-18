@@ -14,6 +14,7 @@ interface StackedLPProps {
   tokenAmountTotal: BigNumber
   quoteTokenAmountTotal: BigNumber
   sharePrice: number
+  lpPrice: string
 }
 
 const StakedLP: React.FunctionComponent<StackedLPProps> = ({
@@ -25,34 +26,32 @@ const StakedLP: React.FunctionComponent<StackedLPProps> = ({
   tokenAmountTotal,
   quoteTokenAmountTotal,
   sharePrice,
+  lpPrice,
 }) => {
-  const lpPrice = useLpTokenPrice(lpSymbol)
+  // const lpPrice = useLpTokenPrice(lpSymbol)
 
   const displayBalance = useMemo(() => {
     return formatLpBalance(stakedBalance)
   }, [stakedBalance])
 
-  // console.log(stakedBalance.div(1e18).toNumber())
-
   return (
     <Flex flexDirection="column" alignItems="flex-start">
       <Heading color={stakedBalance.eq(0) ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
       {/* {stakedBalance.gt(0) && lpPrice.gt(0) && (quantumPrice && quantumPrice.gt(0)) && ( */}
-      {stakedBalance.gt(0) && lpPrice.gt(0) && (
-      <>
-        <Balance
-          fontSize="12px"
-          color="textSubtle"
-          decimals={2}
-          value={
-            sharePrice
-              ? getBalanceNumber(new BigNumber(sharePrice).times(stakedBalance))
-              : getBalanceNumber(lpPrice.times(stakedBalance))
-          }
-          unit=" USD"
-          prefix="~"
-        />
-         <Flex style={{ gap: '4px' }}>
+      {stakedBalance.gt(0) && new BigNumber(lpPrice).gt(0) && (
+        <>
+          <Balance
+            color="textSubtle"
+            decimals={2}
+            value={
+              sharePrice
+                ? getBalanceNumber(new BigNumber(sharePrice).times(stakedBalance))
+                : getBalanceNumber(new BigNumber(lpPrice).times(stakedBalance))
+            }
+            unit=" USD"
+            prefix="~"
+          />
+          <Flex style={{ gap: '4px' }}>
             <Balance
               fontSize="12px"
               color="textSubtle"
@@ -68,11 +67,8 @@ const StakedLP: React.FunctionComponent<StackedLPProps> = ({
               unit={` ${quoteTokenSymbol}`}
             />
           </Flex>
-      
-       
-      </>
-            )}
-
+        </>
+      )}
     </Flex>
   )
 }

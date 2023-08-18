@@ -99,6 +99,7 @@ interface FarmConfigBaseProps {
 export interface SerializedFarmConfig extends FarmConfigBaseProps {
   token: SerializedToken
   quoteToken: SerializedToken
+  lpPrice?: string
 }
 
 export interface DeserializedFarmConfig extends FarmConfigBaseProps {

@@ -121,6 +121,7 @@ export interface DeserializedFarm extends DeserializedFarmConfig {
   userData?: DeserializedFarmUserData
   sharePrice?: number
   TVL?: number
+  lpPrice?: string
 }
 
 export enum VaultKey {

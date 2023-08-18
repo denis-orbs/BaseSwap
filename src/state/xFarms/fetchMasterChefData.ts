@@ -16,6 +16,7 @@ import { BIG_TWO, ethersToBigNumber } from 'utils/bigNumber'
 import { getFullDecimalMultiplier } from 'utils/getFullDecimalMultiplier'
 import { defaultFarmsData } from '.'
 import { formatUnits } from '@ethersproject/units'
+import { getLpPrice } from 'state/farms/selectors'
 
 const dummyPoolId = 16
 const ramseyAddress = getChefRamseyAddress()
@@ -160,9 +161,14 @@ export const fetchMasterChefData = async (chainId: number): Promise<NftPoolFarmD
 
     const farms = await fetchXFarmsData(chainId)
     // Need native farm added in
-    const farmsWithPrices = await getFarmsPrices(farms.farms)
+    const farmsWithPrices = (await getFarmsPrices(farms.farms)).map((f) => {
+      const lpPrice = getLpPrice(f).div(1e18).toString()
+      return {
+        ...f,
+        lpPrice,
+      }
+    })
 
-    // console.timeEnd('[fetchMasterChefData]')
     return {
       ...farms,
       farms: farmsWithPrices,
@@ -214,8 +220,8 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
     ] = farmResult[idx]
 
     const lpTokensPool = ethersToBigNumber(lpTokenBalancePool.balance).div(1e18)
-
     const lpAmountInPool = pool.lpSupply
+
     const lpTotalSupplyBN = new BigNumber(lpTotalSupply).div(1e18)
     // Ratio in % of LP tokens that are staked in the pool, vs the total number in circulation
     const lpTokenRatio = lpTokensPool.div(lpTotalSupplyBN)
@@ -255,6 +261,10 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
     const mainTokenPrice = farm.token.symbol === 'BBT' ? 1 : getPrice(farm.token.address)
     const quoteTokenPrice = getPrice(farm.quoteToken.address)
 
+    // console.log('mainAmountInLpTotal: ' + mainAmountInLpTotal.toNumber())
+    // console.log('quoteTokenAmountInPool: ' + quoteTokenAmountInPool.toNumber())
+    // console.log('lpTotalSupplyBN: ' + lpTotalSupplyBN.toNumber())
+
     if (farm.classic) {
       if (mainTokenPrice && quoteTokenPrice) {
         const poolMainValue = mainTokenAmountInPool.times(mainTokenPrice).toNumber()
@@ -264,6 +274,7 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
         farm.TVL = tvl
       } else {
         console.log('Classic farm is missing prices')
+        console.log(`pid: ${configMatch.pid}`)
         farm.TVL = 0
       }
     } else if (farm.quantum) {
@@ -310,6 +321,10 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
       const prop = res[0]
       if (result[prop]?._isBigNumber) result[prop] = result[prop].toString()
     })
+
+    if (result.pid === 1) {
+      console.log(result)
+    }
 
     return result
   })
