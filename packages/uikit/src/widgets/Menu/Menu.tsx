@@ -201,7 +201,7 @@ const Menu: React.FC<NavProps> = ({
                   <Text marginRight="2rem">Farm </Text>
                 </Link>
                 <Link href="/xfarms" >
-                  <Text marginRight="2rem">Bridge </Text>
+                  <Text marginRight="2rem">Farms2 </Text>
                 </Link>
                 <Link href="/pools" >
                   <Text marginRight="2rem">Earn </Text>
