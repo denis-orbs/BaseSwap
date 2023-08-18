@@ -208,6 +208,7 @@ const Menu: React.FC<NavProps> = ({
                 <Link href="/pools" >
                   <Text marginRight="2rem">Earn </Text>
                 </Link>
+
                 <DropdownContainer>
                     <Text marginRight="2rem">MORE...</Text>
                         <DropdownMenu>
@@ -223,13 +224,6 @@ const Menu: React.FC<NavProps> = ({
                            
                         </DropdownMenu>
                 </DropdownContainer>
-                
-                {/* <Link href="/xbsx" >
-                  <Text marginRight="2rem">Vesting </Text>
-                </Link> */}
-
-                
-                
               </Flex>
             }
             {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
