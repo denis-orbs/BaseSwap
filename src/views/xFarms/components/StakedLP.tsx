@@ -45,7 +45,7 @@ const StakedLP: React.FunctionComponent<StackedLPProps> = ({
           decimals={2}
           value={
             sharePrice
-              ? getBalanceNumber(BigNumber(sharePrice).times(stakedBalance))
+              ? getBalanceNumber(new BigNumber(sharePrice).times(stakedBalance))
               : getBalanceNumber(lpPrice.times(stakedBalance))
           }
           unit=" USD"

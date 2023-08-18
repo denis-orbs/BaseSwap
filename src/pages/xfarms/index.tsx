@@ -1,4 +1,5 @@
 import { useWeb3React } from '@web3-react/core'
+import { FarmsPageLayout, FarmsContext } from 'views/xFarms'
 // import { usePriceCakeBusd } from 'state/farms/hooks'
 
 const XFarmPage = () => {
@@ -21,3 +22,7 @@ const XFarmPage = () => {
     </>
   )
 }
+
+XFarmPage.Layout = FarmsPageLayout
+
+export default XFarmPage
