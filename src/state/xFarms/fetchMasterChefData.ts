@@ -322,10 +322,6 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
       if (result[prop]?._isBigNumber) result[prop] = result[prop].toString()
     })
 
-    if (result.pid === 1) {
-      console.log(result)
-    }
-
     return result
   })
 

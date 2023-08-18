@@ -28,8 +28,6 @@ const StakedLP: React.FunctionComponent<StackedLPProps> = ({
   sharePrice,
   lpPrice,
 }) => {
-  // const lpPrice = useLpTokenPrice(lpSymbol)
-
   const displayBalance = useMemo(() => {
     return formatLpBalance(stakedBalance)
   }, [stakedBalance])
@@ -55,15 +53,15 @@ const StakedLP: React.FunctionComponent<StackedLPProps> = ({
             <Balance
               fontSize="12px"
               color="textSubtle"
-              decimals={2}
-              value={stakedBalance.div(lpTotalSupply).times(tokenAmountTotal).toNumber()}
+              decimals={12}
+              value={stakedBalance.div(1e18).div(lpTotalSupply).times(tokenAmountTotal).toNumber()}
               unit={` ${tokenSymbol}`}
             />
             <Balance
               fontSize="12px"
               color="textSubtle"
-              decimals={2}
-              value={stakedBalance.div(lpTotalSupply).times(quoteTokenAmountTotal).toNumber()}
+              decimals={12}
+              value={stakedBalance.div(1e18).div(lpTotalSupply).times(quoteTokenAmountTotal).toNumber()}
               unit={` ${quoteTokenSymbol}`}
             />
           </Flex>
