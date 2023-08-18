@@ -23,6 +23,7 @@ interface FarmCardActionsProps {
   lpLabel?: string
 }
 
+
 const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lpLabel }) => {
   const { account, chainId } = useWeb3React()
   const { t } = useTranslation()
@@ -44,11 +45,9 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
       <StakeAction {...farm} lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} sharePrice={farm.sharePrice} />
     ) : (
       <Button
-        variant="primary"
+      width="100%"
         marginTop="8px"
-        className="glow2small"
         disabled={pendingTx}
-        style={{ backgroundColor: 'transparent' }}
         onClick={doApproval}
       >
         {t('ENABLE Contract')}
@@ -58,18 +57,25 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
 
   return (
     <Action>
-      <Flex marginTop="1rem">
-        <Text textTransform="uppercase" color="white">
+        <Flex>
+        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
+          BSWAP
+        </Text>
+        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+          {t('Earned')}
+        </Text>
+      </Flex>
+      <Flex>
+        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
           {farm.lpSymbol}
         </Text>
-        <Text textTransform="uppercase" color="white">
+        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t('Staked')}
         </Text>
       </Flex>
-
       {!account ? (
         // <ConnectWalletButton marginTop="8px" width="100%" /> this is fine
-        <ConnectWalletButton />
+        <ConnectWalletButton variant="menuconnect" mt="8px" width="100%" />
       ) : (
         <>
           {renderApprovalOrStakeButton()}

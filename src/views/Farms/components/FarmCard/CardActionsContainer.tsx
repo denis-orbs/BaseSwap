@@ -15,6 +15,7 @@ import useApproveFarm from '../../hooks/useApproveFarm'
 import HarvestAction from './HarvestAction'
 import StakeAction from './StakeAction'
 
+
 const Action = styled.div`
   padding-top: 16px;
 `
