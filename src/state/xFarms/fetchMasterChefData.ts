@@ -152,8 +152,6 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
     getCombinedTokenPrices(chainId),
   ])
 
-  console.log(nftPoolInfos)
-
   const { getPrice } = tokenPrices // TODO: Need the combined screener/gecko prices
 
   const {
@@ -264,6 +262,7 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
     const result = {
       nftPoolAddress,
       // nitroPoolAddress,
+      ...configMatch,
       ...farm,
       ...pool,
       token: farm.token,

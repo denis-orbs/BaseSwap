@@ -1,6 +1,6 @@
 import { useWeb3React } from '@web3-react/core'
 import { useContext, useEffect } from 'react'
-// import NFTPoolCard from 'views/xFarms/components/NFTPoolCard/NFTPoolCard'
+import NFTPoolCard from 'views/xFarms/components/NFTPoolCard/NFTPoolCard'
 import { useAppDispatch } from 'state'
 import { fetchNftPoolFarmDataAsync } from 'state/xFarms'
 import { FarmsPageLayout, FarmsContext } from 'views/xFarms'
@@ -31,7 +31,7 @@ function CategoryWrapper({ title, children }) {
 }
 
 const farmcategories = [
-  { title: 'Baseswap', pids: [1] },
+  { title: 'Baseswap', pids: [0] },
   // { title: 'Bluechip', pids: [37, 30, 22, 25, 21] },
   // { title: 'Arbitrum', pids: [44, 45, 26, 27] },
   // { title: 'Stables', pids: [36, 23, 24] },
@@ -71,21 +71,15 @@ const XFarmPage = () => {
 
   return (
     <>
-      {/* {categorizedFarms.map(({ title, farms }) => {
+      {categorizedFarms.map(({ title, farms }) => {
         return (
           <CategoryWrapper title={title} key={title}>
             {farms.map((farm, i) => (
-              <NFTPoolCard
-                key={i}
-                farm={farm}
-                displayApr={getDisplayApr(farm?.apr, farm?.lpRewardsApr)}
-                removed={false}
-                stakedOnly={stakedOnly}
-              />
+              <NFTPoolCard key={i} farm={farm} removed={false} stakedOnly={stakedOnly} />
             ))}
           </CategoryWrapper>
         )
-      })} */}
+      })}
     </>
   )
 }

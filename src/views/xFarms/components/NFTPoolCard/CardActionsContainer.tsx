@@ -21,10 +21,9 @@ interface FarmCardActionsProps {
   farm: FarmWithStakedValue
   addLiquidityUrl?: string
   lpLabel?: string
-  displayApr?: string
 }
 
-const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lpLabel, displayApr }) => {
+const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lpLabel }) => {
   const { account, chainId } = useWeb3React()
   const { t } = useTranslation()
   const { lpAddresses, nftPoolAddress } = farm
@@ -42,13 +41,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
 
   const renderApprovalOrStakeButton = () => {
     return hasApproval ? (
-      <StakeAction
-        {...farm}
-        lpLabel={lpLabel}
-        addLiquidityUrl={addLiquidityUrl}
-        displayApr={displayApr}
-        sharePrice={farm.sharePrice}
-      />
+      <StakeAction {...farm} lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} sharePrice={farm.sharePrice} />
     ) : (
       <Button
         variant="primary"
@@ -66,18 +59,18 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
   return (
     <Action>
       <Flex marginTop="1rem">
-        <Text textTransform="uppercase" color="white" >
+        <Text textTransform="uppercase" color="white">
           {farm.lpSymbol}
         </Text>
-        <Text textTransform="uppercase" color="white" >
+        <Text textTransform="uppercase" color="white">
           {t('Staked')}
         </Text>
       </Flex>
       <Flex marginTop="1rem">
-        <Text  textTransform="uppercase" color="white">
+        <Text textTransform="uppercase" color="white">
           {farm.lpSymbol}
         </Text>
-        <Text  textTransform="uppercase" color="white">
+        <Text textTransform="uppercase" color="white">
           {t('Staked')}
         </Text>
       </Flex>

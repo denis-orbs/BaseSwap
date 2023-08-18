@@ -51,12 +51,11 @@ const ExpandingWrapper = styled.div`
 
 interface NFTPoolCardProps {
   farm: FarmWithStakedValue
-  displayApr: string
   removed: boolean
   stakedOnly: boolean
 }
 
-const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, displayApr, removed, stakedOnly }) => {
+const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnly }) => {
   const [showExpandableSection, setShowExpandableSection] = useState(false)
   const { t } = useTranslation()
   const totalValueFormatted = `~$${(farm?.TVL || 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
@@ -123,7 +122,7 @@ const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, displayApr, removed, st
             {earnLabel}
           </Text>
         </Flex>
-        <CardActionsContainer farm={farm} lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} displayApr={displayApr} />
+        <CardActionsContainer farm={farm} lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} />
       </NFTPoolCardInnerContainer>
 
       <ExpandingWrapper>

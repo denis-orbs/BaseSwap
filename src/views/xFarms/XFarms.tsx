@@ -148,6 +148,8 @@ const Farms: React.FC = ({ children }) => {
 
   const { arxPerSec, WETHPerSec, farms: farmsLP } = useNftPoolsFarms()
 
+  console.log(farmsLP)
+
   const { t } = useTranslation()
   const { getTokenPrice } = useTokenPrices()
   const cakePrice = new BigNumber(getTokenPrice(getTokenAddress('ProtocolToken', chainId)))

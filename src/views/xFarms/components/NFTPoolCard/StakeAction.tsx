@@ -22,7 +22,6 @@ import { useTranslation } from '@pancakeswap/localization'
 interface FarmCardActionsProps extends FarmWithStakedValue {
   lpLabel?: string
   addLiquidityUrl?: string
-  displayApr?: string
 }
 
 const IconButtonWrapper = styled.div`
@@ -38,7 +37,6 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   lpSymbol,
   multiplier,
   apr,
-  displayApr,
   addLiquidityUrl,
   lpLabel,
   lpTotalSupply,
@@ -119,7 +117,6 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       lpPrice={lpPrice}
       lpLabel={lpLabel}
       apr={apr}
-      displayApr={displayApr}
       addLiquidityUrl={addLiquidityUrl}
       cakePrice={cakePrice}
     />,

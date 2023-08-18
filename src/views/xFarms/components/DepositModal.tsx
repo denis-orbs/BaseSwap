@@ -15,7 +15,6 @@ interface DepositModalProps {
   onDismiss?: () => void
   tokenName?: string
   apr?: number
-  displayApr?: string
   addLiquidityUrl?: string
   cakePrice?: BigNumber
 }
@@ -60,11 +59,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
           {t('CANCEL')}
         </Button>
         {pendingTx ? (
-          <Button
-            variant="secondary"
-            isLoading={pendingTx}
-            endIcon={<AutoRenewIcon spin color="currentColor" />}
-          >
+          <Button variant="secondary" isLoading={pendingTx} endIcon={<AutoRenewIcon spin color="currentColor" />}>
             {t('CONFIRMING')}
           </Button>
         ) : (
