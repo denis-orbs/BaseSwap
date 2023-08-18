@@ -310,14 +310,14 @@ const Farms: React.FC = ({ children }) => {
       <Page>
         <PageHeader style={{}}>
           <XARXTitle isMobile={isMobile}>{t('Farms')}</XARXTitle>
-          <XARXSubTitle isMobile={isMobile}>Earn ARX, xARX, and WETH by staking LP tokens. </XARXSubTitle>
-          <Text>
+          <XARXSubTitle isMobile={isMobile}>Earn BSX, xBSX, and BSWAP by staking LP tokens. </XARXSubTitle>
+          {/* <Text>
             LOOKING FOR LEGACY FARMS? Find them&nbsp;
             <u>
               <a href="/legacyfarms">here</a>
             </u>
             !
-          </Text>
+          </Text> */}
         </PageHeader>
         {!account ? (
           // <ConnectWalletButton width={['100%', null, null, '25%']} marginTop={['1rem', null, null, '3rem']} />

@@ -95,10 +95,6 @@ const getCurrentChefData = async () => {
       address: ramsey.address,
       name: 'emissionRates',
     },
-    // {
-    //   address: ramsey.address,
-    //   name: 'getMainChefPoolInfo', // TODO: Need to convert this to call the original chef to get dummy pool info
-    // },
   ]
 
   const [[poolsLength], [totalAllocPointsARX], [totalAllocPointsWETH], emissionRates] = await multicall(

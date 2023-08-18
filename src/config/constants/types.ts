@@ -84,7 +84,11 @@ interface FarmConfigBaseProps {
   auctionHostingEndDate?: string
   quantum?: boolean
   narrow?: boolean
+  wide?: boolean
+  stable?: boolean
   classic?: boolean
+  isNew?: boolean
+  isCore?: boolean
   dual?: {
     rewardPerBlock: number
     earnLabel: string
