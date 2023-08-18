@@ -2422,6 +2422,24 @@ const CAKE_BASE = new Token(
   'baseswap.fi',
 )
 
+const BSX_BASE = new Token(
+  ChainId.BASE,
+  '0xd5046B976188EB40f6DE40fB527F89c05b323385',
+  18,
+  'BSX',
+  'BaseX',
+  'baseswap.fi',
+)
+
+const XBSX_BASE = new Token(
+  ChainId.BASE,
+  '0xE4750593d1fC8E74b31549212899A72162f315Fa',
+  18,
+  'xBSX',
+  'Baseswap Escrowed Token',
+  'baseswap.fi',
+)
+
 const USDC_BASE = new Token(
   ChainId.BASE,
   '0xEd2D3fA2102980EeBdF2B12E58c1a96c9889315F',
@@ -2588,6 +2606,8 @@ export const baseGoerliTokens = {
 export const baseTokens = {
   wbnb: WBNB[ChainId.BASE],
   cake: CAKE[ChainId.BASE],
+  bsx: BSX_BASE,
+  xbsx: XBSX_BASE,
   axlUsdc: AXLUSDC_BASE,
   dai: DAI_BASE,
   cbeth: CBETH_BASE,

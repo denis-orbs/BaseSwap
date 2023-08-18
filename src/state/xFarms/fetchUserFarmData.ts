@@ -156,7 +156,7 @@ export const fetchNftPositions = async (account: string, chainId: number): Promi
   // }
 
   // Attach nitro user info to associated position
-  await getUserNitroDepositBalances(account, pools)
+  // await getUserNitroDepositBalances(account, pools)
 
   // console.log(pools)
 
@@ -223,6 +223,20 @@ export const fetchUserNftPoolBalances = async (account: string, chainId: number)
   })
 }
 
+// // TODO: Get tokenreward ratios
+// async function getPoolSettings(chainId: number) {
+//   const poolConfigs = getNftPoolConfigs(chainId)
+//   const nftPoolAddresses = poolConfigs.map((f) => f.nftPoolAddress[chainId])
+
+//   const calls: Call[] = []
+//   nftPoolAddresses.forEach((address) => {
+//     calls.push({
+//       address,
+//       name: 'balanceOf',
+//     })
+//   })
+// }
+
 async function getAllTokenIds(pools: IPositionInfo[], account: string) {
   const calldata = []
 
@@ -285,6 +299,7 @@ async function getRewardsInfo(pools: IPositionInfo[], chainId: number) {
 
     // This is the combined token/xToken amount so needs to be split up
     // TODO: Pool could have different settings than 80/20
+    // Use pool contract to get current settings
     const totalMainAmount = rewardInfo.mainAmount
     const xTokenAmount = totalMainAmount.mul(80).div(100)
     const mainTokenAmount = totalMainAmount.sub(xTokenAmount)
@@ -299,7 +314,7 @@ async function getRewardsInfo(pools: IPositionInfo[], chainId: number) {
         pendingReward: 0,
       },
       {
-        token: getTokenAddress('WETH', chainId),
+        token: getTokenAddress('BSWAP', chainId),
         pendingReward: 0,
       },
     ]

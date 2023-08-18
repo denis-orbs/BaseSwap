@@ -4,6 +4,7 @@ import useTokenPrices from 'hooks/useTokenPrices'
 import { useTranslation } from '@pancakeswap/localization'
 import { getTokenAddress, getTokenImage, getTokenInstance } from 'config/constants/token-info'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useMemo } from 'react'
 
 interface PendingRewardProps {
   position: IPositionInfo
@@ -25,9 +26,7 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
   const { getValueForAmount } = useTokenPrices()
   // const { toastSuccess } = useToast()
   // const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
-
   // const { fetchAllData } = useNftPools()
-
   // const tokenId = position?.tokenIds[0]
   let rewardsList = []
   if (nitro) {
@@ -36,8 +35,9 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
     rewardsList = position?.pendingRewards || []
   }
 
-  const xTokenAddress = getTokenAddress('xProtocolToken', chainId)
-  const arxAddress = getTokenAddress('ProtocolToken', chainId)
+  const xTokenAddress = useMemo(() => getTokenAddress('xProtocolToken', chainId), [chainId])
+  const arxAddress = useMemo(() => getTokenAddress('ProtocolToken', chainId), [chainId])
+
   let hasRewards = false
 
   const mappedRewards = rewardsList.map((rw) => {
@@ -55,6 +55,8 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
       token: getTokenInstance(rw.token),
     }
   })
+
+  console.log(mappedRewards)
 
   // const handleHarvest = useCallback(async () => {
   //   const receipt = await fetchWithCatchTxError(() => {
@@ -101,12 +103,7 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
       </Flex>
 
       <Flex justifyContent="center" mt="10px">
-        <Button
-            variant="primary"
-         
-          disabled={!hasRewards || pendingTx}
-          onClick={harvestPosition}
-        >
+        <Button variant="primary" disabled={!hasRewards || pendingTx} onClick={harvestPosition}>
           Claim
         </Button>
       </Flex>
