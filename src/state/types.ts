@@ -115,8 +115,11 @@ export interface DeserializedFarm extends DeserializedFarmConfig {
   lpTotalSupply?: BigNumber
   tokenPriceVsQuote?: BigNumber
   poolWeight?: BigNumber
+  arxPoolWeight?: BigNumber
+  WETHPoolWeight?: BigNumber
   userData?: DeserializedFarmUserData
   sharePrice?: number
+  TVL?: number
 }
 
 export enum VaultKey {

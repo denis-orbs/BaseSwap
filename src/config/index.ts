@@ -16,7 +16,6 @@ export const BASE_BSC_SCAN_URLS = {
   [ChainId.BSC_TESTNET]: 'https://testnet.bscscan.com',
   [ChainId.BASE_GOERLI]: baseGoerli.blockExplorers.default.url,
   [ChainId.BASE]: 'https://basescan.org',
-
 }
 
 // CAKE_PER_BLOCK details
@@ -28,6 +27,7 @@ export const BASE_BSC_SCAN_URLS = {
 // CAKE/Block in src/views/Home/components/CakeDataRow.tsx = 15 (40 - Amount sent to burn pool)
 export const CAKE_PER_BLOCK = 0.15
 export const BLOCKS_PER_YEAR = (60 / BSC_BLOCK_TIME) * 60 * 24 * 365
+export const SECONDS_PER_YEAR = 60 * 60 * 24 * 365
 export const CAKE_PER_YEAR = CAKE_PER_BLOCK * BLOCKS_PER_YEAR
 export const BASE_URL = 'https://baseswap.fi'
 export const BASE_ADD_LIQUIDITY_URL = `${BASE_URL}/add`

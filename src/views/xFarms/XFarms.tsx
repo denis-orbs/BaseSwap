@@ -17,7 +17,7 @@ import Select, { OptionProps } from 'components/Select/Select'
 import { FarmWithStakedValue } from './components/types'
 import { useMatchBreakpoints, Toggle } from '@pancakeswap/uikit'
 import { getSortedFarmsLP } from './utils'
-import { getFarmApr } from 'utils/apr'
+import { getFarmApr, getXFarmApr } from 'utils/apr'
 import { useNftPoolsFarms } from 'state/xFarms/hooks'
 import { useUserFarmStakedOnly } from 'state/user/hooks'
 import ConnectWalletButton from 'components/ConnectWalletButton'
@@ -184,32 +184,30 @@ const Farms: React.FC = ({ children }) => {
 
   const farmsList = useCallback(
     (farmsToDisplay: DeserializedFarm[]): FarmWithStakedValue[] => {
-      // let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
-      //   if (!farm.lpTotalInQuoteToken || !farm.quoteTokenPriceBusd) {
-      //     return farm
-      //   }
+      let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
+        if (!farm.lpTotalInQuoteToken || !farm.quoteTokenPriceBusd) {
+          return farm
+        }
 
-      //   const totalLiquidity = new BigNumber(farm.TVL || 0)
-      //   const arxPoolWeight = new BigNumber(farm.arxPoolWeight || 0)
-      //   const WETHPoolWeight = new BigNumber(farm.WETHPoolWeight || 0)
+        const totalLiquidity = new BigNumber(farm.TVL || 0)
+        const arxPoolWeight = new BigNumber(farm.arxPoolWeight || 0)
+        const WETHPoolWeight = new BigNumber(farm.WETHPoolWeight || 0)
 
-      //   const { cakeRewardsApr, lpRewardsApr } = isActive
-      //     ? getFarmApr(
-      //         arxPoolWeight,
-      //         WETHPoolWeight,
-      //         cakePrice,
-      //         WETHPrice,
-      //         totalLiquidity,
-      //         farm.lpAddresses[chainId],
-      //         arxPerSec,
-      //         WETHPerSec,
-      //       )
-      //     : { cakeRewardsApr: 0, lpRewardsApr: 0 }
+        const { cakeRewardsApr, lpRewardsApr } = isActive
+          ? getXFarmApr(
+              arxPoolWeight,
+              WETHPoolWeight,
+              cakePrice,
+              WETHPrice,
+              totalLiquidity,
+              farm.lpAddresses[chainId],
+              arxPerSec,
+              WETHPerSec,
+            )
+          : { cakeRewardsApr: 0, lpRewardsApr: 0 }
 
-      //   return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
-      // })
-
-      let farmsToDisplayWithAPR: FarmWithStakedValue[] = []
+        return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
+      })
 
       if (query) {
         const lowercaseQuery = latinise(query.toLowerCase())
