@@ -40,6 +40,7 @@ import {
   getCakeFlexibleSideVaultV2Contract,
   getCakePredictionsContract,
   getPredictionsV1Contract,
+  getXToken,
 } from 'utils/contractHelpers'
 import { getMulticallAddress, getPredictionsV1Address, getZapAddress } from 'utils/addressHelpers'
 import {
@@ -77,6 +78,15 @@ import { VaultKey } from '../state/types'
 
 export function useNftPool(address: string, withSignerIfPossible = true) {
   return useContract(address, nftPoolAbi, withSignerIfPossible)
+}
+
+export const useXToken = (withSignerIfPossible = true) => {
+  const { library, account, chainId } = useActiveWeb3React()
+  const signer = useMemo(
+    () => (withSignerIfPossible ? getProviderOrSigner(library, account) : null),
+    [withSignerIfPossible, library, account],
+  )
+  return useMemo(() => getXToken(chainId, signer), [chainId, signer])
 }
 
 export const useIfoV1Contract = (address: string) => {

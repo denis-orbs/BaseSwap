@@ -16,6 +16,7 @@ import { Token, ChainId } from '@magikswap/sdk'
 import { TokenInfo, TokenList, Tags } from '@uniswap/token-lists'
 import { parseUnits } from '@ethersproject/units'
 import { NftPoolsState } from './xFarms/types'
+import { XTokenState } from './xToken/types'
 
 /**
  * Token instances created from token info.
@@ -749,4 +750,5 @@ export interface State {
   lottery: LotteryState
   pottery: PotteryState
   nftPools: NftPoolsState
+  xToken: XTokenState
 }
