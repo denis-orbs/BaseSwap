@@ -27,6 +27,7 @@ import TypeIt from 'typeit-react'
 import 'animate.css'
 
 
+
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
   color: #fff;

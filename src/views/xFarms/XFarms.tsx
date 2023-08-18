@@ -19,11 +19,27 @@ import { useMatchBreakpoints, Toggle } from '@pancakeswap/uikit'
 import { getSortedFarmsLP } from './utils'
 import { getXFarmApr } from 'utils/apr'
 import { useNftPoolsFarms } from 'state/xFarms/hooks'
-import { useUserFarmStakedOnly } from 'state/user/hooks'
+import { useUserFarmStakedOnly, useUserFarmsViewMode } from 'state/user/hooks'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import useTokenPrices from 'hooks/useTokenPrices'
 import { getTokenAddress } from 'config/constants/token-info'
 import { useTranslation } from '@pancakeswap/localization'
+import TypeIt from 'typeit-react'
+import 'animate.css'
+import ToggleView from 'components/ToggleView/ToggleView'
+
+
+const WelcomeTypeIt = styled(TypeIt)`
+  font-weight: 400;
+  color: #fff;
+  text-align: left; 
+  margin-bottom: 12px;
+  text-transform: uppercase; 
+  font-size: 40px; 
+  @media (min-width: 768px) {
+    font-size: 68px; 
+  }
+`;
 
 interface TextProps {
   isMobile: boolean
@@ -59,20 +75,19 @@ export const XARXSubTitle = styled.div<TextProps>`
 
 const ControlContainer = styled.div`
   display: flex;
-  width: 90%;
+  width: 80%;
   align-items: center;
   position: relative;
-  justify-content: center;
+
+  justify-content: space-between;
   flex-direction: column;
-  margin-bottom: 8px;
-  margin-top: 1rem;
+  margin-bottom: 32px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
-    width: 70%;
     flex-wrap: wrap;
-    padding: 8px;
-    margin-bottom: 8px;
+    padding: 16px 32px;
+    margin-bottom: 0;
   }
 `
 
@@ -110,7 +125,6 @@ const ViewControls = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  margin: 10px;
 
   > div {
     padding: 8px 0px;
@@ -138,7 +152,12 @@ const Farms: React.FC = ({ children }) => {
   const { getTokenPrice } = useTokenPrices()
   const cakePrice = new BigNumber(getTokenPrice(getTokenAddress('ProtocolToken', chainId)))
   const WETHPrice = new BigNumber(getTokenPrice(getTokenAddress('WETH', chainId)))
-  const [query, setQuery] = useState(typeof urlQuery?.search === 'string' ? urlQuery?.search : '')
+  const [_query, setQuery] = useState('')
+  const normalizedUrlSearch = useMemo(() => (typeof urlQuery?.search === 'string' ? urlQuery.search : ''), [urlQuery])
+  const query = normalizedUrlSearch && !_query ? normalizedUrlSearch : _query
+
+  const [viewMode, setViewMode] = useUserFarmsViewMode()
+
   const [sortOption, setSortOption] = useState('hot')
   const { observerRef, isIntersecting } = useIntersectionObserver()
   const chosenFarmsLength = useRef(0)
@@ -307,67 +326,84 @@ const Farms: React.FC = ({ children }) => {
 
   return (
     <FarmsContext.Provider value={{ chosenFarmsMemoized }}>
-      <Page>
-        <PageHeader style={{}}>
-          <XARXTitle isMobile={isMobile}>{t('Farms')}</XARXTitle>
-          <XARXSubTitle isMobile={isMobile}>Earn BSX, xBSX, and BSWAP by staking LP tokens. </XARXSubTitle>
-          {/* <Text>
-            LOOKING FOR LEGACY FARMS? Find them&nbsp;
-            <u>
-              <a href="/legacyfarms">here</a>
-            </u>
-            !
-          </Text> */}
-        </PageHeader>
+    <Page>
+      <WelcomeTypeIt 
+          options={{
+            cursorChar:" ", 
+            cursorSpeed:1000000, speed: 75, 
+          }}
+          speed={10}
+          getBeforeInit={(instance) => {
+        instance
+
+            .type("FARMS", {speed: 5000})
+            ;
+        return instance;
+         }}> 
+         </WelcomeTypeIt>
         {!account ? (
           // <ConnectWalletButton width={['100%', null, null, '25%']} marginTop={['1rem', null, null, '3rem']} />
           <ConnectWalletButton />
         ) : (
           <>
-            <ControlContainer>
-              <FilterContainer>
-                <LabelWrapper>
-                  <Text textTransform="uppercase">{t('Sort by')}</Text>
-                  <Select
-                    options={[
-                      {
-                        label: t('Hot'),
-                        value: 'hot',
-                      },
-                      {
-                        label: t('APR'),
-                        value: 'apr',
-                      },
-                      // THIS DOESN'T WORK- NO PAWG HERE
-                      // {
-                      //   label: t('Earned'),
-                      //   value: 'earned',
-                      // },
-                      {
-                        label: t('Liquidity'),
-                        value: 'liquidity',
-                      },
-                    ]}
-                    onOptionChange={handleSortOptionChange}
-                  />
-                </LabelWrapper>
-                <LabelWrapper style={{ marginLeft: 16 }}>
-                  <Text textTransform="uppercase">{t('Search')}</Text>
-                  <SearchInput initialValue={query} onChange={handleChangeQuery} placeholder="Search Farms" />
-                </LabelWrapper>
-              </FilterContainer>
-              <ViewControls>
-                <ToggleWrapper>
-                  <Toggle
-                    id="staked-only-farms"
-                    checked={stakedOnlyState}
-                    onChange={() => setStakedOnly()}
-                    scale="sm"
-                  />
-                  <Text> {t('Staked only')}</Text>
-                </ToggleWrapper>
-              </ViewControls>
-            </ControlContainer>
+           <ControlContainer>
+          <ViewControls>
+            <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+              CHOOSE YOUR &nbsp;
+              <span style={{ textDecoration: 'line-through' }}>FIGHTER</span>
+              &nbsp;VIEW MODE:
+            </Text>
+            <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
+            {/* <ToggleWrapper>
+              <Toggle
+                id="staked-only-farms"
+                checked={stakedOnly}
+                onChange={() => setStakedOnly(!stakedOnly)}
+                scale="sm"
+              />
+              <Text> {t('Staked only')}</Text>
+            </ToggleWrapper> */}
+            {/* <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} /> */}
+          </ViewControls>
+          <FilterContainer>
+            <LabelWrapper>
+              <Text textTransform="uppercase">{t('Sort by')}</Text>
+              <Select
+                options={[
+                  {
+                    label: t('Hot'),
+                    value: 'hot',
+                  },
+                  {
+                    label: t('APR'),
+                    value: 'apr',
+                  },
+                  // {
+                  //   label: t('Multiplier'),
+                  //   value: 'multiplier',
+                  // },
+                  // {
+                  //   label: t('Earned'),
+                  //   value: 'earned',
+                  // },
+                  {
+                    label: t('Liquidity'),
+                    value: 'liquidity',
+                  },
+                  {
+                    label: t('Latest'),
+                    value: 'latest',
+                  },
+                ]}
+                onOptionChange={handleSortOptionChange}
+              />
+            </LabelWrapper>
+            <LabelWrapper style={{ marginLeft: 16 }}>
+              <Text textTransform="uppercase">{t('Search')}</Text>
+              <SearchInput initialValue={normalizedUrlSearch} onChange={handleChangeQuery} placeholder="Search Farms" />
+            </LabelWrapper>
+          </FilterContainer>
+        </ControlContainer>
 
             <FlexLayout style={{ paddingLeft: '8px' }}>{children}</FlexLayout>
             {account && !farmsLP.length && (
