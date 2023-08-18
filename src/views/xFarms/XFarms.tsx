@@ -120,9 +120,7 @@ const Farms: React.FC = ({ children }) => {
   const { account, chainId } = useWeb3React()
 
   //
-  const { WETHPerSec, farms: farmsLP } = useNftPoolsFarms()
-  // TODO: Starting at zero. This will be around what the emissions rate then
-  const arxPerSec = 0.15
+  const { arxPerSec, WETHPerSec, farms: farmsLP } = useNftPoolsFarms()
 
   const { t } = useTranslation()
   const { getTokenPrice } = useTokenPrices()
