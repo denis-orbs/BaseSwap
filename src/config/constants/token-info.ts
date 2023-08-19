@@ -22,8 +22,8 @@ export type StableTokenLookupKey =
   | 'DAIP'
   | 'USDT'
   | 'DAI'
-  | 'USD+'
-  | 'DAI+'
+  | 'USDPLUS'
+  | 'DAIPLUS'
   | 'axlUSDC'
   | 'USDbC'
 // Add to this list as needed
@@ -53,6 +53,16 @@ export type TokenLookupKey =
   | 'DAIP'
   | 'axlWBTC'
   | 'BBT'
+  | 'EDE'
+  | 'CBETH'
+  | 'MIM'
+  | 'YFX'
+  | 'AXLWBTC'
+  | 'MAG'
+  | 'BLAZE'
+  | 'UNIDX'
+  | 'BASIN'
+  | 'OGRE'
 
 export type TokenInfoMapping = {
   [key in TokenLookupKey]?: ITokenInfo
@@ -104,17 +114,16 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
       [ChainId.ARBITRUM]: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9',
     },
   },
-
-  'USD+': {
+  USDPLUS: {
     coinGeckoId: 'usd',
     addresses: {
-      [ChainId.ARBITRUM]: '0xe80772Eaf6e2E18B651F160Bc9158b2A5caFCA65',
+      [ChainId.BASE]: '0xB79DD08EA68A908A97220C76d19A6aA9cBDE4376',
     },
   },
-  'DAI+': {
+  DAIPLUS: {
     coinGeckoId: 'overnight-dai',
     addresses: {
-      [ChainId.ARBITRUM]: '0xeb8E93A0c7504Bffd8A8fFa56CD754c63aAeBFe8',
+      [ChainId.BASE]: '0x65a2508C429a6078a7BC2f7dF81aB575BD9D9275',
     },
   },
 }
@@ -153,7 +162,6 @@ export const TOKEN_INF0: TokenInfoMapping = {
       [ChainId.ARBITRUM]: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
     },
   },
-
   WBTC: {
     coinGeckoId: 'wrapped-bitcoin',
     addresses: {
@@ -215,6 +223,76 @@ export const TOKEN_INF0: TokenInfoMapping = {
     coinGeckoId: 'deus-finance-2',
     addresses: {
       [ChainId.ARBITRUM]: '0xDE5ed76E7c05eC5e4572CfC88d1ACEA165109E44',
+    },
+  },
+  EDE: {
+    coinGeckoId: 'wrong',
+    addresses: {
+      [ChainId.BASE]: '0x0A074378461FB7ed3300eA638c6Cc38246db4434',
+      [ChainId.ARBITRUM]: '0x0A074378461FB7ed3300eA638c6Cc38246db4434',
+    },
+  },
+  CBETH: {
+    coinGeckoId: 'wrong',
+    addresses: {
+      [ChainId.BASE]: '0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22',
+      [ChainId.ARBITRUM]: '0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22',
+    },
+  },
+  MIM: {
+    coinGeckoId: 'wrong',
+    addresses: {
+      [ChainId.BASE]: '0x4A3A6Dd60A34bB2Aba60D73B4C88315E9CeB6A3D',
+      [ChainId.ARBITRUM]: '0x4A3A6Dd60A34bB2Aba60D73B4C88315E9CeB6A3D',
+    },
+  },
+  YFX: {
+    coinGeckoId: 'wrong',
+    addresses: {
+      [ChainId.BASE]: '0x8901cB2e82CC95c01e42206F8d1F417FE53e7Af0',
+      [ChainId.ARBITRUM]: '0x8901cB2e82CC95c01e42206F8d1F417FE53e7Af0',
+    },
+  },
+  AXLWBTC: {
+    coinGeckoId: 'wrong',
+    addresses: {
+      [ChainId.BASE]: '0x1a35EE4640b0A3B87705B0A4B45D227Ba60Ca2ad',
+      [ChainId.ARBITRUM]: '0x1a35EE4640b0A3B87705B0A4B45D227Ba60Ca2ad',
+    },
+  },
+  MAG: {
+    coinGeckoId: 'wrong',
+    addresses: {
+      [ChainId.BASE]: '0x2DC1cDa9186a4993bD36dE60D08787c0C382BEAD',
+      [ChainId.ARBITRUM]: '0x2DC1cDa9186a4993bD36dE60D08787c0C382BEAD',
+    },
+  },
+  BLAZE: {
+    coinGeckoId: 'wrong',
+    addresses: {
+      [ChainId.BASE]: '0x37DEfBC399e5737D53Dfb5533d9954572F5B19bf',
+      [ChainId.ARBITRUM]: '0x37DEfBC399e5737D53Dfb5533d9954572F5B19bf',
+    },
+  },
+  UNIDX: {
+    coinGeckoId: 'wrong',
+    addresses: {
+      [ChainId.BASE]: '0x6B4712AE9797C199edd44F897cA09BC57628a1CF',
+      [ChainId.ARBITRUM]: '0x6B4712AE9797C199edd44F897cA09BC57628a1CF',
+    },
+  },
+  BASIN: {
+    coinGeckoId: 'wrong',
+    addresses: {
+      [ChainId.BASE]: '0x4788de271F50EA6f5D5D2a5072B8D3C61d650326',
+      [ChainId.ARBITRUM]: '0x4788de271F50EA6f5D5D2a5072B8D3C61d650326',
+    },
+  },
+  OGRE: {
+    coinGeckoId: 'wrong',
+    addresses: {
+      [ChainId.BASE]: '0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492',
+      [ChainId.ARBITRUM]: '0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492',
     },
   },
 }

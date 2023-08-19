@@ -191,7 +191,7 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
     getCombinedTokenPrices(chainId),
   ])
 
-  const { getPrice } = tokenPrices
+  const { prices } = tokenPrices
 
   const { poolLength, emissionRates, chefTotalAllocPoints, chefTotalAllocPointsWETH, dummyPoolAllocPointsWETH } =
     chefInfo
@@ -258,8 +258,8 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
 
     farm.lpTotalInQuoteToken = lpTotalInQuoteToken.toString()
 
-    const mainTokenPrice = farm.token.symbol === 'BBT' ? 1 : getPrice(farm.token.address)
-    const quoteTokenPrice = getPrice(farm.quoteToken.address)
+    const mainTokenPrice = farm.token.symbol === 'BBT' ? 1 : prices[farm.token.address.toString().toLowerCase()]
+    const quoteTokenPrice = prices[farm.quoteToken.address.toString().toLowerCase()]
 
     // console.log('mainAmountInLpTotal: ' + mainAmountInLpTotal.toNumber())
     // console.log('quoteTokenAmountInPool: ' + quoteTokenAmountInPool.toNumber())
@@ -267,8 +267,8 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
 
     if (farm.classic) {
       if (mainTokenPrice && quoteTokenPrice) {
-        const poolMainValue = mainTokenAmountInPool.times(mainTokenPrice).toNumber()
-        const poolQuoteValue = quoteTokenAmountInPool.times(quoteTokenPrice).toNumber()
+        const poolMainValue = mainTokenAmountInPool.times(new BigNumber(mainTokenPrice)).toNumber()
+        const poolQuoteValue = quoteTokenAmountInPool.times(new BigNumber(quoteTokenPrice)).toNumber()
         const tvl = poolMainValue + poolQuoteValue
         TVL += tvl
         farm.TVL = tvl
@@ -284,7 +284,7 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
       //   farm.TVL = tvl
       //   TVL += tvl
       // } else {
-      //   farm.TVL = 0
+      //   farm.TVL = 0s
       // }
     } else {
       farm.TVL = 0
