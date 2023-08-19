@@ -27,6 +27,8 @@ import { useTranslation } from '@pancakeswap/localization'
 import TypeIt from 'typeit-react'
 import 'animate.css'
 import ToggleView from 'components/ToggleView/ToggleView'
+import { priceDexScreener } from 'utils/tokenPricing'
+import { BIG_ZERO } from 'utils/bigNumber'
 
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
@@ -118,6 +120,7 @@ const NUMBER_OF_FARMS_VISIBLE = 40
 const Farms: React.FC = ({ children }) => {
   const { pathname, query: urlQuery } = useRouter()
   const { account, chainId } = useWeb3React()
+  
 
   //
   const { arxPerSec, WETHPerSec, farms: farmsLP } = useNftPoolsFarms()
@@ -129,7 +132,19 @@ const Farms: React.FC = ({ children }) => {
   const cakePrice = new BigNumber('0.9')
   // const cakePrice = new BigNumber(getTokenPrice(getTokenAddress('ProtocolToken', chainId)))
   // BSWAP is the "WETH" now
-  const WETHPrice = useMemo(() => new BigNumber(getTokenPrice(getTokenAddress('BSWAP', chainId))), [chainId])
+  const [WETHPrice, SETWETHPrice] = useState<BigNumber>(BIG_ZERO)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const price = await priceDexScreener(("0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9"));
+      console.log("PRICE", price)
+      SETWETHPrice(price)
+    };
+
+    fetchData();
+  }, []);
+
+  // const WETHPrice = useMemo(() => new BigNumber(getTokenPrice(getTokenAddress('BSWAP', chainId))), [chainId])
   const [_query, setQuery] = useState('')
   const normalizedUrlSearch = useMemo(() => (typeof urlQuery?.search === 'string' ? urlQuery.search : ''), [urlQuery])
   const query = normalizedUrlSearch && !_query ? normalizedUrlSearch : _query

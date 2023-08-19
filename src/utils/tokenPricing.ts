@@ -8,7 +8,7 @@ const screenerStorageKey = 'DS_TOKEN_PRICES'
 
 const wethCacheKey = 'WETH_PRICE'
 
-const priceDexScreener = async (address: any): Promise<any> => {
+export const priceDexScreener = async (address: any): Promise<any> => {
   const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${address}`, {
     method: 'GET',
   });
