@@ -179,6 +179,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.yfx,
     quoteToken: serializedTokens.usdbc,
+    classic: true,
   },
 
   {
