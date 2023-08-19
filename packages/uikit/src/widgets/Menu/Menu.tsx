@@ -189,7 +189,10 @@ const Menu: React.FC<NavProps> = ({
                 </Link>
                 
                 <DropdownContainer>
+                <Link href="/farm"  >
+
                     <Text marginRight="2rem">FARMS</Text>
+                </Link>
                         <DropdownMenu>
                            
                           
