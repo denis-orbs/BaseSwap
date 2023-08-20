@@ -41,23 +41,21 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
 
   let hasRewards = false
 
-  const mappedRewards = rewardsList
-    .filter((rw) => rw.token.toLowerCase() === bswapAddress.toLowerCase())
-    .map((rw) => {
-      const tokenAddress = rw.token == xTokenAddress ? arxAddress : rw.token
-      const { valueLabel } = getValueForAmount(tokenAddress, rw.pendingReward)
-      const rewardAmountDisplay = rw.pendingReward.toFixed(4)
+  const mappedRewards = rewardsList.map((rw) => {
+    const tokenAddress = rw.token == xTokenAddress ? arxAddress : rw.token
+    const { valueLabel } = getValueForAmount(tokenAddress, rw.pendingReward)
+    const rewardAmountDisplay = rw.pendingReward.toFixed(4)
 
-      if (parseFloat(rw.pendingReward) > 0) hasRewards = true
+    if (parseFloat(rw.pendingReward) > 0) hasRewards = true
 
-      return {
-        ...rw,
-        imgSrc: getTokenImage(rw.token),
-        rewardAmountDisplay,
-        valueLabel,
-        token: getTokenInstance(rw.token),
-      }
-    })
+    return {
+      ...rw,
+      imgSrc: getTokenImage(rw.token),
+      rewardAmountDisplay,
+      valueLabel,
+      token: getTokenInstance(rw.token),
+    }
+  })
 
   // const handleHarvest = useCallback(async () => {
   //   const receipt = await fetchWithCatchTxError(() => {
