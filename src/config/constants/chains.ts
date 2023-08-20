@@ -1,6 +1,11 @@
 import { SUPPORTED_CHAINS, SupportedChainsType } from '@baseswapfi/sdk-core'
 import { ChainId } from '@magikswap/sdk'
 
+export const CHAIN_IDS_TO_NAMES = {
+  [ChainId.BASE]: 'base',
+  [ChainId.BASE_GOERLI]: 'base_goerli',
+} as const
+
 export function isSupportedChain(
   chainId: number | null | undefined | ChainId,
   featureFlags?: Record<number, boolean>,

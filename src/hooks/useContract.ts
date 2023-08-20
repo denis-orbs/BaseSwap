@@ -57,10 +57,11 @@ import {
   Zap,
 } from 'config/abi/types'
 import zapAbi from 'config/abi/zap.json'
+import MulticallABI from 'config/abi/UniswapInterfaceMulticall.json'
 
 // Imports below migrated from Exchange useContract.ts
 import { Contract } from '@ethersproject/contracts'
-import { defaultRpcProvider } from 'utils/providers'
+import { DEFAULT_CHAIN_ID, defaultRpcProvider } from 'utils/providers'
 import { ChainId, WNATIVE } from '@magikswap/sdk'
 import IPancakePairABI from '../config/abi/IPancakePair.json'
 import { ERC20_BYTES32_ABI } from '../config/abi/erc20'
@@ -73,6 +74,8 @@ import { getContract, getProviderOrSigner } from '../utils'
 
 import { IPancakePair } from '../config/abi/types/IPancakePair'
 import { VaultKey } from '../state/types'
+import { UniswapInterfaceMulticall } from 'types/v3'
+import { MULTICALL_ADDRESSES } from '@baseswapfi/sdk-core'
 
 /**
  * Helper hooks to get specific contracts (by ABI)
@@ -394,7 +397,7 @@ function useContract<T extends Contract = Contract>(
 }
 
 export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean) {
-  return useContract<Erc20>(tokenAddress, ERC20_ABI, withSignerIfPossible)
+  return useContract(tokenAddress, ERC20_ABI, withSignerIfPossible)
 }
 
 export function useWBNBContract(withSignerIfPossible?: boolean): Contract | null {
@@ -427,4 +430,19 @@ export const usePotterytDrawContract = () => {
 
 export function useZapContract(withSignerIfPossible = true) {
   return useContract<Zap>(getZapAddress(), zapAbi, withSignerIfPossible)
+}
+
+export function useInterfaceMulticall() {
+  return useContract<UniswapInterfaceMulticall>(
+    MULTICALL_ADDRESSES[DEFAULT_CHAIN_ID],
+    MulticallABI,
+    false,
+  ) as UniswapInterfaceMulticall
+}
+
+export function useMainnetInterfaceMulticall() {
+  return useContract<UniswapInterfaceMulticall>(
+    MULTICALL_ADDRESSES[DEFAULT_CHAIN_ID],
+    MulticallABI,
+  ) as UniswapInterfaceMulticall
 }

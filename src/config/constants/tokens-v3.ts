@@ -1,5 +1,6 @@
-import { NativeCurrency, Token } from '@baseswapfi/sdk-core'
+import { Currency, NativeCurrency, Token } from '@baseswapfi/sdk-core'
 
+export const NATIVE_CHAIN_ID = 'NATIVE'
 const cachedNativeCurrency: { [chainId: number]: NativeCurrency | Token } = {}
 
 export function nativeOnChain(chainId: number): NativeCurrency | Token {

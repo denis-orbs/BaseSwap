@@ -4,6 +4,7 @@ import { BLOCKED_ADDRESSES } from './config/constants'
 import ListsUpdater from './state/lists/updater'
 import MulticallUpdater from './state/multicall/updater'
 import TransactionUpdater from './state/transactions/updater'
+import { MulticallUpdaterV3 } from 'lib/state/multicall'
 
 export function Updaters() {
   return (
@@ -11,6 +12,7 @@ export function Updaters() {
       <ListsUpdater />
       <TransactionUpdater />
       <MulticallUpdater />
+      <MulticallUpdaterV3 />
     </>
   )
 }

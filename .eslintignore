@@ -7,7 +7,11 @@ src/views/XToken/**/*.tsx
 src/components/Tooltip/**/*.tsx
 src/components/DoubleLogo/**/*.tsx
 src/state/mint/v3/**/*.ts
+src/state/transactions/v3/**/*.tsx
+src/state/transactions/v3/**/*.ts
 src/state/mint/v3/**/*.tsx
 src/utils/v3/**/*.ts
 src/hooks/v3/**/*.ts
 packages/uikit/src/theme/zIndex.ts
+src/lib/**/*.ts
+src/lib/**/*.tsx
