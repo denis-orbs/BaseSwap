@@ -100,6 +100,9 @@ function AddLiquidity() {
   const hasExistingPosition = !!existingPositionDetails && !positionLoading
   const { position: existingPosition } = useDerivedPositionInfo(existingPositionDetails)
 
+  // mint state
+  const { independentField, typedValue, startPriceTypedValue } = useV3MintState()
+
   return <div>Liq</div>
 }
 
