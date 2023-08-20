@@ -327,11 +327,10 @@ const Farms: React.FC = ({ children }) => {
             instance.type('FARMS', { speed: 5000 })
             return instance
           }}
-        ></WelcomeTypeIt>
-        {!account ? (
-          // <ConnectWalletButton width={['100%', null, null, '25%']} marginTop={['1rem', null, null, '3rem']} />
+        />
+        {/* {!account ? (
           <ConnectWalletButton />
-        ) : (
+        ) : ( */}
           <>
             <ControlContainer>
               <ViewControls>
@@ -404,7 +403,7 @@ const Farms: React.FC = ({ children }) => {
 
             <div ref={observerRef} />
           </>
-        )}
+        {/* )} */}
       </Page>
     </FarmsContext.Provider>
   )

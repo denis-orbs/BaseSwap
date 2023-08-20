@@ -33,8 +33,8 @@ const StyledCard = styled(Card)`
     margin: 0 0 0px 0 !important;
   }
   ${({ theme }) => theme.mediaQueries.sm} {
-    min-width: 80% !important;
-    max-width: 80% !important;
+    min-width: 90% !important;
+    max-width: 90% !important;
     margin: 0 0 0px 0 !important;
   }
 `
@@ -43,13 +43,13 @@ const NFTPoolCardInnerContainer = styled(Flex)`
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
-  padding: 24px;
+  padding: 0px;
 `
 const NFTPoolCardOuterContainer = styled(Flex)`
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 24px;
+  padding: 16px;
 `
 
 const ExpandingWrapper = styled.div<ExpandingWrapperProps>`
