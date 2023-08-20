@@ -63,8 +63,6 @@ export const getXFarmApr = (
     ? arxPoolWeight.times(SECONDS_PER_YEAR * arxPerSec)
     : new BigNumber(NaN)
 
-    console.log('cakePriceUsd',cakePriceUsd.toString())
-
   const yearlyWETHRewardAllocation = WETHPoolWeight
     ? WETHPoolWeight.times(SECONDS_PER_YEAR * WETHPerSec)
     : new BigNumber(NaN)
