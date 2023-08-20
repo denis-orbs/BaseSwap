@@ -57,13 +57,14 @@ import { useV3NFTPositionManagerContract } from 'hooks/useContract'
 import { useCurrency } from 'hooks/v3/Tokens'
 import { useRouter } from 'next/router'
 import { useV3PositionFromTokenId } from 'hooks/v3/useV3Positions'
+import { useDerivedPositionInfo } from 'hooks/v3/useDerivedPositionInfo'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
 
 function AddLiquidity() {
   const router = useRouter()
 
-  // TODO: Not sure this works like this
+  // TODO: Make sure this works like this
   const params: {
     currencyIdA?: string
     currencyIdB?: string
@@ -95,6 +96,9 @@ function AddLiquidity() {
   const { position: existingPositionDetails, loading: positionLoading } = useV3PositionFromTokenId(
     tokenId ? BigNumber.from(tokenId) : undefined,
   )
+
+  const hasExistingPosition = !!existingPositionDetails && !positionLoading
+  const { position: existingPosition } = useDerivedPositionInfo(existingPositionDetails)
 
   return <div>Liq</div>
 }
