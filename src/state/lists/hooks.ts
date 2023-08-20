@@ -41,7 +41,6 @@ const activeListUrlsSelector = createSelector(selectorActiveUrls, (urls) =>
 const combineTokenMapsWithDefault = (lists: AppState['lists']['byUrl'], urls: string[]) => {
   const defaultTokenMap = listToTokenMap(DEFAULT_TOKEN_LIST)
   if (!urls) return defaultTokenMap
-  const what = combineTokenMaps(lists, urls)
   return combineMaps(combineTokenMaps(lists, urls), defaultTokenMap)
 }
 

@@ -1,6 +1,11 @@
 import { ChainId, Token, WBNB } from '@magikswap/sdk'
 import { DEFAULT_CHAIN_ID } from 'utils/providers'
 
+// When decimals are not specified for an ERC20 token
+// use default ERC20 token decimals as specified here:
+// https://docs.openzeppelin.com/contracts/3.x/erc20
+export const DEFAULT_ERC20_DECIMALS = 18
+
 const CAKE_MAINNET = new Token(
   ChainId.MAINNET,
   '0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9',
@@ -2685,3 +2690,9 @@ export const WRAPPED_NATIVE_CURRENCY = {
 }
 
 export const currentTokenMap = TOKENS_CHAIN_MAP[DEFAULT_CHAIN_ID]
+
+export const TOKEN_SHORTHANDS: { [shorthand: string]: { [chainId in ChainId]?: string } } = {
+  USDC: {
+    [ChainId.BASE]: USDC_BASE.address,
+  },
+}

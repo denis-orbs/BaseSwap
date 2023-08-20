@@ -69,13 +69,18 @@ import ERC20_ABI from '../config/abi/erc20.json'
 import WETH_ABI from '../config/abi/weth.json'
 import multiCallAbi from '../config/abi/Multicall.json'
 import nftPoolAbi from 'config/abi/NFTPool.json'
+import NFTPositionManagerABI from 'config/abi/NonFungiblePositionManager.json'
 
 import { getContract, getProviderOrSigner } from '../utils'
 
 import { IPancakePair } from '../config/abi/types/IPancakePair'
 import { VaultKey } from '../state/types'
 import { UniswapInterfaceMulticall } from 'types/v3'
-import { MULTICALL_ADDRESSES } from '@baseswapfi/sdk-core'
+import {
+  MULTICALL_ADDRESSES,
+  NONFUNGIBLE_POSITION_MANAGER_ADDRESSES,
+  NonfungiblePositionManager,
+} from '@baseswapfi/sdk-core'
 
 /**
  * Helper hooks to get specific contracts (by ABI)
@@ -440,9 +445,13 @@ export function useInterfaceMulticall() {
   ) as UniswapInterfaceMulticall
 }
 
-export function useMainnetInterfaceMulticall() {
-  return useContract<UniswapInterfaceMulticall>(
-    MULTICALL_ADDRESSES[DEFAULT_CHAIN_ID],
-    MulticallABI,
-  ) as UniswapInterfaceMulticall
+export function useV3NFTPositionManagerContract(
+  chainId: number,
+  withSignerIfPossible = true,
+): NonfungiblePositionManager | null {
+  return useContract(
+    NONFUNGIBLE_POSITION_MANAGER_ADDRESSES[chainId],
+    NFTPositionManagerABI,
+    withSignerIfPossible,
+  ) as NonfungiblePositionManager
 }
