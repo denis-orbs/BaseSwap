@@ -115,24 +115,21 @@ const NFTPoolCardTable: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnl
 
   let hasRewards = false
 
-  const mappedRewards = rewardsList
-    .filter((rw) => rw.token.toLowerCase() === bswapAddress.toLowerCase())
-    .map((rw) => {
-      const tokenAddress = rw.token == xTokenAddress ? arxAddress : rw.token
-      const { valueLabel } = getValueForAmount(tokenAddress, rw.pendingReward)
-      const rewardAmountDisplay = rw.pendingReward.toFixed(4)
+  const mappedRewards = rewardsList.map((rw) => {
+    const tokenAddress = rw.token == xTokenAddress ? arxAddress : rw.token
+    const { valueLabel } = getValueForAmount(tokenAddress, rw.pendingReward)
+    const rewardAmountDisplay = rw.pendingReward.toFixed(4)
 
-      if (parseFloat(rw.pendingReward) > 0) hasRewards = true
+    if (parseFloat(rw.pendingReward) > 0) hasRewards = true
 
-      return {
-        ...rw,
-        imgSrc: getTokenImage(rw.token),
-        rewardAmountDisplay,
-        valueLabel,
-        token: getTokenInstance(rw.token),
-      }
-    })
-
+    return {
+      ...rw,
+      imgSrc: getTokenImage(rw.token),
+      rewardAmountDisplay,
+      valueLabel,
+      token: getTokenInstance(rw.token),
+    }
+  })
 
   return (stakedOnly && parseInt(stakedBalance.toString()) > 0) || !stakedOnly ? (
     <StyledCard isActive={isPromotedFarm}>
@@ -200,7 +197,7 @@ const NFTPoolCardTable: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnl
             </Flex>
           )}
           {mappedRewards.length > 0 &&
-            <Flex flexDirection="column" minWidth={300}>
+            <Flex flexDirection="row" minWidth={300}>
               <Flex flexDirection="row" flexWrap="wrap" alignItems="flex-start">
                 {mappedRewards.map((rw, i) => (
                   <Flex key={i} alignItems="center" justifyContent="flex-start" mt="0px" ml="1px" width="100%">
