@@ -20,6 +20,14 @@
       "logoURI": ""
     },
     {
+      "name": "Base X",
+      "symbol": "BSX",
+      "address": "0xd5046B976188EB40f6DE40fB527F89c05b323385",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "USD Base Coin",
       "symbol": "USDC",
       "address": "0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA",
