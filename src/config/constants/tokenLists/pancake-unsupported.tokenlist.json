@@ -192,6 +192,13 @@
       "address": "0xE9BfBD154c41f52C521eD456E6911B2d7f7011A3", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "Scam BSX", 
+      "symbol": "SCAM BSX", 
+      "address": "0x0eBfE5CD917Ff94bbD0ee456FAA1A75fbB768DCc", 
+      "chainId": 8453,
+      "decimals": 18
     }
 
 
