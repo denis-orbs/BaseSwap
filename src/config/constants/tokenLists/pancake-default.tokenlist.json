@@ -10,14 +10,7 @@
   "logoURI": "https://pancakeswap.finance/logo.png",
   "keywords": ["baseswap", "default"],
   "tokens": [
-    {
-      "name": "Big Booby Things",
-      "symbol": "BBT",
-      "address": "0x8DFAf055e21B16302DBf00815e5b4d9b6042a4Df",
-      "chainId": 8453,
-      "decimals": 18,
-      "logoURI": ""
-    },
+
     {
       "name": "BaseSwap Token",
       "symbol": "BSWAP",
