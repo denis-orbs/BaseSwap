@@ -63,6 +63,7 @@ export type TokenLookupKey =
   | 'UNIDX'
   | 'BASIN'
   | 'OGRE'
+  | 'BSX'
 
 export type TokenInfoMapping = {
   [key in TokenLookupKey]?: ITokenInfo
@@ -153,6 +154,12 @@ export const TOKEN_INF0: TokenInfoMapping = {
     dexscreenerPair: '0xE80B4F755417FB4baF4dbd23C029db3F62786523',
     addresses: {
       [ChainId.BASE]: '0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9',
+    },
+  },
+  BSX: {
+    dexscreenerPair: '0x7fea0384f38ef6ae79bb12295a9e10c464204f52',
+    addresses: {
+      [ChainId.BASE]: '0xd5046B976188EB40f6DE40fB527F89c05b323385',
     },
   },
   WETH: {
