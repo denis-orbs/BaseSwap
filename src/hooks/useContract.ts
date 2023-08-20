@@ -75,12 +75,8 @@ import { getContract, getProviderOrSigner } from '../utils'
 
 import { IPancakePair } from '../config/abi/types/IPancakePair'
 import { VaultKey } from '../state/types'
-import { UniswapInterfaceMulticall } from 'types/v3'
-import {
-  MULTICALL_ADDRESSES,
-  NONFUNGIBLE_POSITION_MANAGER_ADDRESSES,
-  NonfungiblePositionManager,
-} from '@baseswapfi/sdk-core'
+import { NonfungiblePositionManager, UniswapInterfaceMulticall } from 'types/v3'
+import { MULTICALL_ADDRESSES, NONFUNGIBLE_POSITION_MANAGER_ADDRESSES } from '@baseswapfi/sdk-core'
 
 /**
  * Helper hooks to get specific contracts (by ABI)
@@ -449,9 +445,9 @@ export function useV3NFTPositionManagerContract(
   chainId: number,
   withSignerIfPossible = true,
 ): NonfungiblePositionManager | null {
-  return useContract(
+  return useContract<NonfungiblePositionManager>(
     NONFUNGIBLE_POSITION_MANAGER_ADDRESSES[chainId],
     NFTPositionManagerABI,
     withSignerIfPossible,
-  ) as NonfungiblePositionManager
+  )
 }

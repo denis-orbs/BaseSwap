@@ -56,6 +56,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useV3NFTPositionManagerContract } from 'hooks/useContract'
 import { useCurrency } from 'hooks/v3/Tokens'
 import { useRouter } from 'next/router'
+import { useV3PositionFromTokenId } from 'hooks/v3/useV3Positions'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
 
@@ -88,6 +89,12 @@ function AddLiquidity() {
     feeAmountFromUrl && Object.values(FeeAmount).includes(parseFloat(feeAmountFromUrl))
       ? parseFloat(feeAmountFromUrl)
       : undefined
+
+  // check for existing position if tokenId in url
+  const tokenId = params?.tokenId
+  const { position: existingPositionDetails, loading: positionLoading } = useV3PositionFromTokenId(
+    tokenId ? BigNumber.from(tokenId) : undefined,
+  )
 
   return <div>Liq</div>
 }
