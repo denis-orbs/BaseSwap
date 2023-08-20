@@ -36,6 +36,20 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
   },
+  {
+    pid: 16,
+    lpSymbol: 'BSX-ETH LP',
+    lpAddresses: {
+      [ChainId.BASE_GOERLI]: '0x7fea0384f38ef6ae79bb12295a9e10c464204f52',
+      [ChainId.BASE]: '0x7fea0384f38ef6ae79bb12295a9e10c464204f52',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0x7C04bF2bb7D27982810E432B188FA0C7729e651d',
+    },
+    token: serializedTokens.bsx,
+    quoteToken: serializedTokens.wbnb,
+    classic: true,
+  },
 
   {
     pid: 14,
