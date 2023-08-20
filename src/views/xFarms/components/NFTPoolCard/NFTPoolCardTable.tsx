@@ -197,8 +197,8 @@ const NFTPoolCardTable: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnl
             </Flex>
           )}
           {mappedRewards.length > 0 &&
-            <Flex flexDirection="row" minWidth={300}>
-              <Flex flexDirection="row" flexWrap="wrap" alignItems="flex-start">
+            <Flex flexDirection="row" minWidth={800}>
+              <Flex flexDirection="row" alignItems="flex-start">
                 {mappedRewards.map((rw, i) => (
                   <Flex key={i} alignItems="center" justifyContent="flex-start" mt="0px" ml="1px" width="100%">
                     <TokenImage src={rw.imgSrc} width={30} height={30} mr="10px" />
