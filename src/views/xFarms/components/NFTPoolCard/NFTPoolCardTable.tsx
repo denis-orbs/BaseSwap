@@ -150,7 +150,7 @@ const NFTPoolCardTable: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnl
           // multiplier={farm.multiplier}
           />
           {!removed && (
-            <Flex flexDirection="column" justifyContent="flex-start" alignItems="center" mr="60px">
+            <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start" mr="60px">
               <Text>{t('APR')}:</Text>
               <Text bold style={{ display: 'flex', alignItems: 'center' }}>
                 {farm.apr ? (
@@ -197,7 +197,7 @@ const NFTPoolCardTable: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnl
             </Flex>
           )}
           {mappedRewards.length > 0 &&
-            <Flex flexDirection="row" minWidth={800}>
+            <Flex flexDirection="row">
               <Flex flexDirection="row" alignItems="flex-start">
                 {mappedRewards.map((rw, i) => (
                   <Flex key={i} alignItems="center" justifyContent="flex-start" mt="0px" ml="1px" width="100%">

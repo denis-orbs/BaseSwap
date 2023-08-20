@@ -101,14 +101,15 @@ const ViewControls = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-
+  display: none;
   > div {
     padding: 8px 0px;
   }
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.lg} {
     justify-content: flex-start;
     width: auto;
+    display: flex;
 
     > div {
       padding: 0;

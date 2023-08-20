@@ -96,8 +96,7 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
   return (
     <Flex flexDirection="column" width="100%" mt="10px">
       <Text>{title}</Text>
-
-      <Flex flexDirection="row" flexWrap="wrap">
+      <Flex flexDirection="row" flexWrap={table? "nowrap" : "wrap"}>
         {mappedRewards.map((rw, i) => (
           <Flex key={i} alignItems="center" alignContent="center" mt="0px" ml="1px" width={['100%', '48%']}>
             <TokenImage src={rw.imgSrc} width={30} height={30} />

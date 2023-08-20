@@ -63,7 +63,7 @@ const CardHeadingTable: React.FC<ExpandableSectionProps> = ({
   // add in stable props
 
   return (
-    <Wrapper justifyContent="flex-start" alignItems="center" mb="12px" mr="60px">
+    <Wrapper justifyContent="flex-start" alignItems="center" mb="12px" mr="60px" minWidth="400px">
       <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
       <Flex flexDirection="column">
         <Flex>
