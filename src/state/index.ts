@@ -27,6 +27,7 @@ import transactions from './transactions/reducer'
 import user from './user/reducer'
 import nftPoolsReducer from './xFarms'
 import xTokenReducer from './xToken'
+import mintV3 from './mint/v3/reducer'
 
 const PERSISTED_KEYS: string[] = ['user', 'transactions']
 
@@ -78,6 +79,7 @@ const persistedReducer = persistReducer(
     transactions,
     swap,
     mint,
+    mintV3,
     burn,
     multicall,
     lists: persistReducer(ListsConfig, lists),

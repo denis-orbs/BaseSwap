@@ -2680,4 +2680,8 @@ export const TOKENS_CHAIN_MAP = {
   [ChainId.BASE]: baseTokens,
 }
 
+export const WRAPPED_NATIVE_CURRENCY = {
+  [ChainId.BASE]: baseTokens.wbnb,
+}
+
 export const currentTokenMap = TOKENS_CHAIN_MAP[DEFAULT_CHAIN_ID]

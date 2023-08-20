@@ -38,6 +38,7 @@
     ]
   },
   "dependencies": {
+    "@baseswapfi/sdk-core": "^1.0.1",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@blocto/blocto-connector": "^0.2.3",
     "@ethersproject/abi": "^5.5.0",
@@ -73,6 +74,7 @@
     "graphql-request": "^4.2.0",
     "install": "^0.13.0",
     "js-cookie": "^3.0.1",
+    "jsbi": "^3.1.4",
     "lightweight-charts": "^3.8.0",
     "lint-staged": "^12.3.4",
     "local-storage": "^2.0.0",
@@ -81,6 +83,7 @@
     "next": "^12.2.1",
     "next-themes": "^0.2.0",
     "numeral": "^2.0.6",
+    "polished": "^3.3.2",
     "react": "^17.0.1",
     "react-card-flip": "^1.1.6",
     "react-countup": "^6.3.0",
@@ -88,6 +91,7 @@
     "react-device-detect": "^2.1.2",
     "react-dom": "^17.0.1",
     "react-fast-marquee": "^1.6.0",
+    "react-feather": "^2.0.10",
     "react-icons": "^4.10.1",
     "react-markdown": "^6.0.2",
     "react-player": "^2.12.0",

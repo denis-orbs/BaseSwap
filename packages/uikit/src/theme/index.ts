@@ -32,3 +32,13 @@ export { darkColors, lightColors } from "./colors";
 export { default as dark } from "./dark";
 export { default as light } from "./dark";
 export * from "./types";
+export * from "./zIndex";
+
+const gapValues = {
+  xs: "4px",
+  sm: "8px",
+  md: "12px",
+  lg: "24px",
+  xl: "32px",
+};
+export type Gap = keyof typeof gapValues;

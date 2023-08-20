@@ -1,5 +1,4 @@
 import { Currency, ETHER, Token } from '@magikswap/sdk'
-import { BinanceIcon } from '@pancakeswap/uikit'
 import { useMemo } from 'react'
 import styled from 'styled-components'
 import { WrappedTokenInfo } from 'state/types'
