@@ -185,6 +185,13 @@
       "address": "0x55ED0a35356d63A6689989858D3BbeC3aE6625e3", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "CHEEMS", 
+      "symbol": "CHEEMS", 
+      "address": "0xE9BfBD154c41f52C521eD456E6911B2d7f7011A3", 
+      "chainId": 8453,
+      "decimals": 18
     }
 
 
