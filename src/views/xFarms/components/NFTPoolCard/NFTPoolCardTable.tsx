@@ -26,20 +26,27 @@ const StyledCard = styled(Card)`
   align-self: baseline;
   min-width: 100% !important;
   max-width: 100% !important;
-  margin: 0 0 24px 0;
+  margin: 0 0 0px 0 !important;
   ${({ theme }) => theme.mediaQueries.md} {
     max-width: 100% !important;
     width: 100% !important
+    margin: 0 0 0px 0 !important;
   }
   ${({ theme }) => theme.mediaQueries.sm} {
     min-width: 80% !important;
     max-width: 80% !important;
-    margin: 0 12px 24px;
+    margin: 0 0 0px 0 !important;
   }
 `
 
 const NFTPoolCardInnerContainer = styled(Flex)`
-  flex-direction: rown;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 24px;
+`
+const NFTPoolCardOuterContainer = styled(Flex)`
+  flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 24px;
@@ -94,6 +101,7 @@ const NFTPoolCardTable: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnl
 
   return (stakedOnly && parseInt(stakedBalance.toString()) > 0) || !stakedOnly ? (
     <StyledCard isActive={isPromotedFarm}>
+      <NFTPoolCardOuterContainer>
       <NFTPoolCardInnerContainer>
         <CardHeadingTable
           lpLabel={lpLabel}
@@ -110,7 +118,7 @@ const NFTPoolCardTable: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnl
         // multiplier={farm.multiplier}
         />
          {!removed && (
-          <Flex flexDirection="column" justifyContent="flex-start" alignItems="center">
+          <Flex flexDirection="column" justifyContent="flex-start" alignItems="center" mr="60px">
             <Text>{t('APR')}:</Text>
             <Text bold style={{ display: 'flex', alignItems: 'center' }}>
               {farm.apr ? (
@@ -153,8 +161,9 @@ const NFTPoolCardTable: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnl
             </Flex>
           </Flex>
         )}
-        <ExpandableSectionButton onClick={toggleExpandableSection} expanded={showExpandableSection} />
       </NFTPoolCardInnerContainer>
+      <ExpandableSectionButton onClick={toggleExpandableSection} expanded={showExpandableSection} />
+      </NFTPoolCardOuterContainer>
 
       <ExpandingWrapper expanded={showExpandableSection}>
         {showExpandableSection && (

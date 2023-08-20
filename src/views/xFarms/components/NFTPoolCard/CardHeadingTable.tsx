@@ -22,6 +22,7 @@ export interface ExpandableSectionProps {
 }
 
 const Wrapper = styled(Flex)`
+  min-width: 300px;
   svg {
     margin-right: 4px;
   }
@@ -62,7 +63,7 @@ const CardHeadingTable: React.FC<ExpandableSectionProps> = ({
   // add in stable props
 
   return (
-    <Wrapper justifyContent="flex-start" alignItems="center" mb="12px">
+    <Wrapper justifyContent="flex-start" alignItems="center" mb="12px" mr="60px">
       <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
       <Flex flexDirection="column">
         <Flex>
