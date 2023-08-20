@@ -5,6 +5,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Text, Flex, Spinner } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
+import { ViewMode } from 'state/user/actions'
 import Page from 'views/Page'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { DeserializedFarm } from 'state/types'
@@ -120,10 +121,13 @@ const NUMBER_OF_FARMS_VISIBLE = 40
 const Farms: React.FC = ({ children }) => {
   const { pathname, query: urlQuery } = useRouter()
   const { account, chainId } = useWeb3React()
-  
+
+  console.log('children', children)
+
 
   //
   const { arxPerSec, WETHPerSec, farms: farmsLP } = useNftPoolsFarms()
+  const farmsReady = !account || (!!account && farmsLP)
 
   const { t } = useTranslation()
   const { getTokenPrice } = useTokenPrices()
@@ -310,7 +314,7 @@ const Farms: React.FC = ({ children }) => {
   chosenFarmsLength.current = chosenFarmsMemoized.length
 
   return (
-    <FarmsContext.Provider value={{ chosenFarmsMemoized }}>
+    <FarmsContext.Provider value={{ chosenFarmsMemoized, viewMode }}>
       <Page>
         <WelcomeTypeIt
           options={{
@@ -391,7 +395,6 @@ const Farms: React.FC = ({ children }) => {
                 </LabelWrapper>
               </FilterContainer>
             </ControlContainer>
-
             <FlexLayout className="animate__animated animate__fadeInUp">{children}</FlexLayout>
             {account && !farmsLP.length && (
               <Flex justifyContent="center">
@@ -407,6 +410,6 @@ const Farms: React.FC = ({ children }) => {
   )
 }
 
-export const FarmsContext = createContext({ chosenFarmsMemoized: [] })
+export const FarmsContext = createContext({ chosenFarmsMemoized: [], viewMode: ViewMode.CARD })
 
 export default Farms

@@ -168,7 +168,7 @@ const FarmTable: React.FC<ITableProps> = ({ farms, cakePrice, userDataReady }) =
           <StyledTable>
             <TableBody>
               {sortedRows.map((row) => {
-                return <Row    {...row} userDataReady={userDataReady} key={`table-row-${row.farm.pid}`} />
+                return <Row {...row} userDataReady={userDataReady} key={`table-row-${row.farm.pid}`} />
               })}
             </TableBody>
           </StyledTable>
