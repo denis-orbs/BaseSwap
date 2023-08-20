@@ -1,7 +1,7 @@
 import { Button, Flex, Skeleton, Text } from '@pancakeswap/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { FarmWithStakedValue } from '../types'
 import StakeAction from './StakeAction'
 import { useWeb3React } from '@web3-react/core'
@@ -13,17 +13,30 @@ import { useCallback } from 'react'
 import { useTranslation } from '@pancakeswap/localization'
 import useNftPools from 'views/xFarms/hooks/useNftPools'
 
-const Action = styled.div`
-  padding-top: 16px;
+interface ActionProps {
+  table?: boolean;
+}
+
+const Action = styled.div<ActionProps>`
+${({ table }) =>
+    table
+      ? css`
+      margin-bottom: 12px;
+    `
+      : css`
+      margin-bottom: 0px;
+    `}
+    padding-top: 16px;
 `
 
 interface FarmCardActionsProps {
   farm: FarmWithStakedValue
   addLiquidityUrl?: string
   lpLabel?: string
+  table?: boolean
 }
 
-const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lpLabel }) => {
+const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lpLabel, table }) => {
   const { account, chainId } = useWeb3React()
   const { t } = useTranslation()
   const { lpAddresses, nftPoolAddress } = farm
@@ -50,8 +63,8 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
   }
 
   return (
-    <Action>
-      
+    <Action table={table}>
+
       {/* <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
           BSX
@@ -76,7 +89,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
           {renderApprovalOrStakeButton()}
 
           <Flex marginTop="0px">
-            {position ? <PendingRewards position={position} harvestPosition={harvestFunction} /> : <Skeleton />}
+            {position ? <PendingRewards position={position} harvestPosition={harvestFunction} table/> : <Skeleton />}
           </Flex>
 
           {/* {farm.nitroPoolAddress && <NitroPoolInfo position={position} />} */}
