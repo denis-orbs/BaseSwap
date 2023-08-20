@@ -68,9 +68,9 @@ export const getXFarmApr = (
     : new BigNumber(NaN)
 
   const cakeRewardsApr = 
-  // yearlyCakeRewardAllocation
-    // .times(cakePriceUsd)
-    // .plus
+  yearlyCakeRewardAllocation
+    .times(cakePriceUsd)
+    .plus
     (yearlyWETHRewardAllocation.times(WETHPriceUsd))
     .div(poolLiquidityUsd)
     .times(100)
