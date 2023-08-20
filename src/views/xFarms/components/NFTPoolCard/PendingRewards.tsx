@@ -1,5 +1,6 @@
 import { Button, Flex, Text, TokenImage } from '@pancakeswap/uikit'
 import { IPositionInfo } from 'state/xFarms/types'
+import styled, { css } from 'styled-components'
 import useTokenPrices from 'hooks/useTokenPrices'
 import { useTranslation } from '@pancakeswap/localization'
 import { getTokenAddress, getTokenImage, getTokenInstance } from 'config/constants/token-info'
@@ -12,7 +13,24 @@ interface PendingRewardProps {
   title?: string
   nitro?: boolean
   pendingTx?: boolean
+  table?: boolean
 }
+
+interface StyledButtonProps {
+  table?: boolean;
+}
+
+const StyledButton = styled(Button)<StyledButtonProps>`
+${({ table }) =>
+    table
+      ? css`
+      margin-top: 12px;
+    `
+      : css`
+      margin-top: 0px;
+    `}
+`
+
 
 const PendingRewards: React.FC<PendingRewardProps> = ({
   position,
@@ -20,6 +38,7 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
   title = 'PENDING REWARDS',
   nitro,
   pendingTx,
+  table
 }) => {
   const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
@@ -103,9 +122,9 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
         ))}
       </Flex>
 
-      <Button disabled={!hasRewards || pendingTx} onClick={harvestPosition}>
+      <StyledButton disabled={!hasRewards || pendingTx} onClick={harvestPosition} table={table}>
         HARVEST
-      </Button>
+      </StyledButton>
     </Flex>
   )
 }

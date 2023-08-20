@@ -94,6 +94,17 @@ export abstract class Router {
     let methodName: string
     let args: (string | string[])[]
     let value: string
+
+    console.log('etherIn',etherIn)
+    console.log('etherOut',etherOut)
+    console.log('to',to)
+    console.log('amountIn',amountIn.toString())
+    console.log('amountOut',amountOut.toString())
+    console.log('path',path)
+    console.log('trade',trade)
+
+    debugger;
+
     switch (trade.tradeType) {
       case TradeType.EXACT_INPUT:
         if (etherIn) {

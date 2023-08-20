@@ -1,8 +1,10 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import styled, { css } from 'styled-components'
 import { BigNumber } from 'bignumber.js'
-import { Card, Flex, Text, Skeleton } from '@pancakeswap/uikit'
+import useTokenPrices from 'hooks/useTokenPrices'
+import { Card, Flex, Text, Skeleton, TokenImage } from '@pancakeswap/uikit'
 import { getBscScanLink } from 'utils'
+import { getTokenAddress, getTokenImage, getTokenInstance } from 'config/constants/token-info'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import { getAddress } from 'utils/addressHelpers'
@@ -49,7 +51,7 @@ const NFTPoolCardOuterContainer = styled(Flex)`
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 16px;
+  padding: 8px;
 `
 
 const ExpandingWrapper = styled.div<ExpandingWrapperProps>`
@@ -79,6 +81,7 @@ const NFTPoolCardTable: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnl
     quoteTokenAddress: farm.quoteToken.address,
     tokenAddress: farm.token.address,
   })
+  const { getValueForAmount } = useTokenPrices()
 
   const earnLabel = t('BSWAP')
   const lpLabel = farm.lpSymbol && farm.lpSymbol.replace('PANCAKE', '')
@@ -99,76 +102,138 @@ const NFTPoolCardTable: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnl
   const position = getInitialPoolPosition(nftPoolAddress[chainId])
   const stakedBalance = position?.stakedBalance || BIG_ZERO
 
+  let rewardsList = []
+  // if (nitro) {
+  //   rewardsList = position?.nitroUserInfo?.pendingNitroRewards || []
+  // } else {
+  rewardsList = position?.pendingRewards || []
+  // }
+
+  const xTokenAddress = useMemo(() => getTokenAddress('xProtocolToken', chainId), [chainId])
+  const arxAddress = useMemo(() => getTokenAddress('ProtocolToken', chainId), [chainId])
+  const bswapAddress = useMemo(() => getTokenAddress('BSWAP', chainId), [chainId])
+
+  let hasRewards = false
+
+  const mappedRewards = rewardsList
+    .filter((rw) => rw.token.toLowerCase() === bswapAddress.toLowerCase())
+    .map((rw) => {
+      const tokenAddress = rw.token == xTokenAddress ? arxAddress : rw.token
+      const { valueLabel } = getValueForAmount(tokenAddress, rw.pendingReward)
+      const rewardAmountDisplay = rw.pendingReward.toFixed(4)
+
+      if (parseFloat(rw.pendingReward) > 0) hasRewards = true
+
+      return {
+        ...rw,
+        imgSrc: getTokenImage(rw.token),
+        rewardAmountDisplay,
+        valueLabel,
+        token: getTokenInstance(rw.token),
+      }
+    })
+
+
   return (stakedOnly && parseInt(stakedBalance.toString()) > 0) || !stakedOnly ? (
     <StyledCard isActive={isPromotedFarm}>
       <NFTPoolCardOuterContainer>
-      <NFTPoolCardInnerContainer>
-        <CardHeadingTable
-          lpLabel={lpLabel}
-          token={farm.token}
-          quoteToken={farm.quoteToken}
-          quantum={farm.quantum}
-          isNew={farm.isNew}
-          narrow={farm.narrow}
-          classic={farm.classic}
-          wide={farm.wide}
-          stable={farm.stable}
-          isCore={farm.isCore}
-          earnLabel={earnLabel}
-        // multiplier={farm.multiplier}
-        />
-         {!removed && (
-          <Flex flexDirection="column" justifyContent="flex-start" alignItems="center" mr="60px">
-            <Text>{t('APR')}:</Text>
-            <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-              {farm.apr ? (
-                <span>{`${Number(Number(farm.apr).toFixed(2)).toLocaleString()}%`}</span>
-              ) : (
-                <Skeleton height={24} width={80} />
-              )}
-            </Text>
-          </Flex>
-        )}
-        {new BigNumber(stakedBalance).gt(0) && new BigNumber(lpPrice).gt(0) && (
-          <Flex flexDirection="column" justifyContent="flex-start" alignItems="center">
-            <Text>{t('STAKED BALANCE')}:</Text>
-            <Balance
-              color="textSubtle"
-              decimals={2}
-              value={
-                sharePrice
-                  ? getBalanceNumber(new BigNumber(sharePrice).times(stakedBalance))
-                  : getBalanceNumber(new BigNumber(lpPrice).times(stakedBalance))
-              }
-              unit=" USD"
-              prefix="~"
-            />
-            <Flex style={{ gap: '4px' }}>
-              <Balance
-                fontSize="12px"
-                color="textSubtle"
-                decimals={4}
-                value={new BigNumber(stakedBalance).div(1e18).div(lpTotalSupply).times(tokenAmountTotal).toNumber()}
-                unit={` ${token.symbol}`}
-              />
-              <Balance
-                fontSize="12px"
-                color="textSubtle"
-                decimals={4}
-                value={new BigNumber(stakedBalance).div(1e18).div(lpTotalSupply).times(quoteTokenAmountTotal).toNumber()}
-                unit={` ${quoteToken.symbol}`}
-              />
+        <NFTPoolCardInnerContainer>
+          <CardHeadingTable
+            lpLabel={lpLabel}
+            token={farm.token}
+            quoteToken={farm.quoteToken}
+            quantum={farm.quantum}
+            isNew={farm.isNew}
+            narrow={farm.narrow}
+            classic={farm.classic}
+            wide={farm.wide}
+            stable={farm.stable}
+            isCore={farm.isCore}
+            earnLabel={earnLabel}
+          // multiplier={farm.multiplier}
+          />
+          {!removed && (
+            <Flex flexDirection="column" justifyContent="flex-start" alignItems="center" mr="60px">
+              <Text>{t('APR')}:</Text>
+              <Text bold style={{ display: 'flex', alignItems: 'center' }}>
+                {farm.apr ? (
+                  <span>{`${Number(Number(farm.apr).toFixed(2)).toLocaleString()}%`}</span>
+                ) : (
+                  <Skeleton height={24} width={80} />
+                )}
+              </Text>
             </Flex>
-          </Flex>
-        )}
-      </NFTPoolCardInnerContainer>
-      <ExpandableSectionButton onClick={toggleExpandableSection} expanded={showExpandableSection} />
+          )}
+          {new BigNumber(stakedBalance).gt(0) && new BigNumber(lpPrice).gt(0) && (
+            <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start" mr="60px">
+
+              <Text bold textTransform="uppercase" color="white">
+                {t('STAKED BALANCE')}
+              </Text>
+              <Balance
+                color="textSubtle"
+                decimals={2}
+                value={
+                  sharePrice
+                    ? getBalanceNumber(new BigNumber(sharePrice).times(stakedBalance))
+                    : getBalanceNumber(new BigNumber(lpPrice).times(stakedBalance))
+                }
+                unit=" USD"
+                prefix="~"
+              />
+              <Flex style={{ gap: '4px' }}>
+                <Balance
+                  fontSize="12px"
+                  color="textSubtle"
+                  decimals={4}
+                  value={new BigNumber(stakedBalance).div(1e18).div(lpTotalSupply).times(tokenAmountTotal).toNumber()}
+                  unit={` ${token.symbol}`}
+                />
+                <Balance
+                  fontSize="12px"
+                  color="textSubtle"
+                  decimals={4}
+                  value={new BigNumber(stakedBalance).div(1e18).div(lpTotalSupply).times(quoteTokenAmountTotal).toNumber()}
+                  unit={` ${quoteToken.symbol}`}
+                />
+              </Flex>
+            </Flex>
+          )}
+          {mappedRewards.length > 0 &&
+            <Flex flexDirection="column" minWidth={300}>
+              <Flex flexDirection="row" flexWrap="wrap" alignItems="flex-start">
+                {mappedRewards.map((rw, i) => (
+                  <Flex key={i} alignItems="center" justifyContent="flex-start" mt="0px" ml="1px" width="100%">
+                    <TokenImage src={rw.imgSrc} width={30} height={30} mr="10px" />
+
+                    <Flex flexDirection="column" alignItems="flex-start">
+                      <Text bold textTransform="uppercase" color="white">
+                        {rw.token.symbol} {t('Earned')}
+                      </Text>
+                      <Text fontSize="14px" color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>
+                        {rw.rewardAmountDisplay}
+                      </Text>
+                      <Text fontSize="10px" color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>
+                        {rw.valueLabel}
+                      </Text>
+
+                      {/* <Text color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>{rw.rewardAmountDisplay}</Text>
+              <Text color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>{rw.valueLabel}</Text> */}
+                    </Flex>
+                  </Flex>
+                ))}
+              </Flex>
+            </Flex>}
+
+
+        </NFTPoolCardInnerContainer>
+        <ExpandableSectionButton onClick={toggleExpandableSection} expanded={showExpandableSection} />
       </NFTPoolCardOuterContainer>
 
       <ExpandingWrapper expanded={showExpandableSection}>
         {showExpandableSection && (
           <>
-            <CardActionsContainer farm={farm} lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} />
+            <CardActionsContainer farm={farm} lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} table />
             <DetailsSection
               removed={removed}
               totalValueFormatted={totalValueFormatted}
