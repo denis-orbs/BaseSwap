@@ -16,8 +16,6 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
   const WBNB = WNATIVE[chainId]
   const busd = BUSD[chainId]
 
-  return undefined
-
   const tokenPairs: [Currency | undefined, Currency | undefined][] = useMemo(
     () => [
       [chainId && wrapped && currencyEquals(WBNB, wrapped) ? undefined : currency, chainId ? WBNB : undefined],
@@ -81,15 +79,12 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
 }
 
 export const useCakeBusdPrice = (): Price | undefined => {
-  return undefined
   const { chainId } = useActiveWeb3React()
   const cakeBusdPrice = useBUSDPrice(CAKE[chainId])
   return cakeBusdPrice
 }
 
 export const useBUSDCurrencyAmount = (currency?: Currency, amount?: number): number | undefined => {
-  return undefined
-
   const busdPrice = useBUSDPrice(currency)
   if (!amount) {
     return undefined
@@ -101,8 +96,6 @@ export const useBUSDCurrencyAmount = (currency?: Currency, amount?: number): num
 }
 
 export const useBUSDCakeAmount = (amount: number): number | undefined => {
-  return undefined
-
   const cakeBusdPrice = useCakeBusdPrice()
   if (cakeBusdPrice) {
     return multiplyPriceByAmount(cakeBusdPrice, amount)

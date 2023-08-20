@@ -19,9 +19,9 @@ import usePrevious from 'hooks/usePrevious'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { AlertTriangle } from 'react-feather'
 import {
-  // useRangeHopCallbacks,
-  // useV3DerivedMintInfo,
-  // useV3MintActionHandlers,
+  useV3MintActionHandlers,
+  useRangeHopCallbacks,
+  useV3DerivedMintInfo,
   useV3MintState,
 } from 'state/mint/v3/hooks'
 import styled, { useTheme } from 'styled-components'
@@ -102,6 +102,59 @@ function AddLiquidity() {
 
   // mint state
   const { independentField, typedValue, startPriceTypedValue } = useV3MintState()
+
+  const {
+    pool,
+    ticks,
+    dependentField,
+    price,
+    pricesAtTicks,
+    pricesAtLimit,
+    parsedAmounts,
+    currencyBalances,
+    position,
+    noLiquidity,
+    currencies,
+    errorMessage,
+    invalidPool,
+    invalidRange,
+    outOfRange,
+    depositADisabled,
+    depositBDisabled,
+    invertPrice,
+    ticksAtLimit,
+  } = useV3DerivedMintInfo(
+    baseCurrency ?? undefined,
+    quoteCurrency ?? undefined,
+    feeAmount,
+    baseCurrency ?? undefined,
+    existingPosition,
+  )
+
+  const { onFieldAInput, onFieldBInput, onLeftRangeInput, onRightRangeInput, onStartPriceInput } =
+    useV3MintActionHandlers(noLiquidity)
+
+  const isValid = !errorMessage && !invalidRange
+
+  // modal and loading
+  const [showConfirm, setShowConfirm] = useState<boolean>(false)
+  const [attemptingTxn, setAttemptingTxn] = useState<boolean>(false) // clicked confirm
+
+  // txn values
+  const deadline = useTransactionDeadline() // custom from users settings
+
+  const [txHash, setTxHash] = useState<string>('')
+
+  // get formatted amounts
+  const formattedAmounts = {
+    [independentField]: typedValue,
+    [dependentField]: parsedAmounts[dependentField]?.toSignificant(6) ?? '',
+  }
+
+  // const usdcValues = {
+  //   [Field.CURRENCY_A]: useStablecoinValue(parsedAmounts[Field.CURRENCY_A]),
+  //   [Field.CURRENCY_B]: useStablecoinValue(parsedAmounts[Field.CURRENCY_B]),
+  // }
 
   return <div>Liq</div>
 }

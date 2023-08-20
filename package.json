@@ -38,7 +38,7 @@
     ]
   },
   "dependencies": {
-    "@baseswapfi/sdk-core": "^1.0.3",
+    "@baseswapfi/sdk-core": "^1.0.5",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@blocto/blocto-connector": "^0.2.3",
     "@ethersproject/abi": "^5.5.0",
