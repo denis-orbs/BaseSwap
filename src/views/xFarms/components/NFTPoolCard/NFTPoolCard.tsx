@@ -52,7 +52,7 @@ const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnly }) 
     tokenAddress: farm.token.address,
   })
 
-  const earnLabel = t('BSWAP')
+  const earnLabel = t('BSWAP + BSX + xBSX')
   const lpLabel = farm.lpSymbol && farm.lpSymbol.replace('PANCAKE', '')
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
@@ -90,7 +90,7 @@ const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnly }) 
         {!removed && (
           <Flex justifyContent="space-between" alignItems="center">
             <Text>{t('APR')}:</Text>
-            <Text bold style={{ display: 'flex', alignItems: 'center' }}>
+            <Text  style={{ display: 'flex', alignItems: 'center' }}>
               {farm.apr ? (
                 <span>{`${Number(Number(farm.apr).toFixed(2)).toLocaleString()}%`}</span>
               ) : (
@@ -102,7 +102,7 @@ const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnly }) 
 
         <Flex justifyContent="space-between">
           <Text>{t('Earn')}:</Text>
-          <Text bold>{earnLabel}</Text>
+          <Text >{earnLabel}</Text>
         </Flex>
         <CardActionsContainer farm={farm} lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} />
       </NFTPoolCardInnerContainer>
