@@ -133,16 +133,25 @@ const Farms: React.FC = ({ children }) => {
   const { getTokenPrice } = useTokenPrices()
 
   // TODO: Update after presale/liquidity when available
-  const cakePrice = new BigNumber('0.9')
+  // const cakePrice = new BigNumber('0.9')
   // const cakePrice = new BigNumber(getTokenPrice(getTokenAddress('ProtocolToken', chainId)))
   // BSWAP is the "WETH" now
   const [WETHPrice, SETWETHPrice] = useState<BigNumber>(BIG_ZERO)
+  const [cakePrice, SETCAKEPrice] = useState<BigNumber>(BIG_ZERO)
 
   useEffect(() => {
     const fetchData = async () => {
       const price = await priceDexScreener(("0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9"));
-      console.log("PRICE", price)
       SETWETHPrice(price)
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const price = await priceDexScreener(("0xd5046b976188eb40f6de40fb527f89c05b323385"));
+      SETCAKEPrice(price)
     };
 
     fetchData();
