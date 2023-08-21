@@ -5,6 +5,8 @@ import { DeserializedPool } from 'state/types'
 import { useTranslation } from '@pancakeswap/localization'
 import BaseCell, { CellContent } from './BaseCell'
 import Apr from '../../Apr'
+import { BoostTag } from 'components/Tags'
+import {Flex} from '@pancakeswap/uikit'
 
 interface AprCellProps {
   pool: DeserializedPool
@@ -13,7 +15,7 @@ interface AprCellProps {
 const AprCell: React.FC<AprCellProps> = ({ pool }) => {
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpointsContext()
-  const { userData } = pool
+  const { userData, isBoost } = pool
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
 
   return (
@@ -23,7 +25,9 @@ const AprCell: React.FC<AprCellProps> = ({ pool }) => {
           {t('APR')}
         </Text>
         <Apr pool={pool} stakedBalance={stakedBalance} showIcon={!isMobile} />
+       
       </CellContent>
+      {isBoost ? <Flex marginTop="0.2rem" width="50%"><BoostTag /> </Flex>: null }
     </BaseCell>
   )
 }

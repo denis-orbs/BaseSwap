@@ -11,9 +11,9 @@ import { StyledCard } from './StyledCard'
 import CardFooter from './CardFooter'
 import PoolCardHeader, { PoolCardHeaderTitle } from './PoolCardHeader'
 import CardActions from './CardActions'
-
+import { BoostTag } from 'components/Tags'
 const PoolCard: React.FC<{ pool: DeserializedPool; account: string }> = ({ pool, account }) => {
-  const { stakingToken, earningToken, isFinished, userData } = pool
+  const { stakingToken, earningToken, isFinished, isBoost, userData } = pool
   const { t } = useTranslation()
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const accountHasStakedBalance = stakedBalance.gt(0)
@@ -30,6 +30,7 @@ const PoolCard: React.FC<{ pool: DeserializedPool; account: string }> = ({ pool,
           title={isCakePool ? t('Manual') : t('EARN %asset%', { asset: earningToken.symbol })}
           subTitle={isCakePool ? t('Earn BSWAP, stake BSWAP') : t('STAKE %symbol%', { symbol: stakingToken.symbol })}
         />
+         {isBoost ? <BoostTag /> : null }
         <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} width={64} height={64} />
       </PoolCardHeader>
       <CardBody >

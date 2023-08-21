@@ -17,6 +17,11 @@ export const styleVariants = {
   [variants.PRIMARY]: {
     backgroundColor: "primary",
   },
+  [variants.TRANS]: {
+    backgroundColor: "transparent",
+    boxShadow: "-4px 0 12px #FC8A17, 4px 0 12px #FC8A17, 0 0 36px #FC8A17", 
+    borderRadius: "12px", 
+  },
   [variants.SECONDARY]: {
     backgroundColor: "background",
   },
