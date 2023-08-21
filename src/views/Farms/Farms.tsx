@@ -395,7 +395,7 @@ const Farms: React.FC = ({ children }) => {
         {viewMode === ViewMode.TABLE ? (
           <Table farms={chosenFarmsMemoized} cakePrice={cakePrice} userDataReady={userDataReady} />
         ) : (
-          <FlexLayout className="animate__animated animate__fadeInUp">{children}</FlexLayout>
+          <FlexLayout className="animate__animated animate__fadeInUp animate__faster">{children}</FlexLayout>
         )}
         {account && !userDataLoaded && stakedOnly && (
           <Flex justifyContent="center">

@@ -711,9 +711,9 @@ export default function RemoveLiquidity() {
                     {approval === ApprovalState.PENDING ? (
                       <Dots>{t('Enabling')}</Dots>
                     ) : approval === ApprovalState.APPROVED || (!isZap && signatureData !== null) ? (
-                      t('Enabled')
+                      t('ENABLED')
                     ) : (
-                      t('Enable')
+                      t('ENABLE')
                     )}
                   </Button>
                   <Button

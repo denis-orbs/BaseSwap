@@ -635,9 +635,9 @@ export default function Swap() {
                                   {t('Enabling')} <CircleLoader stroke="white" />
                                 </AutoRow>
                               ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
-                                t('Enabled')
+                                t('ENABLE')
                               ) : (
-                                t('Enable %asset%', { asset: currencies[Field.INPUT]?.symbol ?? '' })
+                                t('ENABLE %asset%', { asset: currencies[Field.INPUT]?.symbol ?? '' })
                               )}
                             </Button>
                             <Button
