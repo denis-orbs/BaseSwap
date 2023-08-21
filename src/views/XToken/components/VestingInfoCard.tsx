@@ -1,13 +1,10 @@
 import { Button, Card, Flex, Text } from '@pancakeswap/uikit'
-import { useWeb3React } from '@web3-react/core'
 import useToast from 'hooks/useToast'
 import React from 'react'
 import { BsArrowRightCircle } from 'react-icons/bs'
-import { useAppDispatch } from 'state'
 import { VestingInfo } from 'state/xToken/types'
 import styled from 'styled-components'
 import { ToastDescriptionWithTx } from 'components/Toast'
-import { fetchUserXTokenDataAsync } from 'state/xToken'
 import useXTokenActions from '../hooks/useXTokenActions'
 
 export const TopHalf = styled(Flex)`
