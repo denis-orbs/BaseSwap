@@ -28,6 +28,7 @@ export default function CurrencyLogo({
     if (currency === ETHER)
       return ['https://pancakeswap.finance/images/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8.png']
 
+   
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
         return [...uriLocations, `/images/tokens/${currency.address.toLowerCase()}.png`]
