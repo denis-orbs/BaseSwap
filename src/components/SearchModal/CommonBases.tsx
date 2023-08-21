@@ -19,7 +19,7 @@ const BaseWrapper = styled.div<{ disable?: boolean }>`
   border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.colors.dropdown)};
   border-radius: 10px;
   display: flex;
-  padding: 6px;
+  padding: 4px;
   align-items: center;
   :hover {
     cursor: ${({ disable }) => !disable && 'pointer'};
@@ -68,7 +68,7 @@ export default function CommonBases({
             }}
             disable={selectedCurrency === ETHER}
           >
-            <CurrencyLogo currency={ETHER} style={{ marginRight: 8 }} />
+            <CurrencyLogo currency={ETHER} style={{ marginRight: 4 }} />
             <Text>ETH</Text>
           </BaseWrapper>
         </ButtonWrapper>
@@ -77,7 +77,7 @@ export default function CommonBases({
           return (
             <ButtonWrapper>
               <BaseWrapper onClick={() => !selected && onSelect(token)} disable={selected} key={token.address}>
-                <CurrencyLogo currency={token} style={{ marginRight: 8, borderRadius: '50%' }} />
+                <CurrencyLogo currency={token} style={{ marginRight: 4, borderRadius: '50%' }} />
                 <Text>{token.symbol}</Text>
               </BaseWrapper>
             </ButtonWrapper>
