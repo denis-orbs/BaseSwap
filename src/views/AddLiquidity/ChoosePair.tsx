@@ -62,7 +62,7 @@ export function ChoosePair({
           <ConnectWalletButton width="100%" />
         ) : (
           <Button
-            className="animate__animated animate__rollIn"
+            className="animate__animated animate__rollIn animate__faster"
             data-test="choose-pair-next"
             width="100%"
             variant={!isValid ? 'danger' : 'primary'}

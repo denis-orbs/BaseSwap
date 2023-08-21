@@ -162,7 +162,7 @@ const FarmTable: React.FC<ITableProps> = ({ farms, cakePrice, userDataReady }) =
   })
 
   return (
-    <Container id="farms-table" className="animate__animated animate__fadeInUp" >
+    <Container id="farms-table" className="animate__animated animate__faster animate__fadeInUp" >
       <TableContainer id="table-container">
         <TableWrapper ref={tableWrapperEl}>
           <StyledTable>
