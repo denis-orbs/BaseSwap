@@ -14,12 +14,29 @@ import {
 } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { memo } from 'react'
+import { BsArrowRightCircle } from 'react-icons/bs'
+import styled from 'styled-components'
+import { BsFire } from 'react-icons/bs'
+
+const OrangeBsFire = styled(BsFire)`
+  color: #FC8A17;
+  width: 18px;
+`;
 
 const CoreTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
     <Tag variant="secondary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
       {t('Core')}
+    </Tag>
+  )
+}
+
+const BoostTag: React.FC<TagProps> = (props) => {
+  const { t } = useTranslation()
+  return (
+    <Tag variant="transparent" startIcon={<OrangeBsFire />} {...props}>
+      {t('Boosted')}
     </Tag>
   )
 }
@@ -117,4 +134,5 @@ export {
   SoonTag,
   ClosedTag,
   CommunityTag,
+  BoostTag, 
 }

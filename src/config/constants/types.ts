@@ -113,6 +113,7 @@ interface PoolConfigBaseProps {
   poolCategory: PoolCategory
   tokenPerBlock: string
   isFinished?: boolean
+  isBoost?: boolean
   enableEmergencyWithdraw?: boolean
   version?: number
 }

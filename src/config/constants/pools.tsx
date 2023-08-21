@@ -69,6 +69,7 @@ export const livePools: SerializedPoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.0033',
+    isBoost: false, 
   },
   {
     sousId: 101,
@@ -78,8 +79,20 @@ export const livePools: SerializedPoolConfig[] = [
       [ChainId.BASE]: '0x86DBd5bAAE91AC576E8e5197EB2497603d0056EA',
     },
     poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '0.000000995625625625',
+    tokenPerBlock: '0.0000021',
+    isBoost: true, 
   },
+  // {
+  //   sousId: 103,
+  //   stakingToken: serializedTokens.bsx,
+  //   earningToken: serializedTokens.usdbc,
+  //   contractAddress: {
+  //     [ChainId.BASE]: '0x8D52E213D741684dec1d37a6ee7814aE32942c1e',
+  //   },
+  //   poolCategory: PoolCategory.CORE,
+  //   tokenPerBlock: '0.0055',
+  //   isBoost: true, 
+  // },
   {
     sousId: 102,
     stakingToken: serializedTokens.bsx,
@@ -90,6 +103,7 @@ export const livePools: SerializedPoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.006',
   },
+
 ]
 
 // known finished pools

@@ -338,9 +338,9 @@ const Farms: React.FC = ({ children }) => {
             return instance
           }}
         />
-        {/* {!account ? (
+        {!account ? (
           <ConnectWalletButton />
-        ) : ( */}
+        ) : (
           <>
             <ControlContainer>
               <ViewControls>
@@ -413,7 +413,7 @@ const Farms: React.FC = ({ children }) => {
 
             <div ref={observerRef} />
           </>
-        {/* )} */}
+         )} 
       </Page>
     </FarmsContext.Provider>
   )
