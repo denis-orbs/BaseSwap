@@ -80,6 +80,16 @@ export const livePools: SerializedPoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.000000995625625625',
   },
+  {
+    sousId: 102,
+    stakingToken: serializedTokens.bsx,
+    earningToken: serializedTokens.ede,
+    contractAddress: {
+      [ChainId.BASE]: '0x8D52E213D741684dec1d37a6ee7814aE32942c1e',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '0.006',
+  },
 ]
 
 // known finished pools
