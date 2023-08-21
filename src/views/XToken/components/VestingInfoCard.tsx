@@ -36,10 +36,7 @@ interface VestingCardProps {
 }
 
 const VestingInfoCard: React.FC<VestingCardProps> = ({ vesting }) => {
-  const { account, chainId } = useWeb3React()
-  const dispatch = useAppDispatch()
   const { toastSuccess } = useToast()
-
   const { cancelVesting, finalizeVesting, pendingTx } = useXTokenActions()
 
   async function handleAction(action: 'cancel' | 'finalize') {
@@ -50,8 +47,6 @@ const VestingInfoCard: React.FC<VestingCardProps> = ({ vesting }) => {
 
     if (receipt?.status) {
       toastSuccess(``, <ToastDescriptionWithTx txHash={receipt.transactionHash}>{message}!</ToastDescriptionWithTx>)
-
-      dispatch(fetchUserXTokenDataAsync({ account, chainId }))
     }
   }
 

@@ -35,7 +35,7 @@ interface xTokenRedeemModalProps {
 
 // TODO: Get settings from contract instead of hard code
 const minRedeemDuration = 15 // days, 1296000 seconds
-const maxRedeemDuration = 90 // days, 7776000 seconds (half of 180 since starting at 50% already)
+const maxRedeemDuration = 30 // days, 2592000  seconds
 
 const minRedeemRatio = 50 // 50%
 const maxRedeemRatio = 100 // 100%
@@ -54,11 +54,11 @@ const XTokenRedeemModal: React.FC<xTokenRedeemModalProps> = ({ userXTokenBalance
 
   const xToken = useXToken()
 
-  // async function getArxOut(amount: number, days: number) {
+  // async function getBSXOut(amount: number, days: number) {
   //   if (amount) {
   //     setLoadingOutput(true)
 
-  //     const back = await xToken.getArxByVestingDuration(parseUnits(String(amount)), days * ONE_DAY_UNIX)
+  //     const back = await xToken.getAmountByVestingDuration(parseUnits(String(amount)), days * ONE_DAY_UNIX)
   //     const receiving = formatEther(back)
 
   //     setAmountReceiving(receiving)
@@ -66,12 +66,12 @@ const XTokenRedeemModal: React.FC<xTokenRedeemModalProps> = ({ userXTokenBalance
   //   }
   // }
 
-  const getArxOut = useCallback(
+  const getBSXOut = useCallback(
     async (amount: number, days: number) => {
       if (amount) {
         setLoadingOutput(true)
 
-        const back = await xToken.getArxByVestingDuration(parseUnits(String(amount)), days * ONE_DAY_UNIX)
+        const back = await xToken.getAmountByVestingDuration(parseUnits(String(amount)), days * ONE_DAY_UNIX)
         const receiving = formatEther(back)
 
         setAmountReceiving(receiving)
@@ -102,7 +102,7 @@ const XTokenRedeemModal: React.FC<xTokenRedeemModalProps> = ({ userXTokenBalance
 
     // Update for amount or duration
     if (amount > 0 || daysCount !== vestingDays) {
-      getArxOut(amount || convertAmount, daysCount)
+      getBSXOut(amount || convertAmount, daysCount)
     }
 
     setVestingDays(daysCount)
@@ -218,7 +218,7 @@ const XTokenRedeemModal: React.FC<xTokenRedeemModalProps> = ({ userXTokenBalance
           will receive in BSX.
         </Text>
         <Text color="text" fontSize="0.8rem" letterSpacing="1px" textAlign="center" mb="15px">
-          Vesting can be as brief as fifteen days (1 xBSX : 0.5 BSX ratio), up to six months (1:1 ratio). If you change
+          Vesting can be as brief as fifteen days (1 xBSX : 0.5 BSX ratio), up to thirty days (1:1 ratio). If you change
           your mind, you can cancel your redemption and receive your xBSX back.
         </Text>
 

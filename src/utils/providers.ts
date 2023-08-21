@@ -3,6 +3,7 @@ import { ChainId } from '@magikswap/sdk'
 import { baseChain, baseGoerli } from '../../packages/wagmi/src/chains'
 
 const providers: { [chainId in ChainId]?: StaticJsonRpcProvider | null } = {
+  [ChainId.BASE]: null,
   [ChainId.BASE_GOERLI]: null,
 }
 

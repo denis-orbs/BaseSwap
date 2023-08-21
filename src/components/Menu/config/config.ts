@@ -1,4 +1,15 @@
-import { MenuItemsType, SwapIcon, SwapFillIcon, EarnFillIcon, EarnIcon, FarmIcon, CurrencyIcon, TradeFilledIcon, AddIcon, EllipsisIcon } from '@pancakeswap/uikit'
+import {
+  MenuItemsType,
+  SwapIcon,
+  SwapFillIcon,
+  EarnFillIcon,
+  EarnIcon,
+  FarmIcon,
+  CurrencyIcon,
+  TradeFilledIcon,
+  AddIcon,
+  EllipsisIcon,
+} from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
 import { DropdownMenuItems } from '@pancakeswap/uikit/src/components/DropdownMenu/types'
 import { DEFAULT_CHAIN_ID } from 'utils/providers'
@@ -23,18 +34,18 @@ const config: (
       label: t('Swap'),
       href: '/swap',
       showItemsOnMobile: false,
-      fillIcon: SwapFillIcon, 
+      fillIcon: SwapFillIcon,
       icon: SwapFillIcon,
       items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
-    }, 
+    },
     {
       label: t('Liquidity'),
       href: '/liquidity',
       showItemsOnMobile: false,
       icon: AddIcon,
-      fillIcon: AddIcon, 
+      fillIcon: AddIcon,
       items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
-    }, 
+    },
 
     {
       label: t('Farm'),
@@ -58,9 +69,17 @@ const config: (
       href: '/pools',
       showItemsOnMobile: false,
       icon: CurrencyIcon,
-      fillIcon: CurrencyIcon, 
+      fillIcon: CurrencyIcon,
       items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
-    }, 
+    },
+    {
+      label: t('xBSX'),
+      href: '/xbsx',
+      showItemsOnMobile: false,
+      icon: AddIcon,
+      fillIcon: AddIcon,
+      items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
+    },
     {
       label: t('More'),
       href: '',
@@ -97,20 +116,19 @@ const config: (
     //       label: t('Liquidity'),
     //       href: '/liquidity',
     //     },
-        // {
-        //   label: t('Perpetual'),
-        //   href: `https://perp.pancakeswap.finance/${perpLangMap(languageCode)}/futures/BTCUSDT?theme=${perpTheme(
-        //     isDark,
-        //   )}`,
-        //   type: DropdownMenuItemType.EXTERNAL_LINK,
-        // },
-        // {
-        //   label: t('Transfer'),
-        //   href: '/transfer',
-        // },
-  //     ].filter((item) => filterItemBySupportChainId(item, chainId)),
-  //   },
-
+    // {
+    //   label: t('Perpetual'),
+    //   href: `https://perp.pancakeswap.finance/${perpLangMap(languageCode)}/futures/BTCUSDT?theme=${perpTheme(
+    //     isDark,
+    //   )}`,
+    //   type: DropdownMenuItemType.EXTERNAL_LINK,
+    // },
+    // {
+    //   label: t('Transfer'),
+    //   href: '/transfer',
+    // },
+    //     ].filter((item) => filterItemBySupportChainId(item, chainId)),
+    //   },
   ].filter((item) => filterItemBySupportChainId(item, chainId))
 
 export default config

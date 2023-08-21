@@ -2,7 +2,6 @@ import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
 // eslint-disable-next-line import/no-unresolved
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
-import { ChainId } from '@magikswap/sdk'
 import { DEFAULT_CHAIN_ID, defaultRpcProvider } from 'utils/providers'
 
 /**

@@ -22,9 +22,7 @@ const useXTokenActions = () => {
   const runAction = useCallback(
     async (action) => {
       setPendingTx(true)
-      const receipt = await fetchWithCatchTxError(() => {
-        return action()
-      })
+      const receipt = await fetchWithCatchTxError(() => action)
 
       fetchUserData()
       setPendingTx(false)

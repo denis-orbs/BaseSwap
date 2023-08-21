@@ -2440,6 +2440,10 @@ const XBSX_BASE = new Token(
   'baseswap.fi',
 )
 
+export const BSX = {
+  [ChainId.BASE]: BSX_BASE,
+}
+
 const USDC_BASE = new Token(
   ChainId.BASE,
   '0xEd2D3fA2102980EeBdF2B12E58c1a96c9889315F',
