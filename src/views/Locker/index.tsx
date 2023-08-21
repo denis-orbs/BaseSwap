@@ -3,7 +3,11 @@ import React, { useCallback, useEffect, useState } from 'react'
 import dayjs from 'dayjs';
 import styled from 'styled-components';
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { Button, Card, Flex, useMatchBreakpointsContext } from '@pancakeswap/uikit'
+import {
+  Button, Card, Flex, ButtonMenu,
+  ButtonMenuItem
+} from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { useCurrencyBalance } from 'state/wallet/hooks'
 import tryParseAmount from 'utils/tryParseAmount'
 import { formatNumberScale } from 'utils/formatBalance'
@@ -17,7 +21,7 @@ import NumericalInput from 'components/CurrencyInputPanel/NumericalInput'
 import { LOCKER_ADDRESS } from 'config/constants/exchange';
 import { useApproveCallback } from 'hooks/useApproveCallback';
 import { useCurrency } from 'hooks/Tokens';
-import { isAddress } from '@ethersproject/address';
+import { getAddress, isAddress } from '@ethersproject/address';
 // import { BigNumber } from '@ethersproject/bignumber'
 import useToast from 'hooks/useToast';
 import BigNumber from 'bignumber.js';
@@ -33,6 +37,17 @@ export enum ApprovalState {
   PENDING,
   APPROVED,
 }
+
+export enum LockerType {
+  FIND,
+  CREATE
+}
+
+const Tabs = styled.div`
+  padding: 0px 0px 24px 0px;
+  margin-top: 40px;
+  margin-bottom: 8px;
+`
 
 const Wrapper = styled(Flex)`
   width: 95%;
@@ -98,6 +113,23 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const Locker: FC = () => {
 
+  const { t } = useTranslation()
+
+  const [view, setView] = useState(LockerType.FIND)
+
+  const handleClick = (newIndex: number) => {
+    setView(newIndex)
+  }
+
+  const TabsComponent: React.FC = () => (
+    <Tabs>
+      <ButtonMenu scale="sm" onItemClick={handleClick} activeIndex={view} fullWidth>
+        <ButtonMenuItem style={{ height: 40 }}>{t('Find Locker')}</ButtonMenuItem>
+        <ButtonMenuItem style={{ height: 40 }}>{t('Create Locker')}</ButtonMenuItem>
+      </ButtonMenu>
+    </Tabs>
+  )
+
   const { account, chainId, library } = useActiveWeb3React()
   const [tokenAddress, setTokenAddress] = useState('')
   const [withdrawer, setWithdrawer] = useState('')
@@ -105,9 +137,10 @@ const Locker: FC = () => {
   // const [unlockDate, setUnlockDate] = useState(dayjs())
   const [unlockDate, setUnlockDate] = useState(dayjs().add(1, 'day'))
 
-  const handleChangeDate = (date: Date) => {
-    setUnlockDate(dayjs(date))
-  }
+  const [tokenAddressFind, setTokenAddressFind] = useState('')
+  // const token = useToken(isAddress(tokenAddressFind) ? tokenAddressFind : undefined)
+  const [lockers, setLockers] = useState([])
+
 
 
   // const [unlockDate, setUnlockDate] = useState(new Date(new Date().getTime() + 24 * 60 * 60 * 1000))
@@ -123,11 +156,52 @@ const Locker: FC = () => {
   const typedPayingValue = tryParseAmount(value, payingToken)
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, assetToken ?? undefined)
 
+  // LIQUIDITY TOKEN APPROVAL
   const [approvalState, approve] = useApproveCallback(typedDepositValue, LOCKER_ADDRESS[chainId])
-  // BOOTY TOKEN ADDRESS
+  // BSX TOKEN APPROVAL
   const [approvalStatePayingValue, approvePayingValue] = useApproveCallback(typedPayingValue, LOCKER_ADDRESS[chainId])
 
   const lockerContract = useTokenLocker()
+
+  useEffect(() => {
+    console.log('isAddy', isAddress(tokenAddressFind))
+    if (isAddress(tokenAddressFind)) {
+      console.log('tokenAddressFind', tokenAddressFind)
+      lockerContract.getDepositsByTokenAddress(tokenAddressFind).then((r) => {
+        console.log('r',)
+        if (r.length > 0) {
+          setLockers(r)
+          // setLockers(r.filter((x) => x.withdrawn == false))
+        }
+      })
+    }
+  }, [tokenAddressFind, lockerContract])
+
+  const handleChangeDate = (date: Date) => {
+    setUnlockDate(dayjs(date))
+  }
+
+  const handleWithdraw = useCallback(
+    async (id) => {
+      setPendingTx(true)
+
+      try {
+        const tx = await lockerContract.withdrawTokens(id)
+        toastSuccess(
+          `Removed Lock from ${id}`,
+            `Your funds have been removed: ${tx}`
+        )
+      } catch (error) {
+        toastError(
+          `Error:`,
+          `${error}`
+        )
+      }
+      setPendingTx(false)
+    },
+    [lockerContract]
+  )
+
 
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
@@ -167,13 +241,10 @@ const Locker: FC = () => {
       const bigNumberValue = new BigNumber(value).times(new BigNumber(10).pow(assetToken?.decimals));
 
       try {
-        // const tx = await lockerContract.lockTokens(
         const tx = await lockerContract.lockTokensByBooty(
           tokenAddress,
           withdrawer,
-          // new BigNumber(value, assetToken?.decimals.toString()),
           bigNumberValue.toString(),
-          // .toBigNumber(assetToken?.decimals),
           dayjs(unlockDate).unix().toString(),
         )
 
@@ -184,10 +255,6 @@ const Locker: FC = () => {
             ['address', 'uint256', 'uint256'],
             result.events[2].data
           )
-
-          // addPopup({
-          //   txn: { hash: result.transactionHash, summary: `Created Lock [ID: ${_id}]`, success: true },
-          // })
 
           setTokenAddress('')
           setWithdrawer('')
@@ -204,17 +271,11 @@ const Locker: FC = () => {
             `Error:`,
             `User denied transaction signature.`
           )
-          // throw 'User denied transaction signature.'
         }
       } catch (err) {
-        // console.log('err', err)
-        // return toastSuccess(`Locker Failed:`, err)
-        // addPopup({
-        //   txn: { hash: undefined, summary: `Locker Failed: ${err}`, success: false },
-        // })
         toastError(
           `Error:`,
-          `${ err }`
+          `${err}`
         )
       } finally {
         setPendingTx(false)
@@ -222,18 +283,17 @@ const Locker: FC = () => {
     }
   }, [allInfoSubmitted, assetToken, tokenAddress, withdrawer, value, unlockDate, lockerContract])
 
-  var valid = function (current) {
-    return current.isAfter(dayjs(unlockDate).subtract(1, 'day'))
-  }
+  console.log('lockers', lockers)
 
   return (
     <>
       <Page>
         <PageTitle title="Token Locker" />
+          <TabsComponent />
         <Wrapper>
-          <StyledCard className="animate__animated animate__fadeInLeft animate__fast">
+          {view === LockerType.CREATE && <StyledCard className="animate__animated animate__fadeInLeft animate__fast">
             <CardInner>
-              <Flex flexDirection="column" mt="12px">
+            <Flex flexDirection="column" mt="12px">
                 <TextContainer>
                   <SubText>Token Address</SubText>
                 </TextContainer>
@@ -394,7 +454,7 @@ const Locker: FC = () => {
                   Input your token or liquidity pair address, amount of tokens to lock,
                   withdrawer address and when tokens will become unlocked.
                 </p>
-                <p>Click on "Approve" to allow the contract to transfer your tokens.</p>
+                <p>Click on "Approve" to allow the contract to transfer your tokens.  You must approve both the 1 BSX fee as well as your LP</p>
                 <p>Click on "Deposit" to lock your tokens into the locker contract.</p>
                 <TextContainer>
                   <SubText>Fees</SubText>
@@ -409,7 +469,90 @@ const Locker: FC = () => {
               </StyledFlex>
 
             </CardInner>
-          </StyledCard>
+          </StyledCard>}
+          {view === LockerType.FIND &&
+          <StyledCard className="animate__animated animate__fadeInLeft animate__fast">
+          <CardInner>
+          <Flex flexDirection="column" mt="12px">
+                <TextContainer>
+                  <SubText>Search</SubText>
+                </TextContainer>
+                <TextInput
+                  // placeholder={'Search by name, symbol or address'}
+                  type="text"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck="false"
+                  pattern="^(0x[a-fA-F0-9]{40})$"
+                  onChange={(e) => setTokenAddressFind(e.target.value)}
+                  value={tokenAddressFind}
+                />
+                 {lockers.length == 0 && isAddress(tokenAddress) && (
+                  <div className="flex justify-center items-center col-span-12 lg:justify mt-20">
+                    <span>
+                      No lockers found...
+                    </span>
+                  </div>
+                )}
+                 {lockers.length > 0 && (
+                  <div>
+                    <div>
+                      <div>Token</div>
+                    </div>
+                    <div className="flex items-center ">Amount Locked</div>
+                    <div className="items-center justify-end px-2 flex ">Unlock date</div>
+                  </div>
+                )}
+                <div className="flex-col">
+                  {lockers.map((locker, index) => {
+                    return (
+                      <div key={index}>
+                        {() => (
+                          <div className="mb-4">
+                            <div
+                            >
+                              {/* <div >
+                                <div >
+                                  {token?.name} ({token?.symbol})
+                                </div>
+                                <div >
+                                  {CurrencyAmount.fromRawAmount(token, locker?.amount).toSignificant(6)}
+                                </div>
+                                <div >
+                                  <div >
+                                    {moment.unix(locker?.unlockTimestamp.toString()).fromNow()}
+                                  </div>
+                                </div>
+                                <div >
+                                  <div >
+                                    <Button
+                                      style={{ width: '100%' }}
+                                      onClick={() => handleWithdraw(locker?.id)}
+                                      disabled={
+                                        dayjs.unix(locker?.unlockTimestamp.toString()).isAfter(new Date()) ||
+                                        !account ||
+                                        (account && getAddress(account) != getAddress(locker?.withdrawer))
+                                      }
+                                    >
+                                      Withdraw
+                                    </Button>
+                                  </div>
+                                </div>
+                              </div> */}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+                </Flex>
+
+
+            </CardInner>
+            </StyledCard>
+          }
         </Wrapper>
       </Page>
     </>
