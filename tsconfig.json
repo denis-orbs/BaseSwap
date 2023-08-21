@@ -16,5 +16,5 @@
     }
   },
   "exclude": ["node_modules", "cypress", "/apps/*"],
-  "include": ["next-env.d.ts", "./src/**/*.ts", "./src/**/*.tsx", "typings/react-datetime.d.ts"]
+  "include": ["next-env.d.ts", "./src/**/*.ts", "./src/**/*.tsx"]
 }

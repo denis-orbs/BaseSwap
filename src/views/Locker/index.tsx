@@ -6,7 +6,6 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Button, Card, Flex, useMatchBreakpointsContext } from '@pancakeswap/uikit'
 import { useCurrencyBalance } from 'state/wallet/hooks'
 import tryParseAmount from 'utils/tryParseAmount'
-import Datetime from 'react-datetime'
 import { formatNumberScale } from 'utils/formatBalance'
 import PageTitle from 'components/PageTitle/PageTitle'
 import Script from 'next/script'
@@ -23,6 +22,10 @@ import { isAddress } from '@ethersproject/address';
 import useToast from 'hooks/useToast';
 import BigNumber from 'bignumber.js';
 import { ToastDescriptionWithTx } from 'components/Toast';
+import DateTimePicker from 'react-datetime-picker';
+import { StyledCard } from '@pancakeswap/uikit/src/components/Card/StyledCard';
+
+
 
 export enum ApprovalState {
   UNKNOWN,
@@ -40,51 +43,32 @@ const Wrapper = styled(Flex)`
   margin-right: auto;
   margin-top: 20px;
   margin-bottom: 60px;
+  overflow: visible;
 `;
 
-const CustomCard = styled(Card)`
-  height: 100%;
-  background-color: #1a202c;
-  z-index: 4;
+const StyledFlex = styled(Flex)`
+  width: 95%;
+  min-width: 95%;
+  background: linear-gradient(to bottom, #333333, #000000);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  padding: 12px;
+  margin-top: 48px;
+  margin-left: 12px;
+  margin-right: 12px;
 `;
 
-const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 1rem;
-`;
-
-const LeftColumn = styled.div`
-  grid-column: 1 / span 12;
-
-  @media (min-width: 768px) {
-    grid-column: 1 / span 8;
-  }
-
-  background-color: #2d3748;
-  padding: 1.5rem;
-  border-radius: 0.375rem;
-`;
-
-const RightColumn = styled.div`
-  grid-column: 1 / span 12;
-
-  @media (min-width: 768px) {
-    grid-column: 9 / span 4;
-  }
-
-  background-color: #2d3748;
-  padding: 1.5rem;
-  border-radius: 0.375rem;
+const CardInner = styled.div`
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 24px;
 `;
 
 const TextContainer = styled.div`
   display: flex;
-  justify-content: center;
-
-  @media (min-width: 768px) {
-    justify-content: flex-end;
-  }
+  justify-content: flex-start;
+  margin-top: 12px;
+  margin-bottom: 12px;
 `;
 
 const SubText = styled.div`
@@ -94,17 +78,23 @@ const SubText = styled.div`
 `;
 
 const TextInput = styled.input`
-  padding: 1rem;
+  border-radius: 2px;
+  border: 3px solid #fff;
   width: 100%;
-  overflow: ellipsis;
-  font-weight: bold;
-  background-color: #2d3748;
-  border-radius: 0.375rem;
-  color: #e2e8f0;
-  ::placeholder {
-    color: #a0aec0;
-  }
+  min-height: 60px;
+  background: linear-gradient(to bottom,#000 20%,#111);
+  color: #FFF;
+  padding-left: 12px;
+  font-weight: 500;
+  font-size: 24px;
+  text-align: right;
+  padding-right: 12px;
 `;
+
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
 
 const Locker: FC = () => {
 
@@ -114,7 +104,18 @@ const Locker: FC = () => {
   const [value, setValue] = useState('')
   // const [unlockDate, setUnlockDate] = useState(dayjs())
   const [unlockDate, setUnlockDate] = useState(dayjs().add(1, 'day'))
+
+  const handleChangeDate = (date: Date) => {
+    setUnlockDate(dayjs(date))
+  }
+
+
+  // const [unlockDate, setUnlockDate] = useState(new Date(new Date().getTime() + 24 * 60 * 60 * 1000))
   const [pendingTx, setPendingTx] = useState(false)
+
+  const [dateValue, setDateValue] = useState<Value>(new Date());
+
+
 
   const assetToken = useCurrency(tokenAddress) || undefined
   const payingToken = useCurrency('0x0B794759D6ECD09750EDB6E7bf67e80C3fCc3A2d') || undefined
@@ -174,11 +175,6 @@ const Locker: FC = () => {
           bigNumberValue.toString(),
           // .toBigNumber(assetToken?.decimals),
           dayjs(unlockDate).unix().toString(),
-        ).send(
-          {
-            value: "1000000000000000000", // Convert paymentAmount to string in base 10
-            from: account, // Replace with the sender's address
-          }
         )
 
         if (tx.wait) {
@@ -204,14 +200,22 @@ const Locker: FC = () => {
             </ToastDescriptionWithTx>,
           )
         } else {
-          throw 'User denied transaction signature.'
+          toastError(
+            `Error:`,
+            `User denied transaction signature.`
+          )
+          // throw 'User denied transaction signature.'
         }
       } catch (err) {
-        console.log('err', err)
+        // console.log('err', err)
         // return toastSuccess(`Locker Failed:`, err)
         // addPopup({
         //   txn: { hash: undefined, summary: `Locker Failed: ${err}`, success: false },
         // })
+        toastError(
+          `Error:`,
+          `${ err }`
+        )
       } finally {
         setPendingTx(false)
       }
@@ -227,53 +231,63 @@ const Locker: FC = () => {
       <Page>
         <PageTitle title="Token Locker" />
         <Wrapper>
-          <CustomCard>
-            <GridContainer>
-              <LeftColumn>
-                <Flex flexDirection="row">
-                  <TextContainer>
-                    <SubText>Token Address</SubText>
-                  </TextContainer>
-                  <TextInput
-                    type="text"
-                    autoComplete="off"
-                    autoCorrect="off"
-                    autoCapitalize="off"
-                    spellCheck="false"
-                    pattern="^(0x[a-fA-F0-9]{40})$"
-                    onChange={(e) => setTokenAddress(e.target.value)}
-                    value={tokenAddress}
-                  />
-                </Flex>
-                <Flex flexDirection="row">
-                  <TextContainer>
-                    <SubText>Amount</SubText>
-                  </TextContainer>
-                  <NumericalInput
-                    className={'p-3 text-base bg-transparent'}
-                    id="token-amount-input"
-                    value={value}
-                    onUserInput={(val) => {
-                      setValue(val)
-                    }}
-                  />
-                </Flex>
-                {assetToken && selectedCurrencyBalance ? (
-                  <div className="flex flex-col">
-                    <div
-                      onClick={() => setValue(selectedCurrencyBalance.toFixed())}
-                      className="text-xxs font-medium text-right cursor-pointer text-low-emphesis"
-                    >
-                      Balance: {formatNumberScale(selectedCurrencyBalance.toSignificant(4))}{' '}
-                    </div>
-                  </div>
-                ) : null}
-
+          <StyledCard className="animate__animated animate__fadeInLeft animate__fast">
+            <CardInner>
+              <Flex flexDirection="column" mt="12px">
                 <TextContainer>
-                  <SubText>Withdrawer</SubText>
+                  <SubText>Token Address</SubText>
                 </TextContainer>
-                <input
-                  className="p-3 w-full flex overflow-ellipsis font-bold recipient-address-input bg-dark-900 h-full w-full rounded placeholder-low-emphesis"
+                <TextInput
+                  type="text"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck="false"
+                  pattern="^(0x[a-fA-F0-9]{40})$"
+                  onChange={(e) => setTokenAddress(e.target.value)}
+                  value={tokenAddress}
+                />
+              </Flex>
+              <Flex flexDirection="column" mt="12px">
+                <TextContainer>
+                  <SubText>Amount</SubText>
+                </TextContainer>
+                <NumericalInput
+                  style={{
+                    minWidth: '100%',
+                    borderRadius: '2px',
+                    border: '3px solid #fff',
+                    width: '100%',
+                    minHeight: '60px',
+                    background: 'linear-gradient(to bottom,#000 20%,#111)',
+                    color: '#FFF',
+                    paddingLeft: '12px',
+                    fontSize: '24px',
+                    paddingRight: '12px'
+                  }}
+                  id="token-amount-input"
+                  value={value}
+                  onUserInput={(val) => {
+                    setValue(val)
+                  }}
+                />
+              </Flex>
+              {assetToken && selectedCurrencyBalance ? (
+                <Flex flexDirection="column" alignItems="flex-end" justifyContent="flex-end" mt="12px">
+                  <div
+                    onClick={() => setValue(selectedCurrencyBalance.toFixed())}
+                    className="text-xxs font-medium text-right cursor-pointer text-low-emphesis"
+                  >
+                    Balance: {formatNumberScale(selectedCurrencyBalance.toSignificant(4))}{' '}
+                  </div>
+                </Flex>
+              ) : null}
+
+              <TextContainer>
+                <SubText>Withdrawer</SubText>
+              </TextContainer>
+              <Flex alignItems="center" marginBottom="12px">
+                <TextInput
                   type="text"
                   autoComplete="off"
                   autoCorrect="off"
@@ -287,123 +301,115 @@ const Locker: FC = () => {
                   <Button
                     onClick={() => setWithdrawer(account)}
                     size="xs"
-                    className="text-xxs font-medium bg-transparent border rounded-full hover:bg-primary border-low-emphesis text-secondary whitespace-nowrap"
+                    marginRight={12}
+                    marginLeft={12}
                   >
                     Me
                   </Button>
                 )}
-                {/* Add your withdrawer input and Button component here */}
+              </Flex>
+              <TextContainer>
+                <SubText>Unlock Date</SubText>
+              </TextContainer>
+              <DateTimePicker onChange={(date) => handleChangeDate(date)} value={unlockDate.toDate()} />
+              <TextContainer>
+                {!account ? (
+                  <div>Connect...</div>
+                  // <Web3Connect size="lg" color="gradient" className="w-full" />
+                ) : !allInfoSubmitted ? (
+                  <Button className="font-bold" style={{ width: '100%' }} disabled={!allInfoSubmitted}>
+                    {errorMessage}
+                  </Button>
+                ) : (
+                  <Flex flexDirection="column" alignItems="center" justifyContent="center">
+                    {approvalState !== ApprovalState.APPROVED && (
+                      <Button
+                        onClick={handleApprove}
+                        disabled={
+                          approvalState !== ApprovalState.NOT_APPROVED ||
+                          approvalSubmitted ||
+                          !allInfoSubmitted
+                        }
+                        style={{
+                          width: '100%',
+                        }}
+                      >
+                        {approvalState === ApprovalState.PENDING ? (
+                          <div className={'p-2'}>
+                            Approving...
+                          </div>
+                        ) : (
+                          "Approve"
+                        )}
+                      </Button>
+                    )}
+                    {approvalStatePayingValue !== ApprovalState.APPROVED && (
+                      <Button
+                        onClick={handleApprovePayingValue}
+                        disabled={
+                          approvalStatePayingValue !== ApprovalState.NOT_APPROVED ||
+                          approvalSubmitted ||
+                          !allInfoSubmitted
+                        }
+                        style={{
+                          width: '100%',
+                        }}
+                      >
+                        {approvalState === ApprovalState.PENDING ? (
+                          <div className={'p-2'}>
+                            Approving...
+                          </div>
+                        ) : (
+                          "Approve"
+                        )}
+                      </Button>
+                    )}
+                    {approvalState === ApprovalState.APPROVED && (
+                      <Button
+                        className="font-bold text-light"
+                        onClick={handleLock}
+                        style={{
+                          width: '100%',
+                        }}
+                        disabled={approvalState !== ApprovalState.APPROVED || !allInfoSubmitted || pendingTx}
+                      >
+                        {pendingTx ? (
+                          <div className={'p-2'}>
+                            Locking
+                          </div>
+                        ) : (
+                          'Lock'
+                        )}
+                      </Button>
+                    )}
+                  </Flex>
+                )}
+              </TextContainer>
+
+              <StyledFlex flexDirection="column" justifyContent="flex-start">
                 <TextContainer>
-                  <SubText>Unlock Date</SubText>
+                  <SubText>How to use</SubText>
                 </TextContainer>
-                {/* Add your Datetime input component here */}
-                <>
-                  {/* <Datetime
-                                value={unlockDate}
-                                utc={true}
-                                closeOnSelect={true}
-                                isValidDate={valid}
-                                onChange={(e) => setUnlockDate(dayjs())}
-                                inputProps={{
-                                  className:
-                                    'p-3 w-full flex overflow-ellipsis font-bold recipient-address-input bg-dark-900 h-full w-full rounded placeholder-low-emphesis',
-                                }}
-                              /> */}
-                </>
+                <p>
+                  Input your token or liquidity pair address, amount of tokens to lock,
+                  withdrawer address and when tokens will become unlocked.
+                </p>
+                <p>Click on "Approve" to allow the contract to transfer your tokens.</p>
+                <p>Click on "Deposit" to lock your tokens into the locker contract.</p>
                 <TextContainer>
-                  {/* Add your submission buttons here */}
-                  {!account ? (
-                              <div>Connect...</div>
-                              // <Web3Connect size="lg" color="gradient" className="w-full" />
-                            ) : !allInfoSubmitted ? (
-                              <Button className="font-bold" style={{ width: '100%' }} disabled={!allInfoSubmitted}>
-                                {errorMessage}
-                              </Button>
-                            ) : (
-                              <>
-                                {approvalState !== ApprovalState.APPROVED && (
-                                  <Button
-                                    onClick={handleApprove}
-                                    disabled={
-                                      approvalState !== ApprovalState.NOT_APPROVED ||
-                                      approvalSubmitted ||
-                                      !allInfoSubmitted
-                                    }
-                                  >
-                                    {approvalState === ApprovalState.PENDING ? (
-                                      <div className={'p-2'}>
-                                          Approving...
-                                      </div>
-                                    ) : (
-                                      "Approve"
-                                    )}
-                                  </Button>
-                                )}
-                                {approvalStatePayingValue !== ApprovalState.APPROVED && (
-                                  <Button
-                                    onClick={handleApprovePayingValue}
-                                    disabled={
-                                      approvalStatePayingValue !== ApprovalState.NOT_APPROVED ||
-                                      approvalSubmitted ||
-                                      !allInfoSubmitted
-                                    }
-                                  >
-                                    {approvalState === ApprovalState.PENDING ? (
-                                      <div className={'p-2'}>
-                                          Approving...
-                                      </div>
-                                    ) : (
-                                      "Approve"
-                                    )}
-                                  </Button>
-                                )}
-                                {approvalState === ApprovalState.APPROVED && (
-                                  <Button
-                                    className="font-bold text-light"
-                                    onClick={handleLock}
-                                    style={{
-                                      width: '100%',
-                                    }}
-                                    disabled={approvalState !== ApprovalState.APPROVED || !allInfoSubmitted || pendingTx}
-                                  >
-                                    {pendingTx ? (
-                                      <div className={'p-2'}>
-                                          Locking
-                                      </div>
-                                    ) : (
-                                      'Lock'
-                                    )}
-                                  </Button>
-                                )}
-                              </>
-                            )}
+                  <SubText>Fees</SubText>
                 </TextContainer>
-              </LeftColumn>
-              <RightColumn>
-                <div>
-                  <TextContainer>
-                    <SubText>How to use</SubText>
-                  </TextContainer>
-                  <p>
-                    Input your token or liquidity pair address, amount of tokens to lock,
-                    withdrawer address and when tokens will become unlocked.
-                  </p>
-                  <p>Click on "Approve" to allow the contract to transfer your tokens.</p>
-                  <p>Click on "Deposit" to lock your tokens into the locker contract.</p>
-                  <TextContainer>
-                    <SubText>Fees</SubText>
-                  </TextContainer>
-                  <p>Pay 0.1 FTM to lock.</p>
-                  <TextContainer>
-                    <SubText>Considerations</SubText>
-                  </TextContainer>
-                  <p>You will not be able to withdraw your tokens before the unlock time.</p>
-                  <p>Locker contract address: Your Locker Address.</p>
-                  <p>Always DYOR.</p>
-                </div>
-              </RightColumn>
-            </GridContainer>
-          </CustomCard>
+                <p>Pay 1 BSX to lock.</p>
+                <TextContainer>
+                  <SubText>Considerations</SubText>
+                </TextContainer>
+                <p>You will not be able to withdraw your tokens before the unlock time.</p>
+                <p>Locker contract address: 0x746408887b35fbdb0587c270e5518005b8677cd3</p>
+                <p>Always DYOR.</p>
+              </StyledFlex>
+
+            </CardInner>
+          </StyledCard>
         </Wrapper>
       </Page>
     </>
