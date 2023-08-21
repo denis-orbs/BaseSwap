@@ -41,6 +41,7 @@ import {
   getCakePredictionsContract,
   getPredictionsV1Contract,
   getXToken,
+  getTokenLocker,
 } from 'utils/contractHelpers'
 import { getMulticallAddress, getPredictionsV1Address, getZapAddress } from 'utils/addressHelpers'
 import {
@@ -172,6 +173,11 @@ export const useMasterchef = (withSignerIfPossible = true) => {
 export const useMasterchefV1 = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getMasterchefV1Contract(library.getSigner()), [library])
+}
+
+export const useTokenLocker = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getTokenLocker(library.getSigner()), [library])
 }
 
 export const useSousChef = (id) => {
