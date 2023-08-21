@@ -1,14 +1,6 @@
-import {
-  ChainId,
-  Currency,
-  CurrencyAmount,
-  Token,
-  TradeType,
-  Route as V3Route,
-  Route as V2Route,
-  Percent,
-} from '@baseswapfi/sdk-core'
-import { MixedRouteSDK, Protocol, Trade } from '@uniswap/router-sdk'
+import { ChainId, Currency, CurrencyAmount, Token, TradeType, Route as V3Route } from '@baseswapfi/sdk-core'
+import { MixedRouteSDK, Trade } from '@baseswapfi/router-sdk'
+import { Route as V2Route } from '@baseswapfi/v2-sdk'
 
 export enum TradeState {
   LOADING,
