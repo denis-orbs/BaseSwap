@@ -154,25 +154,16 @@ const Locker: FC = () => {
     </Tabs>
   )
 
-  const { account, chainId, library } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const [tokenAddress, setTokenAddress] = useState('')
   const [withdrawer, setWithdrawer] = useState('')
   const [value, setValue] = useState('')
-  // const [unlockDate, setUnlockDate] = useState(dayjs())
   const [unlockDate, setUnlockDate] = useState(dayjs().add(1, 'day'))
 
   const [tokenAddressFind, setTokenAddressFind] = useState('')
-  // const token = useToken(isAddress(tokenAddressFind) ? tokenAddressFind : undefined)
   const [lockers, setLockers] = useState([])
 
-
-
-  // const [unlockDate, setUnlockDate] = useState(new Date(new Date().getTime() + 24 * 60 * 60 * 1000))
   const [pendingTx, setPendingTx] = useState(false)
-
-  const [dateValue, setDateValue] = useState<Value>(new Date());
-
-
 
   const assetToken = useCurrency(tokenAddress) || undefined
   const payingToken = useCurrency('0x0B794759D6ECD09750EDB6E7bf67e80C3fCc3A2d') || undefined
@@ -187,26 +178,9 @@ const Locker: FC = () => {
 
   const lockerContract = useTokenLocker()
 
-  // useEffect(() => {
-  //   console.log('isAddy', isAddress(tokenAddressFind))
-  //   if (isAddress(tokenAddressFind)) {
-  //     console.log('tokenAddressFind', tokenAddressFind)
-  //     lockerContract.getDepositsByTokenAddress(tokenAddressFind).then((r) => {
-  //       console.log('r',)
-  //       if (r.length > 0) {
-  //         setLockers(r)
-  //         // setLockers(r.filter((x) => x.withdrawn == false))
-  //       }
-  //     })
-  //   }
-  // }, [tokenAddressFind, lockerContract])
-
   useEffect(() => {
-    console.log('isAddy', isAddress(tokenAddressFind))
     if (isAddress(tokenAddressFind)) {
-      console.log('tokenAddressFind', tokenAddressFind)
       lockerContract.getDepositsByTokenAddress(tokenAddressFind).then(async (r) => {
-        console.log('r', r)
         if (r.length > 0) {
           const updatedLockers = await Promise.all(r.map(async (locker) => {
             try {
@@ -222,7 +196,6 @@ const Locker: FC = () => {
             }
           }));
           setLockers(updatedLockers);
-          // setLockers(updatedLockers.filter((x) => x.withdrawn == false));
         }
       })
     }
@@ -264,8 +237,6 @@ const Locker: FC = () => {
       setApprovalSubmitted(true)
     }
   }, [approvalState, approvalSubmitted])
-
-  console.log('unlock date', unlockDate, dayjs(unlockDate).isValid(), dayjs(unlockDate).isBefore(dayjs()))
 
   const errorMessage = !isAddress(tokenAddress)
     ? 'Invalid token'
@@ -333,8 +304,6 @@ const Locker: FC = () => {
       }
     }
   }, [allInfoSubmitted, assetToken, tokenAddress, withdrawer, value, unlockDate, lockerContract])
-
-  console.log('lockers', lockers)
 
   return (
     <>
@@ -548,7 +517,6 @@ const Locker: FC = () => {
                   )}
                   <div className="flex-col">
                     {lockers.length > 0 && lockers.map((locker, index) => {
-                      console.log('locker', locker.lockedTokenData.unlockTimestamp.toNumber())
                       return (
                         <StyledLockCard key={index}>
                           <StyledRow>
