@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import React, { useCallback, useEffect, useState } from 'react'
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime'; // Import the relativeTime plugin
@@ -7,7 +6,7 @@ import utc from 'dayjs/plugin/utc'; // Import the utc plugin
 import styled from 'styled-components';
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {
-  Button, Card, Flex, ButtonMenu,
+  Button, Flex, ButtonMenu,
   ButtonMenuItem
 } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
@@ -15,7 +14,6 @@ import { useCurrencyBalance } from 'state/wallet/hooks'
 import tryParseAmount from 'utils/tryParseAmount'
 import { formatNumberScale } from 'utils/formatBalance'
 import PageTitle from 'components/PageTitle/PageTitle'
-import Script from 'next/script'
 import { FC } from 'react'
 import { ethers } from 'ethers'
 import Page from '../Page'
@@ -25,7 +23,6 @@ import { LOCKER_ADDRESS } from 'config/constants/exchange';
 import { useApproveCallback } from 'hooks/useApproveCallback';
 import { useCurrency } from 'hooks/Tokens';
 import { getAddress, isAddress } from '@ethersproject/address';
-// import { BigNumber } from '@ethersproject/bignumber'
 import useToast from 'hooks/useToast';
 import BigNumber from 'bignumber.js';
 import { ToastDescriptionWithTx } from 'components/Toast';
