@@ -19,7 +19,8 @@ export const styleVariants = {
   },
   [variants.TRANS]: {
     backgroundColor: "transparent",
-    boxShadow: "-4px 0 12px #FC8A17, 4px 0 12px #FC8A17, 0 0 36px #FC8A17", 
+    boxShadow: "0 4px 12px #68B9FF, 0 4px 4px #fff, 4px 0px 12px #0154FD, -4px 0px 12px #68B9FF", 
+
     borderRadius: "12px", 
   },
   [variants.SECONDARY]: {
