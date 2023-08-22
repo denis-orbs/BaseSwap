@@ -109,6 +109,10 @@ const config: (
           href: '/bridge',
         },
         {
+          label: t('Locker'),
+          href: '/locker',
+        },
+        {
           label: t('NFT'),
           href: 'https://marketplace.baseswap.fi',
         },
