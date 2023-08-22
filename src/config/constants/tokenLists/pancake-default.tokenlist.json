@@ -12,7 +12,7 @@
   "tokens": [
 
     {
-      "name": "Base X",
+      "name": "BaseSwap Token",
       "symbol": "BSWAP",
       "address": "0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9",
       "chainId": 8453,
