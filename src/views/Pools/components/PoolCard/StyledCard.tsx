@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Card } from '@pancakeswap/uikit'
 
 export const StyledCard = styled(Card)<{ isFinished?: boolean }>`
-  min-width: 375px;
+  min-width: 350px;
   border: none;
   box-shadow: 0 1px 4px #fff, 1px 0px 4px #0154FD, -1px 0px 4px #68B9FF; 
   max-width: 100%;
