@@ -1,6 +1,6 @@
 import { ChainId, Currency, CurrencyAmount, Token, TradeType } from '@baseswapfi/sdk-core'
 import { Route as V3Route } from '@baseswapfi/v3-sdk2'
-import { MixedRouteSDK, Trade } from '@baseswapfi/router-sdk'
+import { MixedRouteSDK, Protocol, Trade } from '@baseswapfi/router-sdk'
 import { Route as V2Route } from '@baseswapfi/v2-sdk'
 
 export enum TradeState {
@@ -125,6 +125,10 @@ type URAClassicQuoteResponse = {
 }
 export type URAQuoteResponse = URAClassicQuoteResponse | URADutchOrderQuoteResponse
 
+export function isClassicQuoteResponse(data: URAQuoteResponse): data is URAClassicQuoteResponse {
+  return data.routing === URAQuoteType.CLASSIC
+}
+
 export enum TradeFillType {
   Classic = 'classic', // Uniswap V1, V2, and V3 trades with on-chain routes
   // UniswapX = 'uniswap_x', // off-chain trades, no routes
@@ -196,6 +200,11 @@ export class ClassicTrade extends Trade<Currency, Currency, TradeType> {
 
 export type InterfaceTrade = ClassicTrade
 
+export enum PoolType {
+  V2Pool = 'v2-pool',
+  V3Pool = 'v3-pool',
+}
+
 // swap router API special cases these strings to represent native currencies
 // all chains except for bnb chain and polygon
 // have "ETH" as native currency symbol
@@ -237,3 +246,9 @@ export enum URAQuoteType {
   CLASSIC = 'CLASSIC',
   DUTCH_LIMIT = 'DUTCH_LIMIT',
 }
+
+type ClassicAPIConfig = {
+  protocols: Protocol[]
+}
+
+export type RoutingConfig = ClassicAPIConfig[]

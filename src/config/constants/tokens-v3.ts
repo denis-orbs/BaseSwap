@@ -1,7 +1,17 @@
 import { ChainId, Ether, NativeCurrency, Token } from '@baseswapfi/sdk-core'
-import { WRAPPED_NATIVE_CURRENCY } from './tokens'
 
 export const NATIVE_CHAIN_ID = 'NATIVE'
+
+export const WRAPPED_NATIVE = {
+  [ChainId.BASE_GOERLI]: new Token(
+    ChainId.BASE_GOERLI,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether',
+  ),
+  [ChainId.BASE]: new Token(ChainId.BASE, '0x4200000000000000000000000000000000000006', 18, 'WETH', 'Wrapped Ether'),
+}
 
 export const USDBC_BASE = new Token(
   ChainId.BASE,
@@ -15,8 +25,8 @@ export const STABLE_COIN: { [chainId: number]: Token } = {
   [ChainId.BASE]: USDBC_BASE,
 }
 
-export const WRAPPED_NATIVE: { [chainId: number]: Token } = {
-  [ChainId.BASE]: USDBC_BASE,
+export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token } = {
+  [ChainId.BASE]: WRAPPED_NATIVE[ChainId.BASE],
 }
 
 class ExtendedEther extends Ether {
