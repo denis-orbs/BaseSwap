@@ -103,6 +103,16 @@ export const livePools: SerializedPoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.006',
   },
+  {
+    sousId: 103,
+    stakingToken: serializedTokens.bsx,
+    earningToken: serializedTokens.usdbc,
+    contractAddress: {
+      [ChainId.BASE]: '0x55da9a8a85d37764934a8915621baa00fafdc3eb',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '.0055',
+  },
 
 ]
 
