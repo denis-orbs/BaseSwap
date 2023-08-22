@@ -173,7 +173,7 @@ const Locker: FC = () => {
 
   // LIQUIDITY TOKEN APPROVAL
   const [approvalState, approve] = useApproveCallback(typedDepositValue, LOCKER_ADDRESS[chainId])
-  // BSX TOKEN APPROVAL
+  // BASESWAP TOKEN APPROVAL
   const [approvalStatePayingValue, approvePayingValue] = useApproveCallback(typedPayingValue, LOCKER_ADDRESS[chainId])
 
   const lockerContract = useTokenLocker()
@@ -482,12 +482,12 @@ const Locker: FC = () => {
                   Input your token or liquidity pair address, amount of tokens to lock,
                   withdrawer address and when tokens will become unlocked.
                 </p>
-                <p>Click on "Approve" to allow the contract to transfer your tokens.  You must approve both the 1 BSX fee as well as your LP</p>
+                <p>Click on "Approve" to allow the contract to transfer your tokens.  You must approve both the 1 BSWAP fee as well as your LP</p>
                 <p>Click on "Deposit" to lock your tokens into the locker contract.</p>
                 <TextContainer>
                   <SubText>Fees</SubText>
                 </TextContainer>
-                <p>Pay 1 BSX to lock.</p>
+                <p>Pay 1 BSWAP to lock.</p>
                 <TextContainer>
                   <SubText>Considerations</SubText>
                 </TextContainer>
