@@ -1,13 +1,12 @@
+import { Price, Token } from '@baseswapfi/sdk-core'
 import {
-  Price,
-  Token,
   encodeSqrtRatioX96,
   FeeAmount,
   nearestUsableTick,
   priceToClosestTick,
   TICK_SPACINGS,
   TickMath,
-} from '@baseswapfi/sdk-core'
+} from '@baseswapfi/v3-sdk2'
 import JSBI from 'jsbi'
 
 export function tryParsePrice(baseToken?: Token, quoteToken?: Token, value?: string) {

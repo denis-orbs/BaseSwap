@@ -1,4 +1,5 @@
-import { ChainId, Currency, CurrencyAmount, Token, TradeType, Route as V3Route } from '@baseswapfi/sdk-core'
+import { ChainId, Currency, CurrencyAmount, Token, TradeType } from '@baseswapfi/sdk-core'
+import { Route as V3Route } from '@baseswapfi/v3-sdk2'
 import { MixedRouteSDK, Trade } from '@baseswapfi/router-sdk'
 import { Route as V2Route } from '@baseswapfi/v2-sdk'
 

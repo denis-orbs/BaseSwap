@@ -1,4 +1,4 @@
-import { Pool, Position } from '@baseswapfi/sdk-core'
+import { Pool, Position } from '@baseswapfi/v3-sdk2'
 import { usePool } from 'hooks/v3/usePools'
 import { PositionDetails } from 'types/position'
 

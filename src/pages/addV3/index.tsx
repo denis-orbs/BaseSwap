@@ -1,21 +1,13 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import type { TransactionResponse } from '@ethersproject/providers'
-import {
-  Currency,
-  CurrencyAmount,
-  NONFUNGIBLE_POSITION_MANAGER_ADDRESSES,
-  Percent,
-  FeeAmount,
-  NonfungiblePositionManager,
-} from '@baseswapfi/sdk-core'
+import { Currency, CurrencyAmount, NONFUNGIBLE_POSITION_MANAGER_ADDRESSES, Percent } from '@baseswapfi/sdk-core'
+import { FeeAmount, NonfungiblePositionManager } from '@baseswapfi/v3-sdk2'
 import OwnershipWarning from 'components/AddLiquidity/OwnershipWarning'
 // import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter'
 import { isSupportedChain } from 'config/constants/chains'
 import usePrevious from 'hooks/usePrevious'
 // import { useSingleCallResult } from 'lib/hooks/multicall'
 // import { PositionPageUnsupportedContent } from 'pages/Pool/PositionPage'
-// TODO: Convert to current versions/ability as needed
-// import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { AlertTriangle } from 'react-feather'
 import {

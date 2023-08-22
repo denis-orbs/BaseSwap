@@ -1,6 +1,8 @@
 import { ChainId, Currency, CurrencyAmount, Price, Token, WETH9 } from '@baseswapfi/sdk-core'
 import { STABLE_COIN, USDBC_BASE } from 'config/constants/tokens-v3'
+import tryParseCurrencyAmount from 'lib/utils/tryParseCurrencyAmount'
 import useActiveWeb3React from './useActiveWeb3React'
+import { INTERNAL_ROUTER_PREFERENCE_PRICE } from 'state/routing/types'
 import { useMemo } from 'react'
 
 // Stablecoin amounts used when calculating spot price for a given currency.

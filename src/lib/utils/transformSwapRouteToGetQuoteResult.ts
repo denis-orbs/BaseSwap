@@ -1,7 +1,7 @@
-import { Protocol } from '@uniswap/router-sdk'
+import { Protocol } from '@baseswapfi/router-sdk'
 import { Currency, CurrencyAmount, TradeType } from '@baseswapfi/sdk-core'
-import { routeAmountsToString, SwapRoute } from '@uniswap/smart-order-router'
-import { Pool } from '@uniswap/v3-sdk'
+import { routeAmountsToString, SwapRoute } from '@baseswapfi/smart-order-router'
+import { Pool } from '@baseswapfi/v3-sdk2'
 import {
   QuoteResult,
   QuoteState,

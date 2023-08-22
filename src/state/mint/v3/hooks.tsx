@@ -1,9 +1,5 @@
+import { Currency, CurrencyAmount, Price, Rounding, Token } from '@baseswapfi/sdk-core'
 import {
-  Currency,
-  CurrencyAmount,
-  Price,
-  Rounding,
-  Token,
   encodeSqrtRatioX96,
   FeeAmount,
   nearestUsableTick,
@@ -13,7 +9,7 @@ import {
   TICK_SPACINGS,
   TickMath,
   tickToPrice,
-} from '@baseswapfi/sdk-core'
+} from '@baseswapfi/v3-sdk2'
 import { useWeb3React } from '@web3-react/core'
 import { PoolState, usePool } from 'hooks/v3/usePools'
 import JSBI from 'jsbi'

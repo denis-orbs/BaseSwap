@@ -1,13 +1,6 @@
 import { Interface } from '@ethersproject/abi'
-import {
-  BigintIsh,
-  Currency,
-  Token,
-  V3_CORE_FACTORY_ADDRESSES,
-  computePoolAddress,
-  FeeAmount,
-  Pool,
-} from '@baseswapfi/sdk-core'
+import { BigintIsh, Currency, Token, V3_CORE_FACTORY_ADDRESSES } from '@baseswapfi/sdk-core'
+import { computePoolAddress, FeeAmount, Pool } from '@baseswapfi/v3-sdk2'
 import IUniswapV3PoolStateJSON from 'config/abi/IUniswapV3PoolState.json'
 import { useWeb3React } from '@web3-react/core'
 import JSBI from 'jsbi'

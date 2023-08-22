@@ -1,5 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
-import { Percent, Price, Token, Position } from '@baseswapfi/sdk-core'
+import { Percent, Price, Token } from '@baseswapfi/sdk-core'
+import { Position } from '@baseswapfi/v3-sdk2'
 import RangeBadge from 'components/Badge/RangeBadge'
 import DoubleCurrencyLogo from 'components/DoubleLogo'
 import HoverInlineText from 'components/HoverInlineText'

@@ -1,7 +1,7 @@
 import { BigintIsh, CurrencyAmount, Token, TradeType } from '@baseswapfi/sdk-core'
 // This file is lazy-loaded, so the import of smart-order-router is intentional.
 // eslint-disable-next-line no-restricted-imports
-import { AlphaRouter, AlphaRouterConfig } from '@uniswap/smart-order-router'
+import { AlphaRouter, AlphaRouterConfig } from '@baseswapfi/smart-order-router'
 import { nativeOnChain } from 'config/constants/tokens-v3'
 import JSBI from 'jsbi'
 import { GetQuoteArgs, QuoteResult, QuoteState, SwapRouterNativeAssets } from 'state/routing/types'

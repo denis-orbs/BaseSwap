@@ -38,9 +38,12 @@
     ]
   },
   "dependencies": {
-    "@baseswapfi/router-sdk": "^1.0.0",
-    "@baseswapfi/sdk-core": "^1.0.5",
-    "@baseswapfi/v2-sdk": "^1.0.1",
+    "@baseswapfi/redux-multicall": "^1.1.6",
+    "@baseswapfi/router-sdk": "^1.0.3",
+    "@baseswapfi/sdk-core": "^1.0.8",
+    "@baseswapfi/smart-order-router": "^3.15.11",
+    "@baseswapfi/v2-sdk": "^1.0.3",
+    "@baseswapfi/v3-sdk2": "^3.10.0",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@blocto/blocto-connector": "^0.2.3",
     "@ethersproject/abi": "^5.5.0",
@@ -58,7 +61,6 @@
     "@next/bundle-analyzer": "^12.0.7",
     "@reduxjs/toolkit": "^1.8.2",
     "@sentry/nextjs": "6.19.6",
-    "@uniswap/smart-order-router": "^3.15.11",
     "@uniswap/token-lists": "^1.0.0-beta.19",
     "@web3-react/core": "^6.1.9",
     "@web3-react/injected-connector": "^6.0.7",

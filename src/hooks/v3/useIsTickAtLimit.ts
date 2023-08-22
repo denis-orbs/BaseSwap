@@ -1,4 +1,4 @@
-import { FeeAmount, nearestUsableTick, TICK_SPACINGS, TickMath } from '@baseswapfi/sdk-core'
+import { FeeAmount, nearestUsableTick, TICK_SPACINGS, TickMath } from '@baseswapfi/v3-sdk2'
 import { useMemo } from 'react'
 import { Bound } from 'state/mint/v3/actions'
 
