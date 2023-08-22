@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import React, { useCallback, useEffect, useState } from 'react'
 import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime'; // Import the relativeTime plugin
+import utc from 'dayjs/plugin/utc'; // Import the utc plugin
+
 import styled from 'styled-components';
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {
@@ -29,6 +32,8 @@ import { ToastDescriptionWithTx } from 'components/Toast';
 import DateTimePicker from 'react-datetime-picker';
 import { StyledCard } from '@pancakeswap/uikit/src/components/Card/StyledCard';
 
+dayjs.extend(relativeTime); // Extend dayjs with the relativeTime plugin
+dayjs.extend(utc);
 
 
 export enum ApprovalState {
@@ -71,6 +76,28 @@ const StyledFlex = styled(Flex)`
   margin-top: 48px;
   margin-left: 12px;
   margin-right: 12px;
+`;
+
+
+const StyledLockCard = styled.div`
+  width: 95%;
+  min-width: 95%;
+  background: linear-gradient(to bottom, #333333, #000000);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  padding: 12px;
+  margin-top: 48px;
+  margin-left: 12px;
+  margin-right: 12px;
+`;
+
+const StyledRow = styled.div`
+  margin-top: 12px;
+`;
+const StyledRowBlue = styled.div`
+  margin-top: 24px;
+  color: #0154FE;
+  font-weight: 600;
 `;
 
 const CardInner = styled.div`
@@ -163,19 +190,46 @@ const Locker: FC = () => {
 
   const lockerContract = useTokenLocker()
 
+  // useEffect(() => {
+  //   console.log('isAddy', isAddress(tokenAddressFind))
+  //   if (isAddress(tokenAddressFind)) {
+  //     console.log('tokenAddressFind', tokenAddressFind)
+  //     lockerContract.getDepositsByTokenAddress(tokenAddressFind).then((r) => {
+  //       console.log('r',)
+  //       if (r.length > 0) {
+  //         setLockers(r)
+  //         // setLockers(r.filter((x) => x.withdrawn == false))
+  //       }
+  //     })
+  //   }
+  // }, [tokenAddressFind, lockerContract])
+
   useEffect(() => {
     console.log('isAddy', isAddress(tokenAddressFind))
     if (isAddress(tokenAddressFind)) {
       console.log('tokenAddressFind', tokenAddressFind)
-      lockerContract.getDepositsByTokenAddress(tokenAddressFind).then((r) => {
-        console.log('r',)
+      lockerContract.getDepositsByTokenAddress(tokenAddressFind).then(async (r) => {
+        console.log('r', r)
         if (r.length > 0) {
-          setLockers(r)
-          // setLockers(r.filter((x) => x.withdrawn == false))
+          const updatedLockers = await Promise.all(r.map(async (locker) => {
+            try {
+              const lockedTokenData = await lockerContract.lockedToken(locker);
+              return {
+                ...locker,
+                lockerId: locker.toNumber(),
+                lockedTokenData: lockedTokenData || null, // Handle the case where lockedTokenData is undefined
+              };
+            } catch (error) {
+              console.error("Error fetching lockedTokenData:", error);
+              return locker; // Return the locker as is, without lockedTokenData
+            }
+          }));
+          setLockers(updatedLockers);
+          // setLockers(updatedLockers.filter((x) => x.withdrawn == false));
         }
       })
     }
-  }, [tokenAddressFind, lockerContract])
+  }, [tokenAddressFind, lockerContract]);
 
   const handleChangeDate = (date: Date) => {
     setUnlockDate(dayjs(date))
@@ -189,7 +243,7 @@ const Locker: FC = () => {
         const tx = await lockerContract.withdrawTokens(id)
         toastSuccess(
           `Removed Lock from ${id}`,
-            `Your funds have been removed: ${tx}`
+          `Your funds have been removed`
         )
       } catch (error) {
         toastError(
@@ -289,11 +343,11 @@ const Locker: FC = () => {
     <>
       <Page>
         <PageTitle title="Token Locker" />
-          <TabsComponent />
+        <TabsComponent />
         <Wrapper>
           {view === LockerType.CREATE && <StyledCard className="animate__animated animate__fadeInLeft animate__fast">
             <CardInner>
-            <Flex flexDirection="column" mt="12px">
+              <Flex flexDirection="column" mt="12px">
                 <TextContainer>
                   <SubText>Token Address</SubText>
                 </TextContainer>
@@ -471,86 +525,70 @@ const Locker: FC = () => {
             </CardInner>
           </StyledCard>}
           {view === LockerType.FIND &&
-          <StyledCard className="animate__animated animate__fadeInLeft animate__fast">
-          <CardInner>
-          <Flex flexDirection="column" mt="12px">
-                <TextContainer>
-                  <SubText>Search</SubText>
-                </TextContainer>
-                <TextInput
-                  // placeholder={'Search by name, symbol or address'}
-                  type="text"
-                  autoComplete="off"
-                  autoCorrect="off"
-                  autoCapitalize="off"
-                  spellCheck="false"
-                  pattern="^(0x[a-fA-F0-9]{40})$"
-                  onChange={(e) => setTokenAddressFind(e.target.value)}
-                  value={tokenAddressFind}
-                />
-                 {lockers.length == 0 && isAddress(tokenAddress) && (
-                  <div className="flex justify-center items-center col-span-12 lg:justify mt-20">
-                    <span>
-                      No lockers found...
-                    </span>
-                  </div>
-                )}
-                 {lockers.length > 0 && (
-                  <div>
-                    <div>
-                      <div>Token</div>
+            <StyledCard className="animate__animated animate__fadeInLeft animate__fast" style={{width: '100%', maxWidth: '1200px'}}>
+              <CardInner>
+                <Flex flexDirection="column" mt="12px">
+                  <TextContainer>
+                    <SubText>Search</SubText>
+                  </TextContainer>
+                  <TextInput
+                    // placeholder={'Search by name, symbol or address'}
+                    type="text"
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellCheck="false"
+                    pattern="^(0x[a-fA-F0-9]{40})$"
+                    onChange={(e) => setTokenAddressFind(e.target.value)}
+                    value={tokenAddressFind}
+                  />
+                  {lockers.length == 0 && isAddress(tokenAddress) && (
+                    <div className="flex justify-center items-center col-span-12 lg:justify mt-20">
+                      <span>
+                        No lockers found...
+                      </span>
                     </div>
-                    <div className="flex items-center ">Amount Locked</div>
-                    <div className="items-center justify-end px-2 flex ">Unlock date</div>
+                  )}
+                  <div className="flex-col">
+                    {lockers.length > 0 && lockers.map((locker, index) => {
+                      console.log('locker', locker.lockedTokenData.unlockTimestamp.toNumber())
+                      return (
+                        <StyledLockCard key={index}>
+                          <StyledRow>
+                            Tokens locked- {locker.lockedTokenData.token.toString()}
+                          </StyledRow>
+                          <StyledRow>
+                            Amount locked- {locker.lockedTokenData.amount.toString()}
+                          </StyledRow>
+                          <StyledRow>
+                            Withdraw address- {locker.lockedTokenData.withdrawer.toString()}
+                          </StyledRow>
+                          <StyledRowBlue>
+                            Unlocke Date {dayjs.unix(locker.lockedTokenData.unlockTimestamp.toNumber()).fromNow()}
+                          </StyledRowBlue>
+                          <StyledRow style={{ color: locker.lockedTokenData.withdrawn ? 'green' : 'red' }}>
+                            {locker.lockedTokenData.withdrawn ? 'Withdrawn already' : 'Not withdrawn'}
+                          </StyledRow>
+                          <Button
+                            style={{ width: '100%', marginTop: 20 }}
+                            onClick={() => handleWithdraw(locker.lockerId)}
+                            disabled={
+                              dayjs.unix(locker.lockedTokenData.unlockTimestamp.toNumber()).isAfter(new Date()) ||
+                              !account ||
+                              locker.lockedTokenData.withdrawn ||
+                              (account && getAddress(account) != getAddress(locker.lockedTokenData.withdrawer))
+                            }
+                          >
+                            Withdraw
+                          </Button>
+                        </StyledLockCard>
+                      )
+                    })}
                   </div>
-                )}
-                <div className="flex-col">
-                  {lockers.map((locker, index) => {
-                    return (
-                      <div key={index}>
-                        {() => (
-                          <div className="mb-4">
-                            <div
-                            >
-                              {/* <div >
-                                <div >
-                                  {token?.name} ({token?.symbol})
-                                </div>
-                                <div >
-                                  {CurrencyAmount.fromRawAmount(token, locker?.amount).toSignificant(6)}
-                                </div>
-                                <div >
-                                  <div >
-                                    {moment.unix(locker?.unlockTimestamp.toString()).fromNow()}
-                                  </div>
-                                </div>
-                                <div >
-                                  <div >
-                                    <Button
-                                      style={{ width: '100%' }}
-                                      onClick={() => handleWithdraw(locker?.id)}
-                                      disabled={
-                                        dayjs.unix(locker?.unlockTimestamp.toString()).isAfter(new Date()) ||
-                                        !account ||
-                                        (account && getAddress(account) != getAddress(locker?.withdrawer))
-                                      }
-                                    >
-                                      Withdraw
-                                    </Button>
-                                  </div>
-                                </div>
-                              </div> */}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    )
-                  })}
-                </div>
                 </Flex>
 
 
-            </CardInner>
+              </CardInner>
             </StyledCard>
           }
         </Wrapper>
