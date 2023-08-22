@@ -10,6 +10,10 @@ export const ROUTER_ADDRESS = {
   [ChainId.BASE]: '0x327Df1E6de05895d2ab08513aaDD9313Fe505d86',
 }
 
+export const LOCKER_ADDRESS = {
+  [ChainId.BASE]: '0x4e4c89937f85bD101C7FCB273435Ed89b49ad0B0', // 29 NOV
+}
+
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.MAINNET]: [

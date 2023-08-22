@@ -221,6 +221,9 @@ const Menu: React.FC<NavProps> = ({
                             <Link href="/bridge" marginBottom="1.2rem" >
                               <Text marginRight="2rem">Bridge </Text>
                             </Link>
+                            <Link href="/locker" marginBottom="1.2rem" >
+                              <Text marginRight="2rem">Token Locker </Text>
+                            </Link>
                             <Link href="https://marketplace.baseswap.fi" >
                               <Text marginRight="2rem">NFT</Text>
                             </Link>

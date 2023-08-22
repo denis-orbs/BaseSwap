@@ -23,6 +23,9 @@ import ErrorBoundary from '../components/ErrorBoundary'
 import Menu from '../components/Menu'
 import Providers from '../Providers'
 import GlobalStyle from '../style/Global'
+import 'react-datetime-picker/dist/DateTimePicker.css';
+import 'react-calendar/dist/Calendar.css';
+import 'react-clock/dist/Clock.css';
 // import { getWethPoolTokenValues } from 'state/farms/getFarmsPrices'
 
 // This config is required for number formatting

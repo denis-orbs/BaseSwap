@@ -12,9 +12,9 @@
   "tokens": [
 
     {
-      "name": "BaseSwap Token",
-      "symbol": "BSWAP",
-      "address": "0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9",
+      "name": "Base X",
+      "symbol": "BSX",
+      "address": "0xd5046B976188EB40f6DE40fB527F89c05b323385",
       "chainId": 8453,
       "decimals": 18,
       "logoURI": "https://baseswap.fi/images/tokens/0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9.png"

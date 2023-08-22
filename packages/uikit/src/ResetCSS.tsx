@@ -122,6 +122,22 @@ const ResetCSS = createGlobalStyle`
   .tw-rounded-box.tw-relative.tw-flex.tw-h-full.tw-w-full.tw-flex-col.tw-gap-4.tw-overflow-hidden.tw-bg-neutral.tw-font-inter.tw-text-base-content {
     background: linear-gradient(to top,#111,#333) !important;
   }
+  .react-datetime-picker {
+    border-radius: 2px;
+    border: 3px solid #fff;
+    width: 100%;
+    min-height: 60px;
+    background: linear-gradient(to bottom,#000 20%,#111);
+    color: #FFF;
+    padding-left: 12px;
+    font-weight: 500;
+    font-size: 24px;
+    text-align: right;
+    padding-right: 12px;
+  }
+  .react-datetime-picker__wrapper {
+    border: 0px;
+  }
 `;
 
 export default ResetCSS;
