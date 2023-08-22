@@ -11,13 +11,14 @@ const Wrapper = memo(styled.div<{ $isSide: boolean }>`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-
+  display: none; 
   align-items: center;
   padding-top: 8px;
-  padding-right: ${({ $isSide }) => ($isSide ? '32px' : '0px')};
+  padding-right: ${({ $isSide }) => ($isSide ? '4px' : '0px')};
   ${({ theme }) => theme.mediaQueries.md} {
     justify-content: space-between;
     flex-direction: ${({ $isSide }) => ($isSide ? 'column' : 'row')};
+    display: flex; 
   }
 `)
 
@@ -70,7 +71,7 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
         flexGrow={isSide ? 0 : 1}
         alignItems="center"
         mb="8px" mr="8px" 
-        width={['100%', '100%', '100%', isSide ? '100%' : 'auto']}
+        width={['100vw', '100%', '100%', isSide ? '100%' : 'auto']}
         justifyContent={['center', 'center', 'center', 'flex-end']}
       >
           <ButtonMenuItem

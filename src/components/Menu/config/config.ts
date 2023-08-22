@@ -2,6 +2,7 @@ import { MenuItemsType, SwapIcon, SwapFillIcon, EarnFillIcon, EarnIcon, FarmIcon
 import { ContextApi } from '@pancakeswap/localization'
 import { DropdownMenuItems } from '@pancakeswap/uikit/src/components/DropdownMenu/types'
 import { DEFAULT_CHAIN_ID } from 'utils/providers'
+import { PiLinkSimpleHorizontalBold } from 'react-icons/pi'
 
 export type ConfigMenuDropDownItemsType = DropdownMenuItems & { hideSubNav?: boolean }
 export type ConfigMenuItemsType = Omit<MenuItemsType, 'items'> & { hideSubNav?: boolean } & {
@@ -62,6 +63,37 @@ const config: (
       items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
     }, 
     {
+      label: t('Links'),
+      href: '',
+      icon: PiLinkSimpleHorizontalBold,
+      fillIcon: PiLinkSimpleHorizontalBold,
+      supportChainIds: [DEFAULT_CHAIN_ID],
+      items: [
+        {
+          label: t('Bridge to Base!'),
+          href: 'https://app.symbiosis.finance/swap?chainIn=Ethereum&chainOut=Base&tokenIn=ETH&tokenOut=ETH',
+        },
+        {
+          label: t('Twitter'),
+          href: 'https://twitter.com/BaseSwap_Fi',
+        },
+
+      
+        {
+          label: t('Discord'),
+          href: 'https://discord.gg/2zUzjyGxw2',
+        },
+        {
+          label: t('Telegram'),
+          href: 'https://t.me/BaseswapFi',
+        },
+        {
+          label: t('Docs'),
+          href: 'https://base-swap-1.gitbook.io/baseswap/',
+        },
+      ],
+    },
+    {
       label: t('More'),
       href: '',
       icon: EllipsisIcon,
@@ -82,6 +114,7 @@ const config: (
         },
       ],
     },
+    
     // {
     //   label: t('Swap'),
     //   icon: SwapIcon,
