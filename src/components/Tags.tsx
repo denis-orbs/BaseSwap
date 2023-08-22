@@ -14,7 +14,6 @@ import {
 } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { memo } from 'react'
-import { BsArrowRightCircle } from 'react-icons/bs'
 import styled from 'styled-components'
 import { BsFire } from 'react-icons/bs'
 
