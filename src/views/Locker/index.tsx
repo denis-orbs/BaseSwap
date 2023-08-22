@@ -505,7 +505,7 @@ const Locker: FC = () => {
                   <TextContainer>
                     <SubText>Search</SubText>
                   </TextContainer>
-                  <TextInput
+                  {account ? <TextInput
                     // placeholder={'Search by name, symbol or address'}
                     type="text"
                     autoComplete="off"
@@ -515,7 +515,7 @@ const Locker: FC = () => {
                     pattern="^(0x[a-fA-F0-9]{40})$"
                     onChange={(e) => setTokenAddressFind(e.target.value)}
                     value={tokenAddressFind}
-                  />
+                  />: <div>Please connect your account</div>}
                   {lockers.length == 0 && isAddress(tokenAddress) && (
                     <div className="flex justify-center items-center col-span-12 lg:justify mt-20">
                       <span>
