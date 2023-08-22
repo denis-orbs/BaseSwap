@@ -166,7 +166,7 @@ const Locker: FC = () => {
   const [pendingTx, setPendingTx] = useState(false)
 
   const assetToken = useCurrency(tokenAddress) || undefined
-  const payingToken = useCurrency('0x0B794759D6ECD09750EDB6E7bf67e80C3fCc3A2d') || undefined
+  const payingToken = useCurrency('0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9') || undefined
   const typedDepositValue = tryParseAmount(value, assetToken)
   const typedPayingValue = tryParseAmount(value, payingToken)
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, assetToken ?? undefined)
@@ -229,6 +229,7 @@ const Locker: FC = () => {
 
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
+  const [approvalPaymentSubmitted, setApprovalPaymentSubmitted] = useState<boolean>(false)
 
   const { toastSuccess, toastError } = useToast()
 
@@ -237,6 +238,11 @@ const Locker: FC = () => {
       setApprovalSubmitted(true)
     }
   }, [approvalState, approvalSubmitted])
+  useEffect(() => {
+    if (approvalStatePayingValue === ApprovalState.PENDING) {
+      setApprovalPaymentSubmitted(true)
+    }
+  }, [approvalStatePayingValue, approvalPaymentSubmitted])
 
   const errorMessage = !isAddress(tokenAddress)
     ? 'Invalid token'
@@ -263,7 +269,7 @@ const Locker: FC = () => {
       const bigNumberValue = new BigNumber(value).times(new BigNumber(10).pow(assetToken?.decimals));
 
       try {
-        const tx = await lockerContract.lockTokensByBooty(
+        const tx = await lockerContract.lockTokensByBaseSwap(
           tokenAddress,
           withdrawer,
           bigNumberValue.toString(),
@@ -394,14 +400,13 @@ const Locker: FC = () => {
               <DateTimePicker onChange={(date) => handleChangeDate(date)} value={unlockDate.toDate()} />
               <TextContainer>
                 {!account ? (
-                  <div>Connect...</div>
-                  // <Web3Connect size="lg" color="gradient" className="w-full" />
+                  <div>Connect An Account First</div>
                 ) : !allInfoSubmitted ? (
                   <Button className="font-bold" style={{ width: '100%' }} disabled={!allInfoSubmitted}>
                     {errorMessage}
                   </Button>
                 ) : (
-                  <Flex flexDirection="column" alignItems="center" justifyContent="center">
+                  <Flex flexDirection="column" alignItems="center" justifyContent="center" style={{width: '100%'}}>
                     {approvalState !== ApprovalState.APPROVED && (
                       <Button
                         onClick={handleApprove}
@@ -412,6 +417,7 @@ const Locker: FC = () => {
                         }
                         style={{
                           width: '100%',
+                          marginBottom: '20px'
                         }}
                       >
                         {approvalState === ApprovalState.PENDING ? (
@@ -419,7 +425,7 @@ const Locker: FC = () => {
                             Approving...
                           </div>
                         ) : (
-                          "Approve"
+                          "Approve Spending LP"
                         )}
                       </Button>
                     )}
@@ -428,19 +434,20 @@ const Locker: FC = () => {
                         onClick={handleApprovePayingValue}
                         disabled={
                           approvalStatePayingValue !== ApprovalState.NOT_APPROVED ||
-                          approvalSubmitted ||
+                          approvalPaymentSubmitted ||
                           !allInfoSubmitted
                         }
                         style={{
                           width: '100%',
+                          marginBottom: '20px'
                         }}
                       >
-                        {approvalState === ApprovalState.PENDING ? (
+                        {approvalStatePayingValue === ApprovalState.PENDING ? (
                           <div className={'p-2'}>
                             Approving...
                           </div>
                         ) : (
-                          "Approve"
+                          "Approving Spending BaseSwap"
                         )}
                       </Button>
                     )}
@@ -450,8 +457,9 @@ const Locker: FC = () => {
                         onClick={handleLock}
                         style={{
                           width: '100%',
+                          marginBottom: '20px'
                         }}
-                        disabled={approvalState !== ApprovalState.APPROVED || !allInfoSubmitted || pendingTx}
+                        disabled={approvalState !== ApprovalState.APPROVED || approvalStatePayingValue !== ApprovalState.APPROVED || !allInfoSubmitted || pendingTx}
                       >
                         {pendingTx ? (
                           <div className={'p-2'}>
@@ -484,14 +492,14 @@ const Locker: FC = () => {
                   <SubText>Considerations</SubText>
                 </TextContainer>
                 <p>You will not be able to withdraw your tokens before the unlock time.</p>
-                <p>Locker contract address: 0x746408887b35fbdb0587c270e5518005b8677cd3</p>
+                <p>Locker contract address: 0x4e4c89937f85bD101C7FCB273435Ed89b49ad0B0</p>
                 <p>Always DYOR.</p>
               </StyledFlex>
 
             </CardInner>
           </StyledCard>}
           {view === LockerType.FIND &&
-            <StyledCard className="animate__animated animate__fadeInLeft animate__fast" style={{width: '100%', maxWidth: '1200px'}}>
+            <StyledCard className="animate__animated animate__fadeInLeft animate__fast" style={{width: '100%', maxWidth: '1200px', minHeight: '800px'}}>
               <CardInner>
                 <Flex flexDirection="column" mt="12px">
                   <TextContainer>

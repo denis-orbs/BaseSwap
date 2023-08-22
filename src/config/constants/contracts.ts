@@ -18,7 +18,7 @@ export default {
     [ChainId.BASE]: '0xc102505248c36f933934d4B2d7579D962a342eBC',
   },
   tokenLocker: {
-    [ChainId.BASE]: '0x746408887b35fbdb0587c270e5518005b8677cd3',
+    [ChainId.BASE]: '0x4e4c89937f85bD101C7FCB273435Ed89b49ad0B0',
   },
   chefRamsey: {
     [ChainId.BASE]: '0x6Fc0f134a1F20976377b259687b1C15a5d422B47',

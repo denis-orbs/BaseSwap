@@ -69,7 +69,7 @@
     },
     {
         "inputs": [],
-        "name": "BootyToken",
+        "name": "BaseSwapToken",
         "outputs": [
             {
                 "internalType": "contract IERC20",
@@ -244,7 +244,7 @@
                 "type": "uint256"
             }
         ],
-        "name": "lockTokensByBooty",
+        "name": "lockTokensByBaseSwap",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -330,6 +330,19 @@
     {
         "inputs": [
             {
+                "internalType": "contract IERC20",
+                "name": "_token",
+                "type": "address"
+            }
+        ],
+        "name": "setBaseSwapToken",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "internalType": "uint256",
                 "name": "_lockFee",
                 "type": "uint256"
@@ -349,19 +362,6 @@
             }
         ],
         "name": "setMarketingAddress",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "contract IERC20",
-                "name": "_token",
-                "type": "address"
-            }
-        ],
-        "name": "setBootyToken",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"

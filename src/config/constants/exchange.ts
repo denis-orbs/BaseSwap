@@ -11,7 +11,7 @@ export const ROUTER_ADDRESS = {
 }
 
 export const LOCKER_ADDRESS = {
-  [ChainId.BASE]: '0x746408887b35fbdb0587c270e5518005b8677cd3', // 29 NOV
+  [ChainId.BASE]: '0x4e4c89937f85bD101C7FCB273435Ed89b49ad0B0', // 29 NOV
 }
 
 // used to construct intermediary pairs for trading
