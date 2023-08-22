@@ -173,10 +173,11 @@ const Menu: React.FC<NavProps> = ({
           <Flex>
               <img src="/images/newlogo.png" width={isMobile ? 40 : 50} height={isMobile ? 40 : 40} alt="logo" />
    
-                <Text fontSize="2rem" style={{ marginLeft: "1rem", alignItems: 'center', justifyContent: 'center' }}>
+                <Text fontSize="2rem" style={{ marginLeft: "0.5rem", marginRight: "0.7rem", alignItems: 'center', justifyContent: 'center' }}>
                   BaseSwap
                 </Text>
-            
+              <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} src="/images/tokens/0xd5046B976188EB40f6DE40fB527F89c05b323385.png" width={isMobile ? 40 : 50} height={isMobile ? 40 : 40} alt="logo" />
+
             </Flex>
             </a>
             {!isMobile &&
