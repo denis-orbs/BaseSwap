@@ -61,6 +61,38 @@ export const vaultPoolConfig = {
 
 export const livePools: SerializedPoolConfig[] = [
   {
+    sousId: 104,
+    stakingToken: serializedTokens.bsx,
+    earningToken: serializedTokens.wbnb,
+    contractAddress: {
+      [ChainId.BASE]: '0x26fd5DE668F091222791cc0eA45AC072d7bFE0cd',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '0.0000021',
+    isBoost: true, 
+  },
+  {
+    sousId: 103,
+    stakingToken: serializedTokens.bsx,
+    earningToken: serializedTokens.usdbc,
+    contractAddress: {
+      [ChainId.BASE]: '0x55da9a8a85d37764934a8915621baa00fafdc3eb',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '.0055',
+    isBoost: true, 
+  },
+  {
+    sousId: 102,
+    stakingToken: serializedTokens.bsx,
+    earningToken: serializedTokens.ede,
+    contractAddress: {
+      [ChainId.BASE]: '0x8D52E213D741684dec1d37a6ee7814aE32942c1e',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '0.006',
+  },
+  {
     sousId: 100,
     stakingToken: serializedTokens.cake,
     earningToken: serializedTokens.usdbc,
@@ -83,37 +115,21 @@ export const livePools: SerializedPoolConfig[] = [
     isBoost: true, 
   },
   {
-    sousId: 103,
-    stakingToken: serializedTokens.bsx,
+    sousId: 105,
+    stakingToken: serializedTokens.xbsx,
     earningToken: serializedTokens.usdbc,
     contractAddress: {
-      [ChainId.BASE]: '0x55da9a8a85d37764934a8915621baa00fafdc3eb',
+      [ChainId.BASE]: '0x326929EAE4e1923B9D08de6Bd8B2e16F7dd35Cd4',
     },
     poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '.0055',
+    tokenPerBlock: '0.0011',
     isBoost: true, 
   },
-  // {
-  //   sousId: 103,
-  //   stakingToken: serializedTokens.bsx,
-  //   earningToken: serializedTokens.usdbc,
-  //   contractAddress: {
-  //     [ChainId.BASE]: '0x8D52E213D741684dec1d37a6ee7814aE32942c1e',
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   tokenPerBlock: '0.0055',
-  //   isBoost: true, 
-  // },
-  {
-    sousId: 102,
-    stakingToken: serializedTokens.bsx,
-    earningToken: serializedTokens.ede,
-    contractAddress: {
-      [ChainId.BASE]: '0x8D52E213D741684dec1d37a6ee7814aE32942c1e',
-    },
-    poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '0.006',
-  },
+ 
+ 
+ 
+
+
 
 
 ]
