@@ -130,7 +130,6 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
 
       const isPoolFinished = pool.isFinished || isPoolEndBlockExceeded
 
-      console.log('pool.stakingToken.address',pool.stakingToken.address)
       const stakingTokenAddress = pool.stakingToken.address ? pool.stakingToken.address.toLowerCase() === "0xE4750593d1fC8E74b31549212899A72162f315Fa".toLowerCase() ? "0xd5046B976188EB40f6DE40fB527F89c05b323385".toLowerCase() : pool.stakingToken.address.toLowerCase() : null
       const stakingTokenPrice = stakingTokenAddress ? prices[stakingTokenAddress] : 0
 
