@@ -52,6 +52,7 @@ import { useStablecoinValue } from 'hooks/useStablecoinPrice'
 import { useApproveCallback } from 'hooks/v3/useApproveCallback'
 import { useUserSlippageToleranceWithDefault } from 'state/user/v3/hooks'
 import { ZERO_PERCENT_V3 } from 'config/constants/v3'
+import { WRAPPED_NATIVE_CURRENCY } from 'config/constants/tokens-v3'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
 
@@ -68,6 +69,9 @@ function AddLiquidity() {
 
   const { account, chainId, library: provider } = useActiveWeb3React()
   const theme = useTheme()
+
+  const currencyIdA = params?.currencyIdA
+  const currencyIdB = params?.currencyIdB
 
   const addTransaction = useTransactionAdder()
   const positionManager = useV3NFTPositionManagerContract(chainId)
@@ -183,6 +187,129 @@ function AddLiquidity() {
 
   const allowedSlippage = useUserSlippageToleranceWithDefault(
     outOfRange ? ZERO_PERCENT_V3 : DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE,
+  )
+
+  const handleCurrencySelect = useCallback(
+    (currencyNew: Currency, currencyIdOther?: string): (string | undefined)[] => {
+      const currencyIdNew = currencyId(currencyNew)
+
+      if (currencyIdNew === currencyIdOther) {
+        // not ideal, but for now clobber the other if the currency ids are equal
+        return [currencyIdNew, undefined]
+      }
+      // prevent weth + eth
+      const isETHOrWETHNew =
+        currencyIdNew === 'ETH' ||
+        (chainId !== undefined && currencyIdNew === WRAPPED_NATIVE_CURRENCY[chainId]?.address)
+      const isETHOrWETHOther =
+        currencyIdOther !== undefined &&
+        (currencyIdOther === 'ETH' ||
+          (chainId !== undefined && currencyIdOther === WRAPPED_NATIVE_CURRENCY[chainId]?.address))
+
+      if (isETHOrWETHNew && isETHOrWETHOther) {
+        return [currencyIdNew, undefined]
+      }
+
+      return [currencyIdNew, currencyIdOther]
+    },
+    [chainId],
+  )
+
+  // router segment names
+  const handleCurrencyASelect = useCallback(
+    (currencyANew: Currency) => {
+      const [idA, idB] = handleCurrencySelect(currencyANew, currencyIdB)
+      if (idB === undefined) {
+        // navigate(`/add/${idA}`)
+        router.replace(
+          {
+            pathname: router.pathname,
+            query: {
+              ...router.query,
+              [idA]: [idA],
+            },
+          },
+          undefined,
+          {
+            shallow: true,
+          },
+        )
+      } else {
+        // navigate(`/add/${idA}/${idB}`)
+        router.replace(
+          {
+            pathname: router.pathname,
+            query: {
+              ...router.query,
+              [idA]: [idA],
+              [idB]: [idB],
+            },
+          },
+          undefined,
+          {
+            shallow: true,
+          },
+        )
+      }
+    },
+    [handleCurrencySelect, currencyIdB, router],
+  )
+
+  const handleCurrencyBSelect = useCallback(
+    (currencyBNew: Currency) => {
+      const [idB, idA] = handleCurrencySelect(currencyBNew, currencyIdA)
+      if (idA === undefined) {
+        // navigate(`/add/${idB}`)
+        router.replace(
+          {
+            pathname: router.pathname,
+            query: {
+              ...router.query,
+              [idB]: [idB],
+            },
+          },
+          undefined,
+          {
+            shallow: true,
+          },
+        )
+      } else {
+        // navigate(`/add/${idA}/${idB}`)
+        router.replace(
+          {
+            pathname: router.pathname,
+            query: {
+              ...router.query,
+              [idA]: [idA],
+              [idB]: [idB],
+            },
+          },
+          undefined,
+          {
+            shallow: true,
+          },
+        )
+      }
+    },
+    [handleCurrencySelect, currencyIdA, router],
+  )
+
+  const handleFeePoolSelect = useCallback(
+    (newFeeAmount: FeeAmount) => {
+      onLeftRangeInput('')
+      onRightRangeInput('')
+      //  navigate(`/add/${currencyIdA}/${currencyIdB}/${newFeeAmount}`)
+      router.replace(
+        {
+          pathname: `/addV3/${currencyIdA}/${currencyIdB}/${newFeeAmount}`,
+        },
+        undefined,
+        {
+          shallow: true,
+        },
+      )
+    },
+    [currencyIdA, currencyIdB, router, onLeftRangeInput, onRightRangeInput],
   )
 
   return <div>Liq</div>
