@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Box } from '@pancakeswap/uikit'
+import { Box as RebassBox } from 'rebass/styled-components'
 
 const Card = styled(Box)<{
   width?: string
@@ -41,4 +42,8 @@ export const LightTertiaryCard = styled(Card)<{ active: boolean }>`
   border: 1px solid ${({ theme, active }) => (active ? 'none' : theme.colors.cardBorder)};
   background-color: ${({ theme }) => theme.colors.tertiary};
   padding: 4px 4px 8px;
+`
+
+export const OutlineCard = styled(RebassBox)`
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
 `

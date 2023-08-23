@@ -1,19 +1,22 @@
-import { Currency, Token } from '@baseswapfi/sdk-core'
+import { Currency, CurrencyAmount, Token } from '@baseswapfi/sdk-core'
 import { Pair } from '@baseswapfi/v2-sdk'
 import { Button, ChevronDownIcon, Text, useModal, Flex, Box, useMatchBreakpoints } from '@pancakeswap/uikit'
-import styled, { css } from 'styled-components'
+import styled, { css, useTheme } from 'styled-components'
 import { isAddress } from 'utils'
 import { useTranslation } from '@pancakeswap/localization'
 import { WrappedTokenInfo } from 'state/types'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useBUSDCurrencyAmount } from 'hooks/useBUSDPrice'
-import { formatNumber } from 'utils/formatBalance'
-import { useCurrencyBalance } from '../../state/wallet/hooks'
 import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
 import { Input as NumericalInput } from './NumericalInput'
 import { CopyButton } from '../CopyButton'
 import AddToWalletButton from '../AddToWallet/AddToWalletButton'
+import { RowBetween, RowFixed } from 'components/Row'
+import { LoadingOpacityContainer } from 'components/Loader/styled'
+import { FiatValue } from './FiatValue'
+import { formatCurrencyAmount } from 'utils/v3/formatCurrencyAmount'
+import { ReactNode } from 'react'
+import useCurrencyBalance from 'lib/hooks/useCurrencyBalance'
 
 // bottom half of the input panel
 const InputRow = styled.div<{ selected: boolean }>`
@@ -76,11 +79,10 @@ const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
     `};
 `
 
-const Overlay = styled.div`
-  position: absolute;
-  inset: 0;
-  opacity: 0.6;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+const FiatRow = styled(LabelRow)`
+  justify-content: flex-end;
+  padding: 0px 1rem 0.75rem;
+  height: 32px;
 `
 
 type ZapStyle = 'noZap' | 'zap'
@@ -110,7 +112,12 @@ interface CurrencyInputPanelProps {
   borderRadius?: string
   borderTopLeftRadius?: string
   borderTopRightRadius?: string
+  renderBalance?: (amount: CurrencyAmount<Currency>) => ReactNode
+  fiatValue?: { data?: number; isLoading: boolean }
+  locked?: boolean
+  loading?: boolean
 }
+
 export default function CurrencyInputPanelV3({
   value,
   onUserInput,
@@ -135,9 +142,15 @@ export default function CurrencyInputPanelV3({
   backgroundColor,
   borderTopLeftRadius,
   borderTopRightRadius,
+  fiatValue,
+  renderBalance,
   hideInput = false,
+  locked = false,
+  loading = false,
+  ...rest
 }: CurrencyInputPanelProps) {
   const { account } = useActiveWeb3React()
+  const theme = useTheme()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
   const {
     t,
@@ -148,10 +161,10 @@ export default function CurrencyInputPanelV3({
   const tokenAddress = token ? isAddress(token.address) : null
   const { isMobile } = useMatchBreakpoints()
 
-  const amountInDollar = useBUSDCurrencyAmount(
-    showBUSD ? currency : undefined,
-    Number.isFinite(+value) ? +value : undefined,
-  )
+  // const amountInDollar = useBUSDCurrencyAmount(
+  //   showBUSD ? currency : undefined,
+  //   Number.isFinite(+value) ? +value : undefined,
+  // )
 
   const [onPresentCurrencyModal] = useModal(
     <CurrencySearchModal
@@ -208,6 +221,7 @@ export default function CurrencyInputPanelV3({
               {!disableCurrencySelect && <ChevronDownIcon color="text" />}
             </Flex>
           </CurrencySelectButton>
+
           {token && tokenAddress ? (
             <Flex style={{ gap: '4px' }} ml="4px" alignItems="center">
               <CopyButton
@@ -233,20 +247,6 @@ export default function CurrencyInputPanelV3({
           ) : null}
         </Flex>
         {account && (
-          //    <TypeIt
-          //    options={{
-          //      cursorChar:" ",
-          //      cursorSpeed:1000000, speed: 75,
-          //    }}
-          //    speed={10}
-          //    getBeforeInit={(instance) => {
-          //  instance
-
-          //      .type("SWAP", {speed: 5000})
-          //      ;
-          //  return instance;
-          //   }}>
-
           <Text
             onClick={!disabled && onMax}
             color="text"
@@ -259,12 +259,11 @@ export default function CurrencyInputPanelV3({
               ? t('BALANCE: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? t('Loading') })
               : ' -'}
           </Text>
-          // </TypeIt>
         )}
       </Flex>
-      <InputPanel>
-        <Container as="label" zapStyle={zapStyle} error={error}>
-          {!hideInput && (
+      {!hideInput && (
+        <InputPanel>
+          <Container as="label" zapStyle={zapStyle} error={error}>
             <LabelRow>
               <NumericalInput
                 error={error}
@@ -277,23 +276,48 @@ export default function CurrencyInputPanelV3({
                 }}
               />
             </LabelRow>
-          )}
+            {/* 
+            <InputRow selected={disableCurrencySelect}>
+              {!!currency && showBUSD && Number.isFinite(amountInDollar) && (
+                <Text fontSize="12px" color="textSubtle" mr="12px">
+                  ~{formatNumber(amountInDollar)} USD
+                </Text>
+              )}
+              {account && currency && !disabled && showMaxButton && label !== 'To' && (
+                <Button onClick={onMax} variant="max" marginRight="4px">
+                  {t('Max').toLocaleUpperCase(locale)}
+                </Button>
+              )}
+            </InputRow> */}
 
-          <InputRow selected={disableCurrencySelect}>
-            {!!currency && showBUSD && Number.isFinite(amountInDollar) && (
-              <Text fontSize="12px" color="textSubtle" mr="12px">
-                ~{formatNumber(amountInDollar)} USD
-              </Text>
+            {Boolean(!hideInput && !hideBalance && currency) && (
+              <FiatRow>
+                <RowBetween>
+                  <LoadingOpacityContainer $loading={loading}>
+                    {fiatValue && <FiatValue fiatValue={fiatValue} />}
+                  </LoadingOpacityContainer>
+                  {account && (
+                    <RowFixed style={{ height: '17px' }}>
+                      <Text
+                        onClick={onMax}
+                        color={theme.colors.tertiary}
+                        fontWeight={500}
+                        fontSize={14}
+                        style={{ display: 'inline', cursor: 'pointer' }}
+                      >
+                        {Boolean(!hideBalance && currency && selectedCurrencyBalance) &&
+                          (renderBalance?.(selectedCurrencyBalance as CurrencyAmount<Currency>) || (
+                            <Text>{t(`Balance: ${formatCurrencyAmount(selectedCurrencyBalance, 4)}`)} </Text>
+                          ))}
+                      </Text>
+                    </RowFixed>
+                  )}
+                </RowBetween>
+              </FiatRow>
             )}
-            {account && currency && !disabled && showMaxButton && label !== 'To' && (
-              <Button onClick={onMax} variant="max" marginRight="4px">
-                {t('Max').toLocaleUpperCase(locale)}
-              </Button>
-            )}
-          </InputRow>
-        </Container>
-        {/* {disabled && <Overlay />} */}
-      </InputPanel>
+          </Container>
+        </InputPanel>
+      )}
     </Box>
   )
 }

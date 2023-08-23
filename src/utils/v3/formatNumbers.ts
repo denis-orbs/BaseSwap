@@ -1,4 +1,4 @@
-import { Currency, Price } from '@baseswapfi/sdk-core'
+import { Currency, Percent, Price } from '@baseswapfi/sdk-core'
 
 type Nullish<T> = T | null | undefined
 
@@ -325,6 +325,12 @@ export function formatNumber(
   const formatter = getFormatterRule(input, type)
   if (typeof formatter === 'string') return formatter
   return formatter.format(input)
+}
+
+export function formatPriceImpact(priceImpact: Percent | undefined): string {
+  if (!priceImpact) return '-'
+
+  return `${priceImpact.multiply(-1).toFixed(3)}%`
 }
 
 export function formatPrice(

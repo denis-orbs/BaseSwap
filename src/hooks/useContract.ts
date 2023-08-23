@@ -70,13 +70,14 @@ import WETH_ABI from '../config/abi/weth.json'
 import multiCallAbi from '../config/abi/Multicall.json'
 import nftPoolAbi from 'config/abi/NFTPool.json'
 import NFTPositionManagerABI from 'config/abi/NonFungiblePositionManager.json'
+import tickLensABI from 'config/abi/TickLens.json'
 
 import { getContract, getProviderOrSigner } from '../utils'
 
 import { IPancakePair } from '../config/abi/types/IPancakePair'
 import { VaultKey } from '../state/types'
-import { NonfungiblePositionManager, UniswapInterfaceMulticall } from 'types/v3'
-import { MULTICALL_ADDRESSES, NONFUNGIBLE_POSITION_MANAGER_ADDRESSES } from '@baseswapfi/sdk-core'
+import { NonfungiblePositionManager, TickLens, UniswapInterfaceMulticall } from 'types/v3'
+import { MULTICALL_ADDRESSES, NONFUNGIBLE_POSITION_MANAGER_ADDRESSES, TICK_LENS_ADDRESSES } from '@baseswapfi/sdk-core'
 
 /**
  * Helper hooks to get specific contracts (by ABI)
@@ -450,4 +451,10 @@ export function useV3NFTPositionManagerContract(
     NFTPositionManagerABI,
     withSignerIfPossible,
   )
+}
+
+export function useTickLens(): TickLens | null {
+  const { chainId } = useActiveWeb3React()
+  const address = chainId ? TICK_LENS_ADDRESSES[chainId] : undefined
+  return useContract(address, tickLensABI) as TickLens | null
 }

@@ -20,15 +20,15 @@ const InputRow = styled.div<{ selected: boolean }>`
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-end;
-  padding-bottom: 4px; 
+  padding-bottom: 4px;
   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
 
-  padding-right: 4px; 
+  padding-right: 4px;
 `
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })<{ zapStyle?: ZapStyle }>`
   padding: 0.25 0.5rem;
   border-radius: 8px;
-  border: 0px solid #fff !important;  
+  border: 0px solid #fff !important;
 
   ${({ zapStyle, theme }) =>
     zapStyle &&
@@ -45,7 +45,7 @@ const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm'
 const LabelRow = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  align-items: center; 
+  align-items: center;
   color: ${({ theme }) => theme.colors.text};
   font-size: 1rem;
   line-height: 1.2rem;
@@ -59,7 +59,7 @@ const InputPanel = styled.div`
   flex-flow: column nowrap;
   position: relative;
   margin-bottom: 0px;
-  box-shadow: -1px -1px 12px #000; 
+  box-shadow: -1px -1px 12px #000;
   padding: 0px;
   z-index: 1;
 `
@@ -108,8 +108,8 @@ interface CurrencyInputPanelProps {
   borderRadius?: string
   borderTopLeftRadius?: string
   borderTopRightRadius?: string
-
 }
+
 export default function CurrencyInputPanel({
   value,
   onUserInput,
@@ -122,7 +122,7 @@ export default function CurrencyInputPanel({
   disableCurrencySelect = false,
   hideBalance = false,
   zapStyle,
-  borderRadius, 
+  borderRadius,
   beforeButton,
   pair = null, // used for double token logo
   otherCurrency,
@@ -132,10 +132,8 @@ export default function CurrencyInputPanel({
   error,
   showBUSD,
   backgroundColor,
-  borderTopLeftRadius, 
-  borderTopRightRadius, 
-
-
+  borderTopLeftRadius,
+  borderTopRightRadius,
 }: CurrencyInputPanelProps) {
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
@@ -146,7 +144,7 @@ export default function CurrencyInputPanel({
 
   const token = pair ? pair.liquidityToken : currency instanceof Token ? currency : null
   const tokenAddress = token ? isAddress(token.address) : null
-  const { isMobile } = useMatchBreakpoints();
+  const { isMobile } = useMatchBreakpoints()
 
   const amountInDollar = useBUSDCurrencyAmount(
     showBUSD ? currency : undefined,
@@ -163,16 +161,19 @@ export default function CurrencyInputPanel({
   )
 
   return (
-    <Box position="relative" id={id} backgroundColor={backgroundColor} borderRadius={borderRadius} 
-    borderTopLeftRadius={borderTopLeftRadius}
-    borderTopRightRadius={borderTopRightRadius}
-
+    <Box
+      position="relative"
+      id={id}
+      backgroundColor={backgroundColor}
+      borderRadius={borderRadius}
+      borderTopLeftRadius={borderTopLeftRadius}
+      borderTopRightRadius={borderTopRightRadius}
     >
       <Flex alignItems="center" marginTop="6px" marginBottom="20px" justifyContent="space-between">
         <Flex>
           {beforeButton}
           <CurrencySelectButton
-          style={{ backgroundColor: 'transparent'}}
+            style={{ backgroundColor: 'transparent' }}
             zapStyle={zapStyle}
             className="open-currency-select-button"
             selected={!!currency}
@@ -231,20 +232,20 @@ export default function CurrencyInputPanel({
           ) : null}
         </Flex>
         {account && (
-        //    <TypeIt 
-        //    options={{
-        //      cursorChar:" ", 
-        //      cursorSpeed:1000000, speed: 75, 
-        //    }}
-        //    speed={10}
-        //    getBeforeInit={(instance) => {
-        //  instance
- 
-        //      .type("SWAP", {speed: 5000})
-        //      ;
-        //  return instance;
-        //   }}> 
-         
+          //    <TypeIt
+          //    options={{
+          //      cursorChar:" ",
+          //      cursorSpeed:1000000, speed: 75,
+          //    }}
+          //    speed={10}
+          //    getBeforeInit={(instance) => {
+          //  instance
+
+          //      .type("SWAP", {speed: 5000})
+          //      ;
+          //  return instance;
+          //   }}>
+
           <Text
             onClick={!disabled && onMax}
             color="text"
@@ -261,7 +262,7 @@ export default function CurrencyInputPanel({
         )}
       </Flex>
       <InputPanel>
-        <Container  as="label" zapStyle={zapStyle} error={error}>
+        <Container as="label" zapStyle={zapStyle} error={error}>
           <LabelRow>
             <NumericalInput
               error={error}
@@ -281,7 +282,7 @@ export default function CurrencyInputPanel({
               </Text>
             )}
             {account && currency && !disabled && showMaxButton && label !== 'To' && (
-              <Button onClick={onMax}  variant="max" marginRight="4px">
+              <Button onClick={onMax} variant="max" marginRight="4px">
                 {t('Max').toLocaleUpperCase(locale)}
               </Button>
             )}
