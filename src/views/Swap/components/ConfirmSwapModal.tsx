@@ -105,6 +105,7 @@ const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = (
       customOnDismiss={customOnDismiss}
       attemptingTxn={attemptingTxn}
       hash={txHash}
+      //@ts-ignore
       content={confirmationContent}
       pendingText={pendingText}
       currencyToAdd={trade?.outputAmount.currency}

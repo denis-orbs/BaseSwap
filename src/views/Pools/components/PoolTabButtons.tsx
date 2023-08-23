@@ -22,6 +22,7 @@ const ViewControls = styled.div`
   align-items: center;
   width: 100%;
 
+
   > div {
     padding: 8px 0px;
   }

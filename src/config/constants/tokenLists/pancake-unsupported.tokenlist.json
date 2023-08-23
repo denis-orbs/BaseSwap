@@ -206,6 +206,27 @@
       "address": "0xE24728A1f31D6ccC8faA95Db93989dE48Fb4a037", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "Scam Coinbase", 
+      "symbol": "SCAM COINBASE", 
+      "address": "0x84876F4316C018d8C200E3C890d0eDe620325172", 
+      "chainId": 8453,
+      "decimals": 18
+    },
+    {
+      "name": "Friend Scam", 
+      "symbol": "SCAM FRIEND", 
+      "address": "0xe7662E9106fDeAA3C32ce27d56C35bd029B9D546", 
+      "chainId": 8453,
+      "decimals": 18
+    },
+    {
+      "name": "Scam Shares", 
+      "symbol": "SCAM SHARES", 
+      "address": "0x21a582ed0f221ef1a4f3bed8816d68121107892e", 
+      "chainId": 8453,
+      "decimals": 18
     }
     
 

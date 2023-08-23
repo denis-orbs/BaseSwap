@@ -26,6 +26,25 @@ export const getFullDisplayBalance = (balance: BigNumber, decimals = 18, display
   return getBalanceAmount(balance, decimals).toFixed(displayDecimals)
 }
 
+export function formatNumberScale(number: any, usd = false) {
+  if (isNaN(number) || number === '' || number === undefined) {
+    return usd ? '$0.00' : '0'
+  }
+  const num = parseFloat(number)
+  const wholeNumberLength = String(Math.floor(num)).length
+
+  if (wholeNumberLength >= 13) return (usd ? '$' : '') + (num / Math.pow(10, 12)).toFixed(1) + 'T'
+  if (wholeNumberLength >= 10) return (usd ? '$' : '') + (num / Math.pow(10, 9)).toFixed(1) + 'B'
+  if (wholeNumberLength >= 7) return (usd ? '$' : '') + (num / Math.pow(10, 6)).toFixed(1) + 'M'
+  if (wholeNumberLength >= 4) return (usd ? '$' : '') + (num / Math.pow(10, 3)).toFixed(1) + 'K'
+
+  if (num < 0.0001 && num > 0) {
+    return usd ? '< $0.0001' : '< 0.0001'
+  }
+
+  return (usd ? '$' : '') + num.toFixed(2)
+}
+
 /**
  * Don't use the result to convert back to number.
  * It uses undefined locale which uses host language as a result.

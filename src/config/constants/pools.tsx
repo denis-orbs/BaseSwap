@@ -61,24 +61,26 @@ export const vaultPoolConfig = {
 
 export const livePools: SerializedPoolConfig[] = [
   {
-    sousId: 100,
-    stakingToken: serializedTokens.cake,
-    earningToken: serializedTokens.usdbc,
-    contractAddress: {
-      [ChainId.BASE]: '0x64FCFA940f286Af1261107F993189379e8d3ae1c',
-    },
-    poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '0.0033',
-  },
-  {
-    sousId: 101,
-    stakingToken: serializedTokens.cake,
+    sousId: 104,
+    stakingToken: serializedTokens.bsx,
     earningToken: serializedTokens.wbnb,
     contractAddress: {
-      [ChainId.BASE]: '0x86DBd5bAAE91AC576E8e5197EB2497603d0056EA',
+      [ChainId.BASE]: '0x26fd5DE668F091222791cc0eA45AC072d7bFE0cd',
     },
     poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '0.000000995625625625',
+    tokenPerBlock: '0.0000021',
+    isBoost: true, 
+  },
+  {
+    sousId: 103,
+    stakingToken: serializedTokens.bsx,
+    earningToken: serializedTokens.usdbc,
+    contractAddress: {
+      [ChainId.BASE]: '0x55da9a8a85d37764934a8915621baa00fafdc3eb',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '.0055',
+    isBoost: true, 
   },
   {
     sousId: 102,
@@ -90,6 +92,46 @@ export const livePools: SerializedPoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.006',
   },
+  {
+    sousId: 100,
+    stakingToken: serializedTokens.cake,
+    earningToken: serializedTokens.usdbc,
+    contractAddress: {
+      [ChainId.BASE]: '0x64FCFA940f286Af1261107F993189379e8d3ae1c',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '0.0033',
+    isBoost: false, 
+  },
+  {
+    sousId: 101,
+    stakingToken: serializedTokens.cake,
+    earningToken: serializedTokens.wbnb,
+    contractAddress: {
+      [ChainId.BASE]: '0x86DBd5bAAE91AC576E8e5197EB2497603d0056EA',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '0.0000021',
+    isBoost: true, 
+  },
+  {
+    sousId: 105,
+    stakingToken: serializedTokens.xbsx,
+    earningToken: serializedTokens.usdbc,
+    contractAddress: {
+      [ChainId.BASE]: '0x326929EAE4e1923B9D08de6Bd8B2e16F7dd35Cd4',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '0.0011',
+    isBoost: true, 
+  },
+ 
+ 
+ 
+
+
+
+
 ]
 
 // known finished pools

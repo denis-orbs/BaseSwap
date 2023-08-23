@@ -58,6 +58,8 @@ import ConfirmLiquidityModal from '../Swap/components/ConfirmRemoveLiquidityModa
 import { logError } from '../../utils/sentry'
 import { formatAmount } from '../../utils/formatInfoNumbers'
 import 'animate.css'
+
+
 const BorderCard = styled.div`
   border: solid 2px ${({ theme }) => theme.colors.cardBorder};
   border-radius: 2px;
@@ -711,9 +713,9 @@ export default function RemoveLiquidity() {
                     {approval === ApprovalState.PENDING ? (
                       <Dots>{t('Enabling')}</Dots>
                     ) : approval === ApprovalState.APPROVED || (!isZap && signatureData !== null) ? (
-                      t('Enabled')
+                      t('ENABLED')
                     ) : (
-                      t('Enable')
+                      t('ENABLE')
                     )}
                   </Button>
                   <Button

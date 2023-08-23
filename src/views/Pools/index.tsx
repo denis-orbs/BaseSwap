@@ -12,7 +12,6 @@ import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { usePoolsPageFetch, usePoolsWithVault } from 'state/pools/hooks'
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/Layout/Flex'
-
 import { OptionProps } from 'components/Select/Select'
 import { DeserializedPool, DeserializedPoolVault, VaultKey, DeserializedPoolLockedVault } from 'state/types'
 import { useUserPoolStakedOnly, useUserPoolsViewMode } from 'state/user/hooks'
@@ -29,6 +28,7 @@ import PoolsTable from './components/PoolsTable/PoolsTable'
 import { getCakeVaultEarnings } from './helpers'
 import TypeIt from 'typeit-react'
 import 'animate.css'
+import { serializedTokens } from 'config/constants/farms'
 
 
 const WelcomeTypeIt = styled(TypeIt)`
@@ -251,19 +251,49 @@ const Pools: React.FC = () => {
   }, [account, sortOption, pools, chosenPools, numberOfPoolsVisible, searchQuery])
   chosenPoolsLength.current = chosenPools.length
 
+  const bsxpools = chosenPools.filter((pool) => pool.sousId === 104 || pool.sousId === 103 || pool.sousId === 102);
+  const bswappools = chosenPools.filter((pool) => pool.sousId === 100 || pool.sousId === 101);
+  const xbsxpools = chosenPools.filter((pool) => pool.sousId === 105);
+
+  const otherPools = chosenPools.filter((pool) => pool.sousId !== 104 && pool.sousId !== 103);
+  
   const cardLayout = (
+    // <Flex flexDirection="column">
+    //   <Text color="background" fontSize="3rem" fontWeight="500" textAlign="center">BSX!</Text>
+    //     <CardLayout>
+          
+    //         {bsxpools.map((pool) => (
+    //         <PoolCard key={pool.sousId} pool={pool} account={account} />
+    //       ))}
+    //     </CardLayout>
+    //     <Text color="background" fontSize="3rem" fontWeight="500" textAlign="center">BSWAP!</Text>
+    //     <CardLayout>
+    //           {bswappools.map((pool) => (
+    //           <PoolCard key={pool.sousId} pool={pool} account={account} />
+    //         ))}
+    //       </CardLayout>
+    //       <Text color="background" fontSize="3rem" fontWeight="500" textAlign="center">xBSX!</Text>
+
+    //       <CardLayout>
+          
+    //       {xbsxpools.map((pool) => (
+    //       <PoolCard key={pool.sousId} pool={pool} account={account} />
+    //     ))}
+    //   </CardLayout>
+    // </Flex>
     <CardLayout>
-      {chosenPools.map(
-        (pool) => (
-          // pool.vaultKey ? (
-          //   <CakeVaultCard key={pool.vaultKey} pool={pool} showStakedOnly={stakedOnly} />
-          // ) : (
-          <PoolCard key={pool.sousId} pool={pool} account={account} />
-        ),
-        // ),
-      )}
+    {chosenPools.map(
+      (pool) => (
+        // pool.vaultKey ? (
+        //   <CakeVaultCard key={pool.vaultKey} pool={pool} showStakedOnly={stakedOnly} />
+        // ) : (
+        <PoolCard key={pool.sousId} pool={pool} account={account} />
+      ),
+      // ),
+    )}
     </CardLayout>
   )
+
 
   const tableLayout = <PoolsTable urlSearch={normalizedUrlSearch} pools={chosenPools} account={account} />
 
@@ -301,7 +331,7 @@ const Pools: React.FC = () => {
          }}> 
          </Sub> */}
         <Heading className="animate__animated animate__fadeInLeft animate__delay-1s">
-          Stake BSWAP to earn bluechips!</Heading>
+          Stake BSX, BSWAP, and xBSX to earn bluechips!</Heading>
         <PoolControls>
           <PoolTabButtons
             stakedOnly={stakedOnly}

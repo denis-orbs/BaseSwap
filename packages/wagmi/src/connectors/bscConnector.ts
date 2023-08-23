@@ -8,6 +8,7 @@ declare global {
   interface Window {
     BinanceChain?: {
       bnbSign?: (address: string, message: string) => Promise<{ publicKey: string; signature: string }>
+      // @ts-ignore
     } & Ethereum
   }
 }

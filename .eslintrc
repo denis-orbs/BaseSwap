@@ -8,7 +8,7 @@
   "extends": ["@pancakeswap/eslint-config-pancake", "plugin:react/jsx-runtime", "plugin:@next/next/recommended"],
   "rules": {
     "import/no-unresolved": 0,
-
+    "react/self-closing-comp": "off", 
     "no-console": ["warn", { "allow": ["info", "warn", "error", "debug"] }],
     "no-plusplus": 0,
     "prefer-destructuring": ["warn", { "object": true, "array": false }],
@@ -16,6 +16,20 @@
     "lodash/import-scope": [2, "method"],
     "@next/next/no-img-element": 0,
     "no-sparse-arrays": 0,
+    "import/no-duplicates": "warn", 
+    "react/no-array-index-key": "warn", 
+    "react/jsx-curly-brace-presence": "warn", 
+    "jsx-a11y/click-events-have-key-events": "off", 
+    "no-restricted-globals": "off", 
+    "react/jsx-boolean-value": "off", 
+    "no-await-in-loop": "off", 
+    "@typescript-eslint/no-shadow": "off",
+    "no-restricted-syntax": "off",  
+    "prefer-template": "warn", 
+    "no-restricted-properties": "warn", 
+    "prefer-const": "warn", 
+
+    "eqeqeq": "warn", 
     "react-hooks/exhaustive-deps": [
       "warn",
       {
@@ -27,6 +41,7 @@
     // They need to be removed and fixed as soon as possible
     "@typescript-eslint/ban-ts-comment": [1, { "ts-ignore": false, "ts-nocheck": false }],
     "@typescript-eslint/no-use-before-define": 0,
+    "jsx-a11y/no-static-element-interactions": "warn", 
     "spaced-comment": "off",
     "react/no-unescaped-entities": "off", 
     "import/order": "off", 

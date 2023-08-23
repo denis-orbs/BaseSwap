@@ -17,6 +17,9 @@ export const getMasterChefAddress = () => {
 export const getMasterChefV1Address = () => {
   return getAddress(addresses.masterChefV1)
 }
+export const getTokenLockerAddress = () => {
+  return getAddress(addresses.tokenLocker)
+}
 export const getMulticallAddress = (chainId?: number) => {
   return getAddress(addresses.multiCall, chainId)
 }

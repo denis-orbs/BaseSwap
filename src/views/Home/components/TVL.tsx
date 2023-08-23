@@ -29,27 +29,28 @@ const TVL = () => {
   return (
     <Flex
     position="relative"
-    paddingX={['8px', null, null, '3rem']}
-    marginX={['4px', null, null, '2rem']}
-    marginTop={['2rem', null, null, '5rem']}
-    flexDirection="column"
-    alignItems="flex-start"
-    justifyContent="flex-start"
+    paddingX={['0px', null, null, '3rem']}
+    marginX={['0px', null, null, '2rem']}
+    marginTop={['3rem', null, null, '2rem']}
+    flexDirection="row"
+    justifyContent="center"
+    alignItems="center"
     id="homepage-hero"
     className="animate__animated animate__rotateInUpRight"
 
   >
     <Text
-    fontSize={['1.8rem', null, null, '2.5rem']} fontWeight="300"
+    fontSize={['1.5rem', null, null, '3rem']} fontWeight="400" letterSpacing="-1px"
     color="#fff"
     >
      Total Value Locked:&nbsp;  
     </Text>
     <Text
-    fontSize="4rem" fontWeight="500"
+    fontSize={['1.5rem', null, null, '3.2rem']} fontWeight="500"
     color="#0154FD"
+
     >
-      $<CountUp end={numericValue} duration={3} decimals={2} /> million
+      $<CountUp end={numericValue} duration={2} decimals={2} /> million
       
      {/* ${formattedValue} */}
     </Text>

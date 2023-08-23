@@ -10,6 +10,10 @@ export const ROUTER_ADDRESS = {
   [ChainId.BASE]: '0x327Df1E6de05895d2ab08513aaDD9313Fe505d86',
 }
 
+export const LOCKER_ADDRESS = {
+  [ChainId.BASE]: '0x4e4c89937f85bD101C7FCB273435Ed89b49ad0B0', // 29 NOV
+}
+
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.MAINNET]: [
@@ -46,14 +50,14 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.MAINNET]: [bscTokens.busd, bscTokens.cake, bscTokens.btcb],
   [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
-  [ChainId.BASE]: [baseTokens.wbnb, baseTokens.cake, baseTokens.axlUsdc],
+  [ChainId.BASE]: [baseTokens.cake, baseTokens.bsx, baseTokens.usdbc],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.MAINNET]: [bscTokens.wbnb, bscTokens.dai, bscTokens.busd, bscTokens.usdt],
   [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
-  [ChainId.BASE]: [baseTokens.wbnb, baseTokens.cake, baseTokens.axlUsdc, baseTokens.usdbc],
+  [ChainId.BASE]: [baseTokens.wbnb, baseTokens.cake, baseTokens.axlUsdc, baseTokens.usdbc, baseTokens.dai],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {

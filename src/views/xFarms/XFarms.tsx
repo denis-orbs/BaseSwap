@@ -332,19 +332,21 @@ const Farms: React.FC = ({ children }) => {
             return instance
           }}
         />
-        {/* {!account ? (
+        {!account ? (
           <ConnectWalletButton />
-        ) : ( */}
-        <>
-          <ControlContainer>
-            <ViewControls>
-              <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-                CHOOSE YOUR &nbsp;
-                <span style={{ textDecoration: 'line-through' }}>FIGHTER</span>
-                &nbsp;VIEW MODE:
-              </Text>
-              <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
-              {/* <ToggleWrapper>
+
+        ) : (
+          <>
+            <ControlContainer>
+              <ViewControls>
+                <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+                  CHOOSE YOUR &nbsp;
+                  <span style={{ textDecoration: 'line-through' }}>FIGHTER</span>
+                  &nbsp;VIEW MODE:
+                </Text>
+                <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
+                {/* <ToggleWrapper>
+
               <Toggle
                 id="staked-only-farms"
                 checked={stakedOnly}
@@ -353,61 +355,63 @@ const Farms: React.FC = ({ children }) => {
               />
               <Text> {t('Staked only')}</Text>
             </ToggleWrapper> */}
-              {/* <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} /> */}
-            </ViewControls>
-            <FilterContainer>
-              <LabelWrapper>
-                <Text textTransform="uppercase">{t('Sort by')}</Text>
-                <Select
-                  options={[
-                    {
-                      label: t('Hot'),
-                      value: 'hot',
-                    },
-                    {
-                      label: t('APR'),
-                      value: 'apr',
-                    },
-                    // {
-                    //   label: t('Multiplier'),
-                    //   value: 'multiplier',
-                    // },
-                    // {
-                    //   label: t('Earned'),
-                    //   value: 'earned',
-                    // },
-                    {
-                      label: t('Liquidity'),
-                      value: 'liquidity',
-                    },
-                    {
-                      label: t('Latest'),
-                      value: 'latest',
-                    },
-                  ]}
-                  onOptionChange={handleSortOptionChange}
-                />
-              </LabelWrapper>
-              <LabelWrapper style={{ marginLeft: 16 }}>
-                <Text textTransform="uppercase">{t('Search')}</Text>
-                <SearchInput
-                  initialValue={normalizedUrlSearch}
-                  onChange={handleChangeQuery}
-                  placeholder="Search Farms"
-                />
-              </LabelWrapper>
-            </FilterContainer>
-          </ControlContainer>
-          <FlexLayout className="animate__animated animate__fadeInUp">{children}</FlexLayout>
-          {account && !farmsLP.length && (
-            <Flex justifyContent="center">
-              <Spinner />
-            </Flex>
-          )}
 
-          <div ref={observerRef} />
-        </>
-        {/* )} */}
+                {/* <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} /> */}
+              </ViewControls>
+              <FilterContainer>
+                <LabelWrapper>
+                  <Text textTransform="uppercase">{t('Sort by')}</Text>
+                  <Select
+                    options={[
+                      {
+                        label: t('Hot'),
+                        value: 'hot',
+                      },
+                      {
+                        label: t('APR'),
+                        value: 'apr',
+                      },
+                      // {
+                      //   label: t('Multiplier'),
+                      //   value: 'multiplier',
+                      // },
+                      // {
+                      //   label: t('Earned'),
+                      //   value: 'earned',
+                      // },
+                      {
+                        label: t('Liquidity'),
+                        value: 'liquidity',
+                      },
+                      {
+                        label: t('Latest'),
+                        value: 'latest',
+                      },
+                    ]}
+                    onOptionChange={handleSortOptionChange}
+                  />
+                </LabelWrapper>
+                <LabelWrapper style={{ marginLeft: 16 }}>
+                  <Text textTransform="uppercase">{t('Search')}</Text>
+                  <SearchInput
+                    initialValue={normalizedUrlSearch}
+                    onChange={handleChangeQuery}
+                    placeholder="Search Farms"
+                  />
+                </LabelWrapper>
+              </FilterContainer>
+            </ControlContainer>
+            <FlexLayout  className="animate__animated animate__faster animate__fadeInUp">{children}</FlexLayout>
+            {account && !farmsLP.length && (
+              <Flex justifyContent="center">
+                <Spinner />
+              </Flex>
+            )}
+
+            <div ref={observerRef} />
+          </>
+         )} 
+
       </Page>
     </FarmsContext.Provider>
   )
