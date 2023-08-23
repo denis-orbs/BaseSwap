@@ -1,4 +1,4 @@
-import { Heading, Flex, Text, ChartIcon, CommunityIcon, SwapIcon } from '@pancakeswap/uikit'
+import { Heading, Flex, Text, ChartIcon, CommunityIcon, SwapIcon, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import useTheme from 'hooks/useTheme'
 import { formatLocalisedCompactNumber } from 'utils/formatBalance'
@@ -7,12 +7,14 @@ import Image from 'next/image'
 import IconCard, { IconCardData } from '../IconCard'
 import StatCardContent from './StatCardContent'
 import logo from '../../../../../public/images/newlogo.png'
+import bsx from '../../../../../public/images/bsx.png'
 import Marquee from "react-fast-marquee"; 
-
+import styled from 'styled-components'
 
 const Stats = () => {
   const { t } = useTranslation()
   const { theme } = useTheme()
+  const { isMobile, isMd } = useMatchBreakpoints();
 
   const { data: tvl } = useSWRImmutable('tvl')
   const { data: txCount } = useSWRImmutable('totalTx30Days')
@@ -38,30 +40,50 @@ const Stats = () => {
 
   return (
     <Flex justifyContent="flex-start" alignItems="center" flexDirection="column" mt="-2rem">
-      <div style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF', 
-      borderRadius: '100px', marginBottom: '8px'  }}>
-      <Image src={logo} alt="logo" height="200px" width="200px"  />
-      </div>
-      <Heading textAlign="center" scale="xl">
-        Because you really only live once.
-      </Heading>
-
-      <Text textAlign="center" color="textSubtle">
-        {t(
-          'Decentralized finance leverages the individual and collective capacity of all of us, without interference.',
+            {!isMobile && (
+        <Text fontSize="6rem" color="text" >
+              BaseSwap.
+        </Text>
+            )}
+        <Flex backgroundColor="#fff" flexDirection={['row', null, null, 'row' ]} style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF', 
+        borderRadius: '120px', marginBottom: '8px'  }}>
+            {!isMobile && (
+            <>
+             
+            <Image src={logo} alt="logo"  width="150px" height="150px"  />
+            <Image src={bsx} alt="logo" width="150px" height="150px"  />
+                </>
+            )}
+        </Flex>
+        {isMobile && (
+            <Text fontSize="4rem" color="background" >
+              BaseSwap
+            </Text>
         )}
+        <Heading textAlign="center" scale={isMobile ? 'lg' : 'xl'}>
+          Because you really only live once.
+        </Heading>
+
+      <Text marginTop="1.5rem" marginBottom="1rem" textAlign="center" color="textSubtle">
+
+          OFTEN IMITATED, NEVER DUPLICATED 🚀 <br /> <br /> 
+
+          Welcome to BaseSwap, the apex decentralized exchange on Base Chain. 
+          As pioneers in the field, we offer investors a transparent and efficient gateway to elevate their investment portfolios. 
+          Experience the evolution of trading without the complexities, hidden fees, or unnecessary taxes you'll get elsewhere. 
+          Why settle for less? Empower your financial journey with BaseSwap, and watch your assets thrive. 
+          🌱
+
       </Text>
-      <Flex flexWrap="wrap">
+      {/* <Flex flexWrap="wrap">
         <Text display="inline" textAlign="center" color="textSubtle" mb="20px">
           Join us on BASE chain now.
-          {/* <>{tvl ? <>{tvlString}</> : <Skeleton display="inline-block" height={16} width={70} mt="2px" />}</>
-          {inFunds} */}
+          <>{tvl ? <>{tvlString}</> : <Skeleton display="inline-block" height={16} width={70} mt="2px" />}</>
+          {inFunds}
         </Text>
-      </Flex>
+      </Flex> */}
 
-      {/* <Text textAlign="center" color="textSubtle" bold mb="32px">
-        {t('Will you join them?')}
-      </Text> */}
+  
   
       {/* <Flex flexDirection={['column', null, null, 'row']}> */}
       <Marquee 

@@ -11,31 +11,36 @@ import CompositeImage, { CompositeImageProps } from './CompositeImage'
 import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
 import banner from '../../../../public/images/newbanner3.png'
 import baseswap from '../../../../public/images/newlogo.png'
+import bsx from '../../../../public/images/bsx.png'
 import TVL from 'components/TVL'
 import TypeIt from 'typeit-react'
 import 'animate.css'
 
+import { useMatchBreakpoints } from '@pancakeswap/uikit'
+
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
   color: ${({ theme }) => theme.colors.text};
-  text-align: left; 
+  text-align: center; 
   letter-spacing: 2px; 
   margin-bottom: 12px;
   text-transform: uppercase; 
-  font-size: 14px; 
+  font-size: 18px; 
   @media (min-width: 768px) {
     font-size: 20px; 
+    text-align: left; 
   }
 `;
 
 const TitleTypeIt = styled(TypeIt)`
   font-weight: 400;
   color: ${({ theme }) => theme.colors.text};
-  text-align: left;
+  text-align: center;
   margin-bottom: 12px;
   font-size: 36px; 
   @media (min-width: 768px) {
     font-size: 80px; 
+    text-align: left; 
   }
 `;
 
@@ -84,77 +89,49 @@ const BunnyWrapper = styled.div`
   animation: ${flyingAnim} 3.5s ease-in-out infinite;
   will-change: transform;
   > span {
-    overflow: visible !important; // make sure the next-image pre-build blur image not be cropped
+    overflow: visible !important; 
   }
 `
-
-const StarsWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  & :nth-child(2) {
-    animation: ${fading} 2s ease-in-out infinite;
-    animation-delay: 1s;
-  }
-
-  & :nth-child(3) {
-    animation: ${fading} 5s ease-in-out infinite;
-    animation-delay: 0.66s;
-  }
-
-  & :nth-child(4) {
-    animation: ${fading} 2.5s ease-in-out infinite;
-    animation-delay: 0.33s;
-  }
-`
-
-const starsImage: CompositeImageProps = {
-  path: '/images/home/lunar-bunny/',
-  attributes: [
-    { src: 'star-l', alt: '3D Star' },
-    { src: 'star-r', alt: '3D Star' },
-    { src: 'star-top-r', alt: '3D Star' },
-  ],
-}
 
 const Hero = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { theme } = useTheme()
+  const { isMobile, isMd } = useMatchBreakpoints();
 
   return (
-    <>
-      {/* <BgWrapper>
-        <InnerWrapper>{theme.isDark ? <SlideSvgDark width="100%" /> : <SlideSvgLight width="100%" />}</InnerWrapper>
-      </BgWrapper> */}
-      <Flex
-        position="relative"
-        flexDirection={['column', null, null, 'row']}
-        alignItems={['center', null, null, 'center']}
-        justifyContent="center"
-        mt={[account ? '5px' : '5px', null, '0rem']}
-        id="homepage-hero"
-      >
-        <Flex
-          marginTop={['-1rem', null, null, '0rem']}
-          flex="1"
-          flexDirection="column"
-          paddingX={['0px', null, null, '2rem']}
-          marginX={['-1rem', null, null, '2rem']}
-        >
-        <WelcomeTypeIt 
-          options={{
-            cursorSpeed:1000000, speed: 75, 
-          }}
-          speed={10}
-          getBeforeInit={(instance) => {
-        instance
-            .type("Welcome to", {speed: 10000})
-            .type("...")
-            ;
-        return instance;
-         }}> </WelcomeTypeIt>
+<>
+  {/* <BgWrapper>
+    <InnerWrapper>{theme.isDark ? <SlideSvgDark width="100%" /> : <SlideSvgLight width="100%" />}</InnerWrapper>
+  </BgWrapper> */}
+  <Flex
+    position="relative"
+    flexDirection={['column', null, null, 'row']}
+    alignItems={['center', null, null, 'center']}
+    justifyContent="center"
+    mt={[account ? '5px' : '5px', null, '0rem']}
+    id="homepage-hero"
+  >
+    <Flex
+      marginTop={['2rem', null, null, '0rem']}
+      flex="1"
+      flexDirection="column"
+      paddingX={['0px', null, null, '2rem']}
+      marginX={['0rem', null, null, '2rem']}
+    >
+          <WelcomeTypeIt 
+            options={{
+              cursorSpeed:1000000, speed: 75, 
+            }}
+            speed={10}
+            getBeforeInit={(instance) => {
+          instance
+              .type("Welcome to", {speed: 10000})
+              .type("...")
+              ;
+          return instance;
+            }}> 
+          </WelcomeTypeIt>
           <TitleTypeIt 
           className="animate__animated animate__fadeInLeft"
           options={{
@@ -184,61 +161,94 @@ const Hero = () => {
             .type(".")
             ;
         return instance;
-    }}> </TitleTypeIt>
-          <Heading      className="animate__animated animate__fadeInLeft animate__delay-5s" scale="md" mb="18px">
-            {t('Harder. Better. Faster. Stronger.')}
-          </Heading>
-          <Flex
-            className="animate__animated animate__rollIn"
-            flexDirection={['column', null, null, 'row']}
-            marginLeft={['0rem', null, null, '1rem']}
-            marginTop={['0.5rem', null, null, '2rem']}
-            alignItems={['center', null, null, 'flex-end']}
-            justifyContent={['center', null, null, 'flex-start']}
+          }}>
+          </TitleTypeIt>
+          <Heading      
+            className="animate__animated animate__fadeInLeft animate__delay-5s" 
+            scale="md" mb="18px" 
+            mt={['24px', null, null, '0px' ]} 
           >
-            {!account && (
-              <ConnectWalletButton
-                variant="primary"
-                height="100%"
-                width={['75vw', null, null, '25vw']}
-                mr={[null, null, null, '8px']}
-              />
-            )}
-            <NextLinkFromReactRouter to="/swap">
-              <Button
-                mt={['1rem', null, null, null]}
-                width={['75vw', null, null, '25vw']}
-                variant={!account ? 'secondary' : 'primary'}
-              >
-                {t('SWAP NOW')}
-              </Button>
-            </NextLinkFromReactRouter>
-            
-          </Flex>
-        </Flex>
+          {t('Harder. Better. Faster. Stronger.')}
+          </Heading>
+      
+      {/* <Flex
+        className="animate__animated animate__rollIn"
+        flexDirection={['row', null, null, 'row']}
+        style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF'}} 
+        marginX={['4rem', null, null, '1rem']}
+        marginTop={['2rem', null, null, '2rem']}
+        alignItems={['center', null, null, 'flex-end']}
+        justifyContent={['space-between', null, null, 'flex-start']}
+      >
+          <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} 
+          width={isMobile ? 50 : 0} height={isMobile ? 50 : 0}
+          src="/images/tokens/0xd5046B976188EB40f6DE40fB527F89c05b323385.png"   alt="logo" />
 
-        <Flex
-         className="animate__animated animate__fadeInRight"
-          height={['275px', '275px', '300px', '350px']}
-          width={['275px', null, null, '350px']}
-          flex={[null, null, null, '1']}
+          <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -24px 0px 24px #68B9FF',  borderRadius: '50%' }} 
+          width={isMobile ? 50 : 0} height={isMobile ? 50 : 0}
+          src="/images/newlogo.png"   alt="logo" />
+      </Flex> */}
+      <Flex
+        className="animate__animated animate__rollIn"
+        flexDirection={['column', null, null, 'row']}
+        marginLeft={['0rem', null, null, '1rem']}
+        marginTop={['2rem', null, null, '2rem']}
+        marginBottom={['3rem', null, null, '0rem']}
 
-          mb={['0px', null, null, '0']}
-          mt={['24px', null, null, '0']}
-          position="relative"
-        >
-          <BunnyWrapper>
-          
-
-            <Image  src={banner} priority alt={t('BaseSwap Logo')} />
-
-            </BunnyWrapper>
-          {/* <StarsWrapper>
-                <CompositeImage {...starsImage} />
-              </StarsWrapper> */}
-        </Flex>
+        alignItems={['center', null, null, 'flex-end']}
+        justifyContent={['center', null, null, 'flex-start']}
+      >
+        
+        {!account && (
+          <ConnectWalletButton
+            variant="primary"
+            height="100%"
+            width={['75vw', null, null, '25vw']}
+            mr={[null, null, null, '8px']}
+          />
+        )}
+        <NextLinkFromReactRouter to="/swap">
+          <Button
+            mt={['1rem', null, null, null]}
+            width={['75vw', null, null, '25vw']}
+            variant={!account ? 'secondary' : 'primary'}
+          >
+            {t('SWAP NOW')}
+          </Button>
+        </NextLinkFromReactRouter>
+        
       </Flex>
-    </>
+    </Flex>
+
+    <Flex
+      className="animate__animated animate__fadeInRight"
+      height={['200px', null, null, '350px']}
+      width={['200px', null, null, '350px']}
+      flex={['1', null, null, '1']}
+      mb={['0px', null, null, '0']}
+      mt={['0px', null, null, '0']}
+      position="relative"
+    >
+      <BunnyWrapper>
+      
+      <Flex backgroundColor="#fff" flexDirection="row" 
+      marginRight={['0rem', null, null, '2rem']}
+      marginTop={['0rem', null, null, '2rem']}
+      alignItems="center" justifyContent="center" 
+      style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF', 
+        borderRadius: '120px', marginBottom: '8px'  }}>
+            <Image src={baseswap} alt="logo" height="230px" width="230px"  />
+            <Image src={bsx} alt="logo" height="230px" width="230px"  />
+        </Flex>
+        {/* <Image  src={banner} priority alt={t('BaseSwap Logo')} /> */}
+
+        </BunnyWrapper>
+      {/* <StarsWrapper>
+            <CompositeImage {...starsImage} />
+          </StarsWrapper> */}
+    </Flex>
+  </Flex>
+</>
   )
 }
 
