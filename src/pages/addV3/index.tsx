@@ -54,6 +54,8 @@ import { useUserSlippageToleranceWithDefault } from 'state/user/v3/hooks'
 import { ZERO_PERCENT_V3 } from 'config/constants/v3'
 import { WRAPPED_NATIVE_CURRENCY } from 'config/constants/tokens-v3'
 import { useIsSwapUnsupported } from 'hooks/v3/useIsSwapUnsupported'
+import { ApprovalState } from 'lib/hooks/useApproval'
+import { useSingleCallResult } from 'lib/hooks/multicall'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
 
@@ -327,6 +329,114 @@ function AddLiquidity() {
   }, [router, onFieldAInput, txHash])
 
   const addIsUnsupported = useIsSwapUnsupported(currencies?.CURRENCY_A, currencies?.CURRENCY_B)
+
+  const clearAll = useCallback(() => {
+    onFieldAInput('')
+    onFieldBInput('')
+    onLeftRangeInput('')
+    onRightRangeInput('')
+    // navigate(`/add`)
+    router.push('/addV3')
+  }, [router, onFieldAInput, onFieldBInput, onLeftRangeInput, onRightRangeInput])
+
+  // get value and prices at ticks
+  const { [Bound.LOWER]: tickLower, [Bound.UPPER]: tickUpper } = ticks
+  const { [Bound.LOWER]: priceLower, [Bound.UPPER]: priceUpper } = pricesAtTicks
+
+  const { getDecrementLower, getIncrementLower, getDecrementUpper, getIncrementUpper, getSetFullRange } =
+    useRangeHopCallbacks(baseCurrency ?? undefined, quoteCurrency ?? undefined, feeAmount, tickLower, tickUpper, pool)
+
+  // we need an existence check on parsed amounts for single-asset deposits
+  const showApprovalA = approvalA !== ApprovalState.APPROVED && !!parsedAmounts[Field.CURRENCY_A]
+  const showApprovalB = approvalB !== ApprovalState.APPROVED && !!parsedAmounts[Field.CURRENCY_B]
+
+  const pendingText = `Supplying ${!depositADisabled ? parsedAmounts[Field.CURRENCY_A]?.toSignificant(6) : ''} ${
+    !depositADisabled ? currencies[Field.CURRENCY_A]?.symbol : ''
+  } ${!outOfRange ? 'and' : ''} ${!depositBDisabled ? parsedAmounts[Field.CURRENCY_B]?.toSignificant(6) : ''} ${
+    !depositBDisabled ? currencies[Field.CURRENCY_B]?.symbol : ''
+  }`
+
+  const [searchParams, setSearchParams] = useState<{ param: string; value: string }>()
+
+  const handleSetFullRange = useCallback(() => {
+    getSetFullRange()
+
+    const minPrice = pricesAtLimit[Bound.LOWER]
+    if (minPrice) {
+      // searchParams.set('minPrice', minPrice.toSignificant(5))
+      setSearchParams({ param: 'minPrice', value: minPrice.toSignificant(5) })
+      router.replace(
+        {
+          pathname: router.pathname,
+          query: {
+            ...router.query,
+            minPrice: [minPrice.toSignificant(5)],
+          },
+        },
+        undefined,
+        {
+          shallow: true,
+        },
+      )
+    }
+
+    const maxPrice = pricesAtLimit[Bound.UPPER]
+    if (maxPrice) {
+      // searchParams.set('maxPrice', maxPrice.toSignificant(5))
+      setSearchParams({ param: 'maxPrice', value: maxPrice.toSignificant(5) })
+      router.replace(
+        {
+          pathname: router.pathname,
+          query: {
+            ...router.query,
+            maxPrice: [maxPrice.toSignificant(5)],
+          },
+        },
+        undefined,
+        {
+          shallow: true,
+        },
+      )
+    }
+  }, [getSetFullRange, pricesAtLimit, searchParams])
+
+  // START: sync values with query string
+  const oldSearchParams = usePrevious(searchParams)
+  // use query string as an input to onInput handlers
+  useEffect(() => {
+    const minPrice = searchParams?.value
+    const oldMinPrice = oldSearchParams?.value
+    if (
+      minPrice &&
+      typeof minPrice === 'string' &&
+      !Number.isNaN(minPrice as any) &&
+      (!oldMinPrice || oldMinPrice !== minPrice)
+    ) {
+      onLeftRangeInput(minPrice)
+    }
+    // disable eslint rule because this hook only cares about the url->input state data flow
+    // input state -> url updates are handled in the input handlers
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams])
+
+  const usdcValueCurrencyA = usdcValues[Field.CURRENCY_A]
+  const usdcValueCurrencyB = usdcValues[Field.CURRENCY_B]
+  const currencyAFiat = useMemo(
+    () => ({
+      data: usdcValueCurrencyA ? parseFloat(usdcValueCurrencyA.toSignificant()) : undefined,
+      isLoading: false,
+    }),
+    [usdcValueCurrencyA],
+  )
+  const currencyBFiat = useMemo(
+    () => ({
+      data: usdcValueCurrencyB ? parseFloat(usdcValueCurrencyB.toSignificant()) : undefined,
+      isLoading: false,
+    }),
+    [usdcValueCurrencyB],
+  )
+
+  const owner = useSingleCallResult(tokenId ? positionManager : null, 'ownerOf', [tokenId]).result?.[0]
 
   return <div>Liq</div>
 }
