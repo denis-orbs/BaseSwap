@@ -45,7 +45,7 @@ const DropdownMenu = styled.div`
   position: absolute;
   background-color: #000;
   border-radius: 4px;
-  min-width: 250px;
+  min-width: 200px;
   box-shadow: 2px 0px 4px #fff, 0px 2px 4px #0154fe, 0px 2px 16px #0154fe;
   padding: 24px 12px;
   z-index: 1;
@@ -208,7 +208,9 @@ const Menu: React.FC<NavProps> = ({
                 <Link href="/liquidity">
                   <Text marginRight="2rem">Liquidity</Text>
                 </Link>
-
+                <Link href="/addV3">
+                  <Text marginRight="2rem">Liquidity V3</Text>
+                </Link>
                 <DropdownContainer>
                   <Link href="/farm">
                     <Text marginRight="2rem">FARMS</Text>

@@ -11,6 +11,7 @@ import { PairState, usePairs } from './usePairs'
  * @param currency currency to compute the BUSD price of
  */
 export default function useBUSDPrice(currency?: Currency): Price | undefined {
+  return undefined
   const { chainId } = useActiveWeb3React()
   const wrapped = wrappedCurrency(currency, chainId)
   const WBNB = WNATIVE[chainId]
@@ -79,12 +80,14 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
 }
 
 export const useCakeBusdPrice = (): Price | undefined => {
+  return undefined
   const { chainId } = useActiveWeb3React()
   const cakeBusdPrice = useBUSDPrice(CAKE[chainId])
   return cakeBusdPrice
 }
 
 export const useBUSDCurrencyAmount = (currency?: Currency, amount?: number): number | undefined => {
+  return undefined
   const busdPrice = useBUSDPrice(currency)
   if (!amount) {
     return undefined
@@ -96,6 +99,7 @@ export const useBUSDCurrencyAmount = (currency?: Currency, amount?: number): num
 }
 
 export const useBUSDCakeAmount = (amount: number): number | undefined => {
+  return undefined
   const cakeBusdPrice = useCakeBusdPrice()
   if (cakeBusdPrice) {
     return multiplyPriceByAmount(cakeBusdPrice, amount)

@@ -1,8 +1,7 @@
 import { Percent } from '@baseswapfi/sdk-core'
-import { useWeb3React } from '@web3-react/core'
 import { ReactNode } from 'react'
 import { ArrowLeft } from 'react-feather'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Box } from 'rebass'
 import { useAppDispatch } from 'state'
 import { resetMintState } from 'state/mint/actions'
@@ -13,6 +12,7 @@ import { RowBetween } from '../Row'
 // import SettingsTab from '../Settings'
 import { Heading, Text, flexRowNoWrap } from '@pancakeswap/uikit'
 import Trans from 'components/Trans'
+import { useRouter } from 'next/router'
 
 const Tabs = styled.div`
   ${flexRowNoWrap};
@@ -77,46 +77,47 @@ export function AddRemoveTabs({
   showBackLink?: boolean
   children?: ReactNode
 }) {
-  const { chainId } = useWeb3React()
   const theme = useTheme()
   // reset states on back
   const dispatch = useAppDispatch()
-  const location = useLocation()
+  const router = useRouter()
 
   // detect if back should redirect to v3 or v2 pool page
-  const poolLink = location.pathname.includes('add/v2')
+  const poolLink = router.pathname.includes('add/v2')
     ? '/pools/v2'
     : '/pools' + (positionID ? `/${positionID.toString()}` : '')
 
-  return (
-    <Tabs>
-      <RowBetween style={{ padding: '1rem 1rem 0 1rem' }}>
-        <StyledLink
-          to={poolLink}
-          onClick={() => {
-            if (adding) {
-              // not 100% sure both of these are needed
-              dispatch(resetMintState())
-              dispatch(resetMintV3State())
-            }
-          }}
-          flex={children ? '1' : undefined}
-        >
-          <StyledArrowLeft stroke={theme.colors.secondary} />
-        </StyledLink>
-        <AddRemoveTitleText textAlign={children ? 'start' : 'center'}>
-          {creating ? (
-            <Trans>Create a pair</Trans>
-          ) : adding ? (
-            <Trans>Add Liquidity</Trans>
-          ) : (
-            <Trans>Remove Liquidity</Trans>
-          )}
-        </AddRemoveTitleText>
-        {children && <Box style={{ marginRight: '.5rem' }}>{children}</Box>}
+  // return (
+  //   <Tabs>
+  //     <RowBetween style={{ padding: '1rem 1rem 0 1rem' }}>
+  //       <StyledLink
+  //         to={poolLink}
+  //         onClick={() => {
+  //           if (adding) {
+  //             // not 100% sure both of these are needed
+  //             dispatch(resetMintState())
+  //             dispatch(resetMintV3State())
+  //           }
+  //         }}
+  //         flex={children ? '1' : undefined}
+  //       >
+  //         <StyledArrowLeft stroke={theme.colors.secondary} />
+  //       </StyledLink>
+  //       <AddRemoveTitleText textAlign={children ? 'start' : 'center'}>
+  //         {creating ? (
+  //           <Trans>Create a pair</Trans>
+  //         ) : adding ? (
+  //           <Trans>Add Liquidity</Trans>
+  //         ) : (
+  //           <Trans>Remove Liquidity</Trans>
+  //         )}
+  //       </AddRemoveTitleText>
+  //       {children && <Box style={{ marginRight: '.5rem' }}>{children}</Box>}
 
-        {/* <SettingsTab autoSlippage={autoSlippage} chainId={chainId} /> */}
-      </RowBetween>
-    </Tabs>
-  )
+  //       {/* <SettingsTab autoSlippage={autoSlippage} chainId={chainId} /> */}
+  //     </RowBetween>
+  //   </Tabs>
+  // )
+
+  return <></>
 }
