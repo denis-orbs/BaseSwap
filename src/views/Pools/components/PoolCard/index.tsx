@@ -12,6 +12,7 @@ import CardFooter from './CardFooter'
 import PoolCardHeader, { PoolCardHeaderTitle } from './PoolCardHeader'
 import CardActions from './CardActions'
 import { BoostTag } from 'components/Tags'
+
 const PoolCard: React.FC<{ pool: DeserializedPool; account: string }> = ({ pool, account }) => {
   const { stakingToken, earningToken, isFinished, isBoost, userData } = pool
   const { t } = useTranslation()

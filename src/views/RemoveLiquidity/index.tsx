@@ -58,6 +58,8 @@ import ConfirmLiquidityModal from '../Swap/components/ConfirmRemoveLiquidityModa
 import { logError } from '../../utils/sentry'
 import { formatAmount } from '../../utils/formatInfoNumbers'
 import 'animate.css'
+
+
 const BorderCard = styled.div`
   border: solid 2px ${({ theme }) => theme.colors.cardBorder};
   border-radius: 2px;

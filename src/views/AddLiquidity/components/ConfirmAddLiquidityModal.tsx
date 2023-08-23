@@ -96,6 +96,7 @@ const ConfirmAddLiquidityModal: React.FC<InjectedModalProps & ConfirmAddLiquidit
       attemptingTxn={attemptingTxn}
       currencyToAdd={currencyToAdd}
       hash={hash}
+      //@ts-ignore
       content={confirmationContent}
       pendingText={pendingText}
     />

@@ -186,7 +186,8 @@ export default function CurrencyInputPanel({
               {pair ? (
                 <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={36} margin />
               ) : currency ? (
-                <CurrencyLogo currency={currency} size="60px" style={{ marginRight: '8px' }} />
+                <CurrencyLogo currency={currency} size="60px" style={{ marginRight: '8px', 
+                boxShadow: '0 1px 4px #000, 0 4px 12px #68B9FF, 0 4px 4px #fff, 4px 0px 12px #0154FD, -4px 0px 12px #68B9FF' }} />
               ) : null}
               {pair ? (
                 <Text id="pair" color="text" fontWeight="600">

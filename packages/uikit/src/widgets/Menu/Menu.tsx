@@ -171,7 +171,7 @@ const Menu: React.FC<NavProps> = ({
           <StyledNav>
           <a href="/" style={{ marginLeft: '1rem' }}>
           <Flex>
-              <img src="/images/newlogo.png" width={isMobile ? 40 : 50} height={isMobile ? 40 : 40} alt="logo" />
+              <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} src="/images/newlogo.png" width={isMobile ? 40 : 50} height={isMobile ? 40 : 40} alt="logo" />
    
                 <Text fontSize="2rem" style={{ marginLeft: "0.5rem", marginRight: "0.7rem", alignItems: 'center', justifyContent: 'center' }}>
                   BaseSwap

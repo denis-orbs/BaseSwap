@@ -57,6 +57,7 @@ function MPGlobalHooks() {
 
 function MyApp(props: AppProps) {
   const { pageProps, Component } = props
+  //@ts-ignore
   const store = useStore(pageProps.initialReduxState)
 
   return (

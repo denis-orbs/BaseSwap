@@ -276,6 +276,7 @@ const ConfirmZapInModal: React.FC<InjectedModalProps & ConfirmZapInModalProps> =
       attemptingTxn={attemptingTxn}
       currencyToAdd={pair?.liquidityToken}
       hash={hash}
+      //@ts-ignore
       content={confirmationContent}
       pendingText={pendingText}
     />
