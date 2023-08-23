@@ -53,6 +53,7 @@ import { useApproveCallback } from 'hooks/v3/useApproveCallback'
 import { useUserSlippageToleranceWithDefault } from 'state/user/v3/hooks'
 import { ZERO_PERCENT_V3 } from 'config/constants/v3'
 import { WRAPPED_NATIVE_CURRENCY } from 'config/constants/tokens-v3'
+import { useIsSwapUnsupported } from 'hooks/v3/useIsSwapUnsupported'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
 
@@ -311,6 +312,21 @@ function AddLiquidity() {
     },
     [currencyIdA, currencyIdB, router, onLeftRangeInput, onRightRangeInput],
   )
+
+  const handleDismissConfirmation = useCallback(() => {
+    setShowConfirm(false)
+    // if there was a tx hash, we want to clear the input
+    if (txHash) {
+      onFieldAInput('')
+      // dont jump to pool page if creating
+      // navigate('/pools')
+      // TODO: Need to line this up with our navigation/routing scheme
+      router.push('/pools')
+    }
+    setTxHash('')
+  }, [router, onFieldAInput, txHash])
+
+  const addIsUnsupported = useIsSwapUnsupported(currencies?.CURRENCY_A, currencies?.CURRENCY_B)
 
   return <div>Liq</div>
 }
