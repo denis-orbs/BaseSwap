@@ -58,10 +58,12 @@ import { useTranslation } from '@pancakeswap/localization'
 import Trans from 'components/Trans'
 import { Dots } from 'pages/pool/styled'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import { BodyWrapper } from 'components/App/AppBody'
+import AppBody, { BodyWrapper } from 'components/App/AppBody'
 import Review from './Review'
 import { AddRemoveTabs } from 'components/NavigationTabs'
 import FeeSelector from 'components/FeeSelector'
+import Page from 'views/Page'
+import { AppHeader } from 'components/App'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
 
@@ -590,115 +592,117 @@ function AddLiquidity() {
 
   return (
     <>
-      <ScrollablePage>
-        {showConfirm && (
-          <TransactionConfirmationModal
-            title={t('Add Liquidity')}
-            onDismiss={handleDismissConfirmation}
-            attemptingTxn={attemptingTxn}
-            hash={txHash}
-            pendingText={pendingText}
-            content={() => {
-              return (
-                <ConfirmationModalContent
-                  topContent={() => (
-                    <Review
-                      parsedAmounts={parsedAmounts}
-                      position={position}
-                      existingPosition={existingPosition}
-                      priceLower={priceLower}
-                      priceUpper={priceUpper}
-                      outOfRange={outOfRange}
-                      ticksAtLimit={ticksAtLimit}
-                    />
-                  )}
-                  bottomContent={() => (
-                    <Button style={{ marginTop: '1rem' }} onClick={onAdd}>
-                      <Text fontWeight={500} fontSize={20}>
-                        <Trans>Add</Trans>
+      <Page>
+        <AppBody>
+          <AppHeader title={t('Pools')} subtitle={t('')} />
+          {showConfirm && (
+            <TransactionConfirmationModal
+              title={t('Add Liquidity')}
+              onDismiss={handleDismissConfirmation}
+              attemptingTxn={attemptingTxn}
+              hash={txHash}
+              pendingText={pendingText}
+              content={() => {
+                return (
+                  <ConfirmationModalContent
+                    topContent={() => (
+                      <Review
+                        parsedAmounts={parsedAmounts}
+                        position={position}
+                        existingPosition={existingPosition}
+                        priceLower={priceLower}
+                        priceUpper={priceUpper}
+                        outOfRange={outOfRange}
+                        ticksAtLimit={ticksAtLimit}
+                      />
+                    )}
+                    bottomContent={() => (
+                      <Button style={{ marginTop: '1rem' }} onClick={onAdd}>
+                        <Text fontWeight={500} fontSize={20}>
+                          <Trans>Add</Trans>
+                        </Text>
+                      </Button>
+                    )}
+                  />
+                )
+              }}
+            />
+          )}
+
+          <StyledBodyWrapper $hasExistingPosition={hasExistingPosition}>
+            <AddRemoveTabs
+              creating={false}
+              adding={true}
+              positionID={tokenId}
+              autoSlippage={DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE}
+              showBackLink={!hasExistingPosition}
+            >
+              {!hasExistingPosition && (
+                <Flex justifyContent="flex-end" style={{ width: 'fit-content', minWidth: 'fit-content' }}>
+                  <MediumOnly>
+                    <Button onClick={clearAll}>
+                      <Text fontSize="12px">
+                        <Trans>Clear All</Trans>
                       </Text>
                     </Button>
+                  </MediumOnly>
+                </Flex>
+              )}
+            </AddRemoveTabs>
+            <Wrapper>
+              <ResponsiveTwoColumns wide={!hasExistingPosition}>
+                <AutoColumn gap="lg">
+                  {!hasExistingPosition && (
+                    <>
+                      <AutoColumn gap="md">
+                        <RowBetween paddingBottom="20px">
+                          <Text>
+                            <Trans>Select Pair</Trans>
+                          </Text>
+                        </RowBetween>
+                        <RowBetween>
+                          <CurrencyDropdown
+                            value={formattedAmounts[Field.CURRENCY_A]}
+                            onUserInput={onFieldAInput}
+                            hideInput={true}
+                            onMax={() => {
+                              onFieldAInput(maxAmounts[Field.CURRENCY_A]?.toExact() ?? '')
+                            }}
+                            onCurrencySelect={handleCurrencyASelect}
+                            showMaxButton={!atMaxAmounts[Field.CURRENCY_A]}
+                            currency={currencies[Field.CURRENCY_A] ?? null}
+                            id="add-liquidity-input-tokena"
+                            showCommonBases
+                          />
+
+                          <div style={{ width: '12px' }} />
+
+                          <CurrencyDropdown
+                            value={formattedAmounts[Field.CURRENCY_B]}
+                            hideInput={true}
+                            onUserInput={onFieldBInput}
+                            onCurrencySelect={handleCurrencyBSelect}
+                            onMax={() => {
+                              onFieldBInput(maxAmounts[Field.CURRENCY_B]?.toExact() ?? '')
+                            }}
+                            showMaxButton={!atMaxAmounts[Field.CURRENCY_B]}
+                            currency={currencies[Field.CURRENCY_B] ?? null}
+                            id="add-liquidity-input-tokenb"
+                            showCommonBases
+                          />
+                        </RowBetween>
+
+                        <FeeSelector
+                          disabled={!quoteCurrency || !baseCurrency}
+                          feeAmount={feeAmount}
+                          handleFeePoolSelect={handleFeePoolSelect}
+                          currencyA={baseCurrency ?? undefined}
+                          currencyB={quoteCurrency ?? undefined}
+                        />
+                      </AutoColumn>{' '}
+                    </>
                   )}
-                />
-              )
-            }}
-          />
-        )}
-
-        <StyledBodyWrapper $hasExistingPosition={hasExistingPosition}>
-          <AddRemoveTabs
-            creating={false}
-            adding={true}
-            positionID={tokenId}
-            autoSlippage={DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE}
-            showBackLink={!hasExistingPosition}
-          >
-            {!hasExistingPosition && (
-              <Flex justifyContent="flex-end" style={{ width: 'fit-content', minWidth: 'fit-content' }}>
-                <MediumOnly>
-                  <Button onClick={clearAll}>
-                    <Text fontSize="12px">
-                      <Trans>Clear All</Trans>
-                    </Text>
-                  </Button>
-                </MediumOnly>
-              </Flex>
-            )}
-          </AddRemoveTabs>
-          <Wrapper>
-            <ResponsiveTwoColumns wide={!hasExistingPosition}>
-              <AutoColumn gap="lg">
-                {!hasExistingPosition && (
-                  <>
-                    <AutoColumn gap="md">
-                      <RowBetween paddingBottom="20px">
-                        <Text>
-                          <Trans>Select Pair</Trans>
-                        </Text>
-                      </RowBetween>
-                      <RowBetween>
-                        <CurrencyDropdown
-                          value={formattedAmounts[Field.CURRENCY_A]}
-                          onUserInput={onFieldAInput}
-                          hideInput={true}
-                          onMax={() => {
-                            onFieldAInput(maxAmounts[Field.CURRENCY_A]?.toExact() ?? '')
-                          }}
-                          onCurrencySelect={handleCurrencyASelect}
-                          showMaxButton={!atMaxAmounts[Field.CURRENCY_A]}
-                          currency={currencies[Field.CURRENCY_A] ?? null}
-                          id="add-liquidity-input-tokena"
-                          showCommonBases
-                        />
-
-                        <div style={{ width: '12px' }} />
-
-                        <CurrencyDropdown
-                          value={formattedAmounts[Field.CURRENCY_B]}
-                          hideInput={true}
-                          onUserInput={onFieldBInput}
-                          onCurrencySelect={handleCurrencyBSelect}
-                          onMax={() => {
-                            onFieldBInput(maxAmounts[Field.CURRENCY_B]?.toExact() ?? '')
-                          }}
-                          showMaxButton={!atMaxAmounts[Field.CURRENCY_B]}
-                          currency={currencies[Field.CURRENCY_B] ?? null}
-                          id="add-liquidity-input-tokenb"
-                          showCommonBases
-                        />
-                      </RowBetween>
-
-                      <FeeSelector
-                        disabled={!quoteCurrency || !baseCurrency}
-                        feeAmount={feeAmount}
-                        handleFeePoolSelect={handleFeePoolSelect}
-                        currencyA={baseCurrency ?? undefined}
-                        currencyB={quoteCurrency ?? undefined}
-                      />
-                    </AutoColumn>{' '}
-                  </>
-                )}
-                {/* {hasExistingPosition && existingPosition && (
+                  {/* {hasExistingPosition && existingPosition && (
                   <PositionPreview
                     position={existingPosition}
                     title={<Trans>Selected Range</Trans>}
@@ -706,11 +710,12 @@ function AddLiquidity() {
                     ticksAtLimit={ticksAtLimit}
                   />
                 )} */}
-              </AutoColumn>
-            </ResponsiveTwoColumns>
-          </Wrapper>
-        </StyledBodyWrapper>
-      </ScrollablePage>
+                </AutoColumn>
+              </ResponsiveTwoColumns>
+            </Wrapper>
+          </StyledBodyWrapper>
+        </AppBody>
+      </Page>
     </>
   )
 }
