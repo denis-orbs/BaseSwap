@@ -19,7 +19,20 @@ import useXTokenActions from './hooks/useXTokenActions'
 import XTokenConvertModal from './components/xTokenConvertModal'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { priceDexScreener } from 'utils/tokenPricing'
+import TypeIt from 'typeit-react'
 
+
+const WelcomeTypeIt = styled(TypeIt)`
+  font-weight: 400;
+  color: #fff;
+  text-align: left;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-size: 40px;
+  @media (min-width: 768px) {
+    font-size: 68px;
+  }
+`
 interface TextProps {
   isMobile: boolean
 }
@@ -87,6 +100,8 @@ const XToken: React.FC = () => {
   const { fetchUserData } = useXTokenActions()
   const { userInfo } = useXTokenInfo()
 
+
+
   const BSX = useMemo(() => getTokenInstance(getTokenAddress('ProtocolToken', chainId)), [chainId])
   const xBSX = useMemo(() => getTokenInstance(getTokenAddress('xProtocolToken', chainId)), [chainId])
 
@@ -112,8 +127,18 @@ const XToken: React.FC = () => {
   return (
     <>
       <Page>
-        <PageHeader>
-          <XARXTitle isMobile={isMobile}>{t('xBSX')}</XARXTitle>
+      <WelcomeTypeIt
+          options={{
+            cursorChar: ' ',
+            cursorSpeed: 1000000,
+            speed: 75,
+          }}
+          speed={10}
+          getBeforeInit={(instance) => {
+            instance.type('xBSX', { speed: 5000 })
+            return instance
+          }}
+        />
           <Text
             textAlign="center"
             mb="1.5rem"
@@ -129,7 +154,7 @@ const XToken: React.FC = () => {
               STAKED FOR REAL YIELD.
             </a>
           </Text>
-        </PageHeader>
+       
 
         <Flex flexDirection={['column', null, null, 'row']}>
           <StyledCard>

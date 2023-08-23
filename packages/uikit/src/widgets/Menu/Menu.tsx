@@ -208,16 +208,18 @@ const Menu: React.FC<NavProps> = ({
                 <Link href="/pools">
                   <Text marginRight="2rem">Earn </Text>
                 </Link>
-                <Link href="/xbsx">
-                  <Text marginRight="2rem">xBSX </Text>
-                </Link>
+               
 
                 <DropdownContainer>
                   <Text marginRight="2rem">MORE...</Text>
                   <DropdownMenu>
+                  <Link href="/xbsx">
+                  <Text marginRight="2rem">xBSX </Text>
+                </Link>
                     <Link href="https://presale.baseswap.fi" marginBottom="1.2rem">
                       <Text marginRight="2rem">BSX PRESALE!</Text>
                     </Link>
+
                     <Link href="/bridge" marginBottom="1.2rem">
                       <Text marginRight="2rem">Bridge </Text>
                     </Link>
