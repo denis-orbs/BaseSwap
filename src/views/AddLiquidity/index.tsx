@@ -67,14 +67,14 @@ import styled from 'styled-components'
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
   color: #fff;
-  text-align: left; 
+  text-align: left;
   margin-bottom: 12px;
-  text-transform: uppercase; 
-  font-size: 40px; 
+  text-transform: uppercase;
+  font-size: 40px;
   @media (min-width: 768px) {
-    font-size: 68px; 
+    font-size: 68px;
   }
-`;
+`
 enum Steps {
   Choose,
   Add,
@@ -565,20 +565,18 @@ export default function AddLiquidity() {
     <>
       {/* <PageTitle title="Add Liquidity" /> */}
       <Page>
-      <WelcomeTypeIt 
+        <WelcomeTypeIt
           options={{
-            cursorChar:" ", 
-            cursorSpeed:1000000, speed: 75, 
+            cursorChar: ' ',
+            cursorSpeed: 1000000,
+            speed: 75,
           }}
           speed={10}
           getBeforeInit={(instance) => {
-        instance
-
-            .type("ADD LIQUIDITY", {speed: 5000})
-            ;
-        return instance;
-         }}> 
-         </WelcomeTypeIt>
+            instance.type('ADD LIQUIDITY', { speed: 5000 })
+            return instance
+          }}
+        />
         <AppBody>
           {!showAddLiquidity && (
             <ChoosePair
@@ -882,15 +880,17 @@ export default function AddLiquidity() {
             </>
           )}
         </AppBody>
-        {!(addIsUnsupported || addIsWarning) ? (
-          pair && !noLiquidity && pairState !== PairState.INVALID ? (
-            <AutoColumn style={{ minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem' }}>
-              <MinimalPositionCard showUnwrapped={oneCurrencyIsWBNB} pair={pair} />
-            </AutoColumn>
-          ) : null
-        ) : (
-          <UnsupportedCurrencyFooter currencies={[currencies.CURRENCY_A, currencies.CURRENCY_B]} />
+
+        {pair && !noLiquidity && pairState !== PairState.INVALID && (
+          <AutoColumn style={{ minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem' }}>
+            <MinimalPositionCard showUnwrapped={oneCurrencyIsWBNB} pair={pair} />
+          </AutoColumn>
         )}
+
+        <UnsupportedCurrencyFooter
+          currencies={[currencies.CURRENCY_A, currencies.CURRENCY_B]}
+          show={addIsUnsupported || addIsWarning}
+        />
       </Page>
     </>
   )

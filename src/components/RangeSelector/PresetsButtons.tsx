@@ -3,12 +3,13 @@ import { AutoRow } from 'components/Row'
 import Trans from 'components/Trans'
 import styled from 'styled-components'
 
-const CustomButton = styled(Button).attrs(() => ({
-  padding: '6px',
-  $borderRadius: '8px',
-}))`
-  color: ${({ theme }) => theme.colors.primary};
+const CustomButton = styled(Button)`
+  color: ${({ theme }) => theme.colors.text};
   flex: 1;
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 2px;
+  height: 30px;
 `
 
 interface PresetsButtonsProps {
@@ -18,7 +19,7 @@ interface PresetsButtonsProps {
 export default function PresetsButtons({ onSetFullRange }: PresetsButtonsProps) {
   return (
     <AutoRow gap="4px" width="auto">
-      <CustomButton data-testid="set-full-range" onClick={onSetFullRange}>
+      <CustomButton onClick={onSetFullRange}>
         <Trans>Full Range</Trans>
       </CustomButton>
     </AutoRow>

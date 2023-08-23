@@ -70,8 +70,8 @@ import RateToggle from 'components/RateToggle'
 import PresetsButtons from 'components/RangeSelector/PresetsButtons'
 import RangeSelector from 'components/RangeSelector'
 import LiquidityChartRangeInput from 'components/LiquidityChartRangeInput'
-import CurrencyInputPanel from 'components/CurrencyInputPanel'
 import CurrencyInputPanelV3 from 'components/CurrencyInputPanelV3'
+import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
 
@@ -316,6 +316,8 @@ function AddLiquidity() {
   const handleCurrencyASelect = useCallback(
     (currencyANew: Currency) => {
       const [idA, idB] = handleCurrencySelect(currencyANew, currencyIdB)
+      console.log(router.pathname)
+
       if (idB === undefined) {
         // navigate(`/add/${idA}`)
         router.replace(
@@ -323,7 +325,7 @@ function AddLiquidity() {
             pathname: router.pathname,
             query: {
               ...router.query,
-              [idA]: [idA],
+              currencyIdA: [idA],
             },
           },
           undefined,
@@ -338,8 +340,8 @@ function AddLiquidity() {
             pathname: router.pathname,
             query: {
               ...router.query,
-              [idA]: [idA],
-              [idB]: [idB],
+              currencyIdA: [idA],
+              currencyIdB: [idB],
             },
           },
           undefined,
@@ -355,6 +357,7 @@ function AddLiquidity() {
   const handleCurrencyBSelect = useCallback(
     (currencyBNew: Currency) => {
       const [idB, idA] = handleCurrencySelect(currencyBNew, currencyIdA)
+
       if (idA === undefined) {
         // navigate(`/add/${idB}`)
         router.replace(
@@ -362,7 +365,7 @@ function AddLiquidity() {
             pathname: router.pathname,
             query: {
               ...router.query,
-              [idB]: [idB],
+              currencyIdB: [idB],
             },
           },
           undefined,
@@ -377,8 +380,8 @@ function AddLiquidity() {
             pathname: router.pathname,
             query: {
               ...router.query,
-              [idA]: [idA],
-              [idB]: [idB],
+              currencyIdA: [idA],
+              currencyIdB: [idB],
             },
           },
           undefined,
@@ -663,8 +666,8 @@ function AddLiquidity() {
                   {!hasExistingPosition && (
                     <>
                       <AutoColumn gap="md">
-                        <RowBetween paddingBottom="20px">
-                          <Text>
+                        <RowBetween marginBottom="10px">
+                          <Text fontSize="22px">
                             <Trans>Select Pair</Trans>
                           </Text>
                         </RowBetween>
@@ -723,7 +726,7 @@ function AddLiquidity() {
                 {!hasExistingPosition && (
                   <>
                     <DynamicSection gap="md" disabled={!feeAmount || invalidPool}>
-                      <RowBetween>
+                      <RowBetween mb={2}>
                         <Text>
                           <Trans>Set Price Range</Trans>
                         </Text>
@@ -948,9 +951,17 @@ function AddLiquidity() {
                     </AutoColumn>
                   </DynamicSection>
                 </div>
+                <Buttons />
               </ResponsiveTwoColumns>
             </Wrapper>
           </StyledBodyWrapper>
+          {showOwnershipWarning && <OwnershipWarning ownerAddress={owner} />}
+          {addIsUnsupported && (
+            <UnsupportedCurrencyFooter
+              show={addIsUnsupported}
+              currencies={[currencies.CURRENCY_A, currencies.CURRENCY_B]}
+            />
+          )}
         </AppBody>
       </Page>
     </>

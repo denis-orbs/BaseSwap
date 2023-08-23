@@ -136,7 +136,7 @@ export default function FeeSelector({
   return (
     <AutoColumn gap="16px">
       <DynamicSection gap="md" disabled={disabled}>
-        <FocusedOutlineCard pulsing={pulsing} onAnimationEnd={() => setPulsing(false)} mb={2}>
+        <FocusedOutlineCard pulsing={pulsing} onAnimationEnd={() => setPulsing(false)} mb={2} mt={3}>
           <RowBetween>
             <AutoColumn id="add-liquidity-selected-fee">
               {!feeAmount ? (

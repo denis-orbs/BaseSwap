@@ -24,3 +24,4 @@ src/components/FeeSelector/**/*.tsx
 src/graphql/**/*.ts
 scripts/**/*.js
 **/*.config.js
+src/components/CurrencyInputPanelV3/**/*.tsx

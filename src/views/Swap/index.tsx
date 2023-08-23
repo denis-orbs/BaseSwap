@@ -17,7 +17,7 @@ import {
   ArrowUpDownIcon,
   Skeleton,
   useMatchBreakpointsContext,
-  Card
+  Card,
 } from '@pancakeswap/uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
@@ -77,14 +77,14 @@ import 'animate.css'
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
   color: #fff;
-  text-align: left; 
+  text-align: left;
   margin-bottom: 12px;
-  text-transform: uppercase; 
-  font-size: 40px; 
+  text-transform: uppercase;
+  font-size: 40px;
   @media (min-width: 768px) {
-    font-size: 68px; 
+    font-size: 68px;
   }
-`;
+`
 
 const Label = styled(Text)`
   font-size: 12px;
@@ -100,7 +100,7 @@ const SwitchIconButton = styled(IconButton)`
     display: none;
   }
   &:hover {
-    box-shadow: 0 0 4px #fff, 0 0 12px #0154FD;
+    box-shadow: 0 0 4px #fff, 0 0 12px #0154fd;
     .icon-down {
       display: none;
       fill: white;
@@ -114,7 +114,7 @@ const SwitchIconButton = styled(IconButton)`
 
 export enum SwapType {
   REGULAR_SWAP,
-  CROSS_CHAIN_SWAP
+  CROSS_CHAIN_SWAP,
 }
 
 export default function Swap() {
@@ -128,8 +128,8 @@ export default function Swap() {
   const { refreshBlockNumber, isLoading } = useRefreshBlockNumberID()
 
   const Tabs = styled.div`
-  padding: 0px 0px 24px 0px;
-`
+    padding: 0px 0px 24px 0px;
+  `
 
   const [view, setView] = useState(SwapType.REGULAR_SWAP)
 
@@ -212,13 +212,13 @@ export default function Swap() {
 
   const parsedAmounts = showWrap
     ? {
-      [Field.INPUT]: parsedAmount,
-      [Field.OUTPUT]: parsedAmount,
-    }
+        [Field.INPUT]: parsedAmount,
+        [Field.OUTPUT]: parsedAmount,
+      }
     : {
-      [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
-      [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
-    }
+        [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
+        [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
+      }
 
   const { onSwitchTokens, onCurrencySelection, onUserInput, onChangeRecipient } = useSwapActionHandlers()
   const isValid = !swapInputError
@@ -427,41 +427,39 @@ export default function Swap() {
 
   return (
     <>
-       <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded} 
-      > 
-      <PageHeader>
-      <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
-          <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-      <WelcomeTypeIt 
-          options={{
-            cursorChar:" ", 
-            cursorSpeed:1000000, speed: 75, 
-          }}
-          speed={10}
-          getBeforeInit={(instance) => {
-        instance
-
-            .type("SWAP", {speed: 5000})
-            ;
-        return instance;
-         }}> 
-         </WelcomeTypeIt>
-         </Flex>
-        </Flex>
-        {/* <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
+      <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
+        <PageHeader>
+          <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
+            <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
+              <WelcomeTypeIt
+                options={{
+                  cursorChar: ' ',
+                  cursorSpeed: 1000000,
+                  speed: 75,
+                }}
+                speed={10}
+                getBeforeInit={(instance) => {
+                  instance.type('SWAP', { speed: 5000 })
+                  return instance
+                }}
+              />
+            </Flex>
+          </Flex>
+          {/* <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="backgroundAlt" mb="4px">
               {t('Swap')}
             </Heading>
           </Flex>
         </Flex> */}
-      </PageHeader>
+        </PageHeader>
         <TabsComponent />
-        {view === SwapType.CROSS_CHAIN_SWAP &&
+        {view === SwapType.CROSS_CHAIN_SWAP && (
           <Flex width="100%" justifyContent="center" position="relative" marginBottom="100px">
             <CrossChainSwap />
-          </Flex>}
-        {view === SwapType.REGULAR_SWAP &&
+          </Flex>
+        )}
+        {view === SwapType.REGULAR_SWAP && (
           <Flex width="100%" justifyContent="center" position="relative">
             {!isMobile && isChartSupported && (
               <PriceChartContainer
@@ -495,19 +493,20 @@ export default function Swap() {
               />
             )}
             <Flex flexDirection="column">
-            <StyledSwapContainer 
-            className="animate__animated animate__fadeInLeft animate__fast" 
-            $isChartExpanded={isChartExpanded}>
+              <StyledSwapContainer
+                className="animate__animated animate__fadeInLeft animate__fast"
+                $isChartExpanded={isChartExpanded}
+              >
                 <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
                   <AppBody>
-                  <CurrencyInputHeader
-                    title={t('')}
-                    subtitle={t('')}
-                    setIsChartDisplayed={setIsChartDisplayed}
-                    isChartDisplayed={isChartDisplayed}
-                    hasAmount={hasAmount}
-                    onRefreshPrice={onRefreshPrice}
-                  />
+                    <CurrencyInputHeader
+                      title={t('')}
+                      subtitle={t('')}
+                      setIsChartDisplayed={setIsChartDisplayed}
+                      isChartDisplayed={isChartDisplayed}
+                      hasAmount={hasAmount}
+                      onRefreshPrice={onRefreshPrice}
+                    />
                     <Wrapper id="swap-page" style={{ minHeight: '412px' }}>
                       <AutoColumn gap="sm">
                         <CurrencyInputPanel
@@ -572,7 +571,11 @@ export default function Swap() {
                               <ArrowWrapper clickable={false}>
                                 <ArrowDownIcon width="24px" />
                               </ArrowWrapper>
-                              <Button variant="text" id="remove-recipient-button" onClick={() => onChangeRecipient(null)}>
+                              <Button
+                                variant="text"
+                                id="remove-recipient-button"
+                                onClick={() => onChangeRecipient(null)}
+                              >
                                 {t('- Remove send')}
                               </Button>
                             </AutoRow>
@@ -668,8 +671,8 @@ export default function Swap() {
                               {priceImpactSeverity > 3 && !isExpertMode
                                 ? t('Price Impact High')
                                 : priceImpactSeverity > 2
-                                  ? t('Swap Anyway')
-                                  : t('Swap')}
+                                ? t('Swap Anyway')
+                                : t('Swap')}
                             </Button>
                           </RowBetween>
                         ) : (
@@ -696,8 +699,8 @@ export default function Swap() {
                               (priceImpactSeverity > 3 && !isExpertMode
                                 ? t('Price Impact Too High')
                                 : priceImpactSeverity > 2
-                                  ? t('Swap Anyway')
-                                  : t('Swap'))}
+                                ? t('Swap Anyway')
+                                : t('Swap'))}
                           </Button>
                         )}
                         {showApproveFlow && (
@@ -709,11 +712,13 @@ export default function Swap() {
                       </Box>
                     </Wrapper>
                   </AppBody>
-                  {!swapIsUnsupported ? (
-                    trade && <AdvancedSwapDetailsDropdown trade={trade} />
-                  ) : (
-                    <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
-                  )}
+
+                  {trade && <AdvancedSwapDetailsDropdown trade={trade} />}
+
+                  <UnsupportedCurrencyFooter
+                    currencies={[currencies.INPUT, currencies.OUTPUT]}
+                    show={swapIsUnsupported}
+                  />
                 </StyledInputCurrencyWrapper>
               </StyledSwapContainer>
               {isChartExpanded && (
@@ -722,68 +727,67 @@ export default function Swap() {
                 </Box>
               )}
             </Flex>
-          </Flex>}
+          </Flex>
+        )}
       </Page>
     </>
   )
 }
 
 const StyledContainer = styled.div`
-margin: auto;
-min-width: 300px;
-${({ theme }) => theme.mediaQueries.md} {
-  min-width: 450px;
-  max-width: 100%;
-}
+  margin: auto;
+  min-width: 300px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    min-width: 450px;
+    max-width: 100%;
+  }
 `
 
 const CrossChainSwap = () => {
-
   const widgetConfig = {
-    integratorId: "squid-swap-widget",
-    companyName: "BaseSwap",
+    integratorId: 'squid-swap-widget',
+    companyName: 'BaseSwap',
     style: {
-      neutralContent: "#FFF",
-      baseContent: "#FFF",
-      base100: "#111",
-      base200: "#333",
-      base300: "#111",
-      error: "#ED6A5E",
-      warning: "#FFB155",
-      success: "#004be4",
-      primary: "#0154FE",
-      secondary: "#1a65fe",
-      secondaryContent: "#FFF",
-      neutral: "#111",
-      roundedBtn: "4px",
-      roundedCornerBtn: "999px",
-      roundedBox: "4px",
-      roundedDropDown: "4px",
+      neutralContent: '#FFF',
+      baseContent: '#FFF',
+      base100: '#111',
+      base200: '#333',
+      base300: '#111',
+      error: '#ED6A5E',
+      warning: '#FFB155',
+      success: '#004be4',
+      primary: '#0154FE',
+      secondary: '#1a65fe',
+      secondaryContent: '#FFF',
+      neutral: '#111',
+      roundedBtn: '4px',
+      roundedCornerBtn: '999px',
+      roundedBox: '4px',
+      roundedDropDown: '4px',
     },
     slippage: 1.5,
     infiniteApproval: false,
     enableExpress: true,
-    apiUrl: "https://api.squidrouter.com",
-    comingSoonChainIds: ["cosmoshub-4", "injective-1", "kichain-2"],
+    apiUrl: 'https://api.squidrouter.com',
+    comingSoonChainIds: ['cosmoshub-4', 'injective-1', 'kichain-2'],
     titles: {
-      swap: "Swap",
-      settings: "Settings",
-      wallets: "Wallets",
-      tokens: "Select Token",
-      chains: "Select Chain",
-      history: "History",
-      transaction: "Transaction",
-      allTokens: "Select Token",
-      destination: "Destination address",
+      swap: 'Swap',
+      settings: 'Settings',
+      wallets: 'Wallets',
+      tokens: 'Select Token',
+      chains: 'Select Chain',
+      history: 'History',
+      transaction: 'Transaction',
+      allTokens: 'Select Token',
+      destination: 'Destination address',
     },
     priceImpactWarnings: {
       warning: 3,
       critical: 5,
     },
-  };
+  }
 
-
-  const widgetUrl = `https://widget.squidrouter.com/iframe?config=${encodeURIComponent(JSON.stringify(widgetConfig))}`;
+  const widgetUrl = `https://widget.squidrouter.com/iframe?config=${encodeURIComponent(JSON.stringify(widgetConfig))}`
 
   return (
     <StyledContainer>
@@ -798,7 +802,7 @@ const CrossChainSwap = () => {
         scrolling="no"
         style={{
           border: '3px solid #fff',
-          borderRadius: '12px'
+          borderRadius: '12px',
         }}
       />
     </StyledContainer>

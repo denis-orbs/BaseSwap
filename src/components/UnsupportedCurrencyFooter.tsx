@@ -39,7 +39,7 @@ const UnsupportedModal: React.FC<Props> = ({ currencies, onDismiss }) => {
 
   return (
     <Modal title={t('Unsupported Assets')} width="50%" maxWidth="420px" onDismiss={onDismiss}>
-      <AutoColumn justify="center"  gap="lg">
+      <AutoColumn justify="center" gap="lg">
         {tokens.map((token) => {
           return (
             token &&
@@ -61,31 +61,41 @@ const UnsupportedModal: React.FC<Props> = ({ currencies, onDismiss }) => {
         })}
         <AutoColumn justify="center" gap="lg">
           <Flex width="90vw">
-          <Text textAlign="center" letterSpacing="0px" fontSize="14px">
-            Lets do this first: BaseSwap isn't responsible for what you do on BaseSwap.fi. That's the law of the land. 
-            Investors take their own risk, and they're responsible for their own outcomes. Period. Full stop. <br />  <br /> 
-            Now, with that said, we're trying our very best to keep you from getting scammed. We don't blacklist every token, we can't keep up with em all. Plus 
-            this is DeFi: the land of decentralization, and you take your own risks in this space. <br /> <br /> 
-            So its kinda Home Alone when the Mom told Kevin: "if Uncle Frank said it's bad...then it must be really bad". 
-            <br /> <br /> Thank us later.  
-          </Text>
+            <Text textAlign="center" letterSpacing="0px" fontSize="14px">
+              Lets do this first: BaseSwap isn't responsible for what you do on BaseSwap.fi. That's the law of the land.
+              Investors take their own risk, and they're responsible for their own outcomes. Period. Full stop. <br />{' '}
+              <br />
+              Now, with that said, we're trying our very best to keep you from getting scammed. We don't blacklist every
+              token, we can't keep up with em all. Plus this is DeFi: the land of decentralization, and you take your
+              own risks in this space. <br /> <br />
+              So its kinda Home Alone when the Mom told Kevin: "if Uncle Frank said it's bad...then it must be really
+              bad".
+              <br /> <br /> Thank us later.
+            </Text>
           </Flex>
         </AutoColumn>
-        
       </AutoColumn>
     </Modal>
   )
 }
 
-export default function UnsupportedCurrencyFooter({ currencies }: { currencies: (Currency | undefined)[] }) {
+export default function UnsupportedCurrencyFooter({
+  currencies,
+  show,
+}: {
+  currencies: (Currency | undefined)[]
+  show: boolean
+}) {
   const { t } = useTranslation()
   const [onPresentModal] = useModal(<UnsupportedModal currencies={currencies} />)
 
   return (
-    <DetailsFooter>
-      <Button variant="text" onClick={onPresentModal}>
-        {t('If you need more info, go on and click here')}
-      </Button>
-    </DetailsFooter>
+    show && (
+      <DetailsFooter>
+        <Button variant="text" onClick={onPresentModal}>
+          {t('If you need more info, go on and click here')}
+        </Button>
+      </DetailsFooter>
+    )
   )
 }
