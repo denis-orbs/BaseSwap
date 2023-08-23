@@ -130,10 +130,10 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
 
       const isPoolFinished = pool.isFinished || isPoolEndBlockExceeded
 
-      const stakingTokenAddress = pool.stakingToken.address ? pool.stakingToken.address.toLowerCase() : null
+      const stakingTokenAddress = pool.stakingToken.address ? pool.stakingToken.address.toLowerCase() === "0xE4750593d1fC8E74b31549212899A72162f315Fa".toLowerCase() ? "0xd5046B976188EB40f6DE40fB527F89c05b323385".toLowerCase() : pool.stakingToken.address.toLowerCase() : null
       const stakingTokenPrice = stakingTokenAddress ? prices[stakingTokenAddress] : 0
 
-      const earningTokenAddress = pool.earningToken.address ? pool.earningToken.address.toLowerCase() : null
+      const earningTokenAddress = pool.earningToken.address ? pool.earningToken.address.toLowerCase() === "0xE4750593d1fC8E74b31549212899A72162f315Fa".toLowerCase() ? "0xd5046B976188EB40f6DE40fB527F89c05b323385".toLowerCase() : pool.earningToken.address.toLowerCase() : null
       const earningTokenPrice = earningTokenAddress ? prices[earningTokenAddress] : 0
 
       const apr = !isPoolFinished
