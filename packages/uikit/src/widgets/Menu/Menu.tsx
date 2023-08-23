@@ -19,6 +19,7 @@ import { MenuContext } from "./context";
 import { Text } from "../../components/Text";
 import { Link } from "../../components/Link";
 import TypeIt from 'typeit-react'
+import { Image } from "../../components/Image";
 
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
@@ -30,6 +31,12 @@ const WelcomeTypeIt = styled(TypeIt)`
   @media (min-width: 768px) {
     font-size: 32px; 
   }
+`;
+
+const MenuImage = styled(Image)`
+  box-shadow: 0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF;
+  border-radius: 50%;
+  
 `;
 
 const DropdownMenu = styled.div`
@@ -170,13 +177,19 @@ const Menu: React.FC<NavProps> = ({
           {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
           <StyledNav>
           <a href="/" style={{ marginLeft: '1rem' }}>
-          <Flex>
-              <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} src="/images/newlogo.png" width={isMobile ? 40 : 50} height={isMobile ? 40 : 40} alt="logo" />
+          <Flex alignItems="center" justifyContent="flex-start" flexDirection="row" >
+              <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} 
+              width={isMobile ? 0 : 40} height={isMobile ? 0 : 40}
+              src="/images/newlogo.png"   alt="logo" />
    
-                <Text fontSize="2rem" style={{ marginLeft: "0.5rem", marginRight: "0.7rem", alignItems: 'center', justifyContent: 'center' }}>
+                <Text marginLeft={['0rem', null, null, '0.5rem' ]} 
+                marginRight={['0rem', null, null, '0.7rem' ]} 
+                fontSize="2rem" >
                   BaseSwap
                 </Text>
-              <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} src="/images/tokens/0xd5046B976188EB40f6DE40fB527F89c05b323385.png" width={isMobile ? 40 : 50} height={isMobile ? 40 : 40} alt="logo" />
+              <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} 
+              src="/images/tokens/0xd5046B976188EB40f6DE40fB527F89c05b323385.png" 
+              width={isMobile ? 0 : 40} height={isMobile ? 0 : 40} alt="logo" />
 
             </Flex>
             </a>
