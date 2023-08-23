@@ -17,7 +17,6 @@ import {
   useV3MintState,
 } from 'state/mint/v3/hooks'
 import styled, { useTheme } from 'styled-components'
-import { addressesAreEquivalent } from 'utils/addressesAreEquivalent'
 
 // import { ButtonError, ButtonLight, ButtonPrimary, ButtonText } from '../../components/Button'
 // import { BlueCard, OutlineCard, YellowCard } from '../../components/Card'
@@ -25,11 +24,10 @@ import { Button, Card, Text } from '@pancakeswap/uikit'
 import { AutoColumn } from 'components/Column'
 
 import Row, { RowBetween, RowFixed } from 'components/Row'
-
+import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import { Bound, Field } from 'state/mint/v3/actions'
 import { useTransactionAdder } from 'state/transactions/v3/hooks'
 import { TransactionType } from 'state/transactions/types'
-// import { useUserSlippageToleranceWithDefault } from 'state/user/hooks'
 import useTransactionDeadline from 'hooks/useTransactionDeadline'
 import { calculateGasMargin } from 'utils/calculateGasMargin'
 import { currencyId } from 'utils/v3/currencyId'
@@ -60,8 +58,15 @@ import { useTranslation } from '@pancakeswap/localization'
 import Trans from 'components/Trans'
 import { Dots } from 'pages/pool/styled'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import { BodyWrapper } from 'components/App/AppBody'
+import Review from './Review'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
+
+const StyledBodyWrapper = styled(BodyWrapper)<{ $hasExistingPosition: boolean }>`
+  padding: ${({ $hasExistingPosition }) => ($hasExistingPosition ? '10px' : 0)};
+  max-width: 640px;
+`
 
 function AddLiquidity() {
   const { t } = useTranslation()
@@ -581,7 +586,45 @@ function AddLiquidity() {
   const owner = useSingleCallResult(tokenId ? positionManager : null, 'ownerOf', [tokenId]).result?.[0]
   const showOwnershipWarning = Boolean(hasExistingPosition && account)
 
-  return <div>Liq</div>
+  return (
+    <>
+      <ScrollablePage>
+        {showConfirm && (
+          <TransactionConfirmationModal
+            title={t('Add Liquidity')}
+            onDismiss={handleDismissConfirmation}
+            attemptingTxn={attemptingTxn}
+            hash={txHash}
+            pendingText={pendingText}
+            content={() => {
+              return (
+                <ConfirmationModalContent
+                  topContent={() => (
+                    <Review
+                      parsedAmounts={parsedAmounts}
+                      position={position}
+                      existingPosition={existingPosition}
+                      priceLower={priceLower}
+                      priceUpper={priceUpper}
+                      outOfRange={outOfRange}
+                      ticksAtLimit={ticksAtLimit}
+                    />
+                  )}
+                  bottomContent={() => (
+                    <Button style={{ marginTop: '1rem' }} onClick={onAdd}>
+                      <Text fontWeight={500} fontSize={20}>
+                        <Trans>Add</Trans>
+                      </Text>
+                    </Button>
+                  )}
+                />
+              )
+            }}
+          />
+        )}
+      </ScrollablePage>
+    </>
+  )
 }
 
 export default AddLiquidity
