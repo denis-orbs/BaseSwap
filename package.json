@@ -23,7 +23,10 @@
     "updateLPsAPR": "yarn turbo run build --filter=@magikswap/sdk && NODE_PATH=./src ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/updateLPsAPR.ts",
     "prepare": "husky install",
     "postinstall": "yarn run typechain",
-    "typechain": "typechain --out-dir src/config/abi/types --target=ethers-v5 \"src/config/abi/*.json\""
+    "typechain": "typechain --out-dir src/config/abi/types --target=ethers-v5 \"src/config/abi/*.json\"",
+    "graphql:fetch": "node scripts/fetch-schema.js",
+    "graphql:generate:thegraph": "graphql-codegen && graphql-codegen --config graphql.thegraph.codegen.config.ts",
+    "graphql:generate": "graphql-codegen"
   },
   "browserslist": {
     "production": [
@@ -38,6 +41,7 @@
     ]
   },
   "dependencies": {
+    "@apollo/client": "^3.7.2",
     "@baseswapfi/redux-multicall": "^1.1.6",
     "@baseswapfi/router-sdk": "^1.0.3",
     "@baseswapfi/sdk-core": "^1.0.8",
@@ -57,6 +61,12 @@
     "@ethersproject/strings": "^5.5.0",
     "@ethersproject/units": "^5.5.0",
     "@gelatonetwork/limit-orders-lib": "^4.1.0",
+    "@graphql-codegen/cli": "^3.3.1",
+    "@graphql-codegen/client-preset": "^3.0.1",
+    "@graphql-codegen/typescript": "^3.0.4",
+    "@graphql-codegen/typescript-operations": "^3.0.2",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
+    "@graphql-codegen/typescript-resolvers": "^3.2.1",
     "@magikswap/sdk": "1.0.0",
     "@next/bundle-analyzer": "^12.0.7",
     "@reduxjs/toolkit": "^1.8.2",
@@ -75,6 +85,7 @@
     "dayjs": "^1.11.9",
     "easymde": "^2.16.1",
     "fast-json-stable-stringify": "^2.1.0",
+    "get-graphql-schema": "^2.1.2",
     "graphql": "^16.3.0",
     "graphql-request": "^4.2.0",
     "install": "^0.13.0",

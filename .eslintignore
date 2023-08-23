@@ -20,3 +20,7 @@ src/pages/addV3/**/*.tsx
 src/components/RateToggle/**/*.tsx
 src/components/Toggle/**/*.tsx
 src/components/NavigationTabs/**/*.tsx
+src/components/FeeSelector/**/*.tsx
+src/graphql/**/*.ts
+scripts/**/*.js
+**/*.config.js

@@ -61,6 +61,7 @@ import ConnectWalletButton from 'components/ConnectWalletButton'
 import { BodyWrapper } from 'components/App/AppBody'
 import Review from './Review'
 import { AddRemoveTabs } from 'components/NavigationTabs'
+import FeeSelector from 'components/FeeSelector'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
 
@@ -560,7 +561,7 @@ function AddLiquidity() {
             (approvalA !== ApprovalState.APPROVED && !depositADisabled) ||
             (approvalB !== ApprovalState.APPROVED && !depositBDisabled)
           }
-          // error={!isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]}
+          //error={!isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]}
         >
           <Text fontWeight={500}>{errorMessage ? errorMessage : <Trans>Preview</Trans>}</Text>
         </Button>
@@ -644,6 +645,70 @@ function AddLiquidity() {
               </Flex>
             )}
           </AddRemoveTabs>
+          <Wrapper>
+            <ResponsiveTwoColumns wide={!hasExistingPosition}>
+              <AutoColumn gap="lg">
+                {!hasExistingPosition && (
+                  <>
+                    <AutoColumn gap="md">
+                      <RowBetween paddingBottom="20px">
+                        <Text>
+                          <Trans>Select Pair</Trans>
+                        </Text>
+                      </RowBetween>
+                      <RowBetween>
+                        <CurrencyDropdown
+                          value={formattedAmounts[Field.CURRENCY_A]}
+                          onUserInput={onFieldAInput}
+                          hideInput={true}
+                          onMax={() => {
+                            onFieldAInput(maxAmounts[Field.CURRENCY_A]?.toExact() ?? '')
+                          }}
+                          onCurrencySelect={handleCurrencyASelect}
+                          showMaxButton={!atMaxAmounts[Field.CURRENCY_A]}
+                          currency={currencies[Field.CURRENCY_A] ?? null}
+                          id="add-liquidity-input-tokena"
+                          showCommonBases
+                        />
+
+                        <div style={{ width: '12px' }} />
+
+                        <CurrencyDropdown
+                          value={formattedAmounts[Field.CURRENCY_B]}
+                          hideInput={true}
+                          onUserInput={onFieldBInput}
+                          onCurrencySelect={handleCurrencyBSelect}
+                          onMax={() => {
+                            onFieldBInput(maxAmounts[Field.CURRENCY_B]?.toExact() ?? '')
+                          }}
+                          showMaxButton={!atMaxAmounts[Field.CURRENCY_B]}
+                          currency={currencies[Field.CURRENCY_B] ?? null}
+                          id="add-liquidity-input-tokenb"
+                          showCommonBases
+                        />
+                      </RowBetween>
+
+                      <FeeSelector
+                        disabled={!quoteCurrency || !baseCurrency}
+                        feeAmount={feeAmount}
+                        handleFeePoolSelect={handleFeePoolSelect}
+                        currencyA={baseCurrency ?? undefined}
+                        currencyB={quoteCurrency ?? undefined}
+                      />
+                    </AutoColumn>{' '}
+                  </>
+                )}
+                {/* {hasExistingPosition && existingPosition && (
+                  <PositionPreview
+                    position={existingPosition}
+                    title={<Trans>Selected Range</Trans>}
+                    inRange={!outOfRange}
+                    ticksAtLimit={ticksAtLimit}
+                  />
+                )} */}
+              </AutoColumn>
+            </ResponsiveTwoColumns>
+          </Wrapper>
         </StyledBodyWrapper>
       </ScrollablePage>
     </>
