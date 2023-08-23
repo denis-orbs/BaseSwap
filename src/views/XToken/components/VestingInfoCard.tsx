@@ -1,13 +1,10 @@
 import { Button, Card, Flex, Text } from '@pancakeswap/uikit'
-import { useWeb3React } from '@web3-react/core'
 import useToast from 'hooks/useToast'
 import React from 'react'
 import { BsArrowRightCircle } from 'react-icons/bs'
-import { useAppDispatch } from 'state'
 import { VestingInfo } from 'state/xToken/types'
 import styled from 'styled-components'
 import { ToastDescriptionWithTx } from 'components/Toast'
-import { fetchUserXTokenDataAsync } from 'state/xToken'
 import useXTokenActions from '../hooks/useXTokenActions'
 
 export const TopHalf = styled(Flex)`
@@ -36,10 +33,7 @@ interface VestingCardProps {
 }
 
 const VestingInfoCard: React.FC<VestingCardProps> = ({ vesting }) => {
-  const { account, chainId } = useWeb3React()
-  const dispatch = useAppDispatch()
   const { toastSuccess } = useToast()
-
   const { cancelVesting, finalizeVesting, pendingTx } = useXTokenActions()
 
   async function handleAction(action: 'cancel' | 'finalize') {
@@ -50,8 +44,6 @@ const VestingInfoCard: React.FC<VestingCardProps> = ({ vesting }) => {
 
     if (receipt?.status) {
       toastSuccess(``, <ToastDescriptionWithTx txHash={receipt.transactionHash}>{message}!</ToastDescriptionWithTx>)
-
-      dispatch(fetchUserXTokenDataAsync({ account, chainId }))
     }
   }
 

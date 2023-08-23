@@ -1,3 +1,4 @@
+import { TransactionResponse } from '@ethersproject/abstract-provider'
 import { parseUnits } from '@ethersproject/units'
 import { useWeb3React } from '@web3-react/core'
 import useCatchTxError from 'hooks/useCatchTxError'
@@ -19,13 +20,11 @@ const useXTokenActions = () => {
     }
   }, [dispatch, account, chainId])
 
+  // Wrap all of the common/repeated ops in one function
   const runAction = useCallback(
-    async (action) => {
+    async (action: Promise<TransactionResponse>) => {
       setPendingTx(true)
-      const receipt = await fetchWithCatchTxError(() => {
-        return action()
-      })
-
+      const receipt = await fetchWithCatchTxError(() => action)
       fetchUserData()
       setPendingTx(false)
 

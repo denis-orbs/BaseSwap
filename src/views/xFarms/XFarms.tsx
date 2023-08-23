@@ -125,38 +125,32 @@ const Farms: React.FC = ({ children }) => {
 
   console.log('children', children)
 
-
   //
   const { arxPerSec, WETHPerSec, farms: farmsLP } = useNftPoolsFarms()
   const farmsReady = !account || (!!account && farmsLP)
 
   const { t } = useTranslation()
-  const { getTokenPrice } = useTokenPrices()
 
-  // TODO: Update after presale/liquidity when available
-  // const cakePrice = new BigNumber('0.9')
-  // const cakePrice = new BigNumber(getTokenPrice(getTokenAddress('ProtocolToken', chainId)))
-  // BSWAP is the "WETH" now
   const [WETHPrice, SETWETHPrice] = useState<BigNumber>(BIG_ZERO)
   const [cakePrice, SETCAKEPrice] = useState<BigNumber>(BIG_ZERO)
 
   useEffect(() => {
     const fetchData = async () => {
-      const price = await priceDexScreener(("0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9"));
+      const price = await priceDexScreener('0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9')
       SETWETHPrice(price)
-    };
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   useEffect(() => {
     const fetchData = async () => {
-      const price = await priceDexScreener(("0xd5046b976188eb40f6de40fb527f89c05b323385"));
+      const price = await priceDexScreener('0xd5046b976188eb40f6de40fb527f89c05b323385')
       SETCAKEPrice(price)
-    };
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   // const WETHPrice = useMemo(() => new BigNumber(getTokenPrice(getTokenAddress('BSWAP', chainId))), [chainId])
   const [_query, setQuery] = useState('')
@@ -340,6 +334,7 @@ const Farms: React.FC = ({ children }) => {
         />
         {!account ? (
           <ConnectWalletButton />
+
         ) : (
           <>
             <ControlContainer>
@@ -351,6 +346,7 @@ const Farms: React.FC = ({ children }) => {
                 </Text>
                 <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
                 {/* <ToggleWrapper>
+
               <Toggle
                 id="staked-only-farms"
                 checked={stakedOnly}
@@ -359,6 +355,7 @@ const Farms: React.FC = ({ children }) => {
               />
               <Text> {t('Staked only')}</Text>
             </ToggleWrapper> */}
+
                 {/* <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} /> */}
               </ViewControls>
               <FilterContainer>
@@ -414,6 +411,7 @@ const Farms: React.FC = ({ children }) => {
             <div ref={observerRef} />
           </>
          )} 
+
       </Page>
     </FarmsContext.Provider>
   )

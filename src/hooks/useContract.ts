@@ -42,6 +42,7 @@ import {
   getPredictionsV1Contract,
   getXToken,
   getTokenLocker,
+  getBSXContract,
 } from 'utils/contractHelpers'
 import { getMulticallAddress, getPredictionsV1Address, getZapAddress } from 'utils/addressHelpers'
 import {
@@ -132,6 +133,17 @@ export const useCake = (): { reader: Cake; signer: Cake } => {
     () => ({
       reader: getCakeContract(null),
       signer: getCakeContract(getProviderOrSigner(library, account)),
+    }),
+    [account, library],
+  )
+}
+
+export const useBSX = (): { reader: Cake; signer: Cake } => {
+  const { account, library } = useActiveWeb3React()
+  return useMemo(
+    () => ({
+      reader: getBSXContract(null),
+      signer: getBSXContract(getProviderOrSigner(library, account)),
     }),
     [account, library],
   )

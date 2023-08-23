@@ -21,15 +21,16 @@ import { Link } from "../../components/Link";
 import TypeIt from 'typeit-react'
 import { Image } from "../../components/Image";
 
+
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
   color: #fff;
-  text-align: left; 
-  letter-spacing: 0px; 
+  text-align: left;
+  letter-spacing: 0px;
   margin-bottom: 12px;
-  font-size: 18px; 
+  font-size: 18px;
   @media (min-width: 768px) {
-    font-size: 32px; 
+    font-size: 32px;
   }
 `;
 
@@ -43,19 +44,18 @@ const DropdownMenu = styled.div`
   display: none;
   position: absolute;
   background-color: #000;
-  border-radius: 4px; 
+  border-radius: 4px;
   min-width: 200px;
-  box-shadow: 2px 0px 4px #fff, 0px 2px 4px #0154FE, 0px 2px 16px #0154FE ; 
-  padding: 24px 12px; 
+  box-shadow: 2px 0px 4px #fff, 0px 2px 4px #0154fe, 0px 2px 16px #0154fe;
+  padding: 24px 12px;
   z-index: 1;
-  flex-direction: column; 
-  justify-content: space-between
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const DropdownContainer = styled.div`
   position: relative;
   display: inline-block;
-  
 
   &:hover ${DropdownMenu} {
     display: block;
@@ -166,7 +166,6 @@ const Menu: React.FC<NavProps> = ({
 
   // Find the home link if provided
   const homeLink = links.find((link) => link.label === "Home");
-
   const subLinksWithoutMobile = subLinks?.filter((subLink) => !subLink.isMobileOnly);
   const subLinksMobileOnly = subLinks?.filter((subLink) => subLink.isMobileOnly);
 
@@ -176,6 +175,7 @@ const Menu: React.FC<NavProps> = ({
         <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
           {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
           <StyledNav>
+
           <a href="/" style={{ marginLeft: '1rem' }}>
           <Flex alignItems="center" justifyContent="flex-start" flexDirection="row" >
               <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} 
@@ -192,41 +192,44 @@ const Menu: React.FC<NavProps> = ({
               width={isMobile ? 0 : 40} height={isMobile ? 0 : 40} alt="logo" />
 
             </Flex>
+
             </a>
-            {!isMobile &&
-              <Flex flexDirection="row" justifyContent="flex-start" alignItems="flex-end" marginLeft={isMobile ? '2rem' : '250px'} width="80%" >
-                <Link href="/swap" >
+            {!isMobile && (
+              <Flex
+                flexDirection="row"
+                justifyContent="flex-start"
+                alignItems="flex-end"
+                marginLeft={isMobile ? "2rem" : "250px"}
+                width="80%"
+              >
+                <Link href="/swap">
                   <Text marginRight="2rem">Swap</Text>
                 </Link>
-                <Link href="/liquidity" >
+                <Link href="/liquidity">
                   <Text marginRight="2rem">Liquidity</Text>
                 </Link>
-                
+
                 <DropdownContainer>
-                <Link href="/farm"  >
-
+                  <Link href="/farm">
                     <Text marginRight="2rem">FARMS</Text>
-                </Link>
-                        <DropdownMenu>
-                           
-                          
-                            <Link href="/farm" marginBottom="1.2rem" >
-                                <Text>Live Farms!</Text>
-                            </Link>
-                            <Link href="/finishedfarms">
-                                <Text color="#ccc">Finished Farms</Text>
-                            </Link>  
-
-                        </DropdownMenu>
+                  </Link>
+                  <DropdownMenu>
+                    <Link href="/farm" marginBottom="1.2rem">
+                      <Text>Live Farms!</Text>
+                    </Link>
+                    <Link href="/finishedfarms">
+                      <Text color="#ccc">Finished Farms</Text>
+                    </Link>
+                  </DropdownMenu>
                 </DropdownContainer>
-                
-                
-                
-                <Link href="/pools" >
+
+                <Link href="/pools">
                   <Text marginRight="2rem">Earn </Text>
                 </Link>
+               
 
                 <DropdownContainer>
+
                     <Text marginRight="2rem">MORE...</Text>
                         <DropdownMenu>
                             <Link href="https://presale.baseswap.fi" marginBottom="1.2rem" >
@@ -243,15 +246,14 @@ const Menu: React.FC<NavProps> = ({
                             </Link>
                            
                         </DropdownMenu>
+
                 </DropdownContainer>
               </Flex>
-            }
+            )}
             {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
             {/* {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />} */}
 
-
             <Flex alignItems="center" justifyContent="flex-end" height="100%" width="300px">
-
               {/* test {!isMobile && !isMd && (
                 <Box mr="12px">
                   <CakePrice showSkeleton={false} cakePriceUsd={cakePriceUsd} />

@@ -52,7 +52,7 @@ export const fetchUserXTokenRedeemsInfo = async (account: string, chainId: numbe
 
       return {
         arxAmount: formatEther(v.amount),
-        xArxAmount: formatEther(v.xAmount),
+        xArxAmount: formatEther(v.xTokenAmount),
         endTime: new Date(v.endTime * 1000).toUTCString(),
         redeemIndex: idx,
         canFinalize,

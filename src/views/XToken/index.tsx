@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { Flex, Text, Button, useModal } from '@pancakeswap/uikit'
@@ -9,7 +9,6 @@ import PageHeader from 'components/PageHeader'
 import useMatchBreakpoints from '@pancakeswap/uikit/src/hooks/useMatchBreakpoints'
 import StyledCard from './components/StyledCard'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-// import XARXStakeModal from './components/modals/xARXStakeModal'
 import { useXTokenInfo } from 'state/xToken/hooks'
 import BigNumber from 'bignumber.js'
 import VestingInfo from './components/VestingInfo'
@@ -17,7 +16,23 @@ import XTokenRedeemModal from './components/xTokenRedeemModal'
 import { getTokenAddress, getTokenInstance } from 'config/constants/token-info'
 import { useTranslation } from '@pancakeswap/localization'
 import useXTokenActions from './hooks/useXTokenActions'
+import XTokenConvertModal from './components/xTokenConvertModal'
+import { BIG_ZERO } from 'utils/bigNumber'
+import { priceDexScreener } from 'utils/tokenPricing'
+import TypeIt from 'typeit-react'
 
+
+const WelcomeTypeIt = styled(TypeIt)`
+  font-weight: 400;
+  color: #fff;
+  text-align: left;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-size: 40px;
+  @media (min-width: 768px) {
+    font-size: 68px;
+  }
+`
 interface TextProps {
   isMobile: boolean
 }
@@ -78,31 +93,52 @@ const Action = styled(Flex)`
 `
 
 const XToken: React.FC = () => {
+  // const [cakePrice, SETCAKEPrice] = useState<BigNumber>(BIG_ZERO)
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
   const { chainId } = useWeb3React()
   const { fetchUserData } = useXTokenActions()
   const { userInfo } = useXTokenInfo()
 
+
+
   const BSX = useMemo(() => getTokenInstance(getTokenAddress('ProtocolToken', chainId)), [chainId])
   const xBSX = useMemo(() => getTokenInstance(getTokenAddress('xProtocolToken', chainId)), [chainId])
 
-  // const protocolTokenBalance = useMemo(() => new BigNumber(userInfo?.protocolTokenBalance || 0), [userInfo])
+  const protocolTokenBalance = useMemo(() => new BigNumber(userInfo?.protocolTokenBalance || 0), [userInfo])
   const xTokenBalance = useMemo(() => new BigNumber(userInfo?.xTokenBalance || 0), [userInfo])
 
   // const [onPresentConvert] = useModal(
-  //   <XARXStakeModal stakingTokenBalance={protocolTokenBalance} stakingTokenPrice={tokenPriceBN} />,
+  //   <XTokenConvertModal stakingTokenBalance={protocolTokenBalance} stakingTokenPrice={cakePrice} />,
   // )
 
   const [onPresentRedeem] = useModal(<XTokenRedeemModal userXTokenBalance={xTokenBalance} />)
 
-  fetchUserData()
+  useEffect(() => {
+    // const fetchData = async () => {
+    //   const price = await priceDexScreener('0xd5046b976188eb40f6de40fb527f89c05b323385')
+    //   SETCAKEPrice(price)
+    // }
+    // fetchData()
+
+    fetchUserData()
+  }, [])
 
   return (
     <>
       <Page>
-        <PageHeader>
-          <XARXTitle isMobile={isMobile}>{t('xBSX')}</XARXTitle>
+      <WelcomeTypeIt
+          options={{
+            cursorChar: ' ',
+            cursorSpeed: 1000000,
+            speed: 75,
+          }}
+          speed={10}
+          getBeforeInit={(instance) => {
+            instance.type('xBSX', { speed: 5000 })
+            return instance
+          }}
+        />
           <Text
             textAlign="center"
             mb="1.5rem"
@@ -118,7 +154,7 @@ const XToken: React.FC = () => {
               STAKED FOR REAL YIELD.
             </a>
           </Text>
-        </PageHeader>
+       
 
         <Flex flexDirection={['column', null, null, 'row']}>
           <StyledCard>
@@ -144,6 +180,16 @@ const XToken: React.FC = () => {
             </Pricing>
 
             <Action flexDirection={['row', null, null, 'row']}>
+              {/* <Button
+                variant="secondary"
+                marginX="8px"
+                className="glow2"
+                width="40%"
+                onClick={onPresentConvert}
+                disabled={protocolTokenBalance.isZero()}
+              >
+                Convert to xBSX
+              </Button> */}
               <Button
                 variant="secondary"
                 marginX="8px"
