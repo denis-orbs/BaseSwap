@@ -26,8 +26,6 @@ import { AutoColumn } from 'components/Column'
 
 import Row, { RowBetween, RowFixed } from 'components/Row'
 
-import { ZERO_PERCENT } from 'config/constants/exchange'
-
 import { Bound, Field } from 'state/mint/v3/actions'
 import { useTransactionAdder } from 'state/transactions/v3/hooks'
 import { TransactionType } from 'state/transactions/types'
@@ -50,6 +48,10 @@ import { useCurrency } from 'hooks/v3/Tokens'
 import { useRouter } from 'next/router'
 import { useV3PositionFromTokenId } from 'hooks/v3/useV3Positions'
 import { useDerivedPositionInfo } from 'hooks/v3/useDerivedPositionInfo'
+import { useStablecoinValue } from 'hooks/useStablecoinPrice'
+import { useApproveCallback } from 'hooks/v3/useApproveCallback'
+import { useUserSlippageToleranceWithDefault } from 'state/user/v3/hooks'
+import { ZERO_PERCENT_V3 } from 'config/constants/v3'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
 
@@ -143,10 +145,45 @@ function AddLiquidity() {
     [dependentField]: parsedAmounts[dependentField]?.toSignificant(6) ?? '',
   }
 
-  // const usdcValues = {
-  //   [Field.CURRENCY_A]: useStablecoinValue(parsedAmounts[Field.CURRENCY_A]),
-  //   [Field.CURRENCY_B]: useStablecoinValue(parsedAmounts[Field.CURRENCY_B]),
-  // }
+  const usdcValues = {
+    [Field.CURRENCY_A]: useStablecoinValue(parsedAmounts[Field.CURRENCY_A]),
+    [Field.CURRENCY_B]: useStablecoinValue(parsedAmounts[Field.CURRENCY_B]),
+  }
+
+  // get the max amounts user can add
+  const maxAmounts: { [field in Field]?: CurrencyAmount<Currency> } = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
+    (accumulator, field) => {
+      return {
+        ...accumulator,
+        [field]: maxAmountSpend(currencyBalances[field]),
+      }
+    },
+    {},
+  )
+
+  const atMaxAmounts: { [field in Field]?: CurrencyAmount<Currency> } = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
+    (accumulator, field) => {
+      return {
+        ...accumulator,
+        [field]: maxAmounts[field]?.equalTo(parsedAmounts[field] ?? '0'),
+      }
+    },
+    {},
+  )
+
+  // check whether the user has approved the router on the tokens
+  const [approvalA, approveACallback] = useApproveCallback(
+    parsedAmounts[Field.CURRENCY_A],
+    chainId ? NONFUNGIBLE_POSITION_MANAGER_ADDRESSES[chainId] : undefined,
+  )
+  const [approvalB, approveBCallback] = useApproveCallback(
+    parsedAmounts[Field.CURRENCY_B],
+    chainId ? NONFUNGIBLE_POSITION_MANAGER_ADDRESSES[chainId] : undefined,
+  )
+
+  const allowedSlippage = useUserSlippageToleranceWithDefault(
+    outOfRange ? ZERO_PERCENT_V3 : DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE,
+  )
 
   return <div>Liq</div>
 }
