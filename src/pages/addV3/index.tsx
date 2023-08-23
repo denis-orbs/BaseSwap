@@ -20,7 +20,7 @@ import styled, { useTheme } from 'styled-components'
 
 // import { ButtonError, ButtonLight, ButtonPrimary, ButtonText } from '../../components/Button'
 // import { BlueCard, OutlineCard, YellowCard } from '../../components/Card'
-import { Button, Card, Text } from '@pancakeswap/uikit'
+import { Button, Card, Flex, Text } from '@pancakeswap/uikit'
 import { AutoColumn } from 'components/Column'
 
 import Row, { RowBetween, RowFixed } from 'components/Row'
@@ -60,6 +60,7 @@ import { Dots } from 'pages/pool/styled'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { BodyWrapper } from 'components/App/AppBody'
 import Review from './Review'
+import { AddRemoveTabs } from 'components/NavigationTabs'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
 
@@ -622,6 +623,28 @@ function AddLiquidity() {
             }}
           />
         )}
+
+        <StyledBodyWrapper $hasExistingPosition={hasExistingPosition}>
+          <AddRemoveTabs
+            creating={false}
+            adding={true}
+            positionID={tokenId}
+            autoSlippage={DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE}
+            showBackLink={!hasExistingPosition}
+          >
+            {!hasExistingPosition && (
+              <Flex justifyContent="flex-end" style={{ width: 'fit-content', minWidth: 'fit-content' }}>
+                <MediumOnly>
+                  <Button onClick={clearAll}>
+                    <Text fontSize="12px">
+                      <Trans>Clear All</Trans>
+                    </Text>
+                  </Button>
+                </MediumOnly>
+              </Flex>
+            )}
+          </AddRemoveTabs>
+        </StyledBodyWrapper>
       </ScrollablePage>
     </>
   )

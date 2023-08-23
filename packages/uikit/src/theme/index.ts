@@ -33,6 +33,7 @@ export { default as dark } from "./dark";
 export { default as light } from "./dark";
 export * from "./types";
 export * from "./zIndex";
+export * from "./styles";
 
 const gapValues = {
   xs: "4px",

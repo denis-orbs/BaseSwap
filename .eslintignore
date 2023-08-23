@@ -19,3 +19,4 @@ src/lib/**/*.tsx
 src/pages/addV3/**/*.tsx
 src/components/RateToggle/**/*.tsx
 src/components/Toggle/**/*.tsx
+src/components/NavigationTabs/**/*.tsx
