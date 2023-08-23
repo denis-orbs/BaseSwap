@@ -56,10 +56,15 @@ import { WRAPPED_NATIVE_CURRENCY } from 'config/constants/tokens-v3'
 import { useIsSwapUnsupported } from 'hooks/v3/useIsSwapUnsupported'
 import { ApprovalState } from 'lib/hooks/useApproval'
 import { useSingleCallResult } from 'lib/hooks/multicall'
+import { useTranslation } from '@pancakeswap/localization'
+import Trans from 'components/Trans'
+import { Dots } from 'pages/pool/styled'
+import ConnectWalletButton from 'components/ConnectWalletButton'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
 
 function AddLiquidity() {
+  const { t } = useTranslation()
   const router = useRouter()
 
   // TODO: Make sure this works like this
@@ -191,6 +196,78 @@ function AddLiquidity() {
   const allowedSlippage = useUserSlippageToleranceWithDefault(
     outOfRange ? ZERO_PERCENT_V3 : DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE,
   )
+
+  async function onAdd() {
+    if (!chainId || !provider || !account) return
+
+    if (!positionManager || !baseCurrency || !quoteCurrency) {
+      return
+    }
+
+    if (position && account && deadline) {
+      const useNative = baseCurrency.isNative ? baseCurrency : quoteCurrency.isNative ? quoteCurrency : undefined
+      const { calldata, value } =
+        hasExistingPosition && tokenId
+          ? NonfungiblePositionManager.addCallParameters(position, {
+              tokenId,
+              slippageTolerance: allowedSlippage,
+              deadline: deadline.toString(),
+              useNative,
+            })
+          : NonfungiblePositionManager.addCallParameters(position, {
+              slippageTolerance: allowedSlippage,
+              recipient: account,
+              deadline: deadline.toString(),
+              useNative,
+              createPool: noLiquidity,
+            })
+
+      let txn: { to: string; data: string; value: string } = {
+        to: NONFUNGIBLE_POSITION_MANAGER_ADDRESSES[chainId],
+        data: calldata,
+        value,
+      }
+
+      setAttemptingTxn(true)
+
+      provider
+        .getSigner()
+        .estimateGas(txn)
+        .then((estimate) => {
+          const newTxn = {
+            ...txn,
+            gasLimit: calculateGasMargin(estimate),
+          }
+
+          return provider
+            .getSigner()
+            .sendTransaction(newTxn)
+            .then((response: TransactionResponse) => {
+              setAttemptingTxn(false)
+              addTransaction(response, {
+                type: TransactionType.ADD_LIQUIDITY_V3_POOL,
+                baseCurrencyId: currencyId(baseCurrency),
+                quoteCurrencyId: currencyId(quoteCurrency),
+                createPool: Boolean(noLiquidity),
+                expectedAmountBaseRaw: parsedAmounts[Field.CURRENCY_A]?.quotient?.toString() ?? '0',
+                expectedAmountQuoteRaw: parsedAmounts[Field.CURRENCY_B]?.quotient?.toString() ?? '0',
+                feeAmount: position.pool.fee,
+              })
+              setTxHash(response.hash)
+            })
+        })
+        .catch((error) => {
+          console.error('Failed to send transaction', error)
+          setAttemptingTxn(false)
+          // we only care if the error is something _other_ than the user rejected the tx
+          if (error?.code !== 4001) {
+            console.error(error)
+          }
+        })
+    } else {
+      return
+    }
+  }
 
   const handleCurrencySelect = useCallback(
     (currencyNew: Currency, currencyIdOther?: string): (string | undefined)[] => {
@@ -419,6 +496,71 @@ function AddLiquidity() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams])
 
+  const Buttons = () =>
+    addIsUnsupported ? (
+      <Button disabled padding="12px">
+        <Text mb="4px">
+          <Trans>Unsupported Asset</Trans>
+        </Text>
+      </Button>
+    ) : !account ? (
+      <ConnectWalletButton />
+    ) : (
+      <AutoColumn gap="md">
+        {(approvalA === ApprovalState.NOT_APPROVED ||
+          approvalA === ApprovalState.PENDING ||
+          approvalB === ApprovalState.NOT_APPROVED ||
+          approvalB === ApprovalState.PENDING) &&
+          isValid && (
+            <RowBetween>
+              {showApprovalA && (
+                <Button
+                  onClick={approveACallback}
+                  disabled={approvalA === ApprovalState.PENDING}
+                  width={showApprovalB ? '48%' : '100%'}
+                >
+                  {approvalA === ApprovalState.PENDING ? (
+                    <Dots>
+                      <Text>{t(`Approving ${currencies[Field.CURRENCY_A]?.symbol}`)}</Text>
+                    </Dots>
+                  ) : (
+                    <Text>{t(`Approve ${currencies[Field.CURRENCY_A]?.symbol}`)}</Text>
+                  )}
+                </Button>
+              )}
+              {showApprovalB && (
+                <Button
+                  onClick={approveBCallback}
+                  disabled={approvalB === ApprovalState.PENDING}
+                  width={showApprovalA ? '48%' : '100%'}
+                >
+                  {approvalB === ApprovalState.PENDING ? (
+                    <Dots>
+                      <Text>{t(`Approving ${currencies[Field.CURRENCY_B]?.symbol}`)}</Text>
+                    </Dots>
+                  ) : (
+                    <Text>{t(`Approve ${currencies[Field.CURRENCY_B]?.symbol}`)}</Text>
+                  )}
+                </Button>
+              )}
+            </RowBetween>
+          )}
+        <Button
+          onClick={() => {
+            setShowConfirm(true)
+          }}
+          disabled={
+            !isValid ||
+            (approvalA !== ApprovalState.APPROVED && !depositADisabled) ||
+            (approvalB !== ApprovalState.APPROVED && !depositBDisabled)
+          }
+          // error={!isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]}
+        >
+          <Text fontWeight={500}>{errorMessage ? errorMessage : <Trans>Preview</Trans>}</Text>
+        </Button>
+      </AutoColumn>
+    )
+
   const usdcValueCurrencyA = usdcValues[Field.CURRENCY_A]
   const usdcValueCurrencyB = usdcValues[Field.CURRENCY_B]
   const currencyAFiat = useMemo(
@@ -437,6 +579,7 @@ function AddLiquidity() {
   )
 
   const owner = useSingleCallResult(tokenId ? positionManager : null, 'ownerOf', [tokenId]).result?.[0]
+  const showOwnershipWarning = Boolean(hasExistingPosition && account)
 
   return <div>Liq</div>
 }

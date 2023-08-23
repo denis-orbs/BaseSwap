@@ -16,3 +16,4 @@ src/hooks/v3/**/*.ts
 packages/uikit/src/theme/zIndex.ts
 src/lib/**/*.ts
 src/lib/**/*.tsx
+src/pages/addV3/**/*.tsx
