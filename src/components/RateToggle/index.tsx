@@ -16,9 +16,7 @@ export default function RateToggle({
   const { t } = useTranslation()
   const tokenA = currencyA?.wrapped
   const tokenB = currencyB?.wrapped
-
-  console.log(tokenA)
-  console.log(tokenB)
+  0
 
   const isSorted = tokenA && tokenB && tokenA.sortsBefore(tokenB)
 
