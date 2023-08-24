@@ -29,14 +29,14 @@ const StyledCard = styled(Card)`
   min-width: 100% !important;
   max-width: 100% !important;
   margin: 0 0 0px 0 !important;
-  ${({ theme }) => theme.mediaQueries.md} {
-    max-width: 100% !important;
-    width: 100% !important
-    margin: 0 0 0px 0 !important;
-  }
   ${({ theme }) => theme.mediaQueries.sm} {
     min-width: 90% !important;
     max-width: 90% !important;
+    margin: 0 0 0px 0 !important;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    max-width: 90% !important;
+    width: 100% !important;
     margin: 0 0 0px 0 !important;
   }
 `
