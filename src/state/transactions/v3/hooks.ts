@@ -40,7 +40,7 @@ function usePendingApprovalAmount(token?: Token, spender?: string): BigNumber | 
     }
     for (const txHash in allTransactions) {
       const tx = allTransactions[txHash]
-      if (!tx || tx.receipt || tx.info.type !== TransactionType.APPROVAL) continue
+      if (!tx || tx.receipt || tx.info?.type !== TransactionType.APPROVAL) continue
       if (tx.info.spender === spender && tx.info.tokenAddress === token.address && isTransactionRecent(tx)) {
         return BigNumber.from(tx.info.amount)
       }

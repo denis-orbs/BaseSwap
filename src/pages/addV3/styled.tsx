@@ -25,10 +25,11 @@ export const CurrencyDropdown = styled(CurrencyInputPanelV3)`
 `
 
 export const StyledInput = styled(Input)`
-  background-color: ${({ theme }) => theme.colors.backgroundAlt2};
+  background-color: ${({ theme }) => theme.colors.backgroundAlt};
   text-align: left;
   font-size: 18px;
   width: 100%;
+  color: white;
 `
 
 /* two-column layout where DepositAmount is moved at the very end on mobile. */

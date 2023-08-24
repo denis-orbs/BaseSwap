@@ -197,6 +197,8 @@ export default function CurrencyInputPanelV3({
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
   const { t } = useTranslation()
 
+  console.log(selectedCurrencyBalance?.toSignificant(5))
+
   const token = pair ? pair.liquidityToken : currency instanceof Token ? currency : null
 
   const chainAllowed = isSupportedChain(chainId)

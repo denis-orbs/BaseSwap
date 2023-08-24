@@ -84,15 +84,12 @@ function AddLiquidity() {
   const { t } = useTranslation()
   const router = useRouter()
 
-  // TODO: Make sure this works like this
   const params: {
     currencyIdA?: string
     currencyIdB?: string
     feeAmount?: string
     tokenId?: string
   } = router.query
-
-  console.log(params)
 
   const { account, chainId, library: provider } = useActiveWeb3React()
   const theme = useTheme()
@@ -502,7 +499,7 @@ function AddLiquidity() {
         },
       )
     }
-  }, [getSetFullRange, pricesAtLimit, searchParams])
+  }, [getSetFullRange, pricesAtLimit, searchParams, setSearchParams])
 
   // START: sync values with query string
   const oldSearchParams = usePrevious(searchParams)
@@ -539,7 +536,7 @@ function AddLiquidity() {
           approvalB === ApprovalState.NOT_APPROVED ||
           approvalB === ApprovalState.PENDING) &&
           isValid && (
-            <RowBetween>
+            <RowBetween mb={3}>
               {showApprovalA && (
                 <Button
                   onClick={approveACallback}
@@ -765,7 +762,9 @@ function AddLiquidity() {
                                     pathname: router.pathname,
                                     query: {
                                       ...router.query,
-                                      currency: [currencyIdB, currencyIdA, feeAmount ? feeAmount.toString() : ''],
+                                      currencyIdB: currencyIdB,
+                                      currencyIdA: currencyIdA,
+                                      feeAmount: feeAmount ? feeAmount.toString() : '',
                                     },
                                   },
                                   undefined,
@@ -883,7 +882,7 @@ function AddLiquidity() {
                               </Text>
                             </Card>
                           )}
-                          <Card padding="12px">
+                          <Card padding="12px" mt={2} mb={2}>
                             <StyledInput
                               className="start-price-input"
                               value={startPriceTypedValue}
@@ -892,7 +891,7 @@ function AddLiquidity() {
                           </Card>
                           <RowBetween
                             style={{
-                              backgroundColor: theme.colors.secondary,
+                              backgroundColor: theme.colors.background,
                               padding: '12px',
                               borderRadius: '12px',
                             }}
@@ -900,17 +899,15 @@ function AddLiquidity() {
                             <Text>{t(`Starting ${baseCurrency?.symbol} Price:`)}</Text>
                             <Text>
                               {price ? (
-                                <Text>
-                                  <RowFixed>
-                                    <HoverInlineText
-                                      maxCharacters={20}
-                                      text={invertPrice ? price?.invert()?.toSignificant(8) : price?.toSignificant(8)}
-                                    />{' '}
-                                    <span style={{ marginLeft: '4px' }}>
-                                      {quoteCurrency?.symbol} per {baseCurrency?.symbol}
-                                    </span>
-                                  </RowFixed>
-                                </Text>
+                                <RowFixed>
+                                  <HoverInlineText
+                                    maxCharacters={20}
+                                    text={invertPrice ? price?.invert()?.toSignificant(8) : price?.toSignificant(8)}
+                                  />{' '}
+                                  <span style={{ marginLeft: '4px' }}>
+                                    {quoteCurrency?.symbol} per {baseCurrency?.symbol}
+                                  </span>
+                                </RowFixed>
                               ) : (
                                 '-'
                               )}
@@ -940,6 +937,7 @@ function AddLiquidity() {
                         fiatValue={currencyAFiat}
                         showCommonBases
                         locked={depositADisabled}
+                        disableCurrencySelect={true}
                       />
 
                       <CurrencyInputPanelV3
@@ -954,6 +952,7 @@ function AddLiquidity() {
                         id="add-liquidity-input-tokenb"
                         showCommonBases
                         locked={depositBDisabled}
+                        disableCurrencySelect={true}
                       />
                     </AutoColumn>
                   </DynamicSection>
