@@ -78,7 +78,7 @@ export const PositionPreview = ({
         <RangeBadge removed={removed} inRange={inRange} />
       </RowBetween>
 
-      <LightCard>
+      <LightCard mb="12px">
         <AutoColumn gap="md">
           <RowBetween>
             <RowFixed>
@@ -109,7 +109,7 @@ export const PositionPreview = ({
       </LightCard>
 
       <AutoColumn gap="md">
-        <RowBetween>
+        <RowBetween mb="12px">
           {title ? <Text>{title}</Text> : <div />}
           <RateToggle
             currencyA={sorted ? currency0 : currency1}
@@ -161,7 +161,7 @@ export const PositionPreview = ({
             </AutoColumn>
           </LightCard>
         </RowBetween>
-        <LightCard padding="12px ">
+        <LightCard padding="12px" mt="12px">
           <AutoColumn gap="4px" justify="center">
             <Text fontSize="12px">
               <Trans>Current price</Trans>

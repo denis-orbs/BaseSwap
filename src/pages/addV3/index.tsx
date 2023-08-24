@@ -625,7 +625,7 @@ function AddLiquidity() {
                       />
                     )}
                     bottomContent={() => (
-                      <Button style={{ marginTop: '1rem' }} onClick={onAdd}>
+                      <Button style={{ marginTop: '1rem', width: '100%' }} onClick={onAdd}>
                         <Text fontWeight={500} fontSize={20}>
                           <Trans>Add</Trans>
                         </Text>

@@ -24,6 +24,7 @@ import AddToWalletButton, { AddToWalletTextOptions } from '../AddToWallet/AddToW
 
 const Wrapper = styled.div`
   width: 100%;
+  padding: 8px;
 `
 const Section = styled(AutoColumn)`
   padding: 24px;
@@ -36,6 +37,7 @@ const ConfirmedIcon = styled(ColumnCenter)`
 const StyledModal = styled(Modal)`
   position: relative;
   margin-top: 100px;
+  padding: 12px;
 `
 
 function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
