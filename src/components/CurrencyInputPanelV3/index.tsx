@@ -39,8 +39,7 @@ const CurrencySelect = styled(Button)<{
   pointerEvents?: string
 }>`
   align-items: center;
-  background-color: ${({ selected, theme }) =>
-    selected ? theme.colors.gradients.basedsex : theme.colors.gradients.basedsex};
+  background: ${({ theme }) => `${theme.colors.gradients.basedsexgray} !important`};
   opacity: ${({ disabled }) => (!disabled ? 1 : 0.4)};
   color: ${({ selected, theme }) => theme.colors.text};
   cursor: pointer;
@@ -92,23 +91,24 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   ${flexColumnNoWrap};
   position: relative;
   border-radius: ${({ hideInput }) => (hideInput ? '16px' : '20px')};
-  background-color: ${({ theme, hideInput }) => (hideInput ? 'transparent' : theme.colors.backgroundAlt2)};
+  background-color: ${({ theme }) => theme.colors.gradients.basedsexgray};
   z-index: 1;
   width: ${({ hideInput }) => (hideInput ? '100%' : 'initial')};
   transition: height 1s ease;
   will-change: height;
 `
 const Container = styled.div<{ hideInput: boolean; disabled: boolean }>`
-  border-radius: ${({ hideInput }) => (hideInput ? '16px' : '20px')};
-  border: 1px solid ${({ theme }) => theme.colors.background};
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  border-radius: ${({ hideInput }) => (hideInput ? '4px' : '8px')};
+  border: 4px solid ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
   width: ${({ hideInput }) => (hideInput ? '100%' : 'initial')};
   ${({ theme, hideInput, disabled }) =>
     !disabled &&
     `
     :focus,
     :hover {
-      border: 1px solid ${hideInput ? ' transparent' : theme.colors.backgroundAlt2};
+      // border: 1px solid ${hideInput ? ' transparent' : theme.colors.backgroundAlt2};
+      transform: translateY(1px);
     }
   `}
 `
