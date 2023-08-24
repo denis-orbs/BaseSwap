@@ -45,9 +45,7 @@ const farmcategories = [
 const XFarmPage = () => {
   const { chainId } = useWeb3React()
   const dispatch = useAppDispatch()
-  const { chosenFarmsMemoized, viewMode } = useContext(FarmsContext)
-
-  console.log('viewMode,', viewMode)
+  const { chosenFarmsMemoized, viewMode, stakedOnlyState } = useContext(FarmsContext)
 
   const categorizedFarms = farmcategories.map((category) => {
     const farms = chosenFarmsMemoized.filter((farm) => category.pids.includes(farm.pid))
@@ -70,20 +68,16 @@ const XFarmPage = () => {
     }
   }, [chainId, dispatch])
 
-  const stakedOnly = localStorage?.getItem('stakedOnlyFarms') === 'true'
-
-  console.log('categorizedFarms',categorizedFarms)
-
   return (
     <>
       {categorizedFarms.map(({ title, farms }) => {
         return (
           <CategoryWrapper title={title} key={title}>
             {viewMode === 'CARD' && farms.map((farm, i) => (
-             <NFTPoolCard key={farm.pid} farm={farm} removed={false} stakedOnly={stakedOnly} />
+             <NFTPoolCard key={farm.pid} farm={farm} removed={false} stakedOnly={stakedOnlyState} />
             ))}
             {viewMode === 'TABLE' && farms.map((farm, i) => (
-             <NFTPoolCardTable key={farm.pid} farm={farm} removed={false} stakedOnly={stakedOnly} />
+             <NFTPoolCardTable key={farm.pid} farm={farm} removed={false} stakedOnly={stakedOnlyState} />
             ))}
           </CategoryWrapper>
         )

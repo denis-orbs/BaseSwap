@@ -92,7 +92,7 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
       </Text>
       <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
       {/* {viewModeToggle} */}
-      {/* {stakedOnlySwitch} */}
+      {stakedOnlySwitch}
       {/* {liveOrFinishedSwitch} */}
     </ViewControls>
   )

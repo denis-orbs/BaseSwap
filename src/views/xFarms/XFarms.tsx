@@ -318,7 +318,7 @@ const Farms: React.FC = ({ children }) => {
   chosenFarmsLength.current = chosenFarmsMemoized.length
 
   return (
-    <FarmsContext.Provider value={{ chosenFarmsMemoized, viewMode }}>
+    <FarmsContext.Provider value={{ chosenFarmsMemoized, viewMode, stakedOnlyState }}>
       <Page>
         <WelcomeTypeIt
           options={{
@@ -345,16 +345,16 @@ const Farms: React.FC = ({ children }) => {
                   &nbsp;VIEW MODE:
                 </Text>
                 <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
-                {/* <ToggleWrapper>
+                <ToggleWrapper>
 
-              <Toggle
-                id="staked-only-farms"
-                checked={stakedOnly}
-                onChange={() => setStakedOnly(!stakedOnly)}
-                scale="sm"
-              />
-              <Text> {t('Staked only')}</Text>
-            </ToggleWrapper> */}
+                  <Toggle
+                    id="staked-only-farms"
+                    checked={stakedOnlyState}
+                    onChange={() => setStakedOnly()}
+                    scale="sm"
+                  />
+                  <Text> {t('Staked only')}</Text>
+                </ToggleWrapper>
 
                 {/* <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} /> */}
               </ViewControls>
@@ -401,7 +401,7 @@ const Farms: React.FC = ({ children }) => {
                 </LabelWrapper>
               </FilterContainer>
             </ControlContainer>
-            <FlexLayout  className="animate__animated animate__faster animate__fadeInUp">{children}</FlexLayout>
+            <FlexLayout className="animate__animated animate__faster animate__fadeInUp">{children}</FlexLayout>
             {account && !farmsLP.length && (
               <Flex justifyContent="center">
                 <Spinner />
@@ -410,13 +410,13 @@ const Farms: React.FC = ({ children }) => {
 
             <div ref={observerRef} />
           </>
-         )} 
+        )}
 
       </Page>
     </FarmsContext.Provider>
   )
 }
 
-export const FarmsContext = createContext({ chosenFarmsMemoized: [], viewMode: ViewMode.CARD })
+export const FarmsContext = createContext({ chosenFarmsMemoized: [], viewMode: ViewMode.CARD, stakedOnlyState: false })
 
 export default Farms

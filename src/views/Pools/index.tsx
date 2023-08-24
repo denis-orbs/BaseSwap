@@ -287,7 +287,7 @@ const Pools: React.FC = () => {
         // pool.vaultKey ? (
         //   <CakeVaultCard key={pool.vaultKey} pool={pool} showStakedOnly={stakedOnly} />
         // ) : (
-        <PoolCard key={pool.sousId} pool={pool} account={account} />
+        <PoolCard key={pool.sousId} pool={pool} account={account} showStakedOnly={stakedOnly}/>
       ),
       // ),
     )}
