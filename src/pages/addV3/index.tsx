@@ -318,7 +318,6 @@ function AddLiquidity() {
   const handleCurrencyASelect = useCallback(
     (currencyANew: Currency) => {
       const [idA, idB] = handleCurrencySelect(currencyANew, currencyIdB)
-      console.log(router.pathname)
 
       if (idB === undefined) {
         // navigate(`/add/${idA}`)
@@ -327,7 +326,7 @@ function AddLiquidity() {
             pathname: router.pathname,
             query: {
               ...router.query,
-              currencyIdA: [idA],
+              currencyIdA: idA,
             },
           },
           undefined,
@@ -342,8 +341,8 @@ function AddLiquidity() {
             pathname: router.pathname,
             query: {
               ...router.query,
-              currencyIdA: [idA],
-              currencyIdB: [idB],
+              currencyIdA: idA,
+              currencyIdB: idB,
             },
           },
           undefined,
@@ -379,11 +378,11 @@ function AddLiquidity() {
         // navigate(`/add/${idA}/${idB}`)
         router.replace(
           {
-            pathname: `${router.pathname}`,
+            pathname: router.pathname,
             query: {
               ...router.query,
-              currencyIdA: [idA],
-              currencyIdB: [idB],
+              currencyIdA: idA,
+              currencyIdB: idB,
             },
           },
           undefined,
@@ -403,7 +402,13 @@ function AddLiquidity() {
       //  navigate(`/add/${currencyIdA}/${currencyIdB}/${newFeeAmount}`)
       router.replace(
         {
-          pathname: `/addV3/${currencyIdA}/${currencyIdB}/${newFeeAmount}`,
+          pathname: router.pathname,
+          query: {
+            ...router.query,
+            currencyIdA: currencyIdA,
+            currencyIdB: currencyIdB,
+            feeAmount: newFeeAmount,
+          },
         },
         undefined,
         {
