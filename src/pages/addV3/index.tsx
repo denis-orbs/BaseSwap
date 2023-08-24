@@ -607,7 +607,6 @@ function AddLiquidity() {
     <>
       <Page>
         {showConfirm && (
-          
             <TransactionConfirmationModal
               title={t('Add Liquidity')}
               onDismiss={handleDismissConfirmation}
