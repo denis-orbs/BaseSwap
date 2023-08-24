@@ -417,6 +417,6 @@ const Farms: React.FC = ({ children }) => {
   )
 }
 
-export const FarmsContext = createContext({ chosenFarmsMemoized: [], viewMode: ViewMode.CARD })
+export const FarmsContext = createContext({ chosenFarmsMemoized: [], viewMode: ViewMode.CARD, stakedOnlyState: false })
 
 export default Farms
