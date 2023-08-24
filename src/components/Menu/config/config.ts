@@ -120,13 +120,17 @@ const config: (
       supportChainIds: [DEFAULT_CHAIN_ID],
       items: [
         {
+          label: t("New here?"),
+          href: '/new',
+        },
+        {
           label: t('xBSX'),
           href: '/xbsx',
         },
-        {
-          label: t('BSX Presale!'),
-          href: 'https://presale.baseswap.fi',
-        },
+        // {
+        //   label: t('BSX Presale!'),
+        //   href: 'https://presale.baseswap.fi',
+        // },
         {
           label: t('Bridge'),
           href: '/bridge',

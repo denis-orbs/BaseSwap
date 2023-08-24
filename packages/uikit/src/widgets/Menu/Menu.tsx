@@ -45,7 +45,7 @@ const DropdownMenu = styled.div`
   position: absolute;
   background-color: #000;
   border-radius: 4px;
-  min-width: 200px;
+  min-width: 250px;
   box-shadow: 2px 0px 4px #fff, 0px 2px 4px #0154fe, 0px 2px 16px #0154fe;
   padding: 24px 12px;
   z-index: 1;
@@ -232,12 +232,15 @@ const Menu: React.FC<NavProps> = ({
 
                     <Text marginRight="2rem">MORE...</Text>
                         <DropdownMenu>
-                        <Link href="/xbsx" marginBottom="1.2rem" >
+                        <Link href="/new" marginBottom="1.2rem" >
+                                <Text marginRight="2rem">New here?</Text>
+                            </Link>
+                            <Link href="/xbsx" marginBottom="1.2rem" >
                                 <Text marginRight="2rem">xBSX</Text>
                             </Link>
-                            <Link href="https://presale.baseswap.fi" marginBottom="1.2rem" >
+                            {/* <Link href="https://presale.baseswap.fi" marginBottom="1.2rem" >
                                 <Text marginRight="2rem">BSX PRESALE!</Text>
-                            </Link>
+                            </Link> */}
                            
                             <Link href="/bridge" marginBottom="1.2rem" >
                               <Text marginRight="2rem">Bridge </Text>
