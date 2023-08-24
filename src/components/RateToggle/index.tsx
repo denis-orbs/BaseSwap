@@ -17,13 +17,19 @@ export default function RateToggle({
   const tokenA = currencyA?.wrapped
   const tokenB = currencyB?.wrapped
 
+  console.log(tokenA)
+  console.log(tokenB)
+
   const isSorted = tokenA && tokenB && tokenA.sortsBefore(tokenB)
 
   return tokenA && tokenB ? (
-    <div style={{ width: 'fit-content', display: 'flex', alignItems: 'center' }} onClick={handleRateToggle}>
+    <div
+      style={{ width: 'fit-content', display: 'flex', alignItems: 'center', margin: '5px' }}
+      onClick={handleRateToggle}
+    >
       <ToggleWrapper width="fit-content">
         <ToggleElement isActive={isSorted} fontSize="12px">
-          {t(`${isSorted ? currencyA.symbol : currencyB.symbol}`)}
+          {t(`${isSorted ? currencyA.symbol : currencyA.symbol}`)}
         </ToggleElement>
         <ToggleElement isActive={!isSorted} fontSize="12px">
           {t(`${isSorted ? currencyB.symbol : currencyB.symbol}`)}
