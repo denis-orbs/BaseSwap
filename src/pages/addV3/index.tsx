@@ -92,6 +92,8 @@ function AddLiquidity() {
     tokenId?: string
   } = router.query
 
+  console.log(params)
+
   const { account, chainId, library: provider } = useActiveWeb3React()
   const theme = useTheme()
 
@@ -362,7 +364,7 @@ function AddLiquidity() {
         // navigate(`/add/${idB}`)
         router.replace(
           {
-            pathname: router.pathname,
+            pathname: `${router.pathname}`,
             query: {
               ...router.query,
               currencyIdB: [idB],
@@ -377,7 +379,7 @@ function AddLiquidity() {
         // navigate(`/add/${idA}/${idB}`)
         router.replace(
           {
-            pathname: router.pathname,
+            pathname: `${router.pathname}`,
             query: {
               ...router.query,
               currencyIdA: [idA],
