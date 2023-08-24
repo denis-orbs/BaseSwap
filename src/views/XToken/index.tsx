@@ -17,6 +17,7 @@ import XTokenRedeemModal from './components/xTokenRedeemModal'
 import { getTokenAddress, getTokenInstance } from 'config/constants/token-info'
 import { useTranslation } from '@pancakeswap/localization'
 import useXTokenActions from './hooks/useXTokenActions'
+
 import XTokenConvertModal from './components/xTokenConvertModal'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { priceDexScreener } from 'utils/tokenPricing'
