@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-import { Flex, Text, Button, useModal } from '@pancakeswap/uikit'
+import { Flex, Text, useModal, Button } from '@pancakeswap/uikit'
 import { TokenImage } from 'components/TokenImage'
 import { BsArrowRightCircle } from 'react-icons/bs'
+
 import Page from '../Page'
 import PageHeader from 'components/PageHeader'
 import useMatchBreakpoints from '@pancakeswap/uikit/src/hooks/useMatchBreakpoints'
-import StyledCard from './components/StyledCard'
+import StyledCard from 'views/Pools/components/PoolCard/StyledCard'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { useXTokenInfo } from 'state/xToken/hooks'
 import BigNumber from 'bignumber.js'
@@ -27,7 +28,6 @@ const WelcomeTypeIt = styled(TypeIt)`
   color: #fff;
   text-align: left;
   margin-bottom: 12px;
-  text-transform: uppercase;
   font-size: 40px;
   @media (min-width: 768px) {
     font-size: 68px;
@@ -52,17 +52,13 @@ const XARXTitle = styled.div<TextProps>`
 `
 
 const CardTitle = styled.div<TextProps>`
-  color: #fff;
-  font-size: ${(props) => (props.isMobile ? '2rem' : '2rem')};
+  color: #0154FD;
+  font-size: ${(props) => (props.isMobile ? '2rem' : '3rem')};
   font-weight: 600;
   text-align: center;
-  letter-spacing: 5px;
-  line-height: ${(props) => (props.isMobile ? '2.1rem' : '2.1rem')};
   margin-bottom: ${(props) => (props.isMobile ? '0.5rem' : '0.2rem')};
-  margin-top: 1.5rem;
-  background: -webkit-linear-gradient(#fff, #8797a9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin-top: 0rem;
+
 `
 
 const XARXHeader = styled(Flex)`
@@ -85,8 +81,8 @@ const Pricing = styled(Flex)`
   margin-top: 1rem;
 `
 const Action = styled(Flex)`
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   justify-content: center;
   align-items: flex-end;
   width: 100%;
@@ -145,14 +141,11 @@ const XToken: React.FC = () => {
             fontSize={['.8rem', null, null, '0.9rem']}
             fontWeight={['500', null, null, '600']}
           >
-            xBSX IS ONLY EARNED BY PROVIDING LIQUIDITY IN{' '}
+            xBSX is earned providing liquidity in 
             <a style={{ textDecoration: 'underline' }} href="/farms">
-              INFINITY FARMS.
+               farms.
             </a>{' '}
-            IT CAN BE CONVERTED TO ARX BELOW, OR{' '}
-            <a style={{ textDecoration: 'underline' }} href="/pools">
-              STAKED FOR REAL YIELD.
-            </a>
+          
           </Text>
        
 
@@ -160,15 +153,21 @@ const XToken: React.FC = () => {
           <StyledCard>
             <XARXHeader>
               <CardTitle isMobile={isMobile}>VEST</CardTitle>
-              <Text fontSize={['1rem', null, null, '0.9rem']} letterSpacing="3px">
-                VEST xBSX FOR BSX
+              <Text fontSize={['1rem', null, null, '1.4rem']} >
+                Convert xBSX to BSX
               </Text>
             </XARXHeader>
 
             <ConvertImages>
-              <TokenImage token={xBSX} width={70} height={70} />
+            <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} 
+              src="/images/tokens/0xE4750593d1fC8E74b31549212899A72162f315Fa.png" 
+              width={isMobile ? 40 : 80} height={isMobile ? 40 : 80} alt="logo" />
+              {/* <TokenImage token={xBSX} width={70} height={70} /> */}
               <BsArrowRightCircle size={35} />
-              <TokenImage token={BSX} width={70} height={70} />
+              <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} 
+              src="/images/tokens/0xd5046B976188EB40f6DE40fB527F89c05b323385.png" 
+              width={isMobile ? 40 : 80} height={isMobile ? 40 : 80} alt="logo" />
+              {/* <TokenImage token={BSX} width={70} height={70} /> */}
             </ConvertImages>
 
             <Pricing>
@@ -192,32 +191,31 @@ const XToken: React.FC = () => {
               </Button> */}
               <Button
                 variant="secondary"
-                marginX="8px"
-                className="glow2"
+
                 width="40%"
+                marginRight="4px"
                 onClick={onPresentRedeem}
                 disabled={xTokenBalance.isZero()}
               >
                 Redeem for BSX
               </Button>
               <Button
-                variant="secondary"
-                className="connectglow"
+                variant="primary"
                 width="40%"
-                marginX="8px"
                 disabled={xTokenBalance.isZero()}
               >
                 <a href="/pools" style={{ textDecoration: 'none', color: 'inherit' }}>
-                  Stake for Real Yield{' '}
+                  Stake Instead{' '}
                 </a>
               </Button>
             </Action>
           </StyledCard>
         </Flex>
 
-        <Flex width={['100%', '100%', '100%', '80%']}>
+        <Flex alignItems="center" flexDirection="column" marginTop="1rem" width={['100%', '100%', '100%', '60%']}>
           <VestingInfo />
         </Flex>
+
       </Page>
     </>
   )

@@ -20,12 +20,10 @@ const RedeemText = styled.div<TextProps>`
   font-weight: 600;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 3px;
+
   line-height: ${(props) => (props.isMobile ? '1rem' : '1rem')};
   margin-bottom: ${(props) => (props.isMobile ? '1rem' : '1rem')};
-  background: -webkit-linear-gradient(#fff, #8797a9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
 `
 
 interface xTokenRedeemModalProps {
@@ -172,11 +170,11 @@ const XTokenRedeemModal: React.FC<xTokenRedeemModalProps> = ({ userXTokenBalance
         </Box>
 
         <Flex justifyContent="space-around" mt="15px">
-          <Button variant="secondary" className="glow2small" onClick={resetRedeemTime}>
+          <Button variant="secondary"  onClick={resetRedeemTime}>
             Reset
           </Button>
 
-          <Button variant="menuconnect" className="glow2small" onClick={decrementVesting}>
+          <Button variant="menuconnect"  onClick={decrementVesting}>
             -
           </Button>
 
@@ -213,23 +211,21 @@ const XTokenRedeemModal: React.FC<xTokenRedeemModalProps> = ({ userXTokenBalance
   return (
     <Modal title="Redeem xBSX" onDismiss={onDismiss}>
       <Box maxWidth="500px" mb="30px">
-        <Text color="text" fontSize="0.8rem" letterSpacing="1px" textAlign="center" mb="15px">
-          Redeem xBSX into BSX over a vesting period. The longer the vesting period selected, the greater return you
-          will receive in BSX.
+        <Text color="text" fontSize="14px"  textAlign="center" mb="15px">
+          Convert xBSX into BSX below. Vesting is linear; you will receive 
+          more BSX the longer the vesting period selected. 
         </Text>
-        <Text color="text" fontSize="0.8rem" letterSpacing="1px" textAlign="center" mb="15px">
-          Vesting can be as brief as fifteen days (1 xBSX : 0.5 BSX ratio), up to thirty days (1:1 ratio). If you change
-          your mind, you can cancel your redemption and receive your xBSX back.
+        <Text color="text" fontSize="14px"  textAlign="center" mb="15px">
+          Vesting can be a minimum of 15 days, which will return 0.5 BSX for every 1 xBSX. 
+          If you select the full vesting period of 30 days, you will receive 1 BSX for every 1 xBSX. 
+          You can cancel a redemption at any time. 
         </Text>
 
-        <Box
-          m="15px"
-          style={{ boxShadow: '0 0 4px #fff', borderRadius: '12px', padding: '0.5rem', paddingTop: '1rem' }}
-        >
-          <Flex>
-            <BalanceInput width="80%" value={convertAmount} onUserInput={handleInputChange} decimals={18} />
+      
+          <Flex height="100%" flexDirection="row" alignItems="flex-end" justifyContent="space-between">
+            <BalanceInput  height="100%" width="50%" value={convertAmount} onUserInput={handleInputChange} decimals={18} />
 
-            <Button width="20%" mt="8px" variant="secondary" className="connectglow" onClick={handleMaxInput}>
+            <Button width="20%"  variant="secondary" onClick={handleMaxInput}>
               Max
             </Button>
           </Flex>
@@ -239,7 +235,7 @@ const XTokenRedeemModal: React.FC<xTokenRedeemModalProps> = ({ userXTokenBalance
               xBSX Balance: {getFullDisplayBalance(userXTokenBalance, 18, 6)}
             </Text>
           </Flex>
-        </Box>
+
 
         <RedemptionTime />
 
@@ -259,7 +255,6 @@ const XTokenRedeemModal: React.FC<xTokenRedeemModalProps> = ({ userXTokenBalance
         width="100%"
         mt="8px"
         variant="secondary"
-        className="connectglow"
         disabled={!convertAmount || pendingTx}
         onClick={handleRedeem}
       >

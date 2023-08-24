@@ -235,6 +235,9 @@ const Menu: React.FC<NavProps> = ({
                             <Link href="https://presale.baseswap.fi" marginBottom="1.2rem" >
                                 <Text marginRight="2rem">BSX PRESALE!</Text>
                             </Link>
+                            <Link href="/xbsx" marginBottom="1.2rem" >
+                                <Text marginRight="2rem">xBSX</Text>
+                            </Link>
                             <Link href="/bridge" marginBottom="1.2rem" >
                               <Text marginRight="2rem">Bridge </Text>
                             </Link>
