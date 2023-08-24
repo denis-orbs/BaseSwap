@@ -37,7 +37,12 @@ const InputRow = styled.div`
 
 const SmallButton = styled(Button)`
   border-radius: 8px;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin: 2px;
+  max-height: 35px;
 `
 
 const StyledInput = styled(NumericalInput)<{ usePercent?: boolean }>`
