@@ -34,7 +34,7 @@ const FeeOptionContainer = styled.div<{ active: boolean }>`
     css`
       background-image: ${({ theme }) => theme.colors.gradients.basedsex};
     `}
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 2px 2px 4px 2px;
   &:hover {
     opacity: 0.7;

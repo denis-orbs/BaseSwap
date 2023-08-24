@@ -43,6 +43,7 @@ const Select = styled.div`
   display: grid;
   grid-auto-flow: column;
   grid-gap: 8px;
+  margin-top: 8px;
 `
 
 export default function FeeSelector({

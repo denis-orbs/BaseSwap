@@ -40,7 +40,7 @@ export const GreyCard = styled(Card)`
 
 export const LightTertiaryCard = styled(Card)<{ active: boolean }>`
   border: 1px solid ${({ theme, active }) => (active ? 'none' : theme.colors.cardBorder)};
-  background-color: ${({ theme }) => theme.colors.tertiary};
+  background: ${({ theme, active }) => (active ? theme.colors.gradients.basedsex1: theme.colors.gradients.basedsexdark)};
   padding: 4px 4px 8px;
 `
 
