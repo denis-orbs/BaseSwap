@@ -25,3 +25,4 @@ src/graphql/**/*.ts
 scripts/**/*.js
 **/*.config.js
 src/components/CurrencyInputPanelV3/**/*.tsx
+src/pages/pool/**/*.tsx
