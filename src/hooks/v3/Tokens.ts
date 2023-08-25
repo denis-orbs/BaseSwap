@@ -1,7 +1,7 @@
 import { ChainId, Currency, Token } from '@baseswapfi/sdk-core'
 import { getChainInfo } from 'config/constants/chainInfo'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useCurrencyFromMap } from 'lib/hooks/useCurrency'
+import { useCurrencyFromMap, useTokenFromMapOrNetwork } from 'lib/hooks/useCurrency'
 import { useMemo } from 'react'
 import { useAllLists, useCombinedActiveList, useUnsupportedTokenList } from 'state/lists/hooks'
 import { TokenAddressMap } from 'state/types'
@@ -102,4 +102,13 @@ export function useUnsupportedTokens(): { [address: string]: Token } {
   // }, [chainId, listsByUrl, unsupportedTokens])
 
   return { ...unsupportedTokens }
+}
+
+// undefined if invalid or does not exist
+// null if loading or null was passed
+// otherwise returns the token
+export function useToken(tokenAddress?: string | null): Token | null | undefined {
+  const { chainId } = useActiveWeb3React()
+  const tokens = useDefaultActiveTokens(chainId)
+  return useTokenFromMapOrNetwork(tokens, tokenAddress)
 }
