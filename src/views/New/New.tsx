@@ -96,7 +96,7 @@ const New: React.FC = () => {
        <AssSide>
        <FaArrowCircleLeft size={isMobile ? 40 : 80} onClick={() => handleFlipClick(0)} />
            <Text> Overview of Base Chain</Text>
-           <ReactPlayer playing={isPlaying[0]} controls={true} width="100%"   url='https://www.youtube.com/watch?v=SD3sUw2N--A' />
+           <ReactPlayer autoplay={false} playing={isPlaying[0]} controls={true} width="100%"   url='https://www.youtube.com/watch?v=SD3sUw2N--A' />
        </AssSide>
    </ReactCardFlip>
    </Flex>
@@ -121,7 +121,7 @@ const New: React.FC = () => {
        <AssSide>
        <FaArrowCircleLeft size={isMobile ? 40 : 80} onClick={() => handleFlipClick(1)} />
            
-           <ReactPlayer playing={isPlaying[1]} controls={true} width="100%"   url='https://www.youtube.com/watch?v=aaOa61tdeL4' />
+           <ReactPlayer autoplay={false} playing={isPlaying[1]} controls={true} width="100%"   url='https://www.youtube.com/watch?v=aaOa61tdeL4' />
            
        </AssSide>
 
@@ -153,8 +153,7 @@ const New: React.FC = () => {
    
        <AssSide>
        <FaArrowCircleLeft size={isMobile ? 40 : 80} onClick={() => handleFlipClick(3)} />
-           <Text> Overview of Base Chain</Text>
-           <ReactPlayer playing={isPlaying[2]} controls={true} width="100%"   url='https://www.youtube.com/watch?v=w6PWQ0HKCQA' />
+           <ReactPlayer autoplay={false} playing={isPlaying[2]} controls={true} width="100%"   url='https://www.youtube.com/watch?v=w6PWQ0HKCQA' />
           
        </AssSide>
 
