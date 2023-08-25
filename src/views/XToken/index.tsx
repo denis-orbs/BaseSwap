@@ -15,7 +15,9 @@ import BigNumber from 'bignumber.js'
 import VestingInfo from './components/VestingInfo'
 import XTokenRedeemModal from './components/xTokenRedeemModal'
 import { getTokenAddress, getTokenInstance } from 'config/constants/token-info'
+import { fetchUserXTokenDataAsync, fetchUserXTokenRedeemsInfoAsync } from 'state/xToken'
 import { useTranslation } from '@pancakeswap/localization'
+import { useAppDispatch } from 'state'
 import useXTokenActions from './hooks/useXTokenActions'
 
 import XTokenConvertModal from './components/xTokenConvertModal'
@@ -93,8 +95,8 @@ const XToken: React.FC = () => {
   // const [cakePrice, SETCAKEPrice] = useState<BigNumber>(BIG_ZERO)
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
-  const { chainId } = useWeb3React()
-  const { fetchUserData } = useXTokenActions()
+  const { account, chainId } = useWeb3React()
+  const dispatch = useAppDispatch()
   const { userInfo } = useXTokenInfo()
 
 
@@ -104,27 +106,35 @@ const XToken: React.FC = () => {
 
   const protocolTokenBalance = useMemo(() => new BigNumber(userInfo?.protocolTokenBalance || 0), [userInfo])
   const xTokenBalance = useMemo(() => new BigNumber(userInfo?.xTokenBalance || 0), [userInfo])
-
+  console.log('xTokenBalance', xTokenBalance.toString())
   // const [onPresentConvert] = useModal(
   //   <XTokenConvertModal stakingTokenBalance={protocolTokenBalance} stakingTokenPrice={cakePrice} />,
   // )
 
   const [onPresentRedeem] = useModal(<XTokenRedeemModal userXTokenBalance={xTokenBalance} />)
 
-  useEffect(() => {
-    // const fetchData = async () => {
-    //   const price = await priceDexScreener('0xd5046b976188eb40f6de40fb527f89c05b323385')
-    //   SETCAKEPrice(price)
-    // }
-    // fetchData()
+  // useEffect(() => {
+  //   // const fetchData = async () => {
+  //   //   const price = await priceDexScreener('0xd5046b976188eb40f6de40fb527f89c05b323385')
+  //   //   SETCAKEPrice(price)
+  //   // }
+  //   // fetchData()
 
-    fetchUserData()
-  }, [])
+  //   fetchUserData()
+  // }, [])
+
+  useEffect(() => {
+    if (account) {
+      dispatch(fetchUserXTokenDataAsync({ account, chainId }))
+      dispatch(fetchUserXTokenRedeemsInfoAsync({ account, chainId }))
+    }
+  }, [account, chainId, dispatch])
+
 
   return (
     <>
       <Page>
-      <WelcomeTypeIt
+        <WelcomeTypeIt
           options={{
             cursorChar: ' ',
             cursorSpeed: 1000000,
@@ -136,19 +146,19 @@ const XToken: React.FC = () => {
             return instance
           }}
         />
-          <Text
-            textAlign="center"
-            mb="1.5rem"
-            fontSize={['.8rem', null, null, '0.9rem']}
-            fontWeight={['500', null, null, '600']}
-          >
-            xBSX is earned providing liquidity in 
-            <a style={{ textDecoration: 'underline' }} href="/farms">
-               farms.
-            </a>{' '}
-          
-          </Text>
-       
+        <Text
+          textAlign="center"
+          mb="1.5rem"
+          fontSize={['.8rem', null, null, '0.9rem']}
+          fontWeight={['500', null, null, '600']}
+        >
+          xBSX is earned providing liquidity in
+          <a style={{ textDecoration: 'underline' }} href="/farms">
+            farms.
+          </a>{' '}
+
+        </Text>
+
 
         <Flex flexDirection={['column', null, null, 'row']}>
           <StyledCard>
@@ -160,14 +170,14 @@ const XToken: React.FC = () => {
             </XARXHeader>
 
             <ConvertImages>
-            <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} 
-              src="/images/tokens/0xE4750593d1fC8E74b31549212899A72162f315Fa.png" 
-              width={isMobile ? 40 : 80} height={isMobile ? 40 : 80} alt="logo" />
+              <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF', borderRadius: '50%' }}
+                src="/images/tokens/0xE4750593d1fC8E74b31549212899A72162f315Fa.png"
+                width={isMobile ? 40 : 80} height={isMobile ? 40 : 80} alt="logo" />
               {/* <TokenImage token={xBSX} width={70} height={70} /> */}
               <BsArrowRightCircle size={35} />
-              <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} 
-              src="/images/tokens/0xd5046B976188EB40f6DE40fB527F89c05b323385.png" 
-              width={isMobile ? 40 : 80} height={isMobile ? 40 : 80} alt="logo" />
+              <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF', borderRadius: '50%' }}
+                src="/images/tokens/0xd5046B976188EB40f6DE40fB527F89c05b323385.png"
+                width={isMobile ? 40 : 80} height={isMobile ? 40 : 80} alt="logo" />
               {/* <TokenImage token={BSX} width={70} height={70} /> */}
             </ConvertImages>
 
