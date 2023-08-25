@@ -13,7 +13,7 @@ import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Bound } from 'state/mint/v3/actions'
 import styled from 'styled-components'
-import { Text } from '@pancakeswap/uikit'
+import { Box, Text } from '@pancakeswap/uikit'
 import { formatTickPrice } from 'utils/v3/formatTickPrice'
 import { unwrappedToken } from 'utils/v3/unwrappedToken'
 import { currentTokenMap } from 'config/constants/tokens'
@@ -229,7 +229,7 @@ export default function PositionListItem({
   const removed = liquidity?.eq(0)
 
   return (
-    <LinkRow to={positionSummaryLink}>
+    <Box>
       <RowBetween>
         <PrimaryPositionIdData>
           <DoubleCurrencyLogo currency0={currencyBase} currency1={currencyQuote} size={18} margin />
@@ -287,6 +287,6 @@ export default function PositionListItem({
       ) : (
         <Loader />
       )}
-    </LinkRow>
+    </Box>
   )
 }

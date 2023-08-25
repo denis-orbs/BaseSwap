@@ -16,8 +16,10 @@ import { useUserHideClosedPositions } from 'state/user/v3/hooks'
 import { isSupportedChain } from 'config/constants/chains'
 import { useNetworkSupportsV2 } from 'hooks/useNetworkSupportsV2'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import Link from 'next/link'
+// import Link from 'next/link'
 import { useFilterPossiblyMaliciousPositions } from 'hooks/v3/useFilterPossiblyMaliciousPositions'
+import { useTranslation } from '@pancakeswap/localization'
+import Page from 'views/Page'
 
 // const PageWrapper = styled(AutoColumn)`
 //   padding: 68px 8px 0px;
@@ -212,7 +214,7 @@ function WrongNetworkCard() {
 export default function Pool() {
   const { account, chainId } = useActiveWeb3React()
   const networkSupportsV2 = useNetworkSupportsV2()
-  // const toggleWalletDrawer = useToggleAccountDrawer()
+  const { t } = useTranslation()
 
   const theme = useTheme()
   const [userHideClosedPositions, setUserHideClosedPositions] = useUserHideClosedPositions()
@@ -274,78 +276,55 @@ export default function Pool() {
   ]
 
   return (
-    <PageWrapper>
-      <AutoColumn gap="lg" justify="center">
-        <AutoColumn gap="lg" style={{ width: '100%' }}>
-          <TitleRow padding="0">
-            <Text>
-              <Trans>Pools</Trans>
-            </Text>
-            <ButtonRow>
-              {/* {networkSupportsV2 && (
-                <PoolMenu
-                  menuItems={menuItems}
-                  flyoutAlignment={FlyoutAlignment.LEFT}
-                  ToggleUI={(props: any) => (
-                    <MoreOptionsButton {...props}>
-                      <MoreOptionsText>
-                        <Trans>More</Trans>
-                        <ChevronDown size={15} />
-                      </MoreOptionsText>
-                    </MoreOptionsButton>
-                  )}
+    <Page>
+      <PageWrapper>
+        <AutoColumn gap="lg" justify="center">
+          <AutoColumn gap="lg" style={{ width: '100%' }}>
+            <TitleRow padding="0">
+              <Text>
+                <Trans>Pools</Trans>
+              </Text>
+              <ButtonRow>
+                {/* <Link data-cy="join-pool-button" id="join-pool-button" href="/addV3/ETH">
+                + {t('New Position')}
+              </Link> */}
+              </ButtonRow>
+            </TitleRow>
+
+            <MainContentWrapper>
+              {positionsLoading ? (
+                <PositionsLoadingPlaceholder />
+              ) : filteredPositions && closedPositions && filteredPositions.length > 0 ? (
+                <PositionList
+                  positions={filteredPositions}
+                  setUserHideClosedPositions={setUserHideClosedPositions}
+                  userHideClosedPositions={userHideClosedPositions}
                 />
-              )} */}
-              <Link data-cy="join-pool-button" id="join-pool-button" href="/addV3/ETH">
-                + <Trans>New Position</Trans>
-              </Link>
-            </ButtonRow>
-          </TitleRow>
-
-          <MainContentWrapper>
-            {positionsLoading ? (
-              <PositionsLoadingPlaceholder />
-            ) : filteredPositions && closedPositions && filteredPositions.length > 0 ? (
-              <PositionList
-                positions={filteredPositions}
-                setUserHideClosedPositions={setUserHideClosedPositions}
-                userHideClosedPositions={userHideClosedPositions}
-              />
-            ) : (
-              <ErrorContainer>
-                <Text color={theme.colors.tertiary} textAlign="center">
-                  <InboxIcon strokeWidth={1} style={{ marginTop: '2em' }} />
-                  <div>
-                    <Trans>Your active V3 liquidity positions will appear here.</Trans>
-                  </div>
-                </Text>
-                {!showConnectAWallet && closedPositions.length > 0 && (
-                  <Button
-                    style={{ marginTop: '.5rem' }}
-                    onClick={() => setUserHideClosedPositions(!userHideClosedPositions)}
-                  >
-                    <Trans>Show closed positions</Trans>
-                  </Button>
-                )}
-                {/* {showConnectAWallet && (
-         
+              ) : (
+                <ErrorContainer>
+                  <Text color={theme.colors.tertiary} textAlign="center">
+                    <InboxIcon strokeWidth={1} style={{ marginTop: '2em' }} />
+                    <div>
+                      <Trans>Your active V3 liquidity positions will appear here.</Trans>
+                    </div>
+                  </Text>
+                  {!showConnectAWallet && closedPositions.length > 0 && (
                     <Button
-                      style={{ marginTop: '2em', marginBottom: '2em', padding: '8px 16px' }}
-                      onClick={toggleWalletDrawer}
+                      style={{ marginTop: '.5rem' }}
+                      onClick={() => setUserHideClosedPositions(!userHideClosedPositions)}
                     >
-                      <Trans>Connect a wallet</Trans>
+                      <Trans>Show closed positions</Trans>
                     </Button>
-        
-                )} */}
-                {showConnectAWallet && <ConnectWalletButton />}
-              </ErrorContainer>
-            )}
-          </MainContentWrapper>
+                  )}
+                  {showConnectAWallet && <ConnectWalletButton />}
+                </ErrorContainer>
+              )}
+            </MainContentWrapper>
 
-          <CTACards />
+            {/* <CTACards /> */}
+          </AutoColumn>
         </AutoColumn>
-      </AutoColumn>
-    </PageWrapper>
-    // <SwitchLocaleLink />
+      </PageWrapper>
+    </Page>
   )
 }

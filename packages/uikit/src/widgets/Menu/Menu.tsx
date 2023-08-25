@@ -211,6 +211,9 @@ const Menu: React.FC<NavProps> = ({
                 <Link href="/addV3">
                   <Text marginRight="2rem">Liquidity V3</Text>
                 </Link>
+                <Link href="/positions">
+                  <Text marginRight="2rem">V3 Positions</Text>
+                </Link>
                 <DropdownContainer>
                   <Link href="/farm">
                     <Text marginRight="2rem">FARMS</Text>
