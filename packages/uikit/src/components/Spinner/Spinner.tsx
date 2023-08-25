@@ -27,6 +27,11 @@ const float = keyframes`
 
 const Container = styled.div`
   position: relative;
+  background-color: #fff; 
+  border-radius: 120px; 
+  box-shadow: 0 4px 6px #fff, 8px 0px 8px #0154FD, -8px 0px 8px #68B9FF; 
+
+
 `;
 
 const RotatingPancakeIcon = styled(PancakeIcon)`
@@ -55,12 +60,14 @@ const FloatingPanIcon = styled(PanIcon)`
   transform: translate3d(0, 0, 0);
 `;
 
-const Spinner: React.FC<SpinnerProps> = ({ size = 128 }) => {
+const Spinner: React.FC<SpinnerProps> = ({ size = 90 }) => {
   return (
     <Container>
       {/* <RotatingPancakeIcon width={`${size * 0.5}px`} /> */}
       {/* <RotatingImage src="/images/ayush.png" alt="Ayush" width="50px" /> */}
-      <FloatingImage src="/images/pepetokens.png" alt="Ayush" width={`${size}px`} />
+      <FloatingImage src="/images/newlogo.png" alt="bswap" width={`${size}px`} />
+      <FloatingImage src="/images/bsx.png" alt="bswap" width={`${size}px`} />
+
 
       {/* <FloatingPanIcon width={`${size}px`} /> */}
     </Container>
