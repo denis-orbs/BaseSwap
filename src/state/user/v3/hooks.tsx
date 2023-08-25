@@ -3,7 +3,7 @@ import { AppState, useAppDispatch } from 'state'
 import { useMemo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import JSBI from 'jsbi'
-import { updateUserSlippageTolerance } from '../actions'
+import { updateHideClosedPositions, updateUserSlippageTolerance } from '../actions'
 
 /**
  * Return the user's slippage tolerance, from the redux store, and a function to update the slippage tolerance
@@ -54,4 +54,21 @@ export function useUserSlippageTolerance(): [Percent, (slippageTolerance: Percen
 export function useUserSlippageToleranceWithDefault(defaultSlippageTolerance: Percent): Percent {
   const [allowedSlippage] = useUserSlippageTolerance()
   return allowedSlippage.greaterThan(0) ? allowedSlippage : defaultSlippageTolerance
+}
+
+export function useUserHideClosedPositions(): [boolean, (newHideClosedPositions: boolean) => void] {
+  const dispatch = useAppDispatch()
+
+  const hideClosedPositions = useSelector<AppState, AppState['user']['userHideClosedPositions']>(
+    (state) => state.user.userHideClosedPositions,
+  )
+
+  const setHideClosedPositions = useCallback(
+    (newHideClosedPositions: boolean) => {
+      dispatch(updateHideClosedPositions({ userHideClosedPositions: newHideClosedPositions }))
+    },
+    [dispatch],
+  )
+
+  return [hideClosedPositions, setHideClosedPositions]
 }

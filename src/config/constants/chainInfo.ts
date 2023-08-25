@@ -119,3 +119,7 @@ export function getChainInfo(
   }
   return undefined
 }
+
+export function getChainInfoOrDefault(chainId: number | undefined, featureFlags?: Record<number, boolean>) {
+  return getChainInfo(chainId, featureFlags) ?? CHAIN_INFO[ChainId.BASE]
+}

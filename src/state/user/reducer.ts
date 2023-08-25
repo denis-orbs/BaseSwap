@@ -35,6 +35,7 @@ import {
   setSubgraphHealthIndicatorDisplayed,
   updateUserLimitOrderAcceptedWarning,
   setZapDisabled,
+  updateHideClosedPositions,
 } from './actions'
 import { GAS_PRICE_GWEI } from '../types'
 
@@ -88,6 +89,8 @@ export interface UserState {
   watchlistTokens: string[]
   watchlistPools: string[]
   hideTimestampPhishingWarningBanner: number
+
+  userHideClosedPositions: boolean
 }
 
 function pairKey(token0Address: string, token1Address: string) {
@@ -121,6 +124,7 @@ export const initialState: UserState = {
   watchlistTokens: [],
   watchlistPools: [],
   hideTimestampPhishingWarningBanner: null,
+  userHideClosedPositions: false,
 }
 
 export default createReducer(initialState, (builder) =>
@@ -265,5 +269,8 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(setSubgraphHealthIndicatorDisplayed, (state, { payload }) => {
       state.isSubgraphHealthIndicatorDisplayed = payload
+    })
+    .addCase(updateHideClosedPositions, (state, { payload }) => {
+      state.userHideClosedPositions = payload.userHideClosedPositions
     }),
 )
