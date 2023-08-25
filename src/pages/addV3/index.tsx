@@ -60,6 +60,7 @@ import CurrencyInputPanelV3 from 'components/CurrencyInputPanelV3'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import { isSupportedChain } from 'config/constants/chains'
 import { PositionPageUnsupportedContent } from 'pages/positions/PositionPage'
+import { addressesAreEquivalent } from 'utils/addressesAreEquivalent'
 
 const DEFAULT_ADD_IN_RANGE_SLIPPAGE_TOLERANCE = new Percent(50, 10_000)
 
@@ -592,7 +593,9 @@ function AddLiquidity() {
   )
 
   const owner = useSingleCallResult(tokenId ? positionManager : null, 'ownerOf', [tokenId]).result?.[0]
-  const showOwnershipWarning = Boolean(hasExistingPosition && account)
+  const ownsNFT =
+    addressesAreEquivalent(owner, account) || addressesAreEquivalent(existingPositionDetails?.operator, account)
+  const showOwnershipWarning = Boolean(hasExistingPosition && account && !ownsNFT)
 
   return (
     <>

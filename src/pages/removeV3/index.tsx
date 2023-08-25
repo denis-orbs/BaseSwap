@@ -60,7 +60,7 @@ export default function RemoveLiquidityV3() {
 
   if (parsedTokenId === null || parsedTokenId.eq(0)) {
     router.replace({
-      pathname: `/positions/${tokenId}`,
+      pathname: `/positions`,
     })
     // return <Navigate to={{ ...location, pathname: '/pools' }} replace />
   }
