@@ -75,14 +75,7 @@
       "decimals": 8,
       "logoURI": ""
     },
-    {
-      "name": "Magnate Finance",
-      "symbol": "MAG",
-      "address": "0x2DC1cDa9186a4993bD36dE60D08787c0C382BEAD",
-      "chainId": 8453,
-      "decimals": 18,
-      "logoURI": ""
-    },
+ 
     {
       "name": "BlazeBot",
       "symbol": "BLAZE",
