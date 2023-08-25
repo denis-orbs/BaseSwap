@@ -689,7 +689,7 @@ function PositionPageContent() {
                 <ActionButtonResponsiveRow>
                   {currency0 && currency1 && feeAmount && tokenId ? (
                     <Link
-                      to={`/increase/${currencyId(currency0)}/${currencyId(currency1)}/${feeAmount}/${tokenId}`}
+                      to={`/increaseV3/${currencyId(currency0)}/${currencyId(currency1)}/${feeAmount}/${tokenId}`}
                       style={{ marginRight: '8px', padding: '6px 8px', width: 'fit-content', borderRadius: '12px' }}
                     >
                       <Trans>Increase Liquidity</Trans>
@@ -697,7 +697,7 @@ function PositionPageContent() {
                   ) : null}
                   {tokenId && !removed ? (
                     <Link
-                      to={`/remove/${tokenId}`}
+                      to={`/removeV3/${tokenId}`}
                       style={{ marginRight: '8px', padding: '6px 8px', width: 'fit-content', borderRadius: '12px' }}
                     >
                       <Trans>Remove Liquidity</Trans>
