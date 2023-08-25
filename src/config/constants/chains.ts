@@ -1,5 +1,4 @@
-import { SUPPORTED_CHAINS, SupportedChainsType } from '@baseswapfi/sdk-core'
-import { ChainId } from '@magikswap/sdk'
+import { SUPPORTED_CHAINS, SupportedChainsType, ChainId } from '@baseswapfi/sdk-core'
 
 export const CHAIN_IDS_TO_NAMES = {
   [ChainId.BASE]: 'base',
@@ -43,3 +42,8 @@ export type SupportedL1ChainId = typeof L1_CHAIN_IDS[number]
 export const L2_CHAIN_IDS = [ChainId.BASE, ChainId.BASE_GOERLI] as const
 
 export type SupportedL2ChainId = typeof L2_CHAIN_IDS[number]
+
+/**
+ * Supported networks for V2 pool behavior.
+ */
+export const SUPPORTED_V2POOL_CHAIN_IDS = [ChainId.BASE, ChainId.BASE_GOERLI] as const
