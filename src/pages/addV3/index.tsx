@@ -308,13 +308,11 @@ function AddLiquidity() {
     [chainId],
   )
 
-  // router segment names
   const handleCurrencyASelect = useCallback(
     (currencyANew: Currency) => {
       const [idA, idB] = handleCurrencySelect(currencyANew, currencyIdB)
 
       if (idB === undefined) {
-        // navigate(`/add/${idA}`)
         router.replace(
           {
             pathname: router.pathname,
@@ -329,7 +327,6 @@ function AddLiquidity() {
           },
         )
       } else {
-        // navigate(`/add/${idA}/${idB}`)
         router.replace(
           {
             pathname: router.pathname,
@@ -354,7 +351,6 @@ function AddLiquidity() {
       const [idB, idA] = handleCurrencySelect(currencyBNew, currencyIdA)
 
       if (idA === undefined) {
-        // navigate(`/add/${idB}`)
         router.replace(
           {
             pathname: `${router.pathname}`,
@@ -369,7 +365,6 @@ function AddLiquidity() {
           },
         )
       } else {
-        // navigate(`/add/${idA}/${idB}`)
         router.replace(
           {
             pathname: router.pathname,
@@ -393,7 +388,6 @@ function AddLiquidity() {
     (newFeeAmount: FeeAmount) => {
       onLeftRangeInput('')
       onRightRangeInput('')
-      //  navigate(`/add/${currencyIdA}/${currencyIdB}/${newFeeAmount}`)
       router.replace(
         {
           pathname: router.pathname,
@@ -419,9 +413,7 @@ function AddLiquidity() {
     if (txHash) {
       onFieldAInput('')
       // dont jump to pool page if creating
-      // navigate('/pools')
-      // TODO: Need to line this up with our navigation/routing scheme
-      router.push('/pools')
+      router.push('/positions')
     }
     setTxHash('')
   }, [router, onFieldAInput, txHash])
@@ -748,11 +740,6 @@ function AddLiquidity() {
                                     )
                                     onFieldAInput(formattedAmounts[Field.CURRENCY_B] ?? '')
                                   }
-                                  // navigate(
-                                  //   `/add/${currencyIdB as string}/${currencyIdA as string}${
-                                  //     feeAmount ? '/' + feeAmount : ''
-                                  //   }`,
-                                  // )
 
                                   router.replace(
                                     {

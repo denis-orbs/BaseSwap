@@ -20,6 +20,7 @@ import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useFilterPossiblyMaliciousPositions } from 'hooks/v3/useFilterPossiblyMaliciousPositions'
 import { useTranslation } from '@pancakeswap/localization'
 import Page from 'views/Page'
+import { useRouter } from 'next/router'
 
 // const PageWrapper = styled(AutoColumn)`
 //   padding: 68px 8px 0px;
@@ -214,6 +215,7 @@ function WrongNetworkCard() {
 export default function Pool() {
   const { account, chainId } = useActiveWeb3React()
   const networkSupportsV2 = useNetworkSupportsV2()
+  const router = useRouter()
   const { t } = useTranslation()
 
   const theme = useTheme()
@@ -288,6 +290,19 @@ export default function Pool() {
                 {/* <Link data-cy="join-pool-button" id="join-pool-button" href="/addV3/ETH">
                 + {t('New Position')}
               </Link> */}
+                <Button
+                  onClick={() => {
+                    router.replace({
+                      pathname: '/addV3',
+                      query: {
+                        currencyIdA: 'ETH',
+                      },
+                    })
+                  }}
+                >
+                  {' '}
+                  + {t('New Position')}
+                </Button>
               </ButtonRow>
             </TitleRow>
 
