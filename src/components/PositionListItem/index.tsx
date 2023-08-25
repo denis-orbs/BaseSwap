@@ -17,6 +17,7 @@ import { Box, Text } from '@pancakeswap/uikit'
 import { formatTickPrice } from 'utils/v3/formatTickPrice'
 import { unwrappedToken } from 'utils/v3/unwrappedToken'
 import { currentTokenMap } from 'config/constants/tokens'
+import { useRouter } from 'next/router'
 
 // const LinkRow = styled(Link)`
 //   align-items: center;
@@ -203,6 +204,8 @@ export default function PositionListItem({
   const currency0 = token0 ? unwrappedToken(token0 as any) : undefined
   const currency1 = token1 ? unwrappedToken(token1 as any) : undefined
 
+  const router = useRouter()
+
   // construct Position from details returned
   const [, pool] = usePool(currency0 ?? undefined, currency1 ?? undefined, feeAmount)
 
@@ -224,12 +227,21 @@ export default function PositionListItem({
   // check if price is within range
   const outOfRange: boolean = pool ? pool.tickCurrent < tickLower || pool.tickCurrent >= tickUpper : false
 
-  const positionSummaryLink = `/pools/${tokenId}`
+  const positionSummaryLink = `/positions/${tokenId}`
 
   const removed = liquidity?.eq(0)
 
   return (
-    <Box>
+    <Box
+      onClick={() => {
+        router.replace({
+          pathname: positionSummaryLink,
+        })
+      }}
+      style={{
+        cursor: 'pointer',
+      }}
+    >
       <RowBetween>
         <PrimaryPositionIdData>
           <DoubleCurrencyLogo currency0={currencyBase} currency1={currencyQuote} size={18} margin />

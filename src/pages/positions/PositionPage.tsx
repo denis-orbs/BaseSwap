@@ -25,7 +25,6 @@ import { useV3PositionFromTokenId } from 'hooks/v3/useV3Positions'
 import { useSingleCallResult } from 'lib/hooks/multicall'
 import useNativeCurrency from 'lib/hooks/useNativeCurrency'
 import { useCallback, useMemo, useRef, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
 import { Bound } from 'state/mint/v3/actions'
 import { useIsTransactionPending } from 'state/transactions/hooks'
 import { useTransactionAdder } from 'state/transactions/v3/hooks'
@@ -47,6 +46,9 @@ import { LoadingRows } from './styled'
 import Trans from 'components/Trans'
 import { useTranslation } from '@pancakeswap/localization'
 import { ExternalLink } from 'react-feather'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import Page from 'views/Page'
 
 const getTokenLink = (chainId: ChainId, address: string) => {
   if (isGqlSupportedChain(chainId)) {
@@ -371,7 +373,7 @@ export function PositionPageUnsupportedContent() {
           <Trans>To view a position, you must be connected to the network it belongs to.</Trans>
         </Text>
         <Link
-          to="/pools"
+          href="/positions"
           style={{
             width: 'fit-content',
           }}
@@ -393,7 +395,8 @@ export default function PositionPage() {
 }
 
 function PositionPageContent() {
-  const { tokenId: tokenIdFromUrl } = useParams<{ tokenId?: string }>()
+  const router = useRouter()
+  const tokenIdFromUrl = router.query.tokenId
   const { chainId, account, library: provider } = useActiveWeb3React()
   const theme = useTheme()
   const { t } = useTranslation()
@@ -649,7 +652,7 @@ function PositionPageContent() {
     </LoadingRows>
   ) : (
     <>
-      <PageWrapper>
+      <Page>
         {showConfirm && (
           <TransactionConfirmationModal
             title={t('Claim fees')}
@@ -668,10 +671,10 @@ function PositionPageContent() {
             <Link
               data-cy="visit-pool"
               style={{ textDecoration: 'none', width: 'fit-content', marginBottom: '0.5rem' }}
-              to="/pools"
+              href="/positions"
             >
               <HoverText>
-                <Trans>← Back to Pools</Trans>
+                <Trans>← Back to Positions</Trans>
               </HoverText>
             </Link>
             <ResponsiveRow>
@@ -688,20 +691,39 @@ function PositionPageContent() {
               {ownsNFT && (
                 <ActionButtonResponsiveRow>
                   {currency0 && currency1 && feeAmount && tokenId ? (
-                    <Link
-                      to={`/increaseV3/${currencyId(currency0)}/${currencyId(currency1)}/${feeAmount}/${tokenId}`}
+                    <Button
+                      // href={`/increaseV3/${currencyId(currency0)}/${currencyId(currency1)}/${feeAmount}/${tokenId}`}
+                      onClick={() => {
+                        router.replace({
+                          pathname: 'increaseV3',
+                          query: {
+                            currency0: currencyId(currency0),
+                            currency1: currencyId(currency1),
+                            feeAmount,
+                            tokenId: tokenId.toNumber(),
+                          },
+                        })
+                      }}
                       style={{ marginRight: '8px', padding: '6px 8px', width: 'fit-content', borderRadius: '12px' }}
                     >
                       <Trans>Increase Liquidity</Trans>
-                    </Link>
+                    </Button>
                   ) : null}
                   {tokenId && !removed ? (
-                    <Link
-                      to={`/removeV3/${tokenId}`}
+                    <Button
+                      // href={`/removeV3/${tokenId}`}
+                      onClick={() => {
+                        router.replace({
+                          pathname: 'removeV3',
+                          query: {
+                            tokenId: tokenId.toNumber(),
+                          },
+                        })
+                      }}
                       style={{ marginRight: '8px', padding: '6px 8px', width: 'fit-content', borderRadius: '12px' }}
                     >
                       <Trans>Remove Liquidity</Trans>
-                    </Link>
+                    </Button>
                   ) : null}
                 </ActionButtonResponsiveRow>
               )}
@@ -932,7 +954,7 @@ function PositionPageContent() {
                         numberType: NumberType.TokenTx,
                       })}
                     </Text>
-                    <ExtentsText> {t(`{currencyQuote?.symbol} per {currencyBase?.symbol}`)}</ExtentsText>
+                    <ExtentsText> {t(`${currencyQuote?.symbol} per ${currencyBase?.symbol}`)}</ExtentsText>
 
                     {inRange && (
                       <Text color={theme.colors.tertiary}>
@@ -975,7 +997,7 @@ function PositionPageContent() {
             </AutoColumn>
           </Card>
         </AutoColumn>
-      </PageWrapper>
+      </Page>
       {/* <SwitchLocaleLink /> */}
     </>
   )
