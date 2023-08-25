@@ -10,8 +10,8 @@ import useXTokenActions from '../hooks/useXTokenActions'
 export const TopHalf = styled(Flex)`
   justify-content: space-between;
   align-items: center;
-  border-image: linear-gradient(225deg, #7303c0, #ec38bc, #f86c0d, #fee383) 1;
-  border-bottom: 8px;
+  border-image: linear-gradient(225deg, #0154FD, #fff) 1;
+  border-bottom: 4px;
   border-style: solid;
   padding-bottom: 1rem;
 `
