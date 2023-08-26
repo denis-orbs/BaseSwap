@@ -714,7 +714,7 @@ function PositionPageContent() {
                       // href={`/removeV3/${tokenId}`}
                       onClick={() => {
                         router.replace({
-                          pathname: 'removeV3',
+                          pathname: '/removeV3',
                           query: {
                             tokenId: tokenId.toNumber(),
                           },
