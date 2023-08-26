@@ -35,7 +35,7 @@ import Dots from '../Loader/Dots'
 import { formatAmount } from '../../utils/formatInfoNumbers'
 import { useLPApr } from '../../state/swap/hooks'
 
-const FixedHeightRow = styled(RowBetween)`
+export const FixedHeightRow = styled(RowBetween)`
   height: 24px;
 `
 
