@@ -22,12 +22,17 @@ export const SmallMaxButton = styled(MaxButton)`
   font-size: 12px;
 `
 
+// export const ResponsiveHeaderText = styled(Text)`
+//   font-size: 40px;
+//   font-weight: 500;
+//   ${({ theme }) => theme.deprecated_mediaWidth.deprecated_upToExtraSmall`
+//      font-size: 24px
+//   `};
+// `
+
 export const ResponsiveHeaderText = styled(Text)`
   font-size: 40px;
   font-weight: 500;
-  ${({ theme }) => theme.deprecated_mediaWidth.deprecated_upToExtraSmall`
-     font-size: 24px
-  `};
 `
 
 export default Wrapper

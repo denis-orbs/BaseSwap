@@ -202,16 +202,6 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
     setTxnHash('')
   }, [onPercentSelectForSlider, txnHash])
 
-  const pendingText = (
-    <Text>
-      {t(
-        `Removing ${liquidityValue0?.toSignificant(6)} ${
-          liquidityValue0?.currency?.symbol
-        } and ${liquidityValue1?.toSignificant(6)} ${liquidityValue1?.currency?.symbol}`,
-      )}
-    </Text>
-  )
-
   function modalHeader() {
     return (
       <AutoColumn gap="sm" style={{ padding: '16px' }}>
@@ -294,7 +284,7 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
               liquidityValue0?.currency?.symbol
             } and ${liquidityValue1?.toSignificant(6)} ${liquidityValue1?.currency?.symbol}`,
           )}
-          content={() => <ConfirmationModalContent topContent={modalHeader} bottomContent={null} />}
+          content={() => <ConfirmationModalContent topContent={modalHeader} bottomContent={() => null} />}
         />
       )}
 
