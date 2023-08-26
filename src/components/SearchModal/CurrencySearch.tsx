@@ -126,9 +126,9 @@ function CurrencySearch({
   const handleCurrencySelect = useCallback(
     (currency: Currency) => {
       onCurrencySelect(currency)
-      if (audioPlay) {
-        getSwapSound().play()
-      }
+      // if (audioPlay) {
+      //   getSwapSound()?.play()
+      // }
     },
     [audioPlay, onCurrencySelect],
   )
@@ -226,7 +226,7 @@ function CurrencySearch({
     <>
       <AutoColumn gap="16px">
         <Row>
-          <Input 
+          <Input
             id="token-search-input"
             placeholder={t('Search name or paste address')}
             scale="lg"
