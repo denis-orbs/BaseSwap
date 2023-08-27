@@ -69,7 +69,43 @@ const StyledBodyWrapper = styled(BodyWrapper)<{ $hasExistingPosition: boolean }>
   max-width: 640px;
 `
 
-export default function AddLiquidityWrapper() {
+export default function RedirectDuplicateTokenIds() {
+  const router = useRouter()
+  const params: {
+    currencyIdA?: string
+    currencyIdB?: string
+    feeAmount?: string
+    tokenId?: string
+  } = router.query
+  const currencyIdA = params?.currencyIdA
+  const currencyIdB = params?.currencyIdB
+
+  const { chainId } = useActiveWeb3React()
+
+  // prevent weth + eth
+  const isETHOrWETHA =
+    currencyIdA === 'ETH' || (chainId !== undefined && currencyIdA === WRAPPED_NATIVE_CURRENCY[chainId]?.address)
+  const isETHOrWETHB =
+    currencyIdB === 'ETH' || (chainId !== undefined && currencyIdB === WRAPPED_NATIVE_CURRENCY[chainId]?.address)
+
+  if (
+    currencyIdA &&
+    currencyIdB &&
+    (currencyIdA.toLowerCase() === currencyIdB.toLowerCase() || (isETHOrWETHA && isETHOrWETHB))
+  ) {
+    // return <Navigate to={`/add/${currencyIdA}`} replace />
+
+    router.replace({
+      pathname: 'addV3',
+      query: {
+        currencyIdA,
+      },
+    })
+  }
+  return <AddLiquidityWrapper />
+}
+
+export function AddLiquidityWrapper() {
   const { chainId } = useActiveWeb3React()
   if (isSupportedChain(chainId)) {
     return <AddLiquidity />
@@ -924,7 +960,6 @@ function AddLiquidity() {
                           fiatValue={currencyAFiat}
                           showCommonBases
                           locked={depositADisabled}
-                          disableCurrencySelect={true}
                         />
 
                         <CurrencyInputPanelV3
@@ -939,7 +974,6 @@ function AddLiquidity() {
                           id="add-liquidity-input-tokenb"
                           showCommonBases
                           locked={depositBDisabled}
-                          disableCurrencySelect={true}
                         />
                       </AutoColumn>
                     </DynamicSection>

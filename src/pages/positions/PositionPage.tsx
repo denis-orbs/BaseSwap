@@ -695,7 +695,7 @@ function PositionPageContent() {
                       // href={`/increaseV3/${currencyId(currency0)}/${currencyId(currency1)}/${feeAmount}/${tokenId}`}
                       onClick={() => {
                         router.replace({
-                          pathname: 'increaseV3',
+                          pathname: '/addV3',
                           query: {
                             currency0: currencyId(currency0),
                             currency1: currencyId(currency1),

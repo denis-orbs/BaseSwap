@@ -33,6 +33,7 @@ import { tryParseTick } from './utils'
 import { useSelector } from 'react-redux'
 import { useCurrencyBalances } from 'lib/hooks/useCurrencyBalance'
 import { useRouter } from 'next/router'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 export function useV3MintState(): AppState['mintV3'] {
   return useSelector<AppState, AppState['mintV3']>((state) => state.mintV3)
@@ -168,7 +169,7 @@ export function useV3DerivedMintInfo(
   invertPrice: boolean
   ticksAtLimit: { [bound in Bound]?: boolean | undefined }
 } {
-  const { account } = useWeb3React()
+  const { account } = useActiveWeb3React()
 
   const { independentField, typedValue, leftRangeTypedValue, rightRangeTypedValue, startPriceTypedValue } =
     useV3MintState()

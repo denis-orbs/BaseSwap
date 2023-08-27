@@ -110,6 +110,10 @@ export function usePools(
   const slot0s = useMultipleContractSingleData(poolAddresses, POOL_STATE_INTERFACE, 'slot0')
   const liquidities = useMultipleContractSingleData(poolAddresses, POOL_STATE_INTERFACE, 'liquidity')
 
+  console.log(poolTokens)
+  console.log(slot0s)
+  console.log(liquidities)
+
   return useMemo(() => {
     return poolKeys.map((_key, index) => {
       const tokens = poolTokens[index]
