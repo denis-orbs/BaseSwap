@@ -10,6 +10,7 @@ import { nativeOnChain } from 'config/constants/tokens-v3'
 import { useInterfaceMulticall } from '../../hooks/useContract'
 import { isAddress } from '../../utils'
 import { Erc20Interface } from 'config/abi/types/Erc20'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 /**
  * Returns a map of the given addresses to their eventually consistent ETH balances.
@@ -61,6 +62,7 @@ export function useTokenBalancesWithLoadingIndicator(
     () => tokens?.filter((t?: Token): t is Token => isAddress(t?.address) !== false && t?.chainId === chainId) ?? [],
     [chainId, tokens],
   )
+
   const validatedTokenAddresses = useMemo(() => validatedTokens.map((vt) => vt.address), [validatedTokens])
 
   const balances = useMultipleContractSingleData(
@@ -78,6 +80,7 @@ export function useTokenBalancesWithLoadingIndicator(
       address && validatedTokens.length > 0
         ? validatedTokens.reduce<{ [tokenAddress: string]: CurrencyAmount<Token> | undefined }>((memo, token, i) => {
             const value = balances?.[i]?.result?.[0]
+            console.log(balances)
             const amount = value ? JSBI.BigInt(value.toString()) : undefined
             if (amount) {
               memo[token.address] = CurrencyAmount.fromRawAmount(token, amount)
@@ -117,7 +120,7 @@ export function useCurrencyBalances(
     [currencies],
   )
 
-  const { chainId } = useWeb3React()
+  const { chainId } = useActiveWeb3React()
   const tokenBalances = useTokenBalances(account, tokens)
   const containsETH: boolean = useMemo(() => currencies?.some((currency) => currency?.isNative) ?? false, [currencies])
   const ethBalance = useNativeCurrencyBalances(useMemo(() => (containsETH ? [account] : []), [containsETH, account]))

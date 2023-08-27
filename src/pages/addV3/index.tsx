@@ -134,8 +134,8 @@ function AddLiquidity() {
   const addTransaction = useTransactionAdder()
   const positionManager = useV3NFTPositionManagerContract(chainId)
 
-  const baseCurrency = useCurrency(params?.currencyIdA)
-  const currencyB = useCurrency(params?.currencyIdB)
+  const baseCurrency = useCurrency(currencyIdA)
+  const currencyB = useCurrency(currencyIdB)
   // prevent an error if they input ETH/WETH
   const quoteCurrency =
     baseCurrency && currencyB && baseCurrency.wrapped.equals(currencyB.wrapped) ? undefined : currencyB
@@ -960,6 +960,7 @@ function AddLiquidity() {
                           fiatValue={currencyAFiat}
                           showCommonBases
                           locked={depositADisabled}
+                          disableCurrencySelect={true}
                         />
 
                         <CurrencyInputPanelV3
@@ -974,6 +975,7 @@ function AddLiquidity() {
                           id="add-liquidity-input-tokenb"
                           showCommonBases
                           locked={depositBDisabled}
+                          disableCurrencySelect={true}
                         />
                       </AutoColumn>
                     </DynamicSection>

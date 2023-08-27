@@ -697,8 +697,8 @@ function PositionPageContent() {
                         router.replace({
                           pathname: '/addV3',
                           query: {
-                            currency0: currencyId(currency0),
-                            currency1: currencyId(currency1),
+                            currencyIdA: currencyId(currency0),
+                            currencyIdB: currencyId(currency1),
                             feeAmount,
                             tokenId: tokenId.toNumber(),
                           },

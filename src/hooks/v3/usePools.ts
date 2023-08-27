@@ -100,19 +100,18 @@ export function usePools(
     })
   }, [chainId, poolKeys])
 
-  const poolAddresses: (string | undefined)[] = useMemo(() => {
-    const v3CoreFactoryAddress = chainId && V3_CORE_FACTORY_ADDRESSES[chainId]
-    if (!v3CoreFactoryAddress) return new Array(poolTokens.length)
+  // const poolAddresses: (string | undefined)[] = useMemo(() => {
+  //   const v3CoreFactoryAddress = chainId && V3_CORE_FACTORY_ADDRESSES[chainId]
+  //   if (!v3CoreFactoryAddress) return new Array(poolTokens.length)
 
-    return poolTokens.map((value) => value && PoolCache.getPoolAddress(v3CoreFactoryAddress, ...value))
-  }, [chainId, poolTokens])
+  //   return poolTokens.map((value) => value && PoolCache.getPoolAddress(v3CoreFactoryAddress, ...value))
+  // }, [chainId, poolTokens])
+
+  // console.log(poolAddresses)
+  const poolAddresses = ['0xE22Ae3F892E470015E180d5FDD740BC39a86bc4b']
 
   const slot0s = useMultipleContractSingleData(poolAddresses, POOL_STATE_INTERFACE, 'slot0')
   const liquidities = useMultipleContractSingleData(poolAddresses, POOL_STATE_INTERFACE, 'liquidity')
-
-  console.log(poolTokens)
-  console.log(slot0s)
-  console.log(liquidities)
 
   return useMemo(() => {
     return poolKeys.map((_key, index) => {
