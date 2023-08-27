@@ -8,7 +8,7 @@ export const FEE_AMOUNT_DETAIL: Record<
   { label: string; description: ReactNode; supportedChains: readonly ChainId[] }
 > = {
   [FeeAmount.LOWEST]: {
-    label: '0.01',
+    label: '0.008',
     description: <Trans>Best for very stable pairs.</Trans>,
     supportedChains: [
       // ChainId.ARBITRUM_ONE,
@@ -25,12 +25,12 @@ export const FEE_AMOUNT_DETAIL: Record<
     ],
   },
   [FeeAmount.LOW]: {
-    label: '0.05',
+    label: '0.045',
     description: <Trans>Best for stable pairs.</Trans>,
     supportedChains: SUPPORTED_CHAINS,
   },
   [FeeAmount.MEDIUM]: {
-    label: '0.3',
+    label: '0.25',
     description: <Trans>Best for most pairs.</Trans>,
     supportedChains: SUPPORTED_CHAINS,
   },
