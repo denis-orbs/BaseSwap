@@ -2587,6 +2587,24 @@ const BIGBOOBS_BASE = new Token(
   'baseswap.fi',
 )
 
+const GMD_BASE = new Token(
+  ChainId.BASE,
+  '0xCd239E01C36d3079c0dAeF355C61cFF591C40DB1',
+  18,
+  'GMD',
+  'GMD Protocol',
+  'app.gmdprotocol.com',
+)
+
+const GND_BASE = new Token(
+  ChainId.BASE,
+  '0xfb825e93822dd971ebdfdb2180a751958dbd5e16',
+  18,
+  'GMD',
+  'GMD Protocol',
+  'app.gmdprotocol.com',
+)
+
 export const USDC = {
   [ChainId.MAINNET]: USDC_BSC,
   [ChainId.BSC_TESTNET]: USDC_TESTNET,
@@ -2629,6 +2647,8 @@ export const baseTokens = {
   magnate: MAGNATE_BASE,
   unidx: UNIDEX_BASE,
   blaze: BLAZE_BASE,
+  gmd: GMD_BASE,
+  gnd: GND_BASE,
 
   bbt: BIGBOOBS_BASE,
 }

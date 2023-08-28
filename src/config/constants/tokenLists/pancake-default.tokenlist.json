@@ -68,6 +68,22 @@
       "logoURI": ""
     },
     {
+      "name": "GMD Protocol",
+      "symbol": "GMD",
+      "address": "0xcd239e01c36d3079c0daef355c61cff591c40db1",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+        {
+      "name": "GND Protocol",
+      "symbol": "GND",
+      "address": "0xfb825e93822dd971ebdfdb2180a751958dbd5e16",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "Axelar Wrapped Bitcoin",
       "symbol": "axlWBTC",
       "address": "0x1a35EE4640b0A3B87705B0A4B45D227Ba60Ca2ad",
