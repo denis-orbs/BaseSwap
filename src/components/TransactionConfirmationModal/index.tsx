@@ -38,6 +38,10 @@ const StyledModal = styled(Modal)`
   position: relative;
   margin-top: 100px;
   padding: 12px;
+  width: 100%;
+  max-width: 800px !important;
+  margin-left: auto;
+  margin-right: auto;
 `
 
 function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {

@@ -288,7 +288,7 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
         />
       )}
 
-      <Page>
+      {!showConfirm && <Page>
         <AddRemoveTabs
           creating={false}
           adding={false}
@@ -419,7 +419,7 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
             <Loader />
           )}
         </Wrapper>
-      </Page>
+      </Page>}
     </AutoColumn>
   )
 }
