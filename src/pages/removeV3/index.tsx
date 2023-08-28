@@ -298,7 +298,7 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
         <Wrapper>
           {position ? (
             <AutoColumn gap="lg">
-              <RowBetween>
+              <RowBetween mb="12px">
                 <RowFixed>
                   <DoubleCurrencyLogo
                     currency0={feeValue0?.currency}
@@ -313,7 +313,7 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
                 </RowFixed>
                 <RangeBadge removed={removed} inRange={!outOfRange} />
               </RowBetween>
-              <LightCard>
+              <LightCard mb="12px">
                 <AutoColumn gap="md">
                   <Text fontWeight={400}>
                     <Trans>Amount</Trans>
@@ -338,7 +338,7 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
                   <Slider value={percentForSlider} onChange={onPercentSelectForSlider} />
                 </AutoColumn>
               </LightCard>
-              <LightCard>
+              <LightCard mb="12px">
                 <AutoColumn gap="md">
                   <RowBetween>
                     <Text fontSize={16} fontWeight={500}>

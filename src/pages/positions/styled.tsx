@@ -42,6 +42,7 @@ export const MaxButton = styled.button<{ width: string }>`
   color: ${({ theme }) => theme.colors.text};
   :hover {
     border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+    opacity: 0.8;
   }
   :focus {
     border: 1px solid ${({ theme }) => theme.colors.text};
