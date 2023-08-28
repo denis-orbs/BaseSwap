@@ -4,7 +4,7 @@ import { ChainId, Currency, CurrencyAmount, Fraction, Percent, Price, Token } fr
 import { NonfungiblePositionManager, Pool, Position } from '@baseswapfi/v3-sdk2'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Badge from 'components/Badge'
-import { Button, Text, Card, Box } from '@pancakeswap/uikit'
+import { Button, Text, Card, Box, Flex } from '@pancakeswap/uikit'
 import { AutoColumn } from 'components/Column'
 import DoubleCurrencyLogo from 'components/DoubleLogo'
 import { LoadingFullscreen } from 'components/Loader/styled'
@@ -755,7 +755,7 @@ function PositionPageContent() {
               }}
             >
               {'result' in metadata ? (
-                <Card
+                <Flex
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -770,7 +770,7 @@ function PositionPageContent() {
                       <Trans>Owner</Trans>
                     </ExternalLink>
                   ) : null}
-                </Card>
+                </Flex>
               ) : (
                 <Card
                   style={{
@@ -790,15 +790,6 @@ function PositionPageContent() {
                     <Label>
                       <Trans>Liquidity</Trans>
                     </Label>
-                    {/* {fiatValueOfLiquidity?.greaterThan(new Fraction(1, 100)) ? (
-                      <Text fontSize="36px" fontWeight={500}>
-                        {t(`${fiatValueOfLiquidity.toFixed(2, { groupSeparator: ',' })}`)}
-                      </Text>
-                    ) : (
-                      <Text color={theme.colors.text} fontSize="36px" fontWeight={500}>
-                        <Trans>$-</Trans>
-                      </Text>
-                    )} */}
                     <Text fontSize="36px" fontWeight={500}>
                       {t(`$${fiatValueOfLiquidity}`)}
                     </Text>
