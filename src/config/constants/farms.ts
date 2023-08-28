@@ -170,6 +170,32 @@ const farms: SerializedFarmConfig[] = [
     classic: true,
   },
   {
+    pid: 17,
+    lpSymbol: 'GND-ETH LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x4174E40E3012d5B8aA28D7db7303eAC9e01b13Fd',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0x2F097F6363B46bb64B9eE94472D8eFD5D70C617f',
+    },
+    token: serializedTokens.gnd,
+    quoteToken: serializedTokens.wbnb,
+    classic: true,
+  },
+  {
+    pid: 18,
+    lpSymbol: 'GMD-ETH LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x93DcFBE3174e5EFE65687ba5331626f44DC5e4dD',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0x47C9EBbA01af879dAC60b2A88dff8216aDA60312',
+    },
+    token: serializedTokens.gmd,
+    quoteToken: serializedTokens.wbnb,
+    classic: true,
+  },
+  {
     pid: 12,
     lpSymbol: 'BASIN-WETH LP',
     lpAddresses: {

@@ -64,6 +64,9 @@ export type TokenLookupKey =
   | 'BASIN'
   | 'OGRE'
   | 'BSX'
+  | 'GMD'
+  | 'GND'
+
 
 export type TokenInfoMapping = {
   [key in TokenLookupKey]?: ITokenInfo
@@ -258,6 +261,20 @@ export const TOKEN_INF0: TokenInfoMapping = {
     addresses: {
       [ChainId.BASE]: '0x8901cB2e82CC95c01e42206F8d1F417FE53e7Af0',
       [ChainId.ARBITRUM]: '0x8901cB2e82CC95c01e42206F8d1F417FE53e7Af0',
+    },
+  },
+  GMD: {
+    coinGeckoId: 'wrong',
+    addresses: {
+      [ChainId.BASE]: '0xCd239E01C36d3079c0dAeF355C61cFF591C40DB1',
+      [ChainId.ARBITRUM]: '0xCd239E01C36d3079c0dAeF355C61cFF591C40DB1',
+    },
+  },
+  GND: {
+    coinGeckoId: 'wrong',
+    addresses: {
+      [ChainId.BASE]: '0xfb825e93822dd971ebdfdb2180a751958dbd5e16',
+      [ChainId.ARBITRUM]: '0xfb825e93822dd971ebdfdb2180a751958dbd5e16',
     },
   },
   AXLWBTC: {
