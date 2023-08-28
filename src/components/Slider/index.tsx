@@ -6,6 +6,8 @@ const StyledRangeInput = styled.input<{ size: number }>`
   width: 100%; /* Specific width is required for Firefox. */
   background: transparent; /* Otherwise white in Chrome */
   cursor: pointer;
+  margin-top: 12px;
+  margin-bottom: 12px;
 
   &:focus {
     outline: none;
@@ -19,11 +21,11 @@ const StyledRangeInput = styled.input<{ size: number }>`
     -webkit-appearance: none;
     height: ${({ size }) => size}px;
     width: ${({ size }) => size}px;
-    background-color: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+    background-color: ${({ theme }) => theme.colors.primary};
     border-radius: 100%;
     border: none;
     transform: translateY(-50%);
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.primary};
 
     &:hover,
     &:focus {
@@ -38,7 +40,7 @@ const StyledRangeInput = styled.input<{ size: number }>`
     background-color: #565a69;
     border-radius: 100%;
     border: none;
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.primary};
 
     &:hover,
     &:focus {
@@ -52,7 +54,7 @@ const StyledRangeInput = styled.input<{ size: number }>`
     width: ${({ size }) => size}px;
     background-color: #565a69;
     border-radius: 100%;
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.primary};
 
     &:hover,
     &:focus {
@@ -62,20 +64,12 @@ const StyledRangeInput = styled.input<{ size: number }>`
   }
 
   &::-webkit-slider-runnable-track {
-    background: linear-gradient(
-      90deg,
-      ${({ theme }) => theme.colors.gradients.basedsexgrayflip},
-      ${({ theme }) => theme.colors.gradients.basedsexgrayflip}
-    );
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.primary});
     height: 2px;
   }
 
   &::-moz-range-track {
-    background: linear-gradient(
-      90deg,
-      ${({ theme }) => theme.colors.gradients.basedsexgrayflip},
-      ${({ theme }) => theme.colors.gradients.basedsexgrayflip}
-    );
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.primary});
     height: 2px;
   }
 
@@ -84,14 +78,14 @@ const StyledRangeInput = styled.input<{ size: number }>`
     border-color: transparent;
     color: transparent;
 
-    background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+    background: ${({ theme }) => theme.colors.primary};
     height: 2px;
   }
   &::-ms-fill-lower {
-    background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+    background: ${({ theme }) => theme.colors.primary};
   }
   &::-ms-fill-upper {
-    background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+    background: ${({ theme }) => theme.colors.primary};
   }
 `
 
@@ -117,7 +111,7 @@ export default function Slider({
     (e: ChangeEvent<HTMLInputElement>) => {
       onChange(parseInt(e.target.value))
     },
-    [onChange],
+    [onChange]
   )
 
   return (
