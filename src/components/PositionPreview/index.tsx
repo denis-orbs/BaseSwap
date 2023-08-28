@@ -63,7 +63,7 @@ export const PositionPreview = ({
 
   return (
     <AutoColumn gap="md" style={{ marginTop: '0.5rem' }}>
-      <RowBetween style={{ marginBottom: '0.5rem' }}>
+      <RowBetween style={{ marginBottom: '0.5rem', marginLeft: '12px', marginRight: '12px', width: '98%' }}>
         <RowFixed>
           <DoubleCurrencyLogo
             currency0={currency0 ?? undefined}

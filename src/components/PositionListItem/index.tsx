@@ -49,6 +49,12 @@ import { useRouter } from 'next/router'
 //   `};
 // `
 
+const StyledBox = styled(Box)`
+  background: ${({ theme }) => theme.colors.gradients.basedsexdark};
+  padding: 12px;
+  cursor: pointer;
+`
+
 const LinkRow = styled(Link)`
   align-items: center;
   display: flex;
@@ -78,7 +84,7 @@ const RangeLineItem = styled(DataLineItem)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 4px;
+  margin-top: 12px;
   width: 100%;
 `
 
@@ -93,6 +99,9 @@ const RangeText = styled(Text)`
   word-break: break-word;
   padding: 0.25rem 0.25rem;
   border-radius: 8px;
+  margin-right: 24px;
+  padding: 8px;
+  background: ${({ theme }) => theme.colors.gradients.basedsexdark};
 `
 
 const FeeTierText = styled(Text)`
@@ -114,6 +123,7 @@ const ExtentsText = styled(Text)`
   display: inline-block;
   line-height: 16px;
   margin-right: 4px !important;
+  font-weight: 600;
 `
 
 const PrimaryPositionIdData = styled.div`
@@ -161,7 +171,10 @@ export function getPriceOrderingFromPositionForUI(position?: Position): {
 
   // if token1 is an ETH-/BTC-stable asset, set it as the base token
   const bases = [...Object.values(currentTokenMap.wbnb), currentTokenMap.axlwbtc]
-  if (bases.some((base) => base && base.equals(token1))) {
+  
+  if (bases[8].address.toLowerCase() === token1.address.toLowerCase()) {
+  // homeless-- this didn't work my fix above is probably super janky don't use
+  // if (bases.some((base) => base && base.equals(token1))) {
     return {
       priceLower: position.token0PriceUpper.invert(),
       priceUpper: position.token0PriceLower.invert(),
@@ -232,14 +245,11 @@ export default function PositionListItem({
   const removed = liquidity?.eq(0)
 
   return (
-    <Box
+    <StyledBox
       onClick={() => {
         router.replace({
           pathname: positionSummaryLink,
         })
-      }}
-      style={{
-        cursor: 'pointer',
       }}
     >
       <RowBetween>
@@ -260,7 +270,7 @@ export default function PositionListItem({
         <RangeLineItem>
           <RangeText>
             <ExtentsText>
-              <Text>Min: </Text>
+              Min:
             </ExtentsText>
             <Text>
               <span>
@@ -281,7 +291,7 @@ export default function PositionListItem({
           </SmallOnly> */}
           <RangeText>
             <ExtentsText>
-              <Text>Max:</Text>
+              Max:
             </ExtentsText>
             <Text>
               <span>
@@ -299,6 +309,6 @@ export default function PositionListItem({
       ) : (
         <Loader />
       )}
-    </Box>
+    </StyledBox>
   )
 }

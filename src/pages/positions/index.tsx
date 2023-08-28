@@ -280,7 +280,7 @@ export default function Pool() {
       <PageWrapper>
         <AutoColumn gap="lg" justify="center">
           <AutoColumn gap="lg" style={{ width: '100%' }}>
-            <TitleRow padding="0">
+            <TitleRow padding="0" marginBottom="12px">
               <Text>
                 <Trans>Pools</Trans>
               </Text>
