@@ -11,9 +11,9 @@ const wethCacheKey = 'WETH_PRICE'
 export const priceDexScreener = async (address: any): Promise<any> => {
   const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${address}`, {
     method: 'GET',
-  });
-  const res = await response.json();
-  return res.pairs[0].priceUsd;
+  })
+  const res = await response.json()
+  return res.pairs[0].priceUsd
 }
 
 export async function getWethPrice() {
@@ -22,7 +22,7 @@ export async function getWethPrice() {
     //   `https://api.coingecko.com/api/v3/simple/token_price/ethereum?contract_addresses=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&vs_currencies=usd`,
     // )
     // const price = await response.json()
-    const price = await priceDexScreener("0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2")
+    const price = await priceDexScreener('0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2')
     return price
   } catch (error) {
     console.log('Fetching WETH price failed')
@@ -83,16 +83,15 @@ export const fetchMultipleCoinGeckoPricesByAddress = async (
   }
 
   const fetchTokenPricesSequentially = async (addresses) => {
-    const tokenPrices = {};
-    const tokenAddresses = addresses.split(',');
-    console.log('tokenAddresses', tokenAddresses)
-    for (const address of tokenAddresses) {
-      const price = await priceDexScreener(address); // Assuming priceDexScreener() fetches the price for a single address
-      console.log('price', price)
-      tokenPrices[address] = price;
+    const tokenPrices = {}
+    const addies = addresses.split(',')
+
+    for (const address of addies) {
+      const price = await priceDexScreener(address) // Assuming priceDexScreener() fetches the price for a single address
+      tokenPrices[address] = price
     }
-  
-    return tokenPrices;
+
+    return tokenPrices
   }
   //console.log('Token price cache expired. Making API call...')
 
@@ -100,7 +99,7 @@ export const fetchMultipleCoinGeckoPricesByAddress = async (
 
   try {
     const response = await fetchTokenPricesSequentially(addresses)
-    
+
     const prices = response
 
     // for (const address in prices) {

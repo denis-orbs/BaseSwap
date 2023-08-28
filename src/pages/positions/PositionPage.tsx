@@ -31,7 +31,7 @@ import { useTransactionAdder } from 'state/transactions/v3/hooks'
 import styled, { useTheme } from 'styled-components'
 import { currencyId } from 'utils/currencyId'
 import { formatCurrencyAmount } from 'utils/v3/formatCurrencyAmount'
-import { formatPrice, NumberType } from 'utils/v3/formatNumbers'
+import { formatNumber, formatPrice, NumberType } from 'utils/v3/formatNumbers'
 import { formatTickPrice } from 'utils/v3/formatTickPrice'
 import { unwrappedToken } from 'utils/v3/unwrappedToken'
 
@@ -49,6 +49,7 @@ import { ExternalLink } from 'react-feather'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Page from 'views/Page'
+import useTokenPrices from 'hooks/useTokenPrices'
 
 const getTokenLink = (chainId: ChainId, address: string) => {
   if (isGqlSupportedChain(chainId)) {
@@ -60,7 +61,7 @@ const getTokenLink = (chainId: ChainId, address: string) => {
 }
 
 export const DarkCard = styled(Card)`
-  background: ${({ theme }) => (theme.colors.gradients.basedsexdark)};
+  background: ${({ theme }) => theme.colors.gradients.basedsexdark};
 `
 
 const PositionPageButtonPrimary = styled(Button)`
@@ -239,10 +240,11 @@ function LinkedCurrency({ chainId, currency }: { chainId?: number; currency?: Cu
       <a href={getTokenLink(chainId, address)} target="_blank">
         <RowFixed>
           <CurrencyLogo currency={currency} size="20px" style={{ marginRight: '0.5rem' }} />
-          <Text>{currency?.symbol} 
-          {/* ↗ */}
+          <Text>
+            {currency?.symbol}
+            {/* ↗ */}
           </Text>
-          <ExternalLink size={16} style={{marginLeft: 4}}/>
+          <ExternalLink size={16} style={{ marginLeft: 4 }} />
         </RowFixed>
       </a>
     )
@@ -485,12 +487,17 @@ function PositionPageContent() {
   const isCollectPending = useIsTransactionPending(collectMigrationHash ?? undefined)
   const [showConfirm, setShowConfirm] = useState(false)
 
-  // usdc prices always in terms of tokens
-  const price0 = useStablecoinPrice(token0 ?? undefined)
-  const price1 = useStablecoinPrice(token1 ?? undefined)
+  const { getTokenPrice } = useTokenPrices()
 
-  const fiatValueOfFees: CurrencyAmount<Currency> | null = useMemo(() => {
-    if (!price0 || !price1 || !feeValue0 || !feeValue1) return null
+  // usdc prices always in terms of tokens
+  // const price0 = useStablecoinPrice(token0 ?? undefined)
+  // const price1 = useStablecoinPrice(token1 ?? undefined)
+
+  const price0 = useMemo(() => getTokenPrice(token0?.address), [getTokenPrice, token0])
+  const price1 = useMemo(() => getTokenPrice(token0?.address), [getTokenPrice, token1])
+
+  const fiatValueOfFees: string = useMemo(() => {
+    if (!feeValue0 || !feeValue1) return '0'
 
     // we wrap because it doesn't matter, the quote returns a USDC amount
     const feeValue0Wrapped = feeValue0?.wrapped
@@ -498,29 +505,19 @@ function PositionPageContent() {
 
     if (!feeValue0Wrapped || !feeValue1Wrapped) return null
 
-    const amount0 = price0.quote(feeValue0Wrapped)
-    const amount1 = price1.quote(feeValue1Wrapped)
-    return amount0.add(amount1)
+    const amount0 = price0 * parseFloat(feeValue0Wrapped.toFixed() || '0')
+    const amount1 = price1 * parseFloat(feeValue1Wrapped.toFixed() || '0')
+
+    return formatNumber(amount0 + amount1)
   }, [price0, price1, feeValue0, feeValue1])
 
-  const fiatValueOfLiquidity: CurrencyAmount<Token> | null = useMemo(() => {
+  const fiatValueOfLiquidity: string = useMemo(() => {
+    if (!position) return '0'
 
-    console.log('price0', price0)
-    // homeless- price1 is undefined for me
-    console.log('price1', price1)
-    console.log('position', position)
+    const amount0 = price0 * parseFloat(position?.amount0.toFixed() || '0')
+    const amount1 = price1 * parseFloat(position?.amount1.toFixed() || '0')
 
-
-    if (!price0 || !price1 || !position) return null
-    const amount0 = price0.quote(position.amount0)
-    const amount1 = price1.quote(position.amount1)
-
-    // homeless- starting to debug here
-    console.log('price0, position.amount0, amount0', price0, position.amount0, amount0)
-    console.log('price1, position.amount0, amount1', price1, position.amount1, amount1)
-
-
-    return amount0.add(amount1)
+    return formatNumber(amount0 + amount1)
   }, [price0, price1, position])
 
   const addTransaction = useTransactionAdder()
@@ -686,7 +683,7 @@ function PositionPageContent() {
             pendingText={t(`Collecting fees`)}
           />
         )}
-        <AutoColumn gap="md" style={{width: '100%', maxWidth: '1000px', marginBottom: '100px'}}>
+        <AutoColumn gap="md" style={{ width: '100%', maxWidth: '1000px', marginBottom: '100px' }}>
           <AutoColumn gap="sm">
             <Link
               data-cy="visit-pool"
@@ -789,11 +786,11 @@ function PositionPageContent() {
             <AutoColumn gap="sm" style={{ width: '100%', height: '100%' }}>
               <Card>
                 <AutoColumn gap="md" style={{ width: '100%' }}>
-                  <AutoColumn gap="md" style={{padding: '8px'}}>
+                  <AutoColumn gap="md" style={{ padding: '8px' }}>
                     <Label>
                       <Trans>Liquidity</Trans>
                     </Label>
-                    {fiatValueOfLiquidity?.greaterThan(new Fraction(1, 100)) ? (
+                    {/* {fiatValueOfLiquidity?.greaterThan(new Fraction(1, 100)) ? (
                       <Text fontSize="36px" fontWeight={500}>
                         {t(`${fiatValueOfLiquidity.toFixed(2, { groupSeparator: ',' })}`)}
                       </Text>
@@ -801,10 +798,13 @@ function PositionPageContent() {
                       <Text color={theme.colors.text} fontSize="36px" fontWeight={500}>
                         <Trans>$-</Trans>
                       </Text>
-                    )}
+                    )} */}
+                    <Text fontSize="36px" fontWeight={500}>
+                      {t(`$${fiatValueOfLiquidity}`)}
+                    </Text>
                   </AutoColumn>
                   <DarkCard padding="12px 16px" margin="2px 8px">
-                    <AutoColumn gap="md" >
+                    <AutoColumn gap="md">
                       <RowBetween mb="8px">
                         <LinkedCurrency chainId={chainId} currency={currencyQuote} />
                         <RowFixed>
@@ -847,15 +847,9 @@ function PositionPageContent() {
                         <Label>
                           <Trans>Unclaimed fees</Trans>
                         </Label>
-                        {fiatValueOfFees?.greaterThan(new Fraction(1, 100)) ? (
-                          <Text color={theme.colors.success} fontSize="36px" fontWeight={500}>
-                            {t(`${fiatValueOfFees.toFixed(2, { groupSeparator: ',' })}`)}
-                          </Text>
-                        ) : (
-                          <Text color={theme.colors.text} fontSize="36px" fontWeight={500}>
-                            <Trans>$-</Trans>
-                          </Text>
-                        )}
+                        <Text color={theme.colors.success} fontSize="36px" fontWeight={500}>
+                          {t(`$${fiatValueOfFees}`)}
+                        </Text>
                       </AutoColumn>
                       {ownsNFT && (feeValue0?.greaterThan(0) || feeValue1?.greaterThan(0) || !!collectMigrationHash) ? (
                         <ResponsiveButtonConfirmed
@@ -960,7 +954,7 @@ function PositionPageContent() {
                 </RowFixed>
               </RowBetween>
 
-              <RowBetween style={{justifyContent: 'center', marginBottom: '12px'}}>
+              <RowBetween style={{ justifyContent: 'center', marginBottom: '12px' }}>
                 <DarkCard padding="12px">
                   <AutoColumn gap="sm" justify="center">
                     <ExtentsText>

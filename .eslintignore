@@ -26,3 +26,4 @@ scripts/**/*.js
 **/*.config.js
 src/components/CurrencyInputPanelV3/**/*.tsx
 src/pages/positions/**/*.tsx
+src/utils/TokenPricing.ts

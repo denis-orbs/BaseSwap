@@ -1,5 +1,5 @@
 import { MaxUint256, PERMIT2_ADDRESS } from '@uniswap/permit2-sdk'
-import { Currency, SupportedChainsType, Token } from '@baseswapfi/sdk-core'
+import { SupportedChainsType, Token } from '@baseswapfi/sdk-core'
 import ERC20_ABI from 'config/abi/erc20.json'
 import { Erc20, Weth } from 'config/abi/types'
 import WETH_ABI from 'config/abi/weth.json'

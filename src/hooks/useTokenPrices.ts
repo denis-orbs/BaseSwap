@@ -24,7 +24,7 @@ const useTokenPrices = () => {
 
   const getTokenPrice = useCallback(
     (token: string) => {
-      return prices[token.toLowerCase()] || 0
+      return prices[token?.toLowerCase()] || 0
     },
     [prices],
   )

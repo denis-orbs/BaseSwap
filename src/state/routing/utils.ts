@@ -1,20 +1,16 @@
-import { BigNumber } from '@ethersproject/bignumber'
 import { MixedRouteSDK } from '@baseswapfi/router-sdk'
 import { ChainId, Currency, CurrencyAmount, Token, TradeType } from '@baseswapfi/sdk-core'
 import { AlphaRouter } from '@baseswapfi/smart-order-router'
-// import { DutchOrderInfo, DutchOrderInfoJSON } from '@uniswap/uniswapx-sdk'
 import { Pair, Route as V2Route } from '@baseswapfi/v2-sdk'
 import { FeeAmount, Pool, Route as V3Route } from '@baseswapfi/v3-sdk2'
 import { asSupportedChain } from 'config/constants/chains'
 import { RPC_PROVIDERS } from 'config/constants/providers'
 import { nativeOnChain } from 'config/constants/tokens-v3'
-import { toSlippagePercent } from 'utils/v3/slippage'
 
-import { getApproveInfo, getWrapInfo } from './gas'
+import { getApproveInfo } from './gas'
 import {
   ClassicQuoteData,
   ClassicTrade,
-  //  DutchOrderTrade,
   GetQuoteArgs,
   InterfaceTrade,
   isClassicQuoteResponse,

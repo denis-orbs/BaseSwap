@@ -21,10 +21,12 @@ function useV3PositionsFromTokenIds(tokenIds: BigNumber[] | undefined): UseV3Pos
   const error = useMemo(() => results.some(({ error }) => error), [results])
 
   const positions = useMemo(() => {
-    if (!loading && !error && tokenIds) {
+    if (!loading && !error && tokenIds && results) {
       return results.map((call, i) => {
         const tokenId = tokenIds[i]
         const result = call.result as CallStateResult
+        if (!result) return null
+
         return {
           tokenId,
           fee: result.fee,
