@@ -187,6 +187,7 @@ const NFTGrid = styled.div`
   display: grid;
   grid-template: 'overlap';
   min-height: 400px;
+  padding: 12px;
 `
 
 const NFTCanvas = styled.canvas`
