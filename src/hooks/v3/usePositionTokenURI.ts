@@ -42,6 +42,12 @@ export function usePositionTokenURI(tokenId: TokenId | undefined): UsePositionTo
   })
 
   return useMemo(() => {
+    console.log('inside here error', error)
+    console.log('inside here valid', !valid)
+    console.log('inside here tokenId', !tokenId)
+    // homeless- this is where the next 2 are returning true, not sure how this is being called, havent looked
+    console.log('inside here loading', loading)
+    console.log('inside here result', !result)
     if (error || !valid || !tokenId) {
       return {
         valid: false,
@@ -61,6 +67,10 @@ export function usePositionTokenURI(tokenId: TokenId | undefined): UsePositionTo
       }
     }
     const [tokenURI] = result as [string]
+
+    console.log('tokenURI', tokenURI)
+    console.log('tokenURI STARTS_WITH', STARTS_WITH)
+
     if (!tokenURI || !tokenURI.startsWith(STARTS_WITH))
       return {
         valid: false,
@@ -69,6 +79,8 @@ export function usePositionTokenURI(tokenId: TokenId | undefined): UsePositionTo
 
     try {
       const json = JSON.parse(atob(tokenURI.slice(STARTS_WITH.length)))
+
+      console.log('json', json)
 
       return {
         valid: true,
