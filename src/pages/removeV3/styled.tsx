@@ -20,6 +20,7 @@ export const Wrapper = styled.div`
 
 export const SmallMaxButton = styled(MaxButton)`
   font-size: 12px;
+  color: #000;
   
 `
 
@@ -34,6 +35,7 @@ export const SmallMaxButton = styled(MaxButton)`
 export const ResponsiveHeaderText = styled(Text)`
   font-size: 40px;
   font-weight: 500;
+  color: #fff;
 `
 
 export default Wrapper
