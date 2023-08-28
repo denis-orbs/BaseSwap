@@ -38,9 +38,9 @@ export default function RangeBadge({ removed, inRange }: { removed?: boolean; in
     <BadgeWrapper>
       {removed ? (
         <MouseoverTooltip text={<Text>Your position has 0 liquidity, and is not earning fees.</Text>}>
-          <LabelText color={theme.colors.secondary}>
+          <LabelText color={theme.colors.closed}>
             <BadgeText>
-              <Text>Closed</Text>
+              <Text style={{color: theme && theme.colors.closed}}>Closed</Text>
             </BadgeText>
             <Slash width={12} height={12} />
           </LabelText>
@@ -53,7 +53,7 @@ export default function RangeBadge({ removed, inRange }: { removed?: boolean; in
         >
           <LabelText color={theme.colors.success}>
             <BadgeText>
-              <Text>In Range</Text>
+              <Text style={{color: theme && theme.colors.success}}>In Range</Text>
             </BadgeText>
             <ActiveDot />
           </LabelText>
@@ -68,7 +68,7 @@ export default function RangeBadge({ removed, inRange }: { removed?: boolean; in
         >
           <LabelText color={theme.colors.warning}>
             <BadgeText>
-              <Text>Out of range</Text>
+              <Text style={{color: theme && theme.colors.warning}}>Out of range</Text>
             </BadgeText>
             <AlertTriangle width={12} height={12} />
           </LabelText>
