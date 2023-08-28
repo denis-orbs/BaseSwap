@@ -59,6 +59,10 @@ const getTokenLink = (chainId: ChainId, address: string) => {
   }
 }
 
+export const DarkCard = styled(Card)`
+  background: ${({ theme }) => (theme.colors.gradients.basedsexdark)};
+`
+
 const PositionPageButtonPrimary = styled(Button)`
   width: 228px;
   height: 40px;
@@ -213,7 +217,7 @@ function CurrentPriceCard({
   const { t } = useTranslation()
 
   return (
-    <Card padding="12px">
+    <DarkCard padding="12px" marginLeft="12px" marginRight="12px" marginBottom="4px">
       <AutoColumn gap="sm" justify="center">
         <ExtentsText>
           <Trans>Current price</Trans>
@@ -223,7 +227,7 @@ function CurrentPriceCard({
         </Text>
         <ExtentsText>{t(`${currencyQuote?.symbol} per ${currencyBase?.symbol}`)}</ExtentsText>
       </AutoColumn>
-    </Card>
+    </DarkCard>
   )
 }
 
@@ -232,12 +236,15 @@ function LinkedCurrency({ chainId, currency }: { chainId?: number; currency?: Cu
 
   if (typeof chainId === 'number' && address) {
     return (
-      <ExternalLink href={getTokenLink(chainId, address)}>
+      <a href={getTokenLink(chainId, address)} target="_blank">
         <RowFixed>
           <CurrencyLogo currency={currency} size="20px" style={{ marginRight: '0.5rem' }} />
-          <Text>{currency?.symbol} ↗</Text>
+          <Text>{currency?.symbol} 
+          {/* ↗ */}
+          </Text>
+          <ExternalLink size={16} style={{marginLeft: 4}}/>
         </RowFixed>
-      </ExternalLink>
+      </a>
     )
   }
 
@@ -497,9 +504,22 @@ function PositionPageContent() {
   }, [price0, price1, feeValue0, feeValue1])
 
   const fiatValueOfLiquidity: CurrencyAmount<Token> | null = useMemo(() => {
+
+    console.log('price0', price0)
+    // homeless- price1 is undefined for me
+    console.log('price1', price1)
+    console.log('position', position)
+
+
     if (!price0 || !price1 || !position) return null
     const amount0 = price0.quote(position.amount0)
     const amount1 = price1.quote(position.amount1)
+
+    // homeless- starting to debug here
+    console.log('price0, position.amount0, amount0', price0, position.amount0, amount0)
+    console.log('price1, position.amount0, amount1', price1, position.amount1, amount1)
+
+
     return amount0.add(amount1)
   }, [price0, price1, position])
 
@@ -666,18 +686,18 @@ function PositionPageContent() {
             pendingText={t(`Collecting fees`)}
           />
         )}
-        <AutoColumn gap="md">
+        <AutoColumn gap="md" style={{width: '100%', maxWidth: '1000px', marginBottom: '100px'}}>
           <AutoColumn gap="sm">
             <Link
               data-cy="visit-pool"
-              style={{ textDecoration: 'none', width: 'fit-content', marginBottom: '0.5rem' }}
+              style={{ textDecoration: 'none', width: 'fit-content', marginBottom: '1rem' }}
               href="/positions"
             >
               <HoverText>
                 <Trans>← Back to Positions</Trans>
               </HoverText>
             </Link>
-            <ResponsiveRow>
+            <ResponsiveRow mb="24px" mt="12px">
               <RowFixed>
                 <DoubleCurrencyLogo currency0={currencyBase} currency1={currencyQuote} size={24} margin />
                 <Text fontSize="24px" mr="10px">
@@ -704,7 +724,7 @@ function PositionPageContent() {
                           },
                         })
                       }}
-                      style={{ marginRight: '8px', padding: '6px 8px', width: 'fit-content', borderRadius: '12px' }}
+                      style={{ marginRight: '8px', padding: '3px 8px', width: 'fit-content', borderRadius: '12px' }}
                     >
                       <Trans>Increase Liquidity</Trans>
                     </Button>
@@ -720,7 +740,7 @@ function PositionPageContent() {
                           },
                         })
                       }}
-                      style={{ marginRight: '8px', padding: '6px 8px', width: 'fit-content', borderRadius: '12px' }}
+                      style={{ marginRight: '8px', padding: '3px 8px', width: 'fit-content', borderRadius: '12px' }}
                     >
                       <Trans>Remove Liquidity</Trans>
                     </Button>
@@ -769,7 +789,7 @@ function PositionPageContent() {
             <AutoColumn gap="sm" style={{ width: '100%', height: '100%' }}>
               <Card>
                 <AutoColumn gap="md" style={{ width: '100%' }}>
-                  <AutoColumn gap="md">
+                  <AutoColumn gap="md" style={{padding: '8px'}}>
                     <Label>
                       <Trans>Liquidity</Trans>
                     </Label>
@@ -783,9 +803,9 @@ function PositionPageContent() {
                       </Text>
                     )}
                   </AutoColumn>
-                  <Card padding="12px 16px">
-                    <AutoColumn gap="md">
-                      <RowBetween>
+                  <DarkCard padding="12px 16px" margin="2px 8px">
+                    <AutoColumn gap="md" >
+                      <RowBetween mb="8px">
                         <LinkedCurrency chainId={chainId} currency={currencyQuote} />
                         <RowFixed>
                           <Text>
@@ -816,11 +836,11 @@ function PositionPageContent() {
                         </RowFixed>
                       </RowBetween>
                     </AutoColumn>
-                  </Card>
+                  </DarkCard>
                 </AutoColumn>
               </Card>
               <Card>
-                <AutoColumn gap="md" style={{ width: '100%' }}>
+                <AutoColumn gap="md" style={{ width: '100%', padding: '8px' }}>
                   <AutoColumn gap="md">
                     <RowBetween style={{ alignItems: 'flex-start' }}>
                       <AutoColumn gap="md">
@@ -869,7 +889,7 @@ function PositionPageContent() {
                       ) : null}
                     </RowBetween>
                   </AutoColumn>
-                  <Card padding="12px 16px">
+                  <DarkCard padding="12px 16px">
                     <AutoColumn gap="md">
                       <RowBetween>
                         <RowFixed>
@@ -898,7 +918,7 @@ function PositionPageContent() {
                         </RowFixed>
                       </RowBetween>
                     </AutoColumn>
-                  </Card>
+                  </DarkCard>
                   {showCollectAsWeth && (
                     <AutoColumn gap="md">
                       <RowBetween>
@@ -915,9 +935,9 @@ function PositionPageContent() {
               </Card>
             </AutoColumn>
           </ResponsiveRow>
-          <Card>
+          <Card paddingLeft={12} paddingRight={12} paddingTop={2} paddingBottom={2}>
             <AutoColumn gap="md">
-              <RowBetween>
+              <RowBetween mb="8px">
                 <RowFixed>
                   <Label display="flex" style={{ marginRight: '12px' }}>
                     <Trans>Price range</Trans>
@@ -940,8 +960,8 @@ function PositionPageContent() {
                 </RowFixed>
               </RowBetween>
 
-              <RowBetween>
-                <Card padding="12px">
+              <RowBetween style={{justifyContent: 'center', marginBottom: '12px'}}>
+                <DarkCard padding="12px">
                   <AutoColumn gap="sm" justify="center">
                     <ExtentsText>
                       <Trans>Min price</Trans>
@@ -962,10 +982,10 @@ function PositionPageContent() {
                       </Text>
                     )}
                   </AutoColumn>
-                </Card>
+                </DarkCard>
 
                 <DoubleArrow>⟷</DoubleArrow>
-                <Card padding="12px">
+                <DarkCard padding="12px">
                   <AutoColumn gap="sm" justify="center">
                     <ExtentsText>
                       <Trans>Max price</Trans>
@@ -986,7 +1006,7 @@ function PositionPageContent() {
                       </Text>
                     )}
                   </AutoColumn>
-                </Card>
+                </DarkCard>
               </RowBetween>
               <CurrentPriceCard
                 inverted={inverted}
