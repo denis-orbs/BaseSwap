@@ -50,6 +50,19 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
   },
+  {
+    pid: 18,
+    lpSymbol: 'ETH-DAI LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x0FeB1490f80B6978002c3E501753562f2F2853B2',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0x612E2527b37CC5c46df1cfd172456E4DD507Cf09',
+    },
+    token: serializedTokens.dai,
+    quoteToken: serializedTokens.wbnb,
+    classic: true,
+  },
 
   {
     pid: 14,
