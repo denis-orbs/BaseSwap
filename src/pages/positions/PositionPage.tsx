@@ -750,7 +750,7 @@ function PositionPageContent() {
             <RowBetween></RowBetween>
           </AutoColumn>
           <ResponsiveRow align="flex-start">
-            <Box
+           {metadata?.valid && <Box
               style={{
                 height: '100%',
                 marginRight: 12,
@@ -784,7 +784,7 @@ function PositionPageContent() {
                   <LoadingFullscreen />
                 </Card>
               )}
-            </Box>
+            </Box>}
             <AutoColumn gap="sm" style={{ width: '100%', height: '100%' }}>
               <Card>
                 <AutoColumn gap="md" style={{ width: '100%' }}>
