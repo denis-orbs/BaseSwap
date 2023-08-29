@@ -397,7 +397,8 @@ export function PositionPageUnsupportedContent() {
 
 export default function PositionPage() {
   const { chainId } = useActiveWeb3React()
-  if (isSupportedChain(chainId)) {
+  const router = useRouter()
+  if (router.isReady && router.query.tokenId && isSupportedChain(chainId)) {
     return <PositionPageContent />
   }
 
