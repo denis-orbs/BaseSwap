@@ -2522,14 +2522,14 @@ const USDP_BASE = new Token(
   'USD+',
   'https://app.overnight.fi/swap',
 )
-// const USDP_BASE = new Token(
-//   ChainId.BASE,
-//   '0xB79DD08EA68A908A97220C76d19A6aA9cBDE4376',
-//   6,
-//   'USD+',
-//   'USD+',
-//   'https://app.overnight.fi/swap',
-// )
+const MAI_BASE = new Token(
+  ChainId.BASE,
+  '0xbf1aea8670d2528e08334083616dd9c5f3b087ae',
+  18,
+  'MAI',
+  'MAI Finance Stablecoin',
+  'https://www.mai.finance',
+)
 
 const DAIP_BASE = new Token(
   ChainId.BASE,
@@ -2657,6 +2657,7 @@ export const baseTokens = {
   blaze: BLAZE_BASE,
   gmd: GMD_BASE,
   gnd: GND_BASE,
+  mai: MAI_BASE,    
 
   bbt: BIGBOOBS_BASE,
 }

@@ -84,6 +84,14 @@
       "logoURI": ""
     },
     {
+      "name": "Mai Finance Stablecoin",
+      "symbol": "MAI",
+      "address": "0xbf1aea8670d2528e08334083616dd9c5f3b087ae",
+      "chainId": 8453,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "Axelar Wrapped Bitcoin",
       "symbol": "axlWBTC",
       "address": "0x1a35EE4640b0A3B87705B0A4B45D227Ba60Ca2ad",
