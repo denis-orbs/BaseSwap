@@ -284,6 +284,7 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
               liquidityValue0?.currency?.symbol
             } and ${liquidityValue1?.toSignificant(6)} ${liquidityValue1?.currency?.symbol}`,
           )}
+          // @ts-ignore
           content={() => <ConfirmationModalContent topContent={modalHeader} bottomContent={() => null} />}
         />
       )}

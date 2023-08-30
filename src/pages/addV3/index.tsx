@@ -643,6 +643,7 @@ function AddLiquidity() {
             attemptingTxn={attemptingTxn}
             hash={txHash}
             pendingText={pendingText}
+            // @ts-ignore
             content={() => {
               return (
                 <ConfirmationModalContent

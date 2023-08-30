@@ -678,6 +678,7 @@ function PositionPageContent() {
             onDismiss={() => setShowConfirm(false)}
             attemptingTxn={collecting}
             hash={collectMigrationHash ?? ''}
+            // @ts-ignore
             content={() => {
               return <ConfirmationModalContent topContent={modalHeader} bottomContent={null} />
             }}
