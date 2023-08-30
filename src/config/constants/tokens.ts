@@ -2522,6 +2522,14 @@ const USDP_BASE = new Token(
   'USD+',
   'https://app.overnight.fi/swap',
 )
+// const USDP_BASE = new Token(
+//   ChainId.BASE,
+//   '0xB79DD08EA68A908A97220C76d19A6aA9cBDE4376',
+//   6,
+//   'USD+',
+//   'USD+',
+//   'https://app.overnight.fi/swap',
+// )
 
 const DAIP_BASE = new Token(
   ChainId.BASE,
