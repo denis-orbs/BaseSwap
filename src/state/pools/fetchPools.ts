@@ -116,7 +116,6 @@ export const fetchPoolsProfileRequirement = async (): Promise<{
     .flat()
 
   const poolProfileRequireResultRaw = await multicallv2(sousChefV3, poolProfileRequireCalls, { requireSuccess: false })
-  console.log('poolProfileRequireResultRaw',poolProfileRequireResultRaw)
   const chunkSize = poolProfileRequireCalls.length / poolsWithV3.length
   const poolStakingChunkedResultRaw = chunk(poolProfileRequireResultRaw.flat(), chunkSize)
   return poolStakingChunkedResultRaw.reduce((accum, poolProfileRequireRaw, index) => {
