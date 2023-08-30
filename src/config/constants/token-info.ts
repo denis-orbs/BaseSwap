@@ -314,13 +314,13 @@ export const TOKEN_INF0: TokenInfoMapping = {
       [ChainId.ARBITRUM]: '0x4788de271F50EA6f5D5D2a5072B8D3C61d650326',
     },
   },
-  MAI: {
-    coinGeckoId: 'wrong',
-    addresses: {
-      [ChainId.BASE]: '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE',
-      [ChainId.ARBITRUM]: '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE',
-    },
-  },
+  // MAI: {
+  //   coinGeckoId: 'wrong',
+  //   addresses: {
+  //     [ChainId.BASE]: '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE',
+  //     [ChainId.ARBITRUM]: '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE',
+  //   },
+  // },
   OGRE: {
     coinGeckoId: 'wrong',
     addresses: {
