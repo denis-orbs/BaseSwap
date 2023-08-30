@@ -7,10 +7,14 @@ import { fetchMasterChefData } from './fetchMasterChefData'
 import { SerializedFarm } from '../types'
 
 const fetchFarms = async (farmsToFetch: SerializedFarmConfig[]): Promise<SerializedFarm[]> => {
+  console.log('farmsToFetch',farmsToFetch)
   const [farmResult, masterChefResult] = await Promise.all([
     fetchPublicFarmsData(farmsToFetch),
     fetchMasterChefData(farmsToFetch),
   ])
+
+  console.log('farmResult',farmResult)
+  console.log('farmResult',masterChefResult)
 
   return farmsToFetch.map((farm, index) => {
     const [

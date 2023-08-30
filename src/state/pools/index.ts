@@ -38,6 +38,7 @@ import { getTokenPricesFromFarm } from './helpers'
 import { resetUserState } from '../global/actions'
 import { fetchUserIfoCredit, fetchPublicIfoData } from './fetchUserIfo'
 import { fetchVaultUser } from './fetchVaultUser'
+import useTokenPrices from 'hooks/useTokenPrices'
 
 export const initialPoolVaultState = Object.freeze({
   totalShares: null,
@@ -115,7 +116,14 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
       currentBlockNumber ? Promise.resolve(currentBlockNumber) : defaultRpcProvider.getBlockNumber(),
     ])
 
-    const farmsData = await fetchFarms(farmsConfig)
+
+    // HOMELESS
+    // ADDING FARM
+    // ALWAYS UPDATE PID WHEN THERE IS A NEW FARM ADDED NOT IN MC
+    // OTHERWISE POOL APRS DONT SHOW
+    const filteredFarmConfig = farmsConfig.filter(item=> item.pid !== 17 && item.pid !== 18 && item.pid !== 19)
+
+    const farmsData = await fetchFarms(filteredFarmConfig)
     const farmsWithPrices = await getFarmsPrices(farmsData)
 
     const prices = getTokenPricesFromFarm([...farmsWithPrices])
@@ -159,6 +167,8 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
         isFinished: isPoolFinished,
       }
     })
+
+    console.log('liveData',liveData)
 
     dispatch(setPoolsPublicData(liveData))
   } catch (error) {
