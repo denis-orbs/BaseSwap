@@ -51,7 +51,7 @@ const farms: SerializedFarmConfig[] = [
     classic: true,
   },
   {
-    pid: 18,
+    pid: 19,
     lpSymbol: 'ETH-DAI LP',
     lpAddresses: {
       [ChainId.BASE]: '0x0FeB1490f80B6978002c3E501753562f2F2853B2',
@@ -63,7 +63,6 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
   },
-
   {
     pid: 14,
     lpSymbol: 'axlWBTC-USDC LP',

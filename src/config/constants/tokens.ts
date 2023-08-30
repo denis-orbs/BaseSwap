@@ -2606,9 +2606,9 @@ const GMD_BASE = new Token(
 
 const GND_BASE = new Token(
   ChainId.BASE,
-  '0xfb825e93822dd971ebdfdb2180a751958dbd5e16',
+  '0xfB825E93822DD971EBDFdB2180A751958dBD5e16',
   18,
-  'GMD',
+  'GND',
   'GMD Protocol',
   'app.gmdprotocol.com',
 )
