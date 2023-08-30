@@ -129,25 +129,6 @@ const priceHelperLps: SerializedFarmConfig[] = [
     token: baseTokens.unidx,
     quoteToken: baseTokens.wbnb,
   },
-  {
-    pid: 17,
-    lpSymbol: 'GND-ETH LP',
-    lpAddresses: {
-      8453: '0x4174E40E3012d5B8aA28D7db7303eAC9e01b13Fd',
-    },
-    token: baseTokens.gnd,
-    quoteToken: baseTokens.wbnb,
-  },
-  
-  // {
-  //   pid: 18,
-  //   lpSymbol: 'GMD-ETH LP',
-  //   lpAddresses: {
-  //     8453: '0x93DcFBE3174e5EFE65687ba5331626f44DC5e4dD',
-  //   },
-  //   token: baseTokens.gmd,
-  //   quoteToken: baseTokens.wbnb,
-  // },
 
 ]
 

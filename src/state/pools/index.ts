@@ -38,7 +38,6 @@ import { getTokenPricesFromFarm } from './helpers'
 import { resetUserState } from '../global/actions'
 import { fetchUserIfoCredit, fetchPublicIfoData } from './fetchUserIfo'
 import { fetchVaultUser } from './fetchVaultUser'
-import useTokenPrices from 'hooks/useTokenPrices'
 
 export const initialPoolVaultState = Object.freeze({
   totalShares: null,
@@ -167,8 +166,6 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
         isFinished: isPoolFinished,
       }
     })
-
-    console.log('liveData',liveData)
 
     dispatch(setPoolsPublicData(liveData))
   } catch (error) {
