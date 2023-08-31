@@ -59,8 +59,8 @@ const farms: SerializedFarmConfig[] = [
   //   nftPoolAddress: {
   //     [ChainId.BASE]: '0x612E2527b37CC5c46df1cfd172456E4DD507Cf09',
   //   },
-  //   token: serializedTokens.dai,
-  //   quoteToken: serializedTokens.wbnb,
+  //   token: serializedTokens.wbnb,
+  //   quoteToken: serializedTokens.dai,
   //   classic: true,
   // },
   {

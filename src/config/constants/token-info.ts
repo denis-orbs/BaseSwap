@@ -91,6 +91,7 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
   },
   DAI: {
     coinGeckoId: 'dai',
+    decimals: 18, 
     addresses: {
       [ChainId.BASE]: '0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb',
     },
