@@ -47,7 +47,7 @@ export async function getCombinedTokenPrices(chainId: ChainId) {
       storageKey,
       JSON.stringify({
         prices,
-        lstTime: Date.now(),
+        lastTime: Date.now(),
       }),
     )
 
