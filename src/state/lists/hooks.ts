@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import { createSelector } from '@reduxjs/toolkit'
 import { DEFAULT_LIST_OF_LISTS, OFFICIAL_LISTS } from 'config/constants/lists'
 import DEFAULT_TOKEN_LIST from '../../config/constants/tokenLists/pancake-default.tokenlist.json'
+import DEFAULT_TOKEN_LIST_2 from '../../config/constants/tokenLists/memecity.json'
 import { UNSUPPORTED_LIST_URLS, WARNING_LIST_URLS } from '../../config/constants/lists'
 import UNSUPPORTED_TOKEN_LIST from '../../config/constants/tokenLists/pancake-unsupported.tokenlist.json'
 import WARNING_TOKEN_LIST from '../../config/constants/tokenLists/pancake-warning.tokenlist.json'
@@ -45,6 +46,13 @@ const combineTokenMapsWithDefault = (lists: AppState['lists']['byUrl'], urls: st
   return combineMaps(combineTokenMaps(lists, urls), defaultTokenMap)
 }
 
+const combineTokenMapsWithDefault2 = (lists: AppState['lists']['byUrl'], urls: string[]) => {
+  const defaultTokenMap = listToTokenMap(DEFAULT_TOKEN_LIST_2)
+  if (!urls) return defaultTokenMap
+  const what = combineTokenMaps(lists, urls)
+  return combineMaps(combineTokenMaps(lists, urls), defaultTokenMap)
+}
+
 const combineTokenMaps = (lists: AppState['lists']['byUrl'], urls: string[]) => {
   if (!urls) return EMPTY_LIST
   return (
@@ -71,6 +79,13 @@ export const combinedTokenMapFromActiveUrlsSelector = createSelector(
   [selectorByUrls, selectorActiveUrls],
   (lists, urls) => {
     return combineTokenMapsWithDefault(lists, urls)
+  },
+)
+
+export const combinedTokenMapFromActiveUrlsSelector2 = createSelector(
+  [selectorByUrls, selectorActiveUrls],
+  (lists, urls) => {
+    return combineTokenMapsWithDefault2(lists, urls)
   },
 )
 
@@ -189,6 +204,27 @@ export function useCombinedActiveList(): TokenAddressMap {
   return activeTokens
 }
 
+export function useCombinedActiveList2(): TokenAddressMap {
+  const activeTokens = useSelector(combinedTokenMapFromActiveUrlsSelector2)
+  return activeTokens
+}
+
+export function useMemeCityActiveList(): TokenAddressMap {
+  const tokenMap: { [chainId: number]: { [tokenAddress: string]: { token: WrappedTokenInfo, list: TokenList } } } = {};
+
+  DEFAULT_TOKEN_LIST_2.tokens.forEach(token => {
+    if (!tokenMap[token.chainId]) {
+      tokenMap[token.chainId] = {};
+    }
+
+    const wrappedTokenInfo = new WrappedTokenInfo(token, []);
+    tokenMap[token.chainId][token.address] = { token: wrappedTokenInfo, list: DEFAULT_TOKEN_LIST_2 };
+  });
+
+  return tokenMap as TokenAddressMap;
+}
+
+//jump ^^
 // all tokens from inactive lists
 export function useCombinedInactiveList(): TokenAddressMap {
   return useSelector(combinedTokenMapFromInActiveUrlsSelector)
