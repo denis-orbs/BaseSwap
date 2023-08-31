@@ -9,7 +9,7 @@ import QuestionHelper from 'components/QuestionHelper'
 import { useTranslation } from '@pancakeswap/localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useWeb3React } from '@web3-react/core'
-import { useMemeCityActiveList } from '../../state/lists/hooks'
+import { useCombinedActiveList2 } from '../../state/lists/hooks'
 // here 
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import { useIsUserAddedToken } from '../../hooks/Tokens'
@@ -73,7 +73,7 @@ function CurrencyRow({
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const key = currencyKey(currency)
-  const selectedTokenList = useMemeCityActiveList()
+  const selectedTokenList = useCombinedActiveList2()
   const isOnSelectedList = isTokenOnList(selectedTokenList, currency)
   const customAdded = useIsUserAddedToken(currency)
   const balance = useCurrencyBalance(account ?? undefined, currency)
