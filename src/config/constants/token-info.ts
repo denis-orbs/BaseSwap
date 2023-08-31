@@ -1,7 +1,7 @@
 import { ChainId } from '@magikswap/sdk'
 import { currentTokenMap } from './tokens'
 
-export const DEFAULT_STABLE_SYMBOL = 'axlUSDC'
+export const DEFAULT_STABLE_SYMBOL = 'USDbC'
 export const WRAPPED_NATIVE_SYMBOL = 'WETH'
 
 export interface ITokenInfo {
@@ -68,8 +68,6 @@ export type TokenLookupKey =
   | 'GND'
   | 'MAI'
 
-
-
 export type TokenInfoMapping = {
   [key in TokenLookupKey]?: ITokenInfo
 }
@@ -91,7 +89,7 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
   },
   DAI: {
     coinGeckoId: 'dai',
-    decimals: 18, 
+    decimals: 18,
     addresses: {
       [ChainId.BASE]: '0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb',
     },
@@ -137,11 +135,11 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
 
 export const TOKEN_INF0: TokenInfoMapping = {
   ...STABLE_TOKEN_INF0,
-  BBT: {
-    addresses: {
-      [ChainId.BASE]: '0x8DFAf055e21B16302DBf00815e5b4d9b6042a4Df',
-    },
-  },
+  // BBT: {
+  //   addresses: {
+  //     [ChainId.BASE]: '0x8DFAf055e21B16302DBf00815e5b4d9b6042a4Df',
+  //   },
+  // },
   ProtocolToken: {
     // coinGeckoId: 'arbitrum-exchange',
     // dexscreenerPair: '0xE80B4F755417FB4baF4dbd23C029db3F62786523', // TODO: Update after live on screener
@@ -239,96 +237,93 @@ export const TOKEN_INF0: TokenInfoMapping = {
     },
   },
   EDE: {
-    coinGeckoId: 'wrong',
     addresses: {
       [ChainId.BASE]: '0x0A074378461FB7ed3300eA638c6Cc38246db4434',
       [ChainId.ARBITRUM]: '0x0A074378461FB7ed3300eA638c6Cc38246db4434',
     },
   },
   CBETH: {
-    coinGeckoId: 'wrong',
     addresses: {
       [ChainId.BASE]: '0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22',
       [ChainId.ARBITRUM]: '0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22',
     },
   },
   MIM: {
-    coinGeckoId: 'wrong',
     addresses: {
       [ChainId.BASE]: '0x4A3A6Dd60A34bB2Aba60D73B4C88315E9CeB6A3D',
       [ChainId.ARBITRUM]: '0x4A3A6Dd60A34bB2Aba60D73B4C88315E9CeB6A3D',
     },
   },
   YFX: {
-    coinGeckoId: 'wrong',
     addresses: {
       [ChainId.BASE]: '0x8901cB2e82CC95c01e42206F8d1F417FE53e7Af0',
       [ChainId.ARBITRUM]: '0x8901cB2e82CC95c01e42206F8d1F417FE53e7Af0',
     },
   },
   GMD: {
-    coinGeckoId: 'wrong',
     addresses: {
       [ChainId.BASE]: '0xCd239E01C36d3079c0dAeF355C61cFF591C40DB1',
       [ChainId.ARBITRUM]: '0xCd239E01C36d3079c0dAeF355C61cFF591C40DB1',
     },
   },
   GND: {
-    coinGeckoId: 'wrong',
     addresses: {
       [ChainId.BASE]: '0xfb825e93822dd971ebdfdb2180a751958dbd5e16',
       [ChainId.ARBITRUM]: '0xfb825e93822dd971ebdfdb2180a751958dbd5e16',
     },
   },
   AXLWBTC: {
-    coinGeckoId: 'wrong',
+    dexscreenerPair: '0x317d373E590795e2c09D73FaD7498FC98c0A692B',
     addresses: {
       [ChainId.BASE]: '0x1a35EE4640b0A3B87705B0A4B45D227Ba60Ca2ad',
       [ChainId.ARBITRUM]: '0x1a35EE4640b0A3B87705B0A4B45D227Ba60Ca2ad',
     },
   },
   MAG: {
-    coinGeckoId: 'wrong',
     addresses: {
       [ChainId.BASE]: '0x2DC1cDa9186a4993bD36dE60D08787c0C382BEAD',
       [ChainId.ARBITRUM]: '0x2DC1cDa9186a4993bD36dE60D08787c0C382BEAD',
     },
   },
   BLAZE: {
-    coinGeckoId: 'wrong',
     addresses: {
       [ChainId.BASE]: '0x37DEfBC399e5737D53Dfb5533d9954572F5B19bf',
       [ChainId.ARBITRUM]: '0x37DEfBC399e5737D53Dfb5533d9954572F5B19bf',
     },
   },
   UNIDX: {
-    coinGeckoId: 'wrong',
     addresses: {
       [ChainId.BASE]: '0x6B4712AE9797C199edd44F897cA09BC57628a1CF',
       [ChainId.ARBITRUM]: '0x6B4712AE9797C199edd44F897cA09BC57628a1CF',
     },
   },
   BASIN: {
-    coinGeckoId: 'wrong',
     addresses: {
       [ChainId.BASE]: '0x4788de271F50EA6f5D5D2a5072B8D3C61d650326',
       [ChainId.ARBITRUM]: '0x4788de271F50EA6f5D5D2a5072B8D3C61d650326',
     },
   },
   // MAI: {
-  //   coinGeckoId: 'wrong',
+  //
   //   addresses: {
   //     [ChainId.BASE]: '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE',
   //     [ChainId.ARBITRUM]: '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE',
   //   },
   // },
   OGRE: {
-    coinGeckoId: 'wrong',
     addresses: {
       [ChainId.BASE]: '0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492',
       [ChainId.ARBITRUM]: '0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492',
     },
   },
+}
+
+export function getTokenAddressesForChain(chainId: ChainId) {
+  const infos = Object.entries(TOKEN_INF0)
+    .filter((info) => info[1].addresses[chainId])
+    .map((info) => info[1].addresses[chainId])
+
+  return infos
 }
 
 export const getCoingeckoTokenInfos = (chainId: ChainId): { tokenAddress: string; geckoId: string }[] => {
