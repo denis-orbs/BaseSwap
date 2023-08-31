@@ -50,7 +50,14 @@
     "chainId": 8453,
     "decimals": 18,
     "logoURI": "https://baseswap.fi/images/tokens/0xAdBa4694F5deAF3251d06dec38C86946F8952EFB.png"
-
+  }, 
+  {
+    "name": "Nether",
+    "symbol": "NFI",
+    "address": "0x60359A0DD148B18d5cF1Ddf8Aa1916221ED0cbCd",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://baseswap.fi/images/tokens/0x60359A0DD148B18d5cF1Ddf8Aa1916221ED0cbCd.png"
   }
  ]
 
