@@ -34,6 +34,25 @@
      "chainId": 8453,
      "decimals": 6,
      "logoURI": "https://baseswap.fi/images/tokens/0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA.png"
-   }
+   }, 
+   {
+    "name": "Wrapped Ether",
+    "symbol": "WETH",
+    "address": "0x4200000000000000000000000000000000000006",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://pancakeswap.finance/images/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8.png"
+  }, 
+  {
+    "name": "DIP",
+    "symbol": "DIP",
+    "address": "0xAdBa4694F5deAF3251d06dec38C86946F8952EFB",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://baseswap.fi/images/tokens/0xAdBa4694F5deAF3251d06dec38C86946F8952EFB.png"
+
+  }
  ]
+
+ 
 }
