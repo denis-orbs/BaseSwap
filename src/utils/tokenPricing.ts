@@ -20,6 +20,13 @@ export const priceDexScreener = async (address: any): Promise<any> => {
   const res = await response.json()
   return res.pairs ? parseFloat(res.pairs[0]?.priceUsd || '0') : 0
 }
+export const priceDexScreenerPair = async (address: any): Promise<any> => {
+  const response = await fetch(`https://api.dexscreener.com/latest/dex/pairs/base/${address}`, {
+    method: 'GET',
+  })
+  const res = await response.json()
+  return res.pairs ? parseFloat(res.pairs[0]?.priceUsd || '0') : 0
+}
 
 export async function getCombinedTokenPrices(chainId: ChainId) {
   try {
@@ -39,7 +46,14 @@ export async function getCombinedTokenPrices(chainId: ChainId) {
     const tokenAddresses = getTokenAddressesForChain(chainId)
     const prices = {}
     for (const address of tokenAddresses) {
-      const price = await priceDexScreener(address) // Assuming priceDexScreener() fetches the price for a single address
+      let price;
+      // UNIDEX
+      if (address === "0x6B4712AE9797C199edd44F897cA09BC57628a1CF"){
+        price = await priceDexScreenerPair("0x30dcc8444f8361d5ce119fc25e16af0b583e88fd") // Assuming priceDexScreener() fetches the price for a single address
+      } else {
+        price = await priceDexScreener(address) // Assuming priceDexScreener() fetches the price for a single address
+      }
+      
       prices[address.toLowerCase()] = price
     }
 
