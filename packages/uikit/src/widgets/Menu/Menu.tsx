@@ -202,9 +202,20 @@ const Menu: React.FC<NavProps> = ({
                 marginLeft={isMobile ? "2rem" : "250px"}
                 width="80%"
               >
-                <Link href="/swap">
-                  <Text marginRight="2rem">Swap</Text>
-                </Link>
+                 <DropdownContainer>
+                  <Link href="/swap">
+                    <Text marginRight="2rem">SWAP</Text>
+                  </Link>
+                 <DropdownMenu>
+                    <Link href="/swap" marginBottom="1.2rem">
+                      <Text>Swap</Text>
+                    </Link>
+                    <Link href="/memecity">
+                      <Text color="#ccc">Meme City</Text>
+                    </Link>
+                  </DropdownMenu>
+                </DropdownContainer>
+               
                 <Link href="/liquidity">
                   <Text marginRight="2rem">Liquidity</Text>
                 </Link>

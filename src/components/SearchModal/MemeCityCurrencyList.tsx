@@ -10,7 +10,7 @@ import { useTranslation } from '@pancakeswap/localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useWeb3React } from '@web3-react/core'
 import { useCombinedActiveList2 } from '../../state/lists/hooks'
-// here 
+import { useState } from 'react'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import { useIsUserAddedToken } from '../../hooks/Tokens'
 import Column from '../Layout/Column'
@@ -19,6 +19,7 @@ import { CurrencyLogo } from '../Logo'
 import CircleLoader from '../Loader/CircleLoader'
 import { isTokenOnList } from '../../utils'
 import ImportRow from './ImportRow'
+import tokenlist from '../../config/constants/tokenLists/memecity.json'
 
 function currencyKey(currency: Currency): string {
   return currency instanceof Token ? currency.address : currency === ETHER ? 'ETHER' : ''
@@ -103,8 +104,6 @@ function CurrencyRow({
 
 export default function MemeCityCurrencyList({
   height,
-  currencies,
-  inactiveCurrencies,
   selectedCurrency,
   onCurrencySelect,
   otherCurrency,
@@ -112,68 +111,49 @@ export default function MemeCityCurrencyList({
   showBNB,
   showImportView,
   setImportToken,
-  breakIndex,
-}: {
-  height: number
-  currencies: Currency[]
-  inactiveCurrencies: Currency[]
-  selectedCurrency?: Currency | null
-  onCurrencySelect: (currency: Currency) => void
-  otherCurrency?: Currency | null
-  fixedListRef?: MutableRefObject<FixedSizeList | undefined>
-  showBNB: boolean
-  showImportView: () => void
-  setImportToken: (token: Token) => void
-  breakIndex: number | undefined
+  breakIndex
 }) {
+  const [currencies, setCurrencies] = useState<Currency[]>(tokenlist.tokens.map(token => {
+    return new Token(token.chainId, token.address, token.decimals, token.symbol, token.name);
+  }));
+
+
   const itemData: (Currency | undefined)[] = useMemo(() => {
-    let formatted: (Currency | undefined)[] = showBNB
-      ? [Currency.ETHER, ...currencies, ...inactiveCurrencies]
-      : [...currencies, ...inactiveCurrencies]
+    let formatted: (Currency | undefined)[] = showBNB 
+    ? [Currency.ETHER, ...(currencies as Currency[])] 
+    : [...(currencies as Currency[])];
     if (breakIndex !== undefined) {
-      formatted = [...formatted.slice(0, breakIndex), undefined, ...formatted.slice(breakIndex, formatted.length)]
+      formatted = [...formatted.slice(0, breakIndex), undefined, ...formatted.slice(breakIndex, formatted.length)];
     }
-    return formatted
-  }, [breakIndex, currencies, inactiveCurrencies, showBNB])
+    return formatted;
+  }, [breakIndex, currencies, showBNB]);
 
-  const { chainId } = useActiveWeb3React()
-
-  const { t } = useTranslation()
+  const { chainId } = useWeb3React();
 
   const Row = useCallback(
     ({ data, index, style }) => {
-      const currency: Currency = data[index]
-      const isSelected = Boolean(selectedCurrency && currencyEquals(selectedCurrency, currency))
-      const otherSelected = Boolean(otherCurrency && currencyEquals(otherCurrency, currency))
-      const handleSelect = () => onCurrencySelect(currency)
-
-      const token = wrappedCurrency(currency, chainId)
-
-      const showImport = index > currencies.length
+      const currency: Currency = data[index];
+      const isSelected = Boolean(selectedCurrency && currencyEquals(selectedCurrency, currency));
+      const otherSelected = Boolean(otherCurrency && currencyEquals(otherCurrency, currency));
+      const handleSelect = () => onCurrencySelect(currency);
 
       if (index === breakIndex || !data) {
         return (
           <FixedContentRow style={style}>
             <LightGreyCard padding="8px 12px" borderRadius="8px">
               <RowBetween>
-                <Text small>{t('Expanded results from inactive Token Lists')}</Text>
+                <Text small>Expanded results from inactive Token Lists</Text>
                 <QuestionHelper
-                  text={t(
-                    "Tokens from inactive lists. Import specific tokens below or click 'Manage' to activate more lists.",
-                  )}
+                  text={"Tokens from inactive lists. Import specific tokens below or click 'Manage' to activate more lists."}
                   ml="4px"
                 />
               </RowBetween>
             </LightGreyCard>
           </FixedContentRow>
-        )
+        );
       }
 
-      if (showImport && token) {
-        return (
-          <ImportRow style={style} token={token} showImportView={showImportView} setImportToken={setImportToken} dim />
-        )
-      }
+     
       return (
         <CurrencyRow
           style={style}
@@ -182,22 +162,10 @@ export default function MemeCityCurrencyList({
           onSelect={handleSelect}
           otherSelected={otherSelected}
         />
-      )
+      );
     },
-    [
-      selectedCurrency,
-      otherCurrency,
-      chainId,
-      currencies.length,
-      breakIndex,
-      onCurrencySelect,
-      t,
-      showImportView,
-      setImportToken,
-    ],
-  )
-
-  const itemKey = useCallback((index: number, data: any) => currencyKey(data[index]), [])
+    [selectedCurrency, otherCurrency, chainId, breakIndex, onCurrencySelect]
+  );
 
   return (
     <FixedSizeList
@@ -207,9 +175,8 @@ export default function MemeCityCurrencyList({
       itemData={itemData}
       itemCount={itemData.length}
       itemSize={60}
-      itemKey={itemKey}
     >
       {Row}
     </FixedSizeList>
-  )
+  );
 }

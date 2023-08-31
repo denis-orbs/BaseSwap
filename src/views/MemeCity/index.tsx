@@ -441,11 +441,14 @@ export default function Swap() {
           getBeforeInit={(instance) => {
         instance
 
-            .type("Meme city swap ", {speed: 5000})
+            .type("Meme city", {speed: 5000})
             ;
         return instance;
          }}> 
          </WelcomeTypeIt>
+         <Text textAlign="center">
+          Meme City is a special section for homos 
+         </Text>
          </Flex>
         </Flex>
         {/* <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
@@ -456,11 +459,11 @@ export default function Swap() {
           </Flex>
         </Flex> */}
       </PageHeader>
-        <TabsComponent />
-        {view === SwapType.CROSS_CHAIN_SWAP &&
+        {/* <TabsComponent /> */}
+        {/* {view === SwapType.CROSS_CHAIN_SWAP &&
           <Flex width="100%" justifyContent="center" position="relative" marginBottom="100px">
             <CrossChainSwap />
-          </Flex>}
+          </Flex>} */}
         {view === SwapType.REGULAR_SWAP &&
           <Flex width="100%" justifyContent="center" position="relative">
             {!isMobile && isChartSupported && (
