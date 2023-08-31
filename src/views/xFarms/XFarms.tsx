@@ -123,8 +123,6 @@ const Farms: React.FC = ({ children }) => {
   const { pathname, query: urlQuery } = useRouter()
   const { account, chainId } = useWeb3React()
 
-  console.log('children', children)
-
   //
   const { arxPerSec, WETHPerSec, farms: farmsLP } = useNftPoolsFarms()
   const farmsReady = !account || (!!account && farmsLP)
@@ -334,7 +332,6 @@ const Farms: React.FC = ({ children }) => {
         />
         {!account ? (
           <ConnectWalletButton />
-
         ) : (
           <>
             <ControlContainer>
@@ -346,7 +343,6 @@ const Farms: React.FC = ({ children }) => {
                 </Text>
                 <ToggleView idPrefix="clickFarm" viewMode={viewMode} onToggle={setViewMode} />
                 <ToggleWrapper>
-
                   <Toggle
                     id="staked-only-farms"
                     checked={stakedOnlyState}
@@ -411,7 +407,6 @@ const Farms: React.FC = ({ children }) => {
             <div ref={observerRef} />
           </>
         )}
-
       </Page>
     </FarmsContext.Provider>
   )
