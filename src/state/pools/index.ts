@@ -120,7 +120,7 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
     // ADDING FARM
     // ALWAYS UPDATE PID WHEN THERE IS A NEW FARM ADDED NOT IN MC
     // OTHERWISE POOL APRS DONT SHOW
-    const filteredFarmConfig = farmsConfig.filter(item=> item.pid !== 17 && item.pid !== 18 && item.pid !== 19)
+    const filteredFarmConfig = farmsConfig.filter(item=> item.pid !== 17 && item.pid !== 18 && item.pid !== 19 )
 
     const farmsData = await fetchFarms(filteredFarmConfig)
     const farmsWithPrices = await getFarmsPrices(farmsData)

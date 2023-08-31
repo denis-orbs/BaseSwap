@@ -251,28 +251,41 @@ const farms: SerializedFarmConfig[] = [
     classic: true,
   },
 
+  {
+    pid: 19,
+    lpSymbol: 'ETH-DAI LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x0FeB1490f80B6978002c3E501753562f2F2853B2',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0x612E2527b37CC5c46df1cfd172456E4DD507Cf09',
+    },
+    token: serializedTokens.wbnb,
+    quoteToken: serializedTokens.dai,
+    classic: true,
+  },
   // {
-  //   pid: 19,
-  //   lpSymbol: 'ETH-DAI LP',
+  //   pid: 20,
+  //   lpSymbol: 'MAI-USDC LP',
   //   lpAddresses: {
   //     [ChainId.BASE]: '0x0FeB1490f80B6978002c3E501753562f2F2853B2',
   //   },
   //   nftPoolAddress: {
   //     [ChainId.BASE]: '0x612E2527b37CC5c46df1cfd172456E4DD507Cf09',
   //   },
-  //   token: serializedTokens.wbnb,
-  //   quoteToken: serializedTokens.dai,
+  //   token: serializedTokens.mai,
+  //   quoteToken: serializedTokens.usdbc,
   //   classic: true,
   // },
-  // {
-  //   pid: 4,
-  //   lpSymbol: 'CBETH-USDBC LP',
-  //   lpAddresses: {
-  //     [ChainId.BASE]: '0x29a706a49baE714bCfcC96ac1A43e116cB57794c',
-  //   },
-  //   token: serializedTokens.cbeth,
-  //   quoteToken: serializedTokens.usdbc,
-  // },
+  {
+    pid: 4,
+    lpSymbol: 'CBETH-USDBC LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x29a706a49baE714bCfcC96ac1A43e116cB57794c',
+    },
+    token: serializedTokens.cbeth,
+    quoteToken: serializedTokens.usdbc,
+  },
 ]
 
 export default farms
