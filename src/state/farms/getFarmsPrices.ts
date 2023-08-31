@@ -107,7 +107,7 @@ const getFarmsPrices = async (farmList: SerializedFarm[]) => {
   }
 
   const nativePriceInStable = nativeStableFarm.tokenPriceVsQuote
-    ? BIG_ONE.div(nativeStableFarm.tokenPriceVsQuote)
+    ? new BigNumber(nativeStableFarm.tokenPriceVsQuote)
     : BIG_ZERO
 
   const farmsWithPrices = farmList.map((farm) => {
