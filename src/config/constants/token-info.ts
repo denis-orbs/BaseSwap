@@ -292,6 +292,7 @@ export const TOKEN_INF0: TokenInfoMapping = {
     },
   },
   UNIDX: {
+    dexscreenerPair: '0x30dcc8444f8361d5ce119fc25e16af0b583e88fd',
     addresses: {
       [ChainId.BASE]: '0x6B4712AE9797C199edd44F897cA09BC57628a1CF',
       [ChainId.ARBITRUM]: '0x6B4712AE9797C199edd44F897cA09BC57628a1CF',
