@@ -22,14 +22,13 @@ export default function CurrencyLogo({
   style?: React.CSSProperties
 }) {
   const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
-console.log('currency',currency)
+  console.log('currency', currency)
   const srcs: string[] = useMemo(() => {
     if (currency === ETHER)
       return ['https://pancakeswap.finance/images/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8.png']
-    if (currency.symbol === 'ETH')
-      return [`/images/tokens/${"0x4200000000000000000000000000000000000006".toLowerCase()}.png`]
+    if (currency?.symbol === 'ETH')
+      return [`/images/tokens/${'0x4200000000000000000000000000000000000006'.toLowerCase()}.png`]
 
-   
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
         return [...uriLocations, `/images/tokens/${currency.address.toLowerCase()}.png`]
@@ -38,10 +37,6 @@ console.log('currency',currency)
     }
     return []
   }, [currency, uriLocations])
-
-  if (currency === ETHER) {
-    // return <BinanceIcon width={size} style={style} />
-  }
 
   return <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
 }
