@@ -42,7 +42,7 @@ const ToggleElementHoverStyle = (hasBgColor: boolean, theme: any, isActive?: boo
         opacity: '0.8',
       }
     : {
-        background: isActive ? darken(0.05, theme.accentAction) : darken(0.05, theme.deprecated_bg4),
+        background: isActive ? darken('0.05', theme.colors.primary) : darken('0.05', theme.colors.tertiary),
         color: isActive ? theme.white : theme.textTertiary,
       }
 
