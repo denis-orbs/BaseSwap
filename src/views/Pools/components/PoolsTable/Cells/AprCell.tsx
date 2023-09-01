@@ -1,12 +1,11 @@
 import { BIG_ZERO } from 'utils/bigNumber'
-import { Text, useMatchBreakpointsContext } from '@pancakeswap/uikit'
+import { Text, useMatchBreakpointsContext, Flex } from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
 import { DeserializedPool } from 'state/types'
 import { useTranslation } from '@pancakeswap/localization'
 import BaseCell, { CellContent } from './BaseCell'
 import Apr from '../../Apr'
 import { BoostTag } from 'components/Tags'
-import {Flex} from '@pancakeswap/uikit'
 
 interface AprCellProps {
   pool: DeserializedPool

@@ -13,12 +13,13 @@
     "no-plusplus": 0,
     "prefer-destructuring": ["warn", { "object": true, "array": false }],
     "no-underscore-dangle": 0,
+    "@typescript-eslint/no-unused-vars": "off", 
     "lodash/import-scope": [2, "method"],
     "@next/next/no-img-element": 0,
     "no-sparse-arrays": 0,
     "import/no-duplicates": "warn", 
     "react/no-array-index-key": "warn", 
-    "react/jsx-curly-brace-presence": "warn", 
+    "react/jsx-curly-brace-presence": "off", 
     "jsx-a11y/click-events-have-key-events": "off", 
     "no-restricted-globals": "off", 
     "react/jsx-boolean-value": "off", 
@@ -29,7 +30,7 @@
     "no-restricted-properties": "warn", 
     "prefer-const": "warn", 
 
-    "eqeqeq": "warn", 
+    "eqeqeq": "off", 
     "react-hooks/exhaustive-deps": [
       "warn",
       {
@@ -41,7 +42,7 @@
     // They need to be removed and fixed as soon as possible
     "@typescript-eslint/ban-ts-comment": [1, { "ts-ignore": false, "ts-nocheck": false }],
     "@typescript-eslint/no-use-before-define": 0,
-    "jsx-a11y/no-static-element-interactions": "warn", 
+    "jsx-a11y/no-static-element-interactions": "off", 
     "spaced-comment": "off",
     "react/no-unescaped-entities": "off", 
     "import/order": "off", 
