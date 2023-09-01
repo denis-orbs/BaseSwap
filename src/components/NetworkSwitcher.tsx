@@ -17,7 +17,7 @@ export const NetworkSelect = () => {
       <UserMenuDivider />
       {chains.map((chain) => (
         <UserMenuItem key={chain.id} style={{ justifyContent: 'flex-start' }} onClick={() => setupNetwork(chain.id)}>
-          <Image width={24} height={24} src="images/baselogo.jpeg" unoptimized />
+          <Image width={24} height={24} src="images/baselogolarge.png" unoptimized />
           <Text pl="12px">{chain.name}</Text>
         </UserMenuItem>
       ))}
@@ -30,7 +30,7 @@ export const NetworkSwitcher = () => {
 
   if (chainId === baseGoerli.id) {
     return (
-      <UserMenu mr="8px" avatarSrc="images/baselogo.jpeg" account={baseGoerli.name} ellipsis={false}>
+      <UserMenu mr="8px" avatarSrc="images/baselogolarge.png" account={baseGoerli.name} ellipsis={false}>
         {() => <NetworkSelect />}
       </UserMenu>
     )
