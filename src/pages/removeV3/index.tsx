@@ -289,138 +289,140 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
         />
       )}
 
-      {!showConfirm && <Page>
-        <AddRemoveTabs
-          creating={false}
-          adding={false}
-          positionID={tokenId.toString()}
-          autoSlippage={DEFAULT_REMOVE_V3_LIQUIDITY_SLIPPAGE_TOLERANCE}
-        />
-        <Wrapper>
-          {position ? (
-            <AutoColumn gap="lg">
-              <RowBetween mb="12px">
-                <RowFixed>
-                  <DoubleCurrencyLogo
-                    currency0={feeValue0?.currency}
-                    currency1={feeValue1?.currency}
-                    size={20}
-                    margin
-                  />
-                  <Text
-                    ml="10px"
-                    fontSize="20px"
-                  >{`${feeValue0?.currency?.symbol}/${feeValue1?.currency?.symbol}`}</Text>
-                </RowFixed>
-                <RangeBadge removed={removed} inRange={!outOfRange} />
-              </RowBetween>
-              <LightCard mb="12px">
-                <AutoColumn gap="md">
-                  <Text fontWeight={400}>
-                    <Trans>Amount</Trans>
-                  </Text>
-                  <RowBetween>
-                    <ResponsiveHeaderText>{t(`${percentForSlider}%`)}</ResponsiveHeaderText>
-                    <AutoRow gap="4px" justify="flex-end">
-                      <SmallMaxButton onClick={() => onPercentSelect(25)} width="20%">
-                        <Trans>25%</Trans>
-                      </SmallMaxButton>
-                      <SmallMaxButton onClick={() => onPercentSelect(50)} width="20%">
-                        <Trans>50%</Trans>
-                      </SmallMaxButton>
-                      <SmallMaxButton onClick={() => onPercentSelect(75)} width="20%">
-                        <Trans>75%</Trans>
-                      </SmallMaxButton>
-                      <SmallMaxButton onClick={() => onPercentSelect(100)} width="20%">
-                        <Trans>Max</Trans>
-                      </SmallMaxButton>
-                    </AutoRow>
-                  </RowBetween>
-                  <Slider value={percentForSlider} onChange={onPercentSelectForSlider} />
-                </AutoColumn>
-              </LightCard>
-              <LightCard mb="12px">
-                <AutoColumn gap="md">
-                  <RowBetween>
-                    <Text fontSize={16} fontWeight={500}>
-                      {t(`Pooled ${liquidityValue0?.currency?.symbol}:`)}
-                    </Text>
-                    <RowFixed>
-                      <Text fontSize={16} fontWeight={500} marginLeft="6px">
-                        {liquidityValue0 && <FormattedCurrencyAmount currencyAmount={liquidityValue0} />}
-                      </Text>
-                      <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={liquidityValue0?.currency} />
-                    </RowFixed>
-                  </RowBetween>
-                  <RowBetween>
-                    <Text fontSize={16} fontWeight={500}>
-                      {t(`Pooled ${liquidityValue1?.currency?.symbol}:`)}
-                    </Text>
-                    <RowFixed>
-                      <Text fontSize={16} fontWeight={500} marginLeft="6px">
-                        {liquidityValue1 && <FormattedCurrencyAmount currencyAmount={liquidityValue1} />}
-                      </Text>
-                      <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={liquidityValue1?.currency} />
-                    </RowFixed>
-                  </RowBetween>
-                  {feeValue0?.greaterThan(0) || feeValue1?.greaterThan(0) ? (
-                    <>
-                      <Break />
-                      <RowBetween>
-                        <Text fontSize={16} fontWeight={500}>
-                          {t(`${feeValue0?.currency?.symbol} Fees Earned:`)}
-                        </Text>
-                        <RowFixed>
-                          <Text fontSize={16} fontWeight={500} marginLeft="6px">
-                            {feeValue0 && <FormattedCurrencyAmount currencyAmount={feeValue0} />}
-                          </Text>
-                          <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={feeValue0?.currency} />
-                        </RowFixed>
-                      </RowBetween>
-                      <RowBetween>
-                        <Text fontSize={16} fontWeight={500}>
-                          {t(`${feeValue1?.currency?.symbol} Fees Earned:`)}
-                        </Text>
-                        <RowFixed>
-                          <Text fontSize={16} fontWeight={500} marginLeft="6px">
-                            {feeValue1 && <FormattedCurrencyAmount currencyAmount={feeValue1} />}
-                          </Text>
-                          <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={feeValue1?.currency} />
-                        </RowFixed>
-                      </RowBetween>
-                    </>
-                  ) : null}
-                </AutoColumn>
-              </LightCard>
-
-              {showCollectAsWeth && (
-                <RowBetween>
-                  <Text>{t(`Collect as ${nativeWrappedSymbol}`)}</Text>
-                  <Toggle
-                    id="receive-as-weth"
-                    isActive={receiveWETH}
-                    toggle={() => setReceiveWETH((receive) => !receive)}
-                  />
+      {!showConfirm && (
+        <Page>
+          <AddRemoveTabs
+            creating={false}
+            adding={false}
+            positionID={tokenId?.toString()}
+            autoSlippage={DEFAULT_REMOVE_V3_LIQUIDITY_SLIPPAGE_TOLERANCE}
+          />
+          <Wrapper>
+            {position ? (
+              <AutoColumn gap="lg">
+                <RowBetween mb="12px">
+                  <RowFixed>
+                    <DoubleCurrencyLogo
+                      currency0={feeValue0?.currency}
+                      currency1={feeValue1?.currency}
+                      size={20}
+                      margin
+                    />
+                    <Text
+                      ml="10px"
+                      fontSize="20px"
+                    >{`${feeValue0?.currency?.symbol}/${feeValue1?.currency?.symbol}`}</Text>
+                  </RowFixed>
+                  <RangeBadge removed={removed} inRange={!outOfRange} />
                 </RowBetween>
-              )}
+                <LightCard mb="12px">
+                  <AutoColumn gap="md">
+                    <Text fontWeight={400}>
+                      <Trans>Amount</Trans>
+                    </Text>
+                    <RowBetween>
+                      <ResponsiveHeaderText>{t(`${percentForSlider}%`)}</ResponsiveHeaderText>
+                      <AutoRow gap="4px" justify="flex-end">
+                        <SmallMaxButton onClick={() => onPercentSelect(25)} width="20%">
+                          <Trans>25%</Trans>
+                        </SmallMaxButton>
+                        <SmallMaxButton onClick={() => onPercentSelect(50)} width="20%">
+                          <Trans>50%</Trans>
+                        </SmallMaxButton>
+                        <SmallMaxButton onClick={() => onPercentSelect(75)} width="20%">
+                          <Trans>75%</Trans>
+                        </SmallMaxButton>
+                        <SmallMaxButton onClick={() => onPercentSelect(100)} width="20%">
+                          <Trans>Max</Trans>
+                        </SmallMaxButton>
+                      </AutoRow>
+                    </RowBetween>
+                    <Slider value={percentForSlider} onChange={onPercentSelectForSlider} />
+                  </AutoColumn>
+                </LightCard>
+                <LightCard mb="12px">
+                  <AutoColumn gap="md">
+                    <RowBetween>
+                      <Text fontSize={16} fontWeight={500}>
+                        {t(`Pooled ${liquidityValue0?.currency?.symbol}:`)}
+                      </Text>
+                      <RowFixed>
+                        <Text fontSize={16} fontWeight={500} marginLeft="6px">
+                          {liquidityValue0 && <FormattedCurrencyAmount currencyAmount={liquidityValue0} />}
+                        </Text>
+                        <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={liquidityValue0?.currency} />
+                      </RowFixed>
+                    </RowBetween>
+                    <RowBetween>
+                      <Text fontSize={16} fontWeight={500}>
+                        {t(`Pooled ${liquidityValue1?.currency?.symbol}:`)}
+                      </Text>
+                      <RowFixed>
+                        <Text fontSize={16} fontWeight={500} marginLeft="6px">
+                          {liquidityValue1 && <FormattedCurrencyAmount currencyAmount={liquidityValue1} />}
+                        </Text>
+                        <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={liquidityValue1?.currency} />
+                      </RowFixed>
+                    </RowBetween>
+                    {feeValue0?.greaterThan(0) || feeValue1?.greaterThan(0) ? (
+                      <>
+                        <Break />
+                        <RowBetween>
+                          <Text fontSize={16} fontWeight={500}>
+                            {t(`${feeValue0?.currency?.symbol} Fees Earned:`)}
+                          </Text>
+                          <RowFixed>
+                            <Text fontSize={16} fontWeight={500} marginLeft="6px">
+                              {feeValue0 && <FormattedCurrencyAmount currencyAmount={feeValue0} />}
+                            </Text>
+                            <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={feeValue0?.currency} />
+                          </RowFixed>
+                        </RowBetween>
+                        <RowBetween>
+                          <Text fontSize={16} fontWeight={500}>
+                            {t(`${feeValue1?.currency?.symbol} Fees Earned:`)}
+                          </Text>
+                          <RowFixed>
+                            <Text fontSize={16} fontWeight={500} marginLeft="6px">
+                              {feeValue1 && <FormattedCurrencyAmount currencyAmount={feeValue1} />}
+                            </Text>
+                            <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={feeValue1?.currency} />
+                          </RowFixed>
+                        </RowBetween>
+                      </>
+                    ) : null}
+                  </AutoColumn>
+                </LightCard>
 
-              <div style={{ display: 'flex' }}>
-                <AutoColumn gap="md" style={{ flex: '1' }}>
-                  <Button
-                    // confirmed={false}
-                    disabled={removed || percent === 0 || !liquidityValue0}
-                    onClick={() => setShowConfirm(true)}
-                  >
-                    {removed ? <Trans>Closed</Trans> : error ?? <Trans>Remove</Trans>}
-                  </Button>
-                </AutoColumn>
-              </div>
-            </AutoColumn>
-          ) : (
-            <Loader />
-          )}
-        </Wrapper>
-      </Page>}
+                {showCollectAsWeth && (
+                  <RowBetween>
+                    <Text>{t(`Collect as ${nativeWrappedSymbol}`)}</Text>
+                    <Toggle
+                      id="receive-as-weth"
+                      isActive={receiveWETH}
+                      toggle={() => setReceiveWETH((receive) => !receive)}
+                    />
+                  </RowBetween>
+                )}
+
+                <div style={{ display: 'flex' }}>
+                  <AutoColumn gap="md" style={{ flex: '1' }}>
+                    <Button
+                      // confirmed={false}
+                      disabled={removed || percent === 0 || !liquidityValue0}
+                      onClick={() => setShowConfirm(true)}
+                    >
+                      {removed ? <Trans>Closed</Trans> : error ?? <Trans>Remove</Trans>}
+                    </Button>
+                  </AutoColumn>
+                </div>
+              </AutoColumn>
+            ) : (
+              <Loader />
+            )}
+          </Wrapper>
+        </Page>
+      )}
     </AutoColumn>
   )
 }
