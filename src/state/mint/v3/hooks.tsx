@@ -62,62 +62,58 @@ export function useV3MintActionHandlers(noLiquidity: boolean | undefined): {
     [dispatch, noLiquidity],
   )
 
-  // const [searchParams, setSearchParams] = useSearchParams()
   const router = useRouter()
-  // Need to set the url the way pcs does to replace setSearchParams
-  const searchParams = router.query
 
   const onLeftRangeInput = useCallback(
     (typedValue: string) => {
       dispatch(typeLeftRangeInput({ typedValue }))
-      // const paramMinPrice = searchParams.get('minPrice') // Shit
-      const paramMinPrice = searchParams?.minPrice // Shit
+      const paramMinPrice = router.query.minPrice
       if (!paramMinPrice || (paramMinPrice && paramMinPrice !== typedValue)) {
+        // This overwrites the entire query string
         // searchParams.set('minPrice', typedValue)
         // setSearchParams(searchParams)
-
-        router.replace(
-          {
-            pathname: router.pathname,
-            query: {
-              ...router.query,
-              minPrice: [typedValue],
-            },
-          },
-          undefined,
-          {
-            shallow: true,
-          },
-        )
+        // router.replace(
+        //   {
+        //     pathname: router.pathname,
+        //     query: {
+        //       ...router.query,
+        //       minPrice: typedValue,
+        //     },
+        //   },
+        //   undefined,
+        //   {
+        //     shallow: true,
+        //   },
+        // )
       }
     },
-    [dispatch, searchParams],
+    [dispatch, router.query],
   )
 
   const onRightRangeInput = useCallback(
     (typedValue: string) => {
       dispatch(typeRightRangeInput({ typedValue }))
       // const paramMaxPrice = searchParams.get('maxPrice')
-      const paramMaxPrice = searchParams?.maxPrice
+      const paramMaxPrice = router.query.maxPrice
       if (!paramMaxPrice || (paramMaxPrice && paramMaxPrice !== typedValue)) {
         // searchParams.set('maxPrice', typedValue)
         // setSearchParams(searchParams)
-        router.replace(
-          {
-            pathname: router.pathname,
-            query: {
-              ...router.query,
-              maxPrice: [typedValue],
-            },
-          },
-          undefined,
-          {
-            shallow: true,
-          },
-        )
+        // router.replace(
+        //   {
+        //     pathname: router.pathname,
+        //     query: {
+        //       ...router.query,
+        //       maxPrice: typedValue,
+        //     },
+        //   },
+        //   undefined,
+        //   {
+        //     shallow: true,
+        //   },
+        // )
       }
     },
-    [dispatch, searchParams],
+    [dispatch, router.query],
   )
 
   const onStartPriceInput = useCallback(

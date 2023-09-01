@@ -483,7 +483,8 @@ function AddLiquidity() {
     !depositBDisabled ? currencies[Field.CURRENCY_B]?.symbol : ''
   }`
 
-  const [searchParams, setSearchParams] = useState<{ param: string; value: string }>()
+  const [searchParams, setSearchParams] = useState<{ minPrice?: string; maxPrice?: string }>()
+  const oldSearchParams = usePrevious(searchParams)
 
   const handleSetFullRange = useCallback(() => {
     getSetFullRange()
@@ -491,13 +492,13 @@ function AddLiquidity() {
     const minPrice = pricesAtLimit[Bound.LOWER]
     if (minPrice) {
       // searchParams.set('minPrice', minPrice.toSignificant(5))
-      setSearchParams({ param: 'minPrice', value: minPrice.toSignificant(5) })
+      setSearchParams({ minPrice: minPrice.toSignificant(5) })
       router.replace(
         {
           pathname: router.pathname,
           query: {
             ...router.query,
-            minPrice: [minPrice.toSignificant(5)],
+            minPrice: minPrice.toSignificant(5),
           },
         },
         undefined,
@@ -510,13 +511,13 @@ function AddLiquidity() {
     const maxPrice = pricesAtLimit[Bound.UPPER]
     if (maxPrice) {
       // searchParams.set('maxPrice', maxPrice.toSignificant(5))
-      setSearchParams({ param: 'maxPrice', value: maxPrice.toSignificant(5) })
+      setSearchParams({ maxPrice: maxPrice.toSignificant(5) })
       router.replace(
         {
           pathname: router.pathname,
           query: {
             ...router.query,
-            maxPrice: [maxPrice.toSignificant(5)],
+            maxPrice: maxPrice.toSignificant(5),
           },
         },
         undefined,
@@ -528,11 +529,11 @@ function AddLiquidity() {
   }, [getSetFullRange, pricesAtLimit, searchParams, setSearchParams])
 
   // START: sync values with query string
-  const oldSearchParams = usePrevious(searchParams)
+
   // use query string as an input to onInput handlers
   useEffect(() => {
-    const minPrice = searchParams?.value
-    const oldMinPrice = oldSearchParams?.value
+    const minPrice = searchParams?.minPrice
+    const oldMinPrice = oldSearchParams?.minPrice
     if (
       minPrice &&
       typeof minPrice === 'string' &&
@@ -540,6 +541,22 @@ function AddLiquidity() {
       (!oldMinPrice || oldMinPrice !== minPrice)
     ) {
       onLeftRangeInput(minPrice)
+    }
+    // disable eslint rule because this hook only cares about the url->input state data flow
+    // input state -> url updates are handled in the input handlers
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams])
+
+  useEffect(() => {
+    const maxPrice = searchParams?.maxPrice
+    const oldMaxPrice = oldSearchParams?.maxPrice
+    if (
+      maxPrice &&
+      typeof maxPrice === 'string' &&
+      !Number.isNaN(maxPrice as any) &&
+      (!oldMaxPrice || oldMaxPrice !== maxPrice)
+    ) {
+      onLeftRangeInput(maxPrice)
     }
     // disable eslint rule because this hook only cares about the url->input state data flow
     // input state -> url updates are handled in the input handlers
