@@ -200,8 +200,6 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
   const WETHPerSec = emissionRates.wethRate
   let TVL = 0
 
-  console.log(prices)
-
   const farmsData = nftPoolInfos.map((pool, idx) => {
     const configMatch = farmConfigs.find(
       (p) => p.nftPoolAddress[chainId].toLowerCase() === pool.poolAddress.toLowerCase(),
