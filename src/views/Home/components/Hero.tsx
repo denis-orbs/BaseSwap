@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Text } from '@pancakeswap/uikit'
+import { Button, Flex, Heading, Text, useMatchBreakpoints } from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { NextLinkFromReactRouter } from 'components/NextLink'
@@ -16,7 +16,6 @@ import TVL from 'components/TVL'
 import TypeIt from 'typeit-react'
 import 'animate.css'
 
-import { useMatchBreakpoints } from '@pancakeswap/uikit'
 
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;

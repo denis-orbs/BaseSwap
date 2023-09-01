@@ -80,8 +80,8 @@ export default function RemoveLiquidity() {
     [currencyA, currencyB, chainId],
   )
 
-  console.log(currencyIdA)
-  console.log(tokenA)
+  // console.log(currencyIdA)
+  // console.log(tokenA)
 
   const { t } = useTranslation()
   const gasPrice = useGasPrice()

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, FC } from 'react'
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime'; // Import the relativeTime plugin
 import utc from 'dayjs/plugin/utc'; // Import the utc plugin
@@ -14,7 +14,6 @@ import { useCurrencyBalance } from 'state/wallet/hooks'
 import tryParseAmount from 'utils/tryParseAmount'
 import { formatNumberScale } from 'utils/formatBalance'
 import PageTitle from 'components/PageTitle/PageTitle'
-import { FC } from 'react'
 import { ethers } from 'ethers'
 import Page from '../Page'
 import { useTokenLocker } from 'hooks/useContract'
