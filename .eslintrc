@@ -11,7 +11,7 @@
     "react/self-closing-comp": "off", 
     "no-console": ["warn", { "allow": ["info", "warn", "error", "debug"] }],
     "no-plusplus": 0,
-    "prefer-destructuring": ["warn", { "object": true, "array": false }],
+    "prefer-destructuring": ["off", { "object": true, "array": false }],
     "no-underscore-dangle": 0,
     "@typescript-eslint/no-unused-vars": "off", 
     "lodash/import-scope": [2, "method"],
@@ -27,9 +27,8 @@
     "@typescript-eslint/no-shadow": "off",
     "no-restricted-syntax": "off",  
     "prefer-template": "warn", 
-    "no-restricted-properties": "warn", 
-    "prefer-const": "warn", 
-
+    "no-restricted-properties": "off", 
+    "prefer-const": "off", 
     "eqeqeq": "off", 
     "react-hooks/exhaustive-deps": [
       "warn",
@@ -49,7 +48,7 @@
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "radix": 0,
-    "react/no-unknown-property": "warn",
+    "react/no-unknown-property": "off",
     "import/no-extraneous-dependencies": 0,
     "jsx-a11y/media-has-caption": 0,
     // Exchange
