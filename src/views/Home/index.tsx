@@ -5,8 +5,6 @@ import { PageMeta } from 'components/Layout/Page'
 import Hero from './components/Hero'
 import MetricsSection from './components/MetricsSection'
 import TVL from './components/TVL'
-import readyplayerone from '../../../public/images/readybanner1.png'
-
 import { useRef } from 'react'
 
 
