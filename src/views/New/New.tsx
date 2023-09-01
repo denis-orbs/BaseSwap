@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import PageSection from 'components/PageSection'
 import useTheme from 'hooks/useTheme'
-import readybannerone from '../../../public/images/readybanner1.png'
 import baselogo from '../../../public/images/baselogolarge.png'
 import Page from 'views/Page'
 import { Text, Flex, useMatchBreakpoints } from '@pancakeswap/uikit'
