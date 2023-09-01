@@ -496,7 +496,7 @@ function PositionPageContent() {
   // const price1 = useStablecoinPrice(token1 ?? undefined)
 
   const price0 = useMemo(() => getTokenPrice(token0?.address), [getTokenPrice, token0])
-  const price1 = useMemo(() => getTokenPrice(token0?.address), [getTokenPrice, token1])
+  const price1 = useMemo(() => getTokenPrice(token1?.address), [getTokenPrice, token1])
 
   const fiatValueOfFees: string = useMemo(() => {
     if (!feeValue0 || !feeValue1) return '0'
@@ -751,41 +751,43 @@ function PositionPageContent() {
             <RowBetween></RowBetween>
           </AutoColumn>
           <ResponsiveRow align="flex-start">
-           {metadata?.valid && <Box
-              style={{
-                height: '100%',
-                marginRight: 12,
-              }}
-            >
-              {'result' in metadata ? (
-                <Flex
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                    justifyContent: 'space-around',
-                    minWidth: '340px',
-                  }}
-                >
-                  <NFT image={metadata.result.image} height={400} />
-                  {typeof chainId === 'number' && owner && !ownsNFT ? (
-                    <ExternalLink href={getExplorerLink(chainId, owner, ExplorerDataType.ADDRESS)}>
-                      <Trans>Owner</Trans>
-                    </ExternalLink>
-                  ) : null}
-                </Flex>
-              ) : (
-                <Card
-                  style={{
-                    minWidth: '340px',
-                    position: 'relative',
-                    overflow: 'hidden',
-                  }}
-                >
-                  <LoadingFullscreen />
-                </Card>
-              )}
-            </Box>}
+            {metadata?.valid && (
+              <Box
+                style={{
+                  height: '100%',
+                  marginRight: 12,
+                }}
+              >
+                {'result' in metadata ? (
+                  <Flex
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      justifyContent: 'space-around',
+                      minWidth: '340px',
+                    }}
+                  >
+                    <NFT image={metadata.result.image} height={400} />
+                    {typeof chainId === 'number' && owner && !ownsNFT ? (
+                      <ExternalLink href={getExplorerLink(chainId, owner, ExplorerDataType.ADDRESS)}>
+                        <Trans>Owner</Trans>
+                      </ExternalLink>
+                    ) : null}
+                  </Flex>
+                ) : (
+                  <Card
+                    style={{
+                      minWidth: '340px',
+                      position: 'relative',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <LoadingFullscreen />
+                  </Card>
+                )}
+              </Box>
+            )}
             <AutoColumn gap="sm" style={{ width: '100%', height: '100%' }}>
               <Card>
                 <AutoColumn gap="md" style={{ width: '100%' }}>
