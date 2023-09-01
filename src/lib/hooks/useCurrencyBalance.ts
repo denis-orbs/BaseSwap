@@ -3,7 +3,10 @@ import { Currency, CurrencyAmount, Token } from '@baseswapfi/sdk-core'
 import { useWeb3React } from '@web3-react/core'
 import ERC20ABI from 'config/abi/erc20.json'
 import JSBI from 'jsbi'
-import { useMultipleContractSingleData, useSingleContractMultipleData } from 'lib/hooks/multicall'
+import { 
+  // useMultipleContractSingleData,
+  useSingleContractMultipleData } from 'lib/hooks/multicall'
+import { useMultipleContractSingleData } from '../../state/multicall/hooks'
 import { useMemo } from 'react'
 
 import { nativeOnChain } from 'config/constants/tokens-v3'
@@ -70,7 +73,7 @@ export function useTokenBalancesWithLoadingIndicator(
     ERC20Interface,
     'balanceOf',
     useMemo(() => [address], [address]),
-    tokenBalancesGasRequirement,
+    // tokenBalancesGasRequirement,
   )
 
   const anyLoading: boolean = useMemo(() => balances.some((callState) => callState.loading), [balances])
@@ -123,7 +126,6 @@ export function useCurrencyBalances(
   const tokenBalances = useTokenBalances(account, tokens)
   const containsETH: boolean = useMemo(() => currencies?.some((currency) => currency?.isNative) ?? false, [currencies])
   const ethBalance = useNativeCurrencyBalances(useMemo(() => (containsETH ? [account] : []), [containsETH, account]))
-
   return useMemo(
     () =>
       currencies?.map((currency) => {

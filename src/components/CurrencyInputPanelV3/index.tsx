@@ -31,7 +31,7 @@ import { darken } from 'polished'
 import { isSupportedChain } from 'config/constants/chains'
 import Trans from 'components/Trans'
 
-const CurrencySelect = styled(Button)<{
+const CurrencySelect = styled(Button) <{
   visible: boolean
   selected: boolean
   hideInput?: boolean
@@ -125,7 +125,7 @@ const FiatRow = styled(LabelRow)`
   height: 32px;
 `
 
-const StyledNumericalInput = styled(NumericalInput)<{ $loading: boolean }>`
+const StyledNumericalInput = styled(NumericalInput) <{ $loading: boolean }>`
   ${loadingOpacityMixin};
   text-align: left;
 `
@@ -257,8 +257,8 @@ export default function CurrencyInputPanelV3({
                     <StyledTokenName className="token-symbol-container" active={Boolean(currency && currency.symbol)}>
                       {(currency && currency.symbol && currency.symbol.length > 20
                         ? currency.symbol.slice(0, 4) +
-                          '...' +
-                          currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)
+                        '...' +
+                        currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)
                         : currency?.symbol) || <Trans>Select a token</Trans>}
                     </StyledTokenName>
                   )}
@@ -277,7 +277,7 @@ export default function CurrencyInputPanelV3({
                 </LoadingOpacityContainer>
                 {account && (
                   <RowFixed style={{ height: '17px' }}>
-                    <Text
+                    {/* <Text
                       onClick={onMax}
                       color={theme.colors.tertiary}
                       fontWeight={500}
@@ -288,6 +288,18 @@ export default function CurrencyInputPanelV3({
                         (renderBalance?.(selectedCurrencyBalance as CurrencyAmount<Currency>) || (
                           <Text>{t(`Balance: ${formatCurrencyAmount(selectedCurrencyBalance, 4)}`)}</Text>
                         ))}
+                    </Text> */}
+                    <Text
+                      onClick={!disabled && onMax}
+                      color="text"
+                      fontSize='14px'
+                      fontWeight="500"
+                      letterSpacing="0px"
+                      style={{ display: 'inline', cursor: 'pointer' }}
+                    >
+                      {!hideBalance && !!currency
+                        ? t('BALANCE: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? t('Loading') })
+                        : ' -'}
                     </Text>
                   </RowFixed>
                 )}
