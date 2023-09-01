@@ -262,6 +262,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.wbnb,
     quoteToken: serializedTokens.dai,
+    classic: true, 
   },
   // {
   //   pid: 20,
