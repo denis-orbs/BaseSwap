@@ -167,6 +167,16 @@ const priceHelperLps: SerializedFarmConfig[] = [
     token: baseTokens.dai,
     quoteToken: baseTokens.wbnb,
   },
+  // {
+  //   pid: 20,
+  //   lpSymbol: 'MAI-USDC LP',
+  //   lpAddresses: {
+  //    8453: '0x9e574f9aD6ca1833f60d5bB21655dd45278A6e3A',
+  //   },
+   
+  //   token: baseTokens.mai,
+  //   quoteToken: baseTokens.usdbc,
+  // },
 
 
 ]

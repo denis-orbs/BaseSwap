@@ -198,6 +198,14 @@
       "logoURI": ""
     },
     {
+      "name": "Mai Stablecoin",
+      "symbol": "MAI",
+      "address": "0xbf1aea8670d2528e08334083616dd9c5f3b087ae",
+      "chainId": 84531,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "axlUSDC",
       "symbol": "axlUSDC",
       "address": "0xEd2D3fA2102980EeBdF2B12E58c1a96c9889315F",

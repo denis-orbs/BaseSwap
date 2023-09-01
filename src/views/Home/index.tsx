@@ -33,22 +33,8 @@ const Home: React.FC = () => {
         index={2}
         hasCurvedDivider={false}
       >
-        {/* <AnimationOnScroll initiallyVisible={true} delay={10} 
-          offset={50} 
-          animateIn="animate__lightSpeedInLeft" animateOut="animate__bounceOutRight" animateOnce={true}>
-           */}
             <Hero />
-        
-        {/* </AnimationOnScroll> */}
-        
-        {/* <AnimationOnScroll initiallyVisible={false} delay={1000} 
-            offset={50} 
-            animateIn="animate__lightSpeedInLeft" animateOut="animate__bounceOutRight" animateOnce={true}>
-           */}
-          <TVL />
-        
-        {/* </AnimationOnScroll> */}
-
+            <TVL />
       </StyledHeroSection>
       <PageSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
