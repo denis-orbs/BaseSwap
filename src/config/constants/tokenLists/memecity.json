@@ -44,6 +44,14 @@
     "logoURI": "https://baseswap.fi/images/tokens/0x60Cbb875D3c6314280Dd90a4Fe6cAFC1d7Ce5DfD.png"
   }, 
   {
+    "name": "Fren Pet",
+    "symbol": "FREN PET",
+    "address": "0xFF0C532FDB8Cd566Ae169C1CB157ff2Bdc83E105",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": ""
+  }, 
+  {
     "name": "Nether",
     "symbol": "NFI",
     "address": "0x60359A0DD148B18d5cF1Ddf8Aa1916221ED0cbCd",
