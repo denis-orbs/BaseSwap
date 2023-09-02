@@ -31,13 +31,23 @@ const config: (
   chainId?: number,
 ) => ConfigMenuItemsType[] = (t, isDark, languageCode, chainId) =>
   [
+ 
     {
-      label: t('Swap'),
-      href: '/swap',
-      showItemsOnMobile: false,
+      label: t('Trade'),
+      href: '',
       fillIcon: SwapFillIcon,
       icon: SwapFillIcon,
-      items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
+      supportChainIds: [DEFAULT_CHAIN_ID],
+      items: [
+        {
+          label: t('Swap'),
+          href: '/swap',
+        },
+        {
+          label: t('Perpetuals'),
+          href: 'https://perpetuals.baseswap.fi',
+        },
+      ],
     },
     {
       label: t('Liquidity'),
@@ -73,14 +83,14 @@ const config: (
       fillIcon: CurrencyIcon,
       items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
     },
-    {
-      label: t('xBSX'),
-      href: '/xbsx',
-      showItemsOnMobile: false,
-      icon: AddIcon,
-      fillIcon: AddIcon,
-      items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
-    },
+    // {
+    //   label: t('xBSX'),
+    //   href: '/xbsx',
+    //   showItemsOnMobile: false,
+    //   icon: AddIcon,
+    //   fillIcon: AddIcon,
+    //   items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
+    // },
     {
       label: t('Links'),
       href: '',
