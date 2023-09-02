@@ -210,7 +210,7 @@ const Menu: React.FC<NavProps> = ({
                     <Link href="/swap" marginBottom="1.2rem">
                       <Text>Swap</Text>
                     </Link>
-                    <Link href="https://perpetuals.baseswap.fi">
+                    <Link href="http://perpetuals.baseswap.fi">
                       <Text color="#ccc">Perpetuals</Text>
                     </Link>
                   </DropdownMenu>

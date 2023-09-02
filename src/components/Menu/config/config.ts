@@ -45,7 +45,7 @@ const config: (
         },
         {
           label: t('Perpetuals'),
-          href: 'https://perpetuals.baseswap.fi',
+          href: 'http://perpetuals.baseswap.fi',
         },
       ],
     },
