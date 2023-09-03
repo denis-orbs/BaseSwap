@@ -43,9 +43,9 @@
   "dependencies": {
     "@apollo/client": "^3.7.2",
     "@baseswapfi/redux-multicall": "^1.1.6",
-    "@baseswapfi/router-sdk": "^1.0.19",
-    "@baseswapfi/sdk-core": "^1.0.22",
-    "@baseswapfi/smart-order-router": "^3.15.24",
+    "@baseswapfi/router-sdk": "^1.0.20",
+    "@baseswapfi/sdk-core": "^1.0.23",
+    "@baseswapfi/smart-order-router": "^3.15.25",
     "@baseswapfi/v2-sdk": "^1.0.16",
     "@baseswapfi/v3-sdk2": "^3.10.16",
     "@binance-chain/bsc-connector": "^1.0.0",
