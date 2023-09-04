@@ -35,7 +35,7 @@ ${({ table }) =>
 const PendingRewards: React.FC<PendingRewardProps> = ({
   position,
   harvestPosition,
-  title = 'PENDING REWARDS',
+  title = 'Earned Rewards',
   nitro,
   pendingTx,
   table
@@ -94,26 +94,23 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
   // }, [tokenId])
 
   return (
-    <Flex flexDirection="column" width="100%" mt="10px">
-      <Text>{title}</Text>
+    <Flex flexDirection="column" width="100%" mt="16px">
+      <Text bold textTransform="uppercase" color="background" fontSize="12px">{title}</Text>
       <Flex flexDirection="row" flexWrap={table? "nowrap" : "wrap"}>
         {mappedRewards.map((rw, i) => (
-          <Flex key={i} alignItems="center" alignContent="center" mt="0px" ml="1px" width={['100%', '48%']}>
-            <TokenImage src={rw.imgSrc} width={30} height={30} />
+          <Flex key={i} alignItems="center" alignContent="center" mt="0px" ml="0px" width={['100%', '48%']}>
+            <TokenImage src={rw.imgSrc} width={25} height={25} />
 
-            <Flex flexDirection="column" alignItems="flex-start" mt="10px">
-              <Text bold textTransform="uppercase" color="white">
-                {rw.token.symbol} {t('Earned')}
+            <Flex ml="4px" flexDirection="column" alignItems="flex-start" mt="0px">
+              <Text  fontSize="12px" bold textTransform="uppercase" color="white">
+                {rw.token.symbol} 
               </Text>
-              <Text fontSize="14px" color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>
+              <Text  fontSize="12px" color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>
                 {rw.rewardAmountDisplay}
               </Text>
-              <Text fontSize="10px" color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>
+              <Text  fontSize="12px" bold color={rw.pendingReward === 0 ? 'textDisabled' : 'background'}>
                 {rw.valueLabel}
               </Text>
-
-              {/* <Text color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>{rw.rewardAmountDisplay}</Text>
-              <Text color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>{rw.valueLabel}</Text> */}
             </Flex>
           </Flex>
         ))}

@@ -10,6 +10,7 @@ export const scales = {
 
 export const variants = {
   PRIMARY: "primary",
+  PLUSMINUS: "plusminus", 
   CALCULATOR: "calculator", 
   PRIMARYTWO: "primarytwo", 
   PRIMARYTHREE: "primarythree", 

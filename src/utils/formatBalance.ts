@@ -111,5 +111,5 @@ export const formatLpBalance = (balance: BigNumber) => {
   if (stakedBalanceBigNumber.gt(0) && stakedBalanceBigNumber.lt(0.00001)) {
     return '< 0.00001'
   }
-  return stakedBalanceBigNumber.toFixed(5, BigNumber.ROUND_DOWN)
+  return stakedBalanceBigNumber.toFixed(3, BigNumber.ROUND_DOWN)
 }

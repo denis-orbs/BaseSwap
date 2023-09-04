@@ -30,12 +30,12 @@ const useTokenPrices = () => {
   )
 
   const getValueForAmount = useCallback(
-    (token: string, amount: number, decimals = 4) => {
+    (token: string, amount: number, decimals = 3) => {
       const valueUSD = getTokenPrice(token) * amount
 
       return {
         valueUSD,
-        valueLabel: `~$${valueUSD.toFixed(decimals)}`,
+        valueLabel: `$${valueUSD.toFixed(decimals)}`,
       }
     },
     [getTokenPrice],
