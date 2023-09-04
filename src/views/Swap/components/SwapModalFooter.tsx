@@ -1,21 +1,27 @@
-import { useMemo, useState } from 'react'
+import { 
+  // useMemo, 
+  useState } from 'react'
 import styled from 'styled-components'
-import { Trade, TradeType } from '@magikswap/sdk'
+import { 
+  // Trade, TradeType,  
+  Percent, JSBI } from '@magikswap/sdk'
 import { Button, Text, AutoRenewIcon } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { Field } from 'state/swap/actions'
 import {
-  computeSlippageAdjustedAmounts,
-  computeTradePriceBreakdown,
-  formatExecutionPrice,
+  // computeSlippageAdjustedAmounts,
+  // computeTradePriceBreakdown,
+  formatExecutionPriceOdos,
   warningSeverity,
 } from 'utils/exchange'
 import { AutoColumn } from 'components/Layout/Column'
 import QuestionHelper from 'components/QuestionHelper'
 import { AutoRow, RowBetween, RowFixed } from 'components/Layout/Row'
-import { TOTAL_FEE, LP_HOLDERS_FEE, TREASURY_FEE, BUYBACK_FEE } from 'config/constants/info'
+// import { TOTAL_FEE, LP_HOLDERS_FEE, TREASURY_FEE, BUYBACK_FEE } from 'config/constants/info'
+// import useMatchBreakpoints from '@pancakeswap/uikit/src/hooks/useMatchBreakpoints'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import { StyledBalanceMaxMini, SwapCallbackError } from './styleds'
+import { BIPS_BASE } from 'config/constants/exchange'
 
 const SwapModalFooterContainer = styled(AutoColumn)`
   margin-top: 12px;
@@ -26,31 +32,32 @@ const SwapModalFooterContainer = styled(AutoColumn)`
 `
 
 export default function SwapModalFooter({
-  trade,
   onConfirm,
   allowedSlippage,
   swapErrorMessage,
-  disabledConfirm,
+  swapData,
+  inputCurrency,
+  outputCurrency,
+  formattedAmounts,
 }: {
-  trade: Trade
   allowedSlippage: number
   onConfirm: () => void
   swapErrorMessage: string | undefined
-  disabledConfirm: boolean
+  swapData: any
+  inputCurrency: any
+  outputCurrency: any
+  formattedAmounts: any
 }) {
   const { t } = useTranslation()
   const [showInverted, setShowInverted] = useState<boolean>(false)
-  const slippageAdjustedAmounts = useMemo(
-    () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
-    [allowedSlippage, trade],
-  )
-  const { priceImpactWithoutFee, realizedLPFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
-  const severity = warningSeverity(priceImpactWithoutFee)
+  const priceImpactSD = (-100 * swapData.priceImpact).toFixed(0)
+  const priceImpactWithoutFee = new Percent(JSBI.BigInt(priceImpactSD), BIPS_BASE)
 
-  const totalFeePercent = `${(TOTAL_FEE * 100).toFixed(2)}%`
-  const lpHoldersFeePercent = `${(LP_HOLDERS_FEE * 100).toFixed(2)}%`
-  const treasuryFeePercent = `${(TREASURY_FEE * 100).toFixed(4)}%`
-  const buyBackFeePercent = `${(BUYBACK_FEE * 100).toFixed(4)}%`
+  const severity = warningSeverity(priceImpactWithoutFee)
+  // const { isMobile } = useMatchBreakpoints()
+
+  const inputAmount = parseInt(swapData?.inAmounts[0]) / 10 ** inputCurrency?.decimals
+  const outputAmount = parseInt(swapData?.outAmounts[0]) / 10 ** outputCurrency?.decimals
 
   return (
     <>
@@ -67,7 +74,7 @@ export default function SwapModalFooter({
               paddingLeft: '10px',
             }}
           >
-            {formatExecutionPrice(trade, showInverted)}
+            {formatExecutionPriceOdos(inputAmount, outputAmount, inputCurrency, outputCurrency, showInverted)}
             <StyledBalanceMaxMini onClick={() => setShowInverted(!showInverted)}>
               <AutoRenewIcon width="14px" />
             </StyledBalanceMaxMini>
@@ -77,7 +84,7 @@ export default function SwapModalFooter({
         <RowBetween>
           <RowFixed>
             <Text fontSize="14px">
-              {trade.tradeType === TradeType.EXACT_INPUT ? t('Minimum received') : t('Maximum sold')}
+              {t('Minimum received')}
             </Text>
             <QuestionHelper
               text={t(
@@ -87,15 +94,9 @@ export default function SwapModalFooter({
             />
           </RowFixed>
           <RowFixed>
-            <Text fontSize="14px">
-              {trade.tradeType === TradeType.EXACT_INPUT
-                ? slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4) ?? '-'
-                : slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4) ?? '-'}
-            </Text>
+            <Text fontSize="14px">{(parseFloat(formattedAmounts[Field.OUTPUT]) * (1 - allowedSlippage / 10000)).toFixed(4)}</Text>
             <Text fontSize="14px" marginLeft="4px">
-              {trade.tradeType === TradeType.EXACT_INPUT
-                ? trade.outputAmount.currency.symbol
-                : trade.inputAmount.currency.symbol}
+              {outputCurrency.symbol}
             </Text>
           </RowFixed>
         </RowBetween>
@@ -109,32 +110,13 @@ export default function SwapModalFooter({
           </RowFixed>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </RowBetween>
-        {/* <RowBetween>
-          <RowFixed>
-            <Text fontSize="14px">{t('Liquidity Provider Fee')}</Text>
-            <QuestionHelper
-              text={
-                <>
-                  <Text mb="12px">{t('For each trade a %amount% fee is paid', { amount: totalFeePercent })}</Text>
-                  <Text>- {t('%amount% to LP token holders', { amount: lpHoldersFeePercent })}</Text>
-                  <Text>- {t('%amount% to the Treasury', { amount: treasuryFeePercent })}</Text>
-                  <Text>- {t('%amount% towards BSWAP buyback and burn', { amount: buyBackFeePercent })}</Text>
-                </>
-              }
-              ml="4px"
-            />
-          </RowFixed>
-          <Text fontSize="14px">
-            {realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${trade.inputAmount.currency.symbol}` : '-'}
-          </Text>
-        </RowBetween> */}
       </SwapModalFooterContainer>
 
       <AutoRow>
         <Button
           variant={severity > 2 ? 'danger' : 'primary'}
           onClick={onConfirm}
-          disabled={disabledConfirm}
+          disabled={false}
           mt="12px"
           id="confirm-swap-or-send"
           width="100%"

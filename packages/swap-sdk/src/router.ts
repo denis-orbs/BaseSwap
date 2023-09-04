@@ -95,8 +95,6 @@ export abstract class Router {
     let args: (string | string[])[]
     let value: string
 
-    debugger;
-
     switch (trade.tradeType) {
       case TradeType.EXACT_INPUT:
         if (etherIn) {

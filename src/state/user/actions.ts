@@ -26,6 +26,7 @@ export const updateHideClosedPositions = createAction<{ userHideClosedPositions:
   'user/updateHideClosedPositions',
 )
 export const updateUserExpertMode = createAction<{ userExpertMode: boolean }>('user/updateUserExpertMode')
+export const updateUserShowRoute = createAction<{ userShowRoute: boolean }>('user/updateUserShowRoute')
 export const updateUserSingleHopOnly = createAction<{ userSingleHopOnly: boolean }>('user/updateUserSingleHopOnly')
 export const updateUserSlippageTolerance = createAction<{ userSlippageTolerance: number }>(
   'user/updateUserSlippageTolerance',

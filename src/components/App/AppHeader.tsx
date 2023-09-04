@@ -3,7 +3,7 @@ import { Text, Flex, Heading, IconButton, ArrowBackIcon, NotificationDot } from 
 import { useExpertModeManager } from 'state/user/hooks'
 import GlobalSettings from 'components/Menu/GlobalSettings'
 import Link from 'next/link'
-import Transactions from './Transactions'
+// import Transactions from './Transactions'
 import QuestionHelper from '../QuestionHelper'
 import { SettingsMode } from '../Menu/GlobalSettings/types'
 

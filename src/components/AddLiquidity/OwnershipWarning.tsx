@@ -1,4 +1,4 @@
-import { useTranslation } from '@pancakeswap/localization'
+// import { useTranslation } from '@pancakeswap/localization'
 import { Heading } from '@pancakeswap/uikit'
 import { AlertTriangle } from 'react-feather'
 import styled from 'styled-components'
@@ -24,7 +24,7 @@ interface OwnershipWarningProps {
 }
 
 const OwnershipWarning = ({ ownerAddress }: OwnershipWarningProps) => {
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
 
   return (
     <Wrapper>

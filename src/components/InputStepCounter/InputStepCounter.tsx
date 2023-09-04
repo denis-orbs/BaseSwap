@@ -88,6 +88,7 @@ const StepCounter = ({
   increment,
   decrementDisabled = false,
   incrementDisabled = false,
+  // @ts-ignore
   width,
   locked,
   onUserInput,
@@ -131,6 +132,7 @@ const StepCounter = ({
 
   useEffect(() => {
     if (localValue !== value && !useLocalValue) {
+      // @ts-ignore
       setTimeout(() => {
         setLocalValue(value) // reset local value to match parent
         setPulsing(true) // trigger animation

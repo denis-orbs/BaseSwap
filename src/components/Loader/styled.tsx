@@ -35,7 +35,9 @@ export const LoadingRows = styled.div`
 export const loadingOpacityMixin = css<{ $loading: boolean }>`
   filter: ${({ $loading }) => ($loading ? 'grayscale(1)' : 'none')};
   opacity: ${({ $loading }) => ($loading ? '0.4' : '1')};
-  transition: ${({ $loading, theme }) => ($loading ? 'none' : `opacity 0.7 0.9`)};
+  transition: ${({ $loading
+    // , theme 
+  }) => ($loading ? 'none' : `opacity 0.7 0.9`)};
 `
 
 export const LoadingOpacityContainer = styled.div<{ $loading: boolean }>`

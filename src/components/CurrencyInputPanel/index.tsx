@@ -1,5 +1,6 @@
 import { Currency, Pair, Token } from '@magikswap/sdk'
 import { Button, ChevronDownIcon, Text, useModal, Flex, Box, useMatchBreakpoints } from '@pancakeswap/uikit'
+import PulseLoader from 'react-spinners/PulseLoader'
 import styled, { css } from 'styled-components'
 import { isAddress } from 'utils'
 import { useTranslation } from '@pancakeswap/localization'
@@ -13,7 +14,7 @@ import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
 import { Input as NumericalInput } from './NumericalInput'
 import { CopyButton } from '../CopyButton'
 import AddToWalletButton from '../AddToWallet/AddToWalletButton'
-import TypeIt from 'typeit-react'
+// import TypeIt from 'typeit-react'
 // bottom half of the input panel
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
@@ -25,7 +26,7 @@ const InputRow = styled.div<{ selected: boolean }>`
 
   padding-right: 4px;
 `
-const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })<{ zapStyle?: ZapStyle }>`
+const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' }) <{ zapStyle?: ZapStyle }>`
   padding: 0.25 0.5rem;
   border-radius: 8px;
   border: 0px solid #fff !important;
@@ -75,12 +76,12 @@ const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
     `};
 `
 
-const Overlay = styled.div`
-  position: absolute;
-  inset: 0;
-  opacity: 0.6;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
-`
+// const Overlay = styled.div`
+//   position: absolute;
+//   inset: 0;
+//   opacity: 0.6;
+//   background-color: ${({ theme }) => theme.colors.backgroundAlt};
+// `
 
 type ZapStyle = 'noZap' | 'zap'
 
@@ -108,6 +109,7 @@ interface CurrencyInputPanelProps {
   borderRadius?: string
   borderTopLeftRadius?: string
   borderTopRightRadius?: string
+  loading?: boolean
 }
 
 export default function CurrencyInputPanel({
@@ -134,6 +136,7 @@ export default function CurrencyInputPanel({
   backgroundColor,
   borderTopLeftRadius,
   borderTopRightRadius,
+  loading,
 }: CurrencyInputPanelProps) {
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
@@ -187,8 +190,10 @@ export default function CurrencyInputPanel({
               {pair ? (
                 <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={36} margin />
               ) : currency ? (
-                <CurrencyLogo currency={currency} size="60px" style={{ marginRight: '8px', 
-                boxShadow: '0 1px 4px #000, 0 4px 12px #68B9FF, 0 4px 4px #fff, 4px 0px 12px #0154FD, -4px 0px 12px #68B9FF' }} />
+                <CurrencyLogo currency={currency} size="60px" style={{
+                  marginRight: '8px',
+                  boxShadow: '0 1px 4px #000, 0 4px 12px #68B9FF, 0 4px 4px #fff, 4px 0px 12px #0154FD, -4px 0px 12px #68B9FF'
+                }} />
               ) : null}
               {pair ? (
                 <Text id="pair" color="text" fontWeight="600">
@@ -198,9 +203,9 @@ export default function CurrencyInputPanel({
                 <Text id="pair" color="text" fontSize="1.4rem" fontWeight="600">
                   {(currency && currency.symbol && currency.symbol.length > 20
                     ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
-                        currency.symbol.length - 5,
-                        currency.symbol.length,
-                      )}`
+                      currency.symbol.length - 5,
+                      currency.symbol.length,
+                    )}`
                     : currency?.symbol) || t('Select Token')}
                 </Text>
               )}
@@ -264,16 +269,20 @@ export default function CurrencyInputPanel({
       <InputPanel>
         <Container as="label" zapStyle={zapStyle} error={error}>
           <LabelRow>
-            <NumericalInput
-              error={error}
-              disabled={disabled}
-              className="token-amount-input"
-              value={value}
-              onBlur={onInputBlur}
-              onUserInput={(val) => {
-                onUserInput(val)
-              }}
-            />
+            {loading ? (
+              <PulseLoader color="#bccae0" size={8} />
+            ) : (
+              <NumericalInput
+                error={error}
+                disabled={disabled}
+                className="token-amount-input"
+                value={value}
+                onBlur={onInputBlur}
+                onUserInput={(val) => {
+                  onUserInput(val)
+                }}
+              />
+            )}
           </LabelRow>
           <InputRow selected={disableCurrencySelect}>
             {!!currency && showBUSD && Number.isFinite(amountInDollar) && (

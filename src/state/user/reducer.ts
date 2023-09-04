@@ -20,6 +20,7 @@ import {
   updateUserFarmsViewMode,
   updateUserPoolStakedOnly,
   updateUserPoolsViewMode,
+  updateUserShowRoute,
   updateUserSingleHopOnly,
   updateUserSlippageTolerance,
   ViewMode,
@@ -46,6 +47,7 @@ export interface UserState {
   lastUpdateVersionTimestamp?: number
 
   userExpertMode: boolean
+  userShowRoute: boolean
 
   // only allow swaps on direct pairs
   userSingleHopOnly: boolean
@@ -99,6 +101,7 @@ function pairKey(token0Address: string, token1Address: string) {
 
 export const initialState: UserState = {
   userExpertMode: false,
+  userShowRoute: true,
   userSingleHopOnly: false,
   userSlippageTolerance: INITIAL_ALLOWED_SLIPPAGE,
   userDeadline: DEFAULT_DEADLINE_FROM_NOW,
@@ -146,6 +149,10 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(updateUserExpertMode, (state, action) => {
       state.userExpertMode = action.payload.userExpertMode
+      state.timestamp = currentTimestamp()
+    })
+    .addCase(updateUserShowRoute, (state, action) => {
+      state.userShowRoute = action.payload.userShowRoute
       state.timestamp = currentTimestamp()
     })
     .addCase(updateUserSlippageTolerance, (state, action) => {

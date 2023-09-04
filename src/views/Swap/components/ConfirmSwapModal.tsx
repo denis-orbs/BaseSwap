@@ -1,5 +1,4 @@
-import { useCallback, useMemo } from 'react'
-import { currencyEquals, Trade } from '@magikswap/sdk'
+import { useCallback } from 'react'
 import { InjectedModalProps } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import TransactionConfirmationModal, {
@@ -9,37 +8,23 @@ import TransactionConfirmationModal, {
 import SwapModalFooter from './SwapModalFooter'
 import SwapModalHeader from './SwapModalHeader'
 
-/**
- * Returns true if the trade requires a confirmation of details before we can submit it
- * @param tradeA trade A
- * @param tradeB trade B
- */
-function tradeMeaningfullyDiffers(tradeA: Trade, tradeB: Trade): boolean {
-  return (
-    tradeA.tradeType !== tradeB.tradeType ||
-    !currencyEquals(tradeA.inputAmount.currency, tradeB.inputAmount.currency) ||
-    !tradeA.inputAmount.equalTo(tradeB.inputAmount) ||
-    !currencyEquals(tradeA.outputAmount.currency, tradeB.outputAmount.currency) ||
-    !tradeA.outputAmount.equalTo(tradeB.outputAmount)
-  )
-}
 interface ConfirmSwapModalProps {
-  trade?: Trade
-  originalTrade?: Trade
   attemptingTxn: boolean
   txHash?: string
   recipient: string | null
   allowedSlippage: number
-  onAcceptChanges: () => void
   onConfirm: () => void
   swapErrorMessage?: string
   customOnDismiss?: () => void
+  assembledTransaction: any
+  swapData: any
+  inputCurrency: any
+  outputCurrency: any
+  formattedAmounts: any
+  loadingConfirm: boolean
 }
 
 const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = ({
-  trade,
-  originalTrade,
-  onAcceptChanges,
   allowedSlippage,
   onConfirm,
   onDismiss,
@@ -48,44 +33,51 @@ const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = (
   swapErrorMessage,
   attemptingTxn,
   txHash,
+  swapData,
+  inputCurrency,
+  outputCurrency,
+  formattedAmounts,
+  loadingConfirm,
 }) => {
-  const showAcceptChanges = useMemo(
-    () => Boolean(trade && originalTrade && tradeMeaningfullyDiffers(trade, originalTrade)),
-    [originalTrade, trade],
-  )
 
   const { t } = useTranslation()
 
   const modalHeader = useCallback(() => {
-    return trade ? (
+    return swapData ? (
       <SwapModalHeader
-        trade={trade}
         allowedSlippage={allowedSlippage}
         recipient={recipient}
-        showAcceptChanges={showAcceptChanges}
-        onAcceptChanges={onAcceptChanges}
+        swapData={swapData}
+        inputCurrency={inputCurrency}
+        outputCurrency={outputCurrency}
+        formattedAmounts={formattedAmounts}
       />
     ) : null
-  }, [allowedSlippage, onAcceptChanges, recipient, showAcceptChanges, trade])
+  }, [allowedSlippage, recipient, formattedAmounts, inputCurrency, outputCurrency, swapData])
 
   const modalBottom = useCallback(() => {
-    return trade ? (
+    return swapData ? (
       <SwapModalFooter
         onConfirm={onConfirm}
-        trade={trade}
-        disabledConfirm={showAcceptChanges}
         swapErrorMessage={swapErrorMessage}
         allowedSlippage={allowedSlippage}
+        swapData={swapData}
+        inputCurrency={inputCurrency}
+        outputCurrency={outputCurrency}
+        formattedAmounts={formattedAmounts}
       />
     ) : null
-  }, [allowedSlippage, onConfirm, showAcceptChanges, swapErrorMessage, trade])
+  }, [allowedSlippage, onConfirm, swapErrorMessage, formattedAmounts, inputCurrency, outputCurrency, swapData])
+
+  const inputAmount = parseInt(swapData?.inAmounts[0]) / 10 ** inputCurrency?.decimals
+  const outputAmount = parseInt(swapData?.outAmounts[0]) / 10 ** outputCurrency?.decimals
 
   // text to show while loading
   const pendingText = t('Swapping %amountA% %symbolA% for %amountB% %symbolB%', {
-    amountA: trade?.inputAmount?.toSignificant(6) ?? '',
-    symbolA: trade?.inputAmount?.currency?.symbol ?? '',
-    amountB: trade?.outputAmount?.toSignificant(6) ?? '',
-    symbolB: trade?.outputAmount?.currency?.symbol ?? '',
+    amountA: inputAmount,
+    symbolA: inputCurrency?.symbol ?? '',
+    amountB: outputAmount,
+    symbolB: outputCurrency?.symbol ?? '',
   })
 
   const confirmationContent = useCallback(
@@ -105,10 +97,12 @@ const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = (
       customOnDismiss={customOnDismiss}
       attemptingTxn={attemptingTxn}
       hash={txHash}
-      //@ts-ignore
+      // @ts-ignore
       content={confirmationContent}
       pendingText={pendingText}
-      currencyToAdd={trade?.outputAmount.currency}
+      // currencyToAdd={trade?.outputAmount.currency}
+      currencyToAdd={outputCurrency}
+      loadingConfirm={loadingConfirm}
     />
   )
 }
