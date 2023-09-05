@@ -456,7 +456,7 @@ export function useTrackedTokenPairs(): [Token, Token][] {
 
   // pinned pairs
   const pinnedPairs = useMemo(() => (chainId ? PINNED_PAIRS[chainId] ?? [] : []), [chainId])
-
+// jumpman
   const farmPairs: [Token, Token][] = useMemo(
     () => farms.map((farm) => [deserializeToken(farm.token), deserializeToken(farm.quoteToken)]),
     [],

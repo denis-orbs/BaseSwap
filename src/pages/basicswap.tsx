@@ -1,8 +1,8 @@
 import MemeCity from '../views/MemeCity'
 
 
-const MemeCityPage = () => {
+const BasicSwapPage = () => {
   return <MemeCity />
 }
 
-export default MemeCityPage
+export default BasicSwapPage

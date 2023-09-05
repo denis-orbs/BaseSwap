@@ -16,10 +16,12 @@ import {
   BottomDrawer,
   ArrowUpDownIcon,
   Skeleton,
+  useTooltip,
   useMatchBreakpointsContext,
-  Card
+  Card, HelpIcon
 } from '@pancakeswap/uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
+
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import Footer from 'components/Menu/Footer'
 import { useRouter } from 'next/router'
@@ -136,6 +138,32 @@ export default function Swap() {
   const handleClick = (newIndex: number) => {
     setView(newIndex)
   }
+
+  const DYOR = () => {
+    return (
+      <Flex flexDirection="column" >
+       <Text fontSize="14px">
+       Basic Swap is a secondary swap page for newer or upcoming tokens. At different junctures, tokens may move up from Basic Swap 
+    to the BaseSwap <u><a href="/swap">Swap</a></u> page. This will be contingent on sustained token health. <br /> <br /> 
+       </Text>
+       <Text fontSize="14px">
+       But now, a quick disclaimer. By listing tokens here, 
+    we (BaseSwap, your bffs) are not endorsing the token or the underlying DeFi protocol or their contract code. 
+    DYOR ("do your own research") is a critical, foundational piece of DeFi, and you as an investor can't outsource that to us.
+    Now, that doesn't mean we are yolo'ing any token that asks onto this list. 
+    We are taking a few due diligence measures first - namely reviewing token contracts for obvious red flags,
+    along with examining documentation, websites, liquidity, and so on. We are also prioritizing for listing here those protocols that 
+    utilize the BaseSwap <u><a href="/locker">Token Locker</a></u>. However, at the end of the day, users (that's you) 
+    assume all the risk of utilizing BaseSwap. That includes Basic Swap. <br /> <br /> 
+       </Text>
+        <Text fontSize="14px">
+        To have your favorite token listed here on Basic Swap, please open up a ticket in Discord and provide a token contract address and 
+    a token image.
+        </Text>
+      </Flex>
+    );
+  };
+  const { tooltip, tooltipVisible, targetRef } = useTooltip(<DYOR />, {}, )
 
   const TabsComponent: React.FC = () => (
     <Tabs>
@@ -441,14 +469,22 @@ export default function Swap() {
           getBeforeInit={(instance) => {
         instance
 
-            .type("Meme city", {speed: 5000})
+            .type("Basic Swap", {speed: 5000})
             ;
         return instance;
          }}> 
          </WelcomeTypeIt>
+         
+        <Flex flexDirection="row" justifyContent="center" alignItems="center">
          <Text textAlign="center">
-          Meme City is a special section for homos 
+          A secondary swap page for new tokens 
          </Text>
+         <span  ref={targetRef}>
+            <HelpIcon color="textSubtle" />
+          </span>
+          {tooltipVisible && tooltip}
+       </Flex>
+      
          </Flex>
         </Flex>
         {/* <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>

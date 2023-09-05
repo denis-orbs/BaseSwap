@@ -36,14 +36,6 @@
     "logoURI": ""
   }, 
   {
-    "name": "Moon Base",
-    "symbol": "MBASE",
-    "address": "0xf4E70556CA3935920Cb7e22CA79e323e1Bd877C1",
-    "chainId": 8453,
-    "decimals": 18,
-    "logoURI": ""
-  }, 
-  {
     "name": "Nether",
     "symbol": "NFI",
     "address": "0x60359A0DD148B18d5cF1Ddf8Aa1916221ED0cbCd",
@@ -52,12 +44,46 @@
     "logoURI": "https://baseswap.fi/images/tokens/0x60359A0DD148B18d5cF1Ddf8Aa1916221ED0cbCd.png"
   }, 
   {
+    "name": "Stable Base",
+    "symbol": "SBASE",
+    "address": "0x616F5b97C22Fa42C3cA7376F7a25F0d0F598b7Bb",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": ""
+  }, 
+  {
     "name": "USD Base Coin",
     "symbol": "USDC",
     "address": "0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA",
     "chainId": 8453,
     "decimals": 6,
     "logoURI": "https://baseswap.fi/images/tokens/0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA.png"
+  }, 
+
+  {
+    "name": "YieldBase",
+    "symbol": "YieldBase",
+    "address": "0x015Ad9B6886D439EFc1dBd408D49214a3c557b52",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": ""
+  }, 
+  {
+    "name": "$SNIPER",
+    "symbol": "$SNIPER",
+    "address": "0xc3770156a85374029300a240c7ad714e2ec4007c",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": ""
+  }, 
+  
+  {
+    "name": "Moonbase",
+    "symbol": "MBASE",
+    "address": "0xf4E70556CA3935920Cb7e22CA79e323e1Bd877C1",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": ""
   }, 
   {
     "name": "Wrapped Ether",
