@@ -1,0 +1,90 @@
+{
+ "name": "BaseSwap Default List",
+ "timestamp": "2023-08-01T11:45:09Z",
+ "version": {
+   "major": 4,
+   "minor": 0,
+   "patch": 0
+ },
+ "tags": {},
+ "logoURI": "https://baseswap.fi/logo.png",
+ "keywords": ["baseswap", "default"],
+ "tokens": [
+
+  {
+    "name": "DIP",
+    "symbol": "DIP",
+    "address": "0xAdBa4694F5deAF3251d06dec38C86946F8952EFB",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://baseswap.fi/images/tokens/0xAdBa4694F5deAF3251d06dec38C86946F8952EFB.png"
+  }, 
+  {
+    "name": "EBASE",
+    "symbol": "EBASE",
+    "address": "0x60Cbb875D3c6314280Dd90a4Fe6cAFC1d7Ce5DfD",
+    "chainId": 8453,
+    "decimals": 9,
+    "logoURI": "https://baseswap.fi/images/tokens/0x60Cbb875D3c6314280Dd90a4Fe6cAFC1d7Ce5DfD.png"
+  }, 
+  {
+    "name": "Fren Pet",
+    "symbol": "FREN PET",
+    "address": "0xFF0C532FDB8Cd566Ae169C1CB157ff2Bdc83E105",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": ""
+  }, 
+  {
+    "name": "Nether",
+    "symbol": "NFI",
+    "address": "0x60359A0DD148B18d5cF1Ddf8Aa1916221ED0cbCd",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://baseswap.fi/images/tokens/0x60359A0DD148B18d5cF1Ddf8Aa1916221ED0cbCd.png"
+  }, 
+  {
+    "name": "Stable Base",
+    "symbol": "SBASE",
+    "address": "0x616F5b97C22Fa42C3cA7376F7a25F0d0F598b7Bb",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": ""
+  }, 
+  {
+    "name": "USD Base Coin",
+    "symbol": "USDC",
+    "address": "0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA",
+    "chainId": 8453,
+    "decimals": 6,
+    "logoURI": "https://baseswap.fi/images/tokens/0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA.png"
+  }, 
+  {
+    "name": "Base Sniper",
+    "symbol": "$SNIPER",
+    "address": "0xc3770156a85374029300a240c7ad714e2ec4007c",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": ""
+  }, 
+  
+  {
+    "name": "Moonbase",
+    "symbol": "MBASE",
+    "address": "0xf4E70556CA3935920Cb7e22CA79e323e1Bd877C1",
+    "chainId": 8453,
+    "decimals": 9,
+    "logoURI": ""
+  }, 
+  {
+    "name": "Wrapped Ether",
+    "symbol": "WETH",
+    "address": "0x4200000000000000000000000000000000000006",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://baseswap.fi/images/tokens/0x4200000000000000000000000000000000000006.png"
+  }
+ ]
+
+ 
+}

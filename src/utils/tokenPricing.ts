@@ -44,6 +44,7 @@ export async function getCombinedTokenPrices(chainId: ChainId) {
       // UNIDEX
       if (address === '0x6B4712AE9797C199edd44F897cA09BC57628a1CF') {
         price = await priceDexScreenerPair('0x30dcc8444f8361d5ce119fc25e16af0b583e88fd') // Assuming priceDexScreener() fetches the price for a single address
+
       } 
       //MAI
       else if (address === '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE') {
@@ -55,6 +56,7 @@ export async function getCombinedTokenPrices(chainId: ChainId) {
         price = await priceDexScreenerPair('0x4174E40E3012d5B8aA28D7db7303eAC9e01b13Fd') 
       } 
       else {
+
         price = await priceDexScreener(address) // Assuming priceDexScreener() fetches the price for a single address
       }
 

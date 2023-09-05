@@ -27,7 +27,7 @@ interface FarmCardActionsProps extends FarmWithStakedValue {
 const IconButtonWrapper = styled.div`
   display: flex;
   svg {
-    width: 20px;
+    width: 16px;
   }
 `
 
@@ -140,20 +140,20 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       <>
         <IconButtonWrapper>
           <IconButton
-            variant="primary"
+            variant="plusminus"
             onClick={onPresentWithdraw}
             marginRight="6px"
             disabled={position?.hasNitroDeposit}
           >
-            <MinusIcon color="text" width="14px" />
+            <MinusIcon color="text" width="8px" />
           </IconButton>
 
           <IconButton
-            variant="primary"
+            variant="plusminus"
             onClick={onPresentDeposit}
             disabled={['history', 'archived'].some((item) => router.pathname.includes(item))}
           >
-            <AddIcon color="#fff" width="14px" />
+            <AddIcon color="#fff" width="8px" />
           </IconButton>
         </IconButtonWrapper>
       </>

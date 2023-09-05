@@ -34,6 +34,24 @@ export const styleVariants = {
       transform: "translateY(1px)",
     },
   },
+
+  [variants.PLUSMINUS]: {
+    background: "#000",
+    color: "text",
+    fontWeight: "500", 
+    textTransform: "uppercase", 
+    borderRadius: "4px", 
+    border: "2px solid", 
+    borderColor: "#0154FE", 
+    ":hover": {
+      borderColor: "#fff", 
+      backgroundColor: "#0154FE", 
+      boxShadow: "none", 
+      color: "background", 
+      transform: "translateY(1px)",
+    },
+  },
+
   [variants.MENUCONNECT]: {
     background: `${darkColors.background}`,
     color: "text",

@@ -167,6 +167,7 @@ const priceHelperLps: SerializedFarmConfig[] = [
     token: baseTokens.dai,
     quoteToken: baseTokens.wbnb,
   },
+
   {
     pid: 20,
     lpSymbol: 'MAI-USDC LP',
@@ -177,6 +178,7 @@ const priceHelperLps: SerializedFarmConfig[] = [
     token: baseTokens.mai,
     quoteToken: baseTokens.usdbc,
   },
+
 
 
 ]

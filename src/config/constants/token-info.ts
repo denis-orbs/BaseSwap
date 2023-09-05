@@ -89,6 +89,7 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
       [ChainId.BASE]: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
     },
   },
+
   MAI: {
     coinGeckoId: 'mimatic',
     decimals: 18,
@@ -125,7 +126,7 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
 
 export const TOKEN_INF0: TokenInfoMapping = {
   ...STABLE_TOKEN_INF0,
- 
+
   ProtocolToken: {
     addresses: {
       [ChainId.BASE]: '0xd5046B976188EB40f6DE40fB527F89c05b323385', // BSX

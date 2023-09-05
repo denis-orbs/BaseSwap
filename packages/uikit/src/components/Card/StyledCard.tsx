@@ -3,6 +3,7 @@ import { space } from "styled-system";
 import { Box } from "../Box";
 import { CardProps } from "./types";
 
+
 const PromotedGradient = keyframes`
   0% {
     background-position: 50% 0%;
@@ -43,8 +44,10 @@ const getBorderColor = ({ isActive, isSuccess, isWarning, borderBackground, them
 
 export const StyledCard = styled.div<StyledCardProps>`
   background: ${({ theme }) => theme.colors.gradients.basedsexgray};
-  border: 2px solid ${({ theme }) => theme.colors.text};
-  border-radius: 1px; 
+  border: 3px solid; 
+  border-image: linear-gradient(to bottom, #68B9FF, #ccc, #0154FE); 
+  border-image-slice: 1; 
+  border-radius: 4px; 
   color: ${({ theme, isDisabled }) => theme.colors[isDisabled ? "textDisabled" : "text"]};
   overflow: hidden;
   position: relative;
