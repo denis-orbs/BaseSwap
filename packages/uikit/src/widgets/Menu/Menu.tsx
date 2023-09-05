@@ -211,7 +211,7 @@ const Menu: React.FC<NavProps> = ({
                     <Link href="/swap" marginBottom="1.2rem">
                       <Text>Swap</Text>
                     </Link>
-                     <Link href="/basicswap">
+                     <Link href="/basicswap" marginBottom="1.2rem">
                       <Text color="#ccc">Basic Swap</Text>
                     </Link>
                     <Link href="http://perpetuals.baseswap.fi">
