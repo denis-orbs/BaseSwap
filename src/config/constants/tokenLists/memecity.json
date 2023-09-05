@@ -24,7 +24,7 @@
     "symbol": "EBASE",
     "address": "0x60Cbb875D3c6314280Dd90a4Fe6cAFC1d7Ce5DfD",
     "chainId": 8453,
-    "decimals": 18,
+    "decimals": 9,
     "logoURI": "https://baseswap.fi/images/tokens/0x60Cbb875D3c6314280Dd90a4Fe6cAFC1d7Ce5DfD.png"
   }, 
   {
@@ -62,14 +62,14 @@
 
   {
     "name": "YieldBase",
-    "symbol": "YieldBase",
+    "symbol": "YB",
     "address": "0x015Ad9B6886D439EFc1dBd408D49214a3c557b52",
     "chainId": 8453,
     "decimals": 18,
     "logoURI": ""
   }, 
   {
-    "name": "$SNIPER",
+    "name": "Base Sniper",
     "symbol": "$SNIPER",
     "address": "0xc3770156a85374029300a240c7ad714e2ec4007c",
     "chainId": 8453,
@@ -82,7 +82,7 @@
     "symbol": "MBASE",
     "address": "0xf4E70556CA3935920Cb7e22CA79e323e1Bd877C1",
     "chainId": 8453,
-    "decimals": 18,
+    "decimals": 9,
     "logoURI": ""
   }, 
   {
