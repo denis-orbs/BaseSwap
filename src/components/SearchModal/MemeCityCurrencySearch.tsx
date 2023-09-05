@@ -182,21 +182,20 @@ function MemeCityCurrencySearch({
 
     return Boolean(filteredSortedTokens?.length) || hasFilteredInactiveTokens ? (
       <Box margin="24px -24px">
-        <MemeCityCurrencyList
-          height={isMobile ? (showCommonBases ? 250 : 350) : 390}
-          showBNB={showBNB}
-          currencies={filteredSortedTokens}
-          inactiveCurrencies={filteredInactiveTokens}
-          breakIndex={
-            Boolean(filteredInactiveTokens?.length) && filteredSortedTokens ? filteredSortedTokens.length : undefined
-          }
-          onCurrencySelect={handleCurrencySelect}
-          otherCurrency={otherSelectedCurrency}
-          selectedCurrency={selectedCurrency}
-          fixedListRef={fixedList}
-          showImportView={showImportView}
-          setImportToken={setImportToken}
-        />
+
+        {(MemeCityCurrencyList as any)({
+    height: isMobile ? (showCommonBases ? 250 : 350) : 390,
+    showBNB: showBNB,
+    currencies: filteredSortedTokens,
+    inactiveCurrencies: filteredInactiveTokens,
+    breakIndex: Boolean(filteredInactiveTokens?.length) && filteredSortedTokens ? filteredSortedTokens.length : undefined,
+    onCurrencySelect: handleCurrencySelect,
+    otherCurrency: otherSelectedCurrency,
+    selectedCurrency: selectedCurrency,
+    fixedListRef: fixedList,
+    showImportView: showImportView,
+    setImportToken: setImportToken
+  })}
       </Box>
     ) : (
       <Column style={{ padding: '20px', height: '100%' }}>
