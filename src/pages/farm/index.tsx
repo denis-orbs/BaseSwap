@@ -32,7 +32,8 @@ function CategoryWrapper({ title, children }) {
 }
 
 const farmcategories = [
-  { title: 'Baseswap', pids: [1, 16, 19, 6, 14, 3, 4, 7, 8, 5, 11, 10, 17, 18, 12, 13, 15, 9] },
+
+  { title: 'Baseswap', pids: [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] },
 
 ]
 

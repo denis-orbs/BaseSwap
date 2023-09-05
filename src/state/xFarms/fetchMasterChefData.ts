@@ -199,6 +199,7 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
   const arxPerSec = emissionRates.mainRate
   const WETHPerSec = emissionRates.wethRate
   let TVL = 0
+  // console.log(prices)
 
   const farmsData = nftPoolInfos.map((pool, idx) => {
     const configMatch = farmConfigs.find(

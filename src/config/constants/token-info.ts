@@ -24,6 +24,8 @@ export type StableTokenLookupKey =
   | 'DAI'
   | 'USDPLUS'
   | 'DAIPLUS'
+  | 'MAI'
+
   | 'axlUSDC'
   | 'USDbC'
 // Add to this list as needed
@@ -87,6 +89,14 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
       [ChainId.BASE]: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
     },
   },
+
+  MAI: {
+    coinGeckoId: 'mimatic',
+    decimals: 18,
+    addresses: {
+      [ChainId.BASE]: '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE',
+    },
+  },
   DAI: {
     coinGeckoId: 'dai',
     decimals: 18,
@@ -94,29 +104,10 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
       [ChainId.BASE]: '0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb',
     },
   },
-  USDCe: {
-    coinGeckoId: 'usd-coin',
-    decimals: 6,
-    addresses: {
-      [ChainId.ARBITRUM]: '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8',
-    },
-  },
   WETH: {
     coinGeckoId: 'ethereum',
     addresses: {
       [ChainId.ARBITRUM]: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
-    },
-  },
-  FRAX: {
-    coinGeckoId: 'frax',
-    addresses: {
-      [ChainId.ARBITRUM]: '0x17FC002b466eEc40DaE837Fc4bE5c67993ddBd6F',
-    },
-  },
-  USDT: {
-    coinGeckoId: 'tether',
-    addresses: {
-      [ChainId.ARBITRUM]: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9',
     },
   },
   USDPLUS: {
@@ -135,14 +126,8 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
 
 export const TOKEN_INF0: TokenInfoMapping = {
   ...STABLE_TOKEN_INF0,
-  // BBT: {
-  //   addresses: {
-  //     [ChainId.BASE]: '0x8DFAf055e21B16302DBf00815e5b4d9b6042a4Df',
-  //   },
-  // },
+
   ProtocolToken: {
-    // coinGeckoId: 'arbitrum-exchange',
-    // dexscreenerPair: '0xE80B4F755417FB4baF4dbd23C029db3F62786523', // TODO: Update after live on screener
     addresses: {
       [ChainId.BASE]: '0xd5046B976188EB40f6DE40fB527F89c05b323385', // BSX
       [ChainId.ARBITRUM]: '0xD5954c3084a1cCd70B4dA011E67760B8e78aeE84',
@@ -200,18 +185,8 @@ export const TOKEN_INF0: TokenInfoMapping = {
       [ChainId.ARBITRUM]: '0x17FC002b466eEc40DaE837Fc4bE5c67993ddBd6F',
     },
   },
-  GNS: {
-    coinGeckoId: 'gains-network',
-    addresses: {
-      [ChainId.ARBITRUM]: '0x18c11FD286C5EC11c3b683Caa813B77f5163A122',
-    },
-  },
-  RDNT: {
-    coinGeckoId: 'radiant-capital',
-    addresses: {
-      [ChainId.ARBITRUM]: '0x3082CC23568eA640225c2467653dB90e9250AaA0',
-    },
-  },
+ 
+
   'DAI+': {
     coinGeckoId: 'dai',
     addresses: {
@@ -304,7 +279,9 @@ export const TOKEN_INF0: TokenInfoMapping = {
       [ChainId.ARBITRUM]: '0x4788de271F50EA6f5D5D2a5072B8D3C61d650326',
     },
   },
+
   MAI: {
+    dexscreenerPair: '0x9e574f9aD6ca1833f60d5bB21655dd45278A6e3A',
     addresses: {
       [ChainId.BASE]: '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE',
       [ChainId.ARBITRUM]: '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE',

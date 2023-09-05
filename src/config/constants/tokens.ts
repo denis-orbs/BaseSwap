@@ -2524,7 +2524,7 @@ const USDP_BASE = new Token(
 )
 const MAI_BASE = new Token(
   ChainId.BASE,
-  '0xbf1aea8670d2528e08334083616dd9c5f3b087ae',
+  '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE',
   18,
   'MAI',
   'MAI Finance Stablecoin',
@@ -2658,8 +2658,6 @@ export const baseTokens = {
   gmd: GMD_BASE,
   gnd: GND_BASE,
   mai: MAI_BASE,    
-
-  bbt: BIGBOOBS_BASE,
 }
 
 export const bscTestnetTokens = {

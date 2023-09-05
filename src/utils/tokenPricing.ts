@@ -2,7 +2,7 @@ import { ChainId } from '@magikswap/sdk'
 import { getTokenAddressesForChain } from 'config/constants/token-info'
 import { millisecondsToSeconds } from 'date-fns'
 
-const cacheTimeSeconds = 30
+const cacheTimeSeconds = 60
 const storageKey = 'TOKEN_PRICES'
 
 export const priceDexScreener = async (address: any): Promise<any> => {
@@ -44,7 +44,19 @@ export async function getCombinedTokenPrices(chainId: ChainId) {
       // UNIDEX
       if (address === '0x6B4712AE9797C199edd44F897cA09BC57628a1CF') {
         price = await priceDexScreenerPair('0x30dcc8444f8361d5ce119fc25e16af0b583e88fd') // Assuming priceDexScreener() fetches the price for a single address
-      } else {
+
+      } 
+      //MAI
+      else if (address === '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE') {
+        price = await priceDexScreenerPair('0x9e574f9aD6ca1833f60d5bB21655dd45278A6e3A') 
+      } 
+
+      //GND
+      else if (address === '0xfB825E93822DD971EBDFdB2180A751958dBD5e16') {
+        price = await priceDexScreenerPair('0x4174E40E3012d5B8aA28D7db7303eAC9e01b13Fd') 
+      } 
+      else {
+
         price = await priceDexScreener(address) // Assuming priceDexScreener() fetches the price for a single address
       }
 
