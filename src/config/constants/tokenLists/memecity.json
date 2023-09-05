@@ -49,7 +49,7 @@
     "address": "0x616F5b97C22Fa42C3cA7376F7a25F0d0F598b7Bb",
     "chainId": 8453,
     "decimals": 18,
-    "logoURI": ""
+    "logoURI": "https://baseswap.fi/images/tokens/0x616F5b97C22Fa42C3cA7376F7a25F0d0F598b7Bb.png"
   }, 
   {
     "name": "USD Base Coin",
