@@ -50,6 +50,45 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
   },
+  {
+    pid: 20,
+    lpSymbol: 'MAI-USDC LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x9e574f9aD6ca1833f60d5bB21655dd45278A6e3A',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0x9D6dE2cb0BB319129170730D75E6FffCa811aD74',
+    },
+    token: serializedTokens.mai,
+    quoteToken: serializedTokens.usdbc,
+  },
+  {
+    pid: 19,
+    lpSymbol: 'ETH-DAI LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x0FeB1490f80B6978002c3E501753562f2F2853B2',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0x612E2527b37CC5c46df1cfd172456E4DD507Cf09',
+    },
+    token: serializedTokens.wbnb,
+    quoteToken: serializedTokens.dai,
+    classic: true, 
+  },
+ 
+  {
+    pid: 7,
+    lpSymbol: 'ETH-USDC LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x41d160033C222E6f3722EC97379867324567d883',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0x34688C3E5AAD119851D5dc6AEb01Bf6DEA746eE7',
+    },
+    token: serializedTokens.wbnb,
+    quoteToken: serializedTokens.usdbc,
+    classic: true,
+  },
 
   {
     pid: 14,
@@ -64,19 +103,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.usdbc,
     classic: true,
   },
-  {
-    pid: 15,
-    lpSymbol: 'UNIDX-ETH LP',
-    lpAddresses: {
-      [ChainId.BASE]: '0x30dcc8444F8361D5CE119fC25e16AF0B583e88Fd',
-    },
-    nftPoolAddress: {
-      [ChainId.BASE]: '0x76B9D14133a3AC1318c1a52F68b2caCe5cC4b053',
-    },
-    token: serializedTokens.unidx,
-    quoteToken: serializedTokens.wbnb,
-    classic: true,
-  },
+
 
   {
     pid: 3,
@@ -91,19 +118,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.axlUsdc,
     classic: true,
   },
-  {
-    pid: 7,
-    lpSymbol: 'ETH-USDC LP',
-    lpAddresses: {
-      [ChainId.BASE]: '0x41d160033C222E6f3722EC97379867324567d883',
-    },
-    nftPoolAddress: {
-      [ChainId.BASE]: '0x34688C3E5AAD119851D5dc6AEb01Bf6DEA746eE7',
-    },
-    token: serializedTokens.wbnb,
-    quoteToken: serializedTokens.usdbc,
-    classic: true,
-  },
+
   {
     pid: 8,
     lpSymbol: 'MIM-USDC LP',
@@ -169,6 +184,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
   },
+
   {
     pid: 17,
     lpSymbol: 'GND-ETH LP',
@@ -205,6 +221,19 @@ const farms: SerializedFarmConfig[] = [
       [ChainId.BASE]: '0xfd6e1E7289a2F1a8Aa375d7b773D4C1f48E268a2',
     },
     token: serializedTokens.basin,
+    quoteToken: serializedTokens.wbnb,
+    classic: true,
+  },
+  {
+    pid: 15,
+    lpSymbol: 'UNIDX-ETH LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x30dcc8444F8361D5CE119fC25e16AF0B583e88Fd',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0x76B9D14133a3AC1318c1a52F68b2caCe5cC4b053',
+    },
+    token: serializedTokens.unidx,
     quoteToken: serializedTokens.wbnb,
     classic: true,
   },
@@ -250,41 +279,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
   },
-
-  {
-    pid: 19,
-    lpSymbol: 'ETH-DAI LP',
-    lpAddresses: {
-      [ChainId.BASE]: '0x0FeB1490f80B6978002c3E501753562f2F2853B2',
-    },
-    nftPoolAddress: {
-      [ChainId.BASE]: '0x612E2527b37CC5c46df1cfd172456E4DD507Cf09',
-    },
-    token: serializedTokens.wbnb,
-    quoteToken: serializedTokens.dai,
-    classic: true, 
-  },
-  // {
-  //   pid: 20,
-  //   lpSymbol: 'MAI-USDC LP',
-  //   lpAddresses: {
-  //     [ChainId.BASE]: '0x9e574f9aD6ca1833f60d5bB21655dd45278A6e3A',
-  //   },
-  //   nftPoolAddress: {
-  //     [ChainId.BASE]: '0x9D6dE2cb0BB319129170730D75E6FffCa811aD74',
-  //   },
-  //   token: serializedTokens.mai,
-  //   quoteToken: serializedTokens.usdbc,
-  // },
-  {
-    pid: 4,
-    lpSymbol: 'CBETH-USDBC LP',
-    lpAddresses: {
-      [ChainId.BASE]: '0x29a706a49baE714bCfcC96ac1A43e116cB57794c',
-    },
-    token: serializedTokens.cbeth,
-    quoteToken: serializedTokens.usdbc,
-  },
+ 
 ]
 
 export default farms
