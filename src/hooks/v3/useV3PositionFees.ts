@@ -42,10 +42,11 @@ export function useV3PositionFees(
             { from: owner }, // need to simulate the call as the owner
           )
           setAmounts([results.amount0, results.amount1])
-        } catch {
+        } catch (error) {
           // If the static call fails, the default state will remain for `amounts`.
           // This case is handled by returning unclaimed fees as empty.
           // TODO(WEB-2283): Look into why we have failures with call data being 0x.
+          console.log(error)
         }
       }
     })()

@@ -126,7 +126,7 @@ export function ConfirmationModalContent({
   return (
     <Wrapper>
       <Box>{topContent()}</Box>
-      <Box>{bottomContent()}</Box>
+      {bottomContent && <Box>{bottomContent()}</Box>}
     </Wrapper>
   )
 }
