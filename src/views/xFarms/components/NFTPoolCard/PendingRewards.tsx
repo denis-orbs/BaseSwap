@@ -102,13 +102,13 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
             <TokenImage src={rw.imgSrc} width={25} height={25} />
 
             <Flex ml="4px" flexDirection="column" alignItems="flex-start" mt="0px">
-              <Text  fontSize="12px" bold textTransform="uppercase" color="white">
+              <Text  fontSize="14px" bold textTransform="uppercase" color="white">
                 {rw.token.symbol} 
               </Text>
               <Text  fontSize="12px" color={rw.pendingReward === 0 ? 'textDisabled' : 'text'}>
                 {rw.rewardAmountDisplay}
               </Text>
-              <Text  fontSize="12px" bold color={rw.pendingReward === 0 ? 'textDisabled' : 'background'}>
+              <Text  fontSize="14px" bold color={rw.pendingReward === 0 ? 'textDisabled' : 'background'}>
                 {rw.valueLabel}
               </Text>
             </Flex>
