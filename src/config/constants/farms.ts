@@ -62,6 +62,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.mai,
     quoteToken: serializedTokens.usdbc,
     classic: true, 
+    // points: 100 
   },
   {
     pid: 19,
@@ -75,6 +76,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.wbnb,
     quoteToken: serializedTokens.dai,
     classic: true, 
+    // points: 50
   },
  
   {
@@ -89,6 +91,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.wbnb,
     quoteToken: serializedTokens.usdbc,
     classic: true,
+    // points: 500, 
   },
 
   {
@@ -103,6 +106,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.axlwbtc,
     quoteToken: serializedTokens.usdbc,
     classic: true,
+    // points: 40
   },
 
 
@@ -118,6 +122,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.wbnb,
     quoteToken: serializedTokens.axlUsdc,
     classic: true,
+    //points: 450, 
   },
 
   {
@@ -132,6 +137,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.mim,
     quoteToken: serializedTokens.usdbc,
     classic: true,
+    // points: 110 
   },
   {
     pid: 10,
@@ -145,6 +151,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.usdp,
     quoteToken: serializedTokens.usdbc,
     classic: true,
+    //points: 110 
   },
   {
     pid: 11,
@@ -158,6 +165,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.daip,
     quoteToken: serializedTokens.usdp,
     classic: true,
+    // points: 85 
   },
   {
     pid: 5,
@@ -171,6 +179,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.dai,
     quoteToken: serializedTokens.usdbc,
     classic: true,
+    // points: 300 
   },
   {
     pid: 6,
@@ -184,6 +193,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.cbeth,
     quoteToken: serializedTokens.wbnb,
     classic: true,
+    // points: 305 
   },
 
   {
@@ -280,6 +290,16 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
   },
+
+   // USDC-USDbC LP
+  // LP Address: 0xC52328d5Af54A12DA68459Ffc6D0845e91a8395F
+  // NFT Pool: 0xD239824786D69627bc048Ee258943F2096Cf2Ab7
+
+  // USDC/ETH LP 
+  // LP Address: 0xab067c01C7F5734da168C699Ae9d23a4512c9FdB
+  // NFT Pool: 0x179a0348decf6cbf2cf7b0527e3d6260e2068552
+
+ 
  
 ]
 
