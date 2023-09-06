@@ -50,6 +50,9 @@ export async function getCombinedTokenPrices(chainId: ChainId) {
     const wethAddress = getTokenAddress('WETH', chainId)
     prices[wethAddress.toLowerCase()] = wethPrice
 
+    // temp fill in for new native USDC on Base
+    prices['0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'.toLowerCase()] = 1
+
     return {
       prices,
       getPrice: (token: string) => prices[token.toLowerCase()] || 0,

@@ -26,6 +26,7 @@ export type StableTokenLookupKey =
   | 'DAIPLUS'
   | 'axlUSDC'
   | 'USDbC'
+  | 'USDC'
 // Add to this list as needed
 export type TokenLookupKey =
   | StableTokenLookupKey
@@ -67,12 +68,16 @@ export type TokenLookupKey =
   | 'GMD'
   | 'GND'
 
-
 export type TokenInfoMapping = {
   [key in TokenLookupKey]?: ITokenInfo
 }
 
 export const STABLE_TOKEN_INF0: TokenInfoMapping = {
+  USDC: {
+    addresses: {
+      [ChainId.BASE]: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
+    },
+  },
   axlUSDC: {
     coinGeckoId: 'axlusdc',
     decimals: 6,

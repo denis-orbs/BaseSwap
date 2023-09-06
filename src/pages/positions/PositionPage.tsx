@@ -491,12 +491,11 @@ function PositionPageContent() {
 
   const { getTokenPrice } = useTokenPrices()
 
-  // usdc prices always in terms of tokens
-  // const price0 = useStablecoinPrice(token0 ?? undefined)
-  // const price1 = useStablecoinPrice(token1 ?? undefined)
-
   const price0 = useMemo(() => getTokenPrice(token0?.address), [getTokenPrice, token0])
   const price1 = useMemo(() => getTokenPrice(token1?.address), [getTokenPrice, token1])
+
+  console.log(price0)
+  console.log(token0?.address)
 
   const fiatValueOfFees: string = useMemo(() => {
     if (!feeValue0 || !feeValue1) return '0'

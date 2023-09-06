@@ -2476,6 +2476,15 @@ const USDBC_BASE = new Token(
   'baseswap.fi',
 )
 
+const USDC = new Token(
+  ChainId.BASE,
+  '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
+  6,
+  'USDC',
+  'USD Base Coin',
+  'https://www.circle.com/en/usdc',
+)
+
 const CBETH_BASE = new Token(
   ChainId.BASE,
   '0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22',
@@ -2610,11 +2619,6 @@ const GND_BASE = new Token(
   'app.gmdprotocol.com',
 )
 
-export const USDC = {
-  [ChainId.MAINNET]: USDC_BSC,
-  [ChainId.BSC_TESTNET]: USDC_TESTNET,
-}
-
 export const CAKE = {
   [ChainId.MAINNET]: CAKE_MAINNET,
   [ChainId.BSC_TESTNET]: CAKE_TESTNET,
@@ -2642,6 +2646,7 @@ export const baseTokens = {
   ogre: ORGE_BASE,
   busd: AXLUSDC_BASE,
   usdc: USDC_BASE,
+  usdcNative: USDC,
   mim: MIM_BASE,
   axlwbtc: AXLWBTC_BASE,
   ede: EDE_BASE,
@@ -2654,7 +2659,6 @@ export const baseTokens = {
   blaze: BLAZE_BASE,
   gmd: GMD_BASE,
   gnd: GND_BASE,
-
   bbt: BIGBOOBS_BASE,
 }
 
