@@ -163,9 +163,8 @@ export function useApproveCallbackOdos(
     if (inputCurrency.name === "ETH") return ApprovalState.APPROVED
     // we might not have enough data to know whether or not we need to approve
     if (!currentAllowance) return ApprovalState.UNKNOWN
-
     // amountToApprove will be defined if currentAllowance is
-    return currentAllowance.lessThan(parseInt(amountToApprove))
+    return parseFloat(currentAllowance.toSignificant(6)) < (parseFloat(amountToApprove))
       ? pendingApproval
         ? ApprovalState.PENDING
         : ApprovalState.NOT_APPROVED

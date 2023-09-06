@@ -59,7 +59,6 @@ import {
 } from '../../state/swap/hooks'
 import {
   useUserSlippageTolerance,
-  useUserSingleHopOnly,
   useShowRoute
 } from '../../state/user/hooks'
 import CircleLoader from '../../components/Loader/CircleLoader'
@@ -315,8 +314,6 @@ export default function Swap() {
   const priceImpactSD = swapData?.data && (-100 * swapData.data.priceImpact).toFixed(0)
   const priceImpactWithoutFee = priceImpactSD && new Percent(JSBI.BigInt(priceImpactSD), BIPS_BASE)
 
-  const [singleHopOnly] = useUserSingleHopOnly()
-
   // errors
   const [showInverted, setShowInverted] = useState<boolean>(false)
 
@@ -521,7 +518,7 @@ export default function Swap() {
                 setIsOpen={setIsChartDisplayed}
               />
             )}
-            <Flex flexDirection="row">
+            <Flex flexDirection={["column", "column", "column", "column","column", "row"]}>
               <StyledSwapContainer className="animate__animated animate__fadeInLeft" $isChartExpanded={isChartExpanded}>
                 <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
                   <AppBody>
@@ -725,7 +722,6 @@ export default function Swap() {
                             // noRoute && userHasSpecifiedInputOutput ? (
                             <GreyCard style={{ textAlign: 'center', padding: '0.75rem' }}>
                               <Text color="textSubtle">{t('Insufficient liquidity for this trade.')}</Text>
-                              {singleHopOnly && <Text color="textSubtle">{t('Try enabling multi-hop trades.')}</Text>}
                             </GreyCard>
                           ) : showApproveFlow ? (
                             <RowBetween>
