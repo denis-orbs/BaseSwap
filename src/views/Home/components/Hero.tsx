@@ -170,23 +170,7 @@ const Hero = () => {
           {t('Harder. Better. Faster. Stronger.')}
           </Heading>
       
-      {/* <Flex
-        className="animate__animated animate__rollIn"
-        flexDirection={['row', null, null, 'row']}
-        style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF'}} 
-        marginX={['4rem', null, null, '1rem']}
-        marginTop={['2rem', null, null, '2rem']}
-        alignItems={['center', null, null, 'flex-end']}
-        justifyContent={['space-between', null, null, 'flex-start']}
-      >
-          <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} 
-          width={isMobile ? 50 : 0} height={isMobile ? 50 : 0}
-          src="/images/tokens/0xd5046B976188EB40f6DE40fB527F89c05b323385.png"   alt="logo" />
-
-          <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -24px 0px 24px #68B9FF',  borderRadius: '50%' }} 
-          width={isMobile ? 50 : 0} height={isMobile ? 50 : 0}
-          src="/images/newlogo.png"   alt="logo" />
-      </Flex> */}
+    
       <Flex
         className="animate__animated animate__rollIn"
         flexDirection={['column', null, null, 'row']}
@@ -216,6 +200,15 @@ const Hero = () => {
           </Button>
         </NextLinkFromReactRouter>
         
+      </Flex>
+      <Flex mt="2rem" mb="0rem" >
+      <Heading      
+            className="animate__animated animate__fadeInLeft " 
+            scale="sm" 
+            mt={['24px', null, null, '0px' ]} 
+          >
+          {t('BaseSwap is developed and managed independently of the Coinbase/Base team!')}
+          </Heading>
       </Flex>
     </Flex>
 

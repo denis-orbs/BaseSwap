@@ -65,11 +65,13 @@ const New: React.FC = () => {
   <Title />
   <Flex flexDirection="column" justifyContent="center" alignItems="center" width="80%">
     <Text textAlign="center">
-      BaseSwap is a decentralized exchange on the Base blockchain. We want all investors 
-      regardless of experience to feel at-home on BaseSwap. This page answers commonly asked 
-      questions, and provides tips and tutorials for users. 
-      Click on the cards below to learn more! 
+    BaseSwap is your go-to decentralized exchange, built on the Base blockchain. 
+    BaseSwap operates independently of the Coinbase and Base chain team, 
+    it's designed to make all investors, whether seasoned or new, feel right at home. 
+    This page offers answers to frequently asked questions, along with user-friendly tips and tutorials. 
+    Explore the cards below to learn more!
     </Text>
+    
   </Flex>
 <Flex width="100%" marginTop="2rem"  flexWrap="wrap" 
 justifyContent="center" padding="1rem" alignItems="center"
@@ -100,8 +102,33 @@ className="animate__animated animate__fadeInLeft"
   </ReactCardFlip>
   </Flex>
 
-<Flex>
+  <Flex>
 <ReactCardFlip isFlipped={isFlipped[1]} flipDirection="horizontal">
+    <HelpCard>
+      <CardTitle>
+      What's an L2?
+      </CardTitle>
+      <CardSub>
+        Base Chain is a layer 2 blockchain. Here is a quick-hit video explaining what that means. 
+      </CardSub>
+      <Flex flexDirection="column"  marginTop="2rem" justifyContent="center" alignItems="center"  >
+        <img src="/images/L2.png" alt="what is an L2?" height="100px" width="100px" />
+      </Flex>
+      <Flex flexDirection="column" marginTop="3rem" justifyContent="center" alignItems="center" >
+      <FaArrowAltCircleRight cursor="pointer" size={isMobile ? 40 : 80} onClick={() => handleFlipClick(1)} />
+      </Flex>
+    </HelpCard>
+      <AssSide>
+      <FaArrowCircleLeft cursor="pointer" size={isMobile ? 40 : 80} onClick={() => handleFlipClick(1)} />
+          <Text> Overview of Base Chain</Text>
+          <ReactPlayer autoplay={false} playing={isPlaying[1]} controls={true} width="100%"   url='https://www.youtube.com/shorts/nBWVICDj5Bc' />
+      </AssSide>
+  </ReactCardFlip>
+  </Flex>
+
+
+<Flex>
+<ReactCardFlip isFlipped={isFlipped[2]} flipDirection="horizontal">
     <HelpCard>
       <CardTitle>
       COINBASE AND BASE CHAIN
@@ -114,21 +141,51 @@ className="animate__animated animate__fadeInLeft"
         <img src="/images/MM.png" alt="cbtobase"  width="50px" />
       </Flex>
       <Flex flexDirection="column" marginTop="3rem" justifyContent="center" alignItems="center" >
-      <FaArrowAltCircleRight cursor="pointer" size={isMobile ? 40 : 80} onClick={() => handleFlipClick(1)} />
+      <FaArrowAltCircleRight cursor="pointer" size={isMobile ? 40 : 80} onClick={() => handleFlipClick(2)} />
       </Flex>
     </HelpCard>
       <AssSide>
-      <FaArrowCircleLeft cursor="pointer" size={isMobile ? 40 : 80} onClick={() => handleFlipClick(1)} />
+      <FaArrowCircleLeft cursor="pointer" size={isMobile ? 40 : 80} onClick={() => handleFlipClick(2)} />
           
-          <ReactPlayer autoplay={false} playing={isPlaying[1]} controls={true} width="100%"   url='https://www.youtube.com/watch?v=aaOa61tdeL4' />
+          <ReactPlayer autoplay={false} playing={isPlaying[2]} controls={true} width="100%"   url='https://www.youtube.com/watch?v=aaOa61tdeL4' />
           
       </AssSide>
 
 </ReactCardFlip>
 </Flex>
-
 <Flex>
 <ReactCardFlip isFlipped={isFlipped[3]} flipDirection="horizontal">
+    <HelpCard>
+      <CardTitle>
+      Yield Farming
+      </CardTitle>
+      <CardSub>
+        An overview of the chain, the DEX, and how to maximize your returns!
+      </CardSub>
+      <Flex flexDirection="column"  marginTop="2rem" justifyContent="center" alignItems="center"  >
+      <Flex backgroundColor="#fff" flexDirection="row" 
+          alignItems="center" justifyContent="center" 
+    style={{ boxShadow: '0 4px 6px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF', 
+      borderRadius: '120px',   }}>
+         
+          <img src="images/bsx.png" alt="logo" width="100px"  />
+      </Flex>
+      </Flex>
+      <Flex flexDirection="column" marginTop="5rem" justifyContent="center" alignItems="center" >
+      <FaArrowAltCircleRight cursor="pointer" size={isMobile ? 40 : 80} onClick={() => handleFlipClick(3)} />
+      </Flex>
+    </HelpCard>
+  
+      <AssSide>
+      <FaArrowCircleLeft cursor="pointer" size={isMobile ? 40 : 80} onClick={() => handleFlipClick(3)} />
+          <ReactPlayer autoplay={false} playing={isPlaying[3]} controls={true} width="100%"   url='https://www.youtube.com/watch?v=Lq5FiiRU188' />
+        
+      </AssSide>
+
+</ReactCardFlip>
+</Flex>
+<Flex>
+<ReactCardFlip isFlipped={isFlipped[4]} flipDirection="horizontal">
     <HelpCard>
       <CardTitle>
       USING BASESWAP
@@ -142,22 +199,23 @@ className="animate__animated animate__fadeInLeft"
     style={{ boxShadow: '0 4px 6px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF', 
       borderRadius: '120px',   }}>
           <img src="/images/newlogo.png" alt="logo"  width="100px"  />
-          <img src="images/bsx.png" alt="logo" width="100px"  />
+       
       </Flex>
       </Flex>
       <Flex flexDirection="column" marginTop="5rem" justifyContent="center" alignItems="center" >
-      <FaArrowAltCircleRight cursor="pointer" size={isMobile ? 40 : 80} onClick={() => handleFlipClick(3)} />
+      <FaArrowAltCircleRight cursor="pointer" size={isMobile ? 40 : 80} onClick={() => handleFlipClick(4)} />
       </Flex>
     </HelpCard>
   
       <AssSide>
-      <FaArrowCircleLeft cursor="pointer" size={isMobile ? 40 : 80} onClick={() => handleFlipClick(3)} />
-          <ReactPlayer autoplay={false} playing={isPlaying[2]} controls={true} width="100%"   url='https://www.youtube.com/watch?v=w6PWQ0HKCQA' />
+      <FaArrowCircleLeft cursor="pointer" size={isMobile ? 40 : 80} onClick={() => handleFlipClick(4)} />
+          <ReactPlayer autoplay={false} playing={isPlaying[4]} controls={true} width="100%"   url='https://www.youtube.com/watch?v=w6PWQ0HKCQA' />
         
       </AssSide>
 
 </ReactCardFlip>
 </Flex>
+
 
 
 </Flex>

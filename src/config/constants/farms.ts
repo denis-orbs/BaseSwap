@@ -61,6 +61,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.mai,
     quoteToken: serializedTokens.usdbc,
+    classic: true, 
   },
   {
     pid: 19,
