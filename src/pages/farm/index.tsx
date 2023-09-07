@@ -32,14 +32,9 @@ function CategoryWrapper({ title, children }) {
 }
 
 const farmcategories = [
-  { title: 'Baseswap', pids: [1, 16, 18, 6, 14, 3, 7, 8, 5, 11, 10, 17, 18, 12, 13, 15, 9, 2] },
-  // { title: 'Bluechip', pids: [14, 3] },
-  // { title: 'Arbitrum', pids: [44, 45, 26, 27] },
-  // { title: 'Stables', pids: [36, 23, 24] },
-  // { title: 'Frax', pids: [41, 43, 42, 29, 35, 34] },
-  // { title: 'Overnight Finance', pids: [17, 8, 7, 16] },
 
-  // { title: 'Partner', pids: [46, 47, 28, 31] },
+  { title: 'Baseswap', pids: [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] },
+
 ]
 
 const XFarmPage = () => {

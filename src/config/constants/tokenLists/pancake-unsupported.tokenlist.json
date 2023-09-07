@@ -227,6 +227,13 @@
       "address": "0x21a582ed0f221ef1a4f3bed8816d68121107892e", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "BlueRock", 
+      "symbol": "BLRCK", 
+      "address": "0xbbCa4D84891810E1f937a35ea3A63914e92E448c", 
+      "chainId": 8453,
+      "decimals": 18
     }
     
 

@@ -90,6 +90,7 @@
       "decimals": 18,
       "logoURI": ""
     },
+  
     {
       "name": "Axelar Wrapped Bitcoin",
       "symbol": "axlWBTC",
@@ -172,34 +173,10 @@
       "logoURI": "https://pancakeswap.finance/images/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8.png"
     },
     {
-      "name": "BaseSwap Token",
-      "symbol": "BSWAP",
-      "address": "0xe32301c82dc9ADC350eaC08eED03cE1c6FEDeB92",
-      "chainId": 84531,
-      "decimals": 18,
-      "logoURI": "/images/tokens/baseswap_logo.png"
-    },
-    {
-      "name": "Wrapped Ether",
-      "symbol": "WETH",
-      "address": "0x4200000000000000000000000000000000000006",
-      "chainId": 84531,
-      "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8.png"
-    },
-    {
-      "name": "Big Booby Things",
-      "symbol": "BBT",
-      "address": "0x2ee99Be3c520B7Bd64f51641c3e7Ef28950E03B7",
-      "chainId": 84531,
-      "decimals": 18,
-      "logoURI": ""
-    },
-    {
-      "name": "Ogre",
-      "symbol": "OGRE",
-      "address": "0xFe6028c5142fE9854A846DF7451e8600a15CA710",
-      "chainId": 84531,
+      "name": "MAI Stablecoin ",
+      "symbol": "MAI",
+      "address": "0xbf1aeA8670D2528E08334083616dD9C5F3B087aE",
+      "chainId": 8453,
       "decimals": 18,
       "logoURI": ""
     },

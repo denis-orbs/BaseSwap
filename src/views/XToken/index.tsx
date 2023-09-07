@@ -152,9 +152,9 @@ const XToken: React.FC = () => {
           fontSize={['.8rem', null, null, '0.9rem']}
           fontWeight={['500', null, null, '600']}
         >
-          xBSX is earned providing liquidity in
+          xBSX is earned by providing liquidity in&nbsp; 
           <a style={{ textDecoration: 'underline' }} href="/farms">
-            farms.
+            Farms.
           </a>{' '}
 
         </Text>

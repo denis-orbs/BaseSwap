@@ -7,7 +7,7 @@ const TVL = () => {
       try {
         const response = await fetch('https://api.llama.fi/tvl/BaseSwap');
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
 
 
         const formatted = new Intl.NumberFormat('en-US', {

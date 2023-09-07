@@ -1,32 +1,6 @@
-# 🥞 Pancake Frontend
+🍑
 
-This project contains the main features of the pancake application.
+When adding a farm, if the farm is not already in the OG Masterchef, then you must add it to the filtered farm config. 
+If you dont, it will prevent the staking pools from correctly gathering the aprs. 
+The filtered farm config is found in state/pools/index.ts filteredFarmConfig 
 
-If you want to contribute, please refer to the [contributing guidelines](./CONTRIBUTING.md) of this project.
-
-## Documentation
-
-- [Info](doc/Info.md)
-- [Cypress tests](doc/Cypress.md)
-
-
-## Quick Start
-
-install dependencies using **yarn**
-
-```sh
-yarn
-```
-
-start the development server
-```sh
-yarn dev
-```
-
-build with production mode
-```sh
-yarn build
-
-# start the application after build
-yarn start
-```

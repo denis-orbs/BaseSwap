@@ -93,21 +93,21 @@ const getFarmQuoteTokenPrice = (
 
 const getFarmsPrices = async (farmList: SerializedFarm[]) => {
   let nativeStableFarm = farmList.find(
-    (farm) => farm.token.symbol === DEFAULT_STABLE_SYMBOL && farm.quoteToken.symbol === WRAPPED_NATIVE_SYMBOL,
+    (farm) => farm.token.symbol === WRAPPED_NATIVE_SYMBOL && farm.quoteToken.symbol === DEFAULT_STABLE_SYMBOL,
   )
 
   if (!nativeStableFarm) {
     nativeStableFarm = (
       await fetchFarms(
         farmsConfig.filter(
-          (farm) => farm.token.symbol === DEFAULT_STABLE_SYMBOL && farm.quoteToken.symbol === WRAPPED_NATIVE_SYMBOL,
+          (farm) => farm.token.symbol === WRAPPED_NATIVE_SYMBOL && farm.quoteToken.symbol === DEFAULT_STABLE_SYMBOL,
         ),
       )
     )[0]
   }
 
   const nativePriceInStable = nativeStableFarm.tokenPriceVsQuote
-    ? BIG_ONE.div(nativeStableFarm.tokenPriceVsQuote)
+    ? new BigNumber(nativeStableFarm.tokenPriceVsQuote)
     : BIG_ZERO
 
   const farmsWithPrices = farmList.map((farm) => {

@@ -198,23 +198,34 @@ const Menu: React.FC<NavProps> = ({
 
       </Flex>
 
-      </a>
-      
-      {!isMobile && (
-      <Flex
-        flexDirection="row"
-        justifyContent="flex-start"
-        alignItems="flex-end"
-        marginLeft={isMobile ? "2rem" : "250px"}
-        width="80%"
-      >
-        <Link href="/swap">
-          <Text marginRight="2rem">Swap</Text>
-        </Link>
-
-        <Link href="/liquidity">
-          <Text marginRight="2rem">Liquidity</Text>
-        </Link>
+            </a>
+            {!isMobile && (
+              <Flex
+                flexDirection="row"
+                justifyContent="flex-start"
+                alignItems="flex-end"
+                marginLeft={isMobile ? "2rem" : "250px"}
+                width="80%"
+              >
+                <DropdownContainer>
+                  <Link href="/swap">
+                    <Text marginRight="2rem">Trade</Text>
+                  </Link>
+                  <DropdownMenu>
+                    <Link href="/swap" marginBottom="1.2rem">
+                      <Text>Swap</Text>
+                    </Link>
+                     <Link href="/basicswap" marginBottom="1.2rem">
+                      <Text color="#ccc">Basic Swap</Text>
+                    </Link>
+                    <Link href="http://perpetuals.baseswap.fi">
+                      <Text color="#ccc">Perpetuals</Text>
+                    </Link>
+                  </DropdownMenu>
+                </DropdownContainer>
+                <Link href="/liquidity">
+                    <Text marginRight="2rem">Liquidity</Text>
+                </Link>
 
         <DropdownContainer>
           <Link  href="/addv3">
@@ -234,19 +245,19 @@ const Menu: React.FC<NavProps> = ({
           </DropdownMenu>
         </DropdownContainer>
 
-        <DropdownContainer>
-          <Link href="/farm">
-            <Text marginRight="2rem">FARMS</Text>
-          </Link>
-          <DropdownMenu>
-            <Link href="/farm" marginBottom="1.2rem">
-              <Text>LIVE FARMS!</Text>
-            </Link>
-            <Link href="/finishedfarms">
-              <Text color="#ccc">FINISHED FARMS</Text>
-            </Link>
-          </DropdownMenu>
-        </DropdownContainer>
+                <DropdownContainer>
+                  <Link href="/farm">
+                    <Text marginRight="2rem">FARMS</Text>
+                  </Link>
+                  <DropdownMenu>
+                    <Link href="/farm" marginBottom="1.2rem">
+                      <Text>Live Farms!</Text>
+                    </Link>
+                    <Link href="/finishedfarms">
+                      <Text color="#ccc">Finished Farms</Text>
+                    </Link>
+                  </DropdownMenu>
+                </DropdownContainer>
 
         <Link href="/pools">
           <Text marginRight="2rem">Earn </Text>

@@ -199,6 +199,7 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
   const arxPerSec = emissionRates.mainRate
   const WETHPerSec = emissionRates.wethRate
   let TVL = 0
+  // console.log(prices)
 
   const farmsData = nftPoolInfos.map((pool, idx) => {
     const configMatch = farmConfigs.find(
@@ -258,12 +259,8 @@ const fetchXFarmsData = async (chainId: number): Promise<NftPoolFarmData> => {
 
     farm.lpTotalInQuoteToken = lpTotalInQuoteToken.toString()
 
-    const mainTokenPrice = farm.token.symbol === 'BBT' ? 1 : prices[farm.token.address.toString().toLowerCase()]
+    const mainTokenPrice = prices[farm.token.address.toString().toLowerCase()]
     const quoteTokenPrice = prices[farm.quoteToken.address.toString().toLowerCase()]
-
-    // console.log('mainAmountInLpTotal: ' + mainAmountInLpTotal.toNumber())
-    // console.log('quoteTokenAmountInPool: ' + quoteTokenAmountInPool.toNumber())
-    // console.log('lpTotalSupplyBN: ' + lpTotalSupplyBN.toNumber())
 
     if (farm.classic) {
       if (mainTokenPrice && quoteTokenPrice) {

@@ -31,7 +31,16 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     bscTokens.usdc,
   ],
   [ChainId.BASE_GOERLI]: [baseGoerliTokens.wbnb, baseGoerliTokens.cake],
-  [ChainId.BASE]: [baseTokens.wbnb, baseTokens.cake, baseTokens.axlUsdc, baseTokens.usdbc],
+  [ChainId.BASE]: [
+    baseTokens.wbnb, 
+    baseTokens.cake, 
+    baseTokens.axlUsdc,
+    baseTokens.usdbc, 
+    baseTokens.dai, 
+    baseTokens.usdp, 
+    baseTokens.daip, 
+    baseTokens.mai
+  ],
 }
 
 /**
@@ -71,6 +80,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     [bscTokens.busd, bscTokens.usdt],
     [bscTokens.dai, bscTokens.usdt],
   ],
+  //jumpman 
   [ChainId.BASE_GOERLI]: [[baseGoerliTokens.wbnb, baseGoerliTokens.cake]],
   [ChainId.BASE]: [[baseTokens.wbnb, baseTokens.cake]],
 }
