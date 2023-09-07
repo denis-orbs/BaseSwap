@@ -25,7 +25,7 @@ export type StableTokenLookupKey =
   | 'USDPLUS'
   | 'DAIPLUS'
   | 'MAI'
-
+  | 'USDC'
   | 'axlUSDC'
   | 'USDbC'
 // Add to this list as needed
@@ -36,16 +36,9 @@ export type TokenLookupKey =
   | 'xProtocolToken'
   | 'WETH'
   | 'WBTC'
-  | 'GMX'
-  | 'ARB'
-  | 'frxETH'
   | 'GNS'
   | 'DAI+'
   | 'USD+'
-  | 'CGLD'
-  | 'JRT'
-  | 'DEUS'
-  | 'RDNT'
   | 'OGRE'
   | 'DAI'
   | 'USDbC'
@@ -87,6 +80,13 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
     decimals: 6,
     addresses: {
       [ChainId.BASE]: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
+    },
+  },
+  USDC: {
+    coinGeckoId: 'usd-coin',
+    decimals: 6,
+    addresses: {
+      [ChainId.BASE]: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
     },
   },
 
@@ -164,51 +164,16 @@ export const TOKEN_INF0: TokenInfoMapping = {
       [ChainId.ARBITRUM]: '0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f',
     },
   },
-
-  ARB: {
-    coinGeckoId: 'arbitrum',
-    addresses: {
-      [ChainId.ARBITRUM]: '0x912ce59144191c1204e64559fe8253a0e49e6548',
-    },
-  },
-
-  frxETH: {
-    coinGeckoId: 'frax-ether',
-    addresses: {
-      [ChainId.ARBITRUM]: '0x178412e79c25968a32e89b11f63B33F733770c2A',
-    },
-  },
-
-  GMX: {
-    coinGeckoId: 'gmx',
-    addresses: {
-      [ChainId.ARBITRUM]: '0x17FC002b466eEc40DaE837Fc4bE5c67993ddBd6F',
-    },
-  },
- 
-
   'DAI+': {
     coinGeckoId: 'dai',
     addresses: {
       [ChainId.ARBITRUM]: '0xeb8E93A0c7504Bffd8A8fFa56CD754c63aAeBFe8',
     },
   },
-  JRT: {
-    coinGeckoId: 'jarvis-reward-token',
-    addresses: {
-      [ChainId.ARBITRUM]: '0x6Aa395F06986ea4eFe0a4630C7865C1eB08D5e7e',
-    },
-  },
   'USD+': {
     coinGeckoId: 'usd-coin',
     addresses: {
       [ChainId.ARBITRUM]: '0xe80772Eaf6e2E18B651F160Bc9158b2A5caFCA65',
-    },
-  },
-  DEUS: {
-    coinGeckoId: 'deus-finance-2',
-    addresses: {
-      [ChainId.ARBITRUM]: '0xDE5ed76E7c05eC5e4572CfC88d1ACEA165109E44',
     },
   },
   EDE: {

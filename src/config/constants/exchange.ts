@@ -34,6 +34,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     baseTokens.dai, 
     baseTokens.usdp, 
     baseTokens.daip, 
+    baseTokens.usdc, 
     baseTokens.mai
   ],
 }

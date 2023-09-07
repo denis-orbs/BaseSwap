@@ -58,7 +58,7 @@ const priceHelperLps: SerializedFarmConfig[] = [
   },
   {
     pid: 8,
-    lpSymbol: 'MIM-USDC LP',
+    lpSymbol: 'MIM-USDbC LP',
     lpAddresses: {
       8453: '0xa2b120cab75aefdfafda6a14713349a3096eed79',
     },
@@ -76,7 +76,7 @@ const priceHelperLps: SerializedFarmConfig[] = [
   },
   {
     pid: 10,
-    lpSymbol: 'USD+-USDC LP',
+    lpSymbol: 'USD+-USDbC LP',
     lpAddresses: {
       8453: '0x696b4d181Eb58cD4B54a59d2Ce834184Cf7Ac31A',
     },
@@ -103,7 +103,7 @@ const priceHelperLps: SerializedFarmConfig[] = [
   },
   {
     pid: 13,
-    lpSymbol: 'YFX-USDC LP',
+    lpSymbol: 'YFX-USDbC LP',
     lpAddresses: {
       8453: '0x1cd6ca847016a3bd0cc1fe2df5027e78ea428170',
     },
@@ -112,7 +112,7 @@ const priceHelperLps: SerializedFarmConfig[] = [
   },
   {
     pid: 14,
-    lpSymbol: 'axlWBTC-USDC LP',
+    lpSymbol: 'axlWBTC-USDbC LP',
     lpAddresses: {
       8453: '0x317d373E590795e2c09D73FaD7498FC98c0A692B',
     },
@@ -170,7 +170,7 @@ const priceHelperLps: SerializedFarmConfig[] = [
 
   {
     pid: 20,
-    lpSymbol: 'MAI-USDC LP',
+    lpSymbol: 'MAI-USDbC LP',
     lpAddresses: {
      8453: '0x9e574f9aD6ca1833f60d5bB21655dd45278A6e3A',
     },
