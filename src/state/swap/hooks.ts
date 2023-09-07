@@ -531,6 +531,7 @@ export function useSwapQuote(inputCurrency, outputCurrency, typedValue, slippage
             sourceBlacklist: [],
             sourceWhitelist: ["BaseSwap", "BaseSwapX", "Wrapped Ether"],
             pathVizImage: true,
+            referralCode: 1190159976,
             pathVizImageConfig: {
               legendTextColor: '#FFFFFF',
               nodeColor: '#234969',
@@ -598,7 +599,7 @@ export const quoteAndAssemble = async (inputCurrency, outputCurrency, typedValue
     sourceBlacklist: [],
     sourceWhitelist: ["BaseSwap","BaseSwapX", "Wrapped Ether"],
     pathVizImage: true,
-
+    referralCode: 1190159976,
     pathVizImageConfig: {
       legendTextColor: '#FFFFFF',
     },
