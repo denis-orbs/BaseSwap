@@ -209,7 +209,7 @@ const Menu: React.FC<NavProps> = ({
               >
                 <DropdownContainer>
                   <Link href="/swap">
-                    <Text marginRight="2rem">Trade</Text>
+                    <Text marginRight="2rem">TRADE</Text>
                   </Link>
                   <DropdownMenu>
                     <Link href="/swap" marginBottom="1.2rem">
@@ -228,7 +228,7 @@ const Menu: React.FC<NavProps> = ({
                 </Link>
 
         <DropdownContainer>
-          <Link  href="/addv3">
+          <Link  href="/addV3">
               <Text marginRight="2rem">
                 <FlamingText>BaseX</FlamingText>
 
