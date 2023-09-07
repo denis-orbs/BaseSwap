@@ -689,8 +689,9 @@ function PositionPageContent() {
           <AutoColumn gap="sm">
             <Link
               data-cy="visit-pool"
-              style={{ textDecoration: 'none', width: 'fit-content', marginBottom: '1rem' }}
+              style={{ textDecoration: 'none', width: 'fit-content', marginBottom: '1rem', cursor: 'pointer' }}
               href="/positions"
+             
             >
               <HoverText>
                 <Trans>← Back to Positions</Trans>
