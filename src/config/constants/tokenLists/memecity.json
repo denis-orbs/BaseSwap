@@ -75,7 +75,22 @@
     "decimals": 9,
     "logoURI": ""
   }, 
-
+  {
+    "name": "DadBot",
+    "symbol": "DADBOT",
+    "address": "0xd4424936Ff4E206CB4b85c7E78f3342A170545F3",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://baseswap.fi/images/tokens/0xd4424936Ff4E206CB4b85c7E78f3342A170545F3.png"
+  }, 
+  {
+    "name": "Superconductor Finance",
+    "symbol": "LK99",
+    "address": "0xD22776883B2b11Aad1777cffCDbB4A2A9954De6e",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://baseswap.fi/images/tokens/0xD22776883B2b11Aad1777cffCDbB4A2A9954De6e.png"
+  }, 
   {
     "name": "Wrapped Ether",
     "symbol": "WETH",
