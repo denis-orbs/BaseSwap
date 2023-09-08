@@ -10,7 +10,22 @@
  "logoURI": "https://baseswap.fi/logo.png",
  "keywords": ["baseswap", "default"],
  "tokens": [
-
+  {
+    "name": "USDC Stablecoin",
+    "symbol": "USDC",
+    "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "chainId": 8453,
+    "decimals": 6,
+    "logoURI": "https://baseswap.fi/images/tokens/0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913.png"
+  }, 
+  {
+    "name": "DadBot",
+    "symbol": "DADBOT",
+    "address": "0xd4424936Ff4E206CB4b85c7E78f3342A170545F3",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://baseswap.fi/images/tokens/0xd4424936Ff4E206CB4b85c7E78f3342A170545F3.png"
+  }, 
   {
     "name": "DIP",
     "symbol": "DIP",
@@ -28,11 +43,43 @@
     "logoURI": "https://baseswap.fi/images/tokens/0x60Cbb875D3c6314280Dd90a4Fe6cAFC1d7Ce5DfD.png"
   }, 
   {
+    "name": "EShare",
+    "symbol": "ESHARE",
+    "address": "0xB4144a52F024eC96fb9F5FC87D90f3E78b719758",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://baseswap.fi/images/tokens/0xB4144a52F024eC96fb9F5FC87D90f3E78b719758.png"
+  }, 
+  {
+    "name": "Exponent",
+    "symbol": "EXP",
+    "address": "0xA42e7ebE3F781A2A9E2dA1621D9a81ec26034405",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://baseswap.fi/images/tokens/0xA42e7ebE3F781A2A9E2dA1621D9a81ec26034405.png"
+  },
+  {
     "name": "Fren Pet",
     "symbol": "FREN PET",
     "address": "0xFF0C532FDB8Cd566Ae169C1CB157ff2Bdc83E105",
     "chainId": 8453,
     "decimals": 18,
+    "logoURI": ""
+  }, 
+  {
+    "name": "Superconductor Finance",
+    "symbol": "LK99",
+    "address": "0xD22776883B2b11Aad1777cffCDbB4A2A9954De6e",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://baseswap.fi/images/tokens/0xD22776883B2b11Aad1777cffCDbB4A2A9954De6e.png"
+  }, 
+  {
+    "name": "Moonbase",
+    "symbol": "MBASE",
+    "address": "0xf4E70556CA3935920Cb7e22CA79e323e1Bd877C1",
+    "chainId": 8453,
+    "decimals": 9,
     "logoURI": ""
   }, 
   {
@@ -52,68 +99,12 @@
     "logoURI": "https://baseswap.fi/images/tokens/0x616F5b97C22Fa42C3cA7376F7a25F0d0F598b7Bb.png"
   }, 
   {
-    "name": "USD Base Coin",
-    "symbol": "USDC",
-    "address": "0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA",
-    "chainId": 8453,
-    "decimals": 6,
-    "logoURI": "https://baseswap.fi/images/tokens/0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA.png"
-  }, 
-  {
     "name": "Base Sniper",
     "symbol": "$SNIPER",
     "address": "0xc3770156a85374029300a240c7ad714e2ec4007c",
     "chainId": 8453,
     "decimals": 18,
     "logoURI": ""
-  }, 
-  {
-    "name": "Moonbase",
-    "symbol": "MBASE",
-    "address": "0xf4E70556CA3935920Cb7e22CA79e323e1Bd877C1",
-    "chainId": 8453,
-    "decimals": 9,
-    "logoURI": ""
-  }, 
-  {
-    "name": "DadBot",
-    "symbol": "DADBOT",
-    "address": "0xd4424936Ff4E206CB4b85c7E78f3342A170545F3",
-    "chainId": 8453,
-    "decimals": 18,
-    "logoURI": "https://baseswap.fi/images/tokens/0xd4424936Ff4E206CB4b85c7E78f3342A170545F3.png"
-  }, 
-  {
-    "name": "Superconductor Finance",
-    "symbol": "LK99",
-    "address": "0xD22776883B2b11Aad1777cffCDbB4A2A9954De6e",
-    "chainId": 8453,
-    "decimals": 18,
-    "logoURI": "https://baseswap.fi/images/tokens/0xD22776883B2b11Aad1777cffCDbB4A2A9954De6e.png"
-  }, 
-  {
-    "name": "EShare",
-    "symbol": "ESHARE",
-    "address": "0xB4144a52F024eC96fb9F5FC87D90f3E78b719758",
-    "chainId": 8453,
-    "decimals": 18,
-    "logoURI": "https://baseswap.fi/images/tokens/0xB4144a52F024eC96fb9F5FC87D90f3E78b719758.png"
-  }, 
-  {
-    "name": "Exponent",
-    "symbol": "EXP",
-    "address": "0xA42e7ebE3F781A2A9E2dA1621D9a81ec26034405",
-    "chainId": 8453,
-    "decimals": 18,
-    "logoURI": "https://baseswap.fi/images/tokens/0xA42e7ebE3F781A2A9E2dA1621D9a81ec26034405.png"
-  }, 
-  {
-    "name": "Wrapped Ether",
-    "symbol": "WETH",
-    "address": "0x4200000000000000000000000000000000000006",
-    "chainId": 8453,
-    "decimals": 18,
-    "logoURI": "https://baseswap.fi/images/tokens/0x4200000000000000000000000000000000000006.png"
   }
  ]
 
