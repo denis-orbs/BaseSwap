@@ -178,6 +178,26 @@ const priceHelperLps: SerializedFarmConfig[] = [
     token: baseTokens.mai,
     quoteToken: baseTokens.usdbc,
   },
+  {
+    pid: 21,
+    lpSymbol: 'USDbC-USDC LP',
+    lpAddresses: {
+     8453: '0xC52328d5Af54A12DA68459Ffc6D0845e91a8395F',
+    },
+    token: baseTokens.usdc,
+    quoteToken: baseTokens.usdbc,
+    // points: 100 
+  },
+  {
+    pid: 22,
+    lpSymbol: 'ETH-USDC LP',
+    lpAddresses: {
+     8453: '0xab067c01C7F5734da168C699Ae9d23a4512c9FdB',
+    },
+    token: baseTokens.usdc,
+    quoteToken: baseTokens.wbnb,
+    // points: 100 
+  },
 
 
 

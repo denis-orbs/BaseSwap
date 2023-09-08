@@ -51,6 +51,34 @@ const farms: SerializedFarmConfig[] = [
     classic: true,
   },
   {
+    pid: 21,
+    lpSymbol: 'USDbC-USDC LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0xC52328d5Af54A12DA68459Ffc6D0845e91a8395F',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0xD239824786D69627bc048Ee258943F2096Cf2Ab7',
+    },
+    token: serializedTokens.usdc,
+    quoteToken: serializedTokens.usdbc,
+    classic: true, 
+    // points: 100 
+  },
+  {
+    pid: 22,
+    lpSymbol: 'ETH-USDC LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0xab067c01C7F5734da168C699Ae9d23a4512c9FdB',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0x179A0348DeCf6CBF2cF7b0527E3D6260e2068552',
+    },
+    token: serializedTokens.usdc,
+    quoteToken: serializedTokens.wbnb,
+    classic: true, 
+    // points: 100 
+  },
+  {
     pid: 20,
     lpSymbol: 'MAI-USDbC LP',
     lpAddresses: {
@@ -291,13 +319,7 @@ const farms: SerializedFarmConfig[] = [
     classic: true,
   },
 
-   // USDbC-USDbC LP
-  // LP Address: 0xC52328d5Af54A12DA68459Ffc6D0845e91a8395F
-  // NFT Pool: 0xD239824786D69627bc048Ee258943F2096Cf2Ab7
-
-  // USDbC/ETH LP 
-  // LP Address: 0xab067c01C7F5734da168C699Ae9d23a4512c9FdB
-  // NFT Pool: 0x179a0348decf6cbf2cf7b0527e3d6260e2068552
+ 
 
  
  

@@ -234,7 +234,17 @@
       "address": "0xbbCa4D84891810E1f937a35ea3A63914e92E448c", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "Friend", 
+      "symbol": "FRIEND", 
+      "address": "0x556E0027a04A0285b259e1063f180F1a37006903", 
+      "chainId": 8453,
+      "decimals": 18
     }
+
+
+    
     
 
     
