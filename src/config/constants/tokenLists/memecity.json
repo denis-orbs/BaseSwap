@@ -75,6 +75,7 @@
     "decimals": 9,
     "logoURI": ""
   }, 
+
   {
     "name": "Wrapped Ether",
     "symbol": "WETH",
