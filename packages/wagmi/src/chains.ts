@@ -161,7 +161,7 @@ export const baseChain: Chain = {
     public: 'https://nd-139-982-975.p2pify.com/dec4de6f582a0e1f28ba06fc6e2b2449',
   },
   blockExplorers: {
-    default: { name: 'Base Block Explorer', url: 'https://base.blockscout.com/' },
+    default: { name: 'Base Scan', url: 'https://basescan.org/' },
   },
   multicall: {
     address: '0x82995F682dc38b17B99079Cf63DF8d263C6D5eE0',

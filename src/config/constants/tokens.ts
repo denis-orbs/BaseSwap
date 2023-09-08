@@ -2530,7 +2530,14 @@ const USDC_BASE = new Token(
   'USDC',
   'https://www.centre.io/usdc',
 )
-
+const DOLA_BASE = new Token(
+  ChainId.BASE,
+  '0x4621b7A9c75199271F773Ebd9A499dbd165c3191',
+  18,
+  'DOLA',
+  'DOLA USD Stablecoin',
+  '',
+)
 const DAIP_BASE = new Token(
   ChainId.BASE,
   '0x65a2508C429a6078a7BC2f7dF81aB575BD9D9275',
@@ -2658,6 +2665,7 @@ export const baseTokens = {
   gnd: GND_BASE,
   mai: MAI_BASE,    
   usdc: USDC_BASE, 
+  dola: DOLA_BASE, 
 }
 
 export const bscTestnetTokens = {
