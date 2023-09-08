@@ -30,11 +30,10 @@ interface Props {
 const CurrencyInputContainer = styled(Flex)`
   flex-direction: column;
   background: ${({ theme }) => theme.colors.gradients.basedsexgray};
-
   align-items: center;
-  padding: 6px 24px;
+  padding: 6px 12px;
   width: 100%;
-  border-bottom: 4px solid ${({ theme }) => theme.colors.text};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.text};
 `
 
 const ColoredIconButton = styled(IconButton)`

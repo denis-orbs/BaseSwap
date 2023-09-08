@@ -34,9 +34,9 @@ const StyledBalanceText = styled(Text)`
 
 const FixedContentRow = styled.div`
   padding: 4px 20px;
-  height: 56px;
+  height: 48px;
   display: grid;
-  grid-gap: 16px;
+  grid-gap: 12px;
   align-items: center;
 `
 
@@ -45,11 +45,11 @@ function Balance({ balance }: { balance: CurrencyAmount }) {
 }
 
 const MenuItem = styled(RowBetween)<{ disabled: boolean; selected: boolean }>`
-  padding: 4px 20px;
-  height: 56px;
+  padding: 0px 20px;
+  height: 36px;
   display: grid;
   grid-template-columns: auto minmax(auto, 1fr) minmax(0, 72px);
-  grid-gap: 8px;
+  grid-gap: 6px;
   cursor: ${({ disabled }) => !disabled && 'pointer'};
   pointer-events: ${({ disabled }) => disabled && 'none'};
   :hover {

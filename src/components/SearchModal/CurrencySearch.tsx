@@ -181,7 +181,7 @@ function CurrencySearch({
     }
 
     return Boolean(filteredSortedTokens?.length) || hasFilteredInactiveTokens ? (
-      <Box margin="24px -24px">
+      <Box margin="4px -24px">
         <CurrencyList
           height={isMobile ? (showCommonBases ? 250 : 350) : 390}
           showBNB={showBNB}
@@ -224,7 +224,7 @@ function CurrencySearch({
 
   return (
     <>
-      <AutoColumn gap="16px">
+      <AutoColumn gap="12px">
         <Row>
           <Input 
             id="token-search-input"

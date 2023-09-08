@@ -44,10 +44,10 @@ const getBorderColor = ({ isActive, isSuccess, isWarning, borderBackground, them
 
 export const StyledCard = styled.div<StyledCardProps>`
   background: ${({ theme }) => theme.colors.gradients.basedsexgray};
-  border: 3px solid; 
+  border: 2px solid; 
   border-image: linear-gradient(to bottom, #68B9FF, #ccc, #0154FE); 
   border-image-slice: 1; 
-  border-radius: 4px; 
+  border-radius: 12px; 
   color: ${({ theme, isDisabled }) => theme.colors[isDisabled ? "textDisabled" : "text"]};
   overflow: hidden;
   position: relative;

@@ -8,7 +8,7 @@ const Outer = styled(Box)<{ background?: string }>`
 `
 
 const Inner = styled(Container)`
-  padding-top: 12px;
+  padding-top: 0px;
   padding-bottom: 0px;
 `
 

@@ -3,7 +3,7 @@ import { Card } from '@pancakeswap/uikit'
 
 //bodywrapper sits behind the card
 export const BodyWrapper = styled(Card)`
-  border-radius: 2px;
+  border-radius: 12px;
   background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
   padding: 0rem;
   margin-top: 1rem; 

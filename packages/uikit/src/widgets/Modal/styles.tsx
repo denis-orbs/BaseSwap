@@ -12,7 +12,7 @@ export const ModalHeader = styled.div<{ background?: string }>`
   align-items: center;
 
   background: ${({ theme }) => theme.colors.gradients.basedsexgray};
-  border-bottom: 3px solid ${({ theme }) => theme.colors.text};
+  border-bottom: 3px solid ${({ theme }) => theme.colors.background};
   display: flex;
   padding: 4px; 
 
@@ -22,7 +22,6 @@ export const ModalHeader = styled.div<{ background?: string }>`
 
 export const ModalTitle = styled(Flex)`
   align-items: center;
-
   justify-content: flex-end;
   flex: 1;
 `;
@@ -40,7 +39,7 @@ export const ModalBody = styled(Flex)`
 export const ModalCloseButton: React.FC<{ onDismiss: ModalProps["onDismiss"] }> = ({ onDismiss }) => {
   return (
     <IconButton variant="text" onClick={onDismiss} aria-label="Close the dialog">
-      <CloseIcon color="text" />
+      <CloseIcon color="text" width="25px" />
     </IconButton>
   );
 };
@@ -48,7 +47,7 @@ export const ModalCloseButton: React.FC<{ onDismiss: ModalProps["onDismiss"] }> 
 export const ModalBackButton: React.FC<{ onBack: ModalProps["onBack"] }> = ({ onBack }) => {
   return (
     <IconButton variant="text" onClick={onBack} area-label="go back" mr="8px">
-      <ArrowBackIcon color="primary" />
+      <ArrowBackIcon color="text" />
     </IconButton>
   );
 };

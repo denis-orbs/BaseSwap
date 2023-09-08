@@ -9,7 +9,7 @@ import {
   ModalBody,
   InjectedModalProps,
   Heading,
-  Button,
+  Button, Text,
   useMatchBreakpointsContext,
   MODAL_SWIPE_TO_CLOSE_VELOCITY,
 } from '@pancakeswap/uikit'
@@ -25,13 +25,25 @@ import { CurrencyModalView } from './types'
 
 const Footer = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+  border: 2px solid ${({ theme }) => theme.colors.background};
+  cursor: pointer; 
+  border-radius: 8px;
+  justify-content: flex-end; 
   text-align: center;
+
 `
 const StyledModalContainer = styled(ModalContainer)`
   width: 100%;
   min-width: 320px;
-  max-width: 420px !important;
+  max-width: 380px !important;
+  box-shadow: 0 0 24px #fff, 0 -24px 96px #333, 0 -48px 96px #0154FD, 48px 0px 96px #0154FD, -48px 0px 96px #0154FD, 0px 48px 96px #333; 
+  border-radius: 8px;
+  border: 4px solid ${({ theme }) => theme.colors.background};
+`
+
+const StyledHeader = styled(ModalHeader)`
+  background-color: #111; 
 `
 
 const StyledModalBody = styled(ModalBody)`
@@ -81,8 +93,8 @@ export default function MemeCityCurrencySearchModal({
   const { t } = useTranslation()
 
   const config = {
-    [CurrencyModalView.search]: { title: t('Select a Token'), onBack: undefined },
-    [CurrencyModalView.manage]: { title: t('Manage'), onBack: () => setModalView(CurrencyModalView.search) },
+    [CurrencyModalView.search]: { title: t('SELECT TOKEN'), onBack: undefined },
+    [CurrencyModalView.manage]: { title: t('MANAGE'), onBack: () => setModalView(CurrencyModalView.search) },
     [CurrencyModalView.importToken]: {
       title: t('Import Tokens'),
       onBack: () =>
@@ -108,13 +120,13 @@ export default function MemeCityCurrencySearchModal({
       }}
       ref={wrapperRef}
     >
-      <ModalHeader>
+      <StyledHeader>
         <ModalTitle>
           {config[modalView].onBack && <ModalBackButton onBack={config[modalView].onBack} />}
-          <Heading>{config[modalView].title}</Heading>
+          <Text letterSpacing="0px" fontSize="1.8rem" fontWeight="400">{config[modalView].title}</Text>
         </ModalTitle>
         <ModalCloseButton onDismiss={onDismiss} />
-      </ModalHeader>
+      </StyledHeader>
       <StyledModalBody>
         {modalView === CurrencyModalView.search ? (
           <MemeCityCurrencySearch
@@ -147,7 +159,9 @@ export default function MemeCityCurrencySearchModal({
               onClick={() => setModalView(CurrencyModalView.manage)}
               className="list-token-manage-button"
             >
-              {t('Manage Tokens')}
+             <Text color="#fff" textTransform="uppercase" letterSpacing="0px" fontWeight="400" fontSize="12px" >
+              Manage Tokens
+              </Text>
             </Button>
           </Footer>
         )}

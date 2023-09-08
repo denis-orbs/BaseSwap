@@ -82,7 +82,7 @@ export const darkColors: Colors = {
     basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD, 90%, #ccc 100%)",
     basedsex1: "linear-gradient(to bottom, #111 90%, #0154FD)",
 
-    basedsexdark: "conic-gradient(from 270deg, #0154FD, #fff )",
+    basedsexdark: "conic-gradient(from 270deg, #0154FD90, #ffffff90 )",
     basedsexgray: "linear-gradient(to bottom, #000 20%, #111)",
     pagebg: "linear-gradient( to right, #000, #111)",
 
