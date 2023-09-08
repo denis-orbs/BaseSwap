@@ -1,6 +1,7 @@
 import { useTranslation } from '@pancakeswap/localization'
 import { Text } from '@pancakeswap/uikit'
 import PositionListItem from 'components/PositionListItem'
+import Trans from 'components/Trans'
 import React from 'react'
 import styled from 'styled-components'
 import { PositionDetails } from 'types/position'
@@ -53,6 +54,18 @@ const DesktopHeader = styled.div`
 //   }
 // `
 
+const MobileHeader = styled.div`
+  font-weight: medium;
+  padding: 8px;
+  font-weight: 500;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.backgroundAlt};
+`
+
 const ToggleWrap = styled.div`
   display: flex;
   flex-direction: row;
@@ -78,13 +91,12 @@ export default function PositionList({
   setUserHideClosedPositions,
   userHideClosedPositions,
 }: PositionListProps) {
+  const { t } = useTranslation()
+
   return (
     <>
       <DesktopHeader>
-        <div>
-          Your positions
-          {positions && ` (${positions.length}) `}
-        </div>
+        <Text>{t(`Your positions  ${positions && positions.length}`)}</Text>
 
         <ToggleLabel
           id="desktop-hide-closed-positions"
@@ -92,11 +104,11 @@ export default function PositionList({
             setUserHideClosedPositions(!userHideClosedPositions)
           }}
         >
-          {userHideClosedPositions ? <Text>Show closed positions</Text> : <Text>Hide closed positions</Text>}
+          {userHideClosedPositions ? <Trans>Show closed positions</Trans> : <Trans>Hide closed positions</Trans>}
         </ToggleLabel>
       </DesktopHeader>
-      {/* <MobileHeader>
-        <Trans>Your positions</Trans>
+      <MobileHeader>
+        <Text>{t(`Your positions  ${positions && positions.length}`)}</Text>
         <ToggleWrap>
           <ToggleLabel
             onClick={() => {
@@ -106,7 +118,7 @@ export default function PositionList({
             {userHideClosedPositions ? <Trans>Show closed positions</Trans> : <Trans>Hide closed positions</Trans>}
           </ToggleLabel>
         </ToggleWrap>
-      </MobileHeader> */}
+      </MobileHeader>
       {positions.map((p) => (
         <PositionListItem key={p.tokenId.toString()} {...p} />
       ))}

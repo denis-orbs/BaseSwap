@@ -285,9 +285,6 @@ export default function Pool() {
                 <Trans>Pools</Trans>
               </Text>
               <ButtonRow>
-                {/* <Link data-cy="join-pool-button" id="join-pool-button" href="/addV3/ETH">
-                + {t('New Position')}
-              </Link> */}
                 <Button
                   onClick={() => {
                     router.replace({
@@ -333,8 +330,6 @@ export default function Pool() {
                 </ErrorContainer>
               )}
             </MainContentWrapper>
-
-            {/* <CTACards /> */}
           </AutoColumn>
         </AutoColumn>
       </PageWrapper>
