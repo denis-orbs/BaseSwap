@@ -161,20 +161,17 @@ const priceHelperLps: SerializedFarmConfig[] = [
     pid: 19,
     lpSymbol: 'ETH-DAI LP',
     lpAddresses: {
-     8453: '0x0FeB1490f80B6978002c3E501753562f2F2853B2',
+      8453: '0x0FeB1490f80B6978002c3E501753562f2F2853B2',
     },
-   
     token: baseTokens.dai,
     quoteToken: baseTokens.wbnb,
   },
-
   {
     pid: 20,
     lpSymbol: 'MAI-USDbC LP',
     lpAddresses: {
-     8453: '0x9e574f9aD6ca1833f60d5bB21655dd45278A6e3A',
+      8453: '0x9e574f9aD6ca1833f60d5bB21655dd45278A6e3A',
     },
-   
     token: baseTokens.mai,
     quoteToken: baseTokens.usdbc,
   },
@@ -182,7 +179,7 @@ const priceHelperLps: SerializedFarmConfig[] = [
     pid: 21,
     lpSymbol: 'USDbC-USDC LP',
     lpAddresses: {
-     8453: '0xC52328d5Af54A12DA68459Ffc6D0845e91a8395F',
+      8453: '0xC52328d5Af54A12DA68459Ffc6D0845e91a8395F',
     },
     token: baseTokens.usdc,
     quoteToken: baseTokens.usdbc,
@@ -198,9 +195,6 @@ const priceHelperLps: SerializedFarmConfig[] = [
     quoteToken: baseTokens.wbnb,
     // points: 100 
   },
-
-
-
 ]
 
 export default priceHelperLps
