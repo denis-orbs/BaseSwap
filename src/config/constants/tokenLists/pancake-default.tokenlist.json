@@ -186,8 +186,8 @@
       "symbol": "BULLRUN",
       "address": "0x1A9132ee02d7E98e51b7389D2e7BB537184867Aa",
       "chainId": 8453,
-      "decimals": 6,
-      "logoURI": "18"
+      "decimals": 18,
+      "logoURI": ""
     },
     {
       "name": "MAI Stablecoin ",
