@@ -22,7 +22,7 @@ const SwapModalFooterContainer = styled(AutoColumn)`
   padding: 12px;
   border-radius: 4px; 
   border: 1px solid ${({ theme }) => theme.colors.text};
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.gradients.basedsex};
 `
 
 export default function SwapModalFooter({
