@@ -83,6 +83,22 @@ export const styleVariants = {
       transform: "translateY(1px)",
     },
   },
+  [variants.ADDTOMETAMASK]: {
+    background: "#000",
+    color: "#fff",
+    fontWeight: "500", 
+    textTransform: "uppercase", 
+    borderRadius: "8px", 
+    border: "2px solid", 
+    borderColor: "#0154FE", 
+    ":hover": {
+      borderColor: "#fff", 
+      backgroundColor: "#0154FE", 
+      color: "#fff", 
+      boxShadow: "none", 
+      transform: "translateY(1px)",
+    },
+  },
 
   [variants.MENUCONNECT]: {
     background: `${darkColors.background}`,

@@ -12,6 +12,7 @@ export const variants = {
   PRIMARY: "primary",
   PLUSMINUS: "plusminus", 
   GASON: "gason", 
+  ADDTOMETAMASK: "addtometamask", 
   GASOFF: "gasoff", 
   CALCULATOR: "calculator", 
   PRIMARYTWO: "primarytwo", 
