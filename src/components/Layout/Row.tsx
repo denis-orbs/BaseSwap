@@ -22,6 +22,12 @@ export const RowBetween = styled(Row)`
   justify-content: space-between;
 `
 
+export const SecondRow = styled(Row)`
+  justify-content: space-between;
+  padding-right: 1rem; 
+  padding-left: 1rem; 
+`
+
 export const RowFlat = styled.div`
   display: flex;
   align-items: flex-end;
