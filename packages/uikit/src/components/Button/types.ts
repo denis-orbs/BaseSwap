@@ -11,6 +11,8 @@ export const scales = {
 export const variants = {
   PRIMARY: "primary",
   PLUSMINUS: "plusminus", 
+  GASON: "gason", 
+  GASOFF: "gasoff", 
   CALCULATOR: "calculator", 
   PRIMARYTWO: "primarytwo", 
   PRIMARYTHREE: "primarythree", 

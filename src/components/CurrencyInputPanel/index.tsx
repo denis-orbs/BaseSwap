@@ -207,7 +207,7 @@ export default function CurrencyInputPanel({
             </Flex>
           </CurrencySelectButton>
           {token && tokenAddress ? (
-            <Flex style={{ gap: '4px' }} ml="4px" alignItems="center">
+            <Flex style={{ gap: '4px' }} ml="4px" alignItems="center" >
               <CopyButton
                 width="16px"
                 buttonColor="text"

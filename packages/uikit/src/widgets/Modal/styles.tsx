@@ -10,9 +10,8 @@ export const mobileFooterHeight = 73;
 
 export const ModalHeader = styled.div<{ background?: string }>`
   align-items: center;
-
   background: ${({ theme }) => theme.colors.gradients.basedsexgray};
-  border-bottom: 3px solid ${({ theme }) => theme.colors.background};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.background};
   display: flex;
   padding: 4px; 
 
@@ -22,8 +21,10 @@ export const ModalHeader = styled.div<{ background?: string }>`
 
 export const ModalTitle = styled(Flex)`
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  margin-left: 4px; 
   flex: 1;
+
 `;
 
 export const ModalBody = styled(Flex)`
@@ -39,7 +40,7 @@ export const ModalBody = styled(Flex)`
 export const ModalCloseButton: React.FC<{ onDismiss: ModalProps["onDismiss"] }> = ({ onDismiss }) => {
   return (
     <IconButton variant="text" onClick={onDismiss} aria-label="Close the dialog">
-      <CloseIcon color="text" width="25px" />
+      <CloseIcon color="#fff" width="25px" />
     </IconButton>
   );
 };
@@ -55,9 +56,9 @@ export const ModalBackButton: React.FC<{ onBack: ModalProps["onBack"] }> = ({ on
 export const ModalContainer = styled(MotionBox)<{ minWidth: string }>`
   overflow: hidden;
   background: ${({ theme }) => theme.modal.background};
-  box-shadow: 20px 20px 36px 28px rgba(14, 14, 44, 1), 0px 1px 1px rgba(0, 0, 0, 0.05);
-  border: 2px solid ${({ theme }) => theme.colors.text};
-  border-radius: 32px 32px 0px 0px;
+  box-shadow: 0 0 24px #fff, 0 -24px 96px #333, 0 -48px 96px #0154FD, 48px 0px 96px #0154FD, -48px 0px 96px #0154FD, 0px 48px 96px #333; 
+  border-radius: 8px;
+  border: 2px solid ${({ theme }) => theme.colors.background};
   width: 100%;
   max-height: calc(var(--vh, 1vh) * 100);
   z-index: ${({ theme }) => theme.zIndices.modal};
@@ -70,7 +71,6 @@ export const ModalContainer = styled(MotionBox)<{ minWidth: string }>`
     width: auto;
     position: auto;
     bottom: auto;
-    border-radius: 2px;
     max-width: 100%;
     max-height: 100vh;
   }

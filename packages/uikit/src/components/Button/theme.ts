@@ -51,6 +51,38 @@ export const styleVariants = {
       transform: "translateY(1px)",
     },
   },
+  [variants.GASON]: {
+    background: "#0154FE",
+    color: "#000",
+    fontWeight: "500", 
+    textTransform: "uppercase", 
+    borderRadius: "8px", 
+    border: "2px solid", 
+    borderColor: "#fff", 
+    ":hover": {
+      borderColor: "#fff", 
+      backgroundColor: "#0154FE", 
+      color: "#fff", 
+      boxShadow: "none", 
+      transform: "translateY(1px)",
+    },
+  },
+  [variants.GASOFF]: {
+    background: "#000",
+    color: "text",
+    fontWeight: "500", 
+    textTransform: "uppercase", 
+    borderRadius: "8px", 
+    border: "2px solid", 
+    borderColor: "#0154FE", 
+    ":hover": {
+      borderColor: "#fff", 
+      backgroundColor: "#0154FE", 
+      boxShadow: "none", 
+      color: "#000", 
+      transform: "translateY(1px)",
+    },
+  },
 
   [variants.MENUCONNECT]: {
     background: `${darkColors.background}`,

@@ -66,7 +66,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
   }
 
   return (
-    <Modal title={t('Settings')} headerBackground="background" onDismiss={onDismiss} style={{ maxWidth: '420px' }}>
+    <Modal title={t('SETTINGS')} headerBackground="background" onDismiss={onDismiss} style={{ maxWidth: '420px' }}>
       <ScrollableContainer>
         {mode === SettingsMode.GLOBAL && (
           <>
@@ -104,11 +104,18 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
         )}
         {mode === SettingsMode.SWAP_LIQUIDITY && (
           <>
-            <Flex pt="3px" flexDirection="column">
-              <Text letterSpacing="1px" bold textTransform="uppercase" fontSize="18px" color="secondary" mb="24px">
+            <Flex marginTop="-4px" flexDirection="column">
+              <Text 
+                  letterSpacing="0px" 
+                  fontWeight="300" 
+                  textTransform="uppercase" 
+                  fontSize="1.3rem" 
+                  color="background" 
+                  textAlign="center" 
+                  mb="24px">
                 {t('Swaps & Liquidity')}
               </Text>
-              <Flex justifyContent="space-between" alignItems="center" mb="24px">
+              <Flex justifyContent="space-between" alignItems="center" mb="36px">
                 <GasSettings />
               </Flex>
               <TransactionSettings />

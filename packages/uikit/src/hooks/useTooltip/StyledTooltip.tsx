@@ -20,14 +20,15 @@ export const Arrow = styled.div`
 
 export const StyledTooltip = styled(Motion.div)`
   padding: 12px;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 130%;
-  border-radius: 4px;
+  border-radius: 8px;
+  border: 2px solid #fff; 
   max-width: 350px;
   z-index: 101;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
   color: ${({ theme }) => theme.colors.text};
-  box-shadow:  0 48px 48px #fff, 48px 0 96px #fff, 48px 0px 48px #0154FD, -48px 0px 48px #68B9FF; 
+  box-shadow:  0 0 12px #111; 
  
   &[data-popper-placement^="top"] > ${Arrow} {
     bottom: -4px;

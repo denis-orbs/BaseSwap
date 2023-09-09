@@ -68,7 +68,7 @@ export const livePools: SerializedPoolConfig[] = [
       [ChainId.BASE]: '0x26fd5DE668F091222791cc0eA45AC072d7bFE0cd',
     },
     poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '0.0000021',
+    tokenPerBlock: '0.0000015',
     isBoost: true, 
   },
   {
