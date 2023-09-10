@@ -123,16 +123,20 @@ export default function Pool() {
          }}> 
          </WelcomeTypeIt>
         <AppBody>
-          <AppHeader title={t('Your Liquidity')} subtitle={t('')} />
+          <AppHeader title={t('UNSTAKED LIQUIDITY')} subtitle={t('')} />
           <Body>
             {renderBody()}
             {account && !v2IsLoading && (
               <Flex flexDirection="column" alignItems="center" mt="24px">
-                <Text color="textSubtle" mb="8px">
+                <Text 
+                fontSize="12px"
+                color="text" 
+                textTransform="uppercase"
+                 mb="8px">
                   {t("Don't see a pool you joined?")}
                 </Text>
                 <Link href="/find" passHref>
-                  <Button id="import-pool-link" variant="secondary" scale="md" as="a">
+                  <Button id="import-pool-link" variant="revampreverse" scale="md" as="a">
                     {t('Find other LP tokens')}
                   </Button>
                 </Link>
@@ -141,7 +145,11 @@ export default function Pool() {
           </Body>
           <CardFooter style={{ textAlign: 'center' }}>
             <Link href="/add" passHref>
-              <Button  className="animate__animated animate__rollIn" id="join-pool-button" width="100%" startIcon={<AddIcon color="white" />}>
+              <Button  
+              variant="revamp"
+              className="animate__animated animate__rollIn" id="join-pool-button" 
+              width="100%" 
+              startIcon={<AddIcon color="white" />}>
                 {t('Add Liquidity')}
               </Button>
             </Link>

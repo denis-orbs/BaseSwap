@@ -118,7 +118,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
               <FixedHeightRow>
                 <RowFixed>
                   <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin size={20} />
-                  <Text small color="textSubtle">
+                  <Text bold color="textSubtle">
                     {currency0.symbol}-{currency1.symbol} LP
                   </Text>
                 </RowFixed>
@@ -206,7 +206,9 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
 
   const currency0 = unwrappedToken(pair.token0)
   const currency1 = unwrappedToken(pair.token1)
-
+  const formatToFourDecimalPlaces = (num) => {
+    return parseFloat(num).toFixed(4);
+  }
   const { totalUSDValue, poolTokenPercentage, token0Deposited, token1Deposited, userPoolBalance } = useLPValues(
     account,
     pair,
@@ -218,15 +220,19 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
     <Card {...props}>
       <Flex justifyContent="space-between" role="button" onClick={() => setShowMore(!showMore)} p="16px">
         <Flex flexDirection="column">
-          <Flex alignItems="center" mb="4px">
-            <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={20} />
-            <Text bold ml="8px">
+          <Flex alignItems="center" justifyContent="space-between" >
+            <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={50} />
+            <Text bold ml="16px" fontSize="16px" >
               {!currency0 || !currency1 ? <Dots>{t('Loading')}</Dots> : `${currency0.symbol}/${currency1.symbol}`}
             </Text>
-          </Flex>
-          <Text fontSize="14px" color="textSubtle">
-            {userPoolBalance?.toSignificant(4)}
+            <Text fontSize="12px" ml="32px" color="text">
+          {formatToFourDecimalPlaces(userPoolBalance?.toSignificant(4))} 
+            <span style={{ fontSize: '12px', textTransform: 'uppercase'}}>
+              &nbsp; unstaked LP shares
+            </span>
           </Text>
+          </Flex>
+         
           {Number.isFinite(totalUSDValue) && (
             <Text small color="textSubtle">{`(~${totalUSDValue.toLocaleString(undefined, {
               minimumFractionDigits: 2,

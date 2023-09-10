@@ -6,6 +6,7 @@ const Wrapper = styled.div<{ margin: boolean }>`
   display: flex;
   flex-direction: row;
   margin-right: ${({ margin }) => margin && '4px'};
+  border-radius: 120px; 
 `
 
 interface DoubleCurrencyLogoProps {

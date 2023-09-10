@@ -13,6 +13,8 @@ export const variants = {
   PLUSMINUS: "plusminus", 
   GASON: "gason", 
   ADDTOMETAMASK: "addtometamask", 
+  REVAMP: "revamp", 
+  REVAMPREVERSE: "revampreverse", 
   GASOFF: "gasoff", 
   CALCULATOR: "calculator", 
   PRIMARYTWO: "primarytwo", 
