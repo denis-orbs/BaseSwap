@@ -148,7 +148,7 @@ const ResponsiveButtonPrimary = styled(Button)`
 `
 
 const MainContentWrapper = styled.main`
-  background-color: ${({ theme }) => theme.colors.gradients.basedsexdark};
+  background-color: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   padding: 0;
   border-radius: 16px;

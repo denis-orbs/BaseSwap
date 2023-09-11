@@ -61,7 +61,7 @@ const getTokenLink = (chainId: ChainId, address: string) => {
 }
 
 export const DarkCard = styled(Card)`
-  background: ${({ theme }) => theme.colors.gradients.basedsexdark};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
 `
 
 const PositionPageButtonPrimary = styled(Button)`

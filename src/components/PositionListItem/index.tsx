@@ -50,7 +50,7 @@ import { useRouter } from 'next/router'
 // `
 
 const StyledBox = styled(Box)`
-  background: ${({ theme }) => theme.colors.gradients.basedsexdark};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
   padding: 12px;
   cursor: pointer;
 `
@@ -101,7 +101,7 @@ const RangeText = styled(Text)`
   border-radius: 8px;
   margin-right: 24px;
   padding: 8px;
-  background: ${({ theme }) => theme.colors.gradients.basedsexdark};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
 `
 
 const FeeTierText = styled(Text)`
