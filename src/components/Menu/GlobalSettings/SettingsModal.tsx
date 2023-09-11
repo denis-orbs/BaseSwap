@@ -107,9 +107,9 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
             <Flex marginTop="-4px" flexDirection="column">
               <Text 
                   letterSpacing="0px" 
-                  fontWeight="300" 
+                  fontWeight="500" 
                   textTransform="uppercase" 
-                  fontSize="1.3rem" 
+                  fontSize="1.2rem" 
                   color="background" 
                   textAlign="center" 
                   mb="24px">

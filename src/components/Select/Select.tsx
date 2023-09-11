@@ -11,8 +11,8 @@ const DropDownHeader = styled.div`
   padding: 0px 16px;
   box-shadow: ${({ theme }) => theme.shadows.inset};
   border: 1px solid ${({ theme }) => theme.colors.text};
-  border-radius: 2px;
-  background: ${({ theme }) => theme.colors.background};
+  border-radius: 4px;
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
   transition: border-radius 0.15s;
 `
 
@@ -21,7 +21,7 @@ const DropDownListContainer = styled.div`
   height: 0;
   position: absolute;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
   z-index: ${({ theme }) => theme.zIndices.dropdown};
   transition: transform 0.15s, opacity 0.15s;
   transform: scaleY(0);

@@ -94,7 +94,7 @@ const Label = styled(Text)`
 
 const SwitchIconButton = styled(IconButton)`
   box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
-  background-color: ${({ theme }) => theme.colors.primary};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
 
   .icon-up-down {
     display: none;
@@ -526,7 +526,6 @@ export default function Swap() {
                         <SwitchIconButton
                           variant="light"
                           size="40px"
-                          style={{ border: '2px solid white' }}
                           onClick={() => {
                             setApprovalSubmitted(false) // reset 2 step UI for approvals
                             onSwitchTokens()

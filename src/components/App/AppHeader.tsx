@@ -18,12 +18,12 @@ interface Props {
 const AppHeaderContainer = styled(Flex)`
   align-items: center;
   justify-content: space-between;
-  padding: 2px; 
+  padding: 4px; 
+  padding-left: 12px; 
   width: 100%;
   border-top-radius: 8px; 
-  border-color: #fff; 
-  border-bottom: 3px solid; 
-  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
+  border-bottom: 2px solid #0154FD; 
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
 `
 
 const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig = false }) => {
@@ -46,7 +46,7 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
           ))}
         <Flex flexDirection="column" width="100%">
           <Flex mb="0px" alignItems="center" justifyContent="space-between">
-            <Heading as="h2">{title}</Heading>
+            <Text >{title}</Text>
             {!noConfig && (
               <Flex alignItems="center">
                 <NotificationDot show={expertMode}>
