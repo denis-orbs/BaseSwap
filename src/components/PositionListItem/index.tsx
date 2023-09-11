@@ -13,7 +13,7 @@ import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Bound } from 'state/mint/v3/actions'
 import styled from 'styled-components'
-import { Box, Text } from '@pancakeswap/uikit'
+import { Box, Flex, Text } from '@pancakeswap/uikit'
 import { formatTickPrice } from 'utils/v3/formatTickPrice'
 import { unwrappedToken } from 'utils/v3/unwrappedToken'
 import { currentTokenMap } from 'config/constants/tokens'
@@ -51,8 +51,11 @@ import { useRouter } from 'next/router'
 
 const StyledBox = styled(Box)`
   background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
-  padding: 12px;
+  padding: 6px;
   cursor: pointer;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    padding: 12px;
+  }
 `
 
 const LinkRow = styled(Link)`
@@ -128,10 +131,14 @@ const ExtentsText = styled(Text)`
 
 const PrimaryPositionIdData = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
   > * {
     margin-right: 8px;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    flex-direction: row;
+    align-items: center;
   }
 `
 
@@ -171,10 +178,10 @@ export function getPriceOrderingFromPositionForUI(position?: Position): {
 
   // if token1 is an ETH-/BTC-stable asset, set it as the base token
   const bases = [...Object.values(currentTokenMap.wbnb), currentTokenMap.axlwbtc]
-  
+
   if (bases[8].address.toLowerCase() === token1.address.toLowerCase()) {
-  // homeless-- this didn't work my fix above is probably super janky don't use
-  // if (bases.some((base) => base && base.equals(token1))) {
+    // homeless-- this didn't work my fix above is probably super janky don't use
+    // if (bases.some((base) => base && base.equals(token1))) {
     return {
       priceLower: position.token0PriceUpper.invert(),
       priceUpper: position.token0PriceLower.invert(),
@@ -254,10 +261,12 @@ export default function PositionListItem({
     >
       <RowBetween>
         <PrimaryPositionIdData>
-          <DoubleCurrencyLogo currency0={currencyBase} currency1={currencyQuote} size={18} margin />
-          <Text>
-            &nbsp;{currencyQuote?.symbol}&nbsp;/&nbsp;{currencyBase?.symbol}
-          </Text>
+          <Flex alignItems="center">
+            <DoubleCurrencyLogo currency0={currencyBase} currency1={currencyQuote} size={18} margin />
+            <Text>
+              &nbsp;{currencyQuote?.symbol}&nbsp;/&nbsp;{currencyBase?.symbol}
+            </Text>
+          </Flex>
 
           <FeeTierText>
             <Text>{new Percent(feeAmount, 1_000_000).toSignificant()}%</Text>
