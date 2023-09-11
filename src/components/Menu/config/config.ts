@@ -45,6 +45,10 @@ const config: (
           href: '/swap',
         },
         {
+          label: t('Basic Swap'),
+          href: '/basicswap',
+        },
+        {
           label: t('Perpetuals'),
           href: 'http://perpetuals.baseswap.fi',
         },
