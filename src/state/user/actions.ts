@@ -22,7 +22,11 @@ export enum ChartViewMode {
   TRADING_VIEW = 'TRADING_VIEW',
 }
 
+export const updateHideClosedPositions = createAction<{ userHideClosedPositions: boolean }>(
+  'user/updateHideClosedPositions',
+)
 export const updateUserExpertMode = createAction<{ userExpertMode: boolean }>('user/updateUserExpertMode')
+export const updateUserShowRoute = createAction<{ userShowRoute: boolean }>('user/updateUserShowRoute')
 export const updateUserSingleHopOnly = createAction<{ userSingleHopOnly: boolean }>('user/updateUserSingleHopOnly')
 export const updateUserSlippageTolerance = createAction<{ userSlippageTolerance: number }>(
   'user/updateUserSlippageTolerance',

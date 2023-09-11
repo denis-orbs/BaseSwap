@@ -20,6 +20,7 @@ import {
   updateUserFarmsViewMode,
   updateUserPoolStakedOnly,
   updateUserPoolsViewMode,
+  updateUserShowRoute,
   updateUserSingleHopOnly,
   updateUserSlippageTolerance,
   ViewMode,
@@ -35,6 +36,7 @@ import {
   setSubgraphHealthIndicatorDisplayed,
   updateUserLimitOrderAcceptedWarning,
   setZapDisabled,
+  updateHideClosedPositions,
 } from './actions'
 import { GAS_PRICE_GWEI } from '../types'
 
@@ -45,6 +47,7 @@ export interface UserState {
   lastUpdateVersionTimestamp?: number
 
   userExpertMode: boolean
+  userShowRoute: boolean
 
   // only allow swaps on direct pairs
   userSingleHopOnly: boolean
@@ -88,6 +91,8 @@ export interface UserState {
   watchlistTokens: string[]
   watchlistPools: string[]
   hideTimestampPhishingWarningBanner: number
+
+  userHideClosedPositions: boolean
 }
 
 function pairKey(token0Address: string, token1Address: string) {
@@ -96,6 +101,7 @@ function pairKey(token0Address: string, token1Address: string) {
 
 export const initialState: UserState = {
   userExpertMode: false,
+  userShowRoute: true,
   userSingleHopOnly: false,
   userSlippageTolerance: INITIAL_ALLOWED_SLIPPAGE,
   userDeadline: DEFAULT_DEADLINE_FROM_NOW,
@@ -121,6 +127,7 @@ export const initialState: UserState = {
   watchlistTokens: [],
   watchlistPools: [],
   hideTimestampPhishingWarningBanner: null,
+  userHideClosedPositions: false,
 }
 
 export default createReducer(initialState, (builder) =>
@@ -142,6 +149,10 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(updateUserExpertMode, (state, action) => {
       state.userExpertMode = action.payload.userExpertMode
+      state.timestamp = currentTimestamp()
+    })
+    .addCase(updateUserShowRoute, (state, action) => {
+      state.userShowRoute = action.payload.userShowRoute
       state.timestamp = currentTimestamp()
     })
     .addCase(updateUserSlippageTolerance, (state, action) => {
@@ -265,5 +276,8 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(setSubgraphHealthIndicatorDisplayed, (state, { payload }) => {
       state.isSubgraphHealthIndicatorDisplayed = payload
+    })
+    .addCase(updateHideClosedPositions, (state, { payload }) => {
+      state.userHideClosedPositions = payload.userHideClosedPositions
     }),
 )

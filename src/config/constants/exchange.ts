@@ -10,6 +10,11 @@ export const ROUTER_ADDRESS = {
   [ChainId.BASE]: '0x327Df1E6de05895d2ab08513aaDD9313Fe505d86',
 }
 
+export const ROUTER_ADDRESS_ODOS = {
+  //odos router address
+  [ChainId.BASE]: '0x19cEeAd7105607Cd444F5ad10dd51356436095a1',
+}
+
 export const LOCKER_ADDRESS = {
   [ChainId.BASE]: '0x4e4c89937f85bD101C7FCB273435Ed89b49ad0B0', // 29 NOV
 }

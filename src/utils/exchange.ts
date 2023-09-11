@@ -106,3 +106,15 @@ export function formatExecutionPrice(trade?: Trade, inverted?: boolean): string 
         trade.inputAmount.currency.symbol
       }`
 }
+
+export function formatExecutionPriceOdos(inputAmount: number, outputAmount: number, inputCurrency: any, outputCurrency: any, inverted?: boolean): string {
+  const executionPrice = inputAmount/outputAmount;
+  const executionPriceInverted = outputAmount/inputAmount;
+  return inverted
+    ? `${executionPriceInverted.toFixed(6)} ${outputCurrency?.symbol} / ${
+      inputCurrency?.symbol
+      }`
+    : `${executionPrice.toFixed(6)} ${inputCurrency?.symbol} / ${
+      outputCurrency?.symbol
+      }`
+}

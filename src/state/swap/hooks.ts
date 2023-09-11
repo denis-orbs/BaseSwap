@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { SLOW_INTERVAL } from 'config/constants'
 import { DEFAULT_INPUT_CURRENCY, DEFAULT_OUTPUT_CURRENCY } from 'config/constants/exchange'
 import useSWRImmutable from 'swr/immutable'
+import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTradeExactIn, useTradeExactOut } from 'hooks/Trades'
@@ -31,11 +32,12 @@ import {
   normalizeDerivedPairDataByActiveToken,
   normalizePairDataByActiveToken,
 } from './normalizers'
-import { PairDataTimeWindowEnum } from './types'
+import { PairDataTimeWindowEnum, SwapQuoteData } from './types'
 import { derivedPairByDataIdSelector, pairByDataIdSelector } from './selectors'
 import fetchDerivedPriceData from './fetch/fetchDerivedPriceData'
 import { pairHasEnoughLiquidity } from './fetch/utils'
 import { parsePoolData, fetchPoolData, FormattedPoolFields } from '../info/queries/pools/poolData'
+import BigNumber from 'bignumber.js'
 
 export function useSwapState(): AppState['swap'] {
   return useSelector<AppState, AppState['swap']>((state) => state.swap)
@@ -82,6 +84,63 @@ export function useSingleTokenSwapInfo(
   return {
     [token0Address]: inputTokenPrice,
     [token1Address]: outputTokenPrice,
+  }
+}
+
+// from the current swap inputs, compute the best trade and return it.
+export function useDerivedSwapInfoOdos(
+  independentField: Field,
+  typedValue: string,
+  inputCurrency: Currency | undefined,
+  outputCurrency: Currency | undefined,
+  recipient: string,
+): {
+  currencies: { [field in Field]?: Currency }
+  currencyBalances: { [field in Field]?: CurrencyAmount }
+  parsedAmount: CurrencyAmount | undefined
+  inputError?: string
+} {
+  const { account } = useWeb3React()
+  const { t } = useTranslation()
+
+  const to: string | null = (recipient === null ? account : isAddress(recipient) || null) ?? null
+
+  const relevantTokenBalances = useCurrencyBalances(account ?? undefined, [
+    inputCurrency ?? undefined,
+    outputCurrency ?? undefined,
+  ])
+
+  const isExactIn: boolean = independentField === Field.INPUT
+  const parsedAmount = tryParseAmount(typedValue, (isExactIn ? inputCurrency : outputCurrency) ?? undefined)
+
+  const currencyBalances = {
+    [Field.INPUT]: relevantTokenBalances[0],
+    [Field.OUTPUT]: relevantTokenBalances[1],
+  }
+
+  const currencies: { [field in Field]?: Currency } = {
+    [Field.INPUT]: inputCurrency ?? undefined,
+    [Field.OUTPUT]: outputCurrency ?? undefined,
+  }
+
+  let inputError: string | undefined
+  if (!account) {
+    inputError = t('Connect Wallet')
+  }
+
+  if (!parsedAmount) {
+    inputError = inputError ?? t('Enter an amount')
+  }
+
+  if (!currencies[Field.INPUT] || !currencies[Field.OUTPUT]) {
+    inputError = inputError ?? t('Select a token')
+  }
+
+  return {
+    currencies,
+    currencyBalances,
+    parsedAmount,
+    inputError,
   }
 }
 
@@ -431,4 +490,124 @@ export const useLPApr = (pair?: Pair) => {
   )
 
   return poolData
+}
+
+export function useSwapQuote(inputCurrency, outputCurrency, typedValue, slippage) {
+  const [isLoading, setLoading] = useState(false)
+  const [data, setData] = useState<SwapQuoteData>(null)
+
+  const input = inputCurrency?.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : inputCurrency?.address
+  const inputDecimals = inputCurrency?.decimals
+  const output =
+    outputCurrency?.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : outputCurrency?.address
+
+  const { account } = useWeb3React()
+
+  useEffect(() => {
+    const fetcher = async () => {
+      if (input && inputDecimals && output && typedValue > 0) {
+        setLoading(true)
+        try {
+          const quoteDataTypedValue = new BigNumber(typedValue)
+          const inputDecimalsValue = new BigNumber(10).pow(inputDecimals)
+          const resultValue = quoteDataTypedValue.times(inputDecimalsValue)
+          const result = await axios.post('https://api.odos.xyz/sor/quote/v2', {
+            chainId: ChainId.BASE,
+            inputTokens: [
+              {
+                tokenAddress: input,
+                amount: resultValue.toString(),
+              },
+            ],
+            outputTokens: [
+              {
+                tokenAddress: output,
+                proportion: 1,
+              },
+            ],
+            // homeless- make user be logged in first
+            userAddr: account || '0x000000000000000000000000000000000000dEaD',
+            slippageLimitPercent: slippage / 100,
+            sourceBlacklist: [],
+            sourceWhitelist: ["BaseSwap", "BaseSwapX", "Wrapped Ether"],
+            pathVizImage: true,
+            referralCode: 1190159976,
+            pathVizImageConfig: {
+              legendTextColor: '#FFFFFF',
+              nodeColor: '#234969',
+              linkColors: ['#011082', '#344afb', '#546084', '#434345'],
+            },
+          })
+          setData(result.data)
+        } catch (err) {
+          console.log('swap quote', err)
+        } finally {
+          setLoading(false)
+        }
+      }
+    }
+
+    fetcher()
+  }, [input, output, typedValue, slippage, inputDecimals, account]) // Rerun whenever these values change
+
+  return { data, isLoading }
+}
+
+export const postAssemble = async (pathId: string, account: string) => {
+  try {
+    const assembleData = await axios
+      .post('https://api.odos.xyz/sor/assemble', {
+        userAddr: account,
+        pathId,
+        simulate: true,
+      })
+      .then((res) => res.data)
+
+    return assembleData
+  } catch (err) {
+    console.log('assemble data', err)
+    return err
+  }
+}
+
+export const quoteAndAssemble = async (inputCurrency, outputCurrency, typedValue, slippage, account) => {
+  const input = inputCurrency?.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : inputCurrency?.address
+  const inputDecimals = inputCurrency?.decimals
+  const output =
+    outputCurrency?.symbol === 'ETH' ? '0x0000000000000000000000000000000000000000' : outputCurrency?.address
+
+  const quoteDataTypedValue = new BigNumber(typedValue)
+  const inputDecimalsValue = new BigNumber(10).pow(inputDecimals)
+  const result = quoteDataTypedValue.times(inputDecimalsValue)
+
+  const quoteData = await axios.post('https://api.odos.xyz/sor/quote/v2', {
+    chainId: ChainId.BASE,
+    inputTokens: [
+      {
+        tokenAddress: input,
+        amount: result.toString(),
+      },
+    ],
+    outputTokens: [
+      {
+        tokenAddress: output,
+        proportion: 1,
+      },
+    ],
+    userAddr: account,
+    slippageLimitPercent: slippage / 100,
+    sourceBlacklist: [],
+    sourceWhitelist: ["BaseSwap","BaseSwapX", "Wrapped Ether"],
+    pathVizImage: true,
+    referralCode: 1190159976,
+    pathVizImageConfig: {
+      legendTextColor: '#FFFFFF',
+    },
+  })
+
+  console.log('quoteData', quoteData)
+
+  const assembledData = await postAssemble(quoteData.data.pathId, account)
+
+  return { quoteData: quoteData.data, assembledData }
 }

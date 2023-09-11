@@ -16,6 +16,7 @@ import {
   removeSerializedToken,
   SerializedPair,
   unmuteAudio,
+  updateUserShowRoute,
   updateUserDeadline,
   updateUserExpertMode,
   updateUserFarmStakedOnly,
@@ -145,6 +146,10 @@ export function useIsExpertMode(): boolean {
   return useSelector<AppState, AppState['user']['userExpertMode']>((state) => state.user.userExpertMode)
 }
 
+export function useIsShowRoute(): boolean {
+  return useSelector<AppState, AppState['user']['userShowRoute']>((state) => state.user.userShowRoute)
+}
+
 export function useExpertModeManager(): [boolean, () => void] {
   const dispatch = useAppDispatch()
   const expertMode = useIsExpertMode()
@@ -154,6 +159,17 @@ export function useExpertModeManager(): [boolean, () => void] {
   }, [expertMode, dispatch])
 
   return [expertMode, toggleSetExpertMode]
+}
+
+export function useShowRoute(): [boolean, () => void] {
+  const dispatch = useAppDispatch()
+  const showRoute = useIsShowRoute()
+
+  const toggleSetShowRoute = useCallback(() => {
+    dispatch(updateUserShowRoute({ userShowRoute: !showRoute }))
+  }, [showRoute, dispatch])
+
+  return [showRoute, toggleSetShowRoute]
 }
 
 export function useUserSingleHopOnly(): [boolean, (newSingleHopOnly: boolean) => void] {

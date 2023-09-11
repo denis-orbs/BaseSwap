@@ -1,22 +1,28 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import styled from 'styled-components'
-import { Text, PancakeToggle, Toggle, Flex, Modal, InjectedModalProps, ThemeSwitcher, Box } from '@pancakeswap/uikit'
 import {
-  useAudioModeManager,
-  useExpertModeManager,
+  Text,
+  // PancakeToggle, 
+  Toggle, Flex, Modal, InjectedModalProps,
+  // ThemeSwitcher, Box 
+} from '@pancakeswap/uikit'
+import {
+  // useAudioModeManager,
+  // useExpertModeManager,
   useSubgraphHealthIndicatorManager,
-  useUserExpertModeAcknowledgementShow,
-  useUserSingleHopOnly,
-  useZapModeManager,
+  // useUserExpertModeAcknowledgementShow,
+  // useUserSingleHopOnly,
+  // useZapModeManager,
 } from 'state/user/hooks'
-import { useSwapActionHandlers } from 'state/swap/useSwapActionHandlers'
+// import { useSwapActionHandlers } from 'state/swap/useSwapActionHandlers'
 import { useTranslation } from '@pancakeswap/localization'
-import useTheme from 'hooks/useTheme'
+// import useTheme from 'hooks/useTheme'
 import QuestionHelper from '../../QuestionHelper'
 import TransactionSettings from './TransactionSettings'
-import ExpertModal from './ExpertModal'
+// import ExpertModal from './ExpertModal'
 import GasSettings from './GasSettings'
 import { SettingsMode } from './types'
+import { useShowRoute } from '../../../state/user/hooks'
 
 const ScrollableContainer = styled(Flex)`
   flex-direction: column;
@@ -31,39 +37,40 @@ const ScrollableContainer = styled(Flex)`
 `
 
 const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
-  const [showConfirmExpertModal, setShowConfirmExpertModal] = useState(false)
-  const [showExpertModeAcknowledgement, setShowExpertModeAcknowledgement] = useUserExpertModeAcknowledgementShow()
-  const [expertMode, toggleExpertMode] = useExpertModeManager()
-  const [singleHopOnly, setSingleHopOnly] = useUserSingleHopOnly()
-  const [audioPlay, toggleSetAudioMode] = useAudioModeManager()
-  const [zapMode, toggleZapMode] = useZapModeManager()
+  // const [showConfirmExpertModal, setShowConfirmExpertModal] = useState(false)
+  // const [showExpertModeAcknowledgement, setShowExpertModeAcknowledgement] = useUserExpertModeAcknowledgementShow()
+  // const [expertMode, toggleExpertMode] = useExpertModeManager()
+  const [showRoute, toggleSetShowRoute] = useShowRoute()
+  // const [singleHopOnly, setSingleHopOnly] = useUserSingleHopOnly()
+  // const [audioPlay, toggleSetAudioMode] = useAudioModeManager()
+  // const [zapMode, toggleZapMode] = useZapModeManager()
   const [subgraphHealth, setSubgraphHealth] = useSubgraphHealthIndicatorManager()
-  const { onChangeRecipient } = useSwapActionHandlers()
+  // const { onChangeRecipient } = useSwapActionHandlers()
 
   const { t } = useTranslation()
-  const { isDark, setTheme } = useTheme()
+  // const { isDark, setTheme } = useTheme()
 
-  if (showConfirmExpertModal) {
-    return (
-      <ExpertModal
-        setShowConfirmExpertModal={setShowConfirmExpertModal}
-        onDismiss={onDismiss}
-        setShowExpertModeAcknowledgement={setShowExpertModeAcknowledgement}
-      />
-    )
-  }
+  // if (showConfirmExpertModal) {
+  //   return (
+  //     <ExpertModal
+  //       setShowConfirmExpertModal={setShowConfirmExpertModal}
+  //       onDismiss={onDismiss}
+  //       setShowExpertModeAcknowledgement={setShowExpertModeAcknowledgement}
+  //     />
+  //   )
+  // }
 
-  const handleExpertModeToggle = () => {
-    if (expertMode) {
-      onChangeRecipient(null)
-      toggleExpertMode()
-    } else if (!showExpertModeAcknowledgement) {
-      onChangeRecipient(null)
-      toggleExpertMode()
-    } else {
-      setShowConfirmExpertModal(true)
-    }
-  }
+  // const handleExpertModeToggle = () => {
+  //   if (expertMode) {
+  //     onChangeRecipient(null)
+  //     toggleExpertMode()
+  //   } else if (!showExpertModeAcknowledgement) {
+  //     onChangeRecipient(null)
+  //     toggleExpertMode()
+  //   } else {
+  //     setShowConfirmExpertModal(true)
+  //   }
+  // }
 
   return (
     <Modal title={t('SETTINGS')} headerBackground="background" onDismiss={onDismiss} style={{ maxWidth: '420px' }}>
@@ -115,12 +122,26 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
                   mb="24px">
                 {t('Swaps & Liquidity')}
               </Text>
+              {/* <Flex justifyContent="space-between" alignItems="center" mb="24px">
               <Flex justifyContent="space-between" alignItems="center" mb="36px">
                 <GasSettings />
-              </Flex>
+              </Flex> */}
               <TransactionSettings />
+              <Flex justifyContent="space-between" alignItems="center" mb="24px">
+                <Flex alignItems="center">
+                  <Text>{t('Show Swap Route')}</Text>
+                </Flex>
+                <Toggle
+                  id="show-route"
+                  checked={showRoute}
+                  scale="md"
+                  onChange={() => {
+                    toggleSetShowRoute()
+                  }}
+                />
+              </Flex>
             </Flex>
-            <Flex justifyContent="space-between" alignItems="center" mb="12px">
+            {/* <Flex justifyContent="space-between" alignItems="center" mb="12px">
               <Flex  alignItems="center">
                 <Text>{t('Zap')}</Text>
                 <QuestionHelper
@@ -149,7 +170,8 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
                   toggleZapMode(!zapMode)
                 }}
               />
-            </Flex>
+            </Flex> */}
+
             {/* <Flex justifyContent="space-between" alignItems="center" mb="24px">
               <Flex alignItems="center">
                 <Text>{t('Expert Mode')}</Text>

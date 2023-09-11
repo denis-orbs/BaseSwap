@@ -1,4 +1,4 @@
-import { ModalProvider, light, dark, MatchBreakpointsProvider } from '@pancakeswap/uikit'
+import { ModalProvider, dark, MatchBreakpointsProvider } from '@pancakeswap/uikit'
 import { Web3ReactProvider } from '@web3-react/core'
 import { Provider } from 'react-redux'
 import { SWRConfig } from 'swr'
@@ -9,6 +9,7 @@ import { ToastsProvider } from 'contexts/ToastsContext'
 import { fetchStatusMiddleware } from 'hooks/useSWRContract'
 import { Store } from '@reduxjs/toolkit'
 import { ThemeProvider as NextThemeProvider, useTheme as useNextTheme } from 'next-themes'
+import { BlockNumberProvider } from 'lib/hooks/useBlockNumber'
 
 const StyledThemeProvider: React.FC<{ children: React.ReactNode }> = (props) => {
   const { resolvedTheme } = useNextTheme()
@@ -24,13 +25,15 @@ const Providers: React.FC<{ store: Store }> = ({ children, store }) => {
             <NextThemeProvider>
               <StyledThemeProvider>
                 <LanguageProvider>
-                  <SWRConfig
-                    value={{
-                      use: [fetchStatusMiddleware],
-                    }}
-                  >
-                    <ModalProvider>{children}</ModalProvider>
-                  </SWRConfig>
+                  <BlockNumberProvider>
+                    <SWRConfig
+                      value={{
+                        use: [fetchStatusMiddleware],
+                      }}
+                    >
+                      <ModalProvider>{children}</ModalProvider>
+                    </SWRConfig>
+                  </BlockNumberProvider>
                 </LanguageProvider>
               </StyledThemeProvider>
             </NextThemeProvider>

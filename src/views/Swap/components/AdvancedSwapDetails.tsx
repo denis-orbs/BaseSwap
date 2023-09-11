@@ -6,7 +6,7 @@ import { useUserSlippageTolerance } from 'state/user/hooks'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from 'utils/exchange'
 import { AutoColumn } from 'components/Layout/Column'
 import QuestionHelper from 'components/QuestionHelper'
-import { TOTAL_FEE, LP_HOLDERS_FEE, TREASURY_FEE, BUYBACK_FEE } from 'config/constants/info'
+// import { TOTAL_FEE, LP_HOLDERS_FEE, TREASURY_FEE, BUYBACK_FEE } from 'config/constants/info'
 import { RowBetween, RowFixed } from 'components/Layout/Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import SwapRoute from './SwapRoute'
@@ -17,10 +17,10 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
 
-  const totalFeePercent = `${(TOTAL_FEE * 100).toFixed(2)}%`
-  const lpHoldersFeePercent = `${(LP_HOLDERS_FEE * 100).toFixed(2)}%`
-  const treasuryFeePercent = `${(TREASURY_FEE * 100).toFixed(4)}%`
-  const buyBackFeePercent = `${(BUYBACK_FEE * 100).toFixed(4)}%`
+  // const totalFeePercent = `${(TOTAL_FEE * 100).toFixed(2)}%`
+  // const lpHoldersFeePercent = `${(LP_HOLDERS_FEE * 100).toFixed(2)}%`
+  // const treasuryFeePercent = `${(TREASURY_FEE * 100).toFixed(4)}%`
+  // const buyBackFeePercent = `${(BUYBACK_FEE * 100).toFixed(4)}%`
 
   return (
     <AutoColumn style={{ padding: '0 16px' }}>

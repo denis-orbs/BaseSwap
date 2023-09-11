@@ -10,7 +10,6 @@
   "logoURI": "https://pancakeswap.finance/logo.png",
   "keywords": ["baseswap", "default"],
   "tokens": [
-
     {
       "name": "BaseSwap Token",
       "symbol": "BSWAP",
@@ -34,6 +33,14 @@
       "chainId": 8453,
       "decimals": 6,
       "logoURI": ""
+    },
+    {
+      "name": "USD Coin",
+      "symbol": "USDC",
+      "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "chainId": 8453,
+      "decimals": 6,
+      "logoURI": "https://baseswap.fi/images/tokens/0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA.png"
     },
     {
       "name": "DAI Stablecoin Token",
@@ -75,7 +82,7 @@
       "decimals": 18,
       "logoURI": ""
     },
-        {
+    {
       "name": "GND Protocol",
       "symbol": "GND",
       "address": "0xfb825e93822dd971ebdfdb2180a751958dbd5e16",
@@ -92,7 +99,7 @@
       "decimals": 8,
       "logoURI": ""
     },
- 
+
     {
       "name": "BlazeBot",
       "symbol": "BLAZE",

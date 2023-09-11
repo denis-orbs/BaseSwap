@@ -1,6 +1,11 @@
 import { ChainId, Token, WBNB } from '@magikswap/sdk'
 import { DEFAULT_CHAIN_ID } from 'utils/providers'
 
+// When decimals are not specified for an ERC20 token
+// use default ERC20 token decimals as specified here:
+// https://docs.openzeppelin.com/contracts/3.x/erc20
+export const DEFAULT_ERC20_DECIMALS = 18
+
 const CAKE_MAINNET = new Token(
   ChainId.MAINNET,
   '0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9',
@@ -2463,6 +2468,15 @@ const USDBC_BASE = new Token(
   'baseswap.fi',
 )
 
+const USDC = new Token(
+  ChainId.BASE,
+  '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
+  6,
+  'USDC',
+  'USD Base Coin',
+  'https://www.circle.com/en/usdc',
+)
+
 const CBETH_BASE = new Token(
   ChainId.BASE,
   '0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22',
@@ -2620,11 +2634,6 @@ const GND_BASE = new Token(
   'app.gmdprotocol.com',
 )
 
-export const USDC = {
-  [ChainId.MAINNET]: USDC_BSC,
-  [ChainId.BSC_TESTNET]: USDC_TESTNET,
-}
-
 export const CAKE = {
   [ChainId.MAINNET]: CAKE_MAINNET,
   [ChainId.BSC_TESTNET]: CAKE_TESTNET,
@@ -2651,6 +2660,8 @@ export const baseTokens = {
   usdbc: USDBC_BASE,
   ogre: ORGE_BASE,
   busd: AXLUSDC_BASE,
+  usdc: USDC_BASE,
+  usdcNative: USDC,
   mim: MIM_BASE,
   axlwbtc: AXLWBTC_BASE,
   ede: EDE_BASE,
@@ -2695,4 +2706,14 @@ export const TOKENS_CHAIN_MAP = {
   [ChainId.BASE]: baseTokens,
 }
 
+export const WRAPPED_NATIVE_CURRENCY = {
+  [ChainId.BASE]: baseTokens.wbnb,
+}
+
 export const currentTokenMap = TOKENS_CHAIN_MAP[DEFAULT_CHAIN_ID]
+
+export const TOKEN_SHORTHANDS: { [shorthand: string]: { [chainId in ChainId]?: string } } = {
+  USDC: {
+    [ChainId.BASE]: USDC_BASE.address,
+  },
+}

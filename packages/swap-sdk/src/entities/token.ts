@@ -7,6 +7,8 @@ import { Currency } from './currency'
  * Represents an ERC20 token with a unique address and some metadata.
  */
 export class Token extends Currency {
+  public readonly isNative: false = false
+  public readonly isToken: true = true
   public readonly chainId: ChainId
   public readonly address: string
   public readonly projectLink?: string
@@ -47,6 +49,13 @@ export class Token extends Currency {
     invariant(this.chainId === other.chainId, 'CHAIN_IDS')
     invariant(this.address !== other.address, 'ADDRESSES')
     return this.address.toLowerCase() < other.address.toLowerCase()
+  }
+
+  /**
+   * Return this token, which does not need to be wrapped
+   */
+  public get wrapped(): Token {
+    return this
   }
 }
 

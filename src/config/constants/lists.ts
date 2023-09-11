@@ -2,6 +2,9 @@ const PANCAKE_EXTENDED = 'https://tokens.pancakeswap.finance/pancakeswap-extende
 const COINGECKO = 'https://tokens.pancakeswap.finance/coingecko.json'
 const CMC = 'https://tokens.pancakeswap.finance/cmc.json'
 
+export const BASE_LIST =
+  'https://raw.githubusercontent.com/ethereum-optimism/ethereum-optimism.github.io/master/optimism.tokenlist.json'
+
 // List of official tokens list
 export const OFFICIAL_LISTS = [PANCAKE_EXTENDED]
 

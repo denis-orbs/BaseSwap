@@ -11,6 +11,7 @@ import {
   TransactionType,
 } from './actions'
 import { resetUserState } from '../global/actions'
+import { TransactionInfo } from './types'
 
 const now = () => new Date().getTime()
 
@@ -26,6 +27,7 @@ export interface TransactionDetails {
   addedTime: number
   confirmedTime?: number
   from: string
+  info?: TransactionInfo
 }
 
 export interface TransactionState {
@@ -36,8 +38,8 @@ export interface TransactionState {
 
 export const initialState: TransactionState = {}
 
-export default createReducer(initialState, (builder) =>
-  builder
+export default createReducer(initialState, (builder) => {
+  return builder
     .addCase(
       addTransaction,
       (transactions, { payload: { chainId, from, hash, approval, summary, claim, type, order } }) => {
@@ -79,9 +81,10 @@ export default createReducer(initialState, (builder) =>
         confirmOrderCancellation(chainId, receipt.from, hash, receipt.status !== 0)
       }
     })
+
     .addCase(resetUserState, (transactions, { payload: { chainId } }) => {
       if (transactions[chainId]) {
         transactions[chainId] = {}
       }
-    }),
-)
+    })
+})

@@ -39,9 +39,12 @@ export const lightColors: Colors = {
   textDisabled: "#BDC2C4",
   textSubtle: "#7A6EAA",
   disabled: "#E9EAEB",
+  success: 'green',
+  closed: 'red',
+  warning: 'yellow',
   gradients: {
     basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD 100%)",
-    basedsexdark: "linear-gradient(#020079 0%, #0154FD 100%)",
+    basedsexdark: "linear-gradient(to bottom, #333333, #000000)",
     basedsexgray: "linear-gradient(to bottom, #000, #222)",
     basedsexgrayflip: "linear-gradient(to top, #000, #222)",
     pagebg: "linear-gradient(to bottom, #000, #222)",
@@ -78,6 +81,9 @@ export const darkColors: Colors = {
   textDisabled: "#666171",
   textSubtle: "#fff",
   disabled: "#333",
+  success: 'green',
+  closed: 'red',
+  warning: 'yellow',
   gradients: {
     basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD, 90%, #ccc 100%)",
     basedsex1: "linear-gradient(to bottom, #111 90%, #0154FD)",

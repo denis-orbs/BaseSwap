@@ -27,6 +27,9 @@ import transactions from './transactions/reducer'
 import user from './user/reducer'
 import nftPoolsReducer from './xFarms'
 import xTokenReducer from './xToken'
+import mintV3 from './mint/v3/reducer'
+import { routingApi } from './routing/slice'
+import burnV3 from './burn/v3/reducer'
 
 const PERSISTED_KEYS: string[] = ['user', 'transactions']
 
@@ -78,9 +81,12 @@ const persistedReducer = persistReducer(
     transactions,
     swap,
     mint,
+    mintV3,
     burn,
+    burnV3,
     multicall,
     lists: persistReducer(ListsConfig, lists),
+    [routingApi.reducerPath]: routingApi.reducer,
   }),
 )
 
@@ -96,7 +102,7 @@ export function makeStore(preloadedState = undefined) {
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      }),
+      }).concat(routingApi.middleware),
     devTools: process.env.NODE_ENV === 'development',
     preloadedState,
   })

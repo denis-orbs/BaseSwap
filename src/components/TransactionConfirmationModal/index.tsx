@@ -24,6 +24,7 @@ import AddToWalletButton, { AddToWalletTextOptions } from '../AddToWallet/AddToW
 
 const Wrapper = styled.div`
   width: 100%;
+  padding: 8px;
 `
 const Section = styled(AutoColumn)`
   padding: 24px;
@@ -31,6 +32,16 @@ const Section = styled(AutoColumn)`
 
 const ConfirmedIcon = styled(ColumnCenter)`
   padding: 24px 0;
+`
+
+const StyledModal = styled(Modal)`
+  position: relative;
+  margin-top: 100px;
+  padding: 12px;
+  width: 100%;
+  max-width: 800px !important;
+  margin-left: auto;
+  margin-right: auto;
 `
 
 function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
@@ -115,7 +126,7 @@ export function ConfirmationModalContent({
   return (
     <Wrapper>
       <Box>{topContent()}</Box>
-      <Box>{bottomContent()}</Box>
+      {bottomContent && <Box>{bottomContent()}</Box>}
     </Wrapper>
   )
 }
@@ -171,7 +182,7 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
   if (!chainId) return null
 
   return (
-    <Modal title={title} headerBackground="gradients.basedsexgray" {...props} onDismiss={handleDismiss}>
+    <StyledModal title={title} headerBackground="gradients.basedsexgray" {...props} onDismiss={handleDismiss}>
       {attemptingTxn ? (
         <ConfirmationPendingContent pendingText={pendingText} />
       ) : hash ? (
@@ -184,7 +195,7 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
       ) : (
         content()
       )}
-    </Modal>
+    </StyledModal>
   )
 }
 
