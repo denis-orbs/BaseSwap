@@ -241,6 +241,13 @@
       "address": "0x556E0027a04A0285b259e1063f180F1a37006903", 
       "chainId": 8453,
       "decimals": 18
+    }, 
+    {
+      "name": "Friend.tech", 
+      "symbol": "FRIEND", 
+      "address": "0x05567B7D4F2eB9556904b7Fc429F5A2D33004B0D", 
+      "chainId": 8453,
+      "decimals": 18
     }
 
 

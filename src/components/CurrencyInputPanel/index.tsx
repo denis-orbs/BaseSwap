@@ -20,8 +20,8 @@ const InputRow = styled.div<{ selected: boolean }>`
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-end;
-  padding-bottom: 4px; 
-  padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
+  padding-bottom: 0px; 
+  padding: ${({ selected }) => (selected ? '0.5rem' : '0.5rem')};
 
   padding-right: 4px; 
 `
@@ -64,9 +64,9 @@ const InputPanel = styled.div`
   z-index: 1;
 `
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
-  border-radius: 2px;
-  border: 3px solid ${({ theme }) => theme.colors.text};
-  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
+  border-radius: 8px;
+  border: 2px solid ${({ theme }) => theme.colors.text};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
 
   ${({ zapStyle }) =>
     !!zapStyle &&
@@ -281,8 +281,8 @@ export default function CurrencyInputPanel({
               </Text>
             )}
             {account && currency && !disabled && showMaxButton && label !== 'To' && (
-              <Button onClick={onMax}  variant="max" marginRight="4px">
-                {t('Max').toLocaleUpperCase(locale)}
+              <Button onClick={onMax}  height="25px" variant="percentages" marginRight="2px">
+                <Text fontSize="1.3rem">MAX</Text>
               </Button>
             )}
           </InputRow>
