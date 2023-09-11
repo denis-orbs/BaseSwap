@@ -315,5 +315,7 @@ export const styleVariants = {
     color: "background",
     borderRadius: "2px", 
     boxShadow: "none",
+    borderColor: "background", 
+    border: "2px solid"
   },
 };
