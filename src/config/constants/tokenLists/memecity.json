@@ -19,6 +19,14 @@
     "logoURI": "https://baseswap.fi/images/tokens/0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913.png"
   }, 
   {
+    "name": "Barry the Bear",
+    "symbol": "BARRY",
+    "address": "0xBaA1f7360DE42cC21c5892a9B2D172ca0443bd95",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://baseswap.fi/images/tokens/0xBaA1f7360DE42cC21c5892a9B2D172ca0443bd95.png"
+  }, 
+  {
     "name": "DadBot",
     "symbol": "DADBOT",
     "address": "0xd4424936Ff4E206CB4b85c7E78f3342A170545F3",
