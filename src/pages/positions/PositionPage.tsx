@@ -19,7 +19,6 @@ import { useToken } from 'hooks/Tokens'
 import { useV3NFTPositionManagerContract } from 'hooks/useContract'
 import useIsTickAtLimit from 'hooks/v3/useIsTickAtLimit'
 import { PoolState, usePool } from 'hooks/v3/usePools'
-import useStablecoinPrice from 'hooks/useStablecoinPrice'
 import { useV3PositionFees } from 'hooks/v3/useV3PositionFees'
 import { useV3PositionFromTokenId } from 'hooks/v3/useV3Positions'
 import { useSingleCallResult } from 'lib/hooks/multicall'
@@ -29,7 +28,7 @@ import { Bound } from 'state/mint/v3/actions'
 import { useIsTransactionPending } from 'state/transactions/hooks'
 import { useTransactionAdder } from 'state/transactions/v3/hooks'
 import styled, { useTheme } from 'styled-components'
-import { currencyId } from 'utils/currencyId'
+import { currencyId } from 'utils/v3/currencyId'
 import { formatCurrencyAmount } from 'utils/v3/formatCurrencyAmount'
 import { formatNumber, formatPrice, NumberType } from 'utils/v3/formatNumbers'
 import { formatTickPrice } from 'utils/v3/formatTickPrice'
@@ -104,7 +103,7 @@ const BadgeText = styled.div`
 // responsive text
 // disable the warning because we don't use the end prop, we just want to filter it out
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Label = styled(({ end, ...props }) => <Text {...props} />) <{ end?: boolean }>`
+const Label = styled(({ end, ...props }) => <Text {...props} />)<{ end?: boolean }>`
   display: flex;
   font-size: 16px;
   justify-content: ${({ end }) => (end ? 'flex-end' : 'flex-start')};
@@ -142,11 +141,11 @@ const DoubleArrow = styled.span`
 // `
 
 const ResponsiveRow = styled(RowBetween)`
-display: flex;
-flex-direction: column;
-${({ theme }) => theme.mediaQueries.md} {
-  flex-direction: row;
-}
+  display: flex;
+  flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.md} {
+    flex-direction: row;
+  }
 `
 
 // const ActionButtonResponsiveRow = styled(ResponsiveRow)`
@@ -491,10 +490,10 @@ function PositionPageContent() {
   const ratio = useMemo(() => {
     return priceLower && pool && priceUpper
       ? getRatio(
-        inverted ? priceUpper.invert() : priceLower,
-        pool.token0Price,
-        inverted ? priceLower.invert() : priceUpper,
-      )
+          inverted ? priceUpper.invert() : priceLower,
+          pool.token0Price,
+          inverted ? priceLower.invert() : priceUpper,
+        )
       : undefined
   }, [inverted, pool, priceLower, priceUpper])
 
@@ -663,11 +662,11 @@ function PositionPageContent() {
 
   const showCollectAsWeth = Boolean(
     ownsNFT &&
-    (feeValue0?.greaterThan(0) || feeValue1?.greaterThan(0)) &&
-    currency0 &&
-    currency1 &&
-    (currency0.isNative || currency1.isNative) &&
-    !collectMigrationHash,
+      (feeValue0?.greaterThan(0) || feeValue1?.greaterThan(0)) &&
+      currency0 &&
+      currency1 &&
+      (currency0.isNative || currency1.isNative) &&
+      !collectMigrationHash,
   )
 
   if (!positionDetails && !loading) {
@@ -712,7 +711,6 @@ function PositionPageContent() {
               data-cy="visit-pool"
               style={{ textDecoration: 'none', width: 'fit-content', marginBottom: '1rem', cursor: 'pointer' }}
               href="/positions"
-
             >
               <HoverText>
                 <Trans>← Back to Positions</Trans>
