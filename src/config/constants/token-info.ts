@@ -63,11 +63,7 @@ export type TokenInfoMapping = {
 }
 
 export const STABLE_TOKEN_INF0: TokenInfoMapping = {
-  USDC: {
-    addresses: {
-      [ChainId.BASE]: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
-    },
-  },
+
   axlUSDC: {
     coinGeckoId: 'axlusdc',
     decimals: 6,
