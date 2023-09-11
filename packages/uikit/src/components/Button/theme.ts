@@ -311,7 +311,7 @@ export const styleVariants = {
     borderColor: "#fff",  
   },
   [variants.LIGHT]: {
-    backgroundColor: "white",
+    background: `${darkColors.gradients.basedsexgrayflip}`,
     color: "background",
     borderRadius: "2px", 
     boxShadow: "none",
