@@ -100,6 +100,7 @@ function CurrencyRow({
   )
 }
 
+
 export default function CurrencyList({
   height,
   currencies,

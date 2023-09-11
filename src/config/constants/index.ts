@@ -16,7 +16,10 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     [bscTokens.busd, bscTokens.usdt],
     [bscTokens.dai, bscTokens.usdt],
   ],
-  [ChainId.BASE]: [[baseTokens.wbnb, baseTokens.cake]],
+  [ChainId.BASE]: [
+  [baseTokens.wbnb, baseTokens.cake], 
+  [baseTokens.bsx, baseTokens.usdc]
+],
 }
 
 export const NetworkContextName = 'NETWORK'
