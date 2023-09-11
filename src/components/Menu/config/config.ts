@@ -9,6 +9,7 @@ import {
   TradeFilledIcon,
   AddIcon,
   EllipsisIcon,
+  RocketIcon
 } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
 import { DropdownMenuItems } from '@pancakeswap/uikit/src/components/DropdownMenu/types'
@@ -57,6 +58,23 @@ const config: (
       fillIcon: AddIcon,
       items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
     },
+    {
+      label: t('BaseX'),
+      href: '/addv3',
+      icon: RocketIcon,
+      fillIcon: RocketIcon,
+      supportChainIds: [DEFAULT_CHAIN_ID],
+      items: [
+        {
+          label: t('Add Liquidity'),
+          href: '/addv3',
+        },
+        {
+          label: t('Manage Positions'),
+          href: '/positions',
+        },
+      ],
+    },
 
     {
       label: t('Farm'),
@@ -98,10 +116,7 @@ const config: (
       fillIcon: PiLinkSimpleHorizontalBold,
       supportChainIds: [DEFAULT_CHAIN_ID],
       items: [
-        {
-          label: t('Bridge to Base!'),
-          href: 'https://app.symbiosis.finance/swap?chainIn=Ethereum&chainOut=Base&tokenIn=ETH&tokenOut=ETH',
-        },
+     
         {
           label: t('Twitter'),
           href: 'https://twitter.com/BaseSwap_Fi',
