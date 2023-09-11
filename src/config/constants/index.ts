@@ -17,8 +17,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     [bscTokens.dai, bscTokens.usdt],
   ],
   [ChainId.BASE]: [
-  [baseTokens.wbnb, baseTokens.cake], 
-  [baseTokens.bsx, baseTokens.usdc]
+  [baseTokens.wbnb, baseTokens.cake]
 ],
 }
 
