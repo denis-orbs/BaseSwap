@@ -35,14 +35,6 @@
       "logoURI": ""
     },
     {
-      "name": "USD Coin",
-      "symbol": "USDC",
-      "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
-      "chainId": 8453,
-      "decimals": 6,
-      "logoURI": "https://baseswap.fi/images/tokens/0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA.png"
-    },
-    {
       "name": "DAI Stablecoin Token",
       "symbol": "DAI",
       "address": "0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb",
@@ -180,7 +172,6 @@
       "decimals": 18,
       "logoURI": "https://baseswap.fi/images/tokens/0x58Ed4FD0C3d930b674BA50a293f03ef6cD7dE7a3.png"
     },
- 
     {
       "name": "USDC Stablecoin",
       "symbol": "USDC",
