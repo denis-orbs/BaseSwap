@@ -487,13 +487,7 @@ export default function Swap() {
       
          </Flex>
         </Flex>
-        {/* <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
-          <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="backgroundAlt" mb="4px">
-              {t('Swap')}
-            </Heading>
-          </Flex>
-        </Flex> */}
+       
       </PageHeader>
         {/* <TabsComponent /> */}
         {/* {view === SwapType.CROSS_CHAIN_SWAP &&

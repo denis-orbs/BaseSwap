@@ -44,12 +44,17 @@ export async function getCombinedTokenPrices(chainId: ChainId) {
       // UNIDEX
       if (address === '0x6B4712AE9797C199edd44F897cA09BC57628a1CF') {
         price = await priceDexScreenerPair('0x30dcc8444f8361d5ce119fc25e16af0b583e88fd') // Assuming priceDexScreener() fetches the price for a single address
-
+        // 
       } 
       //MAI
       else if (address === '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE') {
         price = await priceDexScreenerPair('0x9e574f9aD6ca1833f60d5bB21655dd45278A6e3A') 
       } 
+
+      // // USDC
+      // else if (address === '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913') {
+      //   price = await priceDexScreenerPair('0xC52328d5Af54A12DA68459Ffc6D0845e91a8395F') 
+      // } 
 
       //GND
       else if (address === '0xfB825E93822DD971EBDFdB2180A751958dBD5e16') {

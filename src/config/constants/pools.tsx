@@ -68,9 +68,11 @@ export const livePools: SerializedPoolConfig[] = [
       [ChainId.BASE]: '0x26fd5DE668F091222791cc0eA45AC072d7bFE0cd',
     },
     poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '0.0000021',
+    tokenPerBlock: '0.0000015',
     isBoost: true, 
   },
+  //$207
+
   {
     sousId: 103,
     stakingToken: serializedTokens.bsx,
@@ -92,6 +94,7 @@ export const livePools: SerializedPoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.0025',
   },
+  // $233
   {
     sousId: 100,
     stakingToken: serializedTokens.cake,
@@ -103,6 +106,7 @@ export const livePools: SerializedPoolConfig[] = [
     tokenPerBlock: '0.0033',
     isBoost: false, 
   },
+  //$285 
   {
     sousId: 101,
     stakingToken: serializedTokens.cake,

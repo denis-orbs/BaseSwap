@@ -125,7 +125,9 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
       item.pid !== 17 && 
       item.pid !== 18 && 
       item.pid !== 19 &&
-      item.pid !== 20 
+      item.pid !== 20 && 
+      item.pid !== 21 && 
+      item.pid !== 22 
       )
 
     const farmsData = await fetchFarms(filteredFarmConfig)

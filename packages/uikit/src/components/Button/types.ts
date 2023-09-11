@@ -10,7 +10,13 @@ export const scales = {
 
 export const variants = {
   PRIMARY: "primary",
+  PERCENTAGES: "percentages", 
   PLUSMINUS: "plusminus", 
+  GASON: "gason", 
+  ADDTOMETAMASK: "addtometamask", 
+  REVAMP: "revamp", 
+  REVAMPREVERSE: "revampreverse", 
+  GASOFF: "gasoff", 
   CALCULATOR: "calculator", 
   PRIMARYTWO: "primarytwo", 
   PRIMARYTHREE: "primarythree", 

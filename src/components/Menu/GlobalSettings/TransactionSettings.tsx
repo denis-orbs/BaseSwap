@@ -81,17 +81,20 @@ const SlippageTabs = () => {
   return (
     <Flex flexDirection="column">
       <Flex flexDirection="column" mb="24px">
-        <Flex mb="12px">
-          <Text>{t('Slippage Tolerance')}</Text>
+        <Flex mb="12px" alignItems="center" justifyContent="center"  >
+        <Text textAlign="center" fontWeight="200" color="#fff">
+            {t('Slippage Tolerance')}
+        </Text>
           <QuestionHelper
             text={t(
-              'Setting a high slippage tolerance can help transactions succeed, but you may not get such a good price. Use with caution.',
+              'Setting slippage high can help transactions go through, but can result in inefficient pricing or transaction front-running. Use with caution.',
             )}
             placement="top-start"
             ml="4px"
+      
           />
         </Flex>
-        <Flex flexWrap="wrap">
+        <Flex flexWrap="wrap" justifyContent="space-between" paddingX="2rem" >
           <Button
             mt="4px"
             mr="4px"
@@ -100,9 +103,9 @@ const SlippageTabs = () => {
               setSlippageInput('')
               setUserSlippageTolerance(10)
             }}
-            variant={userSlippageTolerance === 10 ? 'primary' : 'tertiary'}
+            variant={userSlippageTolerance === 10 ? 'gason' : 'gasoff'}
           >
-            0.1%
+             <Text fontSize="12px" >0.1%</Text>
           </Button>
           <Button
             mt="4px"
@@ -112,9 +115,9 @@ const SlippageTabs = () => {
               setSlippageInput('')
               setUserSlippageTolerance(50)
             }}
-            variant={userSlippageTolerance === 50 ? 'primary' : 'tertiary'}
+            variant={userSlippageTolerance === 50 ? 'gason' : 'gasoff'}
           >
-            0.5%
+             <Text fontSize="12px">0.5%</Text>
           </Button>
           <Button
             mr="4px"
@@ -124,9 +127,10 @@ const SlippageTabs = () => {
               setSlippageInput('')
               setUserSlippageTolerance(100)
             }}
-            variant={userSlippageTolerance === 100 ? 'primary' : 'tertiary'}
+            variant={userSlippageTolerance === 100 ? 'gason' : 'gasoff'}
           >
-            1.0%
+            <Text fontSize="12px" >1.0%</Text>
+
           </Button>
           <Flex alignItems="center">
             <Box width="76px" mt="4px">

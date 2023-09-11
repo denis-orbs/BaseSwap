@@ -4,7 +4,7 @@ import { Text, useTooltip, TooltipText, Box, Flex, Svg, SvgProps } from '@pancak
 import { useTranslation } from '@pancakeswap/localization'
 import styled from 'styled-components'
 import { AutoColumn } from 'components/Layout/Column'
-import { AutoRow, RowBetween } from 'components/Layout/Row'
+import { AutoRow, RowBetween, SecondRow } from 'components/Layout/Row'
 import { Field } from 'state/burn/actions'
 import { DoubleCurrencyLogo, CurrencyLogo } from 'components/Logo'
 import { GreyCard } from 'components/Card'
@@ -19,7 +19,7 @@ const Dot = styled(Box)<{ scale?: 'sm' | 'md' }>`
 const CircleSvg = ({ percent = 1, ...props }: SvgProps & { percent?: number }) => (
   <Svg width="60px" height="60px" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <g filter="url(#filter0_i_1147_113741)">
-      <circle r="10" cx="10" cy="10" fill="#ccc" />
+      <circle r="10" cx="10" cy="10" fill="#fff" />
       <circle
         r="5"
         cx="10"
@@ -89,25 +89,33 @@ export const PairDistribution = ({
         )}
         <AutoColumn style={{ width: '100%' }}>
           {currencyA && (
-            <RowBetween>
-              <AutoRow gap="4px">
+            <SecondRow>
+              <AutoRow gap="3px">
                 <Dot bg="primary" />
                 <CurrencyLogo currency={currencyA} />
-                <Text>{currencyA?.symbol}</Text>
+                <Text fontSize="14px" bold color="secondary">
+                    {currencyA?.symbol}
+                </Text>
               </AutoRow>
-              <Text>{currencyAValue}</Text>
-            </RowBetween>
+              <Text fontSize="14px" bold color="secondary">
+                {currencyAValue}
+              </Text>
+            </SecondRow>
           )}
 
           {currencyB && (
-            <RowBetween>
-              <AutoRow gap="4px">
-                <Dot bg="secondary" />
+            <SecondRow>
+              <AutoRow gap="3px">
+                <Dot bg="text" />
                 <CurrencyLogo currency={currencyB} />
-                <Text>{currencyB?.symbol}</Text>
+                <Text fontSize="14px" bold color="secondary">
+                    {currencyB?.symbol}
+                </Text>
               </AutoRow>
-              <Text>{currencyBValue}</Text>
-            </RowBetween>
+              <Text fontSize="14px" bold color="secondary">
+                {currencyBValue}
+              </Text>
+            </SecondRow>
           )}
         </AutoColumn>
       </Flex>
@@ -143,8 +151,8 @@ export const AddLiquidityModalHeader = ({
   )
 
   return (
-    <AutoColumn gap="24px">
-      <AutoColumn gap="8px">
+    <AutoColumn gap="12px">
+      <AutoColumn gap="0px">
         <Subtitle>{t('You will receive')}</Subtitle>
         <GreyCard>
           <RowBetween>
@@ -154,32 +162,38 @@ export const AddLiquidityModalHeader = ({
                 currency1={currencies[Field.CURRENCY_B]}
                 size={24}
               />
-              <Text color="textSubtle">
+          <Text fontSize="14px" bold color="secondary">
                 {currencies[Field.CURRENCY_A]?.symbol &&
                   currencies[Field.CURRENCY_B]?.symbol &&
                   getLPSymbol(currencies[Field.CURRENCY_A]?.symbol, currencies[Field.CURRENCY_B]?.symbol)}
               </Text>
             </AutoRow>
-            <Text ml="8px">{liquidityMinted?.toSignificant(6)}</Text>
+            <Text fontSize="14px" bold color="secondary">
+              {liquidityMinted?.toSignificant(4)}
+            </Text>
           </RowBetween>
         </GreyCard>
       </AutoColumn>
       <RowBetween>
-        <Subtitle>{t('Your pool share')}</Subtitle>
-        <Text>{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</Text>
+        <Subtitle>
+          {t('Your pool share')}
+        </Subtitle>
+        <Text fontSize="14px" bold color="secondary">
+          {noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%
+        </Text>
       </RowBetween>
-      <AutoColumn gap="8px">{children}</AutoColumn>
+      <AutoColumn gap="4px">{children}</AutoColumn>
       <AutoColumn>
         <RowBetween>
           <Subtitle>{t('Rates')}</Subtitle>
-          <Text>
+          <Text fontSize="14px" bold color="secondary">
             {`1 ${currencies[Field.CURRENCY_A]?.symbol} = ${price?.toSignificant(4)} ${
               currencies[Field.CURRENCY_B]?.symbol
             }`}
           </Text>
         </RowBetween>
         <RowBetween style={{ justifyContent: 'flex-end' }}>
-          <Text>
+        <Text fontSize="14px" bold color="secondary">
             {`1 ${currencies[Field.CURRENCY_B]?.symbol} = ${price?.invert().toSignificant(4)} ${
               currencies[Field.CURRENCY_A]?.symbol
             }`}
@@ -189,7 +203,10 @@ export const AddLiquidityModalHeader = ({
       {!noLiquidity && (
         <RowBetween>
           <Subtitle>{t('Slippage Tolerance')}</Subtitle>
-          <TooltipText ref={targetRef}>{allowedSlippage / 100}%</TooltipText>
+          <TooltipText fontSize="14px" bold color="secondary"
+          ref={targetRef}>
+              {allowedSlippage / 100}%
+          </TooltipText>
           {tooltipVisible && tooltip}
         </RowBetween>
       )}

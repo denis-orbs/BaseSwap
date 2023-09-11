@@ -2449,14 +2449,6 @@ export const BSX = {
   [ChainId.BASE]: BSX_BASE,
 }
 
-const USDC_BASE = new Token(
-  ChainId.BASE,
-  '0xEd2D3fA2102980EeBdF2B12E58c1a96c9889315F',
-  6,
-  'USDbC',
-  'USDbC',
-  'https://basescan.org/token/0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca?a=0x7ea1643383221677e066b74913ee5ece7aa3b4fa',
-)
 
 const AXLUSDC_BASE = new Token(
   ChainId.BASE,
@@ -2544,7 +2536,22 @@ const MAI_BASE = new Token(
   'MAI Finance Stablecoin',
   'https://www.mai.finance',
 )
-
+const USDC_BASE = new Token(
+  ChainId.BASE,
+  '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
+  6,
+  'USDC',
+  'USDC',
+  'https://www.centre.io/usdc',
+)
+const DOLA_BASE = new Token(
+  ChainId.BASE,
+  '0x4621b7A9c75199271F773Ebd9A499dbd165c3191',
+  18,
+  'DOLA',
+  'DOLA USD Stablecoin',
+  '',
+)
 const DAIP_BASE = new Token(
   ChainId.BASE,
   '0x65a2508C429a6078a7BC2f7dF81aB575BD9D9275',
@@ -2668,6 +2675,8 @@ export const baseTokens = {
   gmd: GMD_BASE,
   gnd: GND_BASE,
   mai: MAI_BASE,    
+  usdc: USDC_BASE, 
+  dola: DOLA_BASE, 
 }
 
 export const bscTestnetTokens = {

@@ -16,16 +16,13 @@ export interface ITokenInfo {
 }
 
 export type StableTokenLookupKey =
-  | 'FRAX'
-  | 'USDCe'
   | 'USDP'
   | 'DAIP'
-  | 'USDT'
   | 'DAI'
   | 'USDPLUS'
   | 'DAIPLUS'
   | 'MAI'
-
+  | 'USDC'
   | 'axlUSDC'
   | 'USDbC'
   | 'USDC'
@@ -36,17 +33,8 @@ export type TokenLookupKey =
   | 'BSWAP'
   | 'xProtocolToken'
   | 'WETH'
-  | 'WBTC'
-  | 'GMX'
-  | 'ARB'
-  | 'frxETH'
-  | 'GNS'
   | 'DAI+'
   | 'USD+'
-  | 'CGLD'
-  | 'JRT'
-  | 'DEUS'
-  | 'RDNT'
   | 'OGRE'
   | 'DAI'
   | 'USDbC'
@@ -57,19 +45,18 @@ export type TokenLookupKey =
   | 'axlWBTC'
   | 'BBT'
   | 'EDE'
-  | 'CBETH'
-  | 'MIM'
   | 'YFX'
   | 'AXLWBTC'
   | 'MAG'
   | 'BLAZE'
   | 'UNIDX'
   | 'BASIN'
-  | 'OGRE'
   | 'BSX'
   | 'GMD'
   | 'GND'
   | 'MAI'
+  | 'DOLA'
+
 
 export type TokenInfoMapping = {
   [key in TokenLookupKey]?: ITokenInfo
@@ -95,7 +82,13 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
       [ChainId.BASE]: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
     },
   },
-
+  USDC: {
+    coinGeckoId: 'usd-coin',
+    decimals: 6,
+    addresses: {
+      [ChainId.BASE]: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
+    },
+  },
   MAI: {
     coinGeckoId: 'mimatic',
     decimals: 18,
@@ -108,12 +101,6 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
     decimals: 18,
     addresses: {
       [ChainId.BASE]: '0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb',
-    },
-  },
-  WETH: {
-    coinGeckoId: 'ethereum',
-    addresses: {
-      [ChainId.ARBITRUM]: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
     },
   },
   USDPLUS: {
@@ -132,17 +119,14 @@ export const STABLE_TOKEN_INF0: TokenInfoMapping = {
 
 export const TOKEN_INF0: TokenInfoMapping = {
   ...STABLE_TOKEN_INF0,
-
   ProtocolToken: {
     addresses: {
       [ChainId.BASE]: '0xd5046B976188EB40f6DE40fB527F89c05b323385', // BSX
-      [ChainId.ARBITRUM]: '0xD5954c3084a1cCd70B4dA011E67760B8e78aeE84',
     },
   },
   xProtocolToken: {
     addresses: {
       [ChainId.BASE]: '0xE4750593d1fC8E74b31549212899A72162f315Fa', // xBSX
-      [ChainId.ARBITRUM]: '0xa954A31137fBe5c2D384A0067DE042bAA58b3403',
     },
   },
   BSWAP: {
@@ -161,142 +145,80 @@ export const TOKEN_INF0: TokenInfoMapping = {
     coinGeckoId: 'ethereum',
     addresses: {
       [ChainId.BASE]: '0x4200000000000000000000000000000000000006',
-      [ChainId.ARBITRUM]: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
-    },
-  },
-  WBTC: {
-    coinGeckoId: 'wrapped-bitcoin',
-    addresses: {
-      [ChainId.ARBITRUM]: '0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f',
-    },
-  },
-
-  ARB: {
-    coinGeckoId: 'arbitrum',
-    addresses: {
-      [ChainId.ARBITRUM]: '0x912ce59144191c1204e64559fe8253a0e49e6548',
-    },
-  },
-
-  frxETH: {
-    coinGeckoId: 'frax-ether',
-    addresses: {
-      [ChainId.ARBITRUM]: '0x178412e79c25968a32e89b11f63B33F733770c2A',
-    },
-  },
-
-  GMX: {
-    coinGeckoId: 'gmx',
-    addresses: {
-      [ChainId.ARBITRUM]: '0x17FC002b466eEc40DaE837Fc4bE5c67993ddBd6F',
-    },
-  },
- 
-
-  'DAI+': {
-    coinGeckoId: 'dai',
-    addresses: {
-      [ChainId.ARBITRUM]: '0xeb8E93A0c7504Bffd8A8fFa56CD754c63aAeBFe8',
-    },
-  },
-  JRT: {
-    coinGeckoId: 'jarvis-reward-token',
-    addresses: {
-      [ChainId.ARBITRUM]: '0x6Aa395F06986ea4eFe0a4630C7865C1eB08D5e7e',
-    },
-  },
-  'USD+': {
-    coinGeckoId: 'usd-coin',
-    addresses: {
-      [ChainId.ARBITRUM]: '0xe80772Eaf6e2E18B651F160Bc9158b2A5caFCA65',
-    },
-  },
-  DEUS: {
-    coinGeckoId: 'deus-finance-2',
-    addresses: {
-      [ChainId.ARBITRUM]: '0xDE5ed76E7c05eC5e4572CfC88d1ACEA165109E44',
     },
   },
   EDE: {
     addresses: {
       [ChainId.BASE]: '0x0A074378461FB7ed3300eA638c6Cc38246db4434',
-      [ChainId.ARBITRUM]: '0x0A074378461FB7ed3300eA638c6Cc38246db4434',
     },
   },
   CBETH: {
     addresses: {
       [ChainId.BASE]: '0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22',
-      [ChainId.ARBITRUM]: '0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22',
     },
   },
   MIM: {
     addresses: {
       [ChainId.BASE]: '0x4A3A6Dd60A34bB2Aba60D73B4C88315E9CeB6A3D',
-      [ChainId.ARBITRUM]: '0x4A3A6Dd60A34bB2Aba60D73B4C88315E9CeB6A3D',
     },
   },
   YFX: {
     addresses: {
       [ChainId.BASE]: '0x8901cB2e82CC95c01e42206F8d1F417FE53e7Af0',
-      [ChainId.ARBITRUM]: '0x8901cB2e82CC95c01e42206F8d1F417FE53e7Af0',
     },
   },
   GMD: {
     addresses: {
       [ChainId.BASE]: '0xCd239E01C36d3079c0dAeF355C61cFF591C40DB1',
-      [ChainId.ARBITRUM]: '0xCd239E01C36d3079c0dAeF355C61cFF591C40DB1',
     },
   },
   GND: {
     addresses: {
       [ChainId.BASE]: '0xfb825e93822dd971ebdfdb2180a751958dbd5e16',
-      [ChainId.ARBITRUM]: '0xfb825e93822dd971ebdfdb2180a751958dbd5e16',
     },
   },
   AXLWBTC: {
     dexscreenerPair: '0x317d373E590795e2c09D73FaD7498FC98c0A692B',
     addresses: {
       [ChainId.BASE]: '0x1a35EE4640b0A3B87705B0A4B45D227Ba60Ca2ad',
-      [ChainId.ARBITRUM]: '0x1a35EE4640b0A3B87705B0A4B45D227Ba60Ca2ad',
     },
   },
   MAG: {
     addresses: {
       [ChainId.BASE]: '0x2DC1cDa9186a4993bD36dE60D08787c0C382BEAD',
-      [ChainId.ARBITRUM]: '0x2DC1cDa9186a4993bD36dE60D08787c0C382BEAD',
     },
   },
   BLAZE: {
     addresses: {
       [ChainId.BASE]: '0x37DEfBC399e5737D53Dfb5533d9954572F5B19bf',
-      [ChainId.ARBITRUM]: '0x37DEfBC399e5737D53Dfb5533d9954572F5B19bf',
     },
   },
   UNIDX: {
     dexscreenerPair: '0x30dcc8444f8361d5ce119fc25e16af0b583e88fd',
     addresses: {
       [ChainId.BASE]: '0x6B4712AE9797C199edd44F897cA09BC57628a1CF',
-      [ChainId.ARBITRUM]: '0x6B4712AE9797C199edd44F897cA09BC57628a1CF',
     },
   },
   BASIN: {
     addresses: {
       [ChainId.BASE]: '0x4788de271F50EA6f5D5D2a5072B8D3C61d650326',
-      [ChainId.ARBITRUM]: '0x4788de271F50EA6f5D5D2a5072B8D3C61d650326',
     },
   },
-
+  DOLA: {
+    dexscreenerPair: '',
+    addresses: {
+      [ChainId.BASE]: '0x4621b7A9c75199271F773Ebd9A499dbd165c3191',
+    },
+  },
   MAI: {
     dexscreenerPair: '0x9e574f9aD6ca1833f60d5bB21655dd45278A6e3A',
     addresses: {
       [ChainId.BASE]: '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE',
-      [ChainId.ARBITRUM]: '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE',
     },
   },
   OGRE: {
     addresses: {
       [ChainId.BASE]: '0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492',
-      [ChainId.ARBITRUM]: '0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492',
     },
   },
 }

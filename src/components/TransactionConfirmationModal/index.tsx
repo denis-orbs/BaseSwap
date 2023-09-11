@@ -87,19 +87,19 @@ export function TransactionSubmittedContent({
         <ConfirmedIcon>
           <ArrowUpIcon strokeWidth={0.5} width="90px" color="primary" />
         </ConfirmedIcon>
-        <AutoColumn gap="12px" justify="center">
-          <Text fontSize="20px">{t('Transaction Submitted')}</Text>
+        <AutoColumn gap="0px" justify="center">
+          <Text fontSize="14Px">{t('TRANSACTION SUBMITTED')}</Text>
           {chainId && hash && (
             <Link external small href={getBscScanLink(hash, 'transaction', chainId)}>
-              {t('View on BaseScan')}
+              <u>{t('View on BaseScan')}</u>
             </Link>
           )}
           {currencyToAdd && (
             <AddToWalletButton
-              variant="tertiary"
-              mt="12px"
+              variant="addtometamask"
+              mt="36px"
               width="fit-content"
-              marginTextBetweenLogo="6px"
+              marginTextBetweenLogo="8px"
               textOptions={AddToWalletTextOptions.TEXT_WITH_ASSET}
               tokenAddress={token.address}
               tokenSymbol={currencyToAdd.symbol}
