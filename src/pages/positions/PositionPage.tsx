@@ -104,7 +104,7 @@ const BadgeText = styled.div`
 // responsive text
 // disable the warning because we don't use the end prop, we just want to filter it out
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Label = styled(({ end, ...props }) => <Text {...props} />)<{ end?: boolean }>`
+const Label = styled(({ end, ...props }) => <Text {...props} />) <{ end?: boolean }>`
   display: flex;
   font-size: 16px;
   justify-content: ${({ end }) => (end ? 'flex-end' : 'flex-start')};
@@ -141,7 +141,13 @@ const DoubleArrow = styled.span`
 //   }
 // `
 
-const ResponsiveRow = styled(RowBetween)``
+const ResponsiveRow = styled(RowBetween)`
+display: flex;
+flex-direction: column;
+${({ theme }) => theme.mediaQueries.md} {
+  flex-direction: row;
+}
+`
 
 // const ActionButtonResponsiveRow = styled(ResponsiveRow)`
 //   width: 50%;
@@ -157,8 +163,23 @@ const ResponsiveRow = styled(RowBetween)``
 // `
 
 const ActionButtonResponsiveRow = styled(ResponsiveRow)`
-  width: 50%;
-  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 12px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 50%;
+    justify-content: flex-end;
+    margin-top: 0px;
+  }
+`
+
+const RowFixedTop = styled(RowFixed)`
+  display: flex;
+  flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.md} {
+    flex-direction: row;
+  }
 `
 
 // const ResponsiveButtonConfirmed = styled(Button)`
@@ -470,10 +491,10 @@ function PositionPageContent() {
   const ratio = useMemo(() => {
     return priceLower && pool && priceUpper
       ? getRatio(
-          inverted ? priceUpper.invert() : priceLower,
-          pool.token0Price,
-          inverted ? priceLower.invert() : priceUpper,
-        )
+        inverted ? priceUpper.invert() : priceLower,
+        pool.token0Price,
+        inverted ? priceLower.invert() : priceUpper,
+      )
       : undefined
   }, [inverted, pool, priceLower, priceUpper])
 
@@ -642,11 +663,11 @@ function PositionPageContent() {
 
   const showCollectAsWeth = Boolean(
     ownsNFT &&
-      (feeValue0?.greaterThan(0) || feeValue1?.greaterThan(0)) &&
-      currency0 &&
-      currency1 &&
-      (currency0.isNative || currency1.isNative) &&
-      !collectMigrationHash,
+    (feeValue0?.greaterThan(0) || feeValue1?.greaterThan(0)) &&
+    currency0 &&
+    currency1 &&
+    (currency0.isNative || currency1.isNative) &&
+    !collectMigrationHash,
   )
 
   if (!positionDetails && !loading) {
@@ -691,23 +712,27 @@ function PositionPageContent() {
               data-cy="visit-pool"
               style={{ textDecoration: 'none', width: 'fit-content', marginBottom: '1rem', cursor: 'pointer' }}
               href="/positions"
-             
+
             >
               <HoverText>
                 <Trans>← Back to Positions</Trans>
               </HoverText>
             </Link>
             <ResponsiveRow mb="24px" mt="12px">
-              <RowFixed>
-                <DoubleCurrencyLogo currency0={currencyBase} currency1={currencyQuote} size={24} margin />
-                <Text fontSize="24px" mr="10px">
-                  &nbsp;{currencyQuote?.symbol}&nbsp;/&nbsp;{currencyBase?.symbol}
-                </Text>
-                <Badge style={{ marginRight: '8px' }}>
-                  <BadgeText>{t(`${new Percent(feeAmount, 1_000_000).toSignificant()}%`)}</BadgeText>
-                </Badge>
-                <RangeBadge removed={removed} inRange={inRange} />
-              </RowFixed>
+              <RowFixedTop>
+                <Flex alignItems="center" justifyContent="center">
+                  <DoubleCurrencyLogo currency0={currencyBase} currency1={currencyQuote} size={24} margin />
+                  <Text fontSize="24px" mr="10px">
+                    &nbsp;{currencyQuote?.symbol}&nbsp;/&nbsp;{currencyBase?.symbol}
+                  </Text>
+                </Flex>
+                <Flex alignItems="center" justifyContent="center">
+                  <Badge style={{ marginRight: '8px' }}>
+                    <BadgeText>{t(`${new Percent(feeAmount, 1_000_000).toSignificant()}%`)}</BadgeText>
+                  </Badge>
+                  <RangeBadge removed={removed} inRange={inRange} />
+                </Flex>
+              </RowFixedTop>
               {ownsNFT && (
                 <ActionButtonResponsiveRow>
                   {currency0 && currency1 && feeAmount && tokenId ? (
