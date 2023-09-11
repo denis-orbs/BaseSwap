@@ -2675,7 +2675,6 @@ export const baseTokens = {
   gmd: GMD_BASE,
   gnd: GND_BASE,
   mai: MAI_BASE,    
-  usdc: USDC_BASE, 
   dola: DOLA_BASE, 
 }
 
