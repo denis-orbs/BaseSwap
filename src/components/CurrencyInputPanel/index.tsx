@@ -281,8 +281,8 @@ export default function CurrencyInputPanel({
               </Text>
             )}
             {account && currency && !disabled && showMaxButton && label !== 'To' && (
-              <Button onClick={onMax}  height="25px" variant="percentages" marginRight="2px">
-                <Text fontSize="1.3rem">MAX</Text>
+              <Button onClick={onMax}  height="25px" width="45px" variant="percentages" marginRight="2px">
+                <Text fontSize="1.2rem">MAX</Text>
               </Button>
             )}
           </InputRow>

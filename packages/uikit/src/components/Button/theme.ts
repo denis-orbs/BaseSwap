@@ -191,7 +191,7 @@ export const styleVariants = {
     fontWeight: "500", 
     textTransform: "uppercase", 
     fontSize: "24px", 
-    borderRadius: "2px", 
+    borderRadius: "8px", 
     border: "4px solid", 
     borderColor: "background", 
     ":hover": {
@@ -206,7 +206,7 @@ export const styleVariants = {
     color: "background",
     fontWeight: "500", 
     fontSize: "1.1rem", 
-    borderRadius: "2px", 
+    borderRadius: "8px", 
     border: "4px solid", 
     borderColor: "background", 
     ":hover": {
@@ -218,10 +218,10 @@ export const styleVariants = {
     // USED FOR ENABLE FARM 
   },
   [variants.SECONDARY]: {
-    backgroundColor: "text",
-    border: "4px solid",
+    background: `${darkColors.gradients.basedsexgrayflip}`,
+    border: "3px solid",
     borderColor: "background",
-    borderRadius: "2px", 
+    borderRadius: "8px", 
     textTransform: "uppercase" , 
     padding: "8px", 
 
