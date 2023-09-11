@@ -552,15 +552,14 @@ export default function Swap() {
                             justify='center'
                             style={{ padding: '0 0rem' }}
                           >
-                            <SwitchIconButton
-                              variant="light"
-                              size="40px"
-                              style={{ border: '2px solid white' }}
-                              onClick={() => {
-                                setApprovalSubmitted(false) // reset 2 step UI for approvals
-                                onSwitchTokens()
-                              }}
-                            >
+                          <SwitchIconButton
+                          variant="light"
+                          size="40px"
+                          onClick={() => {
+                            setApprovalSubmitted(false) // reset 2 step UI for approvals
+                            onSwitchTokens()
+                          }}
+                        >
                               <ArrowDownIcon
                                 className="icon-down"
                                 color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'text' : 'text'}
