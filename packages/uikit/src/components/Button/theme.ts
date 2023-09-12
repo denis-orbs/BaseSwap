@@ -37,11 +37,11 @@ export const styleVariants = {
   },
 
   [variants.PLUSMINUS]: {
-    background: "#000",
+    background: `${darkColors.gradients.basedsexgrayflip}`,
     color: "text",
     fontWeight: "500", 
     textTransform: "uppercase", 
-    borderRadius: "4px", 
+    borderRadius: "12px", 
     border: "2px solid", 
     borderColor: "#0154FE", 
     ":hover": {
