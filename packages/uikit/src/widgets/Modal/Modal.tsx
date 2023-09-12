@@ -43,7 +43,7 @@ const Modal: React.FC<ModalProps> = ({
       <ModalHeader background={getThemeValue(theme, `colors.${headerBackground}`, headerBackground)}>
         <ModalTitle>
           {onBack && <ModalBackButton onBack={onBack} />}
-         <Text color="text" fontSize="1.2rem" bold  >
+         <Text color="text" fontSize="1.2rem" fontWeight="400"  >
           {title}
           </Text>
         </ModalTitle>

@@ -64,23 +64,11 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
 
   return (
     <Action table={table}>
-
       {/* <Flex>
-        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          BSX
-        </Text>
-        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-          {t('Earned')}
+        <Text bold textTransform="uppercase" color="background" fontSize="12px" pr="4px">
+          {farm.lpSymbol} &nbsp;{t('Staked')}: 
         </Text>
       </Flex> */}
-      <Flex>
-        <Text bold textTransform="uppercase" color="background" fontSize="12px" pr="4px">
-          {farm.lpSymbol}
-        </Text>
-        <Text bold textTransform="uppercase" color="background" fontSize="12px">
-          {t('Staked')}
-        </Text>
-      </Flex>
       {!account ? (
         // <ConnectWalletButton marginTop="8px" width="100%" /> this is fine
         <ConnectWalletButton variant="menuconnect" mt="8px" width="100%" />

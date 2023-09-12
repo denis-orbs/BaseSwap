@@ -35,6 +35,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.cake,
     quoteToken: serializedTokens.wbnb,
     classic: true,
+    isCore: true, 
   },
   {
     pid: 16,
@@ -49,6 +50,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.bsx,
     quoteToken: serializedTokens.wbnb,
     classic: true,
+    isCore: true, 
   },
 
   {
@@ -63,6 +65,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.usdc,
     quoteToken: serializedTokens.usdbc,
     classic: true, 
+    isStable: true, 
     // points: 100 
   },
   {
@@ -77,6 +80,8 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.usdc,
     quoteToken: serializedTokens.wbnb,
     classic: true, 
+    isBluechip: true, 
+
     // points: 100 
   },
   {
@@ -91,6 +96,8 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.arx,
     quoteToken: serializedTokens.wbnb,
     classic: true, 
+    isPartner: true, 
+
     // points: 75
   },
   {
@@ -105,6 +112,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.mai,
     quoteToken: serializedTokens.usdbc,
     classic: true, 
+    isStable: true, 
     // points: 100 
   },
   {
@@ -119,6 +127,8 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.wbnb,
     quoteToken: serializedTokens.dai,
     classic: true, 
+    isBluechip: true, 
+
     // points: 50
   },
  
@@ -134,6 +144,8 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.wbnb,
     quoteToken: serializedTokens.usdbc,
     classic: true,
+    isBluechip: true, 
+
     // points: 500, 
   },
 
@@ -149,6 +161,8 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.axlwbtc,
     quoteToken: serializedTokens.usdbc,
     classic: true,
+    isBluechip: true, 
+
     // points: 40
   },
 
@@ -165,6 +179,8 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.wbnb,
     quoteToken: serializedTokens.axlUsdc,
     classic: true,
+    isBluechip: true, 
+
     //points: 450, 
   },
 
@@ -180,6 +196,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.mim,
     quoteToken: serializedTokens.usdbc,
     classic: true,
+    isStable: true, 
     // points: 110 
   },
   {
@@ -194,6 +211,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.usdp,
     quoteToken: serializedTokens.usdbc,
     classic: true,
+    isStable: true, 
     //points: 110 
   },
   {
@@ -208,6 +226,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.daip,
     quoteToken: serializedTokens.usdp,
     classic: true,
+    isStable: true, 
     // points: 85 
   },
   {
@@ -222,6 +241,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.dai,
     quoteToken: serializedTokens.usdbc,
     classic: true,
+    isStable: true, 
     // points: 300 
   },
   {
@@ -236,6 +256,8 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.cbeth,
     quoteToken: serializedTokens.wbnb,
     classic: true,
+    isBluechip: true, 
+
     // points: 305 
   },
 
@@ -251,6 +273,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.gnd,
     quoteToken: serializedTokens.wbnb,
     classic: true,
+    isPartner: true, 
   },
   {
     pid: 18,
@@ -264,6 +287,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.gmd,
     quoteToken: serializedTokens.wbnb,
     classic: true,
+    isPartner: true, 
   },
   {
     pid: 12,
@@ -277,6 +301,8 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.basin,
     quoteToken: serializedTokens.wbnb,
     classic: true,
+    isPartner: true, 
+
   },
   {
     pid: 15,
@@ -290,6 +316,8 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.unidx,
     quoteToken: serializedTokens.wbnb,
     classic: true,
+    isPartner: true, 
+
   },
   {
     pid: 13,
@@ -303,6 +331,8 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.yfx,
     quoteToken: serializedTokens.usdbc,
     classic: true,
+    isPartner: true, 
+
   },
 
   {
@@ -317,6 +347,8 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.ede,
     quoteToken: serializedTokens.wbnb,
     classic: true,
+    isPartner: true, 
+
   },
 
   {
@@ -332,6 +364,8 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.ogre,
     quoteToken: serializedTokens.wbnb,
     classic: true,
+    isPartner: true, 
+
   },
 
  

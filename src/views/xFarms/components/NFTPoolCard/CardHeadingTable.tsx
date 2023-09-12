@@ -18,6 +18,9 @@ export interface ExpandableSectionProps {
   stable?: boolean
   isCore?: boolean
   isCommunityFarm?: boolean
+  isStable?: boolean 
+  isBluechip?: boolean
+  isPartner?: boolean
   earnLabel?: string
 }
 
@@ -46,6 +49,8 @@ const CardHeadingTable: React.FC<ExpandableSectionProps> = ({
   stable,
   isCore,
   isCommunityFarm,
+  isStable, 
+  isBluechip, 
 }) => {
   const { t } = useTranslation()
 

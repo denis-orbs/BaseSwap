@@ -3,7 +3,7 @@ import { Flex, Heading, Tag, Skeleton } from '@pancakeswap/uikit'
 import { TokenPairImage } from 'components/TokenImage'
 import { useTranslation } from '@pancakeswap/localization'
 import { Token } from '@magikswap/sdk'
-import { FarmAuctionTag, CoreTag } from 'components/Tags'
+import { StableTag, CoreTag, PartnerTag, BluechipTag } from 'components/Tags'
 
 export interface ExpandableSectionProps {
   lpLabel?: string
@@ -18,6 +18,9 @@ export interface ExpandableSectionProps {
   stable?: boolean
   isCore?: boolean
   isCommunityFarm?: boolean
+  isStable?: boolean 
+  isBluechip?: boolean
+  isPartner?: boolean
 }
 
 const Wrapper = styled(Flex)`
@@ -43,6 +46,9 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   stable,
   isCore,
   isCommunityFarm,
+  isStable, 
+  isBluechip, 
+  isPartner
 }) => {
   const { t } = useTranslation()
 
@@ -60,12 +66,26 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   // add in stable props
 
   return (
-    <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
+    <Wrapper justifyContent="space-between" alignItems="flex-start" mb="-10px">
+
+      <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={80} height={80} />
 
       <Flex flexDirection="column" alignItems="flex-end">
         <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
-        <Flex justifyContent="center">{isCommunityFarm ? <FarmAuctionTag /> : <CoreTag />}</Flex>
+        <Flex justifyContent="center">
+          {isCore ? 
+                (  <CoreTag /> ) 
+          : isStable ? 
+                ( <StableTag /> ) 
+          : isPartner ? 
+                ( <PartnerTag /> )  
+          : isBluechip ? 
+                ( <BluechipTag /> ) 
+          : 
+          (   <div /> )
+          
+          }
+        </Flex>
         {/* {multiplier ? (
             <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
           ) : (

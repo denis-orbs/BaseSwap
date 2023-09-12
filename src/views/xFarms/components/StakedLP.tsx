@@ -34,33 +34,35 @@ const StakedLP: React.FunctionComponent<StackedLPProps> = ({
 
   return (
     <Flex flexDirection="column" alignItems="flex-start">
-      <Heading style={{ fontSize: '12px' }} color={stakedBalance.eq(0) ? 'textDisabled' : 'textSubtle'}>{displayBalance} </Heading>
-      {/* {stakedBalance.gt(0) && lpPrice.gt(0) && (quantumPrice && quantumPrice.gt(0)) && ( */}
+      <Heading style={{ fontSize: '13px' }} color={stakedBalance.eq(0) ? 'textDisabled' : 'text'}>
+       {displayBalance}  {lpSymbol} STAKED
+      </Heading>
       {stakedBalance.gt(0) && new BigNumber(lpPrice).gt(0) && (
         <>
           <Balance
             color="background"
-            fontSize="12px" 
+            fontSize="16px"
+            fontWeight="600" 
             decimals={2}
             value={
               sharePrice
                 ? getBalanceNumber(new BigNumber(sharePrice).times(stakedBalance))
                 : getBalanceNumber(new BigNumber(lpPrice).times(stakedBalance))
             }
-            unit=" USD"
-            prefix=""
+            unit=""
+            prefix="~$"
           />
           <Flex style={{ gap: '4px' }}>
             <Balance
-              fontSize="12px"
-              color="textSubtle"
+              fontSize="13px"
+              color="text"
               decimals={2}
               value={stakedBalance.div(1e18).div(lpTotalSupply).times(tokenAmountTotal).toNumber()}
               unit={` ${tokenSymbol}`}
             />
             <Balance
-              fontSize="12px"
-              color="textSubtle"
+              fontSize="13px"
+              color="text"
               decimals={2}
               value={stakedBalance.div(1e18).div(lpTotalSupply).times(quoteTokenAmountTotal).toNumber()}
               unit={` ${quoteTokenSymbol}`}

@@ -4,6 +4,10 @@ import { SpaceProps, TypographyProps } from "styled-system";
 export const variants = {
   PRIMARY: "primary",
   TRANS: "transparent", 
+  NOHOMO: "nohomo", 
+  RED: "red", 
+  GOLD: "gold", 
+  GREEN: "green", 
   SECONDARY: "secondary",
   SUCCESS: "success",
   TEXTDISABLED: "textDisabled",

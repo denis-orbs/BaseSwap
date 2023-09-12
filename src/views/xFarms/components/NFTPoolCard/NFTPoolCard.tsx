@@ -17,7 +17,7 @@ import { useTranslation } from '@pancakeswap/localization'
 
 const StyledCard = styled(Card)`
   align-self: baseline;
-  max-width: 100%;
+  max-width: 475px;
   margin: 0 0 24px 0;
   ${({ theme }) => theme.mediaQueries.sm} {
     max-width: 450px;
@@ -28,7 +28,7 @@ const StyledCard = styled(Card)`
 const NFTPoolCardInnerContainer = styled(Flex)`
   flex-direction: column;
   justify-content: space-around;
-  padding: 24px;
+  padding: 16px;
 `
 
 const ExpandingWrapper = styled.div`
@@ -83,16 +83,18 @@ const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnly }) 
           narrow={farm.narrow}
           classic={farm.classic}
           wide={farm.wide}
-          stable={farm.stable}
+          isStable={farm.isStable}
+          isBluechip={farm.isBluechip}
           isCore={farm.isCore}
+          isPartner={farm.isPartner}
           // multiplier={farm.multiplier}
         />
         {!removed && (
-          <Flex justifyContent="space-between" alignItems="center">
-            <Text>{t('APR')}:</Text>
-            <Text  style={{ display: 'flex', alignItems: 'center' }}>
+          <Flex  justifyContent="flex-end" alignItems="center">
+            
+            <Text fontSize="24px" style={{ display: 'flex', alignItems: 'flex-end' }}>
               {farm.apr ? (
-                <span>{`${Number(Number(farm.apr).toFixed(2)).toLocaleString()}%`}</span>
+                <span>{`${Number(Number(farm.apr).toFixed(2)).toLocaleString()}% APR`}</span>
               ) : (
                 <Skeleton height={24} width={80} />
               )}
@@ -100,9 +102,10 @@ const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnly }) 
           </Flex>
         )}
 
-        <Flex justifyContent="space-between">
-          <Text>{t('Earn')}:</Text>
-          <Text >{farm.pid === 1 || farm.pid === 16 ?  'BSWAP + BSX + xBSX':  'BSX + xBSX'}</Text>
+        <Flex justifyContent="flex-end">
+          <Text fontSize="12px">
+            {t('EARNING')}:&nbsp; 
+            {farm.pid === 1 || farm.pid === 16 ?  'BSWAP + BSX + xBSX':  'BSX + xBSX'}</Text>
         </Flex>
         <CardActionsContainer farm={farm} lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} />
       </NFTPoolCardInnerContainer>
