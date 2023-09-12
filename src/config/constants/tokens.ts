@@ -2552,6 +2552,15 @@ const DOLA_BASE = new Token(
   'DOLA USD Stablecoin',
   '',
 )
+const ARX_BASE = new Token(
+  ChainId.BASE,
+  '0x58Ed4FD0C3d930b674BA50a293f03ef6cD7dE7a3',
+  18,
+  'ARX',
+  'Arbidex Token',
+  'https://arbidex.fi',
+)
+
 const DAIP_BASE = new Token(
   ChainId.BASE,
   '0x65a2508C429a6078a7BC2f7dF81aB575BD9D9275',
@@ -2676,6 +2685,7 @@ export const baseTokens = {
   gnd: GND_BASE,
   mai: MAI_BASE,    
   dola: DOLA_BASE, 
+  arx: ARX_BASE, 
 }
 
 export const bscTestnetTokens = {

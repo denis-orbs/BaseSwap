@@ -50,6 +50,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
   },
+
   {
     pid: 21,
     lpSymbol: 'USDbC-USDC LP',
@@ -77,6 +78,20 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true, 
     // points: 100 
+  },
+  {
+    pid: 23,
+    lpSymbol: 'ARX-ETH LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0x7Ed8FD9D4bb2562b4F53D1A62C2CD30b698cB2e8',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0xDe88e008902d8e7f4Bf808346D160d9295c88516',
+    },
+    token: serializedTokens.arx,
+    quoteToken: serializedTokens.wbnb,
+    classic: true, 
+    // points: 75
   },
   {
     pid: 20,

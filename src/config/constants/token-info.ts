@@ -56,6 +56,8 @@ export type TokenLookupKey =
   | 'GND'
   | 'MAI'
   | 'DOLA'
+  | 'ARX'
+
 
 
 export type TokenInfoMapping = {
@@ -204,6 +206,12 @@ export const TOKEN_INF0: TokenInfoMapping = {
     dexscreenerPair: '',
     addresses: {
       [ChainId.BASE]: '0x4621b7A9c75199271F773Ebd9A499dbd165c3191',
+    },
+  },
+  ARX: {
+    dexscreenerPair: '',
+    addresses: {
+      [ChainId.BASE]: '0x58Ed4FD0C3d930b674BA50a293f03ef6cD7dE7a3',
     },
   },
   MAI: {
