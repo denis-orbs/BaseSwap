@@ -86,7 +86,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
           {/* <Text fontSize="14px" fontWeight="400">{inputTitle}</Text> */}
           <Text fontSize="14px" textTransform="uppercase"> 
                 {t('%balance%', { balance: displayBalance(max) })} &nbsp; 
-                {symbol} in wallet
+                {symbol} 
           </Text>
       </Flex>
       <StyledTokenInput isWarning={isBalanceZero}>
