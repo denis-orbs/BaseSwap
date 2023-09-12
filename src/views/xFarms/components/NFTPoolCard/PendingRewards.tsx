@@ -117,7 +117,7 @@ const PendingRewards: React.FC<PendingRewardProps> = ({
       </Flex>
 
       <StyledButton disabled={!hasRewards || pendingTx} onClick={harvestPosition} table={table}>
-        HARVEST
+        CLAIM REWARDS
       </StyledButton>
     </Flex>
   )

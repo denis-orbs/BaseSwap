@@ -1,4 +1,5 @@
 import { scales, variants } from "./types";
+import { darkColors } from "../../theme";
 
 export const scaleVariants = {
   [scales.MD]: {
@@ -16,6 +17,15 @@ export const scaleVariants = {
 export const styleVariants = {
   [variants.PRIMARY]: {
     backgroundColor: "primary",
+  },
+  [variants.NOHOMO]: {
+    backgroundColor: "transparent",
+    background: `${darkColors.gradients.basedsexgray}`,
+    boxShadow: "0 4px 12px #0154FD", 
+    border: "1px solid", 
+    borderColor: "#fff", 
+
+    borderRadius: "8px", 
   },
   [variants.TRANS]: {
     backgroundColor: "transparent",

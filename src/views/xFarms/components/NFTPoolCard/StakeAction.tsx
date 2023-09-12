@@ -143,7 +143,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
             marginRight="6px"
             disabled={position?.hasNitroDeposit}
           >
-            <MinusIcon color="text" width="36px"   />
+            <MinusIcon color="text" width="32px"   />
           </IconButton>
 
           <IconButton
@@ -151,7 +151,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
             onClick={onPresentDeposit}
             disabled={['history', 'archived'].some((item) => router.pathname.includes(item))}
           >
-            <AddIcon color="#fff" width="36px"  />
+            <AddIcon color="#fff" width="32px"  />
           </IconButton>
         </IconButtonWrapper>
       </>

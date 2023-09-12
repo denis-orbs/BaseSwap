@@ -25,8 +25,9 @@ const OrangeBsFire = styled(BsFire)`
 const CoreTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (
-    <Tag variant="secondary" outline startIcon={<VerifiedIcon width="18px" color="secondary" mr="4px" />} {...props}>
-      {t('Core')}
+    <Tag variant="nohomo" startIcon={<OrangeBsFire width="18px"  
+    style={{ marginRight: '4px' }} />} {...props}>
+      {t('BaseSwap')}
     </Tag>
   )
 }

@@ -60,8 +60,9 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   // add in stable props
 
   return (
-    <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
+    <Wrapper justifyContent="space-between" alignItems="flex-start" mb="-10px">
+
+      <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={80} height={80} />
 
       <Flex flexDirection="column" alignItems="flex-end">
         <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
