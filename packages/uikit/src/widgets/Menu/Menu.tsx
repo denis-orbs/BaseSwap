@@ -245,19 +245,13 @@ const Menu: React.FC<NavProps> = ({
           </DropdownMenu>
         </DropdownContainer>
 
-                <DropdownContainer>
+                
                   <Link href="/farm">
                     <Text marginRight="2rem">FARMS</Text>
                   </Link>
-                  <DropdownMenu>
-                    <Link href="/farm" marginBottom="1.2rem">
-                      <Text>Live Farms!</Text>
-                    </Link>
-                    <Link href="/finishedfarms">
-                      <Text color="#ccc">Finished Farms</Text>
-                    </Link>
-                  </DropdownMenu>
-                </DropdownContainer>
+                 
+                  
+                 
 
         <Link href="/pools">
           <Text marginRight="2rem">Earn </Text>
@@ -266,7 +260,7 @@ const Menu: React.FC<NavProps> = ({
 
         <DropdownContainer>
 
-            <Text marginRight="2rem">MORE...</Text>
+            <Text marginRight="2rem">MORE!</Text>
                 <DropdownMenu>
                 <Link href="/new" marginBottom="1.2rem" >
                         <Text marginRight="2rem">New here?</Text>
@@ -277,7 +271,9 @@ const Menu: React.FC<NavProps> = ({
                     {/* <Link href="https://presale.baseswap.fi" marginBottom="1.2rem" >
                         <Text marginRight="2rem">BSX PRESALE!</Text>
                     </Link> */}
-                    
+                    <Link href="/finishedfarms" marginBottom="1.2rem" >
+                      <Text marginRight="2rem">Finished Farms </Text>
+                    </Link>
                     <Link href="/bridge" marginBottom="1.2rem" >
                       <Text marginRight="2rem">Bridge </Text>
                     </Link>

@@ -16,11 +16,35 @@ import { useTranslation } from '@pancakeswap/localization'
 import { memo } from 'react'
 import styled from 'styled-components'
 import { BsFire } from 'react-icons/bs'
+import { LuHeartHandshake } from 'react-icons/lu'
+import { AiFillDollarCircle } from 'react-icons/ai'
+import { LiaEthereum } from 'react-icons/lia' 
+
 
 const OrangeBsFire = styled(BsFire)`
   color: #FC8A17;
-  width: 18px;
+  width: 24px;
+  height: 24px; 
 `;
+
+const Partner = styled(LuHeartHandshake)`
+  color: #ff0000;
+  width: 24px;
+  height: 24px; 
+`;
+
+const Stablecoins = styled(AiFillDollarCircle)`
+  color: #00FF00;
+  width: 24px;
+  height: 24px; 
+`;
+
+const Bluechip = styled(LiaEthereum)`
+  color: #FFD700;
+  width: 24px;
+  height: 24px; 
+`;
+
 
 const CoreTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
@@ -28,6 +52,34 @@ const CoreTag: React.FC<TagProps> = (props) => {
     <Tag variant="nohomo" startIcon={<OrangeBsFire width="18px"  
     style={{ marginRight: '4px' }} />} {...props}>
       {t('BaseSwap')}
+    </Tag>
+  )
+}
+
+const StableTag: React.FC<TagProps> = (props) => {
+  const { t } = useTranslation()
+  return (
+    <Tag variant="green" startIcon={<Stablecoins width="18px"  
+    style={{ marginRight: '4px' }} />} {...props}>
+      {t('Stablecoin')}
+    </Tag>
+  )
+}
+
+const PartnerTag: React.FC<TagProps> = (props) => {
+  const { t } = useTranslation()
+  return (
+    <Tag variant="red" startIcon={<Partner width="18px" color="success" style={{ marginRight: '4px' }} />} {...props}>
+      {t('Partner')}
+    </Tag>
+  )
+}
+
+const BluechipTag: React.FC<TagProps> = (props) => {
+  const { t } = useTranslation()
+  return (
+    <Tag variant="gold" startIcon={<Bluechip width="18px" color="success" style={{ marginRight: '4px' }} />} {...props}>
+      {t('Bluechip')}
     </Tag>
   )
 }
@@ -97,14 +149,7 @@ const CompoundingPoolTag: React.FC<TagProps> = (props) => {
   )
 }
 
-const VoteNowTag: React.FC<TagProps> = (props) => {
-  const { t } = useTranslation()
-  return (
-    <Tag variant="success" startIcon={<VoteIcon width="18px" color="success" mr="4px" />} {...props}>
-      {t('Vote Now')}
-    </Tag>
-  )
-}
+
 
 const SoonTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
@@ -126,11 +171,13 @@ const ClosedTag: React.FC<TagProps> = (props) => {
 
 export {
   CoreTag,
+  StableTag, 
+  PartnerTag, 
   FarmAuctionTag,
   DualTag,
   ManualPoolTag,
   CompoundingPoolTag,
-  VoteNowTag,
+  BluechipTag, 
   SoonTag,
   ClosedTag,
   CommunityTag,

@@ -144,7 +144,9 @@ const NFTPoolCardTable: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnl
             narrow={farm.narrow}
             classic={farm.classic}
             wide={farm.wide}
-            stable={farm.stable}
+            isStable={farm.isStable}
+            isBluechip={farm.isBluechip}
+            isPartner={farm.isPartner}
             isCore={farm.isCore}
             earnLabel={farm.pid === 1 || farm.pid === 16 ?  'BSWAP + BSX + xBSX':  'BSX + xBSX'}
           // multiplier={farm.multiplier}

@@ -83,8 +83,10 @@ const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnly }) 
           narrow={farm.narrow}
           classic={farm.classic}
           wide={farm.wide}
-          stable={farm.stable}
+          isStable={farm.isStable}
+          isBluechip={farm.isBluechip}
           isCore={farm.isCore}
+          isPartner={farm.isPartner}
           // multiplier={farm.multiplier}
         />
         {!removed && (

@@ -407,6 +407,7 @@ const Farms: React.FC = ({ children }) => {
             <div ref={observerRef} />
           </>
         )}
+      
       </Page>
     </FarmsContext.Provider>
   )

@@ -87,6 +87,9 @@ interface FarmConfigBaseProps {
   wide?: boolean
   stable?: boolean
   classic?: boolean
+  isStable?: boolean 
+  isPartner?: boolean 
+  isBluechip?: boolean
   isNew?: boolean
   isCore?: boolean
   dual?: {
