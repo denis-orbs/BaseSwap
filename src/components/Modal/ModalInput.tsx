@@ -20,28 +20,33 @@ const StyledTokenInput = styled.div<InputProps>`
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.background};
-  border-radius: 2px;
-  border: 2px solid; 
-  border-color: ${({ theme }) => theme.colors.text};
-  box-shadow: inset 0 0 4px #000; 
+  height: 60px; 
+  border-radius: 8px;
+  box-shadow: inset 0 0 4px #222; 
   color: ${({ theme }) => theme.colors.text};
-  padding: 8px 16px 8px 0;
+  padding: 4px 0px; 
   width: 100%;
+  margin-bottom: 16px; 
+  justify-content: center; 
 `
 
 const StyledInput = styled(Input)`
   box-shadow: none;
-  width: 60px;
+  font-size: 1.5rem; 
+  width: 50%; 
+
   margin: 0 8px;
   padding: 0 8px;
   border: none;
+  
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    width: 80px;
+    width: 50%;
+    font-size: 1.6rem; 
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: auto;
+    width: 50%;
   }
 `
 
@@ -77,12 +82,15 @@ const ModalInput: React.FC<ModalInputProps> = ({
 
   return (
     <div style={{ position: 'relative' }}>
+      <Flex justifyContent="flex-end" marginBottom="8px">
+          {/* <Text fontSize="14px" fontWeight="400">{inputTitle}</Text> */}
+          <Text fontSize="14px" textTransform="uppercase"> 
+                {t('%balance%', { balance: displayBalance(max) })} &nbsp; 
+                {symbol} in wallet
+          </Text>
+      </Flex>
       <StyledTokenInput isWarning={isBalanceZero}>
-        <Flex justifyContent="space-between" pl="16px">
-          <Text fontSize="14px">{inputTitle}</Text>
-          <Text fontSize="14px">{t('Balance: %balance%', { balance: displayBalance(max) })}</Text>
-        </Flex>
-        <Flex alignItems="flex-end" justifyContent="space-around">
+        <Flex alignItems="center" justifyContent="space-between" >
           <StyledInput
             pattern={`^[0-9]*[.,]?[0-9]{0,${decimals}}$`}
             inputMode="decimal"
@@ -92,10 +100,10 @@ const ModalInput: React.FC<ModalInputProps> = ({
             placeholder="0"
             value={value}
           />
-          <Button variant="secondary" scale="sm" onClick={onSelectMax} mr="8px">
+          <Button variant="max" onClick={onSelectMax} mr="12px" >
             {t('Max')}
           </Button>
-          <Text fontSize="16px">{symbol}</Text>
+          
         </Flex>
       </StyledTokenInput>
       {isBalanceZero && (

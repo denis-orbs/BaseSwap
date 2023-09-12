@@ -20,7 +20,7 @@ export const ModalHeader = styled.div<{ background?: string }>`
 `;
 
 export const ModalTitle = styled(Flex)`
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-start;
   margin-left: 4px; 
   flex: 1;
@@ -63,7 +63,7 @@ export const ModalContainer = styled(MotionBox)<{ minWidth: string }>`
   max-height: calc(var(--vh, 1vh) * 100);
   z-index: ${({ theme }) => theme.zIndices.modal};
   position: absolute;
-  min-width: ${({ minWidth }) => minWidth};
+  min-width: 98vw; 
   bottom: 0;
   max-width: none !important;
 
@@ -73,5 +73,6 @@ export const ModalContainer = styled(MotionBox)<{ minWidth: string }>`
     bottom: auto;
     max-width: 100%;
     max-height: 100vh;
+    min-width: 450px; 
   }
 `;

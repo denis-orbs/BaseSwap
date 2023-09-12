@@ -234,31 +234,20 @@ export const styleVariants = {
     },
   },
   [variants.MAX]: {
-  //   background: `${darkColors.background}`,
-  //   color: "backgroundAlt",
-  //   fontWeight: "500", 
-  //   borderRadius: "2px", 
-  //   border: "4px solid", 
-  //   borderColor: "background", 
-  //   ":hover": {
-  //     backgroundColor: "background", 
-  //     borderColor: "text", 
-  //     color: "text", 
-
-  //   }
-  // },
-    backgroundColor: "background",
-    padding: "4px", 
-    borderRadius: "2px", 
-    height: "70%", 
-    border: "2px solid",
-    borderColor: "background",
-
-    color: "backgroundAlt",
-    ":hover": {
-      borderColor:"background", 
-      backgroundColor:"#111",
-      color: "background", 
+    background: `${darkColors.gradients.basedsexgrayflip}`,
+    padding: "0px", 
+    height: "100%", 
+    paddingLeft: "16px", 
+    paddingRight: "16px", 
+    borderRadius: "12px",  
+    border: "0px solid",
+    borderColor: "text",
+    textTransform: "uppercase", 
+    color: "text",
+    ":hover": { 
+      background: `${darkColors.gradients.basedsexgray}`,
+      color: "text", 
+      border: "1px solid", 
       transform: "translateY(1px)",
     },
     ":disabled": {
