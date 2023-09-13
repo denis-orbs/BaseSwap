@@ -236,12 +236,13 @@ const Menu: React.FC<NavProps> = ({
           </Link>
 
           <DropdownMenu>
-              <Link href="/addV3" marginBottom="1.2rem">
-                  <Text marginRight="2rem">Add Liquidity</Text>
-              </Link>
-              <Link href="/positions">
+              <Link href="/positions" marginBottom="1.2rem">
                   <Text marginRight="2rem">Manage Positions</Text>
               </Link>
+              <Link href="/addV3" >
+                  <Text marginRight="2rem">Add Liquidity</Text>
+              </Link>
+             
           </DropdownMenu>
         </DropdownContainer>
 

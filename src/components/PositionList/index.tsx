@@ -5,65 +5,31 @@ import Trans from 'components/Trans'
 import React from 'react'
 import styled from 'styled-components'
 import { PositionDetails } from 'types/position'
-
-// const DesktopHeader = styled.div`
-//   display: none;
-//   font-size: 14px;
-//   font-weight: 500;
-//   padding: 16px;
-//   border-bottom: 1px solid ${({ theme }) => theme.colors.backgroundAlt};
-
-//   @media screen and (min-width: ${MEDIA_WIDTHS.deprecated_upToSmall}px) {
-//     align-items: center;
-//     display: flex;
-//     justify-content: space-between;
-//     & > div:last-child {
-//       text-align: right;
-//       margin-right: 12px;
-//     }
-//   }
-// `
-
-const DesktopHeader = styled.div`
-  display: none;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 16px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.backgroundAlt};
-`
-
-// const MobileHeader = styled.div`
-//   font-weight: medium;
-//   padding: 8px;
-//   font-weight: 500;
-//   padding: 16px;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   padding: 16px;
-//   border-bottom: 1px solid ${({ theme }) => theme.colors.backgroundAlt};
-
-//   @media screen and (min-width: ${MEDIA_WIDTHS.deprecated_upToSmall}px) {
-//     display: none;
-//   }
-
-//   @media screen and (max-width: ${MEDIA_WIDTHS.deprecated_upToExtraSmall}px) {
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: space-between;
-//   }
-// `
+import { VisibilityOff, VisibilityOn, Flex } from '@pancakeswap/uikit'
 
 const MobileHeader = styled.div`
-  font-weight: medium;
   padding: 8px;
-  font-weight: 500;
-  padding: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.backgroundAlt};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.background};
+`
+
+const MobileFooter = styled.div`
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0px solid ${({ theme }) => theme.colors.background};
+`
+const EyesWideShut = styled(VisibilityOff)`
+color: ${({ theme }) => theme.colors.background};
+margin-left: 0.25rem; 
+`
+
+const EyesWideOpen = styled(VisibilityOn)`
+color: ${({ theme }) => theme.colors.background};
+margin-left: 0.25rem; 
 `
 
 const ToggleWrap = styled.div`
@@ -95,8 +61,8 @@ export default function PositionList({
 
   return (
     <>
-      <DesktopHeader>
-        <Text>{t(`Your positions  ${positions && positions.length}`)}</Text>
+      {/* <DesktopHeader>
+        <Text>{t(`YOUR POSITIONS  ${positions && positions.length}`)}</Text>
 
         <ToggleLabel
           id="desktop-hide-closed-positions"
@@ -104,24 +70,48 @@ export default function PositionList({
             setUserHideClosedPositions(!userHideClosedPositions)
           }}
         >
-          {userHideClosedPositions ? <Trans>Show closed positions</Trans> : <Trans>Hide closed positions</Trans>}
+          {userHideClosedPositions ? 
+          <Text color="text" textTransform="uppercase" fontSize="13px">
+              Show closed positions
+          </Text> 
+          : 
+          <Text color="text" textTransform="uppercase" fontSize="13px">
+            Hide closed positions
+            </Text>}
         </ToggleLabel>
-      </DesktopHeader>
+      </DesktopHeader> */}
       <MobileHeader>
-        <Text>{t(`Your positions  ${positions && positions.length}`)}</Text>
+        <Text>{t(`ACTIVE POSITIONS: ${positions && positions.length}`)}</Text>
         <ToggleWrap>
           <ToggleLabel
             onClick={() => {
               setUserHideClosedPositions(!userHideClosedPositions)
             }}
           >
-            {userHideClosedPositions ? <Trans>Show closed positions</Trans> : <Trans>Hide closed positions</Trans>}
+            {userHideClosedPositions ? 
+
+          <Flex flexDirection="row">
+            <Text color="text" textTransform="uppercase" fontSize="13px">
+              Show closed positions
+            </Text> 
+            <EyesWideOpen /> 
+          </Flex>
+              : 
+              
+              <Flex flexDirection="row">
+                <Text color="text" textTransform="uppercase" fontSize="13px">
+                      Hide closed positions
+                </Text>
+                <EyesWideShut />
+            </Flex>
+            }
           </ToggleLabel>
         </ToggleWrap>
       </MobileHeader>
       {positions.map((p) => (
         <PositionListItem key={p.tokenId.toString()} {...p} />
       ))}
+      <MobileFooter />
     </>
   )
 }

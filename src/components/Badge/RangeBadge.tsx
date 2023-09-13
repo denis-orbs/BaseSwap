@@ -18,10 +18,10 @@ const BadgeText = styled.div`
 `
 
 const ActiveDot = styled.span`
-  background-color: ${({ theme }) => theme.colors.success};
+  background-color: ${({ theme }) => theme.colors.primaryBright};
   border-radius: 50%;
-  height: 8px;
-  width: 8px;
+  height: 12px;
+  width: 12px;
 `
 
 const LabelText = styled.div<{ color: string }>`
@@ -51,9 +51,9 @@ export default function RangeBadge({ removed, inRange }: { removed?: boolean; in
             <Text>The price of this pool is within your selected range. Your position is currently earning fees.</Text>
           }
         >
-          <LabelText color={theme.colors.success}>
+          <LabelText color={theme.colors.primaryBright}>
             <BadgeText>
-              <Text style={{color: theme && theme.colors.success}}>In Range</Text>
+              <Text style={{color: theme && theme.colors.primaryBright}}>In Range</Text>
             </BadgeText>
             <ActiveDot />
           </LabelText>

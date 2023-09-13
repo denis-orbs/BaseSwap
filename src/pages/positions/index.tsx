@@ -1,6 +1,6 @@
 import Trans from 'components/Trans'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { Button, Text } from '@pancakeswap/uikit'
+import { Button, Text, Flex } from '@pancakeswap/uikit'
 import { AutoColumn } from 'components/Column'
 import PositionList from 'components/PositionList'
 import { RowBetween, RowFixed } from 'components/Row'
@@ -19,22 +19,22 @@ import { useFilterPossiblyMaliciousPositions } from 'hooks/v3/useFilterPossiblyM
 import { useTranslation } from '@pancakeswap/localization'
 import Page from 'views/Page'
 import { useRouter } from 'next/router'
+import TypeIt from 'typeit-react'
+import 'animate.css'
+import { ImMakeGroup } from 'react-icons/im'
+import { CreateNewIcon } from '@pancakeswap/uikit'
 
-// const PageWrapper = styled(AutoColumn)`
-//   padding: 68px 8px 0px;
-//   max-width: 870px;
-//   width: 100%;
 
-//   @media (max-width: ${({ theme }) => `${theme.breakpoint.md}px`}) {
-//     max-width: 800px;
-//     padding-top: 48px;
-//   }
-
-//   @media (max-width: ${({ theme }) => `${theme.breakpoint.sm}px`}) {
-//     max-width: 500px;
-//     padding-top: 20px;
-//   }
-// `
+const PageTitle = styled(Text)`
+font-weight: 400;
+color: #fff;
+text-align: center; 
+text-transform: uppercase; 
+font-size: 40px; 
+@media (min-width: 768px) {
+  font-size: 48px; 
+  }
+`
 
 const PageWrapper = styled(AutoColumn)`
   padding: 68px 8px 0px;
@@ -42,30 +42,9 @@ const PageWrapper = styled(AutoColumn)`
   width: 100%;
 `
 
-// const TitleRow = styled(RowBetween)`
-//   color: ${({ theme }) => theme.colors.text};
-//   @media (max-width: ${({ theme }) => `${theme.breakpoint.sm}px`}) {
-//     flex-wrap: wrap;
-//     gap: 12px;
-//     width: 100%;
-//   }
-// `
-
 const TitleRow = styled(RowBetween)`
   color: ${({ theme }) => theme.colors.text};
 `
-
-// const ButtonRow = styled(RowFixed)`
-//   & > *:not(:last-child) {
-//     margin-left: 8px;
-//   }
-
-//   @media (max-width: ${({ theme }) => `${theme.breakpoint.sm}px`}) {
-//     width: 100%;
-//     flex-direction: row;
-//     justify-content: space-between;
-//   }
-// `
 
 const ButtonRow = styled(RowFixed)`
   & > *:not(:last-child) {
@@ -73,17 +52,6 @@ const ButtonRow = styled(RowFixed)`
   }
 `
 
-// const PoolMenu = styled(Menu)`
-//   margin-left: 0;
-//   @media (max-width: ${({ theme }) => `${theme.breakpoint.sm}px`}) {
-//     flex: 1 1 auto;
-//     width: 50%;
-//   }
-
-//   a {
-//     width: 100%;
-//   }
-// `
 const PoolMenuItem = styled.div`
   align-items: center;
   display: flex;
@@ -148,14 +116,13 @@ const ResponsiveButtonPrimary = styled(Button)`
 `
 
 const MainContentWrapper = styled.main`
-  background-color: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
-  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
-  padding: 0;
-  border-radius: 16px;
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
+  border: 3px solid ${({ theme }) => theme.colors.cardBorder};
+
+  padding: 0px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
-    0px 24px 32px rgba(0, 0, 0, 0.01);
   overflow: hidden;
 `
 
@@ -183,6 +150,7 @@ function WrongNetworkCard() {
 
   return (
     <>
+
       <PageWrapper>
         <AutoColumn gap="lg" justify="center">
           <AutoColumn gap="lg" style={{ width: '100%' }}>
@@ -206,6 +174,7 @@ function WrongNetworkCard() {
         </AutoColumn>
       </PageWrapper>
       {/* <SwitchLocaleLink /> */}
+
     </>
   )
 }
@@ -277,12 +246,19 @@ export default function Pool() {
 
   return (
     <Page>
+        <PageTitle>
+            MANAGE  
+            POSITIONS
+        </PageTitle>
+        <Text fontSize="18px">
+          Add or remove liquidity from BaseX Concentrated Liquidity Positions
+        </Text>
       <PageWrapper>
         <AutoColumn gap="lg" justify="center">
           <AutoColumn gap="lg" style={{ width: '100%' }}>
             <TitleRow padding="0" marginBottom="12px">
-              <Text>
-                <Trans>Pools</Trans>
+              <Text fontSize="24px"  >
+                <Trans>CURRENT POSITIONS</Trans>
               </Text>
               <ButtonRow>
                 <Button
@@ -295,8 +271,8 @@ export default function Pool() {
                     })
                   }}
                 >
-                  {' '}
-                  + {t('New Position')}
+                  <CreateNewIcon />
+                  <Text marginLeft="8px">{t('New Position')}</Text>
                 </Button>
               </ButtonRow>
             </TitleRow>
@@ -320,10 +296,11 @@ export default function Pool() {
                   </Text>
                   {!showConnectAWallet && closedPositions.length > 0 && (
                     <Button
+                    
                       style={{ marginTop: '.5rem' }}
                       onClick={() => setUserHideClosedPositions(!userHideClosedPositions)}
                     >
-                      <Trans>Show closed positions</Trans>
+                      <Text color="#fff" >Show closed positions</Text>
                     </Button>
                   )}
                   {showConnectAWallet && <ConnectWalletButton />}
