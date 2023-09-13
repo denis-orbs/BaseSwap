@@ -11,8 +11,8 @@ const GasSettings = () => {
   const { isMobile } = useMatchBreakpointsContext();
 
   return (
-    <Flex flexDirection="column">
-        <Flex mb="12px" alignItems="center" justifyContent="center"  >
+    <Flex flexDirection="column" mb="12px">
+        <Flex mb="2px" alignItems="center" justifyContent="center"  >
           
         <Text textAlign="center" fontWeight="200" color="#fff">
           {t('Default Transaction Speed (GWEI)')}

@@ -81,7 +81,7 @@ const SlippageTabs = () => {
   return (
     <Flex flexDirection="column">
       <Flex flexDirection="column" mb="24px">
-        <Flex mb="12px" alignItems="center" justifyContent="center"  >
+        <Flex mb="2px" alignItems="center" justifyContent="center"  >
         <Text textAlign="center" fontWeight="200" color="#fff">
             {t('Slippage Tolerance')}
         </Text>
