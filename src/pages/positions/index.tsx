@@ -20,6 +20,9 @@ import { useTranslation } from '@pancakeswap/localization'
 import Page from 'views/Page'
 import { useRouter } from 'next/router'
 import TypeIt from 'typeit-react'
+import 'animate.css'
+import { ImMakeGroup } from 'react-icons/im'
+import { CreateNewIcon } from '@pancakeswap/uikit'
 
 
 const PageTitle = styled(Text)`
@@ -114,13 +117,12 @@ const ResponsiveButtonPrimary = styled(Button)`
 
 const MainContentWrapper = styled.main`
   background-color: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
-  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  border: 3px solid ${({ theme }) => theme.colors.cardBorder};
   padding: 0;
-  border-radius: 16px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
-    0px 24px 32px rgba(0, 0, 0, 0.01);
+  box-shadow: 0 2px 4px #fff, 8px 0px 8px #0154FD, -8px 0px 8px #68B9FF; 
   overflow: hidden;
 `
 
@@ -269,8 +271,8 @@ export default function Pool() {
                     })
                   }}
                 >
-                  {' '}
-                  + {t('New Position')}
+                  <CreateNewIcon />
+                  <Text marginLeft="8px">{t('New Position')}</Text>
                 </Button>
               </ButtonRow>
             </TitleRow>
@@ -294,10 +296,11 @@ export default function Pool() {
                   </Text>
                   {!showConnectAWallet && closedPositions.length > 0 && (
                     <Button
+                    variant="revamp"
                       style={{ marginTop: '.5rem' }}
                       onClick={() => setUserHideClosedPositions(!userHideClosedPositions)}
                     >
-                      <Trans>Show closed positions</Trans>
+                      <Text color="#fff" >Show closed positions</Text>
                     </Button>
                   )}
                   {showConnectAWallet && <ConnectWalletButton />}
