@@ -228,7 +228,7 @@ const Menu: React.FC<NavProps> = ({
                 </Link>
 
         <DropdownContainer>
-          <Link  href="/addV3">
+          <Link  href="/positions">
               <Text marginRight="2rem">
                 <FlamingText>BaseX</FlamingText>
 
