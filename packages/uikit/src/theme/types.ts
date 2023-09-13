@@ -35,6 +35,7 @@ export type Gradients = {
   pagebg: string; 
   basedsexgray: string; 
   basedsexgrayflip: string; 
+  based69: string; 
   basedsexdark: string;
   inverseBubblegum: string;
   cardHeader: string;

@@ -49,6 +49,7 @@ export const lightColors: Colors = {
     basedsexgrayflip: "linear-gradient(to top, #000, #222)",
     pagebg: "linear-gradient(to bottom, #000, #222)",
     basedsex1: "linear-gradient(270deg, #111, #0154FD)",
+    based69: "linear-gradient(to bottom,  #020079 0%, #0154FD, 90%, #ccc 100%)",
 
     bubblegum: "linear-gradient(139.73deg, #E5FDFF 0%, #F3EFFF 100%)",
     inverseBubblegum: "linear-gradient(139.73deg, #F3EFFF 0%, #E5FDFF 100%)",
@@ -86,7 +87,9 @@ export const darkColors: Colors = {
   warning: 'yellow',
   gradients: {
     basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD, 90%, #ccc 100%)",
-    basedsex1: "linear-gradient(to bottom, #111 90%, #0154FD)",
+    based69: "linear-gradient(to bottom,  #111, #020079, #0154FD)",
+
+    basedsex1: "linear-gradient(270deg, #111, #0154FD)",
     basedsexdark: "conic-gradient(from 270deg, #0154FD, #ffffff90 )",
     basedsexgray: "linear-gradient(to bottom, #000 20%, #111)",
     pagebg: "linear-gradient( to right, #000, #111)",

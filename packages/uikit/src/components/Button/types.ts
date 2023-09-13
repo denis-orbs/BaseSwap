@@ -15,6 +15,8 @@ export const variants = {
   GASON: "gason", 
   ADDTOMETAMASK: "addtometamask", 
   REVAMP: "revamp", 
+  REVAMPREVERSE1: "revampreverse1", 
+
   REVAMPREVERSE: "revampreverse", 
   GASOFF: "gasoff", 
   CALCULATOR: "calculator", 

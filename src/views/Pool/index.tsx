@@ -136,7 +136,7 @@ export default function Pool() {
                   {t("Don't see a pool you joined?")}
                 </Text>
                 <Link href="/find" passHref>
-                  <Button id="import-pool-link" variant="revampreverse" scale="md" as="a">
+                  <Button id="import-pool-link" variant="revampreverse1" scale="md" as="a">
                     {t('Find other LP tokens')}
                   </Button>
                 </Link>
