@@ -157,8 +157,8 @@ export const baseChain: Chain = {
     symbol: 'ETH',
   },
   rpcUrls: {
-    default: 'https://nd-139-982-975.p2pify.com/dec4de6f582a0e1f28ba06fc6e2b2449',
-    public: 'https://nd-139-982-975.p2pify.com/dec4de6f582a0e1f28ba06fc6e2b2449',
+    default: 'https://nd-305-001-690.p2pify.com/85052c29c75b3d3bbd32497417be204e',
+    public: 'https://nd-305-001-690.p2pify.com/85052c29c75b3d3bbd32497417be204e',
   },
   blockExplorers: {
     default: { name: 'Base Scan', url: 'https://basescan.org/' },
