@@ -116,13 +116,13 @@ const ResponsiveButtonPrimary = styled(Button)`
 `
 
 const MainContentWrapper = styled.main`
-  background-color: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
   border: 3px solid ${({ theme }) => theme.colors.cardBorder};
-  padding: 0;
+
+  padding: 0px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 2px 4px #fff, 8px 0px 8px #0154FD, -8px 0px 8px #68B9FF; 
   overflow: hidden;
 `
 
@@ -296,7 +296,7 @@ export default function Pool() {
                   </Text>
                   {!showConnectAWallet && closedPositions.length > 0 && (
                     <Button
-                    variant="revamp"
+                    
                       style={{ marginTop: '.5rem' }}
                       onClick={() => setUserHideClosedPositions(!userHideClosedPositions)}
                     >

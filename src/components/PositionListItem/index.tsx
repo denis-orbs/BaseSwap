@@ -19,42 +19,16 @@ import { unwrappedToken } from 'utils/v3/unwrappedToken'
 import { currentTokenMap } from 'config/constants/tokens'
 import { useRouter } from 'next/router'
 
-// const LinkRow = styled(Link)`
-//   align-items: center;
-//   display: flex;
-//   cursor: pointer;
-//   user-select: none;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   color: ${({ theme }) => theme.colors.primary};
-//   padding: 16px;
-//   text-decoration: none;
-//   font-weight: 500;
-
-//   & > div:not(:first-child) {
-//     text-align: center;
-//   }
-//   :hover {
-//     background-color: ${({ theme }) => theme.hoverDefault};
-//   }
-
-//   @media screen and (min-width: ${MEDIA_WIDTHS.deprecated_upToSmall}px) {
-//     /* flex-direction: row; */
-//   }
-
-//   ${({ theme }) => theme.deprecated_mediaWidth.deprecated_upToSmall`
-//     flex-direction: column;
-//     row-gap: 8px;
-//   `};
-// `
 
 const StyledBox = styled(Box)`
-  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
   padding: 6px;
+  margin-bottom: 12px; 
+  border-bottom: 1px solid ${({ theme }) => theme.colors.text};
   cursor: pointer;
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding: 12px;
+    padding-left: 12px;
+    padding-right: 12px; 
   }
 `
 
@@ -89,6 +63,7 @@ const RangeLineItem = styled(DataLineItem)`
   align-items: center;
   margin-top: 12px;
   width: 100%;
+
 `
 
 // const DoubleArrow = styled.span`
@@ -101,7 +76,8 @@ const RangeText = styled(Text)`
   font-size: 12px !important;
   word-break: break-word;
   padding: 0.25rem 0.25rem;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 0 4px #0154FE; 
   margin-right: 24px;
   padding: 8px;
   background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
@@ -111,15 +87,6 @@ const FeeTierText = styled(Text)`
   font-size: 10px !important;
   margin-left: 14px !important;
 `
-// const ExtentsText = styled(Text)`
-//   color: ${({ theme }) => theme.textTertiary};
-//   display: inline-block;
-//   line-height: 16px;
-//   margin-right: 4px !important;
-//   ${({ theme }) => theme.deprecated_mediaWidth.deprecated_upToSmall`
-//     display: none;
-//   `};
-// `
 
 const ExtentsText = styled(Text)`
   color: ${({ theme }) => theme.colors.primary};
@@ -252,6 +219,7 @@ export default function PositionListItem({
   const removed = liquidity?.eq(0)
 
   return (
+    <>
     <StyledBox
       onClick={() => {
         router.replace({
@@ -262,8 +230,8 @@ export default function PositionListItem({
       <RowBetween>
         <PrimaryPositionIdData>
           <Flex alignItems="center">
-            <DoubleCurrencyLogo currency0={currencyBase} currency1={currencyQuote} size={18} margin />
-            <Text>
+            <DoubleCurrencyLogo currency0={currencyBase} currency1={currencyQuote} size={48} margin />
+            <Text fontSize="1.5rem">
               &nbsp;{currencyQuote?.symbol}&nbsp;/&nbsp;{currencyBase?.symbol}
             </Text>
           </Flex>
@@ -277,11 +245,12 @@ export default function PositionListItem({
 
       {priceLower && priceUpper ? (
         <RangeLineItem>
+          
           <RangeText>
             <ExtentsText>
-              Min:
+              MIN
             </ExtentsText>
-            <Text>
+            <Text fontSize="14px">
               <span>
                 {formatTickPrice({
                   price: priceLower,
@@ -300,9 +269,9 @@ export default function PositionListItem({
           </SmallOnly> */}
           <RangeText>
             <ExtentsText>
-              Max:
+              MAX
             </ExtentsText>
-            <Text>
+            <Text fontSize="14px">
               <span>
                 {formatTickPrice({
                   price: priceUpper,
@@ -319,5 +288,7 @@ export default function PositionListItem({
         <Loader />
       )}
     </StyledBox>
+   
+    </>
   )
 }

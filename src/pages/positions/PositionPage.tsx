@@ -120,6 +120,8 @@ const ExtentsText = styled.span`
 
 const HoverText = styled(Text)`
   text-decoration: none;
+  text-transform: uppercase; 
+  cursor: pointer; 
   color: ${({ theme }) => theme.colors.tertiary};
   :hover {
     color: ${({ theme }) => theme.colors.tertiary};

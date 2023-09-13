@@ -5,13 +5,31 @@ import Trans from 'components/Trans'
 import React from 'react'
 import styled from 'styled-components'
 import { PositionDetails } from 'types/position'
+import { VisibilityOff, VisibilityOn, Flex } from '@pancakeswap/uikit'
 
 const MobileHeader = styled.div`
-  padding: 16px;
+  padding: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 3px solid ${({ theme }) => theme.colors.background};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.background};
+`
+
+const MobileFooter = styled.div`
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0px solid ${({ theme }) => theme.colors.background};
+`
+const EyesWideShut = styled(VisibilityOff)`
+color: ${({ theme }) => theme.colors.background};
+margin-left: 0.25rem; 
+`
+
+const EyesWideOpen = styled(VisibilityOn)`
+color: ${({ theme }) => theme.colors.background};
+margin-left: 0.25rem; 
 `
 
 const ToggleWrap = styled.div`
@@ -72,18 +90,28 @@ export default function PositionList({
           >
             {userHideClosedPositions ? 
 
+          <Flex flexDirection="row">
             <Text color="text" textTransform="uppercase" fontSize="13px">
-              Show closed positions</Text> 
+              Show closed positions
+            </Text> 
+            <EyesWideOpen /> 
+          </Flex>
               : 
-              <Text color="text" textTransform="uppercase" fontSize="13px">
-              Hide closed positions
-            </Text>}
+              
+              <Flex flexDirection="row">
+                <Text color="text" textTransform="uppercase" fontSize="13px">
+                      Hide closed positions
+                </Text>
+                <EyesWideShut />
+            </Flex>
+            }
           </ToggleLabel>
         </ToggleWrap>
       </MobileHeader>
       {positions.map((p) => (
         <PositionListItem key={p.tokenId.toString()} {...p} />
       ))}
+      <MobileFooter />
     </>
   )
 }
