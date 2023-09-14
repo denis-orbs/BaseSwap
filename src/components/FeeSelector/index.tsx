@@ -151,10 +151,10 @@ export default function FeeSelector({
                 </>
               ) : (
                 <>
-                  <Text className="selected-fee-label">
-                    <Trans>{t(`${FEE_AMOUNT_DETAIL[feeAmount].label}% fee tier`)}</Trans>
+                  <Text fontSize="1rem" className="selected-fee-label">
+                    <Trans>{t(`${FEE_AMOUNT_DETAIL[feeAmount].label}% FEE TIER`)}</Trans>
                   </Text>
-                  <Box style={{ width: 'fit-content', marginTop: '8px' }} className="selected-fee-percentage">
+                  <Box style={{ width: 'fit-content', marginTop: '0px' }} className="selected-fee-percentage">
                     {distributions && (
                       <FeeTierPercentageBadge
                         distributions={distributions}
@@ -167,7 +167,9 @@ export default function FeeSelector({
               )}
             </AutoColumn>
 
-            <Button onClick={() => setShowOptions(!showOptions)} width="auto" padding="4px">
+            <Button onClick={() => setShowOptions(!showOptions)} 
+            width="35%" variant="gasoff" 
+            padding="4px">
               {showOptions ? <Trans>Hide</Trans> : <Trans>Edit</Trans>}
             </Button>
           </RowBetween>

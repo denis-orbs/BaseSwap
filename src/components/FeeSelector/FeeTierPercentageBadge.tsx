@@ -19,16 +19,18 @@ export function FeeTierPercentageBadge({
   const { t } = useTranslation()
 
   return (
-    <Badge>
+    
       <Text fontSize={10}>
         {!distributions || poolState === PoolState.NOT_EXISTS || poolState === PoolState.INVALID ? (
           <Trans>Not created</Trans>
         ) : distributions[feeAmount] !== undefined ? (
-          <Text>{t(`${distributions[feeAmount]?.toFixed(0)}% select`)}</Text>
+          <Text fontSize="1rem" color='primaryBright'>
+            {t(`${distributions[feeAmount]?.toFixed(0)}% of investors select this fee tier`)}
+          </Text>
         ) : (
           <Trans>No data</Trans>
         )}
       </Text>
-    </Badge>
+
   )
 }

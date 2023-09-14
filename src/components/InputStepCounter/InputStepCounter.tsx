@@ -1,7 +1,8 @@
 import { FeeAmount } from '@baseswapfi/v3-sdk2'
-import { Button, Text } from '@pancakeswap/uikit'
+import { Button, Text, Flex } from '@pancakeswap/uikit'
 import { OutlineCard } from 'components/Card'
 import { AutoColumn } from 'components/Column'
+import { AutoRow } from 'components/Row'
 import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { Minus, Plus } from 'react-feather'
 import styled, { keyframes } from 'styled-components'
@@ -31,8 +32,9 @@ const FocusedOutlineCard = styled(OutlineCard)<{ active?: boolean; pulsing?: boo
   border-radius: 16px;
 `
 
-const InputRow = styled.div`
+const InputRow = styled(Flex)`
   display: flex;
+
 `
 
 const SmallButton = styled(Button)`
@@ -42,7 +44,6 @@ const SmallButton = styled(Button)`
   padding-top: 0px;
   padding-bottom: 0px;
   margin: 2px;
-  max-height: 35px;
 `
 
 const StyledInput = styled(NumericalInput)<{ usePercent?: boolean }>`
@@ -145,11 +146,11 @@ const StepCounter = ({
 
   return (
     <FocusedOutlineCard pulsing={pulsing} active={active} onFocus={handleOnFocus} onBlur={handleOnBlur} width="100%">
-      <InputRow>
+      <InputRow >
         <InputColumn justify="flex-start">
-          <InputTitle fontSize={12} textAlign="center">
+          <Text fontSize="18px" textAlign="center">
             {title}
-          </InputTitle>
+          </Text>
           <StyledInput
             className="rate-input-0"
             value={localValue}
@@ -164,22 +165,22 @@ const StepCounter = ({
           </InputTitle>
         </InputColumn>
 
-        <AutoColumn gap="8px">
+        <AutoRow gap="8px">
           {!locked && (
-            <SmallButton data-testid="increment-price-range" onClick={handleIncrement} disabled={incrementDisabled}>
+            <SmallButton variant="gason" data-testid="increment-price-range" onClick={handleIncrement} disabled={incrementDisabled}>
               <ButtonLabel disabled={incrementDisabled} fontSize="12px">
-                <Plus size={18} />
+                <Plus size={36} />
               </ButtonLabel>
             </SmallButton>
           )}
           {!locked && (
-            <SmallButton data-testid="decrement-price-range" onClick={handleDecrement} disabled={decrementDisabled}>
+            <SmallButton variant="gason" data-testid="decrement-price-range" onClick={handleDecrement} disabled={decrementDisabled}>
               <ButtonLabel disabled={decrementDisabled} fontSize="12px">
-                <Minus size={18} />
+                <Minus size={36} />
               </ButtonLabel>
             </SmallButton>
           )}
-        </AutoColumn>
+        </AutoRow>
       </InputRow>
     </FocusedOutlineCard>
   )

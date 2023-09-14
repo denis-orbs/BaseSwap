@@ -41,8 +41,8 @@ export const GreyCard = styled(Card)`
 
 export const LightTertiaryCard = styled(Card)<{ active: boolean }>`
   border: 1px solid ${({ theme, active }) => (active ? 'none' : theme.colors.cardBorder)};
-  background: ${({ theme, active }) => (active ? theme.colors.gradients.basedsex1: theme.colors.gradients.basedsexgrayflip)};
-  padding: 4px 4px 8px;
+  background: ${({ theme, active }) => (active ? theme.colors.gradients.based69: theme.colors.gradients.basedsexgrayflip)};
+  padding: 4px; 
 `
 
 export const OutlineCard = styled(RebassBox)`

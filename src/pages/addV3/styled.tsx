@@ -5,7 +5,9 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   position: relative;
-  padding: 26px 16px;
+  padding: 0px; 
+  padding-left: 12px; 
+  padding-right: 12px; 
 `
 
 export const ScrollablePage = styled.div`
@@ -38,7 +40,8 @@ export const ResponsiveTwoColumns = styled.div<{ wide: boolean }>`
   flex-direction: column;
   gap: 20px;
   padding-top: 20px;
-  border-top: 1px solid ${({ theme }) => theme.colors.backgroundAlt};
+
+
 `
 
 const MediumOnly = styled.div``

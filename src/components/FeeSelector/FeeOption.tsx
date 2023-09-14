@@ -21,8 +21,7 @@ import { LightTertiaryCard } from 'components/Card'
 //   `};
 // `
 const ResponsiveText = styled(Text)`
-  line-height: 16px;
-  font-size: 14px;
+  font-size: 12px;
 `
 
 const FeeOptionContainer = styled.div<{ active: boolean }>`
@@ -32,7 +31,7 @@ const FeeOptionContainer = styled.div<{ active: boolean }>`
   ${({ active }) =>
     active &&
     css`
-      background-image: ${({ theme }) => theme.colors.gradients.basedsex};
+      background-image: ${({ theme }) => theme.colors.gradients.basedsexgray};
     `}
   border-radius: 12px;
   padding: 2px 2px 4px 2px;
