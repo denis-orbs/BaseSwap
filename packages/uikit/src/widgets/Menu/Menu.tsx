@@ -263,9 +263,9 @@ const Menu: React.FC<NavProps> = ({
 
             <Text marginRight="2rem">MORE!</Text>
                 <DropdownMenu>
-                <Link href="/new" marginBottom="1.2rem" >
+                {/* <Link href="/new" marginBottom="1.2rem" >
                         <Text marginRight="2rem">New here?</Text>
-                    </Link>
+                    </Link> */}
                     <Link href="/xbsx" marginBottom="1.2rem" >
                         <Text marginRight="2rem">xBSX</Text>
                     </Link>
