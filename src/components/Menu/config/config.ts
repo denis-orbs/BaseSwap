@@ -148,10 +148,10 @@ const config: (
       fillIcon: EllipsisIcon,
       supportChainIds: [DEFAULT_CHAIN_ID],
       items: [
-        {
-          label: t("New here?"),
-          href: '/new',
-        },
+        // {
+        //   label: t("New here?"),
+        //   href: '/new',
+        // },
         {
           label: t('xBSX'),
           href: '/xbsx',
