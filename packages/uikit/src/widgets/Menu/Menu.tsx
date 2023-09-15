@@ -41,15 +41,28 @@ const MenuImage = styled(Image)`
   border-radius: 50%;
   
 `;
+type DropdownTextProps = {
+  marginRight?: string;
+};
+
+const DropdownText = styled.div<DropdownTextProps>`
+  font-size: 1.1rem; 
+  color: #fff; 
+  text-transform: uppercase; 
+  font-weight: 400; 
+  margin-right: ${props => props.marginRight || '0px'};
+
+`;
 
 const DropdownMenu = styled.div`
   display: none;
   position: absolute;
-  background-color: #000;
-  border-radius: 4px;
-  min-width: 250px;
-  box-shadow: 2px 0px 4px #fff, 0px 2px 4px #0154fe, 0px 2px 16px #0154fe;
-  padding: 24px 12px;
+  background-color: rgba(0, 0, 0, 0.4); 
+  backdrop-filter: blur(12px); 
+  border-radius: 8px;
+  min-width: 240px;
+  box-shadow: 0px 2px 4px #68B9FF, 0px 2px 16px #0154fe;
+  padding: 18px 12px;
   z-index: 1;
   flex-direction: column;
   justify-content: space-between;
@@ -213,13 +226,19 @@ const Menu: React.FC<NavProps> = ({
                   </Link>
                   <DropdownMenu>
                     <Link href="/swap" marginBottom="1.2rem">
-                      <Text>Swap</Text>
+                      <DropdownText>
+                        SWAP
+                      </DropdownText>
                     </Link>
-                     <Link href="/basicswap" marginBottom="1.2rem">
-                      <Text color="#ccc">Basic Swap</Text>
+                    <Link href="/basicswap" marginBottom="1.2rem">
+                    <DropdownText>
+                          BASIC SWAP
+                      </DropdownText>
                     </Link>
                     <Link href="http://perpetuals.baseswap.fi">
-                      <Text color="#ccc">Perpetuals</Text>
+                        <DropdownText >
+                            PERPETUALS
+                        </DropdownText>
                     </Link>
                   </DropdownMenu>
                 </DropdownContainer>
@@ -237,10 +256,14 @@ const Menu: React.FC<NavProps> = ({
 
           <DropdownMenu>
               <Link href="/positions" marginBottom="1.2rem">
-                  <Text marginRight="2rem">Manage Positions</Text>
+              <DropdownText >
+                    Manage Positions
+                  </DropdownText>
               </Link>
               <Link href="/addV3" >
-                  <Text marginRight="2rem">Add Liquidity</Text>
+              <DropdownText >
+                    Add Liquidity
+                    </DropdownText>
               </Link>
              
           </DropdownMenu>
@@ -267,22 +290,22 @@ const Menu: React.FC<NavProps> = ({
                         <Text marginRight="2rem">New here?</Text>
                     </Link> */}
                     <Link href="/xbsx" marginBottom="1.2rem" >
-                        <Text marginRight="2rem">xBSX</Text>
+                        <DropdownText marginRight="2rem">xBSX</DropdownText>
                     </Link>
                     {/* <Link href="https://presale.baseswap.fi" marginBottom="1.2rem" >
                         <Text marginRight="2rem">BSX PRESALE!</Text>
                     </Link> */}
                     <Link href="/finishedfarms" marginBottom="1.2rem" >
-                      <Text marginRight="2rem">Finished Farms </Text>
+                      <DropdownText marginRight="2rem">Finished Farms </DropdownText>
                     </Link>
                     <Link href="/bridge" marginBottom="1.2rem" >
-                      <Text marginRight="2rem">Bridge </Text>
+                      <DropdownText marginRight="2rem">Bridge </DropdownText>
                     </Link>
                     <Link href="/locker" marginBottom="1.2rem" >
-                      <Text marginRight="2rem">Token Locker </Text>
+                      <DropdownText marginRight="2rem">Token Locker </DropdownText>
                     </Link>
                     <Link href="https://marketplace.baseswap.fi" >
-                      <Text marginRight="2rem">NFT</Text>
+                      <DropdownText marginRight="2rem">NFT</DropdownText>
                     </Link>
                     
                 </DropdownMenu>
