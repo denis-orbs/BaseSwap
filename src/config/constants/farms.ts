@@ -36,6 +36,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
     isCore: true, 
+    //points: 1000 BSX and 1025 BSWAP 
   },
   {
     pid: 16,
@@ -51,6 +52,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
     isCore: true, 
+    //points: 975 BSX and 845 BSWAP (WETH)
   },
 
   {
@@ -66,7 +68,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.usdbc,
     classic: true, 
     isStable: true, 
-    // points: 100 
+    // points: 150 
   },
   {
     pid: 22,
@@ -82,7 +84,7 @@ const farms: SerializedFarmConfig[] = [
     classic: true, 
     isBluechip: true, 
 
-    // points: 100 
+    // points: 150 
   },
   {
     pid: 23,
@@ -98,7 +100,7 @@ const farms: SerializedFarmConfig[] = [
     classic: true, 
     isPartner: true, 
 
-    // points: 75
+    // points: 75 --> 65
   },
   {
     pid: 20,
@@ -113,7 +115,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.usdbc,
     classic: true, 
     isStable: true, 
-    // points: 100 
+    // points: 100 --> 75 
   },
   {
     pid: 19,
@@ -128,8 +130,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.dai,
     classic: true, 
     isBluechip: true, 
-
-    // points: 50
+    // points: 150 --> 125 
   },
  
   {
@@ -146,7 +147,7 @@ const farms: SerializedFarmConfig[] = [
     classic: true,
     isBluechip: true, 
 
-    // points: 500, 
+    // points: 350, 
   },
 
   {
@@ -163,7 +164,7 @@ const farms: SerializedFarmConfig[] = [
     classic: true,
     isBluechip: true, 
 
-    // points: 40
+    // points: 40 --> 35 
   },
 
 
@@ -180,8 +181,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.axlUsdc,
     classic: true,
     isBluechip: true, 
-
-    //points: 450, 
+    //points: 300 --> 150 
   },
 
   {
@@ -197,7 +197,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.usdbc,
     classic: true,
     isStable: true, 
-    // points: 110 
+    // points: 110 -- >90 
   },
   {
     pid: 10,
@@ -274,6 +274,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
     isPartner: true, 
+    // points: 70 --> 40 
   },
   {
     pid: 18,
@@ -288,6 +289,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
     isPartner: true, 
+    // points: 70 --> 50 
   },
   {
     pid: 12,
@@ -302,7 +304,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
     isPartner: true, 
-
+    // points: 70 --> 50 
   },
   {
     pid: 15,
@@ -317,7 +319,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
     isPartner: true, 
-
+    // points: 85 --> 50 
   },
   {
     pid: 13,
@@ -332,6 +334,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.usdbc,
     classic: true,
     isPartner: true, 
+    // points: 70 -- > 50 
 
   },
 
@@ -348,7 +351,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
     isPartner: true, 
-
+    // points: 5 --> 0 
   },
 
   {
@@ -365,6 +368,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
     isPartner: true, 
+    // points: 1 --> 0 
 
   },
 

@@ -88,10 +88,10 @@ export function TransactionSubmittedContent({
     <Wrapper>
       <Section>
         <ConfirmedIcon>
-          <ArrowUpIcon strokeWidth={0.5} width="90px" color="primary" />
+          <ArrowUpIcon strokeWidth={0.5} width="120px" color="primary" />
         </ConfirmedIcon>
         <AutoColumn gap="0px" justify="center">
-          <Text fontSize="14Px">{t('TRANSACTION SUBMITTED')}</Text>
+          <Text fontSize="24px">{t('TRANSACTION SUBMITTED')}</Text>
           {chainId && hash && (
             <Link external small href={getBscScanLink(hash, 'transaction', chainId)}>
               <u>{t('View on BaseScan')}</u>
