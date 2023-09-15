@@ -305,12 +305,12 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
                     <DoubleCurrencyLogo
                       currency0={feeValue0?.currency}
                       currency1={feeValue1?.currency}
-                      size={20}
+                      size={60}
                       margin
                     />
                     <Text
                       ml="10px"
-                      fontSize="20px"
+                      fontSize="32px"
                     >{`${feeValue0?.currency?.symbol}/${feeValue1?.currency?.symbol}`}</Text>
                   </RowFixed>
                   <RangeBadge removed={removed} inRange={!outOfRange} />
@@ -342,51 +342,51 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
                 </LightCard>
                 <LightCard mb="12px">
                   <AutoColumn gap="md">
-                    <RowBetween>
-                      <Text fontSize={16} fontWeight={500}>
+                    <RowBetween style={{marginBottom: '4px' }}>
+                      <Text  textTransform="uppercase" fontSize={16} fontWeight={500}>
                         {t(`Pooled ${liquidityValue0?.currency?.symbol}:`)}
                       </Text>
                       <RowFixed>
-                        <Text fontSize={16} fontWeight={500} marginLeft="6px">
+                        <Text  fontSize={16} fontWeight={500} marginLeft="6px">
                           {liquidityValue0 && <FormattedCurrencyAmount currencyAmount={liquidityValue0} />}
                         </Text>
-                        <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={liquidityValue0?.currency} />
+                        <CurrencyLogo size="30px" style={{ marginLeft: '8px' }} currency={liquidityValue0?.currency} />
                       </RowFixed>
                     </RowBetween>
-                    <RowBetween>
-                      <Text fontSize={16} fontWeight={500}>
+                    <RowBetween style={{marginBottom: '1rem' }}>
+                      <Text textTransform="uppercase" fontSize={16} fontWeight={500}>
                         {t(`Pooled ${liquidityValue1?.currency?.symbol}:`)}
                       </Text>
                       <RowFixed>
                         <Text fontSize={16} fontWeight={500} marginLeft="6px">
                           {liquidityValue1 && <FormattedCurrencyAmount currencyAmount={liquidityValue1} />}
                         </Text>
-                        <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={liquidityValue1?.currency} />
+                        <CurrencyLogo size="30px" style={{ marginLeft: '8px' }} currency={liquidityValue1?.currency} />
                       </RowFixed>
                     </RowBetween>
                     {feeValue0?.greaterThan(0) || feeValue1?.greaterThan(0) ? (
                       <>
                         <Break />
                         <RowBetween>
-                          <Text fontSize={16} fontWeight={500}>
+                          <Text fontSize={16} textTransform="uppercase" fontWeight={500}>
                             {t(`${feeValue0?.currency?.symbol} Fees Earned:`)}
                           </Text>
                           <RowFixed>
                             <Text fontSize={16} fontWeight={500} marginLeft="6px">
                               {feeValue0 && <FormattedCurrencyAmount currencyAmount={feeValue0} />}
                             </Text>
-                            <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={feeValue0?.currency} />
+                            <CurrencyLogo size="30px" style={{ marginLeft: '8px' }} currency={feeValue0?.currency} />
                           </RowFixed>
                         </RowBetween>
-                        <RowBetween>
-                          <Text fontSize={16} fontWeight={500}>
+                        <RowBetween style={{ marginTop: '8px' }}>
+                          <Text textTransform="uppercase" fontSize={16} fontWeight={500}>
                             {t(`${feeValue1?.currency?.symbol} Fees Earned:`)}
                           </Text>
                           <RowFixed>
                             <Text fontSize={16} fontWeight={500} marginLeft="6px">
                               {feeValue1 && <FormattedCurrencyAmount currencyAmount={feeValue1} />}
                             </Text>
-                            <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={feeValue1?.currency} />
+                            <CurrencyLogo size="30px" style={{ marginLeft: '8px' }} currency={feeValue1?.currency} />
                           </RowFixed>
                         </RowBetween>
                       </>
@@ -395,7 +395,7 @@ function Remove({ tokenId }: { tokenId: BigNumber }) {
                 </LightCard>
 
                 {showCollectAsWeth && (
-                  <RowBetween>
+                  <RowBetween style={{ marginBottom: '1rem' }}>
                     <Text>{t(`Collect as ${nativeWrappedSymbol}`)}</Text>
                     <Toggle
                       id="receive-as-weth"

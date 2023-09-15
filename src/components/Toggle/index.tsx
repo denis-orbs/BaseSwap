@@ -51,7 +51,7 @@ const ToggleElement = styled.span<{ isActive?: boolean; bgColor?: string; isInit
     ${({ isActive, isInitialToggleLoad }) => (isInitialToggleLoad ? 'none' : isActive ? turnOnToggle : turnOffToggle)}
     ease-in;
   background: ${({ theme, bgColor, isActive }) =>
-    isActive ? bgColor ?? theme.colors.primary : bgColor ? theme.colors.disabled : theme.colors.tertiary};
+    isActive ? bgColor ?? theme.colors.backgroundAlt : bgColor ? theme.colors.disabled : theme.colors.tertiary};
   border-radius: 50%;
   height: 24px;
   :hover {

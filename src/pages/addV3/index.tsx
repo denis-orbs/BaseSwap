@@ -76,7 +76,6 @@ const PageTitle = styled(Text)`
 font-weight: 400;
 color: #fff;
 text-align: center; 
-
 font-size: 40px; 
 @media (min-width: 768px) {
   font-size: 48px; 
@@ -675,7 +674,8 @@ function AddLiquidity() {
     <>
     <Page>
       <PageTitle>
-        Add BaseX Liquidity
+        Add <span style={{ textShadow: '4px 0px 12px #0154FD, -4px 0px 12px #68B9FF' }}>
+          BaseX</span> Liquidity
       </PageTitle>
 
 
