@@ -1,7 +1,7 @@
 import { 
   // Trade, 
   Percent, JSBI } from '@magikswap/sdk'
-import { Text, ArrowDownIcon } from '@pancakeswap/uikit'
+import { Text, ArrowDownIcon, Flex } from '@pancakeswap/uikit'
 import { Field } from 'state/swap/actions'
 import { useTranslation } from '@pancakeswap/localization'
 import { warningSeverity } from 'utils/exchange'
@@ -12,6 +12,17 @@ import truncateHash from 'utils/truncateHash'
 import tryParseAmount from 'utils/tryParseAmount'
 import { TruncatedText } from './styleds'
 import { BIPS_BASE } from 'config/constants/exchange'
+import styled from 'styled-components'
+
+const SwapFlow=styled(Flex)`
+  flex-direction: row; 
+  justify-content: center; 
+  align-items: center; 
+  padding-left: 0.5rem; 
+  padding-right: 0.5rem; 
+  
+`
+
 
 export default function SwapModalHeader({
   allowedSlippage,
@@ -37,7 +48,7 @@ export default function SwapModalHeader({
   const { symbol } = outputCurrency
 
   const tradeInfoText = t(
-    'Output is estimated. You will receive at least %amount% %symbol% or the transaction will revert.  Quote will update every 15 seconds for the next 3 minutes.',
+    'The output amount for this swap is estimated above. You will receive at least %amount% %symbol% or the transaction will revert.  Quote will update every 15 seconds for the next 3 minutes.',
     {
       amount,
       symbol,
@@ -59,61 +70,63 @@ export default function SwapModalHeader({
 
 
   return (
-    <AutoColumn gap="md">
-      <RowBetween align="flex-end">
-        <RowFixed gap="0px">
-          <CurrencyLogo currency={inputCurrency} size="24px" style={{ marginRight: '12px' }} />
-          <TruncatedText fontSize="24px" color='text'>
-            {tryParseAmount(inputAmount.toString(), inputCurrency)?.toSignificant(6) ?? ''}
-          </TruncatedText>
-        </RowFixed>
-        <RowFixed gap="0px">
-          <Text fontSize="24px" ml="10px">
-            {inputCurrency.symbol}
-          </Text>
-        </RowFixed>
-      </RowBetween>
-      <RowFixed>
-        <ArrowDownIcon width="16px" ml="4px" />
-      </RowFixed>
-      <RowBetween align="flex-end">
-        <RowFixed gap="0px">
-          <CurrencyLogo currency={outputCurrency} size="24px" style={{ marginRight: '12px' }} />
-          <TruncatedText
-            fontSize="24px"
-            color={
-              priceImpactSeverity > 2
-                ? 'failure'
-                : 'text'
-            }
-          >
+  <Flex flexDirection="column" >
+    <SwapFlow>
+        <CurrencyLogo currency={inputCurrency} size="48px" 
+            style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF' }} 
+            />
+        <Flex flexDirection="row" marginLeft="1.5rem">
+            <Text fontSize="32px" color='text' marginRight="8px" >
+                {tryParseAmount(inputAmount.toString(), inputCurrency)?.toSignificant(6) ?? ''}
+            </Text>
+            <Text fontSize="32px" >
+              {inputCurrency.symbol}
+            </Text>
+        </Flex>
+    </SwapFlow>
+
+    <ArrowDownIcon width="32px" ml="0px" />
+    
+  <SwapFlow marginTop="1rem">
+    <CurrencyLogo currency={outputCurrency} size="48px"
+      style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF' }} 
+    />
+    
+    <Flex flexDirection="row" marginLeft="1.5rem">
+        <Text 
+              marginRight="8px" 
+              fontSize="32px"
+              color={
+                priceImpactSeverity > 2
+                  ? 'failure'
+                  : 'text'
+              } >
             {tryParseAmount(outputAmount.toString(), outputCurrency)?.toSignificant(6) ?? ''}
-          </TruncatedText>
-        </RowFixed>
-        <RowFixed gap="0px">
-          <Text fontSize="24px" ml="10px">
-            {outputCurrency.symbol}
-          </Text>
-        </RowFixed>
-      </RowBetween>
-      <AutoColumn justify="flex-start" gap="sm" style={{ padding: '24px 0 0 0px', maxWidth: '650px' }}>
-        <Text small color="textSubtle" textAlign="left" style={{ width: '100%' }}>
-          {estimatedText}
-          <b>
-            {amount} {symbol}
-          </b>
-          {transactionRevertText}
+        </Text>
+        <Text fontSize="32px" ml="0px">
+          {outputCurrency.symbol}
+        </Text>
+        </Flex>
+  </SwapFlow>
+    
+    <AutoColumn justify="flex-start" gap="sm" style={{ padding: '24px 0 0 0px', maxWidth: '650px' }}>
+      <Text fontSize="14px" color="text" textAlign="left" style={{ width: '100%' }}>
+        {estimatedText}
+        <b>
+          {amount} {symbol}
+        </b>
+        {transactionRevertText}
+      </Text>
+    </AutoColumn>
+    {recipient !== null ? (
+      <AutoColumn justify="flex-start" gap="sm" style={{ padding: '12px 0 0 0px' }}>
+        <Text color="textSubtle">
+          {recipientSentToText}
+          <b title={recipient}>{truncatedRecipient}</b>
+          {postSentToText}
         </Text>
       </AutoColumn>
-      {recipient !== null ? (
-        <AutoColumn justify="flex-start" gap="sm" style={{ padding: '12px 0 0 0px' }}>
-          <Text color="textSubtle">
-            {recipientSentToText}
-            <b title={recipient}>{truncatedRecipient}</b>
-            {postSentToText}
-          </Text>
-        </AutoColumn>
-      ) : null}
-    </AutoColumn>
+    ) : null}
+  </Flex>
   )
 }

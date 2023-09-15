@@ -36,12 +36,15 @@ const ConfirmedIcon = styled(ColumnCenter)`
 
 const StyledModal = styled(Modal)`
   position: relative;
-  margin-top: 100px;
-  padding: 12px;
+  margin-top: 0px;
+  padding: 0px;
   width: 100%;
-  max-width: 800px !important;
+  max-width: 400px !important;
   margin-left: auto;
   margin-right: auto;
+  @media (min-width: 768px) {
+    max-width: 550px !important; 
+    }
 `
 
 function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
