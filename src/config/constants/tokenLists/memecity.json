@@ -36,6 +36,14 @@
     "logoURI": "https://baseswap.fi/images/tokens/0xAdBa4694F5deAF3251d06dec38C86946F8952EFB.png"
   }, 
   {
+    "name": "DorkLord",
+    "symbol": "DORKL",
+    "address": "0xfc7C9437c8B065301501f7ab8beB65fE3bB06125",
+    "chainId": 8453,
+    "decimals": 18,
+    "logoURI": "https://baseswap.fi/images/tokens/0xfc7C9437c8B065301501f7ab8beB65fE3bB06125.png"
+  }, 
+  {
     "name": "EBASE",
     "symbol": "EBASE",
     "address": "0x60Cbb875D3c6314280Dd90a4Fe6cAFC1d7Ce5DfD",
