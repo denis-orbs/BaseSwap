@@ -1,9 +1,9 @@
 import { memo } from 'react'
 import styled from 'styled-components'
-import { ButtonMenu, ButtonMenuItem, LinkExternal, Flex, Svg, Image, Button, TwitterIcon, TelegramIcon, DiscordIcon } from '@pancakeswap/uikit'
+import { ButtonMenu, ButtonMenuItem, LinkExternal, Link, Flex, Svg, Image, Button, TwitterIcon, TelegramIcon, DiscordIcon } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { EXCHANGE_DOCS_URLS } from 'config/constants'
-
+import { IoMdDocument } from 'react-icons/io'
 
 const Wrapper = memo(styled.div<{ $isSide: boolean }>`
   width: 100%;
@@ -21,23 +21,11 @@ const Wrapper = memo(styled.div<{ $isSide: boolean }>`
     display: flex; 
   }
 `)
-
-const BubbleWrapper = styled(Flex)`
-  svg {
-    fill: ${({ theme }) => theme.colors.textSubtle};
-    transition: background-color 0.2s, opacity 0.2s;
-  }
-  &:hover {
-    svg {
-      opacity: 0.65;
-    }
-  }
-  &:active {
-    svg {
-      opacity: 0.85;
-    }
-  }
-`
+const DocsIcon = styled(IoMdDocument)`
+  color: #0154FD;
+  width: 28px;
+  height: 28px; 
+`;
 
 type FooterVariant = 'default' | 'side'
 
@@ -49,73 +37,41 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
   const isSide = variant === 'side'
   return (
     <Wrapper $isSide={isSide}>
-      <Flex flexDirection={isSide ? 'column' : ['column', 'column', 'row']} alignItems="center">
-        <ButtonMenu variant="subtle" scale="sm" activeIndex={0}>
-          {/* <ButtonMenuItem>V2</ButtonMenuItem>
-          <ButtonMenuItem as="a" href="https://v1exchange.pancakeswap.finance/#/">
-            {t('V1 (old)')}
-          </ButtonMenuItem> */}
-        </ButtonMenu>
-        <LinkExternal
-          id="bridgetoBase"
-          href="https://app.symbiosis.finance/swap?chainIn=Ethereum&chainOut=Base&tokenIn=ETH&tokenOut=ETH"
-          ml={[0, 0, '40px']}
-          mt={['10px', '10px', isSide ? '10px' : 0]}
-          mb={['4px', '4px', 0]} style={{ fontSize: '18px', fontWeight: '400' }}
-        >
-          {t('Bridge to Base!')}
-        </LinkExternal>
-      </Flex>
       {isSide && <Flex flexGrow={1} />}
       <Flex
+        flexDirection={['row', null, null, 'column' ]}
         flexGrow={isSide ? 0 : 1}
-        alignItems="center"
-        mb="8px" mr="8px" 
+        alignItems={['center', null, null, 'flex-end' ]}
+        mb="12px" mr="8px" 
         width={['100vw', '100%', '100%', isSide ? '100%' : 'auto']}
-        justifyContent={['center', 'center', 'center', 'flex-end']}
-      >
-          <ButtonMenuItem
-          as="a"
-          href="https://twitter.com/BaseSwap_Fi"
-          variant="secondary"
-          style={{ color: '#0154FD', borderWidth: '4px', borderColor:'#0154FD', marginRight: '1rem' }}
-        >
-         <TwitterIcon color="#0154FD" /> Twitter
-        </ButtonMenuItem>
-        <ButtonMenuItem
-          as="a"
-          href="https://discord.gg/2zUzjyGxw2"
-          variant="secondary"
-          style={{ color: '#0154FD', borderWidth: '4px', borderColor:'#0154FD', marginRight: '1rem' }}
-        >
-         <DiscordIcon color="#0154FD" /> Discord
-        </ButtonMenuItem>
-        <ButtonMenuItem
-          as="a"
-          href="https://t.me/BaseswapFi"
-          variant="secondary"
-          style={{ color: '#0154FD', borderWidth: '4px', borderColor:'#0154FD', marginRight: '1rem' }}
-        >
-         <TelegramIcon color="#0154FD" />  Telegram
-        </ButtonMenuItem>
-        <ButtonMenuItem
-          as="a"
-          href="https://base-swap-1.gitbook.io/baseswap/"
-          variant="secondary"
-          style={{ color: '#0154FD', borderWidth: '4px', borderColor:'#0154FD', }}
-        >
-          Docs
-        </ButtonMenuItem>
-        {/* <BubbleWrapper>
-          <Button id="clickExchangeHelp" as="a" external href={helpUrl} variant="subtle">
-            {t('Need help ?')}
-          </Button>
-          <Svg viewBox="0 0 16 16">
-            <path d="M0 16V0C0 0 3 1 6 1C9 1 16 -2 16 3.5C16 10.5 7.5 16 0 16Z" />
-          </Svg>
-        </BubbleWrapper>
+        justifyContent={['center', 'center', 'center', 'flex-end']} 
         
-        */}
+        >
+        
+          <Link marginRight={['1rem', null, null, '0rem' ]} 
+          marginBottom={['0px', null, null, '16px']}
+          href="https://twitter.com/BaseSwap_Fi" >
+                <TwitterIcon width="28px" color="#0154FD" /> 
+          </Link>
+
+          <Link 
+          marginBottom={['0px', null, null, '16px']}
+          marginRight={['1rem', null, null, '0rem' ]} href="https://discord.gg/2zUzjyGxw2" >
+                <DiscordIcon width="28px" color="#0154FD" /> 
+          </Link>
+
+          <Link 
+          marginBottom={['0px', null, null, '10px']}
+
+          marginRight={['1rem', null, null, '0rem' ]} href="https://t.me/BaseswapFi" >
+                <TelegramIcon width="28px" color="#0154FD" /> 
+          </Link>
+        
+          <Link            
+          marginBottom={['0px', null, null, '0px']}
+          href="https://base-swap-1.gitbook.io/baseswap/" >
+                <DocsIcon />
+          </Link>
       </Flex>
     </Wrapper>
   )
