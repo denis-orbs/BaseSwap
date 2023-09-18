@@ -55,6 +55,7 @@ export type TokenLookupKey =
   | 'GMD'
   | 'GND'
   | 'MAI'
+  | 'BULLRUN'
   | 'DOLA'
   | 'ARX'
 
@@ -148,6 +149,11 @@ export const TOKEN_INF0: TokenInfoMapping = {
   EDE: {
     addresses: {
       [ChainId.BASE]: '0x0A074378461FB7ed3300eA638c6Cc38246db4434',
+    },
+  },
+  BULLRUN: {
+    addresses: {
+      [ChainId.BASE]: '0x1A9132ee02d7E98e51b7389D2e7BB537184867Aa',
     },
   },
   CBETH: {

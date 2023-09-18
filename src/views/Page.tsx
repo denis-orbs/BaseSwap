@@ -69,6 +69,7 @@ const Page: React.FC<
     removePadding?: boolean
     hideFooterOnDesktop?: boolean
     noMinHeight?: boolean
+    minHeight?: string 
     helpUrl?: string
   }
 > = ({
@@ -76,13 +77,14 @@ const Page: React.FC<
   removePadding = false,
   hideFooterOnDesktop = false,
   noMinHeight = false,
+  minHeight, 
   helpUrl = EXCHANGE_DOCS_URLS,
   ...props
 }) => {
   return (
     <>
       <PageMeta />
-      <StyledPage $removePadding={removePadding} $noMinHeight={noMinHeight} {...props}>
+      <StyledPage $removePadding={removePadding} $noMinHeight={noMinHeight}  {...props}>
         {children}
         <Flex flexGrow={1} />
         <Box

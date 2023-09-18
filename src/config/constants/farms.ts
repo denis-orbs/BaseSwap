@@ -334,10 +334,24 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.usdbc,
     classic: true,
     isPartner: true, 
-    // points: 70 -- > 50 
+    // points: 50
 
   },
-
+  {
+    pid: 24,
+    lpSymbol: 'BULLRUN-ETH LP',
+    lpAddresses: {
+      [ChainId.BASE]: '0xeD89cC1fc96F749CceD4b94eA366A0d4c7C1826f',
+    },
+    nftPoolAddress: {
+      [ChainId.BASE]: '0xda010d0EC9D32083eF627781d55b58Ac510a1e37',
+    },
+    token: serializedTokens.bullrun,
+    quoteToken: serializedTokens.wbnb,
+    classic: true,
+    isPartner: true, 
+    // points: 10
+  },
   {
     pid: 9,
     lpSymbol: 'EDE-WETH LP',
@@ -350,7 +364,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.ede,
     quoteToken: serializedTokens.wbnb,
     classic: true,
-    isPartner: true, 
+    isPartner: true,
     // points: 5 --> 0 
   },
 
@@ -368,7 +382,7 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.wbnb,
     classic: true,
     isPartner: true, 
-    // points: 1 --> 0 
+    // points: 0
 
   },
 

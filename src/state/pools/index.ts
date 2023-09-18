@@ -128,7 +128,8 @@ export const fetchPoolsPublicDataAsync = (currentBlockNumber: number) => async (
       item.pid !== 20 && 
       item.pid !== 21 && 
       item.pid !== 22 &&
-      item.pid !== 23 
+      item.pid !== 23 && 
+      item.pid !== 24
 
       )
 

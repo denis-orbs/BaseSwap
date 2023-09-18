@@ -2520,6 +2520,15 @@ const EDE_BASE = new Token(
   'https://app.ede.finance/#/',
 )
 
+const BULLRUN_BASE = new Token(
+  ChainId.BASE,
+  '0x1A9132ee02d7E98e51b7389D2e7BB537184867Aa',
+  18,
+  'BULLRUN',
+  'BullRun',
+  'baseswap.fi',
+)
+
 const USDP_BASE = new Token(
   ChainId.BASE,
   '0xB79DD08EA68A908A97220C76d19A6aA9cBDE4376',
@@ -2686,6 +2695,7 @@ export const baseTokens = {
   mai: MAI_BASE,    
   dola: DOLA_BASE, 
   arx: ARX_BASE, 
+  bullrun: BULLRUN_BASE, 
 }
 
 export const bscTestnetTokens = {
