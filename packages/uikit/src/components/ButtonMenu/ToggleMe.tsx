@@ -18,17 +18,17 @@ background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
   }
 `;
 
-const ButtonMenuItem: PolymorphicComponent<ButtonMenuItemProps, "button"> = ({
+const ToggleMe: PolymorphicComponent<ButtonMenuItemProps, "button"> = ({
   isActive = false,
   variant = variants.PRIMARY,
   as,
   ...props
 }: ButtonMenuItemProps) => {
-  if (!isActive) {
+  if (isActive) {
     return <InactiveButton forwardedAs={as} variant={variant} {...props} />;
   }
 
   return <Button as={as} variant={variant} scale="xs" {...props} />;
 };
 
-export default ButtonMenuItem;
+export default ToggleMe;

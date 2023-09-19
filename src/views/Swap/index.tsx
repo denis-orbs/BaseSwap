@@ -7,6 +7,7 @@ import { warningSeverity, formatExecutionPriceOdos } from 'utils/exchange'
 import {
   Button,
   ButtonMenu,
+  ToggleMe,
   ButtonMenuItem,
   Heading,
   Text,
@@ -85,6 +86,8 @@ const WelcomeTypeIt = styled(TypeIt)`
   }
 `;
 
+
+
 const Label = styled(Text)`
   font-size: 12px;
   font-weight: bold;
@@ -145,8 +148,8 @@ export default function Swap() {
   const TabsComponent: React.FC = () => (
     <Tabs>
       <ButtonMenu scale="sm" onItemClick={handleClick} activeIndex={view} fullWidth>
-        <ButtonMenuItem style={{ height: 40 }}>{t('BaseSwap')}</ButtonMenuItem>
-        <ButtonMenuItem style={{ height: 40 }}>{t('Cross Chain Swap')}</ButtonMenuItem>
+        <ToggleMe style={{ height: 40 }}>{t('BaseSwap')}</ToggleMe>
+        <ToggleMe style={{ height: 40 }}>{t('Cross Chain Swap')}</ToggleMe>
       </ButtonMenu>
     </Tabs>
   )

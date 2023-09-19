@@ -189,13 +189,13 @@ export const styleVariants = {
           },
   },
   [variants.CALCULATOR]: {
-    backgroundColor: "#fff",
-    color: "background",
+    background: `${darkColors.background}`,
+    color: "text",
     fontWeight: "500", 
-    borderRadius: "2px", 
+    borderRadius: "8px", 
     boxShadow: "inset 0 0 2px #000", 
     border: "2px solid", 
-    borderColor: "text", 
+    borderColor: "background", 
     ":hover": {
       backgroundColor: "background", 
       borderColor: "text", 
@@ -274,12 +274,12 @@ export const styleVariants = {
     },
   },
   [variants.TERTIARY]: {
-    backgroundColor: "text",
+    background: `${darkColors.gradients.basedsexgray}`,
     boxShadow: "inset 0 0 2px #000", 
     border: "2px solid", 
-    borderColor: "text", 
-    color: "background",
-    borderRadius: "2px", 
+    borderColor: "background", 
+    color: "text",
+    borderRadius: "6px", 
    
   },
   [variants.QUAD]: {
