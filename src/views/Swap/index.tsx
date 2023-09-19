@@ -96,8 +96,8 @@ const Label = styled(Text)`
 
 const SwitchIconButton = styled(IconButton)`
   box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
-  background-color: ${({ theme }) => theme.colors.primary};
-
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+  border-radius: 8px; 
   .icon-up-down {
     display: none;
   }

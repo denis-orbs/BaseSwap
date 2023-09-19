@@ -7,6 +7,7 @@ import {
   ButtonMenu,
   ButtonMenuItem,
   Heading,
+  ToggleMe,
   Text,
   ArrowDownIcon,
   Box,
@@ -96,8 +97,8 @@ const Label = styled(Text)`
 
 const SwitchIconButton = styled(IconButton)`
   box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
-  background-color: ${({ theme }) => theme.colors.primary};
-
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+  border-radius: 8px; 
   .icon-up-down {
     display: none;
   }
@@ -168,8 +169,8 @@ export default function Swap() {
   const TabsComponent: React.FC = () => (
     <Tabs>
       <ButtonMenu scale="sm" onItemClick={handleClick} activeIndex={view} fullWidth>
-        <ButtonMenuItem style={{ height: 40 }}>{t('BaseSwap')}</ButtonMenuItem>
-        <ButtonMenuItem style={{ height: 40 }}>{t('Cross Chain Swap')}</ButtonMenuItem>
+        <ToggleMe style={{ height: 40 }}>{t('BaseSwap')}</ToggleMe>
+        <ToggleMe style={{ height: 40 }}>{t('Cross Chain Swap')}</ToggleMe>
       </ButtonMenu>
     </Tabs>
   )
