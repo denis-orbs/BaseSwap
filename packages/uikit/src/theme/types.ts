@@ -28,6 +28,8 @@ export type Shadows = {
   inset: string;
   tooltip: string;
   basicass: string; 
+  connect: string; 
+  connecthover: string; 
 };
 
 export type Gradients = {

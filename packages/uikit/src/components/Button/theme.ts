@@ -1,6 +1,6 @@
 import { scales, variants } from "./types";
 import { darkColors } from "../../theme";
-
+import { shadows } from "../../theme/base";
 
 export const scaleVariants = {
   [scales.MD]: {
@@ -172,20 +172,21 @@ export const styleVariants = {
     },
   },
   [variants.MENUCONNECT]: {
-    background: `${darkColors.background}`,
+    background: `${darkColors.gradients.basedsexgrayflip}`,
     color: "text",
     fontSize: '1rem', 
     fontWeight: "500", 
     textTransform: "uppercase", 
-    borderRadius: "2px", 
-    border: "4px solid", 
+    borderRadius: "8px", 
+    boxShadow: `${shadows.connect}`,
+
+    border: "3px solid", 
     borderColor: "background", 
     ":hover": {
-      borderColor:"background", 
-      backgroundColor:"#111",
-      color: "background", 
-      transform: "translateY(1px)",
-    },
+      borderWidth: "2px solid", 
+      background: `${darkColors.gradients.basedsexgray}`,
+      boxShadow: `${shadows.connecthover}`,
+          },
   },
   [variants.CALCULATOR]: {
     backgroundColor: "#fff",

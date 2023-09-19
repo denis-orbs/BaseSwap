@@ -288,7 +288,7 @@ export default function Pool() {
                 />
               ) : (
                 <ErrorContainer>
-                  <Text color={theme.colors.tertiary} textAlign="center">
+                  <Text color={theme.colors.tertiary} textAlign="center" marginBottom="1rem" >
                     <InboxIcon strokeWidth={1} style={{ marginTop: '2em' }} />
                     <div>
                       <Trans>Your active V3 liquidity positions will appear here.</Trans>
@@ -303,7 +303,7 @@ export default function Pool() {
                       <Text color="#fff" >Show closed positions</Text>
                     </Button>
                   )}
-                  {showConnectAWallet && <ConnectWalletButton />}
+                  {showConnectAWallet && <ConnectWalletButton marginBottom="1rem" marginTop="2rem" />}
                 </ErrorContainer>
               )}
             </MainContentWrapper>

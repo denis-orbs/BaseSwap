@@ -25,6 +25,9 @@ export const shadows: Shadows = {
   level1: "0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 1px 1px rgba(25, 19, 38, 0.05)",
   active: "0px 0px 0px 1px #0098A1, 0px 0px 4px 8px rgba(31, 199, 212, 0.4)",
   basicass: "0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF",  
+  connect: "0 2px 4px #fff, 8px 0px 8px #0154FD, -7px 0px 7px #68B9FF",  
+  connecthover: "0 4px 8px #68B9FF, 4px 0px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF", 
+
   success: "0px 0px 0px 1px #31D0AA, 0px 0px 0px 4px rgba(49, 208, 170, 0.2)",
   warning: "0px 0px 0px 1px #ffd700, 0px 0px 0px 4px rgba(255, 215, 0, 0.5)",
   focus: "0px 0px 0px 1px #0154FE, 0px 0px 0px 4px rgba(255, 255, 255, 0.5)",

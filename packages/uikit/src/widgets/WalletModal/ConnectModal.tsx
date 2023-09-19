@@ -67,7 +67,7 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayC
     <ModalContainer minWidth="320px">
       <ModalHeader background={getThemeValue(theme, "colors.backgroundAlt")}>
         <ModalTitle>
-          <Text  >{t("Connect Wallet")}</Text>
+          <Text fontSize="2rem"  >{t("CONNECT WALLET")}</Text>
         </ModalTitle>
         <ModalCloseButton onDismiss={onDismiss} />
       </ModalHeader>
