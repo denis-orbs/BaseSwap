@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Button, Modal, Text, Flex, Box, BalanceInput, Skeleton, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { Button, ChevronDownIcon, ChevronUpIcon, Modal, Text, Flex, Box, BalanceInput, AddIcon, RemoveIcon, Skeleton, useMatchBreakpoints } from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
@@ -23,6 +23,16 @@ const RedeemText = styled.div<TextProps>`
 
   line-height: ${(props) => (props.isMobile ? '1rem' : '1rem')};
   margin-bottom: ${(props) => (props.isMobile ? '1rem' : '1rem')};
+
+`
+
+const AddMe = styled(ChevronUpIcon)`
+  color: ${({ theme }) => theme.colors.background};
+  size: 2rem; 
+`
+
+const RemoveMe = styled(ChevronDownIcon)`
+  color: ${({ theme }) => theme.colors.background};
 
 `
 
@@ -170,12 +180,12 @@ const XTokenRedeemModal: React.FC<xTokenRedeemModalProps> = ({ userXTokenBalance
         </Box>
 
         <Flex justifyContent="space-around" mt="15px">
-          <Button variant="secondary"  onClick={resetRedeemTime}>
+          <Button variant="primary"  onClick={resetRedeemTime}>
             Reset
           </Button>
 
-          <Button variant="menuconnect"  onClick={decrementVesting}>
-            -
+          <Button variant="gasoff"  onClick={decrementVesting}>
+          <RemoveMe />
           </Button>
 
           <Flex flexDirection="column">
@@ -196,11 +206,11 @@ const XTokenRedeemModal: React.FC<xTokenRedeemModalProps> = ({ userXTokenBalance
             </Text>
           </Flex>
 
-          <Button variant="menuconnect" className="glow2small" onClick={incrementVesting}>
-            +
+          <Button variant="gasoff"  onClick={incrementVesting}>
+            <AddMe />
           </Button>
 
-          <Button variant="secondary" className="glow2small" mr="15px" onClick={handleMaxRedeemTime}>
+          <Button variant="primary" className="glow2small" mr="15px" onClick={handleMaxRedeemTime}>
             MAX
           </Button>
         </Flex>
@@ -209,23 +219,22 @@ const XTokenRedeemModal: React.FC<xTokenRedeemModalProps> = ({ userXTokenBalance
   }
 
   return (
-    <Modal title="Redeem xBSX" onDismiss={onDismiss}>
-      <Box maxWidth="500px" mb="30px">
-        <Text color="text" fontSize="14px"  textAlign="center" mb="15px">
-          Convert xBSX into BSX below. Vesting is linear; you will receive 
-          more BSX the longer the vesting period selected. 
+    <Modal title="REDEEM xBSX" onDismiss={onDismiss}>
+      <Box maxWidth={isMobile? '100vw' : '50vw' } mb="20px">
+        <Text color="text" fontSize="16px"  textAlign="center" mb="15px">
+        Redeem your xBSX for BSX here. The longer you wait, the more BSX you get: <br /> <br />
+       🔵 Select 2 weeks (minimum): Get 0.5 BSX for each xBSX. <br /> 
+       🔵 Select 4 weeks (maximum): Get 1 BSX for each xBSX.
         </Text>
         <Text color="text" fontSize="14px"  textAlign="center" mb="15px">
-          Vesting can be a minimum of 15 days, which will return 0.5 BSX for every 1 xBSX. 
-          If you select the full vesting period of 30 days, you will receive 1 BSX for every 1 xBSX. 
           You can cancel a redemption at any time. 
         </Text>
 
       
           <Flex height="100%" flexDirection="row" alignItems="flex-end" justifyContent="space-between">
-            <BalanceInput  height="100%" width="50%" value={convertAmount} onUserInput={handleInputChange} decimals={18} />
+            <BalanceInput width="50%" value={convertAmount} onUserInput={handleInputChange} decimals={18} />
 
-            <Button width="20%"  variant="secondary" onClick={handleMaxInput}>
+            <Button width="20%"  variant="primary" onClick={handleMaxInput}>
               Max
             </Button>
           </Flex>

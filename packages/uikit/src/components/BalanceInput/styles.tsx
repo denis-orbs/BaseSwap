@@ -18,14 +18,14 @@ export const UnitContainer = styled(Text)`
 
 export const StyledBalanceInput = styled(Box)<{ isWarning: BalanceInputProps["isWarning"] }>`
   background-color: ${({ theme }) => theme.colors.gradients.basedsex};
-  border: 1px solid ${({ theme }) => theme.colors.text};
-  border-radius: 2px;
-  box-shadow: ${({ theme, isWarning }) => theme.shadows[isWarning ? "warning" : "inset"]};
+  border: 2px solid ${({ theme }) => theme.colors.text};
+  border-radius: 12px;
   padding: 8px 16px;
 `;
 
 export const StyledInput = styled(Input)<{ textAlign?: string }>`
   background: transparent;
+  font-size: 16px; 
   border-radius: 0;
   box-shadow: none;
   padding-left: 0;
