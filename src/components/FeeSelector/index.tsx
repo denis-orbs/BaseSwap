@@ -36,6 +36,7 @@ const FocusedOutlineCard = styled(Card)<{ pulsing: boolean }>`
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   animation: ${({ pulsing, theme }) => pulsing && pulse(theme.colors.primary)} 0.6s linear;
   align-self: center;
+  padding: 8px; 
 `
 
 const Select = styled.div`
@@ -135,7 +136,7 @@ export default function FeeSelector({
   }, [previousFeeAmount, feeAmount])
 
   return (
-    <AutoColumn gap="16px">
+    <AutoColumn gap="8px">
       <DynamicSection gap="md" disabled={disabled}>
         <FocusedOutlineCard pulsing={pulsing} onAnimationEnd={() => setPulsing(false)} mb={2} mt={3}>
           <RowBetween>
@@ -169,7 +170,7 @@ export default function FeeSelector({
 
             <Button onClick={() => setShowOptions(!showOptions)} 
             width="35%" variant="gasoff" 
-            padding="4px">
+            >
               {showOptions ? <Trans>Hide</Trans> : <Trans>Edit</Trans>}
             </Button>
           </RowBetween>

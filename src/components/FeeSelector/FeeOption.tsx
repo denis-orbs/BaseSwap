@@ -5,25 +5,14 @@ import { useFeeTierDistribution } from 'hooks/v3/useFeeTierDistribution'
 import { PoolState } from 'hooks/v3/usePools'
 import React from 'react'
 import styled, { css } from 'styled-components'
-
 import { FeeTierPercentageBadge } from './FeeTierPercentageBadge'
 import { FEE_AMOUNT_DETAIL } from './shared'
 import { useTranslation } from '@pancakeswap/localization'
-import { LightTertiaryCard } from 'components/Card'
+import { FeeSelectCard } from 'components/Card'
 
-// const ResponsiveText = styled(Text)`
-//   line-height: 16px;
-//   font-size: 14px;
-
-//   ${({ theme }) => theme.deprecated_mediaWidth.deprecated_upToSmall`
-//     font-size: 12px;
-//     line-height: 12px;
-//   `};
-// `
 const ResponsiveText = styled(Text)`
-  font-size: 12px;
+  font-size: 16px;
 `
-
 const FeeOptionContainer = styled.div<{ active: boolean }>`
   cursor: pointer;
   height: 100%;
@@ -31,10 +20,10 @@ const FeeOptionContainer = styled.div<{ active: boolean }>`
   ${({ active }) =>
     active &&
     css`
-      background-image: ${({ theme }) => theme.colors.gradients.basedsexgray};
+      box-shadow: 0 0 4px #fff; 
     `}
   border-radius: 12px;
-  padding: 2px 2px 4px 2px;
+  padding: 0px; 
   &:hover {
     opacity: 0.7;
   }
@@ -51,29 +40,12 @@ interface FeeOptionProps {
 export function FeeOption({ feeAmount, active, poolState, distributions, onClick }: FeeOptionProps) {
   const { t } = useTranslation()
 
-  // return (
-  //   <Button onClick={onClick}>
-  //     <AutoColumn gap="sm" justify="flex-start">
-  //       <AutoColumn justify="flex-start" gap="6px">
-  //         <ResponsiveText>{t(`${FEE_AMOUNT_DETAIL[feeAmount].label}%`)}</ResponsiveText>
-  //         <Text fontWeight={400} fontSize="12px" textAlign="left">
-  //           {FEE_AMOUNT_DETAIL[feeAmount].description}
-  //         </Text>
-  //       </AutoColumn>
-
-  //       {distributions && (
-  //         <FeeTierPercentageBadge distributions={distributions} feeAmount={feeAmount} poolState={poolState} />
-  //       )}
-  //     </AutoColumn>
-  //   </Button>
-  // )
-
   return (
     <FeeOptionContainer active={active} onClick={onClick}>
-      <LightTertiaryCard active={active} height="100%">
-        <AutoColumn justify="flex-start" gap="6px">
+      <FeeSelectCard active={active} height="100%">
+        <AutoColumn justify="center">
           <ResponsiveText>{t(`${FEE_AMOUNT_DETAIL[feeAmount].label}%`)}</ResponsiveText>
-          <Text fontWeight={400} fontSize="12px" textAlign="left">
+          <Text fontWeight={400} fontSize="12px">
             {FEE_AMOUNT_DETAIL[feeAmount].description}
           </Text>
 
@@ -81,7 +53,7 @@ export function FeeOption({ feeAmount, active, poolState, distributions, onClick
             <FeeTierPercentageBadge distributions={distributions} feeAmount={feeAmount} poolState={poolState} />
           )}
         </AutoColumn>
-      </LightTertiaryCard>
+      </FeeSelectCard>
     </FeeOptionContainer>
   )
 }

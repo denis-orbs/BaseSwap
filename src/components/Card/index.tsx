@@ -39,10 +39,10 @@ export const GreyCard = styled(Card)`
   background-color: transparent;
 `
 
-export const LightTertiaryCard = styled(Card)<{ active: boolean }>`
-  border: 1px solid ${({ theme, active }) => (active ? 'none' : theme.colors.cardBorder)};
-  background: ${({ theme, active }) => (active ? theme.colors.gradients.based69: theme.colors.gradients.basedsexgrayflip)};
-  padding: 4px; 
+export const FeeSelectCard = styled(Card)<{ active: boolean }>`
+  border: 1px solid ${({ theme, active }) => (active ? theme.colors.text : theme.colors.cardBorder)};
+  background: ${({ theme, active }) => (active ? theme.colors.gradients.basedsexgray: theme.colors.gradients.basedsexgrayflip)};
+  padding: 0px; 
 `
 
 export const OutlineCard = styled(RebassBox)`

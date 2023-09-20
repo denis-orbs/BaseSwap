@@ -10,14 +10,6 @@ export const BodyWrapper = styled(Card)`
   max-width: 550px;
   width: 100%;
 `
-// export const BodyWrapper = styled(Card)`
-//   border-radius: 8px;
-//   background-color: #000;
-//   padding: 0.2rem;
-//   box-shadow: 0 2px 12px #000;
-//   max-width: 550px;
-//   width: 100%;
-// `
 
 /**
  * The styled container element that wraps the content of most pages and the tabs.

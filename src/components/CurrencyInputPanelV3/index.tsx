@@ -248,7 +248,7 @@ export default function CurrencyInputPanelV3({
                     <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={24} margin />
                   </span>
                 ) : (
-                  currency && <CurrencyLogo style={{ marginRight: '0.5rem' }} currency={currency} size="24px" />
+                  currency && <CurrencyLogo style={{ marginRight: '0.5rem' }} currency={currency} size="48px" />
                 )}
                 {pair ? (
                   <StyledTokenName className="pair-name-container">

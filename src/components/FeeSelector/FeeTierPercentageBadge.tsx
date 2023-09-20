@@ -24,7 +24,7 @@ export function FeeTierPercentageBadge({
         {!distributions || poolState === PoolState.NOT_EXISTS || poolState === PoolState.INVALID ? (
           <Trans>Not created</Trans>
         ) : distributions[feeAmount] !== undefined ? (
-          <Text fontSize="1rem" color='primaryBright'>
+          <Text fontSize="12px" textAlign="center"  color='primaryBright'>
             {t(`${distributions[feeAmount]?.toFixed(0)}% of investors select this fee tier`)}
           </Text>
         ) : (

@@ -14,11 +14,9 @@ const pulse = (color: string) => keyframes`
   0% {
     box-shadow: 0 0 0 0 ${color};
   }
-
   70% {
     box-shadow: 0 0 0 2px ${color};
   }
-
   100% {
     box-shadow: 0 0 0 0 ${color};
   }
@@ -26,17 +24,14 @@ const pulse = (color: string) => keyframes`
 
 const FocusedOutlineCard = styled(OutlineCard)<{ active?: boolean; pulsing?: boolean }>`
   border-color: ${({ active, theme }) => active && theme.colors.border};
-  padding: 12px;
+  padding: 8px;
   animation: ${({ pulsing, theme }) => pulsing && pulse(theme.colors.gradients.basedsex)} 0.8s linear;
-  margin-bottom: 10px;
-  border-radius: 16px;
+  margin-bottom: 8px;
+  border-radius: 10px;
 `
-
 const InputRow = styled(Flex)`
   display: flex;
-
 `
-
 const SmallButton = styled(Button)`
   border-radius: 8px;
   padding-left: 4px;
@@ -44,19 +39,20 @@ const SmallButton = styled(Button)`
   padding-top: 0px;
   padding-bottom: 0px;
   margin: 2px;
+  height: auto; 
 `
-
 const StyledInput = styled(NumericalInput)<{ usePercent?: boolean }>`
   background-color: transparent;
   font-weight: 500;
-  text-align: left;
-  width: 100%;
-`
 
+  text-align: left;
+  margin-left: 0px; 
+  min-width: 150px; 
+
+`
 const InputColumn = styled(AutoColumn)`
   width: 100%;
 `
-
 const InputTitle = styled(Text)`
   color: ${({ theme }) => theme.colors.text};
   font-size: 12px;
@@ -103,12 +99,9 @@ const StepCounter = ({
   // let user type value and only update parent value on blur
   const [localValue, setLocalValue] = useState('')
   const [useLocalValue, setUseLocalValue] = useState(false)
-
   // animation if parent value updates local value
   const [pulsing, setPulsing] = useState<boolean>(false)
-
   const { t } = useTranslation()
-
   const handleOnFocus = () => {
     setUseLocalValue(true)
     setActive(true)
@@ -147,10 +140,11 @@ const StepCounter = ({
   return (
     <FocusedOutlineCard pulsing={pulsing} active={active} onFocus={handleOnFocus} onBlur={handleOnBlur} width="100%">
       <InputRow >
-        <InputColumn justify="flex-start">
-          <Text fontSize="18px" textAlign="center">
+        <InputColumn  justify="flex-start">
+          <Text fontSize="24px" textAlign="center">
             {title}
           </Text>
+          <Flex flexDirection="row" justifyContent="flex-start"  alignItems="center">
           <StyledInput
             className="rate-input-0"
             value={localValue}
@@ -160,23 +154,24 @@ const StepCounter = ({
               setLocalValue(val)
             }}
           />
-          <InputTitle fontSize={12} textAlign="left">
+          <Text fontSize="20px" >
             {t(`${tokenB} per ${tokenA}`)}
-          </InputTitle>
+          </Text>
+          </Flex>
         </InputColumn>
 
         <AutoRow gap="8px">
           {!locked && (
             <SmallButton variant="gason" data-testid="increment-price-range" onClick={handleIncrement} disabled={incrementDisabled}>
               <ButtonLabel disabled={incrementDisabled} fontSize="12px">
-              <Plus size={36} />
+              <Plus size={48} />
               </ButtonLabel>
             </SmallButton>
           )}
           {!locked && (
             <SmallButton variant="gason" data-testid="decrement-price-range" onClick={handleDecrement} disabled={decrementDisabled}>
               <ButtonLabel disabled={decrementDisabled} fontSize="12px">
-                <Minus size={36} />
+                <Minus size={48} />
               </ButtonLabel>
             </SmallButton>
           )}
