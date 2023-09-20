@@ -633,6 +633,7 @@ function AddLiquidity() {
             </RowBetween>
           )}
         <Button
+        marginBottom="1rem" 
           onClick={() => {
             setShowConfirm(true)
           }}
