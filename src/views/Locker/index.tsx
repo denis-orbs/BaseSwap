@@ -155,7 +155,7 @@ const Locker: FC = () => {
 
   const { account, chainId } = useActiveWeb3React()
   const [tokenAddress, setTokenAddress] = useState('')
-  const [withdrawer, setWithdrawer] = useState('')
+  // const [withdrawer, setWithdrawer] = useState('')
   const [value, setValue] = useState('')
   const [unlockDate, setUnlockDate] = useState(dayjs().add(1, 'day'))
 
@@ -245,7 +245,7 @@ const Locker: FC = () => {
 
   const errorMessage = !isAddress(tokenAddress)
     ? 'Invalid token'
-    : !isAddress(withdrawer)
+    : !isAddress(account)
       ? 'Invalid withdrawer'
       : isNaN(parseFloat(value)) || parseFloat(value) == 0
         ? 'Invalid amount'
@@ -270,7 +270,7 @@ const Locker: FC = () => {
       try {
         const tx = await lockerContract.lockTokensByBaseSwap(
           tokenAddress,
-          withdrawer,
+          account,
           bigNumberValue.toString(),
           dayjs(unlockDate).unix().toString(),
         )
@@ -284,7 +284,7 @@ const Locker: FC = () => {
           )
 
           setTokenAddress('')
-          setWithdrawer('')
+          // setWithdrawer('')
           setValue('')
           setUnlockDate(dayjs());
           toastSuccess(
@@ -308,7 +308,7 @@ const Locker: FC = () => {
         setPendingTx(false)
       }
     }
-  }, [allInfoSubmitted, assetToken, tokenAddress, withdrawer, value, unlockDate, lockerContract])
+  }, [allInfoSubmitted, assetToken, tokenAddress, account, value, unlockDate, lockerContract])
 
   return (
     <>
@@ -379,10 +379,11 @@ const Locker: FC = () => {
                   autoCapitalize="off"
                   spellCheck="false"
                   pattern="^(0x[a-fA-F0-9]{40})$"
-                  onChange={(e) => setWithdrawer(e.target.value)}
-                  value={withdrawer}
+                  disabled
+                  // onChange={(e) => setWithdrawer(e.target.value)}
+                  value={account}
                 />
-                {account && (
+                {/* {account && (
                   <Button
                     onClick={() => setWithdrawer(account)}
                     size="xs"
@@ -391,7 +392,7 @@ const Locker: FC = () => {
                   >
                     Me
                   </Button>
-                )}
+                )} */}
               </Flex>
               <TextContainer>
                 <SubText>Unlock Date</SubText>
