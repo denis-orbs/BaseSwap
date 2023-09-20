@@ -4,9 +4,9 @@ import {
   BunnySlider,
   BarBackground,
   BarProgress,
-  BunnyButt,
   StyledInput,
   SliderLabel,
+  BarBackground2,
   SliderLabelContainer,
 } from "./styles";
 import SliderProps from "./types";
@@ -32,23 +32,24 @@ const Slider: React.FC<SliderProps> = ({
   const progressPercentage = (value / max) * 100;
   const isMax = value === max;
   let progressWidth: string;
-  if (progressPercentage <= 10) {
-    progressWidth = `${progressPercentage + 0.5}%`;
-  } else if (progressPercentage >= 90) {
+  if (progressPercentage === 100) {
+    progressWidth = "100%";
+} else if (progressPercentage >= 90) {
     progressWidth = `${progressPercentage - 4}%`;
-  } else if (progressPercentage >= 60) {
+} else if (progressPercentage >= 60) {
     progressWidth = `${progressPercentage - 2.5}%`;
-  } else {
+} else {
     progressWidth = `${progressPercentage}%`;
-  }
-  const labelProgress = isMax ? "calc(100% - 12px)" : `${progressPercentage}%`;
+}
+  const labelProgress = isMax ? "calc(100% - 0px)" : `${progressPercentage}%`;
   const displayValueLabel = isMax ? "MAX" : valueLabel;
   return (
     <Box position="relative" height="48px" {...props}>
-      {/* <BunnyButt disabled={disabled} /> */}
+
       <BunnySlider>
         <BarBackground disabled={disabled} />
         <BarProgress style={{ width: progressWidth }} disabled={disabled} />
+       
         <StyledInput
           name={name}
           type="range"
@@ -60,6 +61,8 @@ const Slider: React.FC<SliderProps> = ({
           isMax={isMax}
           disabled={disabled}
         />
+
+       
       </BunnySlider>
       {valueLabel && (
         <SliderLabelContainer>
