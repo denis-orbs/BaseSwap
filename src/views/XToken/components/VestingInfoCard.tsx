@@ -10,19 +10,18 @@ import useXTokenActions from '../hooks/useXTokenActions'
 export const TopHalf = styled(Flex)`
   justify-content: space-between;
   align-items: center;
-  border-image: linear-gradient(225deg, #0154FD, #fff) 1;
-  border-bottom: 4px;
+  border-image: linear-gradient(100deg, #0154FD, #68B9FF) 1;
+  border-bottom: 2px;
   border-style: solid;
-  padding-bottom: 1rem;
+  padding-bottom: 4px;
 `
 export const VestingCard = styled(Card)`
-  margin: 15px;
+  margin: 6px;
+  margin-bottom: 18px; 
   min-width: 300px;
-  margin-bottom: 12px;
   max-width: 100%;
   border: 2px solid white; 
-  border-radius: 1px; 
-  box-shadow: 8px 0 1px #000; 
+  border-radius: 8px; 
   display: flex;
   flex-direction column;
   padding: 1rem;
@@ -81,10 +80,9 @@ const VestingInfoCard: React.FC<VestingCardProps> = ({ vesting }) => {
         </Text>
       </TopHalf>
 
-      <Flex justifyContent={['center', null, null, 'center']} mt="15px" mb="0.5rem">
+      <Flex justifyContent={['center', null, null, 'center']} mt="8px" mb="0rem">
         <Button
-          variant="secondary"
-          className="glow2small"
+          variant={!vesting.canFinalize || pendingTx ? "primary" : "secondary"}
           marginX="1rem"
           disabled={!vesting.canFinalize || pendingTx}
           onClick={() => handleAction('finalize')}
@@ -95,7 +93,6 @@ const VestingInfoCard: React.FC<VestingCardProps> = ({ vesting }) => {
         <Button
           variant="secondary"
           marginX="1rem"
-          className="glow2small"
           disabled={vesting.canFinalize || pendingTx}
           onClick={() => handleAction('cancel')}
         >
