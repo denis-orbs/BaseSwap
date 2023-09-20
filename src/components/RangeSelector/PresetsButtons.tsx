@@ -8,8 +8,8 @@ const CustomButton = styled(Button)`
   flex: 1;
   border-radius: 8px;
   font-size: 14px;
-  padding: 2px;
-  height: 30px;
+  padding: 4px;
+  height: 35px; 
 `
 
 interface PresetsButtonsProps {
