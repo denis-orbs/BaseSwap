@@ -82,8 +82,9 @@ const VestingInfoCard: React.FC<VestingCardProps> = ({ vesting }) => {
 
       <Flex justifyContent={['center', null, null, 'center']} mt="8px" mb="0rem">
         <Button
-          variant={!vesting.canFinalize || pendingTx ? "primary" : "secondary"}
+          variant={!vesting.canFinalize || pendingTx ? "primary" : "primary"}
           marginX="1rem"
+          marginBottom="8px" 
           disabled={!vesting.canFinalize || pendingTx}
           onClick={() => handleAction('finalize')}
         >
