@@ -157,8 +157,8 @@ export const baseChain: Chain = {
     symbol: 'ETH',
   },
   rpcUrls: {
-    default: 'https://mainnet.base.org',
-    public: 'https://mainnet.base.org',
+    default: 'https://base-mainnet.g.alchemy.com/v2/8e7lGKMW2LaV9aLcFZ4OfCM1dc9cuPLF',
+    public: 'https://base-mainnet.g.alchemy.com/v2/8e7lGKMW2LaV9aLcFZ4OfCM1dc9cuPLF',
   },
   blockExplorers: {
     default: { name: 'Base Scan', url: 'https://basescan.org/' },
