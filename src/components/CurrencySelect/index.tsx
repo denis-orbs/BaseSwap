@@ -114,7 +114,7 @@ export const CurrencySelect = ({
             )}
           </Text>
 
-        <ArrowDropDownIcon  width="32px" color="text" className="down-icon" />
+        <ArrowDropDownIcon  width={isMobile? '24px' : '32px' } color="text" className="down-icon" />
       </DropDownContainer>
       {account && !!selectedCurrency && !hideBalance && (
         <Box>
