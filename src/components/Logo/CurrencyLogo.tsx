@@ -28,8 +28,6 @@ export default function CurrencyLogo({
     if (currency?.symbol === 'ETH')
       return [`/images/tokens/${'0x4200000000000000000000000000000000000006'.toLowerCase()}.png`]
 
-    console.log(currency)
-
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
         return [...uriLocations, `/images/tokens/${currency.address.toLowerCase()}.png`]

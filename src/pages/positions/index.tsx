@@ -1,6 +1,6 @@
 import Trans from 'components/Trans'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { Button, Text, Flex, Card, useMatchBreakpointsContext } from '@pancakeswap/uikit'
+import { Button, Text, Flex, Card, useMatchBreakpointsContext, SkeletonV2, Skeleton } from '@pancakeswap/uikit'
 import { AutoColumn } from 'components/Column'
 import PositionList from 'components/PositionList'
 import { RowBetween, RowFixed } from 'components/Row'
@@ -299,8 +299,8 @@ export default function Pool() {
                         <Trans>PENDING REWARDS</Trans>
                       </Text>
 
-                      <Text color={theme.colors.primaryBright} fontSize="42px" fontWeight={500}>
-                        {t(`$0`)}
+                      <Text color={theme.colors.primaryBright} fontSize="32px" fontWeight={500}>
+                        {t(rewardData?.pendingValue.valueLabel || '0')}
                       </Text>
                     </AutoColumn>
                     {/* {(feeValue0?.greaterThan(0) || feeValue1?.greaterThan(0)) ? (
@@ -331,44 +331,52 @@ export default function Pool() {
                     </Button>
                   </RowBetween>
                 </AutoColumn>
-                <DarkCard paddingX="0rem" paddingY="4px" style={{ borderWidth: '2px' }}>
-                  <AutoColumn gap="md">
-                    <RowBetween>
-                      <Flex
-                        justifyContent="center"
-                        flexDirection="row"
-                        paddingLeft={isMobile ? '4px' : '4rem'}
-                        alignItems="center"
-                      >
-                        <CurrencyLogo currency={rewardData.bsxCurrency} size="60px" style={{ marginRight: '0.5rem' }} />
-                        <Text color="text" fontSize="1.5rem">
-                          {rewardData.pendingBSX}&nbsp;
-                        </Text>
-                        <Text color="text" fontSize="1.5rem">
-                          {t(`BSX`)}
-                        </Text>
-                      </Flex>
-                      <Flex
-                        justifyContent="center"
-                        flexDirection="row"
-                        paddingRight={isMobile ? '4px' : '4rem'}
-                        alignItems="center"
-                      >
-                        <CurrencyLogo
-                          currency={rewardData.xbsxCurrency}
-                          size="60px"
-                          style={{ marginRight: '0.5rem' }}
-                        />
-                        <Text color="text" fontSize="1.5rem">
-                          {rewardData.pendingXBSX}&nbsp;
-                        </Text>
-                        <Text color="text" fontSize="1.5rem">
-                          {t(`xBSX`)}
-                        </Text>
-                      </Flex>
-                    </RowBetween>
-                  </AutoColumn>
-                </DarkCard>
+                {rewardData ? (
+                  <DarkCard paddingX="0rem" paddingY="4px" style={{ borderWidth: '2px' }}>
+                    <AutoColumn gap="md">
+                      <RowBetween>
+                        <Flex
+                          justifyContent="center"
+                          flexDirection="row"
+                          paddingLeft={isMobile ? '4px' : '4rem'}
+                          alignItems="center"
+                        >
+                          <CurrencyLogo
+                            currency={rewardData.bsxCurrency}
+                            size="60px"
+                            style={{ marginRight: '0.5rem' }}
+                          />
+                          <Text color="text" fontSize="1.5rem">
+                            {rewardData.pendingBSX}&nbsp;
+                          </Text>
+                          <Text color="text" fontSize="1.5rem">
+                            {t(`BSX`)}
+                          </Text>
+                        </Flex>
+                        <Flex
+                          justifyContent="center"
+                          flexDirection="row"
+                          paddingRight={isMobile ? '4px' : '4rem'}
+                          alignItems="center"
+                        >
+                          <CurrencyLogo
+                            currency={rewardData.xbsxCurrency}
+                            size="60px"
+                            style={{ marginRight: '0.5rem' }}
+                          />
+                          <Text color="text" fontSize="1.5rem">
+                            {rewardData.pendingXBSX}&nbsp;
+                          </Text>
+                          <Text color="text" fontSize="1.5rem">
+                            {t(`xBSX`)}
+                          </Text>
+                        </Flex>
+                      </RowBetween>
+                    </AutoColumn>
+                  </DarkCard>
+                ) : (
+                  <Skeleton />
+                )}
               </AutoColumn>
             </Card>
 
