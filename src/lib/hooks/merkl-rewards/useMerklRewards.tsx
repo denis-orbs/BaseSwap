@@ -58,6 +58,12 @@ export default function useMerklRewards() {
       const claims = rewards.map((t) => t.claim)
       const proofs = rewards.map((t) => t.proof)
 
+      setClaimsData({
+        tokens,
+        claims,
+        proofs,
+      })
+
       return {
         rewards,
         bsxCurrency,
