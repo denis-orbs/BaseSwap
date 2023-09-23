@@ -200,7 +200,7 @@ export default function Pool() {
   const router = useRouter()
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpointsContext()
-  const { isLoading: rewardsLoading, data: rewardData } = useMerklRewards()
+  const { isLoading: rewardsLoading, data: rewardData, doClaim, isClaiming } = useMerklRewards()
   // console.log(rewardData)
 
   const theme = useTheme()
@@ -303,35 +303,18 @@ export default function Pool() {
                         {t(rewardData?.pendingValue.valueLabel || '0')}
                       </Text>
                     </AutoColumn>
-                    {/* {(feeValue0?.greaterThan(0) || feeValue1?.greaterThan(0)) ? (
-                        <ResponsiveButtonConfirmed
-                          disabled={collecting || !!collectMigrationHash}
-                          confirmed={!!collectMigrationHash && !isCollectPending}
-                          variant="gason"
-                          style={{ height: '40px' }}
-                          // onClick={() => setShowConfirm(true)}
-                        >
-                          <Text color={theme.colors.text}>
-                            <Trans>Claim rewards</Trans>
-                          </Text>
-                        </ResponsiveButtonConfirmed>
-                      ) : null} */}
-
                     <Button
+                      disabled={isClaiming}
                       onClick={() => {
-                        // router.replace({
-                        //   pathname: '/addV3',
-                        //   query: {
-                        //     currencyIdA: 'ETH',
-                        //   },
-                        // })
+                        // TODO: Claim modal or something?
+                        doClaim()
                       }}
                     >
                       <Text>{t('Claim')}</Text>
                     </Button>
                   </RowBetween>
                 </AutoColumn>
-                {rewardData ? (
+                {!rewardsLoading ? (
                   <DarkCard paddingX="0rem" paddingY="4px" style={{ borderWidth: '2px' }}>
                     <AutoColumn gap="md">
                       <RowBetween>
