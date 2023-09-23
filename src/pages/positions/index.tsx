@@ -1,6 +1,6 @@
 import Trans from 'components/Trans'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { Button, Text, Flex } from '@pancakeswap/uikit'
+import { Button, Text, Flex, Card, useMatchBreakpointsContext } from '@pancakeswap/uikit'
 import { AutoColumn } from 'components/Column'
 import PositionList from 'components/PositionList'
 import { RowBetween, RowFixed } from 'components/Row'
@@ -23,16 +23,18 @@ import TypeIt from 'typeit-react'
 import 'animate.css'
 import { ImMakeGroup } from 'react-icons/im'
 import { CreateNewIcon } from '@pancakeswap/uikit'
-
+import useMerklRewards from 'lib/hooks/merkl-rewards/useMerklRewards'
+import CurrencyLogo from 'components/Logo/CurrencyLogo'
+import { PROTOCOL_TOKEN_V3, XPROTOCOL_TOKEN_V3 } from 'config/constants/tokens-v3'
 
 const PageTitle = styled(Text)`
-font-weight: 400;
-color: #fff;
-text-align: center; 
-text-transform: uppercase; 
-font-size: 40px; 
-@media (min-width: 768px) {
-  font-size: 48px; 
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 40px;
+  @media (min-width: 768px) {
+    font-size: 48px;
   }
 `
 
@@ -97,6 +99,16 @@ const InboxIcon = styled(Inbox)`
   ${IconStyle}
 `
 
+// responsive text
+// disable the warning because we don't use the end prop, we just want to filter it out
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Label = styled(({ end, ...props }) => <Text {...props} />)<{ end?: boolean }>`
+  display: flex;
+  font-size: 16px;
+  justify-content: ${({ end }) => (end ? 'flex-end' : 'flex-start')};
+  align-items: center;
+`
+
 // const ResponsiveButtonPrimary = styled(Button)`
 //   border-radius: 12px;
 //   font-size: 16px;
@@ -126,6 +138,12 @@ const MainContentWrapper = styled.main`
   overflow: hidden;
 `
 
+export const DarkCard = styled(Card)`
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+  border-width: 2px;
+  border-color: ${({ theme }) => theme.colors.background};
+`
+
 function PositionsLoadingPlaceholder() {
   return (
     <LoadingRows>
@@ -150,7 +168,6 @@ function WrongNetworkCard() {
 
   return (
     <>
-
       <PageWrapper>
         <AutoColumn gap="lg" justify="center">
           <AutoColumn gap="lg" style={{ width: '100%' }}>
@@ -174,16 +191,17 @@ function WrongNetworkCard() {
         </AutoColumn>
       </PageWrapper>
       {/* <SwitchLocaleLink /> */}
-
     </>
   )
 }
 
 export default function Pool() {
   const { account, chainId } = useActiveWeb3React()
-  const networkSupportsV2 = useNetworkSupportsV2()
   const router = useRouter()
   const { t } = useTranslation()
+  const { isMobile } = useMatchBreakpointsContext()
+  const { isLoading: rewardsLoading, data: rewardData } = useMerklRewards()
+  // console.log(rewardData)
 
   const theme = useTheme()
   const [userHideClosedPositions, setUserHideClosedPositions] = useUserHideClosedPositions()
@@ -246,18 +264,13 @@ export default function Pool() {
 
   return (
     <Page>
-        <PageTitle>
-            MANAGE  
-            POSITIONS
-        </PageTitle>
-        <Text fontSize="18px">
-          Add or remove liquidity from BaseX Concentrated Liquidity Positions
-        </Text>
+      <PageTitle>MANAGE POSITIONS</PageTitle>
+      <Text fontSize="18px">Add or remove liquidity from BaseX Concentrated Liquidity Positions</Text>
       <PageWrapper>
         <AutoColumn gap="lg" justify="center">
           <AutoColumn gap="lg" style={{ width: '100%' }}>
             <TitleRow padding="0" marginBottom="12px">
-              <Text fontSize="24px"  >
+              <Text fontSize="24px">
                 <Trans>CURRENT POSITIONS</Trans>
               </Text>
               <ButtonRow>
@@ -277,6 +290,88 @@ export default function Pool() {
               </ButtonRow>
             </TitleRow>
 
+            <Card marginBottom="12px" style={{ borderWidth: '3px' }}>
+              <AutoColumn gap="md" style={{ width: '100%', padding: '8px' }}>
+                <AutoColumn gap="md">
+                  <RowBetween style={{ alignItems: 'flex-start' }}>
+                    <AutoColumn gap="md">
+                      <Text fontSize="24px">
+                        <Trans>PENDING REWARDS</Trans>
+                      </Text>
+
+                      <Text color={theme.colors.primaryBright} fontSize="42px" fontWeight={500}>
+                        {t(`$0`)}
+                      </Text>
+                    </AutoColumn>
+                    {/* {(feeValue0?.greaterThan(0) || feeValue1?.greaterThan(0)) ? (
+                        <ResponsiveButtonConfirmed
+                          disabled={collecting || !!collectMigrationHash}
+                          confirmed={!!collectMigrationHash && !isCollectPending}
+                          variant="gason"
+                          style={{ height: '40px' }}
+                          // onClick={() => setShowConfirm(true)}
+                        >
+                          <Text color={theme.colors.text}>
+                            <Trans>Claim rewards</Trans>
+                          </Text>
+                        </ResponsiveButtonConfirmed>
+                      ) : null} */}
+
+                    <Button
+                      onClick={() => {
+                        // router.replace({
+                        //   pathname: '/addV3',
+                        //   query: {
+                        //     currencyIdA: 'ETH',
+                        //   },
+                        // })
+                      }}
+                    >
+                      <Text>{t('Claim')}</Text>
+                    </Button>
+                  </RowBetween>
+                </AutoColumn>
+                <DarkCard paddingX="0rem" paddingY="4px" style={{ borderWidth: '2px' }}>
+                  <AutoColumn gap="md">
+                    <RowBetween>
+                      <Flex
+                        justifyContent="center"
+                        flexDirection="row"
+                        paddingLeft={isMobile ? '4px' : '4rem'}
+                        alignItems="center"
+                      >
+                        <CurrencyLogo currency={rewardData.bsxCurrency} size="60px" style={{ marginRight: '0.5rem' }} />
+                        <Text color="text" fontSize="1.5rem">
+                          {rewardData.pendingBSX}&nbsp;
+                        </Text>
+                        <Text color="text" fontSize="1.5rem">
+                          {t(`BSX`)}
+                        </Text>
+                      </Flex>
+                      <Flex
+                        justifyContent="center"
+                        flexDirection="row"
+                        paddingRight={isMobile ? '4px' : '4rem'}
+                        alignItems="center"
+                      >
+                        <CurrencyLogo
+                          currency={rewardData.xbsxCurrency}
+                          size="60px"
+                          style={{ marginRight: '0.5rem' }}
+                        />
+                        <Text color="text" fontSize="1.5rem">
+                          {rewardData.pendingXBSX}&nbsp;
+                        </Text>
+                        <Text color="text" fontSize="1.5rem">
+                          {t(`xBSX`)}
+                        </Text>
+                      </Flex>
+                    </RowBetween>
+                  </AutoColumn>
+                </DarkCard>
+              </AutoColumn>
+            </Card>
+
             <MainContentWrapper>
               {positionsLoading ? (
                 <PositionsLoadingPlaceholder />
@@ -288,7 +383,7 @@ export default function Pool() {
                 />
               ) : (
                 <ErrorContainer>
-                  <Text color={theme.colors.tertiary} textAlign="center" marginBottom="1rem" >
+                  <Text color={theme.colors.tertiary} textAlign="center" marginBottom="1rem">
                     <InboxIcon strokeWidth={1} style={{ marginTop: '2em' }} />
                     <div>
                       <Trans>Your active V3 liquidity positions will appear here.</Trans>
@@ -296,11 +391,10 @@ export default function Pool() {
                   </Text>
                   {!showConnectAWallet && closedPositions.length > 0 && (
                     <Button
-                    
                       style={{ marginTop: '.5rem' }}
                       onClick={() => setUserHideClosedPositions(!userHideClosedPositions)}
                     >
-                      <Text color="#fff" >Show closed positions</Text>
+                      <Text color="#fff">Show closed positions</Text>
                     </Button>
                   )}
                   {showConnectAWallet && <ConnectWalletButton marginBottom="1rem" marginTop="2rem" />}
