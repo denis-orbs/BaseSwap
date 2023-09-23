@@ -23,16 +23,12 @@ export default function useMerklRewards() {
   const { account, chainId, library } = useActiveWeb3React()
   const { getValueForAmount } = useTokenPrices()
 
-  // TODO: Claim function
-
   const userURL = `${TEST_API_URL}&user=${account}`
   const { data, error, status } = useSWR(userURL, async () => {
     if (account) {
       const resp = await fetch(userURL)
       const data = await resp.json()
-      // console.log(data)
-      // console.log(Object.entries(data.pools))
-      // console.log(data.validRewardTokens)
+
       // console.log(data.merkleRoot)
 
       const bsxAddy = getTokenAddress('ProtocolToken', chainId)
@@ -76,19 +72,28 @@ export default function useMerklRewards() {
   })
 
   const doClaim = useCallback(async () => {
+    if (!claimsData?.claims.length) return
+
     const contractAddress = registry(chainId)?.Merkl?.Distributor
     if (!contractAddress) throw 'Chain not supported'
 
     const signer = getSigner(library, account)
     const contract = Distributor__factory.connect(contractAddress, signer)
-    await (
-      await contract.claim(
-        claimsData.tokens.map((t) => signer._address),
-        claimsData.tokens,
-        claimsData.claims,
-        claimsData.proofs as string[][],
-      )
-    ).wait()
+    const tx = await contract.claim(
+      claimsData.tokens.map((t) => signer._address),
+      claimsData.tokens,
+      claimsData.claims,
+      claimsData.proofs as string[][],
+    )
+    await tx.wait()
+
+    setClaimsData({
+      tokens: [],
+      claims: [],
+      proofs: [],
+    })
+
+    return tx
   }, [chainId])
 
   return {
