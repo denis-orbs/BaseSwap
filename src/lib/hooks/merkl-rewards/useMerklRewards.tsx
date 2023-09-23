@@ -52,7 +52,7 @@ export default function useMerklRewards() {
       const pendingValue = getValueForAmount(bsxAddy, total, 4)
       const hasClaims = total > 0
 
-      const tokens = rewards.filter((k) => k.token)
+      const tokens = rewards.map((k) => k.token)
       const claims = rewards.map((t) => t.claim)
       const proofs = rewards.map((t) => t.proof)
 
@@ -85,16 +85,10 @@ export default function useMerklRewards() {
 
       const signer = getSigner(library, account)
       const contract = Distributor__factory.connect(contractAddress, signer)
-      // const tx = await contract.claim(
-      //   claimsData.tokens.map((t) => signer._address),
-      //   claimsData.tokens,
-      //   claimsData.claims,
-      //   claimsData.proofs as string[][],
-      // )
 
       const receipt = await fetchWithCatchTxError(() => {
         return contract.claim(
-          claimsData.tokens.map((t) => signer._address),
+          claimsData.tokens.map((t) => account),
           claimsData.tokens,
           claimsData.claims,
           claimsData.proofs as string[][],

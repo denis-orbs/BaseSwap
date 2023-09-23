@@ -310,7 +310,7 @@ export default function Pool() {
                         doClaim()
                       }}
                     >
-                      <Text>{t('Claim')}</Text>
+                      <Text>{isClaiming ? t('Claiming..') : t('Claim')}</Text>
                     </Button>
                   </RowBetween>
                 </AutoColumn>
