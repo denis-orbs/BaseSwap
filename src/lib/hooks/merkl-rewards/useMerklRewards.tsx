@@ -19,6 +19,7 @@ const TEST_API_URL = 'https://api.angle.money/v1/merkl?chainId=8453&AMMs[]=bases
 
 export default function useMerklRewards() {
   const [claimsData, setClaimsData] = useState<{ tokens: string[]; proofs: string[][]; claims: string[] }>()
+  const [isClaiming, setIsClaiming] = useState(false)
 
   const { account, chainId, library } = useActiveWeb3React()
   const { getValueForAmount } = useTokenPrices()
@@ -28,8 +29,6 @@ export default function useMerklRewards() {
     if (account) {
       const resp = await fetch(userURL)
       const data = await resp.json()
-
-      // console.log(data.merkleRoot)
 
       const bsxAddy = getTokenAddress('ProtocolToken', chainId)
       const xbsxAddy = getTokenAddress('xProtocolToken', chainId)
@@ -77,23 +76,29 @@ export default function useMerklRewards() {
     const contractAddress = registry(chainId)?.Merkl?.Distributor
     if (!contractAddress) throw 'Chain not supported'
 
-    const signer = getSigner(library, account)
-    const contract = Distributor__factory.connect(contractAddress, signer)
-    const tx = await contract.claim(
-      claimsData.tokens.map((t) => signer._address),
-      claimsData.tokens,
-      claimsData.claims,
-      claimsData.proofs as string[][],
-    )
-    await tx.wait()
+    try {
+      setIsClaiming(true)
 
-    setClaimsData({
-      tokens: [],
-      claims: [],
-      proofs: [],
-    })
+      const signer = getSigner(library, account)
+      const contract = Distributor__factory.connect(contractAddress, signer)
+      const tx = await contract.claim(
+        claimsData.tokens.map((t) => signer._address),
+        claimsData.tokens,
+        claimsData.claims,
+        claimsData.proofs as string[][],
+      )
 
-    return tx
+      setClaimsData({
+        tokens: [],
+        claims: [],
+        proofs: [],
+      })
+
+      return tx
+    } catch (error) {
+      console.log(error)
+      setIsClaiming(false)
+    }
   }, [chainId])
 
   return {
@@ -101,5 +106,6 @@ export default function useMerklRewards() {
     error,
     isLoading: status === FetchStatus.Fetching,
     doClaim,
+    isClaiming,
   }
 }
