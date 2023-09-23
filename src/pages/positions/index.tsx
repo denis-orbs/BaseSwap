@@ -1,6 +1,6 @@
 import Trans from 'components/Trans'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { Button, Text, Flex, Card, useMatchBreakpointsContext, SkeletonV2, Skeleton } from '@pancakeswap/uikit'
+import { Button, Text, Flex, Card, useMatchBreakpointsContext, SkeletonV2, Skeleton, Box } from '@pancakeswap/uikit'
 import { AutoColumn } from 'components/Column'
 import PositionList from 'components/PositionList'
 import { RowBetween, RowFixed } from 'components/Row'
@@ -361,6 +361,14 @@ export default function Pool() {
                   <Skeleton />
                 )}
               </AutoColumn>
+
+              <Flex justifyContent="center">
+                <img
+                  src="https://924174234-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-MZrRrYejMtN3SzZU10r%2Fuploads%2Fgit-blob-ed73190eb9c30bd96c439bdb3af22bf91e8446b9%2Fpowered-by-merkl-dark.png?alt=media"
+                  alt="Merkl powered by Angle Labs"
+                  width="35%"
+                />
+              </Flex>
             </Card>
 
             <MainContentWrapper>

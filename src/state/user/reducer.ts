@@ -93,6 +93,7 @@ export interface UserState {
   hideTimestampPhishingWarningBanner: number
 
   userHideClosedPositions: boolean
+  claimsData: { tokens: string[]; proofs: string[][]; claims: string[] }
 }
 
 function pairKey(token0Address: string, token1Address: string) {
@@ -128,6 +129,11 @@ export const initialState: UserState = {
   watchlistPools: [],
   hideTimestampPhishingWarningBanner: null,
   userHideClosedPositions: false,
+  claimsData: {
+    tokens: [],
+    claims: [],
+    proofs: [],
+  },
 }
 
 export default createReducer(initialState, (builder) =>

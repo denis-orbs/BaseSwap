@@ -25,6 +25,9 @@ export enum ChartViewMode {
 export const updateHideClosedPositions = createAction<{ userHideClosedPositions: boolean }>(
   'user/updateHideClosedPositions',
 )
+export const updateUserClaimsData = createAction<{ tokens: string[]; proofs: string[][]; claims: string[] }>(
+  'user/updateUserClaimsData',
+)
 export const updateUserExpertMode = createAction<{ userExpertMode: boolean }>('user/updateUserExpertMode')
 export const updateUserShowRoute = createAction<{ userShowRoute: boolean }>('user/updateUserShowRoute')
 export const updateUserSingleHopOnly = createAction<{ userSingleHopOnly: boolean }>('user/updateUserSingleHopOnly')
@@ -35,8 +38,9 @@ export const updateUserDeadline = createAction<{ userDeadline: number }>('user/u
 export const addSerializedToken = createAction<{ serializedToken: SerializedToken }>('user/addSerializedToken')
 export const removeSerializedToken = createAction<{ chainId: number; address: string }>('user/removeSerializedToken')
 export const addSerializedPair = createAction<{ serializedPair: SerializedPair }>('user/addSerializedPair')
-export const removeSerializedPair =
-  createAction<{ chainId: number; tokenAAddress: string; tokenBAddress: string }>('user/removeSerializedPair')
+export const removeSerializedPair = createAction<{ chainId: number; tokenAAddress: string; tokenBAddress: string }>(
+  'user/removeSerializedPair',
+)
 
 export const muteAudio = createAction<void>('user/muteAudio')
 export const unmuteAudio = createAction<void>('user/unmuteAudio')
