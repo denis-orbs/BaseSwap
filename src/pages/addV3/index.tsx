@@ -6,6 +6,7 @@ import OwnershipWarning from 'components/AddLiquidity/OwnershipWarning'
 import usePrevious from 'hooks/usePrevious'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { AlertTriangle } from 'react-feather'
+import { TbKarate } from 'react-icons/tb'
 import {
   useV3MintActionHandlers,
   useRangeHopCallbacks,
@@ -737,9 +738,12 @@ function AddLiquidity() {
             {!hasExistingPosition && (
               <>
                 <AutoColumn gap="md">
-                    <Text textAlign="center" color="background" fontSize="32px" marginTop="-1rem">
-                      Choose Your Fighter
-                    </Text>
+                <Flex flexDirection="row"  alignItems="center" justifyContent="center" marginBottom="12px"  >
+                  <Text textTransform="uppercase" color="text" fontWeight="400" fontSize="1.2rem" marginRight="4px"  >
+                    {t('Choose your fighter')}
+                  </Text>
+                  <TbKarate width="36px" height="36px" style={{ color: '#0154FE'}}   /> 
+                </Flex>
                   <RowBetween>
                     <CurrencyDropdown
                       value={formattedAmounts[Field.CURRENCY_A]}
