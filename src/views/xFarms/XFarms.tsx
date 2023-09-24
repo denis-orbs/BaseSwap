@@ -325,14 +325,14 @@ const Farms: React.FC = ({ children }) => {
                 onOptionChange={handleSortOptionChange}
               />
             </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
+            {/* <LabelWrapper style={{ marginLeft: 16 }}>
               <Text textTransform="uppercase">{t('Search')}</Text>
               <SearchInput
                 initialValue={normalizedUrlSearch}
                 onChange={handleChangeQuery}
                 placeholder="Search Farms"
               />
-            </LabelWrapper>
+            </LabelWrapper> */}
           </FilterContainer>
         </ControlContainer>
         <FlexLayout className="animate__animated animate__faster animate__fadeInUp">{children}</FlexLayout>

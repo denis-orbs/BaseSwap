@@ -2,21 +2,34 @@ import styled from 'styled-components'
 import { ChevronDownIcon, ChevronUpIcon, Text } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { useCallback } from 'react'
+import { FaChevronCircleDown } from 'react-icons/fa' 
+import { FaChevronCircleUp } from 'react-icons/fa'
 
 export interface ExpandableSectionButtonProps {
   onClick?: () => void
   expanded?: boolean
 }
 
+const Down = styled(FaChevronCircleDown)`
+  width: 36px; 
+  height: 36px; 
+  color: #0154FE; 
+`
+
+const Up = styled(FaChevronCircleUp)`
+  width: 36px; 
+  height: 36px; 
+  color: #0154FE; 
+`
+
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  padding: 0px; 
 
-  svg {
-    fill: ${({ theme }) => theme.colors.text};
-  }
+  
 `
 
 const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onClick, expanded = false }) => {
@@ -26,9 +39,9 @@ const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onCli
   return (
     <Wrapper aria-label={t('Hide or show expandable content')} role="button" onClick={handleOnClick}>
       <Text color="text" bold>
-        {expanded ? t('HIDE') : t('DETAILS')}
+        {expanded ? t('') : t('')}
       </Text>
-      {expanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+      {expanded ? <Up /> : <Down />}
     </Wrapper>
   )
 }

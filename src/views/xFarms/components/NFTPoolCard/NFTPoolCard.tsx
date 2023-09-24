@@ -18,6 +18,7 @@ import { useTranslation } from '@pancakeswap/localization'
 const StyledCard = styled(Card)`
   align-self: baseline;
   max-width: 475px;
+  border-width: 4px; 
   margin: 0 0 24px 0;
   ${({ theme }) => theme.mediaQueries.sm} {
     max-width: 450px;
@@ -32,9 +33,11 @@ const NFTPoolCardInnerContainer = styled(Flex)`
 `
 
 const ExpandingWrapper = styled.div`
-  padding: 24px;
-  border-top: 2px solid ${({ theme }) => theme.colors.cardBorder};
+  padding: 8px;
+  border-top: 4px solid ${({ theme }) => theme.colors.cardBorder};
   overflow: hidden;
+    background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+
 `
 
 interface NFTPoolCardProps {
