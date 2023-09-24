@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { escapeRegExp } from 'utils'
-import { Text, Button, Input, Flex, Box, Toggle } from '@pancakeswap/uikit'
+import { Text, Button, Input, Flex, Box, Toggle, useMatchBreakpointsContext } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { useUserSlippageTolerance, useUserTransactionTTL } from 'state/user/hooks'
 import QuestionHelper from '../../QuestionHelper'
@@ -48,6 +48,7 @@ const SlippageTabs = () => {
   const [deadlineInput, setDeadlineInput] = useState('')
   const [showRoute, toggleSetShowRoute] = useShowRoute()
   const { t } = useTranslation()
+  const { isMobile } = useMatchBreakpointsContext();
 
   const slippageInputIsValid =
     slippageInput === '' || (userSlippageTolerance / 100).toFixed(2) === Number.parseFloat(slippageInput).toFixed(2)
@@ -119,7 +120,7 @@ const SlippageTabs = () => {
         
             />
           </Flex>
-        <Flex flexWrap="wrap" justifyContent="space-between" paddingX="2rem" >
+        <Flex justifyContent="space-between" paddingX={isMobile? '0rem' : '2rem' } >
           <Button
 
             mr="4px"
