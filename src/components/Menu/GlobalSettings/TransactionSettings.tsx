@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import { ImHourGlass } from 'react-icons/im'
 import { useShowRoute } from '../../../state/user/hooks'
 import { TbRoute } from 'react-icons/tb'
-import { SettingsBox } from './SettingsBox'
+import { SettingsBox, SmallSettingsBox } from './SettingsBox'
 
 const Route = styled(TbRoute)`
 color: #fff; 
@@ -194,8 +194,10 @@ const SlippageTabs = () => {
         )}
     </SettingsBox>
     <Flex flexDirection="row" justifyContent="space-between" alignItems="center"
-          paddingX="0px">
-      <SettingsBox  >
+          paddingX={isMobile? '0px' : '0px' }
+          
+          >
+      <SmallSettingsBox   >
           <Flex mb="8px" alignItems="center" justifyContent="center"  >
             <Countdown /> 
             <Text marginLeft="3px" marginRight="2px" textAlign="center" 
@@ -229,9 +231,9 @@ const SlippageTabs = () => {
               <Text marginLeft="8px" fontSize="16px">MINUTES</Text>
               </Flex>
           </Flex>
-      </SettingsBox>
+      </SmallSettingsBox>
 
-      <SettingsBox  >
+      <SmallSettingsBox   >
         <Flex mb="8px" alignItems="center" justifyContent="center"  >
                   <Route />
                   <Text marginLeft="3px" marginRight="2px" textAlign="center" 
@@ -255,7 +257,7 @@ const SlippageTabs = () => {
                   }}
                 />
         </Flex>
-    </SettingsBox>
+    </SmallSettingsBox>
   </Flex>
     </Flex>
   )

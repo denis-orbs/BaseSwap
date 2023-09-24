@@ -6,7 +6,7 @@ export const SettingsBox = styled(Flex)`
   border: 2px solid #0154FE; 
   border-radius: 12px; 
   padding: 12px; 
-  margin: 4px; 
+  margin: 0px; 
   margin-bottom: 1.5rem; 
   flex-direction: column; 
   justify-content: space-between; 
@@ -15,7 +15,26 @@ export const SettingsBox = styled(Flex)`
   min-height: 120px; 
   background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
   @media (min-width: 768px) {
-   margin-bottom: 2.5rem; 
+    margin: 4px; 
+    margin-bottom: 2.5rem; 
+ }
+`
+export const SmallSettingsBox = styled(Flex)`
+  border: 2px solid #0154FE; 
+  border-radius: 12px; 
+  padding: 12px; 
+  margin: 4px; 
+  margin-bottom: 1.5rem; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  width: 100%; 
+  height: 100%; 
+  min-height: 90px; 
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
+  @media (min-width: 768px) {
+    margin: 4px; 
+    
+    margin-bottom: 2.5rem; 
  }
 `
 
