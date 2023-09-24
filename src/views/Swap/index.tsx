@@ -521,10 +521,12 @@ export default function Swap() {
                 setIsOpen={setIsChartDisplayed}
               />
             )}
-            <Flex flexDirection={["column", "column", "column", "column","column", "row"]} style={{width: '100%', marginBottom: '40px'}}>
-              <StyledSwapContainer className="animate__animated animate__fadeInLeft" $isChartExpanded={isChartExpanded} style={{ margin: 'auto' }}>
+            <Flex flexDirection={["column", "column", "column", "column","column", "row"]} 
+            style={{width: '100%', marginBottom: '40px'}}>
+              <StyledSwapContainer className="animate__animated animate__fadeInLeft" 
+              $isChartExpanded={isChartExpanded} style={{ margin: 'auto' }}>
                 <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
-                  <AppBody>
+                  <AppBody marginTop="0rem" >
                     <CurrencyInputHeader
                       title={t('')}
                       subtitle={t('')}
