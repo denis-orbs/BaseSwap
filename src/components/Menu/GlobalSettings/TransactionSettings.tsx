@@ -184,7 +184,7 @@ const SlippageTabs = () => {
           </Flex>
         </Flex>
         {!!slippageError && (
-          <Text fontSize="14px" color={slippageError === SlippageError.InvalidInput ? 'red' : '#F3841E'} mt="8px">
+          <Text fontSize="14px" color={slippageError === SlippageError.InvalidInput ? 'red' : 'red'} mt="8px">
             {slippageError === SlippageError.InvalidInput
               ? t('Enter a valid slippage percentage')
               : slippageError === SlippageError.RiskyLow
