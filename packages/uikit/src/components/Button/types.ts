@@ -5,6 +5,7 @@ import type { PolymorphicComponentProps } from "../../util/polymorphic";
 export const scales = {
   MD: "md",
   SM: "sm",
+  PAWG: "pawg", 
   XS: "xs",
 } as const;
 

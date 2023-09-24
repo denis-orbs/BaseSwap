@@ -26,7 +26,7 @@ const GasSettings = () => {
   <Flex mb="8px" alignItems="center" justifyContent="center">
     <GasIcon  />
     <Text marginLeft="3px" marginRight="2px" textAlign="center" 
-     fontSize="1rem"  fontWeight="400" color="#fff">
+     fontSize={isMobile? '2rem' : '1rem' }  fontWeight="400" color="#fff">
         {t('SPEED')}
     </Text>
     <QuestionHelper
@@ -38,42 +38,42 @@ const GasSettings = () => {
       />
   </Flex>
   <Flex marginTop="8px" 
-  flexWrap="wrap" justifyContent="space-between" 
-  alignItems="space-between" paddingX={isMobile ? '0rem' : '1rem' }>
+  justifyContent="space-between" 
+  alignItems="center" paddingX={isMobile ? '0rem' : '1rem' }>
     <Button
       mr="4px"
-      scale="sm"
+      scale="pawg"
       onClick={() => {
         setGasPrice(GAS_PRICE_GWEI.default)
       }}
       variant={gasPrice === GAS_PRICE_GWEI.default ? 'gason' : 'gasoff'}
     >
-        <Text fontSize="16px" >
-      {t('Standard (%gasPrice%)', { gasPrice: GAS_PRICE.default })}
+        <Text fontSize="12px">
+      {t('Basic (%gasPrice%)', { gasPrice: GAS_PRICE.default })}
       </Text>
     </Button>
     <Button
       mr="4px"
 
-      scale="sm"
+      scale="pawg"
       onClick={() => {
         setGasPrice(GAS_PRICE_GWEI.fast)
       }}
       variant={gasPrice === GAS_PRICE_GWEI.fast ? 'gason' : 'gasoff'}
     >
-        <Text fontSize="16px" >
+        <Text fontSize="12px" >
       {t('Fast (%gasPrice%)', { gasPrice: GAS_PRICE.fast })}
       </Text>
     </Button>
     <Button
       mr="4px"
-      scale="sm"
+      scale="pawg"
       onClick={() => {
         setGasPrice(GAS_PRICE_GWEI.instant)
       }}
       variant={gasPrice === GAS_PRICE_GWEI.instant ? 'gason' : 'gasoff'}
     >
-        <Text fontSize="16px" >
+        <Text fontSize="12px" >
       {t('Instant (%gasPrice%)', { gasPrice: GAS_PRICE.instant })}
       </Text>
     </Button>

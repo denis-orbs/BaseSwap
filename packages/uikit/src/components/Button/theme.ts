@@ -11,6 +11,10 @@ export const scaleVariants = {
     height: "32px",
     padding: "0 16px",
   },
+  [scales.PAWG]: {
+    height: "36px",
+    padding: "0px 16px",
+  },
   [scales.XS]: {
     height: "20px",
     fontSize: "12px",
