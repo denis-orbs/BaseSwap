@@ -39,7 +39,7 @@ const getScale =
 
 export const Handle = styled.div<HandleProps>`
   background-color: ${({ theme }) => theme.toggle.handleBackground};
-  border-radius: 1px; 
+  border-radius: 8px; 
   cursor: pointer;
   height: ${getScale("handleHeight")};
   left: ${getScale("handleLeft")};
@@ -62,21 +62,14 @@ export const Input = styled.input<InputProps>`
     left: ${getScale("checkedLeft")};
   }
 
-  &:focus + ${Handle} {
-    box-shadow: ${({ theme }) => theme.shadows.focus};
-  }
 
-  &:hover + ${Handle}:not(:disabled):not(:checked) {
-    box-shadow: ${({ theme }) => theme.shadows.focus};
-  }
 `;
 
 const StyledToggle = styled.div<StyleToggleProps>`
   align-items: center;
   background-color: ${({ theme, $checked, $checkedColor, $defaultColor }) =>
     theme.colors[$checked ? $checkedColor : $defaultColor]};
-  border-radius: 4px;
-  box-shadow: ${({ theme }) => theme.shadows.inset};
+  border-radius: 8px;
   cursor: pointer;
   display: inline-flex;
   height: ${getScale("toggleHeight")};

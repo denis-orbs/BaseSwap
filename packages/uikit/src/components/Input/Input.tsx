@@ -38,7 +38,7 @@ const Input = styled.input<InputProps>`
   box-shadow: inset 0 0 1px #000 0 0 4px #000; 
   color: ${({ theme }) => theme.colors.text};
   display: block;
-  font-size: 12px;
+  font-size: 16px;
   text-transform: uppercase; 
   height: ${getHeight};
   outline: 0;
