@@ -33,7 +33,6 @@ export const SmallSettingsBox = styled(Flex)`
   background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
   @media (min-width: 768px) {
     margin: 4px; 
-    
     margin-bottom: 2.5rem; 
  }
 `
