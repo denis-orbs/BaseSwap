@@ -13,7 +13,7 @@ import { getFullDisplayBalance } from 'utils/formatBalance'
 
 const MERKLE_BASE_URL = 'https://api.angle.money/v1/merkl'
 const TEST_API_URL = 'https://api.angle.money/v1/merkl?chainId=8453&AMMs[]=baseswap'
-
+const USER_API_URL = 'https://api.angle.money/v1/merkl?chainId=8453&user='
 // TODO: Creating distributions
 // TODO: Get user claimable rewards
 //
@@ -30,12 +30,16 @@ export default function useMerklRewards() {
   const { data, error, status } = useSWR(userURL, async () => {
     if (account) {
       const resp = await fetch(userURL)
-      const data = await resp.json()
+      const merklData = await resp.json()
 
       const bsxAddy = getTokenAddress('ProtocolToken', chainId)
       const xbsxAddy = getTokenAddress('xProtocolToken', chainId)
 
-      const rewards: any[] = Object.entries(data.transactionData)
+      // TODO: Check rewardsPerToken to see actual claimable amount
+      // claims will show an amount that may have all been claimed
+      console.log(merklData)
+
+      const rewards: any[] = Object.entries(merklData.transactionData)
         .filter((obj: any) => (obj[0] === bsxAddy || obj[0] === xbsxAddy) && obj[1].proof !== undefined)
         .map((obj: any) => {
           return {
@@ -46,9 +50,25 @@ export default function useMerklRewards() {
       const bsxCurrency = PROTOCOL_TOKEN_V3[chainId]
       const xbsxCurrency = XPROTOCOL_TOKEN_V3[chainId]
 
-      const pendingBSX = getFullDisplayBalance(rewards.find((r) => r.token === bsxAddy).claim, 18, 4)
-      const pendingXBSX = getFullDisplayBalance(rewards.find((r) => r.token === xbsxAddy).claim, 18, 4)
-      const total = parseFloat(pendingBSX) + parseFloat(pendingXBSX)
+      let totalBSX = 0
+      let totalXBSX = 0
+
+      Object.entries(merklData.pools)
+        .filter((obj: any) => {
+          return Object.keys(obj[1].rewardsPerToken).includes(bsxAddy)
+        })
+        .forEach((obj: any) => {
+          const pendingBSX = parseFloat(
+            getFullDisplayBalance(obj[1].rewardsPerToken[bsxAddy].unclaimedUnformatted, 18, 4),
+          )
+          const pendingXBSX = parseFloat(
+            getFullDisplayBalance(obj[1].rewardsPerToken[xbsxAddy].unclaimedUnformatted, 18, 4),
+          )
+          totalBSX += pendingBSX
+          totalXBSX += pendingXBSX
+        })
+
+      const total = totalBSX + totalXBSX
       const pendingValue = getValueForAmount(bsxAddy, total, 4)
       const hasClaims = total > 0
 
@@ -66,13 +86,31 @@ export default function useMerklRewards() {
         rewards,
         bsxCurrency,
         xbsxCurrency,
-        pendingBSX,
-        pendingXBSX,
+        pendingBSX: totalBSX,
+        pendingXBSX: totalXBSX,
         pendingValue,
         hasClaims,
       }
     }
   })
+
+  // const userURL2 = `${USER_API_URL}${account}`
+  // const {
+  //   data: userData,
+  //   error: userError,
+  //   status: userFetchStatus,
+  // } = useSWR(userURL2, async () => {
+  //   if (account) {
+  //     const resp = await fetch(userURL2)
+  //     const merklData = await resp.json()
+
+  //     // TODO: Check rewardsPerToken to see actual claimable amount
+  //     // claims will show an amount that may have all been claimed
+  //     console.log(merklData)
+
+  //     return {}
+  //   }
+  // })
 
   const doClaim = useCallback(async () => {
     if (!claimsData?.claims.length) return

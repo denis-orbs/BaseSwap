@@ -304,7 +304,7 @@ export default function Pool() {
                       </Text>
                     </AutoColumn>
                     <Button
-                      disabled={isClaiming}
+                      disabled={!rewardData?.hasClaims || isClaiming}
                       onClick={() => {
                         // TODO: Claim modal or something?
                         doClaim()
