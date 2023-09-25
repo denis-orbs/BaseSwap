@@ -26,6 +26,7 @@ import { CreateNewIcon } from '@pancakeswap/uikit'
 import useMerklRewards from 'lib/hooks/merkl-rewards/useMerklRewards'
 import CurrencyLogo from 'components/Logo/CurrencyLogo'
 import { PROTOCOL_TOKEN_V3, XPROTOCOL_TOKEN_V3 } from 'config/constants/tokens-v3'
+import { useUserClaimsDataSelector } from 'state/user/selectors'
 
 const PageTitle = styled(Text)`
   font-weight: 400;
@@ -201,8 +202,7 @@ export default function Pool() {
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpointsContext()
   const { isLoading: rewardsLoading, data: rewardData, doClaim, isClaiming } = useMerklRewards()
-  // console.log(rewardData)
-
+  const {} = useUserClaimsDataSelector()
   const theme = useTheme()
   const [userHideClosedPositions, setUserHideClosedPositions] = useUserHideClosedPositions()
 

@@ -741,6 +741,13 @@ export interface PotteryWithdrawAbleData {
   balanceOf: string
 }
 
+export interface UserMerkleClaimData {
+  pendingMerklBSX: string
+  pendingMerklXBSX: string
+  pendingMerklValue: string
+  isLoading: boolean
+}
+
 // Global state
 
 export interface State {

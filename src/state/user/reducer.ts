@@ -37,8 +37,9 @@ import {
   updateUserLimitOrderAcceptedWarning,
   setZapDisabled,
   updateHideClosedPositions,
+  updateUserClaimsData,
 } from './actions'
-import { GAS_PRICE_GWEI } from '../types'
+import { GAS_PRICE_GWEI, UserMerkleClaimData } from '../types'
 
 const currentTimestamp = () => new Date().getTime()
 
@@ -93,7 +94,7 @@ export interface UserState {
   hideTimestampPhishingWarningBanner: number
 
   userHideClosedPositions: boolean
-  claimsData: { tokens: string[]; proofs: string[][]; claims: string[] }
+  claimsData: UserMerkleClaimData
 }
 
 function pairKey(token0Address: string, token1Address: string) {
@@ -130,9 +131,10 @@ export const initialState: UserState = {
   hideTimestampPhishingWarningBanner: null,
   userHideClosedPositions: false,
   claimsData: {
-    tokens: [],
-    claims: [],
-    proofs: [],
+    pendingMerklBSX: '0',
+    pendingMerklXBSX: '0',
+    pendingMerklValue: '$0',
+    isLoading: true,
   },
 }
 
@@ -285,5 +287,10 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(updateHideClosedPositions, (state, { payload }) => {
       state.userHideClosedPositions = payload.userHideClosedPositions
+    })
+    .addCase(updateUserClaimsData, (state, { payload }) => {
+      state.claimsData = {
+        ...payload,
+      }
     }),
 )
