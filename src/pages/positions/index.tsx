@@ -5,7 +5,7 @@ import { AutoColumn } from 'components/Column'
 import PositionList from 'components/PositionList'
 import { RowBetween, RowFixed } from 'components/Row'
 import { useV3Positions } from 'hooks/v3/useV3Positions'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { AlertTriangle, BookOpen, ChevronsRight, Inbox, Layers } from 'react-feather'
 import styled, { css, useTheme } from 'styled-components'
 import { PositionDetails } from 'types/position'
@@ -27,6 +27,8 @@ import useMerklRewards from 'lib/hooks/merkl-rewards/useMerklRewards'
 import CurrencyLogo from 'components/Logo/CurrencyLogo'
 import { PROTOCOL_TOKEN_V3, XPROTOCOL_TOKEN_V3 } from 'config/constants/tokens-v3'
 import { useUserClaimsDataSelector } from 'state/user/selectors'
+import { useAppDispatch } from 'state'
+import { updateUserClaimsData } from 'state/user/actions'
 
 const PageTitle = styled(Text)`
   font-weight: 400;
@@ -198,14 +200,23 @@ function WrongNetworkCard() {
 
 export default function Pool() {
   const { account, chainId } = useActiveWeb3React()
+  const theme = useTheme()
   const router = useRouter()
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpointsContext()
+
+  const dispatch = useAppDispatch()
+
+  // useEffect(() => {
+  //   if (account && isSupportedChain(chainId)) {
+  //     dispatch(updateUserClaimsData)
+  //   }
+  // }, [account, chainId])
+
   const { isLoading: rewardsLoading, data: rewardData, doClaim, isClaiming } = useMerklRewards()
   const {} = useUserClaimsDataSelector()
-  const theme = useTheme()
-  const [userHideClosedPositions, setUserHideClosedPositions] = useUserHideClosedPositions()
 
+  const [userHideClosedPositions, setUserHideClosedPositions] = useUserHideClosedPositions()
   const { positions, loading: positionsLoading } = useV3Positions(account)
 
   const [openPositions, closedPositions] = positions?.reduce<[PositionDetails[], PositionDetails[]]>(

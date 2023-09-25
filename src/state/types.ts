@@ -742,8 +742,8 @@ export interface PotteryWithdrawAbleData {
 }
 
 export interface UserMerkleClaimData {
-  pendingMerklBSX: string
-  pendingMerklXBSX: string
+  pendingMerklBSX: number
+  pendingMerklXBSX: number
   pendingMerklValue: string
   isLoading: boolean
 }

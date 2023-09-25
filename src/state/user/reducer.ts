@@ -131,8 +131,8 @@ export const initialState: UserState = {
   hideTimestampPhishingWarningBanner: null,
   userHideClosedPositions: false,
   claimsData: {
-    pendingMerklBSX: '0',
-    pendingMerklXBSX: '0',
+    pendingMerklBSX: 0,
+    pendingMerklXBSX: 0,
     pendingMerklValue: '$0',
     isLoading: true,
   },
