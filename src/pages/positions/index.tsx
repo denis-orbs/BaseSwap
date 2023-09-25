@@ -205,14 +205,6 @@ export default function Pool() {
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpointsContext()
 
-  const dispatch = useAppDispatch()
-
-  // useEffect(() => {
-  //   if (account && isSupportedChain(chainId)) {
-  //     dispatch(updateUserClaimsData)
-  //   }
-  // }, [account, chainId])
-
   const { isLoading: rewardsLoading, data: rewardData, doClaim, isClaiming } = useMerklRewards()
   const { pendingMerklBSX, pendingMerklXBSX, pendingMerklValue } = useUserClaimsDataSelector()
 
@@ -335,7 +327,7 @@ export default function Pool() {
                           alignItems="center"
                         >
                           <CurrencyLogo
-                            currency={rewardData.bsxCurrency}
+                            currency={rewardData?.bsxCurrency}
                             size="60px"
                             style={{ marginRight: '0.5rem' }}
                           />
@@ -353,7 +345,7 @@ export default function Pool() {
                           alignItems="center"
                         >
                           <CurrencyLogo
-                            currency={rewardData.xbsxCurrency}
+                            currency={rewardData?.xbsxCurrency}
                             size="60px"
                             style={{ marginRight: '0.5rem' }}
                           />

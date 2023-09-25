@@ -23,13 +23,13 @@ const MobileFooter = styled.div`
   border-bottom: 0px solid ${({ theme }) => theme.colors.background};
 `
 const EyesWideShut = styled(VisibilityOff)`
-color: ${({ theme }) => theme.colors.background};
-margin-left: 0.25rem; 
+  color: ${({ theme }) => theme.colors.background};
+  margin-left: 0.25rem;
 `
 
 const EyesWideOpen = styled(VisibilityOn)`
-color: ${({ theme }) => theme.colors.background};
-margin-left: 0.25rem; 
+  color: ${({ theme }) => theme.colors.background};
+  margin-left: 0.25rem;
 `
 
 const ToggleWrap = styled.div`
@@ -88,29 +88,27 @@ export default function PositionList({
               setUserHideClosedPositions(!userHideClosedPositions)
             }}
           >
-            {userHideClosedPositions ? 
-
-          <Flex flexDirection="row">
-            <Text color="text" textTransform="uppercase" fontSize="13px">
-              Show closed positions
-            </Text> 
-            <EyesWideOpen /> 
-          </Flex>
-              : 
-              
+            {userHideClosedPositions ? (
               <Flex flexDirection="row">
                 <Text color="text" textTransform="uppercase" fontSize="13px">
-                      Hide closed positions
+                  Show closed positions
+                </Text>
+                <EyesWideOpen />
+              </Flex>
+            ) : (
+              <Flex flexDirection="row">
+                <Text color="text" textTransform="uppercase" fontSize="13px">
+                  Hide closed positions
                 </Text>
                 <EyesWideShut />
-            </Flex>
-            }
+              </Flex>
+            )}
           </ToggleLabel>
         </ToggleWrap>
       </MobileHeader>
-      {positions.map((p) => (
-        <PositionListItem key={p.tokenId.toString()} {...p} />
-      ))}
+      {positions.map((p) => {
+        return <PositionListItem key={p.tokenId.toString()} {...p} />
+      })}
       <MobileFooter />
     </>
   )

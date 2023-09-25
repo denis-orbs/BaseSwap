@@ -23,6 +23,7 @@ export enum ChartViewMode {
   TRADING_VIEW = 'TRADING_VIEW',
 }
 
+export const updateMerklPools = createAction<{ pools: any[] }>('user/updateMerklPools')
 export const updateHideClosedPositions = createAction<{ userHideClosedPositions: boolean }>(
   'user/updateHideClosedPositions',
 )

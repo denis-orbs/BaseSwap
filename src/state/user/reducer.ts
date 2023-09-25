@@ -38,6 +38,7 @@ import {
   setZapDisabled,
   updateHideClosedPositions,
   updateUserClaimsData,
+  updateMerklPools,
 } from './actions'
 import { GAS_PRICE_GWEI, UserMerkleClaimData } from '../types'
 
@@ -95,6 +96,7 @@ export interface UserState {
 
   userHideClosedPositions: boolean
   claimsData: UserMerkleClaimData
+  merklPools: any[]
 }
 
 function pairKey(token0Address: string, token1Address: string) {
@@ -136,6 +138,7 @@ export const initialState: UserState = {
     pendingMerklValue: '$0',
     isLoading: true,
   },
+  merklPools: [],
 }
 
 export default createReducer(initialState, (builder) =>
@@ -292,5 +295,8 @@ export default createReducer(initialState, (builder) =>
       state.claimsData = {
         ...payload,
       }
+    })
+    .addCase(updateMerklPools, (state, { payload }) => {
+      state.merklPools = payload.pools
     }),
 )

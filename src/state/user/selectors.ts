@@ -12,6 +12,14 @@ const selectUserClaimsData = ({ user: { claimsData } }: AppState) => {
   )
 }
 
+const selectMerklPools = ({ user: { merklPools } }: AppState) => {
+  return merklPools || []
+}
+
 export function useUserClaimsDataSelector() {
   return useSelector(selectUserClaimsData)
+}
+
+export function useSelectMerklPools() {
+  return useSelector(selectMerklPools)
 }
