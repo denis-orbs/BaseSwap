@@ -9,6 +9,7 @@ import useTokenPrices from 'hooks/useTokenPrices'
 import { useCallback, useState } from 'react'
 import { useAppDispatch } from 'state'
 import { updateUserClaimsData } from 'state/user/actions'
+import { useUserClaimsDataSelector } from 'state/user/selectors'
 import useSWR from 'swr'
 import { getSigner } from 'utils'
 import { getFullDisplayBalance } from 'utils/formatBalance'
@@ -22,19 +23,24 @@ export default function useMerklRewards() {
   const { account, chainId, library } = useActiveWeb3React()
   const { getValueForAmount } = useTokenPrices()
   const { fetchWithCatchTxError } = useCatchTxError()
+  // const {
+  //   pendingMerklBSX: previousPendingBSX,
+  //   pendingMerklXBSX: previousXBSX,
+  //   pendingMerklValue: previousValue,
+  // } = useUserClaimsDataSelector()
   const dispatch = useAppDispatch()
 
   const userURL = `${MERKL_API_URL}&user=${account}`
   const { data, error, status } = useSWR(userURL, async () => {
     if (account) {
-      dispatch(
-        updateUserClaimsData({
-          pendingMerklBSX: 0,
-          pendingMerklXBSX: 0,
-          pendingMerklValue: '$0',
-          isLoading: true,
-        }),
-      )
+      // dispatch(
+      //   updateUserClaimsData({
+      //     pendingMerklBSX: previousPendingBSX,
+      //     pendingMerklXBSX: previousXBSX,
+      //     pendingMerklValue: previousValue,
+      //     isLoading: true,
+      //   }),
+      // )
 
       const resp = await fetch(userURL)
       const merklData = await resp.json()
@@ -89,7 +95,7 @@ export default function useMerklRewards() {
         updateUserClaimsData({
           pendingMerklBSX,
           pendingMerklXBSX,
-          pendingMerklValue: '$0',
+          pendingMerklValue: pendingValue.valueLabel,
           isLoading: false,
         }),
       )

@@ -214,7 +214,7 @@ export default function Pool() {
   // }, [account, chainId])
 
   const { isLoading: rewardsLoading, data: rewardData, doClaim, isClaiming } = useMerklRewards()
-  const {} = useUserClaimsDataSelector()
+  const { pendingMerklBSX, pendingMerklXBSX, pendingMerklValue } = useUserClaimsDataSelector()
 
   const [userHideClosedPositions, setUserHideClosedPositions] = useUserHideClosedPositions()
   const { positions, loading: positionsLoading } = useV3Positions(account)
@@ -311,13 +311,12 @@ export default function Pool() {
                       </Text>
 
                       <Text color={theme.colors.primaryBright} fontSize="32px" fontWeight={500}>
-                        {t(rewardData?.pendingValue.valueLabel || '0')}
+                        {t(pendingMerklValue)}
                       </Text>
                     </AutoColumn>
                     <Button
                       disabled={!rewardData?.hasClaims || isClaiming}
                       onClick={() => {
-                        // TODO: Claim modal or something?
                         doClaim()
                       }}
                     >
@@ -341,7 +340,7 @@ export default function Pool() {
                             style={{ marginRight: '0.5rem' }}
                           />
                           <Text color="text" fontSize="1.5rem">
-                            {rewardData.pendingBSX}&nbsp;
+                            {pendingMerklBSX}&nbsp;
                           </Text>
                           <Text color="text" fontSize="1.5rem">
                             {t(`BSX`)}
@@ -359,7 +358,7 @@ export default function Pool() {
                             style={{ marginRight: '0.5rem' }}
                           />
                           <Text color="text" fontSize="1.5rem">
-                            {rewardData.pendingXBSX}&nbsp;
+                            {pendingMerklXBSX}&nbsp;
                           </Text>
                           <Text color="text" fontSize="1.5rem">
                             {t(`xBSX`)}
