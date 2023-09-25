@@ -23,24 +23,24 @@ export default function useMerklRewards() {
   const { account, chainId, library } = useActiveWeb3React()
   const { getValueForAmount } = useTokenPrices()
   const { fetchWithCatchTxError } = useCatchTxError()
-  // const {
-  //   pendingMerklBSX: previousPendingBSX,
-  //   pendingMerklXBSX: previousXBSX,
-  //   pendingMerklValue: previousValue,
-  // } = useUserClaimsDataSelector()
+  const {
+    pendingMerklBSX: previousPendingBSX,
+    pendingMerklXBSX: previousXBSX,
+    pendingMerklValue: previousValue,
+  } = useUserClaimsDataSelector()
   const dispatch = useAppDispatch()
 
   const userURL = `${MERKL_API_URL}&user=${account}`
   const { data, error, status } = useSWR(userURL, async () => {
     if (account) {
-      // dispatch(
-      //   updateUserClaimsData({
-      //     pendingMerklBSX: previousPendingBSX,
-      //     pendingMerklXBSX: previousXBSX,
-      //     pendingMerklValue: previousValue,
-      //     isLoading: true,
-      //   }),
-      // )
+      dispatch(
+        updateUserClaimsData({
+          pendingMerklBSX: previousPendingBSX,
+          pendingMerklXBSX: previousXBSX,
+          pendingMerklValue: previousValue,
+          isLoading: true,
+        }),
+      )
 
       const resp = await fetch(userURL)
       const merklData = await resp.json()
