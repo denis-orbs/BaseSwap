@@ -102,7 +102,8 @@ export const CurrencySelect = ({
             ) : (
               <Flex flexDirection="row" width="100%" alignItems="center" justifyContent="flex-start">
                 <CurrencyLogo currency={selectedCurrency} size={isMobile? '32px' : '54px' }  />
-                <Text marginLeft={isMobile? '2px' : '8px' } fontSize={isMobile? '1.1rem' : '1.4rem' } id="pair" color="text" fontWeight="400">
+                <Text marginLeft={isMobile? '2px' : '8px' } fontSize={isMobile? '1rem' : '1.4rem' } 
+                id="pair" color="text" fontWeight="400">
                   {selectedCurrency && selectedCurrency.symbol && selectedCurrency.symbol.length > 20
                     ? `${selectedCurrency.symbol.slice(0, 4)}...${selectedCurrency.symbol.slice(
                         selectedCurrency.symbol.length - 5,
@@ -114,7 +115,7 @@ export const CurrencySelect = ({
             )}
           </Text>
 
-        <ArrowDropDownIcon  width={isMobile? '24px' : '32px' } color="text" className="down-icon" />
+          <ArrowDropDownIcon  width={isMobile? '20px' : '32px' } color="text" className="down-icon" />
       </DropDownContainer>
       {account && !!selectedCurrency && !hideBalance && (
         <Box>

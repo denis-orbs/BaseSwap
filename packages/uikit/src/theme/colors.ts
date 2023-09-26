@@ -99,7 +99,7 @@ export const darkColors: Colors = {
     cardHeader: "linear-gradient(166.77deg, #3B4155 0%, #3A3045 100%)",
     blue: "linear-gradient(180deg, #00707F 0%, #19778C 100%)",
     violet: "linear-gradient(180deg, #000 0%, #0154FD 100%)",
-    violetAlt: "linear-gradient(180deg, #0154FD 0%, #000 100%)",
+    violetAlt: "linear-gradient(180deg, #0154FD 0%, #020079 100%)",
     gold: "linear-gradient(180deg, #FFD800 0%, #FDAB32 100%)",
   },
 };
