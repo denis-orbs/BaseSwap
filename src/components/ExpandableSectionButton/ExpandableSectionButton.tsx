@@ -2,7 +2,8 @@ import styled from 'styled-components'
 import { ChevronDownIcon, ChevronUpIcon, Text } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { useCallback } from 'react'
-import { FaChevronCircleDown, FaChevronCircleUp } from 'react-icons/fa' 
+import { FaChevronCircleDown } from 'react-icons/fa' 
+import { FaChevronCircleUp } from 'react-icons/fa'
 
 export interface ExpandableSectionButtonProps {
   onClick?: () => void
