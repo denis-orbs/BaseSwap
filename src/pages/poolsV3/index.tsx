@@ -1,9 +1,8 @@
-import { Flex, Text, Spinner, Link, Heading } from '@pancakeswap/uikit'
+import { Flex, Text, Spinner, Heading } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { TokenPairImage } from 'components/TokenImage'
 import { getTokenInstance } from 'config/constants/token-info'
 import useMerklRewards from 'lib/hooks/merkl-rewards/useMerklRewards'
-import { useRouter } from 'next/router'
 import Page from 'views/Page'
 import PageHeader from 'components/PageHeader'
 import {
@@ -15,6 +14,7 @@ import { PoolCardActionProps } from 'views/xFarms/components/types'
 import TypeIt from 'typeit-react'
 import 'animate.css'
 import { getTVLFormatted } from 'views/xFarms/utils'
+import NewPositionButton from 'components/NewPositionButton'
 
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
@@ -30,11 +30,7 @@ const WelcomeTypeIt = styled(TypeIt)`
 
 export default function PoolV3({ table }: PoolCardActionProps) {
   const { data: merklData } = useMerklRewards()
-  const router = useRouter()
 
-  // TODO: Match up merkle pools to any local data?
-  // may be able to use pure merkl data actually..
-  // Filter out any pools not in our config setup..?
   console.log(merklData?.pools)
 
   const pools = (merklData?.pools || []).map((p) => {
@@ -44,16 +40,9 @@ export default function PoolV3({ table }: PoolCardActionProps) {
       feeAmount,
       token: getTokenInstance(p.token0),
       quoteToken: getTokenInstance(p.token1),
-      liquidityUrlPath: `/addV3/${p.token0}/${p.token1}/${feeAmount}`,
       tvl: getTVLFormatted(p.tvl),
     }
   })
-
-  // const totalValueFormatted = `~$${(farm?.TVL || 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-  // const liquidityUrlPathParts = getLiquidityUrlPathParts({
-  //   quoteTokenAddress: farm.quoteToken.address,
-  //   tokenAddress: farm.token.address,
-  // })
 
   return (
     <Page>
@@ -80,30 +69,36 @@ export default function PoolV3({ table }: PoolCardActionProps) {
           pools.map((p) => {
             console.log('p', p)
             return (
-              <Link href={p.liquidityUrlPath} marginBottom="1.2rem">
-                <StyledPoolCard key={p.pool}>
-                  <StyledPoolCardInnerContainer>
+              <StyledPoolCard key={p.pool}>
+                <StyledPoolCardInnerContainer>
                   <Flex justifyContent="space-between" alignItems="center" mb="12px">
                     <TokenPairImage
                       variant="inverted"
                       primaryToken={p.token}
                       secondaryToken={p.quoteToken}
-                      width={64} height={64}
+                      width={64}
+                      height={64}
                       marginRight={12}
                     />
                     <Flex flexDirection="column" alignItems="flex-end">
-                      <Heading mb="4px">{p.token.symbol}-{p.quoteToken.symbol}</Heading>
+                      <Heading mb="4px">
+                        {p.token.symbol}-{p.quoteToken.symbol}
+                      </Heading>
                     </Flex>
                   </Flex>
 
                   <PoolCardAction table={table}>
                     <Text>APR: {p.aprs[0].value}%</Text>
                     <Text>TVL: ${p.tvl}</Text>
-                  </PoolCardAction>
 
-                  </StyledPoolCardInnerContainer>
-                </StyledPoolCard>
-              </Link>
+                    <NewPositionButton
+                      currencyIdA={p.token.address}
+                      currencyIdB={p.quoteToken.address}
+                      feeAmount={p.feeAmount}
+                    />
+                  </PoolCardAction>
+                </StyledPoolCardInnerContainer>
+              </StyledPoolCard>
             )
           })
         ) : (

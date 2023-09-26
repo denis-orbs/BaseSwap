@@ -14,6 +14,7 @@ export default function NewPositionButton({ currencyIdA, currencyIdB, feeAmount 
 
   return (
     <Button
+      m={2}
       onClick={() => {
         router.replace({
           pathname: '/addV3',
