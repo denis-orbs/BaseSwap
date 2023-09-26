@@ -1,11 +1,10 @@
 import { useTranslation } from '@pancakeswap/localization'
-import { Text } from '@pancakeswap/uikit'
 import PositionListItem from 'components/PositionListItem'
 import Trans from 'components/Trans'
 import React from 'react'
 import styled from 'styled-components'
 import { PositionDetails } from 'types/position'
-import { VisibilityOff, VisibilityOn, Flex } from '@pancakeswap/uikit'
+import { VisibilityOff, VisibilityOn, Flex, Text } from '@pancakeswap/uikit'
 
 const MobileHeader = styled.div`
   padding: 8px;
@@ -61,25 +60,6 @@ export default function PositionList({
 
   return (
     <>
-      {/* <DesktopHeader>
-        <Text>{t(`YOUR POSITIONS  ${positions && positions.length}`)}</Text>
-
-        <ToggleLabel
-          id="desktop-hide-closed-positions"
-          onClick={() => {
-            setUserHideClosedPositions(!userHideClosedPositions)
-          }}
-        >
-          {userHideClosedPositions ? 
-          <Text color="text" textTransform="uppercase" fontSize="13px">
-              Show closed positions
-          </Text> 
-          : 
-          <Text color="text" textTransform="uppercase" fontSize="13px">
-            Hide closed positions
-            </Text>}
-        </ToggleLabel>
-      </DesktopHeader> */}
       <MobileHeader>
         <Text>{t(`ACTIVE POSITIONS: ${positions && positions.length}`)}</Text>
         <ToggleWrap>

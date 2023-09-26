@@ -5,10 +5,8 @@ import { Button } from "../../components/Button";
 import BottomNav from "../../components/BottomNav";
 import { Box } from "../../components/Box";
 import Flex from "../../components/Box/Flex";
-import { SubMenuItems } from "../../components/SubMenuItems";
 import { BsCoin } from 'react-icons/bs'
 import { useMatchBreakpoints } from "../../hooks";
-import UserMenu from "./components/UserMenu";
 import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_MOBILE } from "./config";
 import { NavProps } from "./types";
 import { MdGamepad } from 'react-icons/md' 
@@ -17,13 +15,10 @@ import { Text } from "../../components/Text";
 import { Link } from "../../components/Link";
 import TypeIt from 'typeit-react'
 import { Image } from "../../components/Image";
-import { FlamingText } from "./components/FlamingText";
 import { PiSwapBold } from 'react-icons/pi'
 import { RiPlantFill } from 'react-icons/ri' 
-import { GiWaterSplash } from 'react-icons/gi'
 import { FaSpaceShuttle } from 'react-icons/fa'
 import NavbarIcon from "./components/Icon";
-import { IoMdClose } from 'react-icons/io'
 import { GiBurstBlob } from 'react-icons/gi'
 
 
