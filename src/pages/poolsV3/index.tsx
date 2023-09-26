@@ -14,6 +14,7 @@ import {
 import { PoolCardActionProps } from 'views/xFarms/components/types'
 import TypeIt from 'typeit-react'
 import 'animate.css'
+import { getTVLFormatted } from 'views/xFarms/utils'
 
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
@@ -44,6 +45,7 @@ export default function PoolV3({ table }: PoolCardActionProps) {
       token: getTokenInstance(p.token0),
       quoteToken: getTokenInstance(p.token1),
       liquidityUrlPath: `/addV3/${p.token0}/${p.token1}/${feeAmount}`,
+      tvl: getTVLFormatted(p.tvl),
     }
   })
 
@@ -56,50 +58,52 @@ export default function PoolV3({ table }: PoolCardActionProps) {
   return (
     <Page>
       <PageHeader>
-          <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
-            <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-              <WelcomeTypeIt
-                options={{
-                  cursorChar: ' ',
-                  cursorSpeed: 1000000,
-                  speed: 75,
-                }}
-                speed={10}
-                getBeforeInit={(instance) => {
-                  instance.type('V3 Pools', { speed: 5000 })
-                  return instance
-                }}
-              ></WelcomeTypeIt>
-            </Flex>
+        <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
+          <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
+            <WelcomeTypeIt
+              options={{
+                cursorChar: ' ',
+                cursorSpeed: 1000000,
+                speed: 75,
+              }}
+              speed={10}
+              getBeforeInit={(instance) => {
+                instance.type('V3 Pools', { speed: 5000 })
+                return instance
+              }}
+            ></WelcomeTypeIt>
           </Flex>
-        </PageHeader>
+        </Flex>
+      </PageHeader>
       <Flex>
-        {pools?.length > 0 ? pools.map((p) => {
-          console.log('p',p)
-          return (
-            <Link href={p.liquidityUrlPath} marginBottom="1.2rem">
-            <StyledPoolCard key={p.pool}>
-              <StyledPoolCardInnerContainer>
-                <Flex justifyContent="space-between" alignItems="flex-start" mb="-10px">
-                  <TokenPairImage
-                    variant="inverted"
-                    primaryToken={p.token}
-                    secondaryToken={p.quoteToken}
-                    width={80}
-                    height={80}
-                  />
-                </Flex>
+        {pools?.length > 0 ? (
+          pools.map((p) => {
+            console.log('p', p)
+            return (
+              <Link href={p.liquidityUrlPath} marginBottom="1.2rem">
+                <StyledPoolCard key={p.pool}>
+                  <StyledPoolCardInnerContainer>
+                    <Flex justifyContent="space-between" alignItems="flex-start" mb="-10px">
+                      <TokenPairImage
+                        variant="inverted"
+                        primaryToken={p.token}
+                        secondaryToken={p.quoteToken}
+                        width={80}
+                        height={80}
+                      />
+                    </Flex>
 
-                <PoolCardAction table={table}>
-                  <Text>TVL: ${p.tvl}</Text>
-                </PoolCardAction>
-              </StyledPoolCardInnerContainer>
-            </StyledPoolCard>
-            </Link>
-          )
-        }):
-        <Spinner /> 
-      }
+                    <PoolCardAction table={table}>
+                      <Text>TVL: ${p.tvl}</Text>
+                    </PoolCardAction>
+                  </StyledPoolCardInnerContainer>
+                </StyledPoolCard>
+              </Link>
+            )
+          })
+        ) : (
+          <Spinner />
+        )}
       </Flex>
     </Page>
   )

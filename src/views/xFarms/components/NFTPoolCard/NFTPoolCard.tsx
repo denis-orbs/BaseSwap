@@ -15,6 +15,7 @@ import { useWeb3React } from '@web3-react/core'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { useTranslation } from '@pancakeswap/localization'
 import { StyledPoolCard, StyledPoolCardInnerContainer } from './Styled'
+import { getTVLFormatted } from 'views/xFarms/utils'
 
 const ExpandingWrapper = styled.div`
   padding: 8px;
@@ -32,7 +33,7 @@ interface NFTPoolCardProps {
 const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnly }) => {
   const [showExpandableSection, setShowExpandableSection] = useState(false)
   const { t } = useTranslation()
-  const totalValueFormatted = `~$${(farm?.TVL || 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+  const totalValueFormatted = getTVLFormatted(farm?.TVL)
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: farm.quoteToken.address,
     tokenAddress: farm.token.address,
