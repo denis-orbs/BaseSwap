@@ -25,7 +25,6 @@ import { FaSpaceShuttle } from 'react-icons/fa'
 import NavbarIcon from "./components/Icon";
 import { IoMdClose } from 'react-icons/io'
 import { GiBurstBlob } from 'react-icons/gi'
-import Droplet from "./components/Droplet";
 
 
 const StyledText = styled(Text)`
@@ -240,7 +239,7 @@ const Menu: React.FC<NavProps> = ({
                   </DropdownMenu>
                 </DropdownContainer>
                 
-                <NavbarIcon icon={Droplet} label="Liquidity" href="/liquidity" />
+                <NavbarIcon icon={GiBurstBlob} label="Liquidity" href="/liquidity" />
 
                 <DropdownContainer>
                   <NavbarIcon icon={FaSpaceShuttle} label="BaseX" href="/positions" />
