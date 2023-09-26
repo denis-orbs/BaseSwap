@@ -74,6 +74,8 @@ export { default as LoginIcon } from "./Icons/Login";
 export { default as LogoIcon } from "./Icons/Logo";
 export { default as LogoRoundIcon } from "./Icons/LogoRound";
 export { default as LogoutIcon } from "./Icons/Logout";
+export { default as HippoIcon } from "./Icons/Hippo"; 
+export { default as WhaleIcon } from "./Icons/Whale"; 
 export { default as LogoWithTextIcon } from "./Icons/LogoWithText";
 export { default as MathWalletIcon } from "./Icons/MathWallet";
 export { default as MedalBronzeIcon } from "./Icons/MedalBronze";

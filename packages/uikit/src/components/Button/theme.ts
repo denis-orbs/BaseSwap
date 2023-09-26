@@ -168,9 +168,9 @@ export const styleVariants = {
     borderColor: "#fff", 
     ":hover": {
       borderColor: `${darkColors.background}`,
-      borderWidth: "3px",  
+      borderWidth: "2px",  
       background: `${darkColors.gradients.basedsexgray}`,
-      color: "#fff", 
+      color: "#0154FE", 
       boxShadow: "0 0 12px #0154FE", 
       transform: "translateY(1px)",
     },
