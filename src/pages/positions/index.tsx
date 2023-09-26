@@ -23,6 +23,7 @@ import { CreateNewIcon } from '@pancakeswap/uikit'
 import useMerklRewards from 'lib/hooks/merkl-rewards/useMerklRewards'
 import CurrencyLogo from 'components/Logo/CurrencyLogo'
 import { useUserClaimsDataSelector } from 'state/user/selectors'
+import NewPositionButton from 'components/NewPositionButton'
 
 const PageTitle = styled(Text)`
   font-weight: 400;
@@ -271,19 +272,7 @@ export default function Pool() {
                 <Trans>CURRENT POSITIONS</Trans>
               </Text>
               <ButtonRow>
-                <Button
-                  onClick={() => {
-                    router.replace({
-                      pathname: '/addV3',
-                      query: {
-                        currencyIdA: 'ETH',
-                      },
-                    })
-                  }}
-                >
-                  <CreateNewIcon />
-                  <Text marginLeft="8px">{t('New Position')}</Text>
-                </Button>
+                <NewPositionButton currencyIdA="ETH" />
               </ButtonRow>
             </TitleRow>
 
