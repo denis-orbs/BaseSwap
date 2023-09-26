@@ -1,4 +1,4 @@
-import { Flex, Text, Spinner, Heading } from '@pancakeswap/uikit'
+import { Flex, Text, Spinner, Heading, useTooltip, HelpIcon } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { TokenPairImage } from 'components/TokenImage'
 import { getTokenInstance } from 'config/constants/token-info'
@@ -68,6 +68,13 @@ export default function PoolV3({ table }: PoolCardActionProps) {
         {pools?.length > 0 ? (
           pools.map((p) => {
             console.log('p', p)
+
+            const { targetRef, tooltip, tooltipVisible } = useTooltip(
+              `${p.aprs[0].label}:  ${p.aprs[0].value} \n${p.aprs[1].label}:  ${p.aprs[1].value} \n${p.aprs[2].label}:  ${p.aprs[2].value}`,
+               { placement: 'top-end', tooltipOffset: [20, 10] },
+             )
+
+
             return (
               <StyledPoolCard key={p.pool}>
                 <StyledPoolCardInnerContainer>
@@ -86,11 +93,29 @@ export default function PoolV3({ table }: PoolCardActionProps) {
                       </Heading>
                     </Flex>
                   </Flex>
-
                   <PoolCardAction table={table}>
-                    <Text>APR: {p.aprs[0].value}%</Text>
-                    <Text>TVL: ${p.tvl}</Text>
-
+                    <Flex flexDirection="row" justifyContent="space-between">
+                      <Text color="textSubtle" textTransform="uppercase" fontWeight="600" fontSize="14px">
+                        APR:
+                      </Text>
+                      <Text color="textSubtle" textTransform="uppercase" fontWeight="600" fontSize="14px">
+                        {p.aprs[0].value}
+                      </Text>
+                    </Flex>
+                    <Flex flexDirection="row" justifyContent="space-between" mb={12}>
+                      <Text color="textSubtle" textTransform="uppercase" fontWeight="600" fontSize="14px">
+                        TVL:
+                      </Text>
+                      <Flex flexDirection="row" alignItems="center">
+                        <Text color="textSubtle" textTransform="uppercase" fontWeight="600" fontSize="14px">
+                          {p.tvl}
+                        </Text>
+                        <span ref={targetRef}>
+                          <HelpIcon width="16px" height="16px" color="textSubtle" marginLeft="4px"/>
+                        </span>
+                        {tooltipVisible && tooltip}
+                      </Flex>
+                    </Flex>
                     <NewPositionButton
                       currencyIdA={p.token.address}
                       currencyIdB={p.quoteToken.address}
