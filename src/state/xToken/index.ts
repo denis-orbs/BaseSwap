@@ -56,7 +56,7 @@ export const xTokenSlice = createSlice({
     })
 
     builder.addCase(fetchUserXTokenDataAsync.rejected, (state, action) => {
-      console.log(action.error)
+      // console.log(action.error)
       return state
     })
 
@@ -68,7 +68,7 @@ export const xTokenSlice = createSlice({
     })
 
     builder.addCase(fetchUserXTokenRedeemsInfoAsync.rejected, (state, action) => {
-      console.log(action.error)
+      // console.log(action.error)
       return state
     })
   },

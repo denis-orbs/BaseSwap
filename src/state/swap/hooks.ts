@@ -540,7 +540,7 @@ export function useSwapQuote(inputCurrency, outputCurrency, typedValue, slippage
           })
           setData(result.data)
         } catch (err) {
-          console.log('swap quote', err)
+          // console.log('swap quote', err)
         } finally {
           setLoading(false)
         }
@@ -565,7 +565,7 @@ export const postAssemble = async (pathId: string, account: string) => {
 
     return assembleData
   } catch (err) {
-    console.log('assemble data', err)
+    // console.log('assemble data', err)
     return err
   }
 }
@@ -605,7 +605,7 @@ export const quoteAndAssemble = async (inputCurrency, outputCurrency, typedValue
     },
   })
 
-  console.log('quoteData', quoteData)
+  // console.log('quoteData', quoteData)
 
   const assembledData = await postAssemble(quoteData.data.pathId, account)
 
