@@ -5,21 +5,31 @@ import { Button } from "../../components/Button";
 import BottomNav from "../../components/BottomNav";
 import { Box } from "../../components/Box";
 import Flex from "../../components/Box/Flex";
-import MenuItems from "../../components/MenuItems/MenuItems";
 import { SubMenuItems } from "../../components/SubMenuItems";
+import { BsCoin } from "react-icons/bs";
 import { useMatchBreakpoints } from "../../hooks";
-import CakePrice from "../../components/CakePrice/CakePrice";
-import Logo from "./components/Logo";
 import UserMenu from "./components/UserMenu";
 import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_MOBILE } from "./config";
 import { NavProps } from "./types";
-import LangSelector from "../../components/LangSelector/LangSelector";
+import { MdGamepad } from "react-icons/md";
 import { MenuContext } from "./context";
 import { Text } from "../../components/Text";
 import { Link } from "../../components/Link";
 import TypeIt from "typeit-react";
 import { Image } from "../../components/Image";
 import { FlamingText } from "./components/FlamingText";
+import { PiSwapBold } from "react-icons/pi";
+import { RiPlantFill } from "react-icons/ri";
+import { GiWaterSplash } from "react-icons/gi";
+import { FaSpaceShuttle } from "react-icons/fa";
+import NavbarIcon from "./components/Icon";
+import { IoMdClose } from "react-icons/io";
+import { GiBurstBlob } from "react-icons/gi";
+
+const StyledText = styled(Text)`
+  font-size: 14px;
+  text-align: center;
+`;
 
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
@@ -85,7 +95,7 @@ const StyledNav = styled.nav`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 65px;
+  height: 70px;
   background: ${({ theme }) => theme.colors.gradients.pagebg};
   border-bottom: 4px solid ${({ theme }) => theme.colors.cardBorder};
   transform: translate3d(0, 0, 0);
@@ -98,7 +108,7 @@ const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
   top: ${({ showMenu, height }) => (showMenu ? 0 : `-${height}px`)};
   left: 0;
   transition: top 0.2s;
-  height: 65px;
+  height: 70px;
   width: 100%;
   z-index: 20;
 `;
@@ -143,11 +153,8 @@ const Menu: React.FC<NavProps> = ({
   const { isMobile, isMd } = useMatchBreakpoints();
   const [showMenu, setShowMenu] = useState(true);
   const refPrevOffset = useRef(typeof window === "undefined" ? 0 : window.pageYOffset);
-
   const topBannerHeight = isMobile ? TOP_BANNER_HEIGHT_MOBILE : TOP_BANNER_HEIGHT;
-
   const totalTopMenuHeight = banner ? MENU_HEIGHT + topBannerHeight : MENU_HEIGHT;
-
   useEffect(() => {
     const handleScroll = () => {
       const currentOffset = window.pageYOffset;
@@ -177,11 +184,6 @@ const Menu: React.FC<NavProps> = ({
     };
   }, [totalTopMenuHeight]);
 
-  // Find the home link if provided
-  const homeLink = links.find((link) => link.label === "Home");
-  const subLinksWithoutMobile = subLinks?.filter((subLink) => !subLink.isMobileOnly);
-  const subLinksMobileOnly = subLinks?.filter((subLink) => subLink.isMobileOnly);
-
   return (
     <MenuContext.Provider value={{ linkComponent }}>
       <Wrapper>
@@ -204,7 +206,7 @@ const Menu: React.FC<NavProps> = ({
                 <Text
                   marginLeft={["0rem", null, null, "0.5rem"]}
                   marginRight={["0rem", null, null, "0.7rem"]}
-                  fontSize="2rem"
+                  fontSize="1.8rem"
                 >
                   BaseSwap
                 </Text>
@@ -229,9 +231,7 @@ const Menu: React.FC<NavProps> = ({
                 width="80%"
               >
                 <DropdownContainer>
-                  <Link href="/swap">
-                    <Text marginRight="2rem">TRADE</Text>
-                  </Link>
+                  <NavbarIcon icon={PiSwapBold} label="TRADE" href="/swap" />
                   <DropdownMenu>
                     <Link href="/swap" marginBottom="1.2rem">
                       <DropdownText>SWAP</DropdownText>
@@ -244,50 +244,30 @@ const Menu: React.FC<NavProps> = ({
                     </Link>
                   </DropdownMenu>
                 </DropdownContainer>
-                <Link href="/liquidity">
-                  <Text marginRight="2rem">Liquidity</Text>
-                </Link>
+
+                <NavbarIcon icon={GiBurstBlob} label="Liquidity" href="/liquidity" />
 
                 <DropdownContainer>
-                  <Link href="/positions">
-                    <Text marginRight="2rem">
-                      <FlamingText>BaseX</FlamingText>
-                    </Text>
-                  </Link>
-
+                  <NavbarIcon icon={FaSpaceShuttle} label="BaseX" href="/positions" />
                   <DropdownMenu>
                     <Link href="/positions" marginBottom="1.2rem">
                       <DropdownText>Manage Positions</DropdownText>
                     </Link>
-                    <Link href="/addV3" marginBottom="1.2rem">
+                    <Link href="/addV3">
                       <DropdownText>Add Liquidity</DropdownText>
-                    </Link>
-                    <Link href="/poolsV3">
-                      <DropdownText>V3 Pools</DropdownText>
                     </Link>
                   </DropdownMenu>
                 </DropdownContainer>
 
-                <Link href="/farm">
-                  <Text marginRight="2rem">FARMS</Text>
-                </Link>
-
-                <Link href="/pools">
-                  <Text marginRight="2rem">Earn </Text>
-                </Link>
+                <NavbarIcon icon={RiPlantFill} label="Farm" href="/farm" />
+                <NavbarIcon icon={BsCoin} label="Earn" href="/pools" />
 
                 <DropdownContainer>
-                  <Text marginRight="2rem">MORE!</Text>
+                  <NavbarIcon icon={MdGamepad} label="MORE!" href="/" />
                   <DropdownMenu>
-                    {/* <Link href="/new" marginBottom="1.2rem" >
-                        <Text marginRight="2rem">New here?</Text>
-                    </Link> */}
                     <Link href="/xbsx" marginBottom="1.2rem">
                       <DropdownText marginRight="2rem">xBSX</DropdownText>
                     </Link>
-                    {/* <Link href="https://presale.baseswap.fi" marginBottom="1.2rem" >
-                        <Text marginRight="2rem">BSX PRESALE!</Text>
-                    </Link> */}
                     <Link href="/finishedfarms" marginBottom="1.2rem">
                       <DropdownText marginRight="2rem">Finished Farms </DropdownText>
                     </Link>

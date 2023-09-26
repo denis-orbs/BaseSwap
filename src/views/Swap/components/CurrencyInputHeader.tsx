@@ -69,14 +69,8 @@ const CurrencyInputHeader: React.FC<Props> = ({
         </Flex>
         <Flex>
           <NotificationDot show={expertMode}>
-            <GlobalSettings color="text" mr="0" mode={SettingsMode.SWAP_LIQUIDITY} />
+            <GlobalSettings mr="0" mode={SettingsMode.SWAP_LIQUIDITY} />
           </NotificationDot>
-          {/* <IconButton onClick={onPresentTransactionsModal} variant="text" scale="sm">
-            <HistoryIcon color="textSubtle" width="24px" />
-          </IconButton>
-          <IconButton variant="text" scale="sm" onClick={handleOnClick}>
-            <RefreshIcon disabled={!hasAmount} color="textSubtle" width="27px" />
-          </IconButton> */}
         </Flex>
       </Flex>
       <Flex alignItems="center">

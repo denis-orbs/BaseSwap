@@ -9,7 +9,6 @@ export const baseColors = {
   success: "#0154FE",
   warning: "#FFB237",
   orange: "#FC8A17",
-
 };
 
 export const additionalColors = {
@@ -39,9 +38,9 @@ export const lightColors: Colors = {
   textDisabled: "#BDC2C4",
   textSubtle: "#7A6EAA",
   disabled: "#E9EAEB",
-  success: 'green',
-  closed: 'red',
-  warning: 'yellow',
+  success: "green",
+  closed: "red",
+  warning: "yellow",
   gradients: {
     basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD 100%)",
     basedsexdark: "linear-gradient(to bottom, #333333, #000000)",
@@ -82,9 +81,9 @@ export const darkColors: Colors = {
   textDisabled: "#666171",
   textSubtle: "#fff",
   disabled: "#333",
-  success: '#0154FE',
-  closed: 'red',
-  warning: 'yellow',
+  success: "#0154FE",
+  closed: "red",
+  warning: "yellow",
   gradients: {
     basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD, 90%, #ccc 100%)",
     based69: "linear-gradient(to bottom,  #111, #020079, #0154FD)",
@@ -99,7 +98,7 @@ export const darkColors: Colors = {
     cardHeader: "linear-gradient(166.77deg, #3B4155 0%, #3A3045 100%)",
     blue: "linear-gradient(180deg, #00707F 0%, #19778C 100%)",
     violet: "linear-gradient(180deg, #000 0%, #0154FD 100%)",
-    violetAlt: "linear-gradient(180deg, #0154FD 0%, #000 100%)",
+    violetAlt: "linear-gradient(180deg, #0154FD 0%, #020079 100%)",
     gold: "linear-gradient(180deg, #FFD800 0%, #FDAB32 100%)",
   },
 };

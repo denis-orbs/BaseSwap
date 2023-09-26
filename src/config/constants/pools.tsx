@@ -69,7 +69,7 @@ export const livePools: SerializedPoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.0000015',
-    isBoost: true, 
+    isBoost: true,
   },
   //$207
 
@@ -82,18 +82,9 @@ export const livePools: SerializedPoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '.0027',
-    isBoost: true, 
+    isBoost: true,
   },
-  {
-    sousId: 102,
-    stakingToken: serializedTokens.bsx,
-    earningToken: serializedTokens.ede,
-    contractAddress: {
-      [ChainId.BASE]: '0x8D52E213D741684dec1d37a6ee7814aE32942c1e',
-    },
-    poolCategory: PoolCategory.CORE,
-    tokenPerBlock: '0.0025',
-  },
+
   // $233
   {
     sousId: 100,
@@ -104,9 +95,9 @@ export const livePools: SerializedPoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.0033',
-    isBoost: false, 
+    isBoost: false,
   },
-  //$285 
+  //$285
   {
     sousId: 101,
     stakingToken: serializedTokens.cake,
@@ -116,7 +107,7 @@ export const livePools: SerializedPoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.0000021',
-    isBoost: true, 
+    isBoost: true,
   },
   {
     sousId: 105,
@@ -127,15 +118,18 @@ export const livePools: SerializedPoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.0011',
-    isBoost: true, 
+    isBoost: true,
   },
- 
- 
- 
-
-
-
-
+  {
+    sousId: 102,
+    stakingToken: serializedTokens.bsx,
+    earningToken: serializedTokens.ede,
+    contractAddress: {
+      [ChainId.BASE]: '0x8D52E213D741684dec1d37a6ee7814aE32942c1e',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '0.00',
+  },
 ]
 
 // known finished pools

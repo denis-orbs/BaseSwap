@@ -4,7 +4,7 @@ import Heading from "../../components/Heading/Heading";
 import getThemeValue from "../../util/getThemeValue";
 import { ModalBody, ModalHeader, ModalTitle, ModalContainer, ModalCloseButton, ModalBackButton } from "./styles";
 import { ModalProps } from "./types";
-import { Text } from '@pancakeswap/uikit'; 
+import { Text } from "@pancakeswap/uikit";
 import { useMatchBreakpointsContext } from "../../contexts";
 
 export const MODAL_SWIPE_TO_CLOSE_VELOCITY = 300;
@@ -43,8 +43,8 @@ const Modal: React.FC<ModalProps> = ({
       <ModalHeader background={getThemeValue(theme, `colors.${headerBackground}`, headerBackground)}>
         <ModalTitle>
           {onBack && <ModalBackButton onBack={onBack} />}
-         <Text color="text" fontSize="1.2rem" fontWeight="400"  >
-          {title}
+          <Text color="text" fontSize="2rem" fontWeight="400">
+            {title}
           </Text>
         </ModalTitle>
         {!hideCloseButton && <ModalCloseButton onDismiss={onDismiss} />}

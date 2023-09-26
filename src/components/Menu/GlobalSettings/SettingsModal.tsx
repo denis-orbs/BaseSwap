@@ -1,34 +1,33 @@
-// import { useState } from 'react'
 import styled from 'styled-components'
 import {
   Text,
-  // PancakeToggle, 
-  Toggle, Flex, Modal, InjectedModalProps,
-  // ThemeSwitcher, Box 
+  Toggle,
+  Flex,
+  Modal,
+  InjectedModalProps,
+  // ThemeSwitcher, Box
 } from '@pancakeswap/uikit'
-import {
-  // useAudioModeManager,
-  // useExpertModeManager,
-  useSubgraphHealthIndicatorManager,
-  // useUserExpertModeAcknowledgementShow,
-  // useUserSingleHopOnly,
-  // useZapModeManager,
-} from 'state/user/hooks'
-// import { useSwapActionHandlers } from 'state/swap/useSwapActionHandlers'
+import { useSubgraphHealthIndicatorManager } from 'state/user/hooks'
 import { useTranslation } from '@pancakeswap/localization'
 // import useTheme from 'hooks/useTheme'
 import QuestionHelper from '../../QuestionHelper'
 import TransactionSettings from './TransactionSettings'
-// import ExpertModal from './ExpertModal'
 import GasSettings from './GasSettings'
 import { SettingsMode } from './types'
 import { useShowRoute } from '../../../state/user/hooks'
+import { TbRoute } from 'react-icons/tb'
+
+const Route = styled(TbRoute)`
+  color: #fff;
+  width: 32px;
+  height: 32px;
+`
 
 const ScrollableContainer = styled(Flex)`
   flex-direction: column;
   ${({ theme }) => theme.mediaQueries.xs} {
     max-height: none;
-    height: 90vh;
+    height: 65vh;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     max-height: none;
@@ -112,24 +111,24 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
         {mode === SettingsMode.SWAP_LIQUIDITY && (
           <>
             <Flex marginTop="-4px" flexDirection="column">
-              <Text 
-                  letterSpacing="0px" 
-                  fontWeight="500" 
-                  textTransform="uppercase" 
-                  fontSize="1.2rem" 
-                  color="background" 
-                  textAlign="center" 
-                  mb="24px">
-                {t('Swaps & Liquidity')}
-              </Text>
               {/* <Flex justifyContent="space-between" alignItems="center" mb="24px"> */}
 
-                <GasSettings  />
+              <GasSettings />
 
               <TransactionSettings />
-              <Flex justifyContent="space-between" alignItems="center" mb="24px">
-                <Flex alignItems="center">
-                  <Text>{t('Show Swap Route')}</Text>
+              {/* <Flex flexDirection="column" mb="2rem">
+                <Flex mb="8px" alignItems="center" justifyContent="center"  >
+                  <Route />
+                  <Text marginLeft="3px" marginRight="2px" textAlign="center" 
+              fontSize="1rem"  fontWeight="400" color="#fff">
+                    {t('ROUTE')}</Text>
+                  <QuestionHelper
+                    text={t(
+                      'BaseSwap routes trades through liquidity pools in order to return the best price. Toggle this on to see the path your trade will take.',
+                    )}
+                    placement="top-start"
+                    ml="4px"
+                  />
                 </Flex>
                 <Toggle
                   id="show-route"
@@ -139,7 +138,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
                     toggleSetShowRoute()
                   }}
                 />
-              </Flex>
+              </Flex> */}
             </Flex>
             {/* <Flex justifyContent="space-between" alignItems="center" mb="12px">
               <Flex  alignItems="center">

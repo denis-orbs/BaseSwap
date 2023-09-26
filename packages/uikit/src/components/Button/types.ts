@@ -5,27 +5,28 @@ import type { PolymorphicComponentProps } from "../../util/polymorphic";
 export const scales = {
   MD: "md",
   SM: "sm",
+  PAWG: "pawg",
   XS: "xs",
 } as const;
 
 export const variants = {
   PRIMARY: "primary",
-  PERCENTAGES: "percentages", 
-  PLUSMINUS: "plusminus", 
-  GASON: "gason", 
-  ADDTOMETAMASK: "addtometamask", 
-  REVAMP: "revamp", 
-  REVAMPREVERSE1: "revampreverse1", 
+  PERCENTAGES: "percentages",
+  PLUSMINUS: "plusminus",
+  GASON: "gason",
+  ADDTOMETAMASK: "addtometamask",
+  REVAMP: "revamp",
+  REVAMPREVERSE1: "revampreverse1",
 
-  REVAMPREVERSE: "revampreverse", 
-  GASOFF: "gasoff", 
-  CALCULATOR: "calculator", 
-  PRIMARYTWO: "primarytwo", 
-  PRIMARYTHREE: "primarythree", 
-  MENUCONNECT: "menuconnect", 
-  QUAD: "quad", 
+  REVAMPREVERSE: "revampreverse",
+  GASOFF: "gasoff",
+  CALCULATOR: "calculator",
+  PRIMARYTWO: "primarytwo",
+  PRIMARYTHREE: "primarythree",
+  MENUCONNECT: "menuconnect",
+  QUAD: "quad",
   SECONDARY: "secondary",
-  MAX: "max", 
+  MAX: "max",
   TERTIARY: "tertiary",
   TEXT: "text",
   DANGER: "danger",
@@ -34,8 +35,8 @@ export const variants = {
   LIGHT: "light",
 } as const;
 
-export type Scale = typeof scales[keyof typeof scales];
-export type Variant = typeof variants[keyof typeof variants];
+export type Scale = (typeof scales)[keyof typeof scales];
+export type Variant = (typeof variants)[keyof typeof variants];
 
 export interface BaseButtonProps extends LayoutProps, SpaceProps {
   as?: "a" | "button" | ElementType;

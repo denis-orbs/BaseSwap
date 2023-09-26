@@ -17,9 +17,10 @@ import { useTranslation } from '@pancakeswap/localization'
 import { StyledPoolCard, StyledPoolCardInnerContainer } from './Styled'
 
 const ExpandingWrapper = styled.div`
-  padding: 24px;
-  border-top: 2px solid ${({ theme }) => theme.colors.cardBorder};
+  padding: 8px;
+  border-top: 4px solid ${({ theme }) => theme.colors.cardBorder};
   overflow: hidden;
+  background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
 `
 
 interface NFTPoolCardProps {

@@ -2,18 +2,9 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { currencyEquals, ETHER, JSBI, TokenAmount, WNATIVE, MINIMUM_LIQUIDITY } from '@magikswap/sdk'
-import {
-  Button,
-  Text,
-  AddIcon,
-  CardBody,
-  Message,
-  useModal,
-  TooltipText,
-  useTooltip,
-  MessageText,
-} from '@pancakeswap/uikit'
+import { Button, Text, CardBody, Message, useModal, TooltipText, useTooltip, MessageText } from '@pancakeswap/uikit'
 import { logError } from 'utils/sentry'
+import { IoMdAddCircle } from 'react-icons/io'
 import { useIsTransactionUnsupported, useIsTransactionWarning } from 'hooks/Trades'
 import { useTranslation } from '@pancakeswap/localization'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
@@ -74,6 +65,14 @@ const WelcomeTypeIt = styled(TypeIt)`
   @media (min-width: 768px) {
     font-size: 68px;
   }
+`
+
+const AddIcon = styled(IoMdAddCircle)`
+  color: #0154fe;
+  width: 48px;
+  box-shadow: 0 0 4px #fff;
+  border-radius: 150px;
+  height: 48px;
 `
 enum Steps {
   Choose,
@@ -646,7 +645,7 @@ export default function AddLiquidity() {
                     showCommonBases
                   />
                   <ColumnCenter>
-                    <AddIcon width="16px" />
+                    <AddIcon />
                   </ColumnCenter>
                   <CurrencyInputPanel
                     showBUSD

@@ -1,13 +1,11 @@
-import { useState, useCallback } from 'react'
 import styled, { css } from 'styled-components'
-import { Card, Flex, Text, Skeleton } from '@pancakeswap/uikit'
-import { getBscScanLink } from 'utils'
-import ExpandableSectionButton from 'components/ExpandableSectionButton'
+import { Card, Flex } from '@pancakeswap/uikit'
 import { PoolCardActionProps } from '../types'
 
 export const StyledPoolCard = styled(Card)`
   align-self: baseline;
   max-width: 475px;
+  border-width: 4px;
   margin: 0 0 24px 0;
   ${({ theme }) => theme.mediaQueries.sm} {
     max-width: 450px;

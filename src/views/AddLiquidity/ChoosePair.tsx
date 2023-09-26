@@ -1,5 +1,5 @@
 import { Currency } from '@magikswap/sdk'
-import { Box, Text, AddIcon, CardBody, Button, CardFooter } from '@pancakeswap/uikit'
+import { Box, Text, AddIcon, CardBody, Button, CardFooter, Flex } from '@pancakeswap/uikit'
 import { CurrencySelect } from 'components/CurrencySelect'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { FlexGap } from 'components/Layout/Flex'
@@ -8,6 +8,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { AppHeader } from '../../components/App'
 import { useCurrencySelectRoute } from './useCurrencySelectRoute'
 import 'animate.css'
+import { TbKarate } from 'react-icons/tb'
 
 export function ChoosePair({
   currencyA,
@@ -27,19 +28,15 @@ export function ChoosePair({
 
   return (
     <>
-      <AppHeader
-        title={t('BACK')}
-        subtitle={t('')}
-        helper={t(
-          '',
-        )}
-        backTo="/liquidity"
-      />
+      <AppHeader title={t('BACK')} subtitle={t('')} helper={t('')} backTo="/liquidity" />
       <CardBody>
         <Box>
-          <Text textTransform="uppercase" color="text" fontWeight="300" fontSize="1rem" pb="12px">
-            {t('Choose your fighter')}
-          </Text>
+          <Flex flexDirection="row" alignItems="center" justifyContent="center" marginBottom="12px">
+            <Text textTransform="uppercase" color="text" fontWeight="400" fontSize="1.2rem" marginRight="4px">
+              {t('Choose your fighter')}
+            </Text>
+            <TbKarate width="36px" height="36px" style={{ color: '#0154FE' }} />
+          </Flex>
           <FlexGap gap="4px">
             <CurrencySelect
               id="add-liquidity-select-tokena"

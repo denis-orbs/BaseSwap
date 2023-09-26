@@ -1,6 +1,6 @@
 export { default as AccountFilledIcon } from "./Icons/AccountFilled";
 export { default as AccountIcon } from "./Icons/Account";
-export { default as CreateNewIcon } from "./Icons/CreateNew"; 
+export { default as CreateNewIcon } from "./Icons/CreateNew";
 export { default as AddIcon } from "./Icons/Add";
 export { default as ArrowBackIcon } from "./Icons/ArrowBack";
 export { default as ArrowDownIcon } from "./Icons/ArrowDown";
@@ -74,6 +74,8 @@ export { default as LoginIcon } from "./Icons/Login";
 export { default as LogoIcon } from "./Icons/Logo";
 export { default as LogoRoundIcon } from "./Icons/LogoRound";
 export { default as LogoutIcon } from "./Icons/Logout";
+export { default as HippoIcon } from "./Icons/Hippo";
+export { default as WhaleIcon } from "./Icons/Whale";
 export { default as LogoWithTextIcon } from "./Icons/LogoWithText";
 export { default as MathWalletIcon } from "./Icons/MathWallet";
 export { default as MedalBronzeIcon } from "./Icons/MedalBronze";
