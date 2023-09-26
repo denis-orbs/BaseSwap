@@ -1,4 +1,4 @@
-import { Flex, Text, Spinner, Link } from '@pancakeswap/uikit'
+import { Flex, Text, Spinner, Link, Heading } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { TokenPairImage } from 'components/TokenImage'
 import { getTokenInstance } from 'config/constants/token-info'
@@ -83,19 +83,24 @@ export default function PoolV3({ table }: PoolCardActionProps) {
               <Link href={p.liquidityUrlPath} marginBottom="1.2rem">
                 <StyledPoolCard key={p.pool}>
                   <StyledPoolCardInnerContainer>
-                    <Flex justifyContent="space-between" alignItems="flex-start" mb="-10px">
-                      <TokenPairImage
-                        variant="inverted"
-                        primaryToken={p.token}
-                        secondaryToken={p.quoteToken}
-                        width={80}
-                        height={80}
-                      />
+                  <Flex justifyContent="space-between" alignItems="center" mb="12px">
+                    <TokenPairImage
+                      variant="inverted"
+                      primaryToken={p.token}
+                      secondaryToken={p.quoteToken}
+                      width={64} height={64}
+                      marginRight={12}
+                    />
+                    <Flex flexDirection="column" alignItems="flex-end">
+                      <Heading mb="4px">{p.token.symbol}-{p.quoteToken.symbol}</Heading>
                     </Flex>
+                  </Flex>
 
-                    <PoolCardAction table={table}>
-                      <Text>TVL: ${p.tvl}</Text>
-                    </PoolCardAction>
+                  <PoolCardAction table={table}>
+                    <Text>APR: {p.aprs[0].value}%</Text>
+                    <Text>TVL: ${p.tvl}</Text>
+                  </PoolCardAction>
+
                   </StyledPoolCardInnerContainer>
                 </StyledPoolCard>
               </Link>
