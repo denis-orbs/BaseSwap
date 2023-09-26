@@ -17,7 +17,7 @@
     "lodash/import-scope": [2, "method"],
     "@next/next/no-img-element": 0,
     "no-sparse-arrays": 0,
-    "import/no-duplicates": "warn", 
+    "import/no-duplicates": "off", 
     "react/no-array-index-key": "warn", 
     "react/jsx-curly-brace-presence": "off", 
     "jsx-a11y/click-events-have-key-events": "off", 
