@@ -9,7 +9,7 @@ import {
   TradeFilledIcon,
   AddIcon,
   EllipsisIcon,
-  RocketIcon
+  RocketIcon,
 } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
 import { DropdownMenuItems } from '@pancakeswap/uikit/src/components/DropdownMenu/types'
@@ -32,7 +32,6 @@ const config: (
   chainId?: number,
 ) => ConfigMenuItemsType[] = (t, isDark, languageCode, chainId) =>
   [
- 
     {
       label: t('Trade'),
       href: '',
@@ -77,6 +76,10 @@ const config: (
           label: t('Manage Positions'),
           href: '/positions',
         },
+        {
+          label: t('V3 Pools'),
+          href: '/poolsV3',
+        },
       ],
     },
 
@@ -120,13 +123,11 @@ const config: (
       fillIcon: PiLinkSimpleHorizontalBold,
       supportChainIds: [DEFAULT_CHAIN_ID],
       items: [
-     
         {
           label: t('Twitter'),
           href: 'https://twitter.com/BaseSwap_Fi',
         },
 
-      
         {
           label: t('Discord'),
           href: 'https://discord.gg/2zUzjyGxw2',
@@ -174,7 +175,7 @@ const config: (
         },
       ],
     },
-    
+
     // {
     //   label: t('Swap'),
     //   icon: SwapIcon,

@@ -14,22 +14,7 @@ import useNftPools from 'views/xFarms/hooks/useNftPools'
 import { useWeb3React } from '@web3-react/core'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { useTranslation } from '@pancakeswap/localization'
-
-const StyledCard = styled(Card)`
-  align-self: baseline;
-  max-width: 475px;
-  margin: 0 0 24px 0;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    max-width: 450px;
-    margin: 0 12px 24px;
-  }
-`
-
-const NFTPoolCardInnerContainer = styled(Flex)`
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 16px;
-`
+import { StyledPoolCard, StyledPoolCardInnerContainer } from './Styled'
 
 const ExpandingWrapper = styled.div`
   padding: 24px;
@@ -72,8 +57,8 @@ const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnly }) 
   const stakedBalance = position?.stakedBalance || BIG_ZERO
 
   return (stakedOnly && parseInt(stakedBalance.toString()) > 0) || !stakedOnly ? (
-    <StyledCard isActive={isPromotedFarm}>
-      <NFTPoolCardInnerContainer>
+    <StyledPoolCard isActive={isPromotedFarm}>
+      <StyledPoolCardInnerContainer>
         <CardHeading
           lpLabel={lpLabel}
           token={farm.token}
@@ -90,8 +75,7 @@ const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnly }) 
           // multiplier={farm.multiplier}
         />
         {!removed && (
-          <Flex  justifyContent="flex-end" alignItems="center">
-            
+          <Flex justifyContent="flex-end" alignItems="center">
             <Text fontSize="24px" style={{ display: 'flex', alignItems: 'flex-end' }}>
               {farm.apr ? (
                 <span>{`${Number(Number(farm.apr).toFixed(2)).toLocaleString()}% APR`}</span>
@@ -104,11 +88,12 @@ const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnly }) 
 
         <Flex justifyContent="flex-end">
           <Text fontSize="12px">
-            {t('EARNING')}:&nbsp; 
-            {farm.pid === 1 || farm.pid === 16 ?  'BSWAP + BSX + xBSX':  'BSX + xBSX'}</Text>
+            {t('EARNING')}:&nbsp;
+            {farm.pid === 1 || farm.pid === 16 ? 'BSWAP + BSX + xBSX' : 'BSX + xBSX'}
+          </Text>
         </Flex>
         <CardActionsContainer farm={farm} lpLabel={lpLabel} addLiquidityUrl={addLiquidityUrl} />
-      </NFTPoolCardInnerContainer>
+      </StyledPoolCardInnerContainer>
 
       <ExpandingWrapper>
         <ExpandableSectionButton onClick={toggleExpandableSection} expanded={showExpandableSection} />
@@ -125,7 +110,7 @@ const NFTPoolCard: React.FC<NFTPoolCardProps> = ({ farm, removed, stakedOnly }) 
           />
         )}
       </ExpandingWrapper>
-    </StyledCard>
+    </StyledPoolCard>
   ) : null
 }
 

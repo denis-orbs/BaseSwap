@@ -119,3 +119,7 @@ export interface FarmWithStakedValue extends DeserializedFarm {
   lpRewardsApr?: number
   liquidity?: BigNumber
 }
+
+export interface PoolCardActionProps {
+  table?: boolean
+}
