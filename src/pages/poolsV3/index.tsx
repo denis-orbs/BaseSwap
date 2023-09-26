@@ -1,4 +1,4 @@
-import { Flex, Text, Spinner } from '@pancakeswap/uikit'
+import { Flex, Text, Spinner, Link } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { TokenPairImage } from 'components/TokenImage'
 import { getTokenInstance } from 'config/constants/token-info'
@@ -75,7 +75,9 @@ export default function PoolV3({ table }: PoolCardActionProps) {
         </PageHeader>
       <Flex>
         {pools?.length > 0 ? pools.map((p) => {
+          console.log('p',p)
           return (
+            <Link href={p.liquidityUrlPath} marginBottom="1.2rem">
             <StyledPoolCard key={p.pool}>
               <StyledPoolCardInnerContainer>
                 <Flex justifyContent="space-between" alignItems="flex-start" mb="-10px">
@@ -93,6 +95,7 @@ export default function PoolV3({ table }: PoolCardActionProps) {
                 </PoolCardAction>
               </StyledPoolCardInnerContainer>
             </StyledPoolCard>
+            </Link>
           )
         }):
         <Spinner /> 
