@@ -16,6 +16,7 @@ import {
 } from 'state/info/hooks'
 import TransactionTable from 'views/Info/components/InfoTables/TransactionsTable'
 import HoverableChart from '../components/InfoCharts/HoverableChart'
+import { Drop } from '@phosphor-icons/react'
 
 export const ChartCardsContainer = styled(Flex)`
   justify-content: space-between;
@@ -72,6 +73,7 @@ const Overview: React.FC = () => {
       <Heading scale="lg" mb="16px" id="info-overview-title">
         {t('PancakeSwap Info & Analytics')}
       </Heading>
+      <Drop color="#fff" size="24px" /> 
       <ChartCardsContainer>
         <Card>
           <HoverableChart
