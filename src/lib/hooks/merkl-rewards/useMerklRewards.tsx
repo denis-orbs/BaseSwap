@@ -20,6 +20,8 @@ export default function useMerklRewards() {
   const [claimsData, setClaimsData] = useState<{ tokens: string[]; proofs: string[][]; claims: string[] }>()
   const [isClaiming, setIsClaiming] = useState(false)
 
+  console.log('claimsData',claimsData)
+
   const { account, chainId, library } = useActiveWeb3React()
   const { getValueForAmount } = useTokenPrices()
   const { fetchWithCatchTxError } = useCatchTxError()
@@ -164,7 +166,7 @@ export default function useMerklRewards() {
       console.log(error)
       setIsClaiming(false)
     }
-  }, [chainId, fetchWithCatchTxError])
+  }, [chainId, fetchWithCatchTxError, claimsData])
 
   return {
     data,
