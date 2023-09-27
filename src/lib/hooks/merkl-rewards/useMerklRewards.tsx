@@ -185,6 +185,8 @@ export default function useMerklRewards() {
         )
       })
 
+      fetchUserData(account)
+
       if (receipt.status === 1) {
         dispatch(
           updateUserClaimsData({
