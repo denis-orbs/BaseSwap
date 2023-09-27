@@ -25,9 +25,9 @@ const WelcomeTypeIt = styled(TypeIt)`
 `
 
 export default function PoolV3({ table }: PoolCardActionProps) {
-  const { account, chainId } = useWeb3React()
+  const { account } = useWeb3React()
   const { data: merklData } = useMerklRewards()
-  console.log(merklData?.pools)
+  // console.log(merklData?.pools)
 
   const pools = (merklData?.pools || []).map((p) => {
     const feeAmount = p.poolFee * 10000
@@ -41,54 +41,50 @@ export default function PoolV3({ table }: PoolCardActionProps) {
   })
 
   return (
-  <Page>
-    <PageHeader>
-      <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
-        <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-          <WelcomeTypeIt
-            options={{
-              cursorChar: ' ',
-              cursorSpeed: 1000000,
-              speed: 25,
-            }}
-            speed={10}
-            getBeforeInit={(instance) => {
-              instance.type('CONCENTRATED', )
-              return instance
-            }}
-          ></WelcomeTypeIt>
-          <WelcomeTypeIt
-            options={{
-              cursorChar: ' ',
-              cursorSpeed: 1000000,
-              speed: 50,
-            }}
-            speed={10}
-            getBeforeInit={(instance) => {
-              instance.type('FARMS', )
-              return instance
-            }}
-          ></WelcomeTypeIt>
+    <Page>
+      <PageHeader>
+        <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
+          <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
+            <WelcomeTypeIt
+              options={{
+                cursorChar: ' ',
+                cursorSpeed: 1000000,
+                speed: 25,
+              }}
+              speed={10}
+              getBeforeInit={(instance) => {
+                instance.type('CONCENTRATED')
+                return instance
+              }}
+            ></WelcomeTypeIt>
+            <WelcomeTypeIt
+              options={{
+                cursorChar: ' ',
+                cursorSpeed: 1000000,
+                speed: 50,
+              }}
+              speed={10}
+              getBeforeInit={(instance) => {
+                instance.type('FARMS')
+                return instance
+              }}
+            ></WelcomeTypeIt>
+          </Flex>
         </Flex>
-      </Flex>
-    </PageHeader>
-    <Flex>
-      {!account ? (
-      <ConnectWalletButton style={{ marginTop: '1rem'}}>Connect</ConnectWalletButton> 
-      
-      ) : (
-      pools?.length > 0 ? (
-      pools.map((p) => {
-      console.log('p', p);
+      </PageHeader>
+      <Flex>
+        {!account ? (
+          <ConnectWalletButton style={{ marginTop: '1rem' }}>Connect</ConnectWalletButton>
+        ) : pools?.length > 0 ? (
+          pools.map((p) => {
+            console.log('p', p)
 
-      return <PoolCard p={p} table={table} />;
-      })
-      
-      ) : (
-      <Spinner />
-      )
-)}
-    </Flex>
-  </Page>
+            return <PoolCard key={p.pool} p={p} table={table} />
+          })
+        ) : (
+          <Spinner />
+        )}
+      </Flex>
+    </Page>
   )
 }
