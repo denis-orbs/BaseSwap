@@ -19,7 +19,6 @@ const StyledText = styled(Text)`
 
 const NavbarIconWrapper = styled(Flex)`
   justify-content: center; 
-  margin-right: 8px; 
   align-items: center; 
   flex-direction: column;
   &:hover {

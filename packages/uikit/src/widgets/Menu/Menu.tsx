@@ -1,56 +1,36 @@
 import throttle from "lodash/throttle";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { Button } from "../../components/Button";
 import BottomNav from "../../components/BottomNav";
 import { Box } from "../../components/Box";
 import Flex from "../../components/Box/Flex";
-import { SubMenuItems } from "../../components/SubMenuItems";
 import { BsCoin } from 'react-icons/bs'
 import { useMatchBreakpoints } from "../../hooks";
-import UserMenu from "./components/UserMenu";
 import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_MOBILE } from "./config";
 import { NavProps } from "./types";
 import { MdGamepad } from 'react-icons/md' 
 import { MenuContext } from "./context";
 import { Text } from "../../components/Text";
 import { Link } from "../../components/Link";
-import TypeIt from 'typeit-react'
-import { Image } from "../../components/Image";
-import { FlamingText } from "./components/FlamingText";
-import { PiSwapBold } from 'react-icons/pi'
 import { RiPlantFill } from 'react-icons/ri' 
-import { GiWaterSplash } from 'react-icons/gi'
-import { FaSpaceShuttle } from 'react-icons/fa'
-import NavbarIcon from "./components/Icon";
-import { IoMdClose } from 'react-icons/io'
-import { GiBurstBlob } from 'react-icons/gi'
+import { HippoIcon, WhaleIcon } from "../../components/Svg";
+import { Drop, Exclude, ShuffleSimple, SmileyWink, ExcludeSquare, Bridge, AirplaneLanding, Lockers, Images } from '@phosphor-icons/react'; 
 
-
-const StyledText = styled(Text)`
-  font-size: 14px;
-  text-align: center;
+const NavbarIconWrapper = styled(Flex)`
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column;
 `;
 
-const WelcomeTypeIt = styled(TypeIt)`
-  font-weight: 400;
-  color: #fff;
-  text-align: left;
-  letter-spacing: 0px;
-  margin-bottom: 12px;
+const NavbarText = styled(Text)`
   font-size: 18px;
-  @media (min-width: 768px) {
-    font-size: 32px;
-  }
+  text-align: center;
+  color: #0154FD;
 `;
 
-const MenuImage = styled(Image)`
-  box-shadow: 0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF;
-  border-radius: 50%;
-  
-`;
 type DropdownTextProps = {
   marginRight?: string;
+  marginLeft?: string; 
 };
 
 const DropdownText = styled.div<DropdownTextProps>`
@@ -59,27 +39,28 @@ const DropdownText = styled.div<DropdownTextProps>`
   text-transform: uppercase; 
   font-weight: 400; 
   margin-right: ${props => props.marginRight || '0px'};
-
+  margin-left: ${props => props.marginLeft || '8px'};
 `;
 
 const DropdownMenu = styled.div`
   display: none;
+  border: 3px solid #fff; 
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.4); 
-  backdrop-filter: blur(12px); 
-  border-radius: 8px;
-  min-width: 240px;
-  box-shadow: 0px 2px 4px #68B9FF, 0px 2px 16px #0154fe;
+  background-color: rgba(0, 0, 0, 0.7); 
+  backdrop-filter: blur(18px); 
+  border-radius: 12px;
+  min-width: 280px;
   padding: 18px 12px;
   z-index: 1;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center; 
 `;
+
 
 const DropdownContainer = styled.div`
   position: relative;
   display: inline-block;
-
   &:hover ${DropdownMenu} {
     display: block;
   }
@@ -211,78 +192,149 @@ const Menu: React.FC<NavProps> = ({
       </Flex>
     </a>
             {!isMobile && (
-              <Flex
-                flexDirection="row"
-                justifyContent="flex-start"
-                alignItems="flex-end"
-                marginLeft={isMobile ? "2rem" : "250px"}
-                width="80%"
-              >
-                <DropdownContainer>
-                <NavbarIcon icon={PiSwapBold} label="TRADE" href="/swap" />
+        <Flex
+          flexDirection="row"
+          justifyContent="flex-start"
+          alignItems="flex-end"
+          marginLeft={isMobile ? "2rem" : "250px"}
+          width="80%"
+        >
+            <DropdownContainer style={{ marginRight: '2rem' }}>
+                  <Link href="/swap" >
+                      <NavbarIconWrapper>
+                                  <Exclude weight="duotone" size="24px"  />
+                                  <NavbarText>SWAP</NavbarText>
+                      </NavbarIconWrapper>
+                  </Link>
                   <DropdownMenu>
-                    <Link href="/swap" marginBottom="1.2rem">
-                      <DropdownText>
-                        SWAP
-                      </DropdownText>
-                    </Link>
-                    <Link href="/basicswap" marginBottom="1.2rem">
-                    <DropdownText>
-                          BASIC SWAP
-                      </DropdownText>
-                    </Link>
-                    <Link href="http://perpetuals.baseswap.fi">
-                        <DropdownText >
-                            PERPETUALS
-                        </DropdownText>
-                    </Link>
-                  </DropdownMenu>
-                </DropdownContainer>
-                
-                <NavbarIcon icon={GiBurstBlob} label="Liquidity" href="/liquidity" />
-
-                <DropdownContainer>
-                  <NavbarIcon icon={FaSpaceShuttle} label="BaseX" href="/positions" />
-                  <DropdownMenu>
-                      <Link href="/positions" marginBottom="1.2rem">
-                          <DropdownText >
-                              Manage Positions
-                          </DropdownText>
+                      <Link href="/swap" marginBottom="1.2rem" >
+                              <Flex flexDirection="row" alignItems="center" justifyContent="center">
+                                  <Exclude weight="duotone" width="24px" height="24px" color="#0154FD" /> 
+                                  <DropdownText>
+                                    SWAP
+                                  </DropdownText>
+                              </Flex>
                       </Link>
-                      <Link href="/addV3" >
-                        <DropdownText >
-                              Add Liquidity
-                        </DropdownText>
+                      <Link href="/basicswap" marginBottom="1.2rem" >
+                              <Flex flexDirection="row" alignItems="center" justifyContent="center">
+                                  <SmileyWink weight="bold" width="24px" height="24px" color="#0154FD" /> 
+                                  <DropdownText>
+                                    BASIC SWAP 
+                                  </DropdownText>
+                              </Flex>
+                      </Link>
+                      <Link href="https://perpetuals.baseswap.fi/" >
+                              <Flex flexDirection="row" alignItems="center" justifyContent="center">
+                                  <ShuffleSimple weight="bold" width="24px" height="24px" color="#0154FD" /> 
+                                  <DropdownText>
+                                    PERPETUALS
+                                  </DropdownText>
+                              </Flex>
                       </Link>
                   </DropdownMenu>
-                </DropdownContainer>
-                
-                <NavbarIcon icon={RiPlantFill} label="Farm" href="/farm" />
-                <NavbarIcon icon={BsCoin} label="Earn" href="/pools" />
+            </DropdownContainer>
 
-        <DropdownContainer>
-          <NavbarIcon icon={MdGamepad} label="MORE!" href="/" />
-                <DropdownMenu>
-                  
-                    <Link href="/xbsx" marginBottom="1.2rem" >
-                        <DropdownText marginRight="2rem">xBSX</DropdownText>
-                    </Link>
-                    <Link href="/finishedfarms" marginBottom="1.2rem" >
-                      <DropdownText marginRight="2rem">Finished Farms </DropdownText>
-                    </Link>
-                    <Link href="/bridge" marginBottom="1.2rem" >
-                      <DropdownText marginRight="2rem">Bridge </DropdownText>
-                    </Link>
-                    <Link href="/locker" marginBottom="1.2rem" >
-                      <DropdownText marginRight="2rem">Token Locker </DropdownText>
-                    </Link>
-                    <Link href="https://marketplace.baseswap.fi" >
-                      <DropdownText marginRight="2rem">NFT</DropdownText>
-                    </Link>
-                    
-                </DropdownMenu>
+            <DropdownContainer style={{ marginRight: '2rem' }}>
+                  <Link href="/liquidity">
+                      <NavbarIconWrapper>
+                        <Drop weight="fill" size="24px"  />
+                        <NavbarText>LIQUIDITY</NavbarText>
+                      </NavbarIconWrapper>
+                  </Link>
 
-        </DropdownContainer>
+                  <DropdownMenu>
+                        <Link href="/liquidity" marginBottom="1.2rem">
+                              <Flex flexDirection="row" alignItems="center" justifyContent="center">
+                              <HippoIcon  width="24px" height="24px" color="#0154FD" /> 
+                              <DropdownText>
+                                STANDARD 
+                              </DropdownText>
+                              </Flex>
+                        </Link>
+
+                        <Link href="/positions" >
+                          <Flex flexDirection="row" alignItems="center" justifyContent="center">
+                              <WhaleIcon width="24px" height="24px" color="#0154FD" /> 
+                              <DropdownText >
+                                  CONCENTRATED 
+                              </DropdownText>
+                          </Flex>
+                        </Link>
+                  </DropdownMenu>
+            </DropdownContainer>
+            
+
+            <Link href="/farm" style={{ marginRight: '2rem' }}>
+                <NavbarIconWrapper>
+                    <RiPlantFill size={24} />
+                    <NavbarText>Farm</NavbarText>
+                </NavbarIconWrapper>
+            </Link>
+
+
+            <Link href="/pools" style={{ marginRight: '2rem' }}>
+                <NavbarIconWrapper>
+                    <BsCoin size={24} />
+                    <NavbarText>Earn</NavbarText>
+                </NavbarIconWrapper>
+            </Link>
+
+            <DropdownContainer>
+              <Link href="/">
+                          <NavbarIconWrapper>
+                            <MdGamepad size="24px"  />
+                            <NavbarText>MORE!</NavbarText>
+                          </NavbarIconWrapper>
+              </Link>
+              <DropdownMenu>
+                  <Link href="/xbsx" marginBottom="1.2rem" >
+                          <Flex flexDirection="row" alignItems="center" justifyContent="center">
+                              <ExcludeSquare weight="duotone" width="24px" height="24px" color="#0154FD" /> 
+                              <DropdownText>
+                                xBSX
+                              </DropdownText>
+                          </Flex>
+                  </Link>
+
+                  <Link href="/finishedfarms" marginBottom="1.2rem">
+                          <Flex flexDirection="row" alignItems="center" justifyContent="center">
+                              <AirplaneLanding weight="bold" width="24px" height="24px" color="#0154FD" /> 
+                              <DropdownText>
+                                FINISHED FARMS 
+                              </DropdownText>
+                          </Flex>
+                  </Link>
+                  <Link href="/bridge" marginBottom="1.2rem">
+                          <Flex flexDirection="row" alignItems="center" justifyContent="center">
+                              <Bridge  weight="bold" width="24px" height="24px" color="#0154FD" /> 
+                              <DropdownText>
+                                BRIDGE
+                              </DropdownText>
+                          </Flex>
+                  </Link>
+                  <Link href="/locker" marginBottom="1.2rem">
+                          <Flex flexDirection="row" alignItems="center" justifyContent="center">
+                              <Lockers weight="bold" width="24px" height="24px" color="#0154FD" /> 
+                              <DropdownText>
+                                TOKEN LOCKER
+                              </DropdownText>
+                          </Flex>
+                  </Link>
+                  <Link href="https://marketplace.baseswap.fi" >
+                          <Flex flexDirection="row" alignItems="center" justifyContent="center">
+                              <Images weight="bold" width="24px" height="24px" color="#0154FD" /> 
+                              <DropdownText>
+                                NFT
+                              </DropdownText>
+                          </Flex>
+                  </Link>
+
+
+                       
+                        
+                    </DropdownMenu>
+
+            </DropdownContainer>
       </Flex>
         )}
         {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
