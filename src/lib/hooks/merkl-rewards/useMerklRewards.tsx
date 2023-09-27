@@ -30,24 +30,9 @@ export default function useMerklRewards() {
   } = useUserClaimsDataSelector()
   const dispatch = useAppDispatch()
 
-  let userURL = `${MERKL_API_URL}`
-
-  const fetchFunction = async (user: string) => {
+  const fetchPools = async () => {
     try {
-      if (user) {
-        userURL += `&user=${user}`
-      }
-
-      dispatch(
-        updateUserClaimsData({
-          pendingMerklBSX: previousPendingBSX,
-          pendingMerklXBSX: previousXBSX,
-          pendingMerklValue: previousValue,
-          isLoading: true,
-        }),
-      )
-
-      const resp = await fetch(userURL)
+      const resp = await fetch(MERKL_API_URL)
       const merklData = await resp.json()
 
       console.log('merklData', merklData)
@@ -69,6 +54,26 @@ export default function useMerklRewards() {
       })
 
       dispatch(updateMerklPools({ pools }))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const fetchUserData = async (user: string) => {
+    try {
+      if (!user) return
+
+      dispatch(
+        updateUserClaimsData({
+          pendingMerklBSX: previousPendingBSX,
+          pendingMerklXBSX: previousXBSX,
+          pendingMerklValue: previousValue,
+          isLoading: true,
+        }),
+      )
+
+      const resp = await fetch(`${MERKL_API_URL}&user=${user}`)
+      const merklData = await resp.json()
 
       const bsxAddy = getTokenAddress('ProtocolToken', chainId)
       const xbsxAddy = getTokenAddress('xProtocolToken', chainId)
@@ -125,7 +130,6 @@ export default function useMerklRewards() {
       )
 
       return {
-        pools,
         bsxCurrency,
         xbsxCurrency,
         pendingBSX: pendingMerklBSX,
@@ -138,15 +142,19 @@ export default function useMerklRewards() {
     }
   }
 
-  const { data, error, status } = useSWR(`${userURL}&user=${account}`, async () => {
-    return await fetchFunction(account)
+  const { data, error, status } = useSWR(`${MERKL_API_URL}&user=${account}`, async () => {
+    return await fetchUserData(account)
+  })
+
+  useSWR(`${MERKL_API_URL}`, async () => {
+    return await fetchPools()
   })
 
   useEffect(() => {
     const getData = async () => {
       if (account) {
         try {
-          await fetchFunction(account)
+          await fetchUserData(account)
         } catch (error) {
           console.log(error)
         }

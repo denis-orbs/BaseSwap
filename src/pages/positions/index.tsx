@@ -1,12 +1,12 @@
 import Trans from 'components/Trans'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { Button, Text, Flex, Card, useMatchBreakpointsContext, SkeletonV2, Skeleton, Box } from '@pancakeswap/uikit'
+import { Button, Text, Flex, Card, useMatchBreakpointsContext, Skeleton } from '@pancakeswap/uikit'
 import { AutoColumn } from 'components/Column'
 import PositionList from 'components/PositionList'
 import { RowBetween, RowFixed } from 'components/Row'
 import { useV3Positions } from 'hooks/v3/useV3Positions'
-import { useEffect, useMemo } from 'react'
-import { AlertTriangle, BookOpen, ChevronsRight, Inbox, Layers } from 'react-feather'
+import { useMemo } from 'react'
+import { AlertTriangle, Inbox } from 'react-feather'
 import styled, { css, useTheme } from 'styled-components'
 import { PositionDetails } from 'types/position'
 import Link from 'next/link'
@@ -17,9 +17,7 @@ import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useFilterPossiblyMaliciousPositions } from 'hooks/v3/useFilterPossiblyMaliciousPositions'
 import { useTranslation } from '@pancakeswap/localization'
 import Page from 'views/Page'
-import { useRouter } from 'next/router'
 import 'animate.css'
-import { CreateNewIcon } from '@pancakeswap/uikit'
 import { GiFallingStar } from 'react-icons/gi'
 import useMerklRewards from 'lib/hooks/merkl-rewards/useMerklRewards'
 import CurrencyLogo from 'components/Logo/CurrencyLogo'
@@ -85,7 +83,6 @@ const InboxIcon = styled(Inbox)`
   ${IconStyle}
 `
 
-
 const MainContentWrapper = styled.main`
   background: ${({ theme }) => theme.colors.gradients.basedsexgray};
   border: 3px solid ${({ theme }) => theme.colors.cardBorder};
@@ -100,14 +97,14 @@ const MainContentWrapper = styled.main`
 const RewardsCard = styled(Card)`
   background: ${({ theme }) => theme.colors.gradients.basedsexgray};
   border-width: 3px;
-  width: 100%; 
+  width: 100%;
   border-color: ${({ theme }) => theme.colors.text};
-  min-width: 400px; 
-  @media screen and (min-width:576px) {
-    max-width: 500px; 
+  min-width: 400px;
+  @media screen and (min-width: 576px) {
+    max-width: 500px;
   }
-  @media screen and (min-width:800px) {
-    max-width: 600px; 
+  @media screen and (min-width: 800px) {
+    max-width: 600px;
   }
 `
 
@@ -171,7 +168,6 @@ function WrongNetworkCard() {
 export default function Pool() {
   const { account, chainId } = useActiveWeb3React()
   const theme = useTheme()
-  const router = useRouter()
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpointsContext()
 
@@ -202,60 +198,58 @@ export default function Pool() {
 
   const showConnectAWallet = Boolean(!account)
 
-  const menuItems = [
-    {
-      content: (
-        <PoolMenuItem>
-          <Trans>Migrate</Trans>
-          <ChevronsRight size={16} />
-        </PoolMenuItem>
-      ),
-      link: '/migrate/v2',
-      external: false,
-    },
-    {
-      content: (
-        <PoolMenuItem>
-          <Trans>V2 liquidity</Trans>
-          <Layers size={16} />
-        </PoolMenuItem>
-      ),
-      link: '/pools/v2',
-      external: false,
-    },
-    {
-      content: (
-        <PoolMenuItem>
-          <Trans>Learn</Trans>
-          <BookOpen size={16} />
-        </PoolMenuItem>
-      ),
-      link: 'https://support.uniswap.org/hc/en-us/categories/8122334631437-Providing-Liquidity-',
-      external: true,
-    },
-  ]
+  // const menuItems = [
+  //   {
+  //     content: (
+  //       <PoolMenuItem>
+  //         <Trans>Migrate</Trans>
+  //         <ChevronsRight size={16} />
+  //       </PoolMenuItem>
+  //     ),
+  //     link: '/migrate/v2',
+  //     external: false,
+  //   },
+  //   {
+  //     content: (
+  //       <PoolMenuItem>
+  //         <Trans>V2 liquidity</Trans>
+  //         <Layers size={16} />
+  //       </PoolMenuItem>
+  //     ),
+  //     link: '/pools/v2',
+  //     external: false,
+  //   },
+  //   {
+  //     content: (
+  //       <PoolMenuItem>
+  //         <Trans>Learn</Trans>
+  //         <BookOpen size={16} />
+  //       </PoolMenuItem>
+  //     ),
+  //     link: 'https://support.uniswap.org/hc/en-us/categories/8122334631437-Providing-Liquidity-',
+  //     external: true,
+  //   },
+  // ]
 
   return (
     <Page>
       <PageTitle>MANAGE POSITIONS</PageTitle>
-      <Flex width={isMobile? '100%' : '60%'} flexDirection="column"  >
-      <Text fontSize="16px" textAlign='center'>
-        Add or remove liquidity from BaseX Concentrated Liquidity Positions.       
-      </Text>
-      <Flex flexDirection="row" justifyContent='center' alignItems="center">
-      <GiFallingStar size={isMobile? '24px' : '64px' } color="#0154FE" />
-      <Text marginX="16px" marginTop="1rem" fontSize="16px" textAlign='center'>
-        
-        All positions earn trading fees from that pair. 
-        You can also earn BSX and xBSX by creating a Concentrated 
-        Liquidity position for a pair found in &nbsp; 
-        <Link href="/farmV3" >
-          <u style={{ cursor: 'pointer' }}>Concentrated Farms</u>
-        </Link>.
-      </Text>
-      <GiFallingStar size={isMobile? '24px' : '64px' } color="#0154FE" />
-      </Flex>
-
+      <Flex width={isMobile ? '100%' : '60%'} flexDirection="column">
+        <Text fontSize="16px" textAlign="center">
+          Add or remove liquidity from BaseX Concentrated Liquidity Positions.
+        </Text>
+        <Flex flexDirection="row" justifyContent="center" alignItems="center">
+          <GiFallingStar size={isMobile ? '24px' : '64px'} color="#0154FE" />
+          <Text marginX="16px" marginTop="1rem" fontSize="16px" textAlign="center">
+            All positions earn trading fees from that pair. You can also earn BSX and xBSX by creating a Concentrated
+            Liquidity position for a pair found in &nbsp;
+            <Link href="/farmsV3">
+              <u style={{ cursor: 'pointer' }}>Concentrated Farms</u>
+            </Link>
+            .
+          </Text>
+          <GiFallingStar size={isMobile ? '24px' : '64px'} color="#0154FE" />
+        </Flex>
       </Flex>
       <PageWrapper>
         <AutoColumn gap="lg" justify="center">
@@ -269,78 +263,73 @@ export default function Pool() {
               </ButtonRow>
             </TitleRow>
             <Flex marginBottom="18px" flexDirection="column" justifyContent="center" alignItems="center">
-                <RewardsCard  style={{ borderWidth: '3px' }}>
-                  <AutoColumn gap="md" style={{ width: '100%', padding: '4px' }}>
-                    <AutoColumn gap="md">
-
-                       <Flex flexDirection="row" marginBottom="4px" justifyContent="space-between" alignItems="center">
-                          <Text color={theme.colors.primaryBright} textAlign="center" fontSize="18px">
-                            <Trans>BaseSwap Rewards: </Trans> {t(pendingMerklValue)}
-                          </Text>
-                        <Button
-                        variant="claim" 
-                        
-                          disabled={!rewardData?.hasClaims || isClaiming}
-                          onClick={() => {
-                            doClaim()
-                          }}
-                        >
-                          <Text>{isClaiming ? t('Claiming..') : t('Claim')}</Text>
-                        </Button>
-                      </Flex>
-                    </AutoColumn>
-                    {!rewardsLoading ? (
-                        <AutoColumn gap="md">
-                          <RowBetween>
-                            <Flex
-                              justifyContent="center"
-                              flexDirection="row"
-                              paddingLeft={isMobile ? '4px' : '4rem'}
-                              alignItems="center"
-                            >
-                              <CurrencyLogo
-                                currency={rewardData?.bsxCurrency}
-                                size={isMobile? '40px' : '60px' }
-                                style={{ marginRight: '0.5rem' }}
-                              />
-                              <Text color="text" fontSize="1.5rem">
-                                {pendingMerklBSX}&nbsp; {t(`BSX`)}
-                              </Text>
-                             
-                            </Flex>
-                            <Flex
-                              justifyContent="center"
-                              flexDirection="row"
-                              paddingRight={isMobile ? '4px' : '4rem'}
-                              alignItems="center"
-                            >
-                              <CurrencyLogo
-                                currency={rewardData?.xbsxCurrency}
-                                size={isMobile? '40px' : '60px' }
-                                style={{ marginRight: '0.5rem' }}
-                              />
-                              <Text color="text" fontSize="1.5rem">
-                                {pendingMerklXBSX}&nbsp; {t(`xBSX`)}
-                              </Text>
-                             
-                            </Flex>
-                          </RowBetween>
-                        </AutoColumn>
-
-                    ) : (
-                      <Skeleton />
-                    )}
+              <RewardsCard style={{ borderWidth: '3px' }}>
+                <AutoColumn gap="md" style={{ width: '100%', padding: '4px' }}>
+                  <AutoColumn gap="md">
+                    <Flex flexDirection="row" marginBottom="4px" justifyContent="space-between" alignItems="center">
+                      <Text color={theme.colors.primaryBright} textAlign="center" fontSize="18px">
+                        <Trans>BaseSwap Rewards: </Trans> {t(pendingMerklValue)}
+                      </Text>
+                      <Button
+                        variant="claim"
+                        disabled={!rewardData?.hasClaims || isClaiming}
+                        onClick={() => {
+                          doClaim()
+                        }}
+                      >
+                        <Text>{isClaiming ? t('Claiming..') : t('Claim')}</Text>
+                      </Button>
+                    </Flex>
                   </AutoColumn>
+                  {!rewardsLoading ? (
+                    <AutoColumn gap="md">
+                      <RowBetween>
+                        <Flex
+                          justifyContent="center"
+                          flexDirection="row"
+                          paddingLeft={isMobile ? '4px' : '4rem'}
+                          alignItems="center"
+                        >
+                          <CurrencyLogo
+                            currency={rewardData?.bsxCurrency}
+                            size={isMobile ? '40px' : '60px'}
+                            style={{ marginRight: '0.5rem' }}
+                          />
+                          <Text color="text" fontSize="1.5rem">
+                            {pendingMerklBSX}&nbsp; {t(`BSX`)}
+                          </Text>
+                        </Flex>
+                        <Flex
+                          justifyContent="center"
+                          flexDirection="row"
+                          paddingRight={isMobile ? '4px' : '4rem'}
+                          alignItems="center"
+                        >
+                          <CurrencyLogo
+                            currency={rewardData?.xbsxCurrency}
+                            size={isMobile ? '40px' : '60px'}
+                            style={{ marginRight: '0.5rem' }}
+                          />
+                          <Text color="text" fontSize="1.5rem">
+                            {pendingMerklXBSX}&nbsp; {t(`xBSX`)}
+                          </Text>
+                        </Flex>
+                      </RowBetween>
+                    </AutoColumn>
+                  ) : (
+                    <Skeleton />
+                  )}
+                </AutoColumn>
 
-                  <Flex justifyContent="center">
-                    <img
-                      src="https://924174234-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-MZrRrYejMtN3SzZU10r%2Fuploads%2Fgit-blob-ed73190eb9c30bd96c439bdb3af22bf91e8446b9%2Fpowered-by-merkl-dark.png?alt=media"
-                      alt="Merkl powered by Angle Labs"
-                      width="50%"
-                      style={{ boxShadow: '0 0 4px #ffff', marginBottom: '8px', borderRadius: '8px' }}
-                    />
-                  </Flex>
-                </RewardsCard>
+                <Flex justifyContent="center">
+                  <img
+                    src="https://924174234-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-MZrRrYejMtN3SzZU10r%2Fuploads%2Fgit-blob-ed73190eb9c30bd96c439bdb3af22bf91e8446b9%2Fpowered-by-merkl-dark.png?alt=media"
+                    alt="Merkl powered by Angle Labs"
+                    width="50%"
+                    style={{ boxShadow: '0 0 4px #ffff', marginBottom: '8px', borderRadius: '8px' }}
+                  />
+                </Flex>
+              </RewardsCard>
             </Flex>
 
             <MainContentWrapper>
