@@ -6,7 +6,7 @@ import { FetchStatus } from 'config/constants/types'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useCatchTxError from 'hooks/useCatchTxError'
 import useTokenPrices from 'hooks/useTokenPrices'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useAppDispatch } from 'state'
 import { updateMerklPools, updateUserClaimsData } from 'state/user/actions'
 import { useUserClaimsDataSelector } from 'state/user/selectors'
@@ -30,108 +30,128 @@ export default function useMerklRewards() {
   } = useUserClaimsDataSelector()
   const dispatch = useAppDispatch()
 
-  const userURL = `${MERKL_API_URL}&user=${account}`
-  const { data, error, status } = useSWR(userURL, async () => {
-    if (account) {
-      dispatch(
-        updateUserClaimsData({
-          pendingMerklBSX: previousPendingBSX,
-          pendingMerklXBSX: previousXBSX,
-          pendingMerklValue: previousValue,
-          isLoading: true,
-        }),
-      )
+  let userURL = `${MERKL_API_URL}`
+  if (account) {
+    userURL += `&user=${account}`
+  }
 
-      const resp = await fetch(userURL)
-      const merklData = await resp.json()
+  const fetchFunction = async () => {
+    dispatch(
+      updateUserClaimsData({
+        pendingMerklBSX: previousPendingBSX,
+        pendingMerklXBSX: previousXBSX,
+        pendingMerklValue: previousValue,
+        isLoading: true,
+      }),
+    )
 
-      console.log('merklData', merklData)
+    const resp = await fetch(userURL)
+    const merklData = await resp.json()
 
-      const pools = Object.entries(merklData.pools).map((obj: any) => {
-        const aprs = obj[1].aprs
-        const aprList = Object.entries(aprs).map((apr: any) => {
-          return {
-            label: apr[0],
-            value: `${apr[1].toFixed(2)}%`,
-          }
-        })
+    // console.log('merklData', merklData)
 
+    const pools = Object.entries(merklData.pools).map((obj: any) => {
+      const aprs = obj[1].aprs
+      const aprList = Object.entries(aprs).map((apr: any) => {
         return {
-          pool: obj[0],
-          ...obj[1],
-          aprs: aprList,
+          label: apr[0],
+          value: `${apr[1].toFixed(2)}%`,
         }
       })
 
-      // console.log(pools)
+      return {
+        pool: obj[0],
+        ...obj[1],
+        aprs: aprList,
+      }
+    })
 
-      dispatch(updateMerklPools({ pools }))
+    // console.log(pools)
 
-      const bsxAddy = getTokenAddress('ProtocolToken', chainId)
-      const xbsxAddy = getTokenAddress('xProtocolToken', chainId)
+    dispatch(updateMerklPools({ pools }))
 
-      const bsxCurrency = PROTOCOL_TOKEN_V3[chainId]
-      const xbsxCurrency = XPROTOCOL_TOKEN_V3[chainId]
+    const bsxAddy = getTokenAddress('ProtocolToken', chainId)
+    const xbsxAddy = getTokenAddress('xProtocolToken', chainId)
 
-      let pendingMerklBSX = 0
-      let pendingMerklXBSX = 0
+    const bsxCurrency = PROTOCOL_TOKEN_V3[chainId]
+    const xbsxCurrency = XPROTOCOL_TOKEN_V3[chainId]
 
-      Object.entries(merklData.pools)
-        .filter((obj: any) => {
-          return Object.keys(obj[1].rewardsPerToken).includes(bsxAddy)
-        })
-        .forEach((obj: any) => {
-          const pendingBSX = parseFloat(
-            getFullDisplayBalance(obj[1].rewardsPerToken[bsxAddy].unclaimedUnformatted, 18, 4),
-          )
-          const pendingXBSX = parseFloat(
-            getFullDisplayBalance(obj[1].rewardsPerToken[xbsxAddy].unclaimedUnformatted, 18, 4),
-          )
-          pendingMerklBSX += pendingBSX
-          pendingMerklXBSX += pendingXBSX
-        })
+    let pendingMerklBSX = 0
+    let pendingMerklXBSX = 0
 
-      const total = pendingMerklBSX + pendingMerklXBSX
-      const pendingValue = getValueForAmount(bsxAddy, total, 4)
-      const hasClaims = total > 0
-
-      const claimInfos: any[] = Object.entries(merklData.transactionData)
-        .filter((obj: any) => (obj[0] === bsxAddy || obj[0] === xbsxAddy) && obj[1].proof !== undefined)
-        .map((obj: any) => {
-          return {
-            ...obj[1],
-          }
-        })
-      const tokens = claimInfos.map((k) => k.token)
-      const claims = claimInfos.map((t) => t.claim)
-      const proofs = claimInfos.map((t) => t.proof)
-
-      setClaimsData({
-        tokens,
-        claims,
-        proofs,
+    Object.entries(merklData.pools)
+      .filter((obj: any) => {
+        return Object.keys(obj[1].rewardsPerToken).includes(bsxAddy)
+      })
+      .forEach((obj: any) => {
+        const pendingBSX = parseFloat(
+          getFullDisplayBalance(obj[1].rewardsPerToken[bsxAddy].unclaimedUnformatted, 18, 4),
+        )
+        const pendingXBSX = parseFloat(
+          getFullDisplayBalance(obj[1].rewardsPerToken[xbsxAddy].unclaimedUnformatted, 18, 4),
+        )
+        pendingMerklBSX += pendingBSX
+        pendingMerklXBSX += pendingXBSX
       })
 
-      dispatch(
-        updateUserClaimsData({
-          pendingMerklBSX,
-          pendingMerklXBSX,
-          pendingMerklValue: pendingValue.valueLabel,
-          isLoading: false,
-        }),
-      )
+    const total = pendingMerklBSX + pendingMerklXBSX
+    const pendingValue = getValueForAmount(bsxAddy, total, 4)
+    const hasClaims = total > 0
 
-      return {
-        pools,
-        bsxCurrency,
-        xbsxCurrency,
-        pendingBSX: pendingMerklBSX,
-        pendingXBSX: pendingMerklXBSX,
-        pendingValue,
-        hasClaims,
-      }
+    const claimInfos: any[] = Object.entries(merklData.transactionData)
+      .filter((obj: any) => (obj[0] === bsxAddy || obj[0] === xbsxAddy) && obj[1].proof !== undefined)
+      .map((obj: any) => {
+        return {
+          ...obj[1],
+        }
+      })
+    const tokens = claimInfos.map((k) => k.token)
+    const claims = claimInfos.map((t) => t.claim)
+    const proofs = claimInfos.map((t) => t.proof)
+
+    setClaimsData({
+      tokens,
+      claims,
+      proofs,
+    })
+
+    dispatch(
+      updateUserClaimsData({
+        pendingMerklBSX,
+        pendingMerklXBSX,
+        pendingMerklValue: pendingValue.valueLabel,
+        isLoading: false,
+      }),
+    )
+
+    return {
+      pools,
+      bsxCurrency,
+      xbsxCurrency,
+      pendingBSX: pendingMerklBSX,
+      pendingXBSX: pendingMerklXBSX,
+      pendingValue,
+      hasClaims,
     }
+  }
+
+  const { data, error, status } = useSWR(userURL, async () => {
+    return await fetchFunction()
   })
+
+  useEffect(() => {
+    const getData = async () => {
+      if (account) {
+        try {
+          await fetchFunction()
+        } catch (error) {
+          console.log(error)
+        }
+      }
+
+      getData()
+    }
+  }, [account])
 
   const doClaim = useCallback(async () => {
     if (!claimsData?.claims.length) return

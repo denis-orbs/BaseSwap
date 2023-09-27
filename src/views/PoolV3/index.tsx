@@ -1,7 +1,6 @@
 import { Flex, Spinner } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { getTokenInstance } from 'config/constants/token-info'
-import useMerklRewards from 'lib/hooks/merkl-rewards/useMerklRewards'
 import Page from 'views/Page'
 import PageHeader from 'components/PageHeader'
 import { PoolCardActionProps } from 'views/xFarms/components/types'
@@ -9,9 +8,8 @@ import TypeIt from 'typeit-react'
 import 'animate.css'
 import { getTVLFormatted } from 'views/xFarms/utils'
 import PoolCard from './components/PoolCard'
-import { useWeb3React } from '@web3-react/core'
-import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useMemo } from 'react'
+import { useSelectMerklPools } from 'state/user/selectors'
 
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
@@ -26,12 +24,10 @@ const WelcomeTypeIt = styled(TypeIt)`
 `
 
 export default function PoolV3({ table }: PoolCardActionProps) {
-  const { account } = useWeb3React()
-  const { data: merklData } = useMerklRewards()
-  // console.log(merklData?.pools)
+  const merklPools = useSelectMerklPools()
 
   const pools = useMemo(() => {
-    return (merklData?.pools || []).map((p) => {
+    return (merklPools || []).map((p) => {
       const feeAmount = p.poolFee * 10000
       return {
         ...p,
@@ -41,7 +37,7 @@ export default function PoolV3({ table }: PoolCardActionProps) {
         tvl: getTVLFormatted(p.tvl),
       }
     })
-  }, [merklData])
+  }, [merklPools])
 
   return (
     <Page>
@@ -76,9 +72,7 @@ export default function PoolV3({ table }: PoolCardActionProps) {
         </Flex>
       </PageHeader>
       <Flex>
-        {!account ? (
-          <ConnectWalletButton style={{ marginTop: '1rem' }}>Connect</ConnectWalletButton>
-        ) : pools?.length > 0 ? (
+        {pools?.length > 0 ? (
           pools.map((p) => {
             return <PoolCard key={p.pool} p={p} table={table} />
           })
