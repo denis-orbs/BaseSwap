@@ -26,6 +26,8 @@ const WelcomeTypeIt = styled(TypeIt)`
 export default function PoolV3({ table }: PoolCardActionProps) {
   const merklPools = useSelectMerklPools()
 
+  console.log(merklPools)
+
   const pools = useMemo(() => {
     return (merklPools || []).map((p) => {
       const feeAmount = p.poolFee * 10000
