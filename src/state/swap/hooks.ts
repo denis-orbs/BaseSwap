@@ -529,7 +529,7 @@ export function useSwapQuote(inputCurrency, outputCurrency, typedValue, slippage
             userAddr: account || '0x000000000000000000000000000000000000dEaD',
             slippageLimitPercent: slippage / 100,
             sourceBlacklist: [],
-            sourceWhitelist: ["BaseSwap", "BaseSwapX", "Wrapped Ether"],
+            sourceWhitelist: ['BaseSwap', 'BaseSwapX', 'Wrapped Ether'],
             pathVizImage: true,
             referralCode: 1190159976,
             pathVizImageConfig: {
@@ -597,7 +597,7 @@ export const quoteAndAssemble = async (inputCurrency, outputCurrency, typedValue
     userAddr: account,
     slippageLimitPercent: slippage / 100,
     sourceBlacklist: [],
-    sourceWhitelist: ["BaseSwap","BaseSwapX", "Wrapped Ether"],
+    sourceWhitelist: ['BaseSwap', 'BaseSwapX', 'Wrapped Ether'],
     pathVizImage: true,
     referralCode: 1190159976,
     pathVizImageConfig: {

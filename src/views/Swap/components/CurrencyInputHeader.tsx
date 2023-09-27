@@ -71,7 +71,6 @@ const CurrencyInputHeader: React.FC<Props> = ({
           <NotificationDot show={expertMode}>
             <GlobalSettings mr="0" mode={SettingsMode.SWAP_LIQUIDITY} />
           </NotificationDot>
-         
         </Flex>
       </Flex>
       <Flex alignItems="center">

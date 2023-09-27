@@ -37,8 +37,10 @@ import {
   updateUserLimitOrderAcceptedWarning,
   setZapDisabled,
   updateHideClosedPositions,
+  updateUserClaimsData,
+  updateMerklPools,
 } from './actions'
-import { GAS_PRICE_GWEI } from '../types'
+import { GAS_PRICE_GWEI, UserMerkleClaimData } from '../types'
 
 const currentTimestamp = () => new Date().getTime()
 
@@ -93,6 +95,8 @@ export interface UserState {
   hideTimestampPhishingWarningBanner: number
 
   userHideClosedPositions: boolean
+  claimsData: UserMerkleClaimData
+  merklPools: any[]
 }
 
 function pairKey(token0Address: string, token1Address: string) {
@@ -128,6 +132,13 @@ export const initialState: UserState = {
   watchlistPools: [],
   hideTimestampPhishingWarningBanner: null,
   userHideClosedPositions: false,
+  claimsData: {
+    pendingMerklBSX: 0,
+    pendingMerklXBSX: 0,
+    pendingMerklValue: '$0',
+    isLoading: true,
+  },
+  merklPools: [],
 }
 
 export default createReducer(initialState, (builder) =>
@@ -279,5 +290,13 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(updateHideClosedPositions, (state, { payload }) => {
       state.userHideClosedPositions = payload.userHideClosedPositions
+    })
+    .addCase(updateUserClaimsData, (state, { payload }) => {
+      state.claimsData = {
+        ...payload,
+      }
+    })
+    .addCase(updateMerklPools, (state, { payload }) => {
+      state.merklPools = payload.pools
     }),
 )

@@ -4,7 +4,7 @@ import { Text, Button, Input, Flex, Box, Toggle, useMatchBreakpointsContext } fr
 import { useTranslation } from '@pancakeswap/localization'
 import { useUserSlippageTolerance, useUserTransactionTTL } from 'state/user/hooks'
 import QuestionHelper from '../../QuestionHelper'
-import { Activity } from 'react-feather' 
+import { Activity } from 'react-feather'
 import styled from 'styled-components'
 import { ImHourGlass } from 'react-icons/im'
 import { useShowRoute } from '../../../state/user/hooks'
@@ -12,21 +12,21 @@ import { TbRoute } from 'react-icons/tb'
 import { SettingsBox, SmallSettingsBox } from './SettingsBox'
 
 const Route = styled(TbRoute)`
-color: #fff; 
-width: 36px; 
-height: 36px; 
+  color: #fff;
+  width: 36px;
+  height: 36px;
 `
 
 const Countdown = styled(ImHourGlass)`
-  color: #fff; 
-  width: 32px; 
-  height: 32px; 
+  color: #fff;
+  width: 32px;
+  height: 32px;
 `
 
 const Slip = styled(Activity)`
-  color: #fff; 
-  width: 40px; 
-  height: 40px; 
+  color: #fff;
+  width: 40px;
+  height: 40px;
 `
 enum SlippageError {
   InvalidInput = 'InvalidInput',
@@ -48,7 +48,7 @@ const SlippageTabs = () => {
   const [deadlineInput, setDeadlineInput] = useState('')
   const [showRoute, toggleSetShowRoute] = useShowRoute()
   const { t } = useTranslation()
-  const { isMobile } = useMatchBreakpointsContext();
+  const { isMobile } = useMatchBreakpointsContext()
 
   const slippageInputIsValid =
     slippageInput === '' || (userSlippageTolerance / 100).toFixed(2) === Number.parseFloat(slippageInput).toFixed(2)
@@ -103,26 +103,23 @@ const SlippageTabs = () => {
   }
 
   return (
-  <Flex flexDirection="column" mb="1rem" paddingX="0rem">
-    <SettingsBox flexDirection="column" mb="2.5rem">
-        <Flex mb="8px" alignItems="center" justifyContent="center"  >
-          <Slip /> 
-          <Text marginLeft="3px" marginRight="2px" textAlign="center" 
-                fontSize="1rem"  fontWeight="400" color="#fff">
-              {t('SLIPPAGE')}
+    <Flex flexDirection="column" mb="1rem" paddingX="0rem">
+      <SettingsBox flexDirection="column" mb="2.5rem">
+        <Flex mb="8px" alignItems="center" justifyContent="center">
+          <Slip />
+          <Text marginLeft="3px" marginRight="2px" textAlign="center" fontSize="1rem" fontWeight="400" color="#fff">
+            {t('SLIPPAGE')}
           </Text>
-            <QuestionHelper
-              text={t(
-                'Setting slippage high can help transactions go through, but can result in inefficient pricing or transaction front-running. Use with caution.',
-              )}
-              placement="top-start"
-              ml="4px"
-        
-            />
-          </Flex>
-        <Flex justifyContent="space-between" paddingX={isMobile? '0rem' : '2rem' } >
+          <QuestionHelper
+            text={t(
+              'Setting slippage high can help transactions go through, but can result in inefficient pricing or transaction front-running. Use with caution.',
+            )}
+            placement="top-start"
+            ml="4px"
+          />
+        </Flex>
+        <Flex justifyContent="space-between" paddingX={isMobile ? '0rem' : '2rem'}>
           <Button
-
             mr="4px"
             scale="sm"
             onClick={() => {
@@ -131,10 +128,9 @@ const SlippageTabs = () => {
             }}
             variant={userSlippageTolerance === 10 ? 'gason' : 'gasoff'}
           >
-             <Text fontSize="16px" >0.1%</Text>
+            <Text fontSize="16px">0.1%</Text>
           </Button>
           <Button
-
             mr="4px"
             scale="sm"
             onClick={() => {
@@ -143,11 +139,10 @@ const SlippageTabs = () => {
             }}
             variant={userSlippageTolerance === 50 ? 'gason' : 'gasoff'}
           >
-             <Text fontSize="16px">0.5%</Text>
+            <Text fontSize="16px">0.5%</Text>
           </Button>
           <Button
             mr="4px"
-
             scale="sm"
             onClick={() => {
               setSlippageInput('')
@@ -155,11 +150,10 @@ const SlippageTabs = () => {
             }}
             variant={userSlippageTolerance === 100 ? 'gason' : 'gasoff'}
           >
-            <Text fontSize="16px" >1.0%</Text>
-
+            <Text fontSize="16px">1.0%</Text>
           </Button>
           <Flex alignItems="center">
-            <Box width="76px" >
+            <Box width="76px">
               <Input
                 scale="sm"
                 inputMode="decimal"
@@ -192,17 +186,13 @@ const SlippageTabs = () => {
               : t('Your transaction may be frontrun')}
           </Text>
         )}
-    </SettingsBox>
-    <Flex flexDirection="row" justifyContent="space-between" alignItems="center"
-          paddingX={isMobile? '0px' : '0px' }
-          
-          >
-      <SmallSettingsBox   >
-          <Flex mb="8px" alignItems="center" justifyContent="center"  >
-            <Countdown /> 
-            <Text marginLeft="3px" marginRight="2px" textAlign="center" 
-                fontSize="1rem"  fontWeight="400" color="#fff">
-                    {t('DEADLINE')}
+      </SettingsBox>
+      <Flex flexDirection="row" justifyContent="space-between" alignItems="center" paddingX={isMobile ? '0px' : '0px'}>
+        <SmallSettingsBox>
+          <Flex mb="8px" alignItems="center" justifyContent="center">
+            <Countdown />
+            <Text marginLeft="3px" marginRight="2px" textAlign="center" fontSize="1rem" fontWeight="400" color="#fff">
+              {t('DEADLINE')}
             </Text>
             <QuestionHelper
               text={t('Your transaction will revert if it is left confirming for longer than this time.')}
@@ -210,8 +200,8 @@ const SlippageTabs = () => {
               ml="4px"
             />
           </Flex>
-          <Flex justifyContent="center" mb="8px" >
-              <Flex flexDirection="row" width="150px" justifyContent="center" alignItems="center" >
+          <Flex justifyContent="center" mb="8px">
+            <Flex flexDirection="row" width="150px" justifyContent="center" alignItems="center">
               <Input
                 scale="sm"
                 inputMode="numeric"
@@ -228,37 +218,39 @@ const SlippageTabs = () => {
                   }
                 }}
               />
-              <Text marginLeft="8px" fontSize="16px">MINUTES</Text>
-              </Flex>
+              <Text marginLeft="8px" fontSize="16px">
+                MINUTES
+              </Text>
+            </Flex>
           </Flex>
-      </SmallSettingsBox>
+        </SmallSettingsBox>
 
-      <SmallSettingsBox   >
-        <Flex mb="8px" alignItems="center" justifyContent="center"  >
-                  <Route />
-                  <Text marginLeft="3px" marginRight="2px" textAlign="center" 
-              fontSize="1rem"  fontWeight="400" color="#fff">
-                    {t('ROUTE')}</Text>
-                  <QuestionHelper
-                    text={t(
-                      'BaseSwap routes trades through liquidity pools in order to return the best price. Toggle this on to see the path your trade will take.',
-                    )}
-                    placement="top-start"
-                    ml="4px"
-                  />
-        </Flex>
-        <Flex flexDirection="column" justifyContent="center" alignItems="center" >
-                <Toggle
-                  id="show-route"
-                  checked={showRoute}
-                  scale="md"
-                  onChange={() => {
-                    toggleSetShowRoute()
-                  }}
-                />
-        </Flex>
-    </SmallSettingsBox>
-  </Flex>
+        <SmallSettingsBox>
+          <Flex mb="8px" alignItems="center" justifyContent="center">
+            <Route />
+            <Text marginLeft="3px" marginRight="2px" textAlign="center" fontSize="1rem" fontWeight="400" color="#fff">
+              {t('ROUTE')}
+            </Text>
+            <QuestionHelper
+              text={t(
+                'BaseSwap routes trades through liquidity pools in order to return the best price. Toggle this on to see the path your trade will take.',
+              )}
+              placement="top-start"
+              ml="4px"
+            />
+          </Flex>
+          <Flex flexDirection="column" justifyContent="center" alignItems="center">
+            <Toggle
+              id="show-route"
+              checked={showRoute}
+              scale="md"
+              onChange={() => {
+                toggleSetShowRoute()
+              }}
+            />
+          </Flex>
+        </SmallSettingsBox>
+      </Flex>
     </Flex>
   )
 }

@@ -8,8 +8,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { AppHeader } from '../../components/App'
 import { useCurrencySelectRoute } from './useCurrencySelectRoute'
 import 'animate.css'
-import { TbKarate} from 'react-icons/tb'
-
+import { TbKarate } from 'react-icons/tb'
 
 export function ChoosePair({
   currencyA,
@@ -29,21 +28,14 @@ export function ChoosePair({
 
   return (
     <>
-      <AppHeader
-        title={t('BACK')}
-        subtitle={t('')}
-        helper={t(
-          '',
-        )}
-        backTo="/liquidity"
-      />
+      <AppHeader title={t('BACK')} subtitle={t('')} helper={t('')} backTo="/liquidity" />
       <CardBody>
         <Box>
-          <Flex flexDirection="row"  alignItems="center" justifyContent="center" marginBottom="12px"  >
-          <Text textTransform="uppercase" color="text" fontWeight="400" fontSize="1.2rem" marginRight="4px"  >
-            {t('Choose your fighter')}
-          </Text>
-          <TbKarate width="36px" height="36px" style={{ color: '#0154FE'}}   /> 
+          <Flex flexDirection="row" alignItems="center" justifyContent="center" marginBottom="12px">
+            <Text textTransform="uppercase" color="text" fontWeight="400" fontSize="1.2rem" marginRight="4px">
+              {t('Choose your fighter')}
+            </Text>
+            <TbKarate width="36px" height="36px" style={{ color: '#0154FE' }} />
           </Flex>
           <FlexGap gap="4px">
             <CurrencySelect

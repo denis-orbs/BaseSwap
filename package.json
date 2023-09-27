@@ -41,6 +41,7 @@
     ]
   },
   "dependencies": {
+    "@angleprotocol/sdk": "^3.0.113",
     "@apollo/client": "^3.7.2",
     "@baseswapfi/redux-multicall": "^1.1.6",
     "@baseswapfi/router-sdk": "^1.0.20",

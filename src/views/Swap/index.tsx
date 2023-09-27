@@ -58,10 +58,7 @@ import {
   quoteAndAssemble,
   useDerivedSwapInfoOdos,
 } from '../../state/swap/hooks'
-import {
-  useUserSlippageTolerance,
-  useShowRoute
-} from '../../state/user/hooks'
+import { useUserSlippageTolerance, useShowRoute } from '../../state/user/hooks'
 import CircleLoader from '../../components/Loader/CircleLoader'
 import { BIPS_BASE, BIG_INT_ZERO } from 'config/constants/exchange'
 import Page from '../Page'
@@ -77,16 +74,14 @@ import 'animate.css'
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
   color: #fff;
-  text-align: left; 
+  text-align: left;
   margin-bottom: 12px;
-  text-transform: uppercase; 
-  font-size: 40px; 
+  text-transform: uppercase;
+  font-size: 40px;
   @media (min-width: 768px) {
-    font-size: 68px; 
+    font-size: 68px;
   }
-`;
-
-
+`
 
 const Label = styled(Text)`
   font-size: 12px;
@@ -97,12 +92,12 @@ const Label = styled(Text)`
 const SwitchIconButton = styled(IconButton)`
   box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
   background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
-  border-radius: 8px; 
+  border-radius: 8px;
   .icon-up-down {
     display: none;
   }
   &:hover {
-    box-shadow: 0 0 4px #fff, 0 0 12px #0154FD;
+    box-shadow: 0 0 4px #fff, 0 0 12px #0154fd;
     .icon-down {
       display: none;
       fill: white;
@@ -116,7 +111,7 @@ const SwitchIconButton = styled(IconButton)`
 
 export enum SwapType {
   REGULAR_SWAP,
-  CROSS_CHAIN_SWAP
+  CROSS_CHAIN_SWAP,
 }
 
 export default function Swap() {
@@ -133,11 +128,9 @@ export default function Swap() {
   const [quoteData, setQuoteData] = useState<any>(null)
   const [loadingConfirm, setLoadingConfirm] = useState(false)
 
-
-
   const Tabs = styled.div`
-  padding: 0px 0px 24px 0px;
-`
+    padding: 0px 0px 24px 0px;
+  `
 
   const [view, setView] = useState(SwapType.REGULAR_SWAP)
 
@@ -219,13 +212,13 @@ export default function Swap() {
 
   const parsedAmounts = showWrap
     ? {
-      [Field.INPUT]: parsedAmount,
-      [Field.OUTPUT]: parsedAmount,
-    }
+        [Field.INPUT]: parsedAmount,
+        [Field.OUTPUT]: parsedAmount,
+      }
     : {
-      [Field.INPUT]: parsedAmount,
-      [Field.OUTPUT]: tryParseAmount(outputAmount.toString(), outputCurrency),
-    }
+        [Field.INPUT]: parsedAmount,
+        [Field.OUTPUT]: tryParseAmount(outputAmount.toString(), outputCurrency),
+      }
 
   const { onSwitchTokens, onCurrencySelection, onUserInput, onChangeRecipient } = useSwapActionHandlers()
   const isValid = !swapInputError
@@ -299,7 +292,6 @@ export default function Swap() {
         txHash: transactionResponse.hash,
       })
     } catch (error) {
-      
       setSwapState({
         attemptingTxn: false,
         // @ts-ignore
@@ -308,8 +300,6 @@ export default function Swap() {
       })
     }
   }
-
-
 
   const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
@@ -429,7 +419,7 @@ export default function Swap() {
     true,
     true,
     'confirmSwapModal',
-    fetchCallback
+    fetchCallback,
   )
 
   const hasAmount = Boolean(parsedAmount)
@@ -445,25 +435,22 @@ export default function Swap() {
 
   return (
     <>
-      <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}
-      >
+      <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
         <PageHeader>
           <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
             <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
               <WelcomeTypeIt
                 options={{
-                  cursorChar: " ",
-                  cursorSpeed: 1000000, speed: 75,
+                  cursorChar: ' ',
+                  cursorSpeed: 1000000,
+                  speed: 75,
                 }}
                 speed={10}
                 getBeforeInit={(instance) => {
-                  instance
-
-                    .type("SWAP", { speed: 5000 })
-                    ;
-                  return instance;
-                }}>
-              </WelcomeTypeIt>
+                  instance.type('SWAP', { speed: 5000 })
+                  return instance
+                }}
+              ></WelcomeTypeIt>
             </Flex>
           </Flex>
           {/* <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
@@ -475,11 +462,12 @@ export default function Swap() {
         </Flex> */}
         </PageHeader>
         <TabsComponent />
-        {view === SwapType.CROSS_CHAIN_SWAP &&
+        {view === SwapType.CROSS_CHAIN_SWAP && (
           <Flex width="100%" justifyContent="center" position="relative" marginBottom="100px">
             <CrossChainSwap />
-          </Flex>}
-        {view === SwapType.REGULAR_SWAP &&
+          </Flex>
+        )}
+        {view === SwapType.REGULAR_SWAP && (
           <Flex
             width="100%"
             minWidth="100%"
@@ -521,12 +509,17 @@ export default function Swap() {
                 setIsOpen={setIsChartDisplayed}
               />
             )}
-            <Flex flexDirection={["column", "column", "column", "column","column", "row"]} 
-            style={{width: '100%', marginBottom: '40px'}}>
-              <StyledSwapContainer className="animate__animated animate__fadeInLeft" 
-              $isChartExpanded={isChartExpanded} style={{ margin: 'auto' }}>
+            <Flex
+              flexDirection={['column', 'column', 'column', 'column', 'column', 'row']}
+              style={{ width: '100%', marginBottom: '40px' }}
+            >
+              <StyledSwapContainer
+                className="animate__animated animate__fadeInLeft"
+                $isChartExpanded={isChartExpanded}
+                style={{ margin: 'auto' }}
+              >
                 <StyledInputCurrencyWrapper mt={isChartExpanded ? '24px' : '0'}>
-                  <AppBody marginTop="0rem" >
+                  <AppBody marginTop="0rem">
                     <CurrencyInputHeader
                       title={t('')}
                       subtitle={t('')}
@@ -538,9 +531,7 @@ export default function Swap() {
                     <Wrapper id="swap-page" style={{ minHeight: '412px' }}>
                       <AutoColumn gap="sm">
                         <CurrencyInputPanel
-                          label={
-                            independentField === Field.OUTPUT && !showWrap ? t('From (estimated)') : t('From')
-                          }
+                          label={independentField === Field.OUTPUT && !showWrap ? t('From (estimated)') : t('From')}
                           value={formattedAmounts[Field.INPUT]}
                           showMaxButton={!atMaxAmountInput}
                           currency={currencies[Field.INPUT]}
@@ -552,19 +543,15 @@ export default function Swap() {
                         />
 
                         <AutoColumn gap="sm" justify="space-between">
-                          <AutoRow
-                            gap="sm"
-                            justify='center'
-                            style={{ padding: '0 0rem' }}
-                          >
-                          <SwitchIconButton
-                          variant="light"
-                          size="40px"
-                          onClick={() => {
-                            setApprovalSubmitted(false) // reset 2 step UI for approvals
-                            onSwitchTokens()
-                          }}
-                        >
+                          <AutoRow gap="sm" justify="center" style={{ padding: '0 0rem' }}>
+                            <SwitchIconButton
+                              variant="light"
+                              size="40px"
+                              onClick={() => {
+                                setApprovalSubmitted(false) // reset 2 step UI for approvals
+                                onSwitchTokens()
+                              }}
+                            >
                               <ArrowDownIcon
                                 className="icon-down"
                                 color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'text' : 'text'}
@@ -579,7 +566,9 @@ export default function Swap() {
                         <CurrencyInputPanel
                           value={formattedAmounts[Field.OUTPUT]}
                           onUserInput={handleTypeOutput}
-                          label={independentField === Field.INPUT && !showWrap && swapData ? t('To (estimated)') : t('To')}
+                          label={
+                            independentField === Field.INPUT && !showWrap && swapData ? t('To (estimated)') : t('To')
+                          }
                           showMaxButton={false}
                           currency={currencies[Field.OUTPUT]}
                           onCurrencySelect={handleOutputSelect}
@@ -721,73 +710,32 @@ export default function Swap() {
                             {wrapInputError ??
                               (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
                           </Button>
-                        ) :
-                          !swapData && userHasSpecifiedInputOutput ? (
-                            // noRoute && userHasSpecifiedInputOutput ? (
-                            <GreyCard style={{ textAlign: 'center', padding: '0.75rem' }}>
-                              <Text color="textSubtle">{t('Insufficient liquidity for this trade.')}</Text>
-                            </GreyCard>
-                          ) : showApproveFlow ? (
-                            <RowBetween>
-                              <Button
-                                variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
-                                onClick={approveCallback}
-                                disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
-                                width="48%"
-                              >
-                                {approval === ApprovalState.PENDING ? (
-                                  <AutoRow gap="6px" justify="center">
-                                    {t('Enabling')} <CircleLoader stroke="white" />
-                                  </AutoRow>
-                                ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
-                                  t('Enabled')
-                                ) : (
-                                  t('Enable %asset%', { asset: currencies[Field.INPUT]?.symbol ?? '' })
-                                )}
-                              </Button>
-                              <Button
-                                variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
-                                onClick={async () => {
-
-                                  setSwapState({
-                                    attemptingTxn: false,
-                                    swapErrorMessage: undefined,
-                                    txHash: undefined,
-                                  })
-                                  setLoadingConfirm(true)
-                                  onPresentConfirmModal()
-                                  const { quoteData, assembledData } = await quoteAndAssemble(
-                                    inputCurrency,
-                                    outputCurrency,
-                                    typedValue,
-                                    allowedSlippage,
-                                    account,
-                                  )
-                                  setAssembledTransaction(assembledData)
-                                  setQuoteData(quoteData)
-                                  setLoadingConfirm(false)
-                                }
-                                }
-                                width="48%"
-                                id="swap-button"
-                                disabled={
-                                  !isValid ||
-                                  approval !== ApprovalState.APPROVED ||
-                                  (priceImpactSeverity > 3)
-                                }
-                              >
-                                {priceImpactSeverity > 3
-                                  ? t('Price Impact High')
-                                  : priceImpactSeverity > 2
-                                    ? t('Swap Anyway')
-                                    : t('Swap')}
-                              </Button>
-                            </RowBetween>
-                          ) : (
+                        ) : !swapData && userHasSpecifiedInputOutput ? (
+                          // noRoute && userHasSpecifiedInputOutput ? (
+                          <GreyCard style={{ textAlign: 'center', padding: '0.75rem' }}>
+                            <Text color="textSubtle">{t('Insufficient liquidity for this trade.')}</Text>
+                          </GreyCard>
+                        ) : showApproveFlow ? (
+                          <RowBetween>
+                            <Button
+                              variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
+                              onClick={approveCallback}
+                              disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
+                              width="48%"
+                            >
+                              {approval === ApprovalState.PENDING ? (
+                                <AutoRow gap="6px" justify="center">
+                                  {t('Enabling')} <CircleLoader stroke="white" />
+                                </AutoRow>
+                              ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
+                                t('Enabled')
+                              ) : (
+                                t('Enable %asset%', { asset: currencies[Field.INPUT]?.symbol ?? '' })
+                              )}
+                            </Button>
                             <Button
                               variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
                               onClick={async () => {
-
                                 setSwapState({
                                   attemptingTxn: false,
                                   swapErrorMessage: undefined,
@@ -805,27 +753,58 @@ export default function Swap() {
                                 setAssembledTransaction(assembledData)
                                 setQuoteData(quoteData)
                                 setLoadingConfirm(false)
-                              }
-                              }
+                              }}
+                              width="48%"
                               id="swap-button"
-                              width="100%"
-                              disabled={!isValid || (priceImpactSeverity > 3)}
+                              disabled={!isValid || approval !== ApprovalState.APPROVED || priceImpactSeverity > 3}
                             >
-                              {swapInputError ||
-                                (priceImpactSeverity > 3
-                                  ? t('Price Impact Too High')
-                                  : priceImpactSeverity > 2
-                                    ? t('Swap Anyway')
-                                    : t('Swap'))}
+                              {priceImpactSeverity > 3
+                                ? t('Price Impact High')
+                                : priceImpactSeverity > 2
+                                ? t('Swap Anyway')
+                                : t('Swap')}
                             </Button>
-                          )}
+                          </RowBetween>
+                        ) : (
+                          <Button
+                            variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
+                            onClick={async () => {
+                              setSwapState({
+                                attemptingTxn: false,
+                                swapErrorMessage: undefined,
+                                txHash: undefined,
+                              })
+                              setLoadingConfirm(true)
+                              onPresentConfirmModal()
+                              const { quoteData, assembledData } = await quoteAndAssemble(
+                                inputCurrency,
+                                outputCurrency,
+                                typedValue,
+                                allowedSlippage,
+                                account,
+                              )
+                              setAssembledTransaction(assembledData)
+                              setQuoteData(quoteData)
+                              setLoadingConfirm(false)
+                            }}
+                            id="swap-button"
+                            width="100%"
+                            disabled={!isValid || priceImpactSeverity > 3}
+                          >
+                            {swapInputError ||
+                              (priceImpactSeverity > 3
+                                ? t('Price Impact Too High')
+                                : priceImpactSeverity > 2
+                                ? t('Swap Anyway')
+                                : t('Swap'))}
+                          </Button>
+                        )}
                         {showApproveFlow && (
                           <Column style={{ marginTop: '1rem' }}>
                             <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />
                           </Column>
                         )}
                         {swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
-
                       </Box>
                       <Flex justifyContent="center" alignItems="center" style={{ marginTop: 24 }}>
                         <div style={{ color: '#fff', fontSize: 12 }}>Powered By</div>
@@ -841,8 +820,12 @@ export default function Swap() {
                   {/* {!swapIsUnsupported ? (
                     trade && <AdvancedSwapDetailsDropdown trade={trade} />
                   ) : ( */}
-                  {swapIsUnsupported &&
-                    <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} show={swapIsUnsupported}/>}
+                  {swapIsUnsupported && (
+                    <UnsupportedCurrencyFooter
+                      currencies={[currencies.INPUT, currencies.OUTPUT]}
+                      show={swapIsUnsupported}
+                    />
+                  )}
                   {/* )} */}
                 </StyledInputCurrencyWrapper>
               </StyledSwapContainer>
@@ -868,68 +851,67 @@ export default function Swap() {
                 </Box>
               )}
             </Flex>
-          </Flex>}
+          </Flex>
+        )}
       </Page>
     </>
   )
 }
 
 const StyledContainer = styled.div`
-margin: auto;
-min-width: 300px;
-${({ theme }) => theme.mediaQueries.md} {
-  min-width: 450px;
-  max-width: 100%;
-}
+  margin: auto;
+  min-width: 300px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    min-width: 450px;
+    max-width: 100%;
+  }
 `
 
 const CrossChainSwap = () => {
-
   const widgetConfig = {
-    integratorId: "squid-swap-widget",
-    companyName: "BaseSwap",
+    integratorId: 'squid-swap-widget',
+    companyName: 'BaseSwap',
     style: {
-      neutralContent: "#FFF",
-      baseContent: "#FFF",
-      base100: "#111",
-      base200: "#333",
-      base300: "#111",
-      error: "#ED6A5E",
-      warning: "#FFB155",
-      success: "#004be4",
-      primary: "#0154FE",
-      secondary: "#1a65fe",
-      secondaryContent: "#FFF",
-      neutral: "#111",
-      roundedBtn: "4px",
-      roundedCornerBtn: "999px",
-      roundedBox: "4px",
-      roundedDropDown: "4px",
+      neutralContent: '#FFF',
+      baseContent: '#FFF',
+      base100: '#111',
+      base200: '#333',
+      base300: '#111',
+      error: '#ED6A5E',
+      warning: '#FFB155',
+      success: '#004be4',
+      primary: '#0154FE',
+      secondary: '#1a65fe',
+      secondaryContent: '#FFF',
+      neutral: '#111',
+      roundedBtn: '4px',
+      roundedCornerBtn: '999px',
+      roundedBox: '4px',
+      roundedDropDown: '4px',
     },
     slippage: 1.5,
     infiniteApproval: false,
     enableExpress: true,
-    apiUrl: "https://api.squidrouter.com",
-    comingSoonChainIds: ["cosmoshub-4", "injective-1", "kichain-2"],
+    apiUrl: 'https://api.squidrouter.com',
+    comingSoonChainIds: ['cosmoshub-4', 'injective-1', 'kichain-2'],
     titles: {
-      swap: "Swap",
-      settings: "Settings",
-      wallets: "Wallets",
-      tokens: "Select Token",
-      chains: "Select Chain",
-      history: "History",
-      transaction: "Transaction",
-      allTokens: "Select Token",
-      destination: "Destination address",
+      swap: 'Swap',
+      settings: 'Settings',
+      wallets: 'Wallets',
+      tokens: 'Select Token',
+      chains: 'Select Chain',
+      history: 'History',
+      transaction: 'Transaction',
+      allTokens: 'Select Token',
+      destination: 'Destination address',
     },
     priceImpactWarnings: {
       warning: 3,
       critical: 5,
     },
-  };
+  }
 
-
-  const widgetUrl = `https://widget.squidrouter.com/iframe?config=${encodeURIComponent(JSON.stringify(widgetConfig))}`;
+  const widgetUrl = `https://widget.squidrouter.com/iframe?config=${encodeURIComponent(JSON.stringify(widgetConfig))}`
 
   return (
     <StyledContainer>
@@ -944,7 +926,7 @@ const CrossChainSwap = () => {
         scrolling="no"
         style={{
           border: '3px solid #fff',
-          borderRadius: '12px'
+          borderRadius: '12px',
         }}
       />
     </StyledContainer>
@@ -975,4 +957,4 @@ export const StyledBalanceMaxMini = styled.button`
     background-color: ${({ theme }) => theme.colors.dropdown};
     outline: none;
   }
-  `
+`

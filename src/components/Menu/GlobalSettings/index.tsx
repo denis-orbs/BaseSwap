@@ -10,14 +10,13 @@ type Props = {
 }
 
 const GearBox = styled(PiGearFill)`
-  color: #0154FE;
+  color: #0154fe;
   width: 32px;
-  height: 32px; 
-  &:hover{
-    color: #fff
+  height: 32px;
+  &:hover {
+    color: #fff;
   }
-
-`;
+`
 
 const GlobalSettings = ({ color, mr = '8px', mode }: Props) => {
   const [onPresentSettingsModal] = useModal(<SettingsModal mode={mode} />)

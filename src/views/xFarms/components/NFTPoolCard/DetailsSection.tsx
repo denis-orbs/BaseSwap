@@ -17,9 +17,7 @@ export interface ExpandableSectionProps {
 
 const Wrapper = styled.div`
   margin-top: 12px;
-
 `
-
 
 const StyledLinkExternal = styled(LinkExternal)`
   font-weight: 600;

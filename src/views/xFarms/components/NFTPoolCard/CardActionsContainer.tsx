@@ -1,7 +1,6 @@
 import { Button, Flex, Skeleton, Text } from '@pancakeswap/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 
-import styled, { css } from 'styled-components'
 import { FarmWithStakedValue } from '../types'
 import StakeAction from './StakeAction'
 import { useWeb3React } from '@web3-react/core'
@@ -12,22 +11,7 @@ import { useHarvestPosition } from 'views/xFarms/hooks/useHarvestNftPoolPosition
 import { useCallback } from 'react'
 import { useTranslation } from '@pancakeswap/localization'
 import useNftPools from 'views/xFarms/hooks/useNftPools'
-
-interface ActionProps {
-  table?: boolean;
-}
-
-const Action = styled.div<ActionProps>`
-${({ table }) =>
-    table
-      ? css`
-      margin-bottom: 12px;
-    `
-      : css`
-      margin-bottom: 0px;
-    `}
-    padding-top: 16px;
-`
+import { PoolCardAction } from './Styled'
 
 interface FarmCardActionsProps {
   farm: FarmWithStakedValue
@@ -63,7 +47,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
   }
 
   return (
-    <Action table={table}>
+    <PoolCardAction table={table}>
       {/* <Flex>
         <Text bold textTransform="uppercase" color="background" fontSize="12px" pr="4px">
           {farm.lpSymbol} &nbsp;{t('Staked')}: 
@@ -77,13 +61,13 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, addLiquidityUrl, lp
           {renderApprovalOrStakeButton()}
 
           <Flex marginTop="0px">
-            {position ? <PendingRewards position={position} harvestPosition={harvestFunction} table/> : <Skeleton />}
+            {position ? <PendingRewards position={position} harvestPosition={harvestFunction} table /> : <Skeleton />}
           </Flex>
 
           {/* {farm.nitroPoolAddress && <NitroPoolInfo position={position} />} */}
         </>
       )}
-    </Action>
+    </PoolCardAction>
   )
 }
 

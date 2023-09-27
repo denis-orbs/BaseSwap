@@ -68,11 +68,11 @@ const WelcomeTypeIt = styled(TypeIt)`
 `
 
 const AddIcon = styled(IoMdAddCircle)`
-  color: #0154FE;
-  width: 48px; 
-  box-shadow: 0 0 4px #fff; 
+  color: #0154fe;
+  width: 48px;
+  box-shadow: 0 0 4px #fff;
   border-radius: 150px;
-  height: 48px; 
+  height: 48px;
 `
 enum Steps {
   Choose,
@@ -645,7 +645,7 @@ export default function AddLiquidity() {
                     showCommonBases
                   />
                   <ColumnCenter>
-                    <AddIcon  />
+                    <AddIcon />
                   </ColumnCenter>
                   <CurrencyInputPanel
                     showBUSD

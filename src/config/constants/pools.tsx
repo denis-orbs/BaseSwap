@@ -69,7 +69,7 @@ export const livePools: SerializedPoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.0000015',
-    isBoost: true, 
+    isBoost: true,
   },
   //$207
 
@@ -82,9 +82,9 @@ export const livePools: SerializedPoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '.0027',
-    isBoost: true, 
+    isBoost: true,
   },
-  
+
   // $233
   {
     sousId: 100,
@@ -95,9 +95,9 @@ export const livePools: SerializedPoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.0033',
-    isBoost: false, 
+    isBoost: false,
   },
-  //$285 
+  //$285
   {
     sousId: 101,
     stakingToken: serializedTokens.cake,
@@ -107,7 +107,7 @@ export const livePools: SerializedPoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.0000021',
-    isBoost: true, 
+    isBoost: true,
   },
   {
     sousId: 105,
@@ -118,7 +118,7 @@ export const livePools: SerializedPoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.0011',
-    isBoost: true, 
+    isBoost: true,
   },
   {
     sousId: 102,
@@ -130,13 +130,6 @@ export const livePools: SerializedPoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '0.00',
   },
- 
- 
- 
-
-
-
-
 ]
 
 // known finished pools

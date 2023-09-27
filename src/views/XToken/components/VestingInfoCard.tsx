@@ -10,7 +10,7 @@ import useXTokenActions from '../hooks/useXTokenActions'
 export const TopHalf = styled(Flex)`
   justify-content: space-between;
   align-items: center;
-  border-image: linear-gradient(100deg, #0154FD, #68B9FF) 1;
+  border-image: linear-gradient(100deg, #0154fd, #68b9ff) 1;
   border-bottom: 2px;
   border-style: solid;
   padding-bottom: 4px;
@@ -82,9 +82,9 @@ const VestingInfoCard: React.FC<VestingCardProps> = ({ vesting }) => {
 
       <Flex justifyContent={['center', null, null, 'center']} mt="8px" mb="0rem">
         <Button
-          variant={!vesting.canFinalize || pendingTx ? "primary" : "primary"}
+          variant={!vesting.canFinalize || pendingTx ? 'primary' : 'primary'}
           marginX="1rem"
-          marginBottom="8px" 
+          marginBottom="8px"
           disabled={!vesting.canFinalize || pendingTx}
           onClick={() => handleAction('finalize')}
         >

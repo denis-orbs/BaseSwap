@@ -1,5 +1,6 @@
 import { createAction } from '@reduxjs/toolkit'
 import { SerializedToken } from 'config/constants/types'
+import { UserMerkleClaimData } from 'state/types'
 
 export interface SerializedPair {
   token0: SerializedToken
@@ -22,9 +23,11 @@ export enum ChartViewMode {
   TRADING_VIEW = 'TRADING_VIEW',
 }
 
+export const updateMerklPools = createAction<{ pools: any[] }>('user/updateMerklPools')
 export const updateHideClosedPositions = createAction<{ userHideClosedPositions: boolean }>(
   'user/updateHideClosedPositions',
 )
+export const updateUserClaimsData = createAction<UserMerkleClaimData>('user/updateUserClaimsData')
 export const updateUserExpertMode = createAction<{ userExpertMode: boolean }>('user/updateUserExpertMode')
 export const updateUserShowRoute = createAction<{ userShowRoute: boolean }>('user/updateUserShowRoute')
 export const updateUserSingleHopOnly = createAction<{ userSingleHopOnly: boolean }>('user/updateUserSingleHopOnly')
@@ -35,8 +38,9 @@ export const updateUserDeadline = createAction<{ userDeadline: number }>('user/u
 export const addSerializedToken = createAction<{ serializedToken: SerializedToken }>('user/addSerializedToken')
 export const removeSerializedToken = createAction<{ chainId: number; address: string }>('user/removeSerializedToken')
 export const addSerializedPair = createAction<{ serializedPair: SerializedPair }>('user/addSerializedPair')
-export const removeSerializedPair =
-  createAction<{ chainId: number; tokenAAddress: string; tokenBAddress: string }>('user/removeSerializedPair')
+export const removeSerializedPair = createAction<{ chainId: number; tokenAAddress: string; tokenBAddress: string }>(
+  'user/removeSerializedPair',
+)
 
 export const muteAudio = createAction<void>('user/muteAudio')
 export const unmuteAudio = createAction<void>('user/unmuteAudio')

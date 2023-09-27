@@ -9,17 +9,16 @@ interface Props extends BoxProps {
 }
 
 const Question = styled(FaRegQuestionCircle)`
-  color: #fff; 
+  color: #fff;
   width: 16px;
-  height: 16px; 
-  &:hover { 
-    color: #0154FE; 
+  height: 16px;
+  &:hover {
+    color: #0154fe;
   }
 `
 
-
 const QuestionWrapper = styled.div`
-:hover,
+  :hover,
   :focus {
     opacity: 0.7;
   }
@@ -32,7 +31,7 @@ const QuestionHelper: React.FC<Props> = ({ text, placement = 'right-end', size =
     <Box {...props}>
       {tooltipVisible && tooltip}
       <QuestionWrapper ref={targetRef}>
-        <Question  width={size} />
+        <Question width={size} />
       </QuestionWrapper>
     </Box>
   )

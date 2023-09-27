@@ -1,6 +1,11 @@
 import styled from 'styled-components'
-import { Text, Toggle, Flex, Modal, InjectedModalProps,
-  // ThemeSwitcher, Box 
+import {
+  Text,
+  Toggle,
+  Flex,
+  Modal,
+  InjectedModalProps,
+  // ThemeSwitcher, Box
 } from '@pancakeswap/uikit'
 import { useSubgraphHealthIndicatorManager } from 'state/user/hooks'
 import { useTranslation } from '@pancakeswap/localization'
@@ -13,9 +18,9 @@ import { useShowRoute } from '../../../state/user/hooks'
 import { TbRoute } from 'react-icons/tb'
 
 const Route = styled(TbRoute)`
-color: #fff; 
-width: 32px; 
-height: 32px; 
+  color: #fff;
+  width: 32px;
+  height: 32px;
 `
 
 const ScrollableContainer = styled(Flex)`
@@ -106,10 +111,9 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss, mode }) => {
         {mode === SettingsMode.SWAP_LIQUIDITY && (
           <>
             <Flex marginTop="-4px" flexDirection="column">
-              
               {/* <Flex justifyContent="space-between" alignItems="center" mb="24px"> */}
 
-              <GasSettings  />
+              <GasSettings />
 
               <TransactionSettings />
               {/* <Flex flexDirection="column" mb="2rem">

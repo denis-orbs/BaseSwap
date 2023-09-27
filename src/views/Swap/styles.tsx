@@ -18,9 +18,9 @@ export const StyledSwapContainer = styled(Flex)<{ $isChartExpanded: boolean }>`
 export const StyledInputCurrencyWrapper = styled(Box)`
   width: 340px;
   ${({ theme }) => theme.mediaQueries.md} {
-    width: 380px; 
+    width: 380px;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    width: 420px; 
+    width: 420px;
   }
 `

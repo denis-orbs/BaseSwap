@@ -9,7 +9,6 @@ export const baseColors = {
   success: "#0154FE",
   warning: "#FFB237",
   orange: "#FC8A17",
-
 };
 
 export const additionalColors = {
@@ -39,9 +38,9 @@ export const lightColors: Colors = {
   textDisabled: "#BDC2C4",
   textSubtle: "#7A6EAA",
   disabled: "#E9EAEB",
-  success: 'green',
-  closed: 'red',
-  warning: 'yellow',
+  success: "green",
+  closed: "red",
+  warning: "yellow",
   gradients: {
     basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD 100%)",
     basedsexdark: "linear-gradient(to bottom, #333333, #000000)",
@@ -82,11 +81,11 @@ export const darkColors: Colors = {
   textDisabled: "#666171",
   textSubtle: "#fff",
   disabled: "#333",
-  success: '#0154FE',
-  closed: 'red',
-  warning: 'yellow',
+  success: "#0154FE",
+  closed: "red",
+  warning: "yellow",
   gradients: {
-    basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD, 90%, #ccc 100%)",
+    basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD, #68B9FF 100%)",
     based69: "linear-gradient(to bottom,  #111, #020079, #0154FD)",
 
     basedsex1: "linear-gradient(270deg, #111, #0154FD)",

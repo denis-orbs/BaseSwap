@@ -39,7 +39,7 @@ const getScale =
 
 export const Handle = styled.div<HandleProps>`
   background-color: ${({ theme }) => theme.toggle.handleBackground};
-  border-radius: 8px; 
+  border-radius: 8px;
   cursor: pointer;
   height: ${getScale("handleHeight")};
   left: ${getScale("handleLeft")};
@@ -61,8 +61,6 @@ export const Input = styled.input<InputProps>`
   &:checked + ${Handle} {
     left: ${getScale("checkedLeft")};
   }
-
-
 `;
 
 const StyledToggle = styled.div<StyleToggleProps>`

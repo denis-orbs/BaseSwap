@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
-import { Percent, Price, Token } from '@baseswapfi/sdk-core'
-import { Position } from '@baseswapfi/v3-sdk2'
+import { Percent, Price, Token, V3_CORE_FACTORY_ADDRESSES } from '@baseswapfi/sdk-core'
+import { Position, computePoolAddress } from '@baseswapfi/v3-sdk2'
 import RangeBadge from 'components/Badge/RangeBadge'
 import DoubleCurrencyLogo from 'components/DoubleLogo'
 import HoverInlineText from 'components/HoverInlineText'
@@ -18,17 +18,19 @@ import { formatTickPrice } from 'utils/v3/formatTickPrice'
 import { unwrappedToken } from 'utils/v3/unwrappedToken'
 import { currentTokenMap } from 'config/constants/tokens'
 import { useRouter } from 'next/router'
-
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useSelectMerklPools } from 'state/user/selectors'
+import { useTranslation } from '@pancakeswap/localization'
 
 const StyledBox = styled(Box)`
   background: ${({ theme }) => theme.colors.gradients.basedsexgray};
   padding: 6px;
-  margin-bottom: 12px; 
+  margin-bottom: 12px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.text};
   cursor: pointer;
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-left: 12px;
-    padding-right: 12px; 
+    padding-right: 12px;
   }
 `
 
@@ -63,7 +65,6 @@ const RangeLineItem = styled(DataLineItem)`
   align-items: center;
   margin-top: 12px;
   width: 100%;
-
 `
 
 // const DoubleArrow = styled.span`
@@ -77,7 +78,7 @@ const RangeText = styled(Text)`
   word-break: break-word;
   padding: 0.25rem 0.25rem;
   border-radius: 12px;
-  box-shadow: 0 0 4px #0154FE; 
+  box-shadow: 0 0 4px #0154fe;
   margin-right: 24px;
   padding: 8px;
   background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
@@ -117,6 +118,7 @@ interface PositionListItemProps {
   liquidity: BigNumber
   tickLower: number
   tickUpper: number
+  aprInfo?: { label: string; value: string }[]
 }
 
 export function getPriceOrderingFromPositionForUI(position?: Position): {
@@ -185,11 +187,26 @@ export default function PositionListItem({
   tickLower,
   tickUpper,
 }: PositionListItemProps) {
+  const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
+
   const token0 = useToken(token0Address)
   const token1 = useToken(token1Address)
 
   const currency0 = token0 ? unwrappedToken(token0 as any) : undefined
   const currency1 = token1 ? unwrappedToken(token1 as any) : undefined
+
+  const v3CoreFactoryAddress = chainId && V3_CORE_FACTORY_ADDRESSES[chainId]
+  const poolAddress = computePoolAddress({
+    factoryAddress: v3CoreFactoryAddress,
+    tokenA: token0,
+    tokenB: token1,
+    fee: feeAmount,
+  })
+
+  const merklPools = useSelectMerklPools()
+  const aprInfo: any[] | undefined = merklPools.find((p) => p.pool === poolAddress)?.aprs
+  console.log(aprInfo)
 
   const router = useRouter()
 
@@ -220,75 +237,75 @@ export default function PositionListItem({
 
   return (
     <>
-    <StyledBox
-      onClick={() => {
-        router.replace({
-          pathname: positionSummaryLink,
-        })
-      }}
-    >
-      <RowBetween>
-        <PrimaryPositionIdData>
-          <Flex alignItems="center">
-            <DoubleCurrencyLogo currency0={currencyBase} currency1={currencyQuote} size={48} margin />
-            <Text fontSize="1.5rem">
-              &nbsp;{currencyQuote?.symbol}&nbsp;/&nbsp;{currencyBase?.symbol}
-            </Text>
-          </Flex>
+      <StyledBox
+        onClick={() => {
+          router.replace({
+            pathname: positionSummaryLink,
+          })
+        }}
+      >
+        <RowBetween>
+          <PrimaryPositionIdData>
+            <Flex alignItems="center">
+              <DoubleCurrencyLogo currency0={currencyBase} currency1={currencyQuote} size={48} margin />
+              <Text fontSize="1.5rem">
+                &nbsp;{currencyQuote?.symbol}&nbsp;/&nbsp;{currencyBase?.symbol}
+              </Text>
+            </Flex>
 
-          <FeeTierText>
-            <Text>{new Percent(feeAmount, 1_000_000).toSignificant()}%</Text>
-          </FeeTierText>
-        </PrimaryPositionIdData>
-        <RangeBadge removed={removed} inRange={!outOfRange} />
-      </RowBetween>
+            <FeeTierText>
+              <Text>{new Percent(feeAmount, 1_000_000).toSignificant()}%</Text>
+            </FeeTierText>
+          </PrimaryPositionIdData>
 
-      {priceLower && priceUpper ? (
-        <RangeLineItem>
-          
-          <RangeText>
-            <ExtentsText>
-              MIN
-            </ExtentsText>
-            <Text fontSize="14px">
-              <span>
-                {formatTickPrice({
-                  price: priceLower,
-                  atLimit: tickAtLimit,
-                  direction: Bound.LOWER,
-                })}{' '}
-              </span>
-              <HoverInlineText text={currencyQuote?.symbol} /> per <HoverInlineText text={currencyBase?.symbol ?? ''} />
-            </Text>
-          </RangeText>{' '}
-          {/* <HideSmall>
+          {aprInfo?.length && <Text>{t(`APR: ~${aprInfo[0].value}`)}</Text>}
+
+          <RangeBadge removed={removed} inRange={!outOfRange} />
+        </RowBetween>
+
+        {priceLower && priceUpper ? (
+          <RangeLineItem>
+            <RangeText>
+              <ExtentsText>MIN</ExtentsText>
+              <Text fontSize="14px">
+                <span>
+                  {formatTickPrice({
+                    price: priceLower,
+                    atLimit: tickAtLimit,
+                    direction: Bound.LOWER,
+                  })}{' '}
+                </span>
+                <HoverInlineText text={currencyQuote?.symbol} /> per{' '}
+                <HoverInlineText text={currencyBase?.symbol ?? ''} />
+              </Text>
+            </RangeText>{' '}
+            {/* <HideSmall>
             <DoubleArrow>↔</DoubleArrow>{' '}
           </HideSmall>
           <SmallOnly>
             <DoubleArrow>↔</DoubleArrow>{' '}
           </SmallOnly> */}
-          <RangeText>
-            <ExtentsText>
-              MAX
-            </ExtentsText>
-            <Text fontSize="14px">
-              <span>
-                {formatTickPrice({
-                  price: priceUpper,
-                  atLimit: tickAtLimit,
-                  direction: Bound.UPPER,
-                })}{' '}
-              </span>
-              <HoverInlineText text={currencyQuote?.symbol} /> per{' '}
-              <HoverInlineText maxCharacters={10} text={currencyBase?.symbol} />
-            </Text>
-          </RangeText>
-        </RangeLineItem>
-      ) : (
-        <Loader />
-      )}
-    </StyledBox>
-   
+            <RangeText>
+              <ExtentsText>MAX</ExtentsText>
+              <Text fontSize="14px">
+                <span>
+                  {formatTickPrice({
+                    price: priceUpper,
+                    atLimit: tickAtLimit,
+                    direction: Bound.UPPER,
+                  })}{' '}
+                </span>
+                <HoverInlineText text={currencyQuote?.symbol} /> per{' '}
+                <HoverInlineText maxCharacters={10} text={currencyBase?.symbol} />
+              </Text>
+            </RangeText>
+          </RangeLineItem>
+        ) : (
+          <Loader />
+        )}
+
+        {}
+      </StyledBox>
     </>
   )
 }

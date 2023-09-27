@@ -6,26 +6,25 @@ import BottomNav from "../../components/BottomNav";
 import { Box } from "../../components/Box";
 import Flex from "../../components/Box/Flex";
 import { SubMenuItems } from "../../components/SubMenuItems";
-import { BsCoin } from 'react-icons/bs'
+import { BsCoin } from "react-icons/bs";
 import { useMatchBreakpoints } from "../../hooks";
 import UserMenu from "./components/UserMenu";
 import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_MOBILE } from "./config";
 import { NavProps } from "./types";
-import { MdGamepad } from 'react-icons/md' 
+import { MdGamepad } from "react-icons/md";
 import { MenuContext } from "./context";
 import { Text } from "../../components/Text";
 import { Link } from "../../components/Link";
-import TypeIt from 'typeit-react'
+import TypeIt from "typeit-react";
 import { Image } from "../../components/Image";
 import { FlamingText } from "./components/FlamingText";
-import { PiSwapBold } from 'react-icons/pi'
-import { RiPlantFill } from 'react-icons/ri' 
-import { GiWaterSplash } from 'react-icons/gi'
-import { FaSpaceShuttle } from 'react-icons/fa'
+import { PiSwapBold } from "react-icons/pi";
+import { RiPlantFill } from "react-icons/ri";
+import { GiWaterSplash } from "react-icons/gi";
+import { FaSpaceShuttle } from "react-icons/fa";
 import NavbarIcon from "./components/Icon";
-import { IoMdClose } from 'react-icons/io'
-import { GiBurstBlob } from 'react-icons/gi'
-
+import { BsFillDropletFill } from "react-icons/bs"
+import { GiBurstBlob } from "react-icons/gi";
 
 const StyledText = styled(Text)`
   font-size: 14px;
@@ -45,35 +44,34 @@ const WelcomeTypeIt = styled(TypeIt)`
 `;
 
 const MenuImage = styled(Image)`
-  box-shadow: 0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF;
+  box-shadow: 0 8px 8px #fff, 12px 0px 12px #0154fd, -12px 0px 12px #68b9ff;
   border-radius: 50%;
-  
 `;
 type DropdownTextProps = {
   marginRight?: string;
 };
 
 const DropdownText = styled.div<DropdownTextProps>`
-  font-size: 1.1rem; 
-  color: #fff; 
-  text-transform: uppercase; 
-  font-weight: 400; 
-  margin-right: ${props => props.marginRight || '0px'};
-
+  font-size: 1.1rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-right: ${(props) => props.marginRight || "0px"};
 `;
 
 const DropdownMenu = styled.div`
   display: none;
+  border: 3px solid #fff; 
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.4); 
-  backdrop-filter: blur(12px); 
-  border-radius: 8px;
-  min-width: 240px;
-  box-shadow: 0px 2px 4px #68B9FF, 0px 2px 16px #0154fe;
+  background-color: rgba(0, 0, 0, 0.7); 
+  backdrop-filter: blur(18px); 
+  border-radius: 12px;
+  min-width: 280px;
   padding: 18px 12px;
   z-index: 1;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center; 
 `;
 
 const DropdownContainer = styled.div`
@@ -188,28 +186,43 @@ const Menu: React.FC<NavProps> = ({
   }, [totalTopMenuHeight]);
 
   return (
-<MenuContext.Provider value={{ linkComponent }}>
-  <Wrapper>
-    <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
-      {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
-      <StyledNav>
+    <MenuContext.Provider value={{ linkComponent }}>
+      <Wrapper>
+        <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
+          {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
+          <StyledNav>
+            <a href="/" style={{ marginLeft: "1rem" }}>
+              <Flex alignItems="center" justifyContent="flex-start" flexDirection="row">
+                <img
+                  style={{
+                    boxShadow: "0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF",
+                    borderRadius: "50%",
+                  }}
+                  width={isMobile ? 0 : 40}
+                  height={isMobile ? 0 : 40}
+                  src="/images/newlogo.png"
+                  alt="logo"
+                />
 
-      <a href="/" style={{ marginLeft: '1rem' }}>
-      <Flex alignItems="center" justifyContent="flex-start" flexDirection="row" >
-          <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} 
-          width={isMobile ? 0 : 40} height={isMobile ? 0 : 40}
-          src="/images/newlogo.png"   alt="logo" />
-
-            <Text marginLeft={['0rem', null, null, '0.5rem' ]} 
-            marginRight={['0rem', null, null, '0.7rem' ]} 
-            fontSize="1.8rem" >
-              BaseSwap
-            </Text>
-          <img style={{ boxShadow: '0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF',  borderRadius: '50%' }} 
-          src="/images/tokens/0xd5046B976188EB40f6DE40fB527F89c05b323385.png" 
-          width={isMobile ? 0 : 40} height={isMobile ? 0 : 40} alt="logo" />
-      </Flex>
-    </a>
+                <Text
+                  marginLeft={["0rem", null, null, "0.5rem"]}
+                  marginRight={["0rem", null, null, "0.7rem"]}
+                  fontSize="1.8rem"
+                >
+                  BaseSwap
+                </Text>
+                <img
+                  style={{
+                    boxShadow: "0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF",
+                    borderRadius: "50%",
+                  }}
+                  src="/images/tokens/0xd5046B976188EB40f6DE40fB527F89c05b323385.png"
+                  width={isMobile ? 0 : 40}
+                  height={isMobile ? 0 : 40}
+                  alt="logo"
+                />
+              </Flex>
+            </a>
             {!isMobile && (
               <Flex
                 flexDirection="row"
@@ -219,82 +232,80 @@ const Menu: React.FC<NavProps> = ({
                 width="80%"
               >
                 <DropdownContainer>
-                <NavbarIcon icon={PiSwapBold} label="TRADE" href="/swap" />
+                  <NavbarIcon icon={PiSwapBold} label="TRADE" href="/swap" />
                   <DropdownMenu>
                     <Link href="/swap" marginBottom="1.2rem">
-                      <DropdownText>
-                        SWAP
-                      </DropdownText>
+                      <DropdownText>SWAP</DropdownText>
                     </Link>
                     <Link href="/basicswap" marginBottom="1.2rem">
-                    <DropdownText>
-                          BASIC SWAP
-                      </DropdownText>
+                      <DropdownText>BASIC SWAP</DropdownText>
                     </Link>
                     <Link href="http://perpetuals.baseswap.fi">
-                        <DropdownText >
-                            PERPETUALS
-                        </DropdownText>
+                      <DropdownText>PERPETUALS</DropdownText>
                     </Link>
                   </DropdownMenu>
                 </DropdownContainer>
-                
-                <NavbarIcon icon={GiBurstBlob} label="Liquidity" href="/liquidity" />
 
                 <DropdownContainer>
-                  <NavbarIcon icon={FaSpaceShuttle} label="BaseX" href="/positions" />
+                  <NavbarIcon icon={BsFillDropletFill} label="LIQUIDITY" href="/liquidity" />
                   <DropdownMenu>
-                      <Link href="/positions" marginBottom="1.2rem">
-                          <DropdownText >
-                              Manage Positions
-                          </DropdownText>
-                      </Link>
-                      <Link href="/addV3" >
-                        <DropdownText >
-                              Add Liquidity
-                        </DropdownText>
-                      </Link>
-                  </DropdownMenu>
+                    <Link href="/liquidity" marginBottom="1.2rem">
+                      <DropdownText>STANDARD</DropdownText>
+                    </Link>
+                    <Link href="/positions" >
+                      <DropdownText>CONCENTRATED</DropdownText>
+                    </Link>
+                 </DropdownMenu>
                 </DropdownContainer>
+
+                <DropdownContainer>
+                  <NavbarIcon icon={RiPlantFill} label="FARM" href="/farm" />
+                  <DropdownMenu>
+                    <Link href="/farm" marginBottom="1.2rem">
+                      <DropdownText>STANDARD FARMS</DropdownText>
+                    </Link>
+                    <Link href="/farmV3" >
+                      <DropdownText>CONCENTRATED FARMS</DropdownText>
+                    </Link>
+                 </DropdownMenu>
+                </DropdownContainer>
+
                 
-                <NavbarIcon icon={RiPlantFill} label="Farm" href="/farm" />
+
                 <NavbarIcon icon={BsCoin} label="Earn" href="/pools" />
 
-        <DropdownContainer>
-          <NavbarIcon icon={MdGamepad} label="MORE!" href="/" />
-                <DropdownMenu>
-                  
-                    <Link href="/xbsx" marginBottom="1.2rem" >
-                        <DropdownText marginRight="2rem">xBSX</DropdownText>
+                <DropdownContainer>
+                  <NavbarIcon icon={MdGamepad} label="MORE!" href="/" />
+                  <DropdownMenu>
+                    <Link href="/xbsx" marginBottom="1.2rem">
+                      <DropdownText marginRight="2rem">xBSX</DropdownText>
                     </Link>
-                    <Link href="/finishedfarms" marginBottom="1.2rem" >
+                    <Link href="/finishedfarms" marginBottom="1.2rem">
                       <DropdownText marginRight="2rem">Finished Farms </DropdownText>
                     </Link>
-                    <Link href="/bridge" marginBottom="1.2rem" >
+                    <Link href="/bridge" marginBottom="1.2rem">
                       <DropdownText marginRight="2rem">Bridge </DropdownText>
                     </Link>
-                    <Link href="/locker" marginBottom="1.2rem" >
+                    <Link href="/locker" marginBottom="1.2rem">
                       <DropdownText marginRight="2rem">Token Locker </DropdownText>
                     </Link>
-                    <Link href="https://marketplace.baseswap.fi" >
+                    <Link href="https://marketplace.baseswap.fi">
                       <DropdownText marginRight="2rem">NFT</DropdownText>
                     </Link>
-                    
-                </DropdownMenu>
+                  </DropdownMenu>
+                </DropdownContainer>
+              </Flex>
+            )}
+            {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
+            {/* {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />} */}
 
-        </DropdownContainer>
-      </Flex>
-        )}
-        {/* <Logo isDark={isDark} href={homeLink?.href ?? "/"} /> */}
-        {/* {!isMobile && <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />} */}
-
-        <Flex alignItems="center" justifyContent="flex-end" height="100%" width="300px">
-          {/* test {!isMobile && !isMd && (
+            <Flex alignItems="center" justifyContent="flex-end" height="100%" width="300px">
+              {/* test {!isMobile && !isMd && (
             <Box mr="12px">
               <CakePrice showSkeleton={false} cakePriceUsd={cakePriceUsd} />
             </Box>
           )} */}
-          {/* <Box mt="4px">
+              {/* <Box mt="4px">
             <LangSelector
               currentLang={currentLang}
               langs={langs}
@@ -304,13 +315,13 @@ const Menu: React.FC<NavProps> = ({
               hideLanguage
             />
           </Box> */}
-          {rightSide}
-        </Flex>
-      </StyledNav>
-    </FixedContainer>
-    {subLinks && (
-      <Flex justifyContent="space-around" mt={`${totalTopMenuHeight + 1}px`}>
-        {/* <SubMenuItems items={subLinksWithoutMobile} mt={`${totalTopMenuHeight + 1}px`} activeItem={activeSubItem} />
+              {rightSide}
+            </Flex>
+          </StyledNav>
+        </FixedContainer>
+        {subLinks && (
+          <Flex justifyContent="space-around" mt={`${totalTopMenuHeight + 1}px`}>
+            {/* <SubMenuItems items={subLinksWithoutMobile} mt={`${totalTopMenuHeight + 1}px`} activeItem={activeSubItem} />
 
         {subLinksMobileOnly?.length > 0 && (
           <SubMenuItems
@@ -320,12 +331,12 @@ const Menu: React.FC<NavProps> = ({
             isMobileOnly
           />
         )} */}
-      </Flex>
-    )}
-    <BodyWrapper mt={!subLinks ? `${totalTopMenuHeight + 1}px` : "0"}>
-      <Inner isPushed={false} showMenu={showMenu}>
-        {children}
-        {/* <Footer
+          </Flex>
+        )}
+        <BodyWrapper mt={!subLinks ? `${totalTopMenuHeight + 1}px` : "0"}>
+          <Inner isPushed={false} showMenu={showMenu}>
+            {children}
+            {/* <Footer
           items={footerLinks}
           isDark={isDark}
           toggleTheme={toggleTheme}
@@ -336,11 +347,11 @@ const Menu: React.FC<NavProps> = ({
           buyCakeLabel={buyCakeLabel}
           mb={[`${MOBILE_MENU_HEIGHT}px`, null, "0px"]}
         /> */}
-      </Inner>
-    </BodyWrapper>
-    {isMobile && <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />}
-  </Wrapper>
-</MenuContext.Provider>
+          </Inner>
+        </BodyWrapper>
+        {isMobile && <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />}
+      </Wrapper>
+    </MenuContext.Provider>
   );
 };
 

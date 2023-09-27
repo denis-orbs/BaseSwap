@@ -13,13 +13,13 @@ const DropDownHeader = styled.div`
   width: 100%;
   height: 0px;
   display: flex;
-  color: #fff; 
+  color: #fff;
   align-items: center;
   justify-content: space-between;
-  padding: 4px; 
-  background-color: transparent; 
+  padding: 4px;
+  background-color: transparent;
   border-radius: 8px;
-  min-width: 168px; 
+  min-width: 168px;
 
   &:hover {
     color: ${({ theme }) => theme.colors.background};
@@ -32,20 +32,20 @@ const DropDownContainer = styled(Button)`
   color: ${({ theme }) => theme.colors.text};
   position: relative;
   background: ${({ theme }) => theme.colors.gradients.basedsexgray};
-  justify-content: flex-start; 
+  justify-content: flex-start;
   border-radius: 12px;
   height: 50px;
   padding: 4px;
-  padding-left: 8px;  
+  padding-left: 8px;
   min-width: 106px;
-  max-width: 140px; 
+  max-width: 140px;
   user-select: none;
-  border: 2px solid #0154FD; 
+  border: 2px solid #0154fd;
   z-index: 20;
   ${({ theme }) => theme.mediaQueries.sm} {
     min-width: 168px;
-    max-width: 340px; 
-    height: 60px; 
+    max-width: 340px;
+    height: 60px;
   }
   .down-icon {
     position: absolute;
@@ -53,7 +53,7 @@ const DropDownContainer = styled(Button)`
     top: 50%;
     transform: translateY(-50%);
     ${({ theme }) => theme.mediaQueries.sm} {
-        right: 8px; 
+      right: 8px;
     }
   }
 `
@@ -95,27 +95,31 @@ export const CurrencySelect = ({
   return (
     <Box width="100%" {...props}>
       <DropDownContainer p={0} onClick={onPresentCurrencyModal}>
+        <Text id="pair" color={!selectedCurrency ? 'text' : undefined}>
+          {!selectedCurrency ? (
+            <>{t('Select')}</>
+          ) : (
+            <Flex flexDirection="row" width="100%" alignItems="center" justifyContent="flex-start">
+              <CurrencyLogo currency={selectedCurrency} size={isMobile ? '32px' : '54px'} />
+              <Text
+                marginLeft={isMobile ? '2px' : '8px'}
+                fontSize={isMobile ? '1rem' : '1.4rem'}
+                id="pair"
+                color="text"
+                fontWeight="400"
+              >
+                {selectedCurrency && selectedCurrency.symbol && selectedCurrency.symbol.length > 20
+                  ? `${selectedCurrency.symbol.slice(0, 4)}...${selectedCurrency.symbol.slice(
+                      selectedCurrency.symbol.length - 5,
+                      selectedCurrency.symbol.length,
+                    )}`
+                  : selectedCurrency?.symbol}
+              </Text>
+            </Flex>
+          )}
+        </Text>
 
-          <Text id="pair" color={!selectedCurrency ? 'text' : undefined}>
-            {!selectedCurrency ? (
-              <>{t('Select')}</>
-            ) : (
-              <Flex flexDirection="row" width="100%" alignItems="center" justifyContent="flex-start">
-                <CurrencyLogo currency={selectedCurrency} size={isMobile? '32px' : '54px' }  />
-                <Text marginLeft={isMobile? '2px' : '8px' } fontSize={isMobile? '1rem' : '1.4rem' } 
-                id="pair" color="text" fontWeight="400">
-                  {selectedCurrency && selectedCurrency.symbol && selectedCurrency.symbol.length > 20
-                    ? `${selectedCurrency.symbol.slice(0, 4)}...${selectedCurrency.symbol.slice(
-                        selectedCurrency.symbol.length - 5,
-                        selectedCurrency.symbol.length,
-                      )}`
-                    : selectedCurrency?.symbol}
-                </Text>
-              </Flex>
-            )}
-          </Text>
-
-          <ArrowDropDownIcon  width={isMobile? '20px' : '32px' } color="text" className="down-icon" />
+        <ArrowDropDownIcon width={isMobile ? '20px' : '32px'} color="text" className="down-icon" />
       </DropDownContainer>
       {account && !!selectedCurrency && !hideBalance && (
         <Box>

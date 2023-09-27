@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { ChevronDownIcon, ChevronUpIcon, Text } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { useCallback } from 'react'
-import { FaChevronCircleDown } from 'react-icons/fa' 
+import { FaChevronCircleDown } from 'react-icons/fa'
 import { FaChevronCircleUp } from 'react-icons/fa'
 
 export interface ExpandableSectionButtonProps {
@@ -11,15 +11,15 @@ export interface ExpandableSectionButtonProps {
 }
 
 const Down = styled(FaChevronCircleDown)`
-  width: 36px; 
-  height: 36px; 
-  color: #0154FE; 
+  width: 36px;
+  height: 36px;
+  color: #0154fe;
 `
 
 const Up = styled(FaChevronCircleUp)`
-  width: 36px; 
-  height: 36px; 
-  color: #0154FE; 
+  width: 36px;
+  height: 36px;
+  color: #0154fe;
 `
 
 const Wrapper = styled.div`
@@ -27,9 +27,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0px; 
-
-  
+  padding: 0px;
 `
 
 const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onClick, expanded = false }) => {
