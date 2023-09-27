@@ -192,6 +192,22 @@ export const styleVariants = {
       boxShadow: `${shadows.connecthover}`,
     },
   },
+  [variants.CLAIM]: {
+    background: `${darkColors.gradients.basedsex}`,
+    color: "text",
+    fontSize: "1rem",
+    fontWeight: "300",
+    textTransform: "uppercase",
+    borderRadius: "8px",
+    boxShadow: "0 1px 2px #fff, 3px 0px 6px #0154FD, -3px 0px 5px #68B9FF",  
+    border: "2px solid",
+    borderColor: "#fff",
+    ":hover": {
+      borderWidth: "2px solid",
+      background: `${darkColors.gradients.basedsexgray}`,
+      boxShadow: `${shadows.connecthover}`,
+    },
+  },
   [variants.CALCULATOR]: {
     background: `${darkColors.background}`,
     color: "text",

@@ -85,7 +85,7 @@ export const darkColors: Colors = {
   closed: "red",
   warning: "yellow",
   gradients: {
-    basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD, 90%, #ccc 100%)",
+    basedsex: "linear-gradient(to bottom,  #020079 0%, #0154FD, #68B9FF 100%)",
     based69: "linear-gradient(to bottom,  #111, #020079, #0154FD)",
 
     basedsex1: "linear-gradient(270deg, #111, #0154FD)",

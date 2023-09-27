@@ -12,6 +12,7 @@ export const scales = {
 export const variants = {
   PRIMARY: "primary",
   PERCENTAGES: "percentages",
+  CLAIM: "claim", 
   PLUSMINUS: "plusminus",
   GASON: "gason",
   ADDTOMETAMASK: "addtometamask",

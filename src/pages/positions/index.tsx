@@ -97,6 +97,20 @@ const MainContentWrapper = styled.main`
   overflow: hidden;
 `
 
+const RewardsCard = styled(Card)`
+  background: ${({ theme }) => theme.colors.gradients.basedsexgray};
+  border-width: 3px;
+  width: 100%; 
+  border-color: ${({ theme }) => theme.colors.text};
+  min-width: 400px; 
+  @media screen and (min-width:576px) {
+    max-width: 500px; 
+  }
+  @media screen and (min-width:800px) {
+    max-width: 600px; 
+  }
+`
+
 export const DarkCard = styled(Card)`
   background: ${({ theme }) => theme.colors.gradients.basedsexgrayflip};
   border-width: 2px;
@@ -254,86 +268,80 @@ export default function Pool() {
                 <NewPositionButton currencyIdA="ETH" />
               </ButtonRow>
             </TitleRow>
-
-            <Card marginBottom="12px" style={{ borderWidth: '3px' }}>
-              <AutoColumn gap="md" style={{ width: '100%', padding: '8px' }}>
-                <AutoColumn gap="md">
-                  <RowBetween style={{ alignItems: 'flex-start' }}>
+            <Flex marginBottom="18px" flexDirection="column" justifyContent="center" alignItems="center">
+                <RewardsCard  style={{ borderWidth: '3px' }}>
+                  <AutoColumn gap="md" style={{ width: '100%', padding: '4px' }}>
                     <AutoColumn gap="md">
-                      <Text fontSize="24px">
-                        <Trans>PENDING REWARDS</Trans>
-                      </Text>
 
-                      <Text color={theme.colors.primaryBright} fontSize="32px" fontWeight={500}>
-                        {t(pendingMerklValue)}
-                      </Text>
-                    </AutoColumn>
-                    <Button
-                      disabled={!rewardData?.hasClaims || isClaiming}
-                      onClick={() => {
-                        doClaim()
-                      }}
-                    >
-                      <Text>{isClaiming ? t('Claiming..') : t('Claim')}</Text>
-                    </Button>
-                  </RowBetween>
-                </AutoColumn>
-                {!rewardsLoading ? (
-                  <DarkCard paddingX="0rem" paddingY="4px" style={{ borderWidth: '2px' }}>
-                    <AutoColumn gap="md">
-                      <RowBetween>
-                        <Flex
-                          justifyContent="center"
-                          flexDirection="row"
-                          paddingLeft={isMobile ? '4px' : '4rem'}
-                          alignItems="center"
+                       <Flex flexDirection="row" marginBottom="4px" justifyContent="space-between" alignItems="center">
+                          <Text color={theme.colors.primaryBright} textAlign="center" fontSize="18px">
+                            <Trans>BaseSwap Rewards: </Trans> {t(pendingMerklValue)}
+                          </Text>
+                        <Button
+                        variant="claim" 
+                        
+                          disabled={!rewardData?.hasClaims || isClaiming}
+                          onClick={() => {
+                            doClaim()
+                          }}
                         >
-                          <CurrencyLogo
-                            currency={rewardData?.bsxCurrency}
-                            size="60px"
-                            style={{ marginRight: '0.5rem' }}
-                          />
-                          <Text color="text" fontSize="1.5rem">
-                            {pendingMerklBSX}&nbsp;
-                          </Text>
-                          <Text color="text" fontSize="1.5rem">
-                            {t(`BSX`)}
-                          </Text>
-                        </Flex>
-                        <Flex
-                          justifyContent="center"
-                          flexDirection="row"
-                          paddingRight={isMobile ? '4px' : '4rem'}
-                          alignItems="center"
-                        >
-                          <CurrencyLogo
-                            currency={rewardData?.xbsxCurrency}
-                            size="60px"
-                            style={{ marginRight: '0.5rem' }}
-                          />
-                          <Text color="text" fontSize="1.5rem">
-                            {pendingMerklXBSX}&nbsp;
-                          </Text>
-                          <Text color="text" fontSize="1.5rem">
-                            {t(`xBSX`)}
-                          </Text>
-                        </Flex>
-                      </RowBetween>
+                          <Text>{isClaiming ? t('Claiming..') : t('Claim')}</Text>
+                        </Button>
+                      </Flex>
                     </AutoColumn>
-                  </DarkCard>
-                ) : (
-                  <Skeleton />
-                )}
-              </AutoColumn>
+                    {!rewardsLoading ? (
+                        <AutoColumn gap="md">
+                          <RowBetween>
+                            <Flex
+                              justifyContent="center"
+                              flexDirection="row"
+                              paddingLeft={isMobile ? '4px' : '4rem'}
+                              alignItems="center"
+                            >
+                              <CurrencyLogo
+                                currency={rewardData?.bsxCurrency}
+                                size={isMobile? '40px' : '60px' }
+                                style={{ marginRight: '0.5rem' }}
+                              />
+                              <Text color="text" fontSize="1.5rem">
+                                {pendingMerklBSX}&nbsp; {t(`BSX`)}
+                              </Text>
+                             
+                            </Flex>
+                            <Flex
+                              justifyContent="center"
+                              flexDirection="row"
+                              paddingRight={isMobile ? '4px' : '4rem'}
+                              alignItems="center"
+                            >
+                              <CurrencyLogo
+                                currency={rewardData?.xbsxCurrency}
+                                size={isMobile? '40px' : '60px' }
+                                style={{ marginRight: '0.5rem' }}
+                              />
+                              <Text color="text" fontSize="1.5rem">
+                                {pendingMerklXBSX}&nbsp; {t(`xBSX`)}
+                              </Text>
+                             
+                            </Flex>
+                          </RowBetween>
+                        </AutoColumn>
 
-              <Flex justifyContent="center">
-                <img
-                  src="https://924174234-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-MZrRrYejMtN3SzZU10r%2Fuploads%2Fgit-blob-ed73190eb9c30bd96c439bdb3af22bf91e8446b9%2Fpowered-by-merkl-dark.png?alt=media"
-                  alt="Merkl powered by Angle Labs"
-                  width="35%"
-                />
-              </Flex>
-            </Card>
+                    ) : (
+                      <Skeleton />
+                    )}
+                  </AutoColumn>
+
+                  <Flex justifyContent="center">
+                    <img
+                      src="https://924174234-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-MZrRrYejMtN3SzZU10r%2Fuploads%2Fgit-blob-ed73190eb9c30bd96c439bdb3af22bf91e8446b9%2Fpowered-by-merkl-dark.png?alt=media"
+                      alt="Merkl powered by Angle Labs"
+                      width="50%"
+                      style={{ boxShadow: '0 0 4px #ffff', marginBottom: '8px', borderRadius: '8px' }}
+                    />
+                  </Flex>
+                </RewardsCard>
+            </Flex>
 
             <MainContentWrapper>
               {positionsLoading ? (
