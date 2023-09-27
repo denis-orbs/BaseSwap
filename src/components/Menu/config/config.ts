@@ -55,33 +55,22 @@ const config: (
     },
     {
       label: t('Liquidity'),
-      href: '/liquidity',
-      showItemsOnMobile: false,
-      icon: AddIcon,
+      href: '',
       fillIcon: AddIcon,
-      items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
-    },
-    {
-      label: t('BaseX'),
-      href: '/addv3',
-      icon: RocketIcon,
-      fillIcon: RocketIcon,
+      icon: AddIcon,
       supportChainIds: [DEFAULT_CHAIN_ID],
       items: [
         {
-          label: t('Add Liquidity'),
-          href: '/addv3',
+          label: t('Standard'),
+          href: '/liquidity',
         },
         {
-          label: t('Manage Positions'),
+          label: t('Concentrated'),
           href: '/positions',
-        },
-        {
-          label: t('V3 Pools'),
-          href: '/poolsV3',
         },
       ],
     },
+
 
     {
       label: t('Farm'),
@@ -91,12 +80,12 @@ const config: (
       supportChainIds: [DEFAULT_CHAIN_ID],
       items: [
         {
-          label: t('Live Farms!'),
+          label: t('Standard Farms'),
           href: '/farm',
         },
         {
-          label: t('Finished Farms'),
-          href: '/finishedfarms',
+          label: t('Concentrated Farms'),
+          href: '/farmV3',
         },
       ],
     },
@@ -108,14 +97,7 @@ const config: (
       fillIcon: CurrencyIcon,
       items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
     },
-    // {
-    //   label: t('xBSX'),
-    //   href: '/xbsx',
-    //   showItemsOnMobile: false,
-    //   icon: AddIcon,
-    //   fillIcon: AddIcon,
-    //   items: [].filter((item) => filterItemBySupportChainId(item, chainId)),
-    // },
+  
     {
       label: t('Links'),
       href: '',
