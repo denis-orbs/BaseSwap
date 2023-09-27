@@ -9,7 +9,7 @@ import { useEffect, useMemo } from 'react'
 import { AlertTriangle, BookOpen, ChevronsRight, Inbox, Layers } from 'react-feather'
 import styled, { css, useTheme } from 'styled-components'
 import { PositionDetails } from 'types/position'
-
+import Link from 'next/link'
 import { LoadingRows } from './styled'
 import { useUserHideClosedPositions } from 'state/user/v3/hooks'
 import { isSupportedChain } from 'config/constants/chains'
@@ -20,6 +20,7 @@ import Page from 'views/Page'
 import { useRouter } from 'next/router'
 import 'animate.css'
 import { CreateNewIcon } from '@pancakeswap/uikit'
+import { GiFallingStar } from 'react-icons/gi'
 import useMerklRewards from 'lib/hooks/merkl-rewards/useMerklRewards'
 import CurrencyLogo from 'components/Logo/CurrencyLogo'
 import { useUserClaimsDataSelector } from 'state/user/selectors'
@@ -59,19 +60,6 @@ const PoolMenuItem = styled.div`
   width: 100%;
   font-weight: 500;
 `
-const MoreOptionsButton = styled(Button)`
-  border-radius: 12px;
-  flex: 1 1 auto;
-  padding: 6px 8px;
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
-  margin-right: 8px;
-`
-
-const MoreOptionsText = styled(Text)`
-  align-items: center;
-  display: flex;
-`
 
 const ErrorContainer = styled.div`
   align-items: center;
@@ -97,33 +85,6 @@ const InboxIcon = styled(Inbox)`
   ${IconStyle}
 `
 
-// responsive text
-// disable the warning because we don't use the end prop, we just want to filter it out
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Label = styled(({ end, ...props }) => <Text {...props} />)<{ end?: boolean }>`
-  display: flex;
-  font-size: 16px;
-  justify-content: ${({ end }) => (end ? 'flex-end' : 'flex-start')};
-  align-items: center;
-`
-
-// const ResponsiveButtonPrimary = styled(Button)`
-//   border-radius: 12px;
-//   font-size: 16px;
-//   padding: 6px 8px;
-//   width: fit-content;
-//   @media (max-width: ${({ theme }) => `${theme.breakpoint.sm}px`}) {
-//     flex: 1 1 auto;
-//     width: 50%;
-//   }
-// `
-
-const ResponsiveButtonPrimary = styled(Button)`
-  border-radius: 12px;
-  font-size: 16px;
-  padding: 6px 8px;
-  width: fit-content;
-`
 
 const MainContentWrapper = styled.main`
   background: ${({ theme }) => theme.colors.gradients.basedsexgray};
@@ -263,7 +224,25 @@ export default function Pool() {
   return (
     <Page>
       <PageTitle>MANAGE POSITIONS</PageTitle>
-      <Text fontSize="18px">Add or remove liquidity from BaseX Concentrated Liquidity Positions</Text>
+      <Flex width={isMobile? '100%' : '60%'} flexDirection="column"  >
+      <Text fontSize="16px" textAlign='center'>
+        Add or remove liquidity from BaseX Concentrated Liquidity Positions.       
+      </Text>
+      <Flex flexDirection="row" justifyContent='center' alignItems="center">
+      <GiFallingStar size={isMobile? '24px' : '64px' } color="#0154FE" />
+      <Text marginX="16px" marginTop="1rem" fontSize="16px" textAlign='center'>
+        
+        All positions earn trading fees from that pair. 
+        You can also earn BSX and xBSX by creating a Concentrated 
+        Liquidity position for a pair found in &nbsp; 
+        <Link href="/poolsV3" >
+          <u style={{ cursor: 'pointer' }}>Concentrated Farms</u>
+        </Link>.
+      </Text>
+      <GiFallingStar size={isMobile? '24px' : '64px' } color="#0154FE" />
+      </Flex>
+
+      </Flex>
       <PageWrapper>
         <AutoColumn gap="lg" justify="center">
           <AutoColumn gap="lg" style={{ width: '100%' }}>

@@ -23,7 +23,7 @@ import { RiPlantFill } from "react-icons/ri";
 import { GiWaterSplash } from "react-icons/gi";
 import { FaSpaceShuttle } from "react-icons/fa";
 import NavbarIcon from "./components/Icon";
-import { IoMdClose } from "react-icons/io";
+import { BsFillDropletFill } from "react-icons/bs"
 import { GiBurstBlob } from "react-icons/gi";
 
 const StyledText = styled(Text)`
@@ -61,16 +61,17 @@ const DropdownText = styled.div<DropdownTextProps>`
 
 const DropdownMenu = styled.div`
   display: none;
+  border: 3px solid #fff; 
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
-  border-radius: 8px;
-  min-width: 240px;
-  box-shadow: 0px 2px 4px #68b9ff, 0px 2px 16px #0154fe;
+  background-color: rgba(0, 0, 0, 0.7); 
+  backdrop-filter: blur(18px); 
+  border-radius: 12px;
+  min-width: 280px;
   padding: 18px 12px;
   z-index: 1;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center; 
 `;
 
 const DropdownContainer = styled.div`
@@ -245,24 +246,32 @@ const Menu: React.FC<NavProps> = ({
                   </DropdownMenu>
                 </DropdownContainer>
 
-                <NavbarIcon icon={GiBurstBlob} label="Liquidity" href="/liquidity" />
-
                 <DropdownContainer>
-                  <NavbarIcon icon={FaSpaceShuttle} label="BaseX" href="/positions" />
+                  <NavbarIcon icon={BsFillDropletFill} label="LIQUIDITY" href="/liquidity" />
                   <DropdownMenu>
-                    <Link href="/positions" marginBottom="1.2rem">
-                      <DropdownText>Manage Positions</DropdownText>
+                    <Link href="/liquidity" marginBottom="1.2rem">
+                      <DropdownText>STANDARD</DropdownText>
                     </Link>
-                    <Link href="/addV3" marginBottom="1.2rem">
-                      <DropdownText>Add Liquidity</DropdownText>
+                    <Link href="/positions" >
+                      <DropdownText>CONCENTRATED</DropdownText>
                     </Link>
-                    <Link href="/poolsV3">
-                      <DropdownText>V3 Pools</DropdownText>
-                    </Link>
-                  </DropdownMenu>
+                 </DropdownMenu>
                 </DropdownContainer>
 
-                <NavbarIcon icon={RiPlantFill} label="Farm" href="/farm" />
+                <DropdownContainer>
+                  <NavbarIcon icon={RiPlantFill} label="FARM" href="/farm" />
+                  <DropdownMenu>
+                    <Link href="/farm" marginBottom="1.2rem">
+                      <DropdownText>STANDARD FARMS</DropdownText>
+                    </Link>
+                    <Link href="/farmV3" >
+                      <DropdownText>CONCENTRATED FARMS</DropdownText>
+                    </Link>
+                 </DropdownMenu>
+                </DropdownContainer>
+
+                
+
                 <NavbarIcon icon={BsCoin} label="Earn" href="/pools" />
 
                 <DropdownContainer>

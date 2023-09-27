@@ -13,12 +13,12 @@ import PoolCard from './components/PoolCard'
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
   color: #fff;
-  text-align: left;
+  text-align: center;
   margin-bottom: 12px;
   text-transform: uppercase;
   font-size: 40px;
   @media (min-width: 768px) {
-    font-size: 68px;
+    font-size: 48px;
   }
 `
 
@@ -47,11 +47,23 @@ export default function PoolV3({ table }: PoolCardActionProps) {
               options={{
                 cursorChar: ' ',
                 cursorSpeed: 1000000,
-                speed: 75,
+                speed: 25,
               }}
               speed={10}
               getBeforeInit={(instance) => {
-                instance.type('V3 Pools', { speed: 5000 })
+                instance.type('CONCENTRATED', )
+                return instance
+              }}
+            ></WelcomeTypeIt>
+            <WelcomeTypeIt
+              options={{
+                cursorChar: ' ',
+                cursorSpeed: 1000000,
+                speed: 50,
+              }}
+              speed={10}
+              getBeforeInit={(instance) => {
+                instance.type('FARMS', )
                 return instance
               }}
             ></WelcomeTypeIt>
