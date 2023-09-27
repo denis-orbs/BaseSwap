@@ -24,10 +24,11 @@ export enum ChartViewMode {
 }
 
 export const updateMerklPools = createAction<{ pools: any[] }>('user/updateMerklPools')
+export const updateUserClaimsData = createAction<UserMerkleClaimData>('user/updateUserClaimsData')
+
 export const updateHideClosedPositions = createAction<{ userHideClosedPositions: boolean }>(
   'user/updateHideClosedPositions',
 )
-export const updateUserClaimsData = createAction<UserMerkleClaimData>('user/updateUserClaimsData')
 export const updateUserExpertMode = createAction<{ userExpertMode: boolean }>('user/updateUserExpertMode')
 export const updateUserShowRoute = createAction<{ userShowRoute: boolean }>('user/updateUserShowRoute')
 export const updateUserSingleHopOnly = createAction<{ userSingleHopOnly: boolean }>('user/updateUserSingleHopOnly')

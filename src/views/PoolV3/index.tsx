@@ -10,6 +10,7 @@ import { getTVLFormatted } from 'views/xFarms/utils'
 import PoolCard from './components/PoolCard'
 import { useMemo } from 'react'
 import { useSelectMerklPools } from 'state/user/selectors'
+import useMerklRewards from 'lib/hooks/merkl-rewards/useMerklRewards'
 
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
@@ -25,8 +26,7 @@ const WelcomeTypeIt = styled(TypeIt)`
 
 export default function PoolV3({ table }: PoolCardActionProps) {
   const merklPools = useSelectMerklPools()
-
-  console.log(merklPools)
+  useMerklRewards()
 
   const pools = useMemo(() => {
     return (merklPools || []).map((p) => {

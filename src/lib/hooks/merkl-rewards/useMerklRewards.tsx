@@ -31,13 +31,12 @@ export default function useMerklRewards() {
   const dispatch = useAppDispatch()
 
   let userURL = `${MERKL_API_URL}`
-  if (account) {
-    userURL += `&user=${account}`
-  }
 
-  const fetchFunction = async () => {
+  const fetchFunction = async (user: string) => {
     try {
-      console.log('fetchFunction:')
+      if (user) {
+        userURL += `&user=${user}`
+      }
 
       dispatch(
         updateUserClaimsData({
@@ -68,8 +67,6 @@ export default function useMerklRewards() {
           aprs: aprList,
         }
       })
-
-      // console.log(pools)
 
       dispatch(updateMerklPools({ pools }))
 
@@ -141,15 +138,15 @@ export default function useMerklRewards() {
     }
   }
 
-  const { data, error, status } = useSWR(userURL, async () => {
-    return await fetchFunction()
+  const { data, error, status } = useSWR(`${userURL}&user=${account}`, async () => {
+    return await fetchFunction(account)
   })
 
   useEffect(() => {
     const getData = async () => {
       if (account) {
         try {
-          await fetchFunction()
+          await fetchFunction(account)
         } catch (error) {
           console.log(error)
         }
@@ -179,6 +176,17 @@ export default function useMerklRewards() {
           claimsData.proofs as string[][],
         )
       })
+
+      if (receipt.status === 1) {
+        dispatch(
+          updateUserClaimsData({
+            pendingMerklBSX: 0,
+            pendingMerklXBSX: 0,
+            pendingMerklValue: '$0',
+            isLoading: false,
+          }),
+        )
+      }
 
       setClaimsData({
         tokens: [],
