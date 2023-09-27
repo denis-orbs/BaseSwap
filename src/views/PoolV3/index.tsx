@@ -11,6 +11,7 @@ import { getTVLFormatted } from 'views/xFarms/utils'
 import PoolCard from './components/PoolCard'
 import { useWeb3React } from '@web3-react/core'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import { useMemo } from 'react'
 
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
@@ -29,16 +30,18 @@ export default function PoolV3({ table }: PoolCardActionProps) {
   const { data: merklData } = useMerklRewards()
   // console.log(merklData?.pools)
 
-  const pools = (merklData?.pools || []).map((p) => {
-    const feeAmount = p.poolFee * 10000
-    return {
-      ...p,
-      feeAmount,
-      token: getTokenInstance(p.token0),
-      quoteToken: getTokenInstance(p.token1),
-      tvl: getTVLFormatted(p.tvl),
-    }
-  })
+  const pools = useMemo(() => {
+    return (merklData?.pools || []).map((p) => {
+      const feeAmount = p.poolFee * 10000
+      return {
+        ...p,
+        feeAmount,
+        token: getTokenInstance(p.token0),
+        quoteToken: getTokenInstance(p.token1),
+        tvl: getTVLFormatted(p.tvl),
+      }
+    })
+  }, [merklData])
 
   return (
     <Page>
@@ -77,8 +80,6 @@ export default function PoolV3({ table }: PoolCardActionProps) {
           <ConnectWalletButton style={{ marginTop: '1rem' }}>Connect</ConnectWalletButton>
         ) : pools?.length > 0 ? (
           pools.map((p) => {
-            console.log('p', p)
-
             return <PoolCard key={p.pool} p={p} table={table} />
           })
         ) : (
