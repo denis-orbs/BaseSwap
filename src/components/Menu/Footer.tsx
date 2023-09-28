@@ -5,6 +5,10 @@ import { useTranslation } from '@pancakeswap/localization'
 import { Youtube } from 'react-feather'
 import { EXCHANGE_DOCS_URLS } from 'config/constants'
 import { IoMdDocument } from 'react-icons/io'
+import { RiTwitterXFill } from 'react-icons/ri'
+import { PiTelegramLogoFill } from 'react-icons/pi'
+import { LuScrollText } from 'react-icons/lu'
+import { AiOutlineContainer } from 'react-icons/ai'
 
 const Wrapper = memo(styled.div<{ $isSide: boolean }>`
   width: 100%;
@@ -34,16 +38,28 @@ const FlexStyled = styled(Flex)`
   @media (min-width: 1600px) {
     width: 70%; 
     }
-
 `;
 
-const DocsIcon = styled(IoMdDocument)`
+const DocsIcon = styled(AiOutlineContainer)`
   color: #0154FD;
   width: 36px;
   height: 36px; 
 `;
 
 const YouTubeIcon = styled(Youtube)`
+  color: #0154FD;
+  width: 36px;
+  height: 36px; 
+`;
+
+const TGIcon = styled(PiTelegramLogoFill)`
+  color: #0154FD;
+  width: 36px;
+  height: 36px; 
+`;
+
+
+const XIcon = styled(RiTwitterXFill)`
   color: #0154FD;
   width: 36px;
   height: 36px; 
@@ -64,7 +80,7 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
     <Link 
         marginRight={['1rem', null, null, '0rem' ]} 
         href="https://t.me/BaseswapFi" >
-              <TelegramIcon width="36px" color="#0154FD" /> 
+              <TGIcon /> 
     </Link>
     <Link 
         marginRight={['1rem', null, null, '0rem' ]} 
@@ -75,7 +91,7 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
         marginRight={['1rem', null, null, '0rem' ]} 
         href="https://twitter.com/BaseSwap_Fi" >
         
-        <TwitterIcon width="36px" color="#0154FD" /> 
+        <XIcon /> 
     
     </Link>
 
