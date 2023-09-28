@@ -104,6 +104,18 @@ const StyledNav = styled.nav`
   padding-right: 16px;
 `;
 
+const StyledNavInner = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  width: 100%;
+  max-width: 1400px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    justify-content: center;
+  }
+`;
+
 const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
   position: fixed;
   top: ${({ showMenu, height }) => (showMenu ? 0 : `-${height}px`)};
@@ -151,10 +163,10 @@ const Menu: React.FC<NavProps> = ({
   buyCakeLabel,
   children,
 }) => {
-  const { isMobile, isMd } = useMatchBreakpoints();
+  const { isMobile, isMd, isTablet } = useMatchBreakpoints();
   const [showMenu, setShowMenu] = useState(true);
   const refPrevOffset = useRef(typeof window === "undefined" ? 0 : window.pageYOffset);
-  const topBannerHeight = isMobile ? TOP_BANNER_HEIGHT_MOBILE : TOP_BANNER_HEIGHT;
+  const topBannerHeight = isMobile || isTablet ? TOP_BANNER_HEIGHT_MOBILE : TOP_BANNER_HEIGHT;
   const totalTopMenuHeight = banner ? MENU_HEIGHT + topBannerHeight : MENU_HEIGHT;
   useEffect(() => {
     const handleScroll = () => {
@@ -191,6 +203,7 @@ const Menu: React.FC<NavProps> = ({
         <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
           {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
           <StyledNav>
+          <StyledNavInner>
             <a href="/" style={{ marginLeft: "1rem" }}>
               <Flex alignItems="center" justifyContent="flex-start" flexDirection="row">
                 <img
@@ -198,8 +211,8 @@ const Menu: React.FC<NavProps> = ({
                     boxShadow: "0 8px 8px #fff, 12px 0px 12px #0154FD, -12px 0px 12px #68B9FF",
                     borderRadius: "50%",
                   }}
-                  width={isMobile ? 0 : 40}
-                  height={isMobile ? 0 : 40}
+                  width={isMobile || isTablet ? 0 : 40}
+                  height={isMobile || isTablet ? 0 : 40}
                   src="/images/newlogo.png"
                   alt="logo"
                 />
@@ -217,18 +230,18 @@ const Menu: React.FC<NavProps> = ({
                     borderRadius: "50%",
                   }}
                   src="/images/tokens/0xd5046B976188EB40f6DE40fB527F89c05b323385.png"
-                  width={isMobile ? 0 : 40}
-                  height={isMobile ? 0 : 40}
+                  width={isMobile || isTablet ? 0 : 40}
+                  height={isMobile || isTablet ? 0 : 40}
                   alt="logo"
                 />
               </Flex>
             </a>
-            {!isMobile && (
+            {!isMobile && !isTablet && (
               <Flex
                 flexDirection="row"
                 justifyContent="flex-start"
                 alignItems="flex-end"
-                marginLeft={isMobile ? "2rem" : "250px"}
+                marginLeft={isMobile || isTablet ? "2rem" : "250px"}
                 width="80%"
               >
                 <DropdownContainer>
@@ -255,7 +268,7 @@ const Menu: React.FC<NavProps> = ({
                     <Link href="/positions" >
                       <DropdownText>CONCENTRATED</DropdownText>
                     </Link>
-                 </DropdownMenu>
+                  </DropdownMenu>
                 </DropdownContainer>
 
                 <DropdownContainer>
@@ -267,10 +280,10 @@ const Menu: React.FC<NavProps> = ({
                     <Link href="/farmV3" >
                       <DropdownText>CONCENTRATED FARMS</DropdownText>
                     </Link>
-                 </DropdownMenu>
+                  </DropdownMenu>
                 </DropdownContainer>
 
-                
+
 
                 <NavbarIcon icon={BsCoin} label="Earn" href="/pools" />
 
@@ -317,6 +330,7 @@ const Menu: React.FC<NavProps> = ({
           </Box> */}
               {rightSide}
             </Flex>
+          </StyledNavInner>
           </StyledNav>
         </FixedContainer>
         {subLinks && (
@@ -349,7 +363,7 @@ const Menu: React.FC<NavProps> = ({
         /> */}
           </Inner>
         </BodyWrapper>
-        {isMobile && <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />}
+        {isMobile || isTablet && <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />}
       </Wrapper>
     </MenuContext.Provider>
   );
