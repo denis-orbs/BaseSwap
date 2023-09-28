@@ -6,6 +6,7 @@ import Hero from './components/Hero'
 import MetricsSection from './components/MetricsSection'
 import TVL from './components/TVL'
 import { useRef } from 'react'
+import Footer from 'components/Menu/Footer'
 
 
 const StyledHeroSection = styled(PageSection)`
@@ -22,6 +23,7 @@ const Home: React.FC = () => {
   return (
     <>
       <PageMeta />
+
 
       <StyledHeroSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
@@ -48,6 +50,8 @@ const Home: React.FC = () => {
       >
         <MetricsSection />
       </PageSection>
+      <Footer /> 
+
     </>
   )
 }

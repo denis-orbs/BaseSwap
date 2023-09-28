@@ -1,30 +1,52 @@
 import { memo } from 'react'
 import styled from 'styled-components'
-import { ButtonMenu, ButtonMenuItem, LinkExternal, Link, Flex, Svg, Image, Button, TwitterIcon, TelegramIcon, DiscordIcon } from '@pancakeswap/uikit'
+import { LinkExternal, Link, Flex, RedditIcon, MediumIcon, TwitterIcon, TelegramIcon, DiscordIcon, useMatchBreakpoints} from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
+import { Youtube } from 'react-feather'
 import { EXCHANGE_DOCS_URLS } from 'config/constants'
 import { IoMdDocument } from 'react-icons/io'
 
 const Wrapper = memo(styled.div<{ $isSide: boolean }>`
   width: 100%;
   height: ${({ $isSide }) => ($isSide ? '100%' : 'auto')};
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  display: none; 
+  display: none;
+  flex-direction: row;
   align-items: center;
+  justify-content: center; 
+  margin-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   padding-top: 8px;
-  padding-right: ${({ $isSide }) => ($isSide ? '4px' : '0px')};
+  padding-bottom: 8px;
   ${({ theme }) => theme.mediaQueries.md} {
-    justify-content: space-between;
-    flex-direction: ${({ $isSide }) => ($isSide ? 'column' : 'row')};
     display: flex; 
   }
-`)
+`);
+
+const FlexStyled = styled(Flex)`
+  margin: auto; 
+  width: 100%; 
+  @media (min-width: 768px) {
+    width: 90%; 
+  @media (min-width: 1208px) {
+    width: 80%; 
+    }
+  @media (min-width: 1600px) {
+    width: 70%; 
+    }
+
+`;
+
 const DocsIcon = styled(IoMdDocument)`
   color: #0154FD;
-  width: 28px;
-  height: 28px; 
+  width: 36px;
+  height: 36px; 
+`;
+
+const YouTubeIcon = styled(Youtube)`
+  color: #0154FD;
+  width: 36px;
+  height: 36px; 
 `;
 
 type FooterVariant = 'default' | 'side'
@@ -34,46 +56,54 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
   helpUrl = EXCHANGE_DOCS_URLS,
 }) => {
   const { t } = useTranslation()
+  const { isTablet, isMobile} = useMatchBreakpoints()
   const isSide = variant === 'side'
   return (
-    <Wrapper $isSide={isSide}>
-      {isSide && <Flex flexGrow={1} />}
-      <Flex
-        flexDirection={['row', null, null, 'column' ]}
-        flexGrow={isSide ? 0 : 1}
-        alignItems={['center', null, null, 'flex-end' ]}
-        mb="12px" mr="8px" 
-        width={['100vw', '100%', '100%', isSide ? '100%' : 'auto']}
-        justifyContent={['center', 'center', 'center', 'flex-end']} 
+  <Wrapper $isSide={isSide}>
+    <FlexStyled flexDirection="row" alignItems="center" justifyContent="space-between" >
+    <Link 
+        marginRight={['1rem', null, null, '0rem' ]} 
+        href="https://t.me/BaseswapFi" >
+              <TelegramIcon width="36px" color="#0154FD" /> 
+    </Link>
+    <Link 
+        marginRight={['1rem', null, null, '0rem' ]} 
+        href="https://medium.com/@BaseSwap" >
+              <MediumIcon width="36px" color="#0154FD" /> 
+    </Link>
+    <Link 
+        marginRight={['1rem', null, null, '0rem' ]} 
+        href="https://twitter.com/BaseSwap_Fi" >
         
-        >
-        
-          <Link marginRight={['1rem', null, null, '0rem' ]} 
-          marginBottom={['0px', null, null, '16px']}
-          href="https://twitter.com/BaseSwap_Fi" >
-                <TwitterIcon width="28px" color="#0154FD" /> 
-          </Link>
+        <TwitterIcon width="36px" color="#0154FD" /> 
+    
+    </Link>
 
-          <Link 
-          marginBottom={['0px', null, null, '16px']}
-          marginRight={['1rem', null, null, '0rem' ]} href="https://discord.gg/2zUzjyGxw2" >
-                <DiscordIcon width="28px" color="#0154FD" /> 
-          </Link>
+        <Link 
+        marginRight={['1rem', null, null, '0rem' ]} 
+        href="https://discord.gg/2zUzjyGxw2" >
+          <DiscordIcon width="36px" color="#0154FD" /> 
+    </Link>
+    
+    <Link 
+        marginRight={['1rem', null, null, '0rem' ]} 
+        href="https://www.youtube.com/@BaseSwap" >
+              <YouTubeIcon  /> 
+    </Link>
 
-          <Link 
-          marginBottom={['0px', null, null, '10px']}
+    {/* <Link 
+    marginRight={['1rem', null, null, '0rem' ]} 
+    href="https://reddit.com/r/baseswap/s/IudueT82Vz" >
+          <RedditIcon width="36px" color="#0154FD" /> 
+    </Link> */}
 
-          marginRight={['1rem', null, null, '0rem' ]} href="https://t.me/BaseswapFi" >
-                <TelegramIcon width="28px" color="#0154FD" /> 
-          </Link>
-        
-          <Link            
-          marginBottom={['0px', null, null, '0px']}
-          href="https://base-swap-1.gitbook.io/baseswap/" >
-                <DocsIcon />
-          </Link>
-      </Flex>
-    </Wrapper>
+    <Link            
+    href="https://base-swap-1.gitbook.io/baseswap/" >
+            <DocsIcon />
+
+    </Link>
+  </FlexStyled>
+</Wrapper>
   )
 }
 
