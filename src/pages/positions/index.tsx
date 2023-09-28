@@ -243,7 +243,7 @@ export default function Pool() {
           <Text marginX="16px" marginTop="1rem" fontSize="16px" textAlign="center">
             All positions earn trading fees from that pair. You can also earn BSX and xBSX by creating a Concentrated
             Liquidity position for a pair found in &nbsp;
-            <Link href="/farmsV3">
+            <Link href="/farmV3">
               <u style={{ cursor: 'pointer' }}>Concentrated Farms</u>
             </Link>
             .
