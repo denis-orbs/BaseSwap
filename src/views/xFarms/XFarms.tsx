@@ -214,7 +214,6 @@ const Farms: React.FC = ({ children }) => {
   const chosenFarmsMemoized = useMemo(() => {
     let chosenFarms = []
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
-      console.log('farms', farms)
       switch (sortOption) {
         case 'apr':
           return orderBy(farms, (farm: FarmWithStakedValue) => farm.apr, 'desc')
