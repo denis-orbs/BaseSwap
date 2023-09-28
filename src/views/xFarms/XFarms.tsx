@@ -216,7 +216,7 @@ const Farms: React.FC = ({ children }) => {
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
         case 'apr':
-          return orderBy(farms, (farm: FarmWithStakedValue) => farm.apr + farm.lpRewardsApr, 'desc')
+          return orderBy(farms, (farm: FarmWithStakedValue) => farm.apr, 'desc')
         case 'multiplier':
           return orderBy(
             farms,
