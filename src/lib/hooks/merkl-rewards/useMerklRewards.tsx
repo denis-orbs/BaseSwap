@@ -17,6 +17,7 @@ import { getFullDisplayBalance } from 'utils/formatBalance'
 
 const MERKL_API_URL = 'https://api.angle.money/v1/merkl?chainId=8453&AMMs[]=baseswap'
 const MERKL_USER_URL = 'https://api.angle.money/v1/merkl?chainId=8453&user='
+// const WHALE = '0xCA2dECd2c85A507f58Ca38a302D81d264B5DE91B'
 
 export default function useMerklRewards() {
   const [claimsData, setClaimsData] = useState<{ tokens: string[]; proofs: string[][]; claims: string[] }>()
@@ -35,7 +36,7 @@ export default function useMerklRewards() {
   const fetchPools = async () => {
     try {
       const { data: merklData } = await axios(MERKL_API_URL)
-      console.log('merklData', merklData)
+      // console.log('merklData', merklData)
 
       const pools = Object.entries(merklData.pools).map((obj: any) => {
         const aprs = obj[1].aprs
@@ -59,9 +60,9 @@ export default function useMerklRewards() {
     }
   }
 
-  const fetchUserData = async (user: string) => {
+  const fetchUserData = useCallback(async () => {
     try {
-      if (!user) return
+      if (!account) return
 
       dispatch(
         updateUserClaimsData({
@@ -72,8 +73,7 @@ export default function useMerklRewards() {
         }),
       )
 
-      const { data: merklData } = await axios(`${MERKL_USER_URL}${user}`)
-
+      const { data: merklData } = await axios(`${MERKL_USER_URL}${account}`)
       const bsxAddy = getTokenAddress('ProtocolToken', chainId)
       const xbsxAddy = getTokenAddress('xProtocolToken', chainId)
 
@@ -83,20 +83,20 @@ export default function useMerklRewards() {
       let pendingMerklBSX = 0
       let pendingMerklXBSX = 0
 
-      Object.entries(merklData.pools)
-        .filter((obj: any) => {
-          return Object.keys(obj[1].rewardsPerToken).includes(bsxAddy)
-        })
-        .forEach((obj: any) => {
-          const pendingBSX = parseFloat(
-            getFullDisplayBalance(obj[1].rewardsPerToken[bsxAddy].unclaimedUnformatted, 18, 4),
-          )
-          const pendingXBSX = parseFloat(
-            getFullDisplayBalance(obj[1].rewardsPerToken[xbsxAddy].unclaimedUnformatted, 18, 4),
-          )
-          pendingMerklBSX += pendingBSX
-          pendingMerklXBSX += pendingXBSX
-        })
+      const ourPools = Object.entries(merklData.pools).filter((obj: any) => {
+        return obj[1].amm === 5
+      })
+
+      ourPools.forEach((obj: any) => {
+        const pendingBSX = parseFloat(
+          getFullDisplayBalance(obj[1].rewardsPerToken[bsxAddy]?.unclaimedUnformatted || 0, 18, 4),
+        )
+        const pendingXBSX = parseFloat(
+          getFullDisplayBalance(obj[1].rewardsPerToken[xbsxAddy]?.unclaimedUnformatted || 0, 18, 4),
+        )
+        pendingMerklBSX += pendingBSX
+        pendingMerklXBSX += pendingXBSX
+      })
 
       const total = pendingMerklBSX + pendingMerklXBSX
       const pendingValue = getValueForAmount(bsxAddy, total, 4)
@@ -119,6 +119,8 @@ export default function useMerklRewards() {
         proofs,
       })
 
+      console.log(pendingValue)
+
       dispatch(
         updateUserClaimsData({
           pendingMerklBSX,
@@ -139,10 +141,10 @@ export default function useMerklRewards() {
     } catch (error) {
       console.log(error)
     }
-  }
+  }, [account])
 
   const { data, error, status } = useSWR(`${MERKL_API_URL}&user=${account}`, async () => {
-    return await fetchUserData(account)
+    return await fetchUserData()
   })
 
   useSWR(`${MERKL_API_URL}`, async () => {
@@ -151,12 +153,10 @@ export default function useMerklRewards() {
 
   useEffect(() => {
     const getData = async () => {
-      if (account) {
-        try {
-          await fetchUserData(account)
-        } catch (error) {
-          console.log(error)
-        }
+      try {
+        await fetchUserData()
+      } catch (error) {
+        console.log(error)
       }
 
       getData()
@@ -184,7 +184,7 @@ export default function useMerklRewards() {
         )
       })
 
-      fetchUserData(account)
+      fetchUserData()
 
       if (receipt.status === 1) {
         dispatch(

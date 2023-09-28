@@ -205,11 +205,9 @@ export default function PositionListItem({
   })
 
   const merklPools = useSelectMerklPools()
-  const aprInfo: any[] | undefined = merklPools.find((p) => p.pool === poolAddress)?.aprs
-  console.log(aprInfo)
+  const aprInfo: any[] | undefined = useMemo(() => merklPools.find((p) => p.pool === poolAddress)?.aprs, [merklPools])
 
   const router = useRouter()
-
   // construct Position from details returned
   const [, pool] = usePool(currency0 ?? undefined, currency1 ?? undefined, feeAmount)
 
