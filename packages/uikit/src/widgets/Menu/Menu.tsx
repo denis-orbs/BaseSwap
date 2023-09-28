@@ -203,7 +203,7 @@ const Menu: React.FC<NavProps> = ({
               flexDirection="row"
               justifyContent="flex-start"
               alignItems="flex-end"
-              marginLeft={isMobile || isTablet ? "2rem" : "0rem"}
+              
             >
               <DropdownContainer>
                 <NavbarIcon icon={PiSwapBold} label="TRADE" href="/swap" />
