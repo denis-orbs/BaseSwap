@@ -16,6 +16,7 @@ import { getSigner } from 'utils'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 
 const MERKL_API_URL = 'https://api.angle.money/v1/merkl?chainId=8453&AMMs[]=baseswap'
+const MERKL_USER_URL = 'https://api.angle.money/v1/merkl?chainId=8453&user='
 
 export default function useMerklRewards() {
   const [claimsData, setClaimsData] = useState<{ tokens: string[]; proofs: string[][]; claims: string[] }>()
@@ -79,7 +80,7 @@ export default function useMerklRewards() {
         }),
       )
 
-      const { data: merklData } = await axios(`${MERKL_API_URL}&user=${user}`)
+      const { data: merklData } = await axios(`${MERKL_USER_URL}${user}`)
       // const resp = await fetch(`${MERKL_API_URL}&user=${user}`)
       // const merklData = await resp.json()
 
