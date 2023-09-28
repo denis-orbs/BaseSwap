@@ -35,14 +35,6 @@ export default function useMerklRewards() {
   const fetchPools = async () => {
     try {
       const { data: merklData } = await axios(MERKL_API_URL)
-      // const resp = await fetch(MERKL_API_URL, {
-      //   headers: {
-      //     'Access-Control-Allow-Origin': '*',
-      //   },
-      // })
-      // const merklData = await resp.json()
-
-      // console.log(resp)
       console.log('merklData', merklData)
 
       const pools = Object.entries(merklData.pools).map((obj: any) => {
@@ -81,8 +73,6 @@ export default function useMerklRewards() {
       )
 
       const { data: merklData } = await axios(`${MERKL_USER_URL}${user}`)
-      // const resp = await fetch(`${MERKL_API_URL}&user=${user}`)
-      // const merklData = await resp.json()
 
       const bsxAddy = getTokenAddress('ProtocolToken', chainId)
       const xbsxAddy = getTokenAddress('xProtocolToken', chainId)
