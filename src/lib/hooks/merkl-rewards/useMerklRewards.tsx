@@ -1,4 +1,5 @@
 import { Distributor__factory, MerklAPIData, registry } from '@angleprotocol/sdk'
+import axios from 'axios'
 
 import { getTokenAddress } from 'config/constants/token-info'
 import { PROTOCOL_TOKEN_V3, XPROTOCOL_TOKEN_V3 } from 'config/constants/tokens-v3'
@@ -32,9 +33,15 @@ export default function useMerklRewards() {
 
   const fetchPools = async () => {
     try {
-      const resp = await fetch(MERKL_API_URL)
-      const merklData = await resp.json()
+      const { data: merklData } = await axios(MERKL_API_URL)
+      // const resp = await fetch(MERKL_API_URL, {
+      //   headers: {
+      //     'Access-Control-Allow-Origin': '*',
+      //   },
+      // })
+      // const merklData = await resp.json()
 
+      // console.log(resp)
       console.log('merklData', merklData)
 
       const pools = Object.entries(merklData.pools).map((obj: any) => {
@@ -72,8 +79,9 @@ export default function useMerklRewards() {
         }),
       )
 
-      const resp = await fetch(`${MERKL_API_URL}&user=${user}`)
-      const merklData = await resp.json()
+      const { data: merklData } = await axios(`${MERKL_API_URL}&user=${user}`)
+      // const resp = await fetch(`${MERKL_API_URL}&user=${user}`)
+      // const merklData = await resp.json()
 
       const bsxAddy = getTokenAddress('ProtocolToken', chainId)
       const xbsxAddy = getTokenAddress('xProtocolToken', chainId)
