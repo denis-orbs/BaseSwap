@@ -163,8 +163,8 @@ const Menu: React.FC<NavProps> = ({
 
   return (
   <MenuContext.Provider value={{ linkComponent }}>
-      <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
-        <StyledNav>
+    <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
+      <StyledNav>
         <StyledNavInner>
           <a href="/" style={{ marginLeft: "1rem" }}>
             <Flex alignItems="center" justifyContent="flex-start" flexDirection="row">
@@ -297,7 +297,7 @@ const Menu: React.FC<NavProps> = ({
       /> */}
         </Inner>
       </BodyWrapper>
-      {isMobile || isTablet && <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />}
+      {(isMobile || isTablet) && <BottomNav items={links} activeItem={activeItem} activeSubItem={activeSubItem} />}
 
   </MenuContext.Provider>
   );

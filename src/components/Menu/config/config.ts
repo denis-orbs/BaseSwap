@@ -61,11 +61,11 @@ const config: (
       supportChainIds: [DEFAULT_CHAIN_ID],
       items: [
         {
-          label: t('Standard'),
+          label: t('Standard Liquidity'),
           href: '/liquidity',
         },
         {
-          label: t('Concentrated'),
+          label: t('Concentrated Liquidity'),
           href: '/positions',
         },
       ],
@@ -117,6 +117,14 @@ const config: (
         {
           label: t('Telegram'),
           href: 'https://t.me/BaseswapFi',
+        },
+        {
+          label: t('Medium'),
+          href: 'https://medium.com/@BaseSwap',
+        },
+        {
+          label: t('YouTube'),
+          href: 'https://www.youtube.com/@BaseSwap',
         },
         {
           label: t('Docs'),
