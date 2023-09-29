@@ -1,4 +1,4 @@
-import { Flex, Spinner } from '@pancakeswap/uikit'
+import { Flex, Spinner, useMatchBreakpoints } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { getTokenInstance } from 'config/constants/token-info'
 import Page from 'views/Page'
@@ -25,6 +25,7 @@ const WelcomeTypeIt = styled(TypeIt)`
 `
 
 export default function PoolV3({ table }: PoolCardActionProps) {
+  const isMobile = useMatchBreakpoints()
   const merklPools = useSelectMerklPools()
   useMerklRewards()
 
