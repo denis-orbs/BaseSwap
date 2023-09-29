@@ -307,6 +307,7 @@ const Menu: React.FC<NavProps> = ({
                 <IconPalette />
                 <DropdownText marginLeft="8px">NFT</DropdownText>
               </Link>
+              
               </Flex>
             </DropdownMenu>
           </DropdownContainer>
