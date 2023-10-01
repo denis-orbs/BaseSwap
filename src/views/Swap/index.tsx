@@ -70,6 +70,7 @@ import ImportTokenWarningModal from '../../components/ImportTokenWarningModal'
 // import { SchemaMetaFieldDef } from 'graphql'
 import TypeIt from 'typeit-react'
 import 'animate.css'
+import { TWAP } from './components/TWAP'
 
 const WelcomeTypeIt = styled(TypeIt)`
   font-weight: 400;
@@ -111,6 +112,8 @@ const SwitchIconButton = styled(IconButton)`
 
 export enum SwapType {
   REGULAR_SWAP,
+  TWAP,
+  LIMIT,
   CROSS_CHAIN_SWAP,
 }
 
@@ -142,7 +145,9 @@ export default function Swap() {
     <Tabs>
       <ButtonMenu scale="sm" onItemClick={handleClick} activeIndex={view} fullWidth>
         <ToggleMe style={{ height: 40 }}>{t('BaseSwap')}</ToggleMe>
-        <ToggleMe style={{ height: 40 }}>{t('Cross Chain Swap')}</ToggleMe>
+        <ToggleMe style={{ height: 40 }}>{t('TWAP')}</ToggleMe>
+        <ToggleMe style={{ height: 40 }}>{t('Limit')}</ToggleMe>
+        <ToggleMe style={{ height: 40, whiteSpace: 'nowrap' }}>{t('Cross Chain Swap')}</ToggleMe>
       </ButtonMenu>
     </Tabs>
   )
@@ -853,6 +858,8 @@ export default function Swap() {
             </Flex>
           </Flex>
         )}
+        {view === SwapType.TWAP && <TWAP isChartExpanded={isChartExpanded} />}
+        {view === SwapType.LIMIT && <TWAP limit isChartExpanded={isChartExpanded} />}
       </Page>
     </>
   )
